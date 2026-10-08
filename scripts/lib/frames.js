@@ -1,43 +1,88 @@
-// The UI's frames: the creator's Kenney CC0 pixel borders, recoloured brass/wax over ash-dark fill.
-// Each is a 96 px sheet at 4 px per art pixel, drawn at half size (2 px per art pixel) via border-image.
-const U = (h) => `/cdn/value.${h}.png`;
-export const FR = {
-  panel: U("07679a20297bf5216eac5504765d11ef42348a34973350cac19dbd4ee0198e40"),
-  btn: U("efe39eecfc97d68d46617bd1d458e5911ab198326813fc093bb482ff510fd61e"),
-  btnmain: U("193f20b46037db4dcd9364748d5428843007d8e0cecf0e528e934ced25605c5b"),
-  slot: U("d502a11179b049d3da0da9e5a9096754b6a72312519548047fe425ffcca9fdbf"),
-  row: U("e7160ea1f290518c9f70bb4444978e619c424d4ea45f4ec59d41f26421ea0043"),
-  rowon: U("3fd974bdd97c1ea22b5ba235accb1fe25780ad93f7003d0addeb07a1840090a8"),
-  card: U("cd396819d656f0cac99b4c6b3eda49cccae72af69dcf6c99ba4a9b69b4afab38"),
-  btnhot: U("11da33d216fa2a9ff50216ec30653b9e9aa047f0606e6bad8de4c4ff767a3de4"),
-  slothot: U("152e0e3dca8080958e96297d180738dd46f2ecd43c02f2d1e4a43c5e9f09757a"),
-  div: U("13fd9814ade4243077f8fe969333ce0f6ce52f7c79ec82eaaf5d6c8916ed95a3"),
-  thin: U("539265c044e21cd672fcba79cb0e1c8fda1d8035563e1bc9d50719bc71c545bf"),
-  ornate: U("75a658d631981a665ceca8773fec687cb292ed5ca6833b19d6156b214b7e9bc1"),
-  dull: U("419a89626be7e028858090009f767cdc899e865773ca5891ed2e3a53434aa2ac"),
-  cardon: U("e395b42f71101818ed0b0b78153d07acd1f2f99b1b29c415db1c6c877b098c7e"),
+// The UI's frames: the creator's full Kenney CC0 pixel kit (32 shapes × 4 renderings + 12 dividers),
+// drawn straight from their uploads and tinted brass/ember/ash in CSS.
+// A framed element paints two layers behind its content:
+//   ::before = the shape's solid silhouette (panel-NNN) in ash-dark, its backdrop
+//   ::after  = the shape's outline (panel-border-NNN) in brass
+// hover  -> outline swaps to panel-transparent-center-NNN in ember (a lit, half-filled frame)
+// .on    -> backdrop swaps to panel-transparent-border-NNN in deep ember (the chosen one glows from inside)
+// disabled/sealed -> outline dims to old bronze
+import K from "./data/ui-kit.js";
+
+const u = (p) => `url(/cdn/${p}.webp)`;
+const F = {
+  gold: "brightness(.72) sepia(1) saturate(2.2) hue-rotate(-21deg) brightness(.76)",
+  pale: "brightness(.78) sepia(1) saturate(2.3) hue-rotate(-30deg) brightness(.96)",
+  ember: "brightness(.58) sepia(1) saturate(3.8) hue-rotate(-24deg) brightness(.92)",
+  dim: "brightness(.56) sepia(1) saturate(1.1) hue-rotate(-6deg) brightness(.48)",
+  ash: "brightness(.28) sepia(1) saturate(.8) hue-rotate(-15deg) brightness(.24)",
+  coal: "brightness(.5) sepia(1) saturate(3) hue-rotate(-24deg) brightness(.3)",
 };
-const bi = (img, slice, w) => `border:${w}px solid transparent;border-image:url(${img}) ${slice} fill / ${w}px stretch;image-rendering:pixelated;box-sizing:border-box;background:none`;
+const shape = (n) => {
+  const i = String(n).padStart(3, "0");
+  return `--s:${u(K.solid[i])};--b:${u(K.border[i])};--c:${u(K.center[i])};--t:${u(K.fill[i])};`;
+};
+
+// role -> [shape number, frame px, frame inset px (negative = outside the box), padding or null]
+// every one of the 32 shapes stands somewhere: menus, HUD, pack cabinet, the peddler's cart.
+const ROLES = [
+  ["#vm .panel", 8, 14, -4, null],
+  ["#vm .panel.side", 5, 14, -4, null],
+  ["#vm .panel.det", 7, 14, -4, null],
+  ["#vm .panel.msg", 13, 12, -4, null],
+  ["#vm .btn", 3, 14, -2, null],
+  ["#vm .btn.main", 24, 16, -4, null],
+  ["#vm .btn[disabled]", 9, 14, -2, null],
+  ["#vm .mini", 16, 10, -2, null],
+  ["#vm .row", 10, 12, -4, null],
+  ["#vm .card", 21, 12, 0, null],
+  ["#vm .anc", 18, 10, -6, null],
+  ["#vm .namebox", 1, 12, -4, null],
+  ["#vf .qp", 31, 16, 0, "16px 20px"],
+  ["#vf .pp", 12, 14, 0, "14px 18px"],
+  ["#vf .dl", 25, 18, 0, "20px 26px"],
+  ["#vf .bb", 26, 16, 0, "14px 22px"],
+  ["#vf .pk", 4, 16, 0, "18px 20px"],
+  ["#vf .kd", 28, 18, 0, "18px 40px"],
+  ["#vf .ph .slot", 14, 9, 0, null],
+  ["#vfshop", 6, 16, 0, "22px 24px"],
+  ["#vfshop .gl", 22, 8, 0, null],
+  ["#vfshop .bt", 23, 10, -2, null],
+  ["#vfshop .row", 27, 10, 0, "8px 10px"],
+  ["#vfshop .x", 29, 8, 0, null],
+];
+// the skill bar: each key its own shape
+[2, 11, 15, 17, 19, 20].forEach((n, i) => ROLES.push([`#vf .sk .slot:nth-child(${i + 1})`, n, 10, 0, null]));
+// the pack cabinet: twelve cubbies, twelve shapes, the last two (0, 30) only here
+[0, 30, 28, 9, 14, 29, 2, 11, 15, 17, 19, 20].forEach((n, i) => ROLES.push([`#vf .pk .slot:nth-child(${i + 1})`, n, 9, 0, null]));
+
+const sel = (suffix) => ROLES.map(([s]) => s.split(",").map((x) => x + suffix).join(",")).join(",");
+const roleCSS = ROLES.map(([s, n, w, inset, pad]) =>
+  `${s}{${shape(n)}--fw:${w}px;--fi:${inset}px;${pad ? `padding:${pad}!important;` : ""}}`).join("\n");
+
+// dividers: half-art (knot on the right), mirrored so the knots meet in the middle
+const DV = Object.entries(K.divider).map(([k, p]) => `.dv.d${k}{--dv:${u(p)};--dh:${K.dividerH[k]}px}`).join("");
+
 export const FRAME_CSS = `<style>
-#vm .panel,#vf .plate,#vfshop .plate{${bi(FR.panel, 28, 14)};box-shadow:none!important;padding:4px 8px}
-#vm .btn,#vfshop .bt,#vm .mini{${bi(FR.btn, 28, 14)};box-shadow:none!important;padding:2px 10px}
-#vm .btn.main{${bi(FR.btnmain, 28, 14)};box-shadow:0 0 22px rgba(240,140,60,.25)!important;padding:4px 14px}
-#vm .btn[disabled],#vfshop .bt.off{opacity:.55}
-#vf .slot,#vfshop .gl,#vfshop .x{${bi(FR.slot, 24, 12)};box-shadow:none!important}
-#vm .row{${bi(FR.row, 32, 16)};box-shadow:none!important;padding:2px 6px;background:rgba(20,18,16,.55)}
-#vm .row.on{${bi(FR.rowon, 32, 16)};background:rgba(40,32,24,.6)}
-#vm .card{${bi(FR.card, 24, 12)};box-shadow:none!important}
-#vm .card.on{${bi(FR.cardon, 24, 12)};box-shadow:0 0 16px rgba(242,211,138,.3)!important}
-#vm .namebox{${bi(FR.slot, 24, 12)};box-shadow:none!important;padding:2px 6px}
-@media (pointer:coarse),(max-width:700px){#vf .plate,#vfshop .plate{border-width:9px;border-image-width:9px;padding:2px 5px!important}}
-#vm .btn:not([disabled]):hover,#vm .btn:not([disabled]):active,#vfshop .bt:not(.off):hover,#vfshop .bt:not(.off):active,#vm .mini:hover{border-image-source:url(${FR.btnhot});color:#ffe2a8!important;box-shadow:0 0 18px rgba(255,150,70,.35)!important}
+${sel("")}{isolation:isolate;border:0!important;border-image:none!important;background:none!important;box-shadow:none!important}
+#vm .btn,#vm .mini,#vm .row,#vm .card,#vm .anc,#vm .namebox,#vm .panel,#vf .pp,#vf .slot,#vfshop .gl,#vfshop .bt,#vfshop .row,#vfshop .x{position:relative}
+${sel("::before")},${sel("::after")}{content:"";position:absolute;inset:var(--fi,0);pointer-events:none;z-index:-1;box-sizing:border-box;border:var(--fw,14px) solid transparent;border-image-slice:32 fill;border-image-width:var(--fw,14px);border-image-repeat:stretch;image-rendering:pixelated;transition:filter .12s,opacity .12s}
+${sel("::before")}{border-image-source:var(--s);filter:${F.ash};opacity:.9}
+${sel("::after")}{border-image-source:var(--b);filter:${F.gold}}
+#vm .btn:not([disabled]):hover::after,#vm .btn:not([disabled]):active::after,#vm .mini:hover::after,#vm .row:hover::after,#vm .card:hover::after,#vm .anc:hover::after,#vm .namebox:hover::after,#vf .slot:hover::after,#vfshop .bt:not(.off):hover::after,#vfshop .x:hover::after{border-image-source:var(--c);filter:${F.ember};opacity:.75}
+#vm .btn:not([disabled]):hover,#vfshop .bt:not(.off):hover{color:#ffe2a8!important}
 #vm .btn:not([disabled]):active,#vfshop .bt:not(.off):active{transform:translateY(1px)}
-#vf .slot:hover,#vf .slot:active,#vfshop .x:hover,#vm .card:hover,#vm .namebox:hover{border-image-source:url(${FR.slothot})}
-#vm .row:hover{border-image-source:url(${FR.rowon})}
-#vf .ornate{border:22px solid transparent!important;border-image:url(${FR.ornate}) 32 fill / 22px stretch!important;image-rendering:pixelated;box-shadow:none!important;background:none!important;padding:4px 10px!important}
-#vm .btn[disabled],#vfshop .bt.off{border-image-source:url(${FR.dull})!important;opacity:.8}
-@media (pointer:coarse),(max-width:700px){#vf .ornate{border-width:14px!important;border-image-width:14px!important}}
-.dv{height:14px;margin:5px auto 6px;max-width:100%;width:min(100%,384px);background:url(${FR.div}) center/contain no-repeat;image-rendering:pixelated;opacity:.9;pointer-events:none}
-#vf .plate.thin{border:18px solid transparent!important;border-image:url(${FR.thin}) 24 fill / 18px stretch!important;image-rendering:pixelated;background:none!important;box-shadow:none!important;padding:2px 8px!important}
-@media (pointer:coarse),(max-width:700px){#vf .plate.thin{border-width:12px!important;border-image-width:12px!important}}
+#vm .row.on::before,#vm .card.on::before,#vm .anc.on::before,#vm .btn.main::before{border-image-source:var(--t);filter:${F.coal};opacity:1}
+#vm .row.on::after,#vm .card.on::after,#vm .anc.on::after{filter:${F.pale}}
+#vm .btn.main{box-shadow:0 0 22px rgba(240,140,60,.22)!important}
+#vm .btn[disabled]::after,#vfshop .bt.off::after,#vm .card.sealed::after,#vf .slot.dim::after,#vf .pk .slot.e::after{filter:${F.dim}}
+#vm .btn[disabled],#vfshop .bt.off{opacity:.85}
+#vf .pk .slot.e::before{opacity:.55}
+#vm .card img{position:relative;z-index:0}
+${roleCSS}
+@media (pointer:coarse),(max-width:700px){${ROLES.filter(([, , w]) => w > 10).map(([s]) => s).join(",")}{--fw:9px}
+ #vf .qp,#vf .pp,#vf .pk,#vf .bb{padding:10px 12px!important} #vf .dl{padding:12px 14px!important} #vfshop{padding:14px 14px!important}}
+.dv{display:flex;height:var(--dh,21px);width:min(100%,288px);margin:4px auto 6px;filter:${F.gold};pointer-events:none;--dv:${u(K.divider.f4)}}
+.dv::before,.dv::after{content:"";flex:1;background:var(--dv) right center/100% 100% no-repeat;image-rendering:pixelated}
+.dv::after{transform:scaleX(-1)}
+${DV}
 </style>`;
