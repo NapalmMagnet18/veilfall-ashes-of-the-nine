@@ -39,7 +39,7 @@ def hem(th):
     front = math.exp(-((math.atan2(math.sin(th + math.pi / 2), math.cos(th + math.pi / 2))) / .7) ** 2)
     n = mnoise.noise(Vector((math.cos(th) * 2.2, math.sin(th) * 2.2, SEED * 1.7)))
     tongue = max(0, math.sin(th * 7 + SEED)) ** 6 * .28
-    return 1.86 - .22 * front - .12 * n - tongue
+    return 1.8 - .24 * front - .12 * n - tongue
 def veil(th, t):
     zh = hem(th); n = len(VP)
     s = t * (n - 1 + 3)
@@ -84,7 +84,7 @@ elif V == "b":
     for sx in (-1, 1):
         for sy in (-1, 1): box(M["stone"], lx + sx * .1 - .025, lx + sx * .1 + .025, ly + sy * .1 - .025, ly + sy * .1 + .025, lz + .05, lz + .27)
     box(M["stone"], lx - .14, lx + .14, ly - .14, ly + .14, lz + .27, lz + .31)
-    prim("cone", M["stone"], loc=(lx, ly, lz + .38), vertices=4, radius1=.17, radius2=.02, depth=.14, rotation=(0, 0, math.pi / 4))
+    prim("cone", M["stone"], loc=(lx, ly, lz + .38), vertices=4, radius1=.17, radius2=.02, depth=.14, rot=(0, 0, math.pi / 4))
     prim("ico", M["stone"], loc=(lx, ly, lz + .47), subdivisions=1, radius=.035)
     prim("ico", M["memory"], loc=(lx, ly, lz + .15), subdivisions=2, radius=.075)
     for k in range(4):
