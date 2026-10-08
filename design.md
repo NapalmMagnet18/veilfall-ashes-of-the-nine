@@ -80,3 +80,11 @@ places/main/sim.js referee: spawns packs, quest stages, XP/levels, death and res
 - Footsteps per surface: ash (fire), mud (fen), dry leaves (orchard), echoing hall stone (abbey/nave/crypt), wet flagstone elsewhere.
 - Maelin speaks a short voiced line on talk (one throat constant, music ducks).
 - Evade swish, guard clang, armor thud under hurt. Mix gains in world.config.yaml audio:, main reverb 0.22.
+
+## 2026-10-08 · Tiered loot and the pack (creator: "create a tier loot system like in mmorpgs and arpgs")
+- Five tiers, low to high: Ashen (grey), Hallowed (blue, 1-2 affixes), Gilded (gold, rare names), Relic (orange, fixed uniques), Vowbound (green, the Penitent set). Data: scripts/lib/data/loot.yml; rolls and cards: scripts/lib/loot.js.
+- Personal loot: every Bearer who helped kill rolls their own drops. Bosses roll from their own table.
+- Drops land in player.state.lootIn (one key per item); the Bearer's own machine moves them into the 24-slot pack. A full pack turns the drop into ash dust.
+- Seven slots: weapon, helm, chest, gloves, boots, ring, amulet. Worn stats: damage, % damage, crit, life, armor (armor/(armor+120) mitigation), speed (cap +40%), edge, leech, copper find, regen.
+- Pack (I): paper doll, hover cards that compare to what you wear, equip/unequip, salvage to dust, sell at the trader, sort, salvage-all.
+- Open: crafting with ash dust, professions, auction house. Proposed order: dust crafting next, then the auction house.
