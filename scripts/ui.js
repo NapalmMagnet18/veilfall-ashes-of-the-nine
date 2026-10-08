@@ -72,7 +72,7 @@ const MSTYLE = `<style>
  #vm .panel{padding:8px 10px} #vm .grid{grid-template-columns:repeat(3,1fr);gap:7px} #vm .grid .card{height:92px}
  #vm .anc img{width:40px;height:40px} #vm .anc span{font-size:9px}
  #vm .det{width:auto} #vm .det .big{display:none} #vm .det .sk{display:none} #vm .btn{min-width:0;font-size:15px;padding:10px 14px}
- #vm .tb{bottom:auto!important;top:46%} #vm .qt{padding:0 64px 0 24px!important;font-size:12px!important} #vm .wrap{right:62px} #vm .ttl{font-size:46px!important} #vm .sub{font-size:14px!important}
+ #vm .tb{bottom:auto!important;top:33%} #vm .qt{padding:0 64px 0 24px!important;font-size:12px!important} #vm .wrap{right:62px} #vm .ttl{font-size:46px!important} #vm .sub{font-size:14px!important}
 }
 </style>`;
 const MX = `<style>
@@ -217,7 +217,7 @@ export default function (ctx, player) {
   ${dlg ? `<div id="dlg${dlg.at}" class="absolute plate" style="left:50%;transform:translateX(-50%);bottom:${touch ? 210 : 150}px;width:min(560px,calc(100vw - 2*${rail}));animation:vfin .35s;font-size:17px;line-height:1.35">${dlg.text}</div>` : ""}
   <div class="absolute dk" style="left:24px;bottom:24px;display:flex;align-items:flex-end;gap:14px">
     <div class="orb"><div class="fill" style="height:${hpPct}%;background:radial-gradient(circle at 50% 30%,#e0473a,#7d1410 70%)${hpPct < 30 ? ";animation:vfpulse 1s infinite" : ""}"></div><div class="shine"></div><div class="val">${hp}</div></div>
-    <div class="plate" style="padding:6px 10px"><div class="lbl">${s.ancestry ? s.ancestry[0].toUpperCase() + s.ancestry.slice(1) + " " : ""}Bladewraith · Lv ${lv}</div><div style="width:150px;height:6px;background:#120e0c;margin-top:4px"><div style="height:6px;width:${xpPct}%;background:#9d86e0"></div></div><div style="font-size:13px;margin-top:4px;color:var(--wax)">${coinHTML(s.copper ?? 0, 14)}${s.weapon === "ITEM-001" ? " · Rusted Oathblade" : ""}</div></div>
+    <div class="plate" style="padding:6px 10px"><div class="lbl">${s.charName ? s.charName + " · " : ""}Lv ${lv} ${s.ancestry ? s.ancestry[0].toUpperCase() + s.ancestry.slice(1) + " " : ""}Bladewraith</div><div style="width:150px;height:6px;background:#120e0c;margin-top:4px"><div style="height:6px;width:${xpPct}%;background:#9d86e0"></div></div><div style="font-size:13px;margin-top:4px;color:var(--wax)">${coinHTML(s.copper ?? 0, 14)}${s.weapon === "ITEM-001" ? " · Rusted Oathblade" : ""}</div></div>
   </div>
   ${touch ? "" : `<div class="absolute dk" style="left:50%;bottom:24px;transform:translateX(-50%);display:flex;gap:10px">
     <div class="slot"><span class="k">LMB</span>⚔</div>
@@ -237,11 +237,11 @@ export default function (ctx, player) {
   <div class="absolute ph" style="right:12px;top:12px;pointer-events:auto" onclick="sendAction('bag')"><div class="slot" style="width:48px;height:40px;font-size:11px">PACK</div></div>
   ${q.stage === 0 || q.stage === 4 ? `<div data-world-anchor="maelin" data-anchor-offset="0 2.3 0" style="font-size:30px;color:var(--wax);text-align:center;animation:vfpulse 1.4s infinite">!<div style="font-size:12px">MAELIN</div></div>` : ""}
   ${s.bagOpen ? `<div class="absolute plate" style="right:${rail};top:50%;transform:translateY(-50%);width:260px;animation:vfin .25s">
-    <div class="lbl">Pack (I or PACK to close)</div>
+    <div class="lbl">${s.charName ?? "Bearer"} · Pack (I to close)</div>
     <div style="display:grid;grid-template-columns:repeat(4,52px);gap:8px;margin-top:8px">
       ${[["⚔", s.weapon === "ITEM-001" ? "Rusted Oathblade" : "Pilgrim's Shortblade", 1], ["♥", "Ash Tonic", s.tonics ?? 0], ["◆", "Wax Shard", s.shards ?? 0], ["✉", "Sealed Petition", s.petitions?.length ?? 0]].filter((i) => i[2]).map(([g, n, c]) => `<div class="slot" title="${n}" style="width:52px;height:52px">${g}<span class="n">${c}</span></div>`).join("")}
     </div>
-    <div style="font-size:13px;margin-top:8px;line-height:1.4">${s.weapon === "ITEM-001" ? "Rusted Oathblade · +30% damage" : "Pilgrim's Shortblade"}<br>${s.shards ?? 0} wax shards · ${s.petitions?.length ?? 0} petitions</div><div style="font-size:14px;margin-top:6px;display:flex;align-items:center">${coinHTML(s.copper ?? 0, 14)}</div></div>` : ""}
+    <div style="font-size:13px;margin-top:8px;line-height:1.4">${s.weapon === "ITEM-001" ? "Rusted Oathblade · +30% damage" : "Pilgrim's Shortblade"}<br>${s.shards ?? 0} wax shards · ${s.petitions?.length ?? 0} petitions</div><div style="font-size:14px;margin-top:6px;display:flex;align-items:center">${coinHTML(s.copper ?? 0, 14)}</div><button style="pointer-events:auto;cursor:pointer;margin-top:10px;width:100%;padding:8px;font-family:inherit;font-size:13px;letter-spacing:.12em;color:#e9dfc8;background:linear-gradient(#2c2825,#171412);border:0;box-shadow:0 0 0 2px #0d0b0a,0 0 0 3px #5a4a33" onclick="sendAction('menu',{a:'logout',n:Date.now()})">REST · CHARACTER SELECT</button></div>` : ""}
   ${s.shop ? shopPanel(ctx, player) : ""}
   ${s.dead ? `<div class="absolute inset-0" style="display:flex;align-items:center;justify-content:center;background:radial-gradient(transparent 30%,rgba(40,0,0,.6));animation:vfin .4s"><div style="font-size:54px;color:#d8442f;letter-spacing:.1em">THE ROAD TAKES YOU</div></div>` : ""}
   ${now - firstSeen < 9000 && !touch ? `<div class="absolute inset-x-0 text-center dk" style="bottom:150px;font-size:17px;padding:0 ${rail};animation:vffade 1s 8s forwards">Click to walk · click a foe to strike · Right-click Crosswound · Space Griefstep · Q tonic · I pack</div>` : ""}
