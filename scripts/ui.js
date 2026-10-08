@@ -1,5 +1,5 @@
 // VEILFALL HUD: life orb, edge orb, skill bar, quest tracker, boss bar, dialogue, death beat.
-import { coinHTML } from "./lib/coins.js";
+import { coinHTML, fmt } from "./lib/coins.js";
 import { shopPanel } from "./lib/shop-ui.js";
 const STAGES = [
   ["Pilgrims in White", "Speak with Maelin at the Wayside Fire"],
@@ -152,7 +152,7 @@ export default function (ctx, player) {
   ${dlg ? `<div id="dlg${dlg.at}" class="absolute plate" style="left:50%;transform:translateX(-50%);bottom:${touch ? 210 : 150}px;width:min(560px,calc(100vw - 2*${rail}));animation:vfin .35s;font-size:17px;line-height:1.35">${dlg.text}</div>` : ""}
   <div class="absolute dk" style="left:24px;bottom:24px;display:flex;align-items:flex-end;gap:14px">
     <div class="orb"><div class="fill" style="height:${hpPct}%;background:radial-gradient(circle at 50% 30%,#e0473a,#7d1410 70%)${hpPct < 30 ? ";animation:vfpulse 1s infinite" : ""}"></div><div class="shine"></div><div class="val">${hp}</div></div>
-    <div class="plate" style="padding:6px 10px"><div class="lbl">${s.ancestry ? s.ancestry[0].toUpperCase() + s.ancestry.slice(1) + " " : ""}Bladewraith · Lv ${lv}</div><div style="width:150px;height:6px;background:#120e0c;margin-top:4px"><div style="height:6px;width:${xpPct}%;background:#9d86e0"></div></div><div style="font-size:13px;margin-top:4px;color:var(--wax)">${s.gold ?? 0} gold${s.weapon === "ITEM-001" ? " · Rusted Oathblade" : ""}</div></div>
+    <div class="plate" style="padding:6px 10px"><div class="lbl">${s.ancestry ? s.ancestry[0].toUpperCase() + s.ancestry.slice(1) + " " : ""}Bladewraith · Lv ${lv}</div><div style="width:150px;height:6px;background:#120e0c;margin-top:4px"><div style="height:6px;width:${xpPct}%;background:#9d86e0"></div></div><div style="font-size:13px;margin-top:4px;color:var(--wax)">${coinHTML(s.copper ?? 0, 14)}${s.weapon === "ITEM-001" ? " · Rusted Oathblade" : ""}</div></div>
   </div>
   ${touch ? "" : `<div class="absolute dk" style="left:50%;bottom:24px;transform:translateX(-50%);display:flex;gap:10px">
     <div class="slot"><span class="k">LMB</span>⚔</div>
@@ -164,7 +164,7 @@ export default function (ctx, player) {
   </div>`}
   <div class="absolute dk" style="right:24px;bottom:24px"><div class="orb"><div class="fill" style="height:${edge}%;background:radial-gradient(circle at 50% 30%,#f2b04a,#8a4a10 70%)"></div><div class="shine"></div><div class="val">${edge}</div></div><div class="lbl" style="text-align:center;margin-top:8px">Edge</div></div>
   <div class="absolute ph plate" style="left:10px;top:118px;width:170px;padding:6px 9px">
-    <div class="lbl" style="font-size:10px">Bladewraith · Lv ${lv} · ${s.gold ?? 0}g</div>
+    <div class="lbl" style="font-size:10px">Bladewraith · Lv ${lv} · ${fmt(s.copper ?? 0)}</div>
     <div class="bar"><div style="position:absolute;inset:0;width:${hpPct}%;background:linear-gradient(#e0473a,#7d1410)${hpPct < 30 ? ";animation:vfpulse 1s infinite" : ""}"></div><div style="position:absolute;inset:0;font-size:9px;line-height:10px;text-align:center">${hp}</div></div>
     <div class="bar" style="height:6px"><div style="position:absolute;inset:0;width:${edge}%;background:linear-gradient(#f2b04a,#8a4a10)"></div></div>
     <div style="font-size:11px;margin-top:4px;color:#e0473a">♥ ${s.tonics ?? 0}</div>
@@ -174,9 +174,10 @@ export default function (ctx, player) {
   ${s.bagOpen ? `<div class="absolute plate" style="right:${rail};top:50%;transform:translateY(-50%);width:260px;animation:vfin .25s">
     <div class="lbl">Pack (I or PACK to close)</div>
     <div style="display:grid;grid-template-columns:repeat(4,52px);gap:8px;margin-top:8px">
-      ${[["⚔", s.weapon === "ITEM-001" ? "Rusted Oathblade" : "Pilgrim's Shortblade", 1], ["♥", "Ash Tonic", s.tonics ?? 0], ["◆", "Wax Shard", s.shards ?? 0], ["✉", "Sealed Petition", s.petitions?.length ?? 0], ["●", "Gold", s.gold ?? 0]].filter((i) => i[2]).map(([g, n, c]) => `<div class="slot" title="${n}" style="width:52px;height:52px">${g}<span class="n">${c}</span></div>`).join("")}
+      ${[["⚔", s.weapon === "ITEM-001" ? "Rusted Oathblade" : "Pilgrim's Shortblade", 1], ["♥", "Ash Tonic", s.tonics ?? 0], ["◆", "Wax Shard", s.shards ?? 0], ["✉", "Sealed Petition", s.petitions?.length ?? 0]].filter((i) => i[2]).map(([g, n, c]) => `<div class="slot" title="${n}" style="width:52px;height:52px">${g}<span class="n">${c}</span></div>`).join("")}
     </div>
-    <div style="font-size:13px;margin-top:8px;line-height:1.4">${s.weapon === "ITEM-001" ? "Rusted Oathblade · +30% damage" : "Pilgrim's Shortblade"}<br>${s.shards ?? 0} wax shards · ${s.petitions?.length ?? 0} petitions</div></div>` : ""}
+    <div style="font-size:13px;margin-top:8px;line-height:1.4">${s.weapon === "ITEM-001" ? "Rusted Oathblade · +30% damage" : "Pilgrim's Shortblade"}<br>${s.shards ?? 0} wax shards · ${s.petitions?.length ?? 0} petitions</div><div style="font-size:14px;margin-top:6px;display:flex;align-items:center">${coinHTML(s.copper ?? 0, 14)}</div></div>` : ""}
+  ${s.shop ? shopPanel(ctx, player) : ""}
   ${s.dead ? `<div class="absolute inset-0" style="display:flex;align-items:center;justify-content:center;background:radial-gradient(transparent 30%,rgba(40,0,0,.6));animation:vfin .4s"><div style="font-size:54px;color:#d8442f;letter-spacing:.1em">THE ROAD TAKES YOU</div></div>` : ""}
   ${now - firstSeen < 9000 && !touch ? `<div class="absolute inset-x-0 text-center dk" style="bottom:150px;font-size:17px;padding:0 ${rail};animation:vffade 1s 8s forwards">Click to walk · click a foe to strike · Right-click Crosswound · Space Griefstep · Q tonic · I pack</div>` : ""}
 </div>`;
