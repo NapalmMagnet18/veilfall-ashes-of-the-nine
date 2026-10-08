@@ -189,8 +189,30 @@ for sx in (-1, 1):
     prof = [(WB - .2, 0), (4.0, 0)] + sorted([(min(4.0, y), z) for y, z in prof[2:]], reverse=True)
     w_ = prism_yz(prof, sx * 4.0, sx * 4.9, M["sooted"], "navewall"); jitter(w_, .03, 1.5, 50 + sx)
 bk = prism_xz([(-4.9, 0), (4.9, 0)] + [(4.9 - i * .7, 5.6 - (i % 2) * .5 - (1.6 if 3 < i < 8 else 0)) for i in range(15)], 3.2, 4.0, M["sooted"], "backwall")
+# the breach: the back wall knocked through x ~±2.4, ragged ashlar steps up both sides, the stones thrown out into the nave
+def breach_poly(seed=17):
+    rb = random.Random(seed); L = []; Rr = []
+    for k in range(14):
+        z0, z1 = k * .5 - (.2 if k == 0 else 0), (k + 1) * .5
+        L += [(-2.35 - k * .04 + rb.uniform(-.32, .3), z0), (None, z1)]; L[-1] = (L[-2][0], z1)
+        Rr += [(2.35 + k * .04 + rb.uniform(-.3, .32), z0), (None, z1)]; Rr[-1] = (Rr[-2][0], z1)
+    return L + list(reversed(Rr))
+boolean(bk, [prism_xz(breach_poly(), 2.9, 4.3, M["sooted"])], transfer=True)
+for k, (sx, z, y) in enumerate(((-1, 1.6, 3.15), (1, 3.1, 3.2), (-1, 4.3, 4.05), (1, .9, 4.05))):   # half-dislodged blocks still sitting in the jambs
+    b = prim("cube", M["sooted"], loc=(sx * 2.55, y + .2, z), scl=(.34, .3, .24)); jitter(b, .04, 3, 300 + k)
+    xform(b, Matrix.Translation((sx * 2.55, y + .2, z)) @ Matrix.Rotation(sx * .25, 4, "Z") @ Matrix.Translation((-sx * 2.55, -y - .2, -z)))
+rbk = random.Random(23)
+for k in range(26):   # knocked-out ashlar spilling outward, only at the sides: the centre 3 m stays a walk
+    sx = -1 if k % 2 else 1; x = sx * rbk.uniform(1.6, 4.4); y = rbk.uniform(4.05, 7.0) if k > 5 else rbk.uniform(4.05, 5.0)
+    s_ = rbk.uniform(.6, 1.0); h_ = .14 + .1 * s_
+    b = prim("cube", M["sooted"], loc=(0, 0, 0), scl=(.36 * s_, .24 * s_, h_)); jitter(b, .03, 3, 400 + k)
+    stack = 0 if (k % 3 or abs(x) < 2.2) else .3
+    xform(b, Matrix.Translation((x, y, h_ + stack)) @ Matrix.Rotation(rbk.uniform(0, 3.1), 4, "Z") @ Matrix.Rotation(rbk.uniform(-.25, .25), 4, "X"))
+rubble(M, 9, (-4.3, -1.7, 4.1, 6.4, 0), 64, (.12, .3), "sooted"); rubble(M, 9, (1.7, 4.3, 4.1, 6.4, 0), 65, (.12, .3), "sooted")
 prim("cube", M["sooted"], loc=(0, 1.1, .3), scl=(4.0, 2.2, .3))
-rubble(M, 22, (-3.6, 3.6, -.6, 3.0, .6), 61, (.18, .55), "sooted"); rubble(M, 8, (-3.5, -1.0, 2.2, 3.1, .9), 62, (.3, .6), "sooted")
+for _o in rubble(M, 22, (-3.6, 3.6, -.6, 3.0, .6), 61, (.18, .55), "sooted") + rubble(M, 8, (-3.5, -1.0, 2.2, 3.1, .9), 62, (.3, .6), "sooted"):
+    _xs = [v.co.x for v in _o.data.vertices]
+    if min(_xs) < 1.8 and max(_xs) > -1.8: bpy.data.objects.remove(_o, do_unlink=True)   # the centre strip x ±1.8 walks clear
 def beam(a, b, w, mat, jag=0, seed=0):
     a, b = Vector(a), Vector(b); d = b - a; L = d.length; rr = random.Random(seed)
     o = prim("cube", mat, scl=(w / 2, w / 2, L / 2))
@@ -199,7 +221,7 @@ def beam(a, b, w, mat, jag=0, seed=0):
             if v.co.z > 0: v.co.z += rr.uniform(-jag, 0); v.co.x *= rr.uniform(.4, 1)
     xform(o, Matrix.Translation((a + b) / 2) @ Vector((0, 0, 1)).rotation_difference(d.normalized()).to_matrix().to_4x4())
     jitter(o, w * .1, 2, seed); return o
-beam((-3.2, .2, .75), (2.6, 2.3, 1.9), .32, M["char"], seed=3)
+beam((-3.5, -.5, .75), (-2.6, 2.9, 2.1), .32, M["char"], seed=3)   # the fallen beam lies along the left wall, off the walk
 RIDGE = 14.2
 for i, y in enumerate((-.6, .5, 1.6, 2.7, 3.6)):
     for sx in (-1, 1):
