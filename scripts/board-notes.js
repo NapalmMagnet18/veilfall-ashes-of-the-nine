@@ -28,7 +28,8 @@ async function refresh(ctx, f) {
   try {
     const { rows: [r] } = await ctx.sql`SELECT COUNT(*) AS n FROM trades WHERE realm = ${CH.realmOf(ctx).room} AND sold_at IS NULL AND removed = 0`;
     n = Math.min(SLOTS.length, r?.n ?? 0);
-  } catch (e) { ctx.log("board notes read failed", String(e)); return; }
+  } catch (e) { ctx.log("board notes read failed", String(e)); ctx.self.state.notesErr = String(e).slice(0, 240); return; }
+  ctx.self.state.notesN = n;
   const was = SHOWN.get(ctx.self.id) ?? -1;
   if (n === was) return;
   SHOWN.set(ctx.self.id, n);
