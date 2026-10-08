@@ -64,7 +64,7 @@ export function tick(ctx) {
   }
   // each player's road
   for (const p of ctx.place.players) {
-    const s = p.state; if (s.hp === undefined) continue;
+    const s = p.state; if (s.hp === undefined || s.menu || !s.charId) continue; // only a Bearer who entered the world
     const q = s.quest ?? { stage: 0 };
     let next = null;
     const talked = s.talk && s.talk.id === "maelin" && s.talk.at !== q.heardAt;

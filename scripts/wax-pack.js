@@ -26,7 +26,7 @@ export function telegraph(ctx, x, y, z, r, secs) {
 
 export function hurtPlayers(ctx, center, r, dmg, now) {
   for (const p of ctx.place.players) {
-    if (p.state.dead || flat(p.feetPosition, center) > r) continue;
+    if (p.state.dead || p.state.menu || flat(p.feetPosition, center) > r) continue;
     if ((p.state.iframesUntil ?? 0) > now) { ctx.emit("damageNumber", { position: { ...p.feetPosition, y: p.feetPosition.y + 2 }, text: "EVADED", color: "#9fb6ff" }); continue; }
     if ((p.state.guardUntil ?? 0) > now) { p.state.guardUntil = 0; p.state.riposte = now; ctx.emit("damageNumber", { position: { ...p.feetPosition, y: p.feetPosition.y + 2 }, text: "GUARDED", color: "#bfe3ff" }); continue; }
     p.state.hp -= dmg;
@@ -40,7 +40,7 @@ export function hurtPlayers(ctx, center, r, dmg, now) {
 
 export function payout(ctx, at, xp, gold, countsForQuest) {
   for (const p of ctx.place.players) {
-    if (flat(p.feetPosition, at) > 28) continue;
+    if (p.state.menu || !p.state.charId || flat(p.feetPosition, at) > 28) continue;
     p.state.xp = (p.state.xp ?? 0) + xp;
     p.state.gold = (p.state.gold ?? 0) + gold;
     if (countsForQuest) p.state.kills = (p.state.kills ?? 0) + 1;
@@ -50,7 +50,7 @@ export function payout(ctx, at, xp, gold, countsForQuest) {
 }
 
 export function update(ctx, dt) {
-  const now = ctx.now(), players = ctx.place.players.filter((p) => !p.state.dead && !safe(p.feetPosition));
+  const now = ctx.now(), players = ctx.place.players.filter((p) => !p.state.dead && !p.state.menu && !safe(p.feetPosition));
   for (const row of ctx.query({ tags: ["enemy"], excludeTags: ["boss"] })) {
     const w = ctx.getObject(row.id); if (!w) continue;
     const s = w.state, K = C[s.kind] ?? C.pilgrim, f = w.feetPosition;

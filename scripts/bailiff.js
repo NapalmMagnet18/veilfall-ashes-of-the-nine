@@ -26,7 +26,7 @@ pop flame rate=flick(.5,.3)*50 on=disc(.35).c(3.1) life=.4..0.8 v=up(1.4)+cone(2
 pop pages rate=3 on=disc(.4).c(3) life=1.5..2.5 v=up(.8..1.4)+sdir()*.4 size=.06..0.1 spin=-3..3 col=hdr(2,1.3,.6) acc=curl(.6)+buoy(.2) a=1>0 rot=$age*$spin r=sprite(chip,alpha)
 pop l n=1 at=point().c(3.2) glo=fire() r=light(<1,.5,.2>,$glo*6,9)`;
 
-const players = (ctx) => ctx.place.players.filter((p) => !p.state.dead && flat(p.feetPosition, ARENA) < ARENA.r);
+const players = (ctx) => ctx.place.players.filter((p) => !p.state.dead && !p.state.menu && flat(p.feetPosition, ARENA) < ARENA.r);
 function hurt(ctx, p, dmg, now, why) {
   const s = ctx.self.state;
   if ((p.state.iframesUntil ?? 0) > now) { ctx.emit("damageNumber", { position: { ...p.feetPosition, y: p.feetPosition.y + 2 }, text: "EVADED", color: "#9fb6ff" }); return; }
