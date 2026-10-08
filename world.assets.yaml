@@ -28,6 +28,7 @@ assets:
     "/cdn/value.bba925e4e433e115eeed76c95225f1769bfc11061a2a7d75b358ec2ab422204d.glb": {bytes: 621540, kind: model, name: grave-broken, uploadedAt: "2026-10-08T18:13:33.794Z"}
     "/cdn/value.cd396819d656f0cac99b4c6b3eda49cccae72af69dcf6c99ba4a9b69b4afab38.png": {bytes: 456, kind: image, name: vf-card, uploadedAt: "2026-10-08T15:56:23.075Z"}
     "/cdn/value.d502a11179b049d3da0da9e5a9096754b6a72312519548047fe425ffcca9fdbf.png": {bytes: 461, kind: image, name: vf-slot, uploadedAt: "2026-10-08T15:56:11.909Z"}
+    "/cdn/value.d630af2d76ab6292d985033cf37473c2b9cf35ae9eb015ad2de90fe6962e36e8.glb": {bytes: 21875012, kind: model, name: abbey-facade-breached, uploadedAt: "2026-10-08T19:24:19.552Z"}
     "/cdn/value.dd5ff981d773f728a783caeecfd8602774b8b949c55b7be9faaef1de1a509637.glb": {bytes: 2737532, kind: model, name: maelin-map-table, uploadedAt: "2026-10-08T18:01:30.377Z"}
     "/cdn/value.e395b42f71101818ed0b0b78153d07acd1f2f99b1b29c415db1c6c877b098c7e.png": {bytes: 453, kind: image, name: vf-cardon, uploadedAt: "2026-10-08T15:56:26.912Z"}
     "/cdn/value.e7160ea1f290518c9f70bb4444978e619c424d4ea45f4ec59d41f26421ea0043.png": {bytes: 466, kind: image, name: vf-row, uploadedAt: "2026-10-08T15:56:15.581Z"}
