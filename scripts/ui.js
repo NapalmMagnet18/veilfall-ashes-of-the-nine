@@ -44,7 +44,7 @@ export default function (ctx, player) {
   <div class="absolute plate" style="left:24px;top:24px;max-width:300px;animation:vfin .4s">
     <div class="lbl">${q.stage >= 5 ? "Complete" : "Quest"} · Broken Lantern Road</div>
     <div style="font-size:19px;color:var(--wax)">${qt}</div>
-    <div style="font-size:15px">◆ ${qo}<span style="color:var(--wax)">${prog}</span></div>
+    <div style="font-size:15px">› ${qo}<span style="color:var(--wax)">${prog}</span></div>
   </div>
   ${boss && boss.engaged && !boss.dead ? `<div class="absolute" style="top:24px;left:50%;transform:translateX(-50%);width:min(520px,calc(100vw - 2*${rail}));text-align:center;animation:vfin .3s">
     <div style="font-size:20px;color:var(--wax);letter-spacing:.06em">${boss.name.toUpperCase()}</div>
@@ -59,8 +59,8 @@ export default function (ctx, player) {
   </div>
   ${touch ? "" : `<div class="absolute" style="left:50%;bottom:24px;transform:translateX(-50%);display:flex;gap:10px">
     <div class="slot"><span class="k">LMB</span>⚔</div>
-    <div class="slot ${edge < 30 ? "dim" : ""}"><span class="k">RMB</span>✕<span class="n">30</span></div>
-    <div class="slot"><span class="k">SPC</span>➶<div class="cd" style="height:${dashPct}%"></div></div>
+    <div class="slot ${edge < 30 ? "dim" : ""}"><span class="k">RMB</span>⚔<span class="n">30</span></div>
+    <div class="slot"><span class="k">SPC</span>»<div class="cd" style="height:${dashPct}%"></div></div>
     <div class="slot ${(s.tonics ?? 0) ? "" : "dim"}"><span class="k">Q</span><span style="color:#e0473a">♥</span><span class="n">${s.tonics ?? 0}</span></div>
   </div>`}
   <div class="absolute" style="right:24px;bottom:24px"><div class="orb"><div class="fill" style="height:${edge}%;background:radial-gradient(circle at 50% 30%,#f2b04a,#8a4a10 70%)"></div><div class="shine"></div><div class="val">${edge}</div></div><div class="lbl" style="text-align:center;margin-top:8px">Edge</div></div>
