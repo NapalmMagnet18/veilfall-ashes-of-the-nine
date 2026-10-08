@@ -1,0 +1,13 @@
+# spawn-scene v2 yaml x-1z0
+fen-heart:
+  feetPosition: {x: -66, y: {terrain: 0}, z: -12}
+  id: fen-heart
+  material: {kind: scripted, script: engine/blueprint}
+  physics: none
+  primitive: {depth: 6, height: 3.5, kind: box, width: 6}
+fen-stone-w2:
+  feetPosition: {x: -72, y: {terrain: 0}, z: -1}
+  id: fen-stone-w2
+  material: {kind: scripted, script: engine/blueprint}
+  physics: none
+  primitive: {depth: 1.4, height: 2.6, kind: box, width: 1.4}

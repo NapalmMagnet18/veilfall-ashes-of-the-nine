@@ -462,6 +462,30 @@ en-p7/head-flame:
   fx: {script: "fx\npop f rate=flick(.5,.3)*18 on=point() life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)"}
   id: en-p7/head-flame
   parent: en-p7
+fen-mere:
+  feetPosition: {x: -64, y: {terrain: 0}, z: -10}
+  id: fen-mere
+  material: {kind: scripted, script: engine/blueprint}
+  physics: none
+  primitive: {depth: 40, height: 0.3, kind: box, width: 40}
+fen-path:
+  feetPosition: {x: -32, y: {terrain: 0}, z: 6}
+  id: fen-path
+  material: {kind: scripted, script: engine/blueprint}
+  physics: none
+  primitive: {depth: 9, height: 0.4, kind: box, width: 30}
+fen-stone-w1:
+  feetPosition: {x: -54, y: {terrain: 0}, z: -2}
+  id: fen-stone-w1
+  material: {kind: scripted, script: engine/blueprint}
+  physics: none
+  primitive: {depth: 1.4, height: 2.6, kind: box, width: 1.4}
+fen-stone-w3:
+  feetPosition: {x: -62, y: {terrain: 0}, z: -24}
+  id: fen-stone-w3
+  material: {kind: scripted, script: engine/blueprint}
+  physics: none
+  primitive: {depth: 1.4, height: 2.6, kind: box, width: 1.4}
 rd-boneheap-1:
   castShadow: true
   feetPosition: {x: -3.54, y: 0, z: -28.6}
