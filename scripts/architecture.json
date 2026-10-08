@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "basedOnSpecVersion": 714,
-  "updatedAt": "2026-10-08T22:29:59.026Z",
-  "summary": "VEILFALL: Ashes of the Nine is an isometric action RPG following Bearers through shared Z01 and a solo Veil menu stage. The main-place referee coordinates quests and encounters while player and enemy/boss scripts own live play; character.js persists Bearers, and shared loot and realm-trade systems serve combat, the Forge and Pilgrims' Board. Firstblood records now also drive free reforges and boss-marked gear, Ledd's remarks and nametag badges.",
+  "basedOnSpecVersion": 724,
+  "updatedAt": "2026-10-08T22:39:45.859Z",
+  "summary": "VEILFALL: Ashes of the Nine is an isometric action RPG following Bearers through shared Z01 and a solo Veil menu stage. The main-place referee coordinates quests and encounters while player and enemy/boss scripts own live play; character.js persists Bearers, and shared loot, smithing and wax-rendering systems serve combat and the Wayside camp services.",
   "scriptPaths": [
     "scripts/arrival.js",
     "scripts/bailiff.js",
@@ -35,6 +35,7 @@
     "scripts/gen/hub-board.js",
     "scripts/gen/hub-boulder.js",
     "scripts/gen/hub-cart.js",
+    "scripts/gen/hub-cauldron.js",
     "scripts/gen/hub-crates.js",
     "scripts/gen/hub-deadtree.js",
     "scripts/gen/hub-firepit.js",
@@ -77,6 +78,7 @@
     "scripts/humanoid-locomotion.js",
     "scripts/lib/board-ui.js",
     "scripts/lib/boss-voice.js",
+    "scripts/lib/brews.js",
     "scripts/lib/character.js",
     "scripts/lib/coins.js",
     "scripts/lib/data/models.js",
@@ -108,8 +110,8 @@
   ],
   "places": [
     "places/main/ - shared playable Z01; sim.js owns quest chapters, NPCs, enemy/boss lifecycle, encounter dressing and room soundscape.",
-    "places/main/cells/ - five authored cells span Wayside Fire, Broken Lantern Road, Abbey/Crypt, Fen/Lanternmere and Gallows Orchard; x0z0.scene places Forge, Pilgrims' Board and Trophy Post.",
-    "places/main/config.yaml - main terrain, atmosphere, vegetation, arrival budget and reverb.",
+    "places/main/cells/ - five authored cells span Wayside Fire, Broken Lantern Road, Abbey/Crypt, Fen/Lanternmere and Gallows Orchard; x0z0.scene places Forge, Pilgrims' Board, Trophy Post and Wayside cauldron.",
+    "places/main/config.yaml - main terrain, atmosphere, vegetation, arrival budget (680000 bytes) and reverb.",
     "places/veil/ - ephemeral solo Lantern Shrine menu stage; hidden menu body is parked here.",
     "places/veil/cells/ and places/veil/config.yaml - authored shrine ledge, cliffs, far ridge, spawn and menu-stage environment.",
     "places/veil/sim.js - Veil menu ambience, spatial shrine hum and occasional far-ravine bell."
@@ -119,7 +121,7 @@
     "templates/player.js - Bladewraith body with humanoid-locomotion.js and scripts/player.js, plus carried-light child.",
     "templates/camera.js - custom camera template running scripts/camera.js.",
     "places/main/sim.js - Z01 referee for quests, NPCs including Brother Ledd, enemy packs, progression, rewards, bosses and soundscape.",
-    "places/main/cells/ - authored playable terrain and dressing from camp through Abbey/Crypt, Fen and Orchard; x0z0.scene contains camp services and Trophy Post.",
+    "places/main/cells/ - authored playable terrain and dressing from camp through Abbey/Crypt, Fen and Orchard; x0z0.scene contains camp services including Forge, Board, Trophy Post and cauldron.",
     "places/veil/cells/ and places/veil/config.yaml - authored menu-stage shrine/ravine and spawn/environment.",
     "places/veil/sim.js - menu ambience and jukebox theme when nobody eligible is on main.",
     "scripts/arrival.js - world doorway behavior; saves an active Bearer leaving main."
@@ -129,28 +131,29 @@
     "scripts/db.js and scripts/lib/data/realms.yml - character and realm-bound trades table schemas plus realm room/name registry for menus and UI.",
     "scripts/lib/data/economy.yml and scripts/lib/coins.js - copper denominations, drops, rewards, sell values and shop stock used by sim, combat, shop, HUD and crier.",
     "scripts/lib/data/combat.yml - hero, skill, enemy and boss tuning consumed by player, enemy and boss systems.",
-    "scripts/lib/data/loot.yml, loot-icons.yml and scripts/lib/loot.js - tier/drop/base/affix/relic/set and forge rules, icons, item rolls, gear stats and values used by wax-pack, player, pack UI and trade; also Firstblood reforge/mark rules.",
+    "scripts/lib/data/loot.yml, loot-icons.yml and scripts/lib/loot.js - gear/drop/forge rules, item rolls, smith ranks and crafting, gear stats and values used by wax-pack, player, pack UI and trade.",
+    "scripts/lib/data/brews.yml and scripts/lib/brews.js - brew recipes, rank thresholds, potency/duration and active-brew helpers used by player, HUD and pack UI.",
     "scripts/lib/data/trade.yml and scripts/lib/trade.js - board distance, listing/price/fee/read tuning and listing/buy/unlist/collection logic; player routes trade actions here, crier and board-notes read realm trades.",
-    "scripts/lib/data/veilfall-map.js - shared Z01 floor/area geometry consumed by terrain, player and zone banners.",
-    "scripts/lib/frames.js, scripts/lib/data/ui-kit.js, scripts/lib/shop-ui.js, scripts/lib/board-ui.js and scripts/lib/boss-voice.js - shared HUD/shop/board styling and boss voice emitter reused by UI and gameplay."
+    "scripts/lib/data/veilfall-map.js - shared Z01 floor/area geometry consumed by terrain, player and zone banners."
   ],
   "notableExports": [
     "places/main/sim.js and places/veil/sim.js - cadence, tick.",
     "scripts/player.js - onSpawn, onInput, update; scripts/ui.js - default HUD/menu renderer; ui/nametag.js - default nametag renderer.",
     "scripts/crier.js - onSpawn, quiet, update; scripts/board-notes.js - update; scripts/wax-pack.js - roll, telegraph, hurtPlayers, payout, update.",
     "scripts/bailiff.js, scripts/ringer.js, scripts/warden.js and scripts/hangman.js - onSpawn, update; scripts/trophies.js - update; scripts/gen/hub-trophy.js - HOOKS, geometry, collider.",
-    "scripts/lib/loot.js - SLOTS, TIER, icon, BAG, rollItem, FORGE, forgeCost, forgeCan, forge, rollDrops, gearStats, mitigation, freeReforges, MARKS, markBoss, applyMark; scripts/lib/pack-ui.js - PACK_CSS, packPanel.",
+    "scripts/lib/loot.js - SLOTS, TIER, icon, BAG, rollItem, FORGE, forgeCost, forgeCan, forge, rollDrops, gearStats, mitigation, freeReforges, MARKS, markBoss, applyMark, craft, craftCost, smithRank, SMITH.",
+    "scripts/lib/pack-ui.js - PACK_CSS, packPanel; scripts/lib/brews.js - BREW, renderRank, brewMade, brewLine, brewActive.",
     "scripts/lib/boss-voice.js - BOSS_VOICE, bossVoice; scripts/lib/character.js - CHAR_KEYS, fresh, START, realmOf, pack, zoneOf, rollName, roster, create, load, save, remove.",
     "scripts/lib/shop.js - owned, shopInput; scripts/lib/shop-ui.js - shopPanel; scripts/controls.js - default touch-surface selector; scripts/lib/trade.js - TRADE, asks, readBoard, tradeInput; scripts/lib/board-ui.js - boardPanel."
   ],
   "ownership": [
-    "scripts/lib/character.js CHAR_KEYS - persistent Bearer fields including quest/reward claims, boss flags, inv/gear/dust/gearLife and freeUsed; packed position is separate.",
-    "scripts/player.js - active body's movement, combat, death/i-frame and skill timers, menu/options scratch, floor gates, inventory/forge actions and derived gear stats gs; local proximity owns transient atForge/atBoard state and local anvil glow.",
+    "scripts/lib/character.js CHAR_KEYS - persistent Bearer fields including quest/reward claims, boss flags, inv/gear/dust/gearLife/freeUsed, smithXp, renderXp and active brew.",
+    "scripts/player.js - active body's movement, combat, death/i-frame and skill timers, menu/options scratch, floor gates, inventory/forge/craft/brew actions and derived gear stats gs; local proximity owns transient atForge/atBoard/atCauldron state.",
     "places/main/sim.js - per-player quest/dialog/cut progress and reward claims; enemy packs, progression, boss spawning/reset, orchard hanged visibility and room sound/music orchestration.",
     "scripts/wax-pack.js - ordinary enemy AI/hp/death and nearby eligible Bearers' XP/copper/kills/shards plus personal gear-drop inboxes; transient mutterAt cooldowns by enemy id.",
     "scripts/bailiff.js, scripts/ringer.js, scripts/warden.js and scripts/hangman.js - respective boss hp/phases/casts/adds/defeat; mark participant defeat flags, publish place boss rows and write place.state.lastFall.",
     "The four boss scripts - first room-wide world.state.trophies[boss] record {at, by}, with up to three slayer names; later defeats do not replace it.",
-    "scripts/trophies.js - Trophy Post's transient self.state.rung sound/flash dedupe and plaque/relic visibility derived from world.state.trophies; scripts/crier.js owns Ledd's route, pause, sale and per-character mark announcement cursors.",
+    "scripts/trophies.js - Trophy Post transient self.state.rung sound/flash dedupe and plaque/relic visibility derived from world.state.trophies; scripts/crier.js owns Ledd's route, pause, sale and per-character mark announcement cursors.",
     "scripts/board-notes.js - transient per-board refresh/count bookkeeping and up to eight child parchment props; scripts/lib/shop.js and trade.js mutate buyer state and realm SQL trades respectively."
   ],
   "flows": [
@@ -163,12 +166,12 @@
     "player.js derives Abbey/Nave/Fen/Orchard floor gates from quest stage or abbeyOpenAll, then uses veilfall-map.js floorDist for goals and movement/dash.",
     "Main sim advances chapter quests and spawns/resets bosses; boss defeat scripts mark participants and write place.state.lastFall {boss, by, at} → crier heralds a fresh fall to a nearby camp listener for up to 10 min.",
     "Boss defeat scripts write world.state.trophies[boss] = {at, by} only if no first-fall record exists → trophies.js reveals the relic/plaque; ui/nametag.js reads trophies by charName for Firstblood.",
-    "world.state.trophies names Firstblood slayers → loot.js freeReforges compares their count with persistent player.state.freeUsed; player.js applies the next chronological boss mark via markBoss/applyMark to a free-forged item, increments freeUsed, and clears the mark on a later paid reforge.",
-    "loot.js cardHTML shows item.mk; two or more worn marked items make player.js emit a boss-color trail on each Ashcut, and a due free reforge creates a local anvil glow within 8 m of the forge.",
-    "Crier reads nearby Bearer's equipped gear and charId → once per Bearer per unremarked boss mark, speaks after uncollected-sale news and before board notices; pack UI displays free reforge availability and routes forge actions through player.js → loot.js."
+    "world.state.trophies names Firstblood slayers → loot.js freeReforges compares their count with persistent player.state.freeUsed; player.js applies chronological boss marks to free-reforged items and derives gear stats.",
+    "Near wayside-forge, pack-ui craft/temper/reforge/ascend actions → player.js and loot.js consume dust/shards and award smithXp; crafted gear joins inv and worn gear changes combat stats.",
+    "Near wayside-cauldron, pack-ui brew action → player.js checks BREW recipe/cost, consumes dust/shards, saves timed brew and renderXp; deriveGear applies brew stats and strike applies derived leech to healing, while ui.js displays the active brew chip."
   ],
   "behaviorFamilies": [
-    "scripts/gen/hub-*.js, including hub-forge.js, hub-board.js and hub-trophy.js - reusable Wayside Fire camp props varied by instance params, seed and scene transform; share hub-kit.js, with prop geometry/colliders and attached FX/audio.",
+    "scripts/gen/hub-*.js, including hub-forge.js, hub-board.js, hub-trophy.js and hub-cauldron.js - reusable Wayside Fire camp props varied by instance params, seed and scene transform; share hub-kit.js, with prop geometry/colliders and attached FX/audio.",
     "scripts/gen/vf-*.js other than vf-ruin.js - Broken Lantern Road landmarks/clutter varied by params and seeds, built with vf-kit.js.",
     "scripts/gen/vf-ruin.js - road, arena, Wax Veil approach, Veil ashlar, braziers and Abbey door forms selected by kind/dimensions and seed.",
     "scripts/gen/veil-land.js and veil-shrine.js - Veil ledge/cliff/ridge forms vary by kind/dimensions; Lantern Shrine exports structure and hook constants.",
@@ -182,7 +185,7 @@
     "scripts/gen/wax-figure.js - legacy procedural enemy-figure generator; current wax actors use CDN models."
   ],
   "migrationNotes": [
-    "Persistent character data is exactly scripts/lib/character.js CHAR_KEYS plus packed position; freeUsed is saved, while derived gs, lootIn, atForge and atBoard are transient.",
+    "Persistent character data is exactly scripts/lib/character.js CHAR_KEYS plus packed position; smithXp, renderXp and brew are saved, while derived gs, lootIn, atForge, atBoard and atCauldron are transient.",
     "Character rows are caller-owned and realm-bound; character.js scopes roster/load/save by owner and realm, while live names are unique per realm. realms.yml room IDs are routing identities, not places in this tree.",
     "The Veil is solo and ephemeral, has no characters, and parks the hidden menu body at its origin; menu framing in camera.js is tuned against that stage's shrine/ledge layout, and roster showcase styling follows selected ancestry.",
     "The jukebox is room-shared: main sim chooses mood from live Bearers' area majority and boss/fight overrides; Veil sim plays the menu theme when nobody eligible is on main. Main acoustics reverb is 0.22; world audio mix defines bus gains.",
