@@ -723,3 +723,213 @@ ninth-bell:
   receiveShadow: true
   rotation: {yaw: 0}
   tags: [abbey, crypt, z01-dressing]
+oss-arch-hall:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 3.6, z: -1.2}, id: lamp, light: {color: "#9fdfe8", distance: 10, intensity: 5, kind: point}}]
+  feetPosition: {x: -28.6, y: {terrain: 0}, z: -263.4}
+  id: oss-arch-hall
+  physics: static
+  primitive: {kind: scripted, params: {h: 4.4, kind: arch, w: 6.6}, script: scripts/gen/oss-kit.js, seed: 471}
+  rotation: -112
+  tags: [ossuary, z01-dressing]
+oss-arch-stair:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 3.6, z: -1.2}, id: lamp, light: {color: "#9fdfe8", distance: 10, intensity: 5, kind: point}}]
+  feetPosition: {x: -14.2, y: {terrain: 0}, z: -257.4}
+  id: oss-arch-stair
+  physics: static
+  primitive: {kind: scripted, params: {h: 4.4, kind: arch, w: 6.6}, script: scripts/gen/oss-kit.js, seed: 470}
+  rotation: -114
+  tags: [ossuary, z01-dressing]
+oss-brazier-0:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 1.42, z: 0}, fx: {script: "fx\npop flame rate=flick(.45,.2)*36 on=disc(.22) life=.4..0.75 v=up(1.3)+cone(20)*(.3..0.7) size=.16..0.32 acc=curl(.5)*1.2+buoy(2)+drag(1.5)\n  sz=$size*(.5>.25:1>.7:.7>.14) col=hdr(1.4,3.6,3.8)>.4:hdr(.5,1.8,2.2)>hdr(.1,.4,.6) a=0>.12:1>.75:.85>0 rot=spin(.2) r=sprite(flame-wisp,add)\npop smoke on=@flame?.15 inh=p;v:$v*.4 life=1.6..2.6 size=.14..0.22 acc=buoy(.9)+drag(.8) sz=$size*(.7>3) col=<.2,.22,.24> a=0>.22:.3>.7:.15>0 r=sprite(smoke-puff,alpha)"}, id: flame, light: {color: "#7fd8e6", distance: 13, intensity: 9, kind: point, shadow: {enabled: true}}}]
+  feetPosition: {x: -18.2, y: {terrain: 0}, z: -257.2}
+  id: oss-brazier-0
+  physics: static
+  primitive: {kind: scripted, params: {h: 1.5, kind: brazier}, script: scripts/gen/vf-ruin.js, seed: 480}
+  tags: [ossuary, z01-dressing, brazier]
+oss-brazier-1:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 1.42, z: 0}, fx: {script: "fx\npop flame rate=flick(.45,.2)*36 on=disc(.22) life=.4..0.75 v=up(1.3)+cone(20)*(.3..0.7) size=.16..0.32 acc=curl(.5)*1.2+buoy(2)+drag(1.5)\n  sz=$size*(.5>.25:1>.7:.7>.14) col=hdr(1.4,3.6,3.8)>.4:hdr(.5,1.8,2.2)>hdr(.1,.4,.6) a=0>.12:1>.75:.85>0 rot=spin(.2) r=sprite(flame-wisp,add)\npop smoke on=@flame?.15 inh=p;v:$v*.4 life=1.6..2.6 size=.14..0.22 acc=buoy(.9)+drag(.8) sz=$size*(.7>3) col=<.2,.22,.24> a=0>.22:.3>.7:.15>0 r=sprite(smoke-puff,alpha)"}, id: flame, light: {color: "#7fd8e6", distance: 13, intensity: 9, kind: point, shadow: {enabled: true}}}]
+  feetPosition: {x: -22.6, y: {terrain: 0}, z: -262.8}
+  id: oss-brazier-1
+  physics: static
+  primitive: {kind: scripted, params: {h: 1.5, kind: brazier}, script: scripts/gen/vf-ruin.js, seed: 481}
+  tags: [ossuary, z01-dressing, brazier]
+oss-brazier-2:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 1.42, z: 0}, fx: {script: "fx\npop flame rate=flick(.45,.2)*36 on=disc(.22) life=.4..0.75 v=up(1.3)+cone(20)*(.3..0.7) size=.16..0.32 acc=curl(.5)*1.2+buoy(2)+drag(1.5)\n  sz=$size*(.5>.25:1>.7:.7>.14) col=hdr(1.4,3.6,3.8)>.4:hdr(.5,1.8,2.2)>hdr(.1,.4,.6) a=0>.12:1>.75:.85>0 rot=spin(.2) r=sprite(flame-wisp,add)\npop smoke on=@flame?.15 inh=p;v:$v*.4 life=1.6..2.6 size=.14..0.22 acc=buoy(.9)+drag(.8) sz=$size*(.7>3) col=<.2,.22,.24> a=0>.22:.3>.7:.15>0 r=sprite(smoke-puff,alpha)"}, id: flame, light: {color: "#7fd8e6", distance: 13, intensity: 9, kind: point, shadow: {enabled: true}}}]
+  feetPosition: {x: -34.5, y: {terrain: 0}, z: -258.6}
+  id: oss-brazier-2
+  physics: static
+  primitive: {kind: scripted, params: {h: 1.5, kind: brazier}, script: scripts/gen/vf-ruin.js, seed: 482}
+  tags: [ossuary, z01-dressing, brazier]
+oss-brazier-3:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 1.42, z: 0}, fx: {script: "fx\npop flame rate=flick(.45,.2)*36 on=disc(.22) life=.4..0.75 v=up(1.3)+cone(20)*(.3..0.7) size=.16..0.32 acc=curl(.5)*1.2+buoy(2)+drag(1.5)\n  sz=$size*(.5>.25:1>.7:.7>.14) col=hdr(1.4,3.6,3.8)>.4:hdr(.5,1.8,2.2)>hdr(.1,.4,.6) a=0>.12:1>.75:.85>0 rot=spin(.2) r=sprite(flame-wisp,add)\npop smoke on=@flame?.15 inh=p;v:$v*.4 life=1.6..2.6 size=.14..0.22 acc=buoy(.9)+drag(.8) sz=$size*(.7>3) col=<.2,.22,.24> a=0>.22:.3>.7:.15>0 r=sprite(smoke-puff,alpha)"}, id: flame, light: {color: "#7fd8e6", distance: 13, intensity: 9, kind: point, shadow: {enabled: false}}}]
+  feetPosition: {x: -34.5, y: {terrain: 0}, z: -273.4}
+  id: oss-brazier-3
+  physics: static
+  primitive: {kind: scripted, params: {h: 1.5, kind: brazier}, script: scripts/gen/vf-ruin.js, seed: 483}
+  tags: [ossuary, z01-dressing, brazier]
+oss-brazier-4:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 1.42, z: 0}, fx: {script: "fx\npop flame rate=flick(.45,.2)*36 on=disc(.22) life=.4..0.75 v=up(1.3)+cone(20)*(.3..0.7) size=.16..0.32 acc=curl(.5)*1.2+buoy(2)+drag(1.5)\n  sz=$size*(.5>.25:1>.7:.7>.14) col=hdr(1.4,3.6,3.8)>.4:hdr(.5,1.8,2.2)>hdr(.1,.4,.6) a=0>.12:1>.75:.85>0 rot=spin(.2) r=sprite(flame-wisp,add)\npop smoke on=@flame?.15 inh=p;v:$v*.4 life=1.6..2.6 size=.14..0.22 acc=buoy(.9)+drag(.8) sz=$size*(.7>3) col=<.2,.22,.24> a=0>.22:.3>.7:.15>0 r=sprite(smoke-puff,alpha)"}, id: flame, light: {color: "#7fd8e6", distance: 13, intensity: 9, kind: point, shadow: {enabled: false}}}]
+  feetPosition: {x: -44, y: {terrain: 0}, z: -255.5}
+  id: oss-brazier-4
+  physics: static
+  primitive: {kind: scripted, params: {h: 1.5, kind: brazier}, script: scripts/gen/vf-ruin.js, seed: 484}
+  tags: [ossuary, z01-dressing, brazier]
+oss-brazier-5:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 1.42, z: 0}, fx: {script: "fx\npop flame rate=flick(.45,.2)*36 on=disc(.22) life=.4..0.75 v=up(1.3)+cone(20)*(.3..0.7) size=.16..0.32 acc=curl(.5)*1.2+buoy(2)+drag(1.5)\n  sz=$size*(.5>.25:1>.7:.7>.14) col=hdr(1.4,3.6,3.8)>.4:hdr(.5,1.8,2.2)>hdr(.1,.4,.6) a=0>.12:1>.75:.85>0 rot=spin(.2) r=sprite(flame-wisp,add)\npop smoke on=@flame?.15 inh=p;v:$v*.4 life=1.6..2.6 size=.14..0.22 acc=buoy(.9)+drag(.8) sz=$size*(.7>3) col=<.2,.22,.24> a=0>.22:.3>.7:.15>0 r=sprite(smoke-puff,alpha)"}, id: flame, light: {color: "#7fd8e6", distance: 13, intensity: 9, kind: point, shadow: {enabled: false}}}]
+  feetPosition: {x: -44, y: {terrain: 0}, z: -276.5}
+  id: oss-brazier-5
+  physics: static
+  primitive: {kind: scripted, params: {h: 1.5, kind: brazier}, script: scripts/gen/vf-ruin.js, seed: 485}
+  tags: [ossuary, z01-dressing, brazier]
+oss-column-0:
+  castShadow: true
+  feetPosition: {x: -36.65415427287229, y: {terrain: 0}, z: -259.26338857720367}
+  id: oss-column-0
+  physics: static
+  primitive: {kind: scripted, params: {h: 4.6, kind: column}, script: scripts/gen/oss-kit.js, seed: 420}
+  rotation: 0
+  tags: [ossuary, z01-dressing]
+oss-column-1:
+  castShadow: true
+  feetPosition: {x: -44.12103786573197, y: {terrain: 0}, z: -257.6656614916281}
+  id: oss-column-1
+  physics: static
+  primitive: {kind: scripted, params: {h: 4.6, kind: column}, script: scripts/gen/oss-kit.js, seed: 421}
+  rotation: 37
+  tags: [ossuary, z01-dressing]
+oss-column-2:
+  castShadow: true
+  feetPosition: {x: -49.91578071125663, y: {terrain: 0}, z: -262.6383909014733}
+  id: oss-column-2
+  physics: static
+  primitive: {kind: scripted, params: {h: 4.6, kind: column}, script: scripts/gen/oss-kit.js, seed: 422}
+  rotation: 74
+  tags: [ossuary, z01-dressing]
+oss-column-3:
+  castShadow: true
+  feetPosition: {x: -49.47004115516562, y: {terrain: 0}, z: -270.2612774070849}
+  id: oss-column-3
+  physics: static
+  primitive: {kind: scripted, params: {h: 4.6, kind: column}, script: scripts/gen/oss-kit.js, seed: 423}
+  rotation: 111
+  tags: [ossuary, z01-dressing]
+oss-column-4:
+  castShadow: true
+  feetPosition: {x: -43.13522229425446, y: {terrain: 0}, z: -274.5247445910495}
+  id: oss-column-4
+  physics: static
+  primitive: {kind: scripted, params: {h: 4.6, kind: column}, script: scripts/gen/oss-kit.js, seed: 424}
+  rotation: 148
+  tags: [ossuary, z01-dressing]
+oss-column-5:
+  castShadow: true
+  feetPosition: {x: -35.90543994109517, y: {terrain: 0}, z: -272.0676467999054}
+  id: oss-column-5
+  physics: static
+  primitive: {kind: scripted, params: {h: 4.6, kind: column}, script: scripts/gen/oss-kit.js, seed: 425}
+  rotation: 185
+  tags: [ossuary, z01-dressing]
+oss-dais:
+  castShadow: true
+  children: [{feetPosition: {x: -0.6, y: 2.2, z: 0}, id: cold, light: {color: "#8fe6f0", distance: 16, intensity: 10, kind: point, shadow: {enabled: true}}}, {feetPosition: {x: -0.6, y: 0.9, z: 0}, fx: {params: {power: 1.6, radius: 6, tips: "0.6,0.3,0.4;-1.2,0.2,-0.6;0.2,0.25,-1"}, script: scripts/effects/candles.fx.js}, id: candles}, {audio: {clip: /cdn/moodboard-gothic-horror/sfx-low-cold-candle-hum-and-faint-whispered-latin-loop.mp3, gain: 0.16, loop: true, maxDistance: 14}, feetPosition: {x: 0, y: 1, z: 0}, id: hum}]
+  feetPosition: {x: -51.4, y: {terrain: 0}, z: -267}
+  id: oss-dais
+  physics: static
+  primitive: {kind: scripted, params: {kind: dais}, script: scripts/gen/oss-kit.js, seed: 460}
+  receiveShadow: true
+  tags: [ossuary, z01-dressing]
+oss-mist:
+  feetPosition: {x: -42, y: 0.05, z: -266}
+  fx: {script: "fx\npop mist n=?mobile:14|26 on=disc(12) life=8..13 v=sdir()*.1 size=3..5 acc=curl(.1)*.2+drag(.6) col=<.45,.55,.6> a=0>.2:.08>.75:.06>0 sz=$size*(.7>1.25) rot=spin(.02) r=sprite(smoke-puff,alpha)\npop motes n=?mobile:20|40 on=disc(11).c(2.5) life=5..9 v=up(.05..0.15)+sdir()*.05 size=.02..0.04 col=hdr(.6,1.4,1.5) a=0>.6:1>0 r=sprite(mote,add)"}
+  id: oss-mist
+  tags: [ossuary, z01-dressing]
+oss-pile-0:
+  castShadow: true
+  feetPosition: {x: -37.50676384448925, y: {terrain: 0}, z: -254.44271533400638}
+  id: oss-pile-0
+  physics: none
+  primitive: {kind: scripted, params: {kind: pile, n: 36, r: 1.4}, script: scripts/gen/oss-kit.js, seed: 440}
+  tags: [ossuary, z01-dressing]
+oss-pile-1:
+  castShadow: true
+  feetPosition: {x: -50.26182266386982, y: {terrain: 0}, z: -256.7532553690087}
+  id: oss-pile-1
+  physics: none
+  primitive: {kind: scripted, params: {kind: pile, n: 36, r: 1.1}, script: scripts/gen/oss-kit.js, seed: 441}
+  tags: [ossuary, z01-dressing]
+oss-pile-2:
+  castShadow: true
+  feetPosition: {x: -53.988297587985315, y: {terrain: 0}, z: -269.1687096651327}
+  id: oss-pile-2
+  physics: none
+  primitive: {kind: scripted, params: {kind: pile, n: 36, r: 1.6}, script: scripts/gen/oss-kit.js, seed: 442}
+  tags: [ossuary, z01-dressing]
+oss-pile-3:
+  castShadow: true
+  feetPosition: {x: -46.969909733791695, y: {terrain: 0}, z: -277.36045761569324}
+  id: oss-pile-3
+  physics: none
+  primitive: {kind: scripted, params: {kind: pile, n: 36, r: 1}, script: scripts/gen/oss-kit.js, seed: 443}
+  tags: [ossuary, z01-dressing]
+oss-pile-4:
+  castShadow: true
+  feetPosition: {x: -35.125758231378406, y: {terrain: 0}, z: -276.3201162835764}
+  id: oss-pile-4
+  physics: none
+  primitive: {kind: scripted, params: {kind: pile, n: 36, r: 1.3}, script: scripts/gen/oss-kit.js, seed: 444}
+  tags: [ossuary, z01-dressing]
+oss-pile-5:
+  castShadow: true
+  feetPosition: {x: -54.03988124785492, y: {terrain: 0}, z: -263.0333083177466}
+  id: oss-pile-5
+  physics: none
+  primitive: {kind: scripted, params: {kind: pile, n: 36, r: 0.9}, script: scripts/gen/oss-kit.js, seed: 445}
+  tags: [ossuary, z01-dressing]
+oss-wall-0:
+  castShadow: true
+  feetPosition: {x: -42, y: 0, z: -266}
+  id: oss-wall-0
+  physics: static
+  primitive: {kind: scripted, params: {a0: 0.55, a1: 1.6, h: 4.6, kind: wall, r: 14.4}, script: scripts/gen/oss-kit.js, seed: 400}
+  receiveShadow: true
+  tags: [ossuary, z01-dressing]
+oss-wall-1:
+  castShadow: true
+  feetPosition: {x: -42, y: 0, z: -266}
+  id: oss-wall-1
+  physics: static
+  primitive: {kind: scripted, params: {a0: 1.6, a1: 2.65, h: 4.6, kind: wall, r: 14.4}, script: scripts/gen/oss-kit.js, seed: 401}
+  receiveShadow: true
+  tags: [ossuary, z01-dressing]
+oss-wall-2:
+  castShadow: true
+  feetPosition: {x: -42, y: 0, z: -266}
+  id: oss-wall-2
+  physics: static
+  primitive: {kind: scripted, params: {a0: 2.65, a1: 3.7, h: 4.6, kind: wall, r: 14.4}, script: scripts/gen/oss-kit.js, seed: 402}
+  receiveShadow: true
+  tags: [ossuary, z01-dressing]
+oss-wall-3:
+  castShadow: true
+  feetPosition: {x: -42, y: 0, z: -266}
+  id: oss-wall-3
+  physics: static
+  primitive: {kind: scripted, params: {a0: 3.7, a1: 4.75, h: 4.6, kind: wall, r: 14.4}, script: scripts/gen/oss-kit.js, seed: 403}
+  receiveShadow: true
+  tags: [ossuary, z01-dressing]
+oss-wall-4:
+  castShadow: true
+  feetPosition: {x: -42, y: 0, z: -266}
+  id: oss-wall-4
+  physics: static
+  primitive: {kind: scripted, params: {a0: 4.75, a1: 5.8, h: 4.6, kind: wall, r: 14.4}, script: scripts/gen/oss-kit.js, seed: 404}
+  receiveShadow: true
+  tags: [ossuary, z01-dressing]
