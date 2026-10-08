@@ -11,7 +11,23 @@ const TRACKS = {
   road: MUSIC,
   fight: "/cdn/moodboard-gothic-horror/music-dark-fantasy-combat-pounding-low-drums-cello-ostinato-tense-loop.mp3",
   boss: "/cdn/moodboard-gothic-horror/music-dark-fantasy-boss-battle-choir-pipe-organ-war-drums-bells-loop.mp3",
+  camp: "/cdn/moodboard-gothic-horror/music-dark-fantasy-safe-haven-campfire-lone-nylon-guitar-slow-arpeggio-and-low-cello-loop.mp3",
+  abbey: "/cdn/moodboard-gothic-horror/music-dark-fantasy-ruined-cathedral-distant-pipe-organ-drone-and-wordless-female-choir-loop.mp3",
+  fen: "/cdn/moodboard-gothic-horror/music-dark-fantasy-drowned-marsh-cold-glass-harmonica-and-detuned-harp-over-deep-drone-loop.mp3",
+  orchard: "/cdn/moodboard-gothic-horror/music-dark-fantasy-hanging-orchard-out-of-tune-fiddle-and-creaking-music-box-over-low-strings-loop.mp3",
 };
+// which track rests over each stretch of the road when nothing is fighting
+const ZONE_MOOD = { fire: "camp", road: "road", toll: "road", gate: "road", court: "road", climb: "abbey", abbey: "abbey", nave: "abbey", crypt: "abbey", fenpath: "fen", fen: "fen", orchpath: "orchard", orchard: "orchard" };
+// far-off sounds in the dark: one every 22-45 s, somewhere 14-26 m from a Bearer, picked by the stretch they walk
+const DISTANT = {
+  road: ["crow-caws-twice-and-flaps-away-in-fog", "distant-woman-sobbing-carried-on-wind", "iron-lantern-swinging-on-rusted-chain-creak", "far-off-wolf-howl-in-cold-night"],
+  abbey: ["stone-crumbling-and-falling-in-a-vast-empty-hall", "single-cracked-bell-struck-far-below-ground", "wax-dripping-onto-hot-stone-hiss", "whispered-latin-prayer-echoing-in-a-crypt"],
+  fen: ["something-large-slipping-into-black-water", "frog-croaks-stop-all-at-once-then-a-splash", "glass-wind-chime-tinkling-far-over-water", "drowned-man-gurgling-moan-under-water"],
+  orchard: ["heavy-rope-creaking-under-a-swinging-weight", "crows-squabbling-over-something-in-dead-branches", "dry-leaves-skittering-across-wooden-boards", "a-trapdoor-banging-open-on-a-distant-gallows"],
+  camp: ["log-collapsing-in-campfire-sparks-crackle", "kettle-lid-rattling-over-coals", "owl-hooting-low-in-the-dark"],
+};
+const VOICE = (line) => `/cdn/voice-weary-hoarse-old-woman-pilgrim-keeper-low-and-kind-saying-${line}.mp3`;
+const MAELIN_LINES = ["bearer-the-fire-is-still-lit-sit-a-while", "you-came-back-not-all-of-them-do", "the-lanterns-remember-who-carried-them", "mind-the-road-it-has-teeth-tonight"];
 // sound beds that live in the place: each a whisper heard only near its source
 const BEDS = [
   { id: "bed-wind", x: 0, z: -40, clip: "ambience-cold-night-wind-through-ruins-loop", gain: 0.12, spatial: false },
@@ -192,6 +208,8 @@ export function tick(ctx) {
     const q = s.quest ?? { stage: 0 };
     let next = null;
     const talked = s.talk && s.talk.id === "maelin" && s.talk.at !== q.heardAt;
+    if (talked && now - (st.maelinSpoke ?? 0) > 9000) { st.maelinSpoke = now; st.maelinLine = ((st.maelinLine ?? -1) + 1) % MAELIN_LINES.length;
+      const m = objs["maelin"]; ctx.emit("playSound", { clip: VOICE(MAELIN_LINES[st.maelinLine]), position: m ? m.feetPosition : p.feetPosition, volume: 1, bus: "Voice", mode: "restart", maxDistance: 22 }); ctx.music?.duck(0.35, { duration: 3.5 }); }
     if (talked) {
       if (q.stage === 0) next = { stage: 1, killsAt: s.kills ?? 0 };
       else if (q.stage === 4) {
@@ -342,7 +360,17 @@ function musicTick(ctx, st, now, objs) {
   for (const e of ctx.query({ tags: ["enemy"] })) if (e.state?.hunting && !e.state?.dead) { fighting = true; break; }
   if (fighting) st.fightUntil = now + 6000; // a short tail so the drums don't stutter between pulls
   const rg = objs["ringer"]?.state, wd = objs["warden"]?.state, hg = objs["hangman"]?.state;
-  const mood = (boss?.engaged && !boss?.dead) || (rg?.engaged && !rg?.dead) || (wd?.engaged && !wd?.dead) || (hg?.engaged && !hg?.dead) ? "boss" : now < (st.fightUntil ?? 0) ? "fight" : "road";
-  if (!ctx.place.players.some((p) => p.state?.charId && !p.state?.menu)) return; // nobody on the road: the Veil owns the jukebox
-  if (mood !== st.mood || ctx.music.now()?.ref !== TRACKS[mood]) { st.mood = mood; ctx.music?.play(TRACKS[mood], { fade: mood === "road" ? 4 : 1.2, volume: mood === "road" ? 0.7 : 0.8 }); }
+  const live = ctx.place.players.filter((p) => p.state?.charId && !p.state?.menu && !p.state?.dead);
+  if (!live.length) return; // nobody on the road: the Veil owns the jukebox
+  const tally = {}; for (const p of live) { const z = ZONE_MOOD[p.state.area] ?? "road"; tally[z] = (tally[z] ?? 0) + 1; }
+  const rest = Object.entries(tally).sort((a, b) => b[1] - a[1])[0][0];
+  const mood = (boss?.engaged && !boss?.dead) || (rg?.engaged && !rg?.dead) || (wd?.engaged && !wd?.dead) || (hg?.engaged && !hg?.dead) ? "boss" : now < (st.fightUntil ?? 0) ? "fight" : rest;
+  const calm = mood !== "boss" && mood !== "fight";
+  if (mood !== st.mood || ctx.music.now()?.ref !== TRACKS[mood]) { st.mood = mood; ctx.music?.play(TRACKS[mood], { fade: calm ? 4 : 1.2, volume: calm ? 0.7 : 0.8 }); }
+  if (now > (st.distantAt ?? 0)) {
+    st.distantAt = now + 22000 + ctx.random() * 23000;
+    const p = live[Math.floor(ctx.random() * live.length)], list = DISTANT[ZONE_MOOD[p.state.area] ?? "road"] ?? DISTANT.road;
+    const a = ctx.random() * 6.283, r = 14 + ctx.random() * 12, f = p.feetPosition;
+    ctx.emit("playSound", { clip: `/cdn/moodboard-gothic-horror/sfx-${list[Math.floor(ctx.random() * list.length)]}.mp3`, position: { x: f.x + Math.cos(a) * r, y: f.y + 1, z: f.z + Math.sin(a) * r }, volume: 0.55, maxDistance: 40, bus: "Ambience", pitch: 0.92 + ctx.random() * 0.12 });
+  }
 }

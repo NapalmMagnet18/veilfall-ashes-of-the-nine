@@ -138,3 +138,5 @@ terrain:
   seed: 1
 
 arrivalBudget: { bytes: 520000 }
+
+acoustics: { reverb: 0.22 }

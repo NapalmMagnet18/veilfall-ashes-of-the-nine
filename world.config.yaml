@@ -80,3 +80,7 @@ nametag: ui/nametag.js
 authoring:
   starter:
     id: 3d
+
+audio:
+  gains: { Master: 1, Music: 0.75, SFX: 1, UI: 0.9, Ambience: 1.1, Voice: 1.15 }
+  maxVoices: 40

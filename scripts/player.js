@@ -370,14 +370,17 @@ function walkTo(ctx, goal, speed, dt) {
 
 // the road names itself: a banner when a Bearer walks into a new stretch, "discovered" the first time
 // footsteps: one scuff per stride, its surface by where the Bearer walks (ash round the fire, wet stone on the road)
-const STEP = { ash: sfx("footstep-boot-on-ash-and-gravel-soft-crunch"), stone: sfx("footstep-boot-on-wet-flagstone-splash") };
+const STEP = { ash: sfx("footstep-boot-on-ash-and-gravel-soft-crunch"), stone: sfx("footstep-boot-on-wet-flagstone-splash"),
+  mud: sfx("footstep-boot-squelching-in-shallow-marsh-water-and-mud"), leaves: sfx("footstep-boot-crunching-dry-dead-leaves-and-twigs"),
+  hall: sfx("footstep-boot-on-cracked-cathedral-stone-echoing") };
+const STEP_OF = { fire: "ash", fenpath: "mud", fen: "mud", orchpath: "leaves", orchard: "leaves", nave: "hall", crypt: "hall", abbey: "hall" };
 const stepAt = {};
 function stepTick(ctx, s, f, now) {
   const v = ctx.self.velocity ?? { x: 0, z: 0 }, sp = Math.hypot(v.x, v.z);
   if (sp < 1 || ctx.self.grounded === false || s.dead) return;
   if (now < (stepAt[ctx.self.id] ?? 0)) return;
   stepAt[ctx.self.id] = now + Math.max(260, 1500 / (sp + 0.5));
-  ctx.emit("playSound", { clip: s.area === "fire" ? STEP.ash : STEP.stone, position: f, follow: ctx.self.id, volume: 0.35, pitch: 0.9 + ctx.random() * 0.2, maxDistance: 18, priority: 4 });
+  ctx.emit("playSound", { clip: STEP[STEP_OF[s.area] ?? "stone"], position: f, follow: ctx.self.id, volume: 0.35, pitch: 0.9 + ctx.random() * 0.2, maxDistance: 18, priority: 4 });
 }
 function zoneTick(ctx, s, f, now) {
   if (now - (me.zoneAt ?? 0) < 400 || s.dead) return;

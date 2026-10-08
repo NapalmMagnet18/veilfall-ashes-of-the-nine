@@ -37,14 +37,15 @@ export function telegraph(ctx, x, y, z, r, secs) {
 export function hurtPlayers(ctx, center, r, dmg, now) {
   for (const p of ctx.place.players) {
     if (p.state.dead || p.state.menu || flat(p.feetPosition, center) > r) continue;
-    if ((p.state.iframesUntil ?? 0) > now) { ctx.emit("damageNumber", { position: { ...p.feetPosition, y: p.feetPosition.y + 2 }, text: "EVADED", color: "#9fb6ff" }); continue; }
-    if ((p.state.guardUntil ?? 0) > now) { p.state.guardUntil = 0; p.state.riposte = now; ctx.emit("damageNumber", { position: { ...p.feetPosition, y: p.feetPosition.y + 2 }, text: "GUARDED", color: "#bfe3ff" }); continue; }
+    if ((p.state.iframesUntil ?? 0) > now) { ctx.emit("damageNumber", { position: { ...p.feetPosition, y: p.feetPosition.y + 2 }, text: "EVADED", color: "#9fb6ff" }); ctx.emit("playSound", { clip: sfx("blade-whiffs-past-cloak-close-swish"), position: p.feetPosition, volume: 0.5 }); continue; }
+    if ((p.state.guardUntil ?? 0) > now) { p.state.guardUntil = 0; p.state.riposte = now; ctx.emit("damageNumber", { position: { ...p.feetPosition, y: p.feetPosition.y + 2 }, text: "GUARDED", color: "#bfe3ff" }); ctx.emit("playSound", { clip: sfx("heavy-blow-glances-off-spectral-guard-metal-clang-and-glass-ring"), position: p.feetPosition, volume: 0.85 }); continue; }
     p.state.hp -= dmg;
     const at = { x: p.feetPosition.x, y: p.feetPosition.y + 1.2, z: p.feetPosition.z };
     ctx.emit("damageNumber", { position: at, value: dmg, color: "#ff5a4a" });
     ctx.emit("flash", { target: p.id, color: "#ff3020", duration: 0.1 });
     ctx.emit("screenShake", { intensity: 0.25, duration: 0.2 }, { audience: { player: p.id } });
     ctx.emit("playSound", { clip: sfx("flesh-hit-grunt-muffled"), position: at, volume: 0.7 });
+    ctx.emit("playSound", { clip: sfx("chainmail-and-leather-armor-struck-dull-thud"), position: at, volume: 0.55, pitch: 0.9 + ctx.random() * 0.2 });
   }
 }
 
