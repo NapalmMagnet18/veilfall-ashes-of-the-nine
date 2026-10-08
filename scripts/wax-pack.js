@@ -66,15 +66,15 @@ const HEX = (h) => { const n = parseInt(h.slice(1), 16); return { x: ((n >> 16) 
 const FIND = { ashen: "loot-drop-cloth-thud-soft", hallowed: "loot-drop-blue-glass-chime", gilded: "loot-drop-gold-bell-chime-bright", relic: "loot-drop-legendary-deep-choir-swell-with-anvil-ring", vowbound: "loot-drop-set-item-emerald-harp-shimmer" };
 function dropLoot(ctx, p, at, kind) {
   const found = rollDrops(ctx, kind); if (!found.length) return;
-  const inv = [...(p.state.inv ?? [])];
-  let best = null;
+  // each item is its own key in the Bearer's inbox; their own machine moves it into the pack (one writer per array)
+  const inbox = p.state.lootIn ?? (p.state.lootIn = {});
+  let best = null, n = (p.state.inv?.length ?? 0) + Object.keys(inbox).length;
   for (const it of found) {
-    if (inv.length >= BAG) { p.state.dust = (p.state.dust ?? 0) + dustValue(it); ctx.emit("damageNumber", { position: { ...at, y: at.y + 3 }, text: `pack full: +${dustValue(it)} ash dust`, color: "#9a907e", size: 0.7 }, { audience: { player: p.id } }); continue; }
-    inv.push(it);
+    if (n >= BAG) { p.state.dust = (p.state.dust ?? 0) + dustValue(it); ctx.emit("damageNumber", { position: { ...at, y: at.y + 3 }, text: `pack full: +${dustValue(it)} ash dust`, color: "#9a907e", size: 0.7 }, { audience: { player: p.id } }); continue; }
+    p.state.lootIn[it.u] = it; n++;
     if (!best || Object.keys(TIER).indexOf(it.t) > Object.keys(TIER).indexOf(best.t)) best = it;
     ctx.emit("damageNumber", { position: { x: at.x + 0.6, y: at.y + 2.8, z: at.z - 0.4 }, text: it.n, color: TIER[it.t].color, size: it.t === "relic" || it.t === "vowbound" ? 1.1 : 0.85, lifetime: 2.6 }, { audience: { player: p.id } });
   }
-  p.state.inv = inv;
   if (!best) return;
   const c = HEX(TIER[best.t].color);
   if (best.t !== "ashen") ctx.emit("fx", { position: { x: at.x, y: at.y + 0.05, z: at.z }, script: BEAM, params: { c } }, { audience: { player: p.id } });

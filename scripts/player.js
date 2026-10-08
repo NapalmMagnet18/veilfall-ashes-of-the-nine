@@ -266,6 +266,13 @@ function weaponMul(s) { const g = s.gs ?? {}; return (s.weapon === "ITEM-001" ? 
 // worn gear → s.gs (derived, everyone's HUD reads it); maxHp carries gear life as gearLife so a reload never double-counts
 const HERO_SPEED = (s) => C.hero.speed * (1 + Math.min(40, ctx_gs(s).speed ?? 0) / 100);
 const ctx_gs = (s) => s?.gs ?? {};
+function drainLoot(ctx) {
+  const s = ctx.self.state, box = s.lootIn; if (!box) return;
+  const keys = Object.keys(box); if (!keys.length) return;
+  const inv = [...(s.inv ?? [])], have = new Set(inv.map((x) => x.u));
+  for (const k of keys) { const it = box[k]; if (it && !have.has(it.u)) { if (inv.length < 24) inv.push(it); else s.dust = (s.dust ?? 0) + dustValue(it); } delete s.lootIn[k]; }
+  s.inv = inv;
+}
 function deriveGear(ctx) {
   const s = ctx.self.state, key = JSON.stringify(s.gear ?? {});
   if (key === me.gearKey && s.gs) return;
@@ -483,7 +490,7 @@ export function update(ctx, dt) {
   const s = ctx.self.state, now = ctx.now(), f = ctx.self.feetPosition;
   gate(ctx);
   if (ctx.self.isLocal !== false) showcase(ctx);
-  if (!ctx.self.state.menu && ctx.self.state.charId) deriveGear(ctx);
+  if (!ctx.self.state.menu && ctx.self.state.charId) { drainLoot(ctx); deriveGear(ctx); }
   const vy = (ctx.self.velocity?.y ?? 0) + (ctx.self.grounded ? 0 : ctx.place.gravity.y * dt);
   // a fresh visit opens on the title in the Veil; a realm cross lands on that realm's character list
   if (ctx.self.isLocal !== false && !ctx.session.vfDoor) {
