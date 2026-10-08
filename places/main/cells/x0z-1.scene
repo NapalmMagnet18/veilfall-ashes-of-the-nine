@@ -6,8 +6,32 @@ bailiff-arena:
   physics: none
   primitive: {depth: 30, height: 2, kind: box, width: 30}
 dripping-gate:
-  feetPosition: {x: 0, y: {terrain: 0}, z: -82}
+  feetPosition: {x: 0, y: {terrain: 0}, z: -89}
   id: dripping-gate
-  material: {kind: scripted, script: engine/blueprint}
-  physics: none
-  primitive: {depth: 3, height: 10, kind: box, width: 16}
+  physics: static
+  primitive: {kind: scripted, script: scripts/gen/dripping-gate.js, seed: 7}
+  tags: [z01-dressing, gate]
+dripping-gate/gate-flames-0:
+  feetPosition: {x: -5.1, y: 9.5, z: -0.2}
+  fx: {params: {power: 2.2, radius: 7, tips: "-0.4,0.25,0.3;0.5,0.2,-0.4;0.1,0.3,0.6;-0.9,0.18,-0.2"}, script: scripts/effects/candles.fx.js}
+  id: dripping-gate/gate-flames-0
+  parent: dripping-gate
+  tags: [z01-dressing, gate]
+dripping-gate/gate-flames-1:
+  feetPosition: {x: 1.5, y: 9.5, z: 0.1}
+  fx: {params: {power: 2.2, radius: 7, tips: "0,0.25,0.4;-0.3,0.2,-0.5;0.4,0.3,0"}, script: scripts/effects/candles.fx.js}
+  id: dripping-gate/gate-flames-1
+  parent: dripping-gate
+  tags: [z01-dressing, gate]
+dripping-gate/gate-flames-2:
+  feetPosition: {x: -5.6, y: 7.14, z: 1.95}
+  fx: {params: {power: 2.2, radius: 7, tips: "-1,0.2,0;0,0.25,0.05;0.9,0.18,0"}, script: scripts/effects/candles.fx.js}
+  id: dripping-gate/gate-flames-2
+  parent: dripping-gate
+  tags: [z01-dressing, gate]
+dripping-gate/gate-flames-3:
+  feetPosition: {x: 5.7, y: 0, z: 3.5}
+  fx: {params: {power: 2.2, radius: 7, tips: "-0.6,0.3,0.2;0.2,0.35,-0.2;0.8,0.25,0.3;0,0.22,0.5"}, script: scripts/effects/candles.fx.js}
+  id: dripping-gate/gate-flames-3
+  parent: dripping-gate
+  tags: [z01-dressing, gate]
