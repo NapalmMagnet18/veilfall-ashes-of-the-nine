@@ -415,6 +415,7 @@ function showcase(ctx) {
   if (want === (me.showFor ?? null) && (!want || (me.showId && ctx.getObject(me.showId)))) return;
   if (me.showId) { try { ctx.destroy(me.showId); } catch {} me.showId = null; }
   me.showFor = want;
+  ctx.log("showcase", { want, place: ctx.self.place, menu: ctx.self.state.menu, sel: ctx.self.state.sel ?? null });
   if (!want) return;
   const hit = raycast(ctx, { x: -0.4, y: 6, z: -7.5 }, { x: 0, y: -1, z: 0 }, { distance: 12, bodies: "static", physicsOnly: true });
   const y = hit ? hit.position.y : 0;
