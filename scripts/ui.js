@@ -34,7 +34,7 @@ const THEME = `<style>
 #vf .chip{position:relative;white-space:nowrap;display:flex;align-items:center;gap:6px;padding:4px 10px;font-size:12px;letter-spacing:.08em}
 #vf .ph{display:none} @media (pointer:coarse),(max-width:700px),(max-height:520px){#vf .dk{display:none!important} #vf .ph{display:block} #vf .qp{left:10px!important;top:10px!important;max-width:210px!important;padding:6px 9px!important} #vf .qp div{font-size:13px!important} #vf .qp .lbl{font-size:10px!important} #vf .qp.bossup{display:none!important}}
 #vf .bar{height:10px;background:#120e0c;box-shadow:0 0 0 2px #0d0b0a,0 0 0 3px #5a4a33;position:relative;margin-top:5px}
-@keyframes vfin{from{opacity:0;transform:translateY(8px)}} @keyframes vffade{to{opacity:0}} @keyframes vfpulse{50%{opacity:.55}}
+@keyframes vfin{from{opacity:0;transform:translateY(8px)}} @keyframes vftype{from{opacity:0;filter:blur(3px);letter-spacing:.04em}} @keyframes vffade{to{opacity:0}} @keyframes vfpulse{50%{opacity:.55}}
 #vf .vfban{animation:vfban 4.2s ease forwards;padding:14px 10px 18px;background:radial-gradient(ellipse at center,rgba(10,9,14,.72) 0%,rgba(10,9,14,.45) 45%,transparent 72%)} @keyframes vfban{0%{opacity:0;filter:blur(3px)}12%{opacity:1;filter:none}78%{opacity:1}100%{opacity:0}}</style>`;
 
 // ---- title + the Bearer screen (character selection): drawn over the living camp, never a loading wall ----
