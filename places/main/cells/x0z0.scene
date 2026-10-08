@@ -260,7 +260,6 @@ en-d1:
   bones: {}
   castShadow: true
   feetPosition: {x: 4.526216506191619, y: 0.06623440195017194, z: -45.10059384882476}
-  fx: {params: {}, script: "fx\npop f rate=flick(.5,.3)*18 on=disc(.02).c(2.38) life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 at=disc(.02).c(2.38) glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)"}
   id: en-d1
   layout: {maxExtents: {y: 1.8}}
   material: {key: Std/PBR-VPBR}
@@ -276,13 +275,17 @@ en-d1:
   visible: true
   visibleTo: all
   yaw: 154.0811303681293
+en-d1/head-flame:
+  feetPosition: {x: 0, y: 1.72, z: 0}
+  fx: {script: "fx\npop f rate=flick(.5,.3)*18 on=point() life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)"}
+  id: en-d1/head-flame
+  parent: en-d1
 en-p1:
   animated3DCharacter: {modelId: cdn/model-hunched-pilgrim-made-of-melted-candle-wax-hooded-robe-dripping-wax-candle-burning-on-head-dark-fantasy.glb}
   behavior: [scripts/humanoid-locomotion.js]
   bones: {}
   castShadow: true
   feetPosition: {x: -0.1767775884403256, y: 0.10608239969305999, z: -20.050842161012156}
-  fx: {params: {}, script: "fx\npop f rate=flick(.5,.3)*18 on=disc(.02).c(1.65) life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 at=disc(.02).c(1.65) glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)"}
   id: en-p1
   layout: {maxExtents: {y: 1.7}}
   material: {key: Std/PBR-VPBR}
@@ -298,13 +301,17 @@ en-p1:
   visible: true
   visibleTo: all
   yaw: -86.94606351272118
+en-p1/head-flame:
+  feetPosition: {x: 0, y: 1.62, z: 0}
+  fx: {script: "fx\npop f rate=flick(.5,.3)*18 on=point() life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)"}
+  id: en-p1/head-flame
+  parent: en-p1
 en-p2:
   animated3DCharacter: {modelId: cdn/model-hunched-pilgrim-made-of-melted-candle-wax-hooded-robe-dripping-wax-candle-burning-on-head-dark-fantasy.glb}
   behavior: [scripts/humanoid-locomotion.js]
   bones: {}
   castShadow: true
   feetPosition: {x: 1.1317156306283471, y: 0.10746907614210466, z: -19.78887680998119}
-  fx: {params: {}, script: "fx\npop f rate=flick(.5,.3)*18 on=disc(.02).c(1.65) life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 at=disc(.02).c(1.65) glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)"}
   id: en-p2
   layout: {maxExtents: {y: 1.7}}
   material: {key: Std/PBR-VPBR}
@@ -320,13 +327,17 @@ en-p2:
   visible: true
   visibleTo: all
   yaw: -145.63094548341246
+en-p2/head-flame:
+  feetPosition: {x: 0, y: 1.62, z: 0}
+  fx: {script: "fx\npop f rate=flick(.5,.3)*18 on=point() life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)"}
+  id: en-p2/head-flame
+  parent: en-p2
 en-p3:
   animated3DCharacter: {modelId: cdn/model-hunched-pilgrim-made-of-melted-candle-wax-hooded-robe-dripping-wax-candle-burning-on-head-dark-fantasy.glb}
   behavior: [scripts/humanoid-locomotion.js]
   bones: {}
   castShadow: true
   feetPosition: {x: 3.4073927932012618, y: 0.07822031712704858, z: -28.691681336297286}
-  fx: {params: {}, script: "fx\npop f rate=flick(.5,.3)*18 on=disc(.02).c(1.65) life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 at=disc(.02).c(1.65) glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)"}
   id: en-p3
   layout: {maxExtents: {y: 1.7}}
   material: {key: Std/PBR-VPBR}
@@ -342,13 +353,17 @@ en-p3:
   visible: true
   visibleTo: all
   yaw: -82.03761674466656
+en-p3/head-flame:
+  feetPosition: {x: 0, y: 1.62, z: 0}
+  fx: {script: "fx\npop f rate=flick(.5,.3)*18 on=point() life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)"}
+  id: en-p3/head-flame
+  parent: en-p3
 en-p4:
   animated3DCharacter: {modelId: cdn/model-hunched-pilgrim-made-of-melted-candle-wax-hooded-robe-dripping-wax-candle-burning-on-head-dark-fantasy.glb}
   behavior: [scripts/humanoid-locomotion.js]
   bones: {}
   castShadow: true
   feetPosition: {x: 3.1198194335428586, y: -0.009073516646360358, z: -34.25906317028838}
-  fx: {params: {}, script: "fx\npop f rate=flick(.5,.3)*18 on=disc(.02).c(1.65) life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 at=disc(.02).c(1.65) glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)"}
   id: en-p4
   layout: {maxExtents: {y: 1.7}}
   material: {key: Std/PBR-VPBR}
@@ -364,13 +379,17 @@ en-p4:
   visible: true
   visibleTo: all
   yaw: 99.13459243033765
+en-p4/head-flame:
+  feetPosition: {x: 0, y: 1.62, z: 0}
+  fx: {script: "fx\npop f rate=flick(.5,.3)*18 on=point() life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)"}
+  id: en-p4/head-flame
+  parent: en-p4
 en-p5:
   animated3DCharacter: {modelId: cdn/model-hunched-pilgrim-made-of-melted-candle-wax-hooded-robe-dripping-wax-candle-burning-on-head-dark-fantasy.glb}
   behavior: [scripts/humanoid-locomotion.js]
   bones: {}
   castShadow: true
   feetPosition: {x: -2.3451324725238107, y: 0.0003127146628354449, z: -35.284359972383804}
-  fx: {params: {}, script: "fx\npop f rate=flick(.5,.3)*18 on=disc(.02).c(1.65) life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 at=disc(.02).c(1.65) glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)"}
   id: en-p5
   layout: {maxExtents: {y: 1.7}}
   material: {key: Std/PBR-VPBR}
@@ -386,13 +405,17 @@ en-p5:
   visible: true
   visibleTo: all
   yaw: 36.583207530997775
+en-p5/head-flame:
+  feetPosition: {x: 0, y: 1.62, z: 0}
+  fx: {script: "fx\npop f rate=flick(.5,.3)*18 on=point() life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)"}
+  id: en-p5/head-flame
+  parent: en-p5
 en-p6:
   animated3DCharacter: {modelId: cdn/model-hunched-pilgrim-made-of-melted-candle-wax-hooded-robe-dripping-wax-candle-burning-on-head-dark-fantasy.glb}
   behavior: [scripts/humanoid-locomotion.js]
   bones: {}
   castShadow: true
   feetPosition: {x: 6.137017476162185, y: 0.029418135359391195, z: -40.52081255017505}
-  fx: {params: {}, script: "fx\npop f rate=flick(.5,.3)*18 on=disc(.02).c(1.65) life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 at=disc(.02).c(1.65) glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)"}
   id: en-p6
   layout: {maxExtents: {y: 1.7}}
   material: {key: Std/PBR-VPBR}
@@ -408,13 +431,17 @@ en-p6:
   visible: true
   visibleTo: all
   yaw: -103.79049289381312
+en-p6/head-flame:
+  feetPosition: {x: 0, y: 1.62, z: 0}
+  fx: {script: "fx\npop f rate=flick(.5,.3)*18 on=point() life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)"}
+  id: en-p6/head-flame
+  parent: en-p6
 en-p7:
   animated3DCharacter: {modelId: cdn/model-hunched-pilgrim-made-of-melted-candle-wax-hooded-robe-dripping-wax-candle-burning-on-head-dark-fantasy.glb}
   behavior: [scripts/humanoid-locomotion.js]
   bones: {}
   castShadow: true
   feetPosition: {x: 13.323796673129104, y: 0.07000000029802322, z: -47.420072167698464}
-  fx: {params: {}, script: "fx\npop f rate=flick(.5,.3)*18 on=disc(.02).c(1.65) life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 at=disc(.02).c(1.65) glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)"}
   id: en-p7
   layout: {maxExtents: {y: 1.7}}
   material: {key: Std/PBR-VPBR}
@@ -430,6 +457,11 @@ en-p7:
   visible: true
   visibleTo: all
   yaw: 8.30410025306481
+en-p7/head-flame:
+  feetPosition: {x: 0, y: 1.62, z: 0}
+  fx: {script: "fx\npop f rate=flick(.5,.3)*18 on=point() life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)"}
+  id: en-p7/head-flame
+  parent: en-p7
 rd-boneheap-1:
   castShadow: true
   feetPosition: {x: -3.54, y: 0, z: -28.6}
