@@ -241,6 +241,7 @@ function swingAnim(ctx, clip) {
 
 function strike(ctx, foe, dmg, crit) {
   foe.state.hp -= dmg;
+  { const me_ = ctx.self.state, lc = me_.gs?.leech ?? 0; if (lc > 0 && me_.hp > 0 && me_.hp < me_.maxHp) me_.hp = Math.min(me_.maxHp, me_.hp + Math.max(1, Math.round(dmg * lc / 100))); }
   foe.state.lastHit = ctx.self.id;
   const p = { x: foe.feetPosition.x, y: foe.feetPosition.y + 1.1, z: foe.feetPosition.z };
   const f = ctx.self.feetPosition, dx = p.x - f.x, dz = p.z - f.z, d = Math.hypot(dx, dz) || 1;
