@@ -213,6 +213,7 @@ export default function (ctx, player) {
   const lo = L[lv - 1] ?? 0, hi = L[lv] ?? lo + 500, xpPct = Math.max(0, Math.min(100, (((s.xp ?? 0) - lo) / (hi - lo)) * 100));
   const boss = ctx.place.state.boss;
   const dashLeft = Math.max(0, (s.dashReadyAt ?? 0) - now), dashPct = Math.min(100, (dashLeft / 3000) * 100);
+  const touch = typeof matchMedia !== "undefined" && matchMedia("(pointer: coarse)").matches;
   const IC = {"ash": "/cdn/value.11ea8210258744da6aa7d65226e3fda61337efea5eb71fe047d65096b3dc053b.png", "cross": "/cdn/value.13d726eaf2133c0f3838076422f781f3068d081b31dbcd6d880212c2ddda7de3.png", "step": "/cdn/value.eecac6103d8be9ec4c6e6909f2dbd61c3fc4bda234bc585e389c850c1c74e3f3.png", "guard": "/cdn/value.02dc0fd2d6f126cd0a5fd2f2dbfc43058486b706d34ed8ffd30222d57c3d3490.png", "tonic": "/cdn/value.f4e985f51d72e39ecd4691f462076ba4a14206d864edb85895ea8ef710ceccfc.png", "pack": "/cdn/value.961ecd8b3ded845823729ea6364b6a1eb5e20e03cd1090dbdb1b4cda98a6872d.png"};
   const cdOver = (left, pct) => left > 0 ? `<div class="cd" style="height:${pct}%"></div><div class="cdn">${Math.ceil(left / 1000)}</div>` : "";
   const cwLeft = Math.max(0, (s.cwReadyAt ?? 0) - now), cwPct = Math.min(100, (cwLeft / (CB.crosswound.cd * 1000)) * 100);
@@ -226,7 +227,6 @@ export default function (ctx, player) {
   if (hpPct < 30 && (s.tonics ?? 0) > 0) chips.push(`<div class="plate chip" style="color:#e0473a;animation:vfpulse 1s infinite">♥ DRINK · ${touch ? "TONIC" : "Q"}</div>`);
   const ban = s.banner && now - s.banner.at < 4200 && !s.shop ? s.banner : null;
   const dlg = s.dialog && now - s.dialog.at < 9000 && !s.shop ? s.dialog : null;
-  const touch = typeof matchMedia !== "undefined" && matchMedia("(pointer: coarse)").matches;
   const rail = "calc(var(--spawn-chrome-reservation-right-inset, 50px) + 24px)";
   return `${THEME}${FRAME_CSS}<div id="vf" class="fixed inset-0 pointer-events-none">
   <div class="absolute plate qp${boss && boss.engaged && !boss.dead ? " bossup" : ""}" style="left:24px;top:24px;max-width:300px;animation:vfin .4s">
