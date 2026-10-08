@@ -47,10 +47,11 @@ export function geometry(ctx) {
   // a shroud hanging off the back
   ctx.flat(); ctx.albedo(TEX.cloth ?? TEX.wood); ctx.color("oklch(.38 .05 25)"); ctx.roughness(1);
   const sh = (u, v) => B([-0.45 + u * 0.9, 0.46 - v * 0.75 - Math.sin(u * 3.14) * 0.06, 0.99 + v * 0.12 + Math.sin(u * 9 + v * 4) * 0.025]);
+  const T3 = (a, b, c) => ctx.tri(a[0], a[1], a[2], b[0], b[1], b[2], c[0], c[1], c[2]);
   const SU = hi ? 8 : 4, SV = hi ? 5 : 3;
   for (let u = 0; u < SU; u++) for (let v = 0; v < SV; v++) {
     const a = sh(u / SU, v / SV), b = sh((u + 1) / SU, v / SV), c = sh((u + 1) / SU, (v + 1) / SV), d = sh(u / SU, (v + 1) / SV);
-    ctx.triangle(a, b, c); ctx.triangle(a, c, d); ctx.triangle(a, c, b); ctx.triangle(a, d, c);
+    T3(a, b, c); T3(a, c, d); T3(a, c, b); T3(a, d, c);
   }
   // pole lantern at the front corner, candles inside an iron cage
   ctx.albedo(TEX.wood); ctx.color("oklch(.45 .04 55)"); ctx.roughness(0.95);
