@@ -143,7 +143,14 @@ function griefstep(ctx) {
 // and the blade answers every foe in reach (the riposte is judged here, when the stance sees it consumed)
 const GUARD = `fx
 pop shell n=1 at=point().c(1) size=2.2 col=hdr(.9,1.3,2.2)*flick(6,.2) a=.35 r=sprite(soft-disc,add)
-pop mote rate=30 on=sphere(.9).c(1) life=.3..0.5 v=sdir()*.4 size=.03..0.05 col=hdr(1.5,1.8,2.8) a=1>0 r=sprite(mote,add)`;
+pop mote rate=30 on=sphere(.9).c(1) life=.3..0.5 v=sdir()*.4 size=.03..0.05 col=hdr(1.5,1.8,2.8) a=1>0 r=sprite(mote,add)
+pop glow n=1 at=point().c(1.1) r=light(<.45,.72,1.25>,14*flick(5,.15),9)`;
+// the catch: the afterimage shatters in cold light where the blow landed
+const CATCH = `fx
+pop shards burst=26..34 life=.35..0.7 on=sphere(.5).c(1) v=sdir()*(3..6) size=.04..0.09 acc=drag(3) col=hdr(1.6,2.2,3.6)>hdr(.4,.8,1.6) a=1>0 r=sprite(ember,add,velocity,.05)
+pop ring burst=1 life=.35 at=point().c(.15) size=.4 sz=$size*(1>9) col=hdr(.8,1.3,2.4) a=.8>0 r=sprite(soft-disc,add)
+pop ghost burst=6 life=.45..0.6 on=box(.2,1.6,.2).c(.95) v=up(.4) size=.5..0.7 sz=$size*(1>1.6) col=hdr(.6,.95,1.8) a=.45>0 r=sprite(smoke-puff,add)
+pop flare burst=1 life=.4 at=point().c(1.1) b=1>0 r=light(<.5,.75,1.3>,$b*60,12)`;
 function guard(ctx) {
   const s = ctx.self.state, now = ctx.now(), g = C.guard;
   if (now < (s.guardReadyAt ?? 0)) { ctx.emit("playSound", { clip: sfx("dull-click-denied"), position: ctx.self.feetPosition, volume: 0.3 }); return; }
@@ -158,6 +165,9 @@ function guardTick(ctx, now) {
     me.guardSeen = s.riposte; ctx.self.fx = null;
     const f = ctx.self.feetPosition;
     ctx.emit("fx", { position: { x: f.x, y: f.y + 1, z: f.z }, script: SLASH });
+    ctx.emit("fx", { position: { x: f.x, y: f.y, z: f.z }, script: CATCH });
+    ctx.emit("shockwave", { position: { x: f.x, y: f.y + 1, z: f.z }, speed: 14, thickness: 0.4, intensity: 0.5 });
+    ctx.emit("screenFlash", { color: "#9cc8ff", duration: 0.12, intensity: 0.12 }, { audience: { player: ctx.self.id } });
     ctx.emit("playSound", { clip: sfx("sword-parry-ring-and-counter-slash"), position: f, volume: 0.9 });
     ctx.emit("hitstop", { duration: 0.06 }, { audience: { player: ctx.self.id } });
     for (const r of ctx.query({ tags: ["enemy"], radius: C.guard.reach, center: f })) { const o = ctx.getObject(r.id); if (isFoe(o)) strike(ctx, o, Math.round(C.guard.riposte * weaponMul(s)), true); }
