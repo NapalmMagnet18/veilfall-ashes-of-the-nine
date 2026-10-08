@@ -36,6 +36,8 @@ const STYLE = `<style>
   .bars > i { display: block; width: 2px; height: 9px; background: #1d96a0; animation: nametag-bar .8s ease-in-out infinite; }
   .bars > i:nth-child(2) { animation-delay: .15s; } .bars > i:nth-child(3) { animation-delay: .3s; }
   .dot { width: 5px; height: 5px; border-radius: 9999px; background: rgba(255,255,255,.55); box-shadow: 0 0 0 1px rgba(7,7,8,.6); margin-bottom: 6px; }
+  .first { font-family: Georgia, serif; font-size: 10px; letter-spacing: 3px; color: #e0a26a; text-shadow: 0 0 6px #ac4c42, 0 0 2px #070708; margin-bottom: -2px; text-transform: uppercase; }
+  .first::before, .first::after { content: "\\2726"; color: #ac4c42; margin: 0 4px; font-size: 8px; }
   @keyframes nametag-bar { 0%,100% { transform: scaleY(.3); } 50% { transform: scaleY(1); } }
   @keyframes nametag-say { 0% { opacity: 0; transform: translate(-50%, 6px); } 4% { opacity: 1; transform: translate(-50%, 0); } 75% { opacity: 1; } 100% { opacity: 0; transform: translate(-50%, 0); } }
 </style>`;
@@ -76,8 +78,12 @@ export default function (ctx, tag) {
   const bars = tag.talking
     ? `<div class="bars"><i></i><i></i><i></i></div>`
     : "";
+  // Firstblood: a Bearer named on the Trophy Post's plaque (first to fell a boss in this room)
+  const cn = ctx.getObject?.(tag.id)?.state?.charName;
+  const tro = ctx.world?.state?.trophies ?? {};
+  const first = cn && Object.values(tro).some((r) => r?.by?.includes?.(cn)) ? `<div class="first">Firstblood</div>` : "";
   const row = tag.named
     ? `<div class="row"><span class="head">${face}${moon}</span>${crew}<span class="name">${tag.name}</span>${handle}${doing}${bars}</div>`
     : `<div class="dot"></div>`;
-  return `${STYLE}<div class="${classes}" style="${vars}">${said}${row}</div>`;
+  return `${STYLE}<div class="${classes}" style="${vars}">${said}${first}${row}</div>`;
 }
