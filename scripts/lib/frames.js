@@ -87,6 +87,6 @@ ${roleCSS}
 .dv::before,.dv::after{content:"";flex:1;background:var(--dv) right center/100% 100% no-repeat;image-rendering:pixelated}
 .dv::after{transform:scaleX(-1)}
 ${DV}
-@media (max-width:1560px){#vf .sk{left:auto!important;right:170px;transform:none!important}}
+@media (max-width:1560px){#vf .sk,#vf .chips{left:auto!important;right:170px;transform:none!important}}
 #vf .slot .k{left:9px!important;top:6px!important;font-size:9px!important;z-index:1} #vf .slot .n{right:9px!important;bottom:6px!important;z-index:1} #vf .slot .cd{left:6px!important;right:6px!important;bottom:6px!important}
 </style>`;

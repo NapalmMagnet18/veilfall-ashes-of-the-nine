@@ -258,7 +258,7 @@ export default function (ctx, player) {
     <div class="slot ${(s.tonics ?? 0) ? "" : "dim"}" title="Ash Tonic"><img class="ic" src="${IC.tonic}"><span class="k">Q</span><span class="n">${s.tonics ?? 0}</span></div>
     <div class="slot" title="Pack" style="pointer-events:auto;cursor:pointer" onclick="sendAction('bag')"><img class="ic" src="${IC.pack}"><span class="k">I</span></div>
   </div>
-  ${chips.length ? `<div class="absolute dk" style="left:50%;bottom:112px;transform:translateX(-50%);display:flex;gap:12px">${chips.join("")}</div>` : ""}`}
+  ${chips.length ? `<div class="absolute dk chips" style="left:50%;bottom:112px;transform:translateX(-50%);display:flex;gap:12px">${chips.join("")}</div>` : ""}`}
   ${touch && chips.length ? `<div class="absolute" style="left:10px;top:236px;display:flex;flex-direction:column;gap:6px">${chips.join("")}</div>` : ""}
   ${foeOn ? `<div class="absolute plate tf" style="left:50%;top:${boss && boss.engaged && !boss.dead ? 168 : 24}px;transform:translateX(-50%);width:min(300px,calc(100vw - 2*${rail}));text-align:center;padding:10px 16px;animation:vfin .2s;${foe.gone ? "opacity:.6" : ""}">
     <div style="display:flex;align-items:baseline;justify-content:center;gap:8px"><span style="font-size:16px;color:${foe.kind === "deacon" ? "#f2b04a" : "var(--wax)"};letter-spacing:.06em">${FOES[foe.kind] ?? "Wax Thing"}</span>${foe.kind === "deacon" ? `<span class="lbl" style="color:#f2b04a">ELITE</span>` : ""}</div>
