@@ -31,6 +31,9 @@ inputs:
     bag:
       keys:
         - i
+    guard:
+      keys:
+        - "1"
   axes:
     moveX:
       keys: a/d

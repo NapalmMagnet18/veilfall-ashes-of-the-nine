@@ -51,7 +51,7 @@ export default function (ctx, player) {
     <div style="height:16px;background:#120e0c;box-shadow:0 0 0 2px #0d0b0a,0 0 0 4px #5a4a33;position:relative">
       <div style="position:absolute;inset:0;width:${(boss.hp / boss.max) * 100}%;background:linear-gradient(#c9402f,#7a1610);transition:width .2s"></div>
       <div style="position:absolute;top:0;bottom:0;left:70%;width:2px;background:#0d0b0a"></div><div style="position:absolute;top:0;bottom:0;left:35%;width:2px;background:#0d0b0a"></div>
-    </div><div class="lbl" style="margin-top:4px">${boss.phase === 1 ? "watch the red rings" : boss.phase === 2 ? "the wax burns: keep moving" : "three tolls, then he falters"}</div></div>` : ""}
+    </div><div class="lbl" style="margin-top:4px">${boss.phase === 1 ? "PHASE I · orange wedge: get behind him · marked: move away" : boss.phase === 2 ? `PHASE II · break the ledger pillars (${boss.ledgers} lit)` : "PHASE III · arc, debt, then he falters"}${boss.fray ? ` · FRAY ×${boss.fray} (+${boss.fray * 10}% damage taken)` : ""}</div></div>` : ""}
   ${dlg ? `<div id="dlg${dlg.at}" class="absolute plate" style="left:50%;transform:translateX(-50%);bottom:${touch ? 210 : 150}px;width:min(560px,calc(100vw - 2*${rail}));animation:vfin .35s;font-size:17px;line-height:1.35">${dlg.text}</div>` : ""}
   <div class="absolute" style="left:24px;bottom:24px;display:flex;align-items:flex-end;gap:14px">
     <div class="orb"><div class="fill" style="height:${hpPct}%;background:radial-gradient(circle at 50% 30%,#e0473a,#7d1410 70%)${hpPct < 30 ? ";animation:vfpulse 1s infinite" : ""}"></div><div class="shine"></div><div class="val">${hp}</div></div>

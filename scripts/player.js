@@ -66,6 +66,7 @@ export function onInput(ctx, input) {
   if (input.pressed.griefstep) griefstep(ctx);
   if (input.pressed.tonic) tonic(ctx);
   if (input.pressed.bag) s.bagOpen = !s.bagOpen;
+  if (input.pressed.guard) guard(ctx);
 }
 
 function swingAnim(ctx, clip) {
@@ -138,6 +139,32 @@ function griefstep(ctx) {
   ctx.emit("playSound", { clip: sfx("ghostly-dash-whoosh-glass-chime"), position: f, volume: 0.7 });
 }
 
+// Afterimage Guard: a held stance; the next blow inside the window is caught, the afterimage takes it,
+// and the blade answers every foe in reach (the riposte is judged here, when the stance sees it consumed)
+const GUARD = `fx
+pop shell n=1 at=point().c(1) size=2.2 col=hdr(.9,1.3,2.2)*flick(6,.2) a=.35 r=sprite(soft-disc,add)
+pop mote rate=30 on=sphere(.9).c(1) life=.3..0.5 v=sdir()*.4 size=.03..0.05 col=hdr(1.5,1.8,2.8) a=1>0 r=sprite(mote,add)`;
+function guard(ctx) {
+  const s = ctx.self.state, now = ctx.now(), g = C.guard;
+  if (now < (s.guardReadyAt ?? 0)) { ctx.emit("playSound", { clip: sfx("dull-click-denied"), position: ctx.self.feetPosition, volume: 0.3 }); return; }
+  s.guardReadyAt = now + g.cd * 1000; s.guardUntil = now + g.window * 1000; me.guardSeen = s.riposte ?? 0;
+  s.goal = null; me.route = null;
+  ctx.self.fx = { script: GUARD };
+  ctx.emit("playSound", { clip: sfx("ghostly-glass-shimmer-guard-up"), position: ctx.self.feetPosition, volume: 0.7 });
+}
+function guardTick(ctx, now) {
+  const s = ctx.self.state;
+  if ((s.riposte ?? 0) > (me.guardSeen ?? 0)) {
+    me.guardSeen = s.riposte; ctx.self.fx = null;
+    const f = ctx.self.feetPosition;
+    ctx.emit("fx", { position: { x: f.x, y: f.y + 1, z: f.z }, script: SLASH });
+    ctx.emit("playSound", { clip: sfx("sword-parry-ring-and-counter-slash"), position: f, volume: 0.9 });
+    ctx.emit("hitstop", { duration: 0.06 }, { audience: { player: ctx.self.id } });
+    for (const r of ctx.query({ tags: ["enemy"], radius: C.guard.reach, center: f })) { const o = ctx.getObject(r.id); if (isFoe(o)) strike(ctx, o, Math.round(C.guard.riposte * weaponMul(s)), true); }
+    s.edge = Math.min(100, (s.edge ?? 0) + 20);
+  } else if (ctx.self.fx && now > (s.guardUntil ?? 0)) ctx.self.fx = null;
+}
+
 function tonic(ctx) {
   const s = ctx.self.state;
   if ((s.tonics ?? 0) <= 0 || s.hp >= s.maxHp) return;
@@ -188,6 +215,7 @@ export function update(ctx, dt) {
     return;
   }
   ctx.self.vignette = s.hp < s.maxHp * 0.3 ? 0.22 : 0;
+  guardTick(ctx, now);
 
   // the fire mends: tonics refill and life knits back in the camp
   if (Math.hypot(f.x, f.z) < 7) {
