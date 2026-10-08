@@ -40,7 +40,7 @@ export const GALLOWS = { x: 62, z: 5, r: 9 };
 export const OSS_PATH = [[-11, -256], [-20, -260], [-30, -264]];
 export const OSS_HALF = 3.6;
 export const OSSUARY = { x: -42, z: -266, r: 14 };
-export const RELIQUARY = { x: -48, z: -268 }; // her dais, west end
+export const RELIQUARY = { x: -46, z: -267 }; // her dais, west end
 const segDist = (x, z, pts, half) => {
   let d = Infinity;
   for (let i = 0; i < pts.length - 1; i++) {

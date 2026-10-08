@@ -6,7 +6,7 @@
 //  "arch"   { w, h }           the Bone Stair's mouth: two bone jambs, a lintel of skulls, wax down its face (front −Z)
 //  "dais"   {}                 the Abbess's reliquary: three stepped slabs, an open lead-lined reliquary bed,
 //                              a crozier rack, a hundred candles guttering cold
-import { TEX, xf, bevelBox, lathe, candleBed, drip, puddle, WAXC } from "./shapes.js";
+import { TEX, xf, bevelBox, lathe, candleBed, drip, puddle, WAXC, quad as fq } from "./shapes.js";
 import { tube, I, rock } from "./hub-kit.js";
 const BONE = "cdn/texture-old-yellowed-bone-surface-cracked.png";
 const boneMat = (ctx, k = 0) => { ctx.albedo(BONE); ctx.color(["oklch(.86 .03 85)", "oklch(.8 .035 80)", "oklch(.74 .04 75)", "oklch(.9 .02 90)"][k % 4]); ctx.roughness(0.8); ctx.metalness(0); };
@@ -41,9 +41,8 @@ function wall(ctx) {
     const A = a0 + ((a1 - a0) * i) / N, B = a0 + ((a1 - a0) * (i + 1)) / N;
     const q = (a, r, y) => at(a, r, y);
     // inner face (faces centre): wind so normal points to origin
-    ctx.quad(...q(A, R, 0), ...q(A, R, H), ...q(B, R, H), ...q(B, R, 0));
-    // top
-    ctx.quad(...q(A, R, H), ...q(A, R + 1.2, H + 0.4), ...q(B, R + 1.2, H + 0.4), ...q(B, R, H));
+    fq(ctx, q(A, R, -0.3), q(A, R, H), q(B, R, H), q(B, R, -0.3), q((A + B) / 2, R + 6, H / 2));
+    fq(ctx, q(A, R, H), q(A, R + 1.6, H + 0.6), q(B, R + 1.6, H + 0.6), q(B, R, H), q((A + B) / 2, R + 0.8, -4));
   }
   // rows of niches: an arched recess, a dark back, a skull looking out
   const rows = L > 2 ? 2 : 3;
@@ -137,4 +136,3 @@ function dais(ctx) {
 }
 const KINDS = { wall, column, pile, arch, dais };
 export function geometry(ctx) { (KINDS[ctx.params.kind] ?? wall)(ctx); }
-export const lods = [{ maxDistance: 25 }, { maxDistance: 60 }, { maxDistance: 140 }];
