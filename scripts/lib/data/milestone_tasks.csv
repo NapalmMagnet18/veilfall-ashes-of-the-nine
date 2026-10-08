@@ -1,0 +1,11 @@
+milestone,task,exit_criterion,status
+M0,Repo and capability audit,"No feature regression, documented supported APIs, safe rollback path.",TODO
+M1,One-room combat vertical slice,"Player can click to move, kite, fight, dodge and finish 5-minute dungeon without stuck navmesh.",TODO
+M2,Persistence and quests,Two reconnects preserve state; no duplicate reward on repeated turn-in; quest chain reaches Wayside Fire.,TODO
+M3,Six classes and four origins,"Every combo starts, saves, learns and finishes its origin and class trial.",TODO
+M4,Act I production,All 12 Act I main quests and six side quests complete; boss readable solo and co-op.,TODO
+M5,Act II expansion,Each quest gated correctly; water state resets safely; Rusk confession persists.,TODO
+M6,Act III and IV,"No storyline skip; all main scenes replayable, quest NPCs cannot softlock.",TODO
+M7,Act V and epilogues,"Finish with all classes, all endings, and valid shared-state fallbacks.",TODO
+M8,Co-op and endgame,Party join/leave/disconnect tests pass and rewards cannot duplicate.,TODO
+M9,Polish and release,QA checklist green; closed beta feedback addressed; release rollback verified.,TODO
