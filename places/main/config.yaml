@@ -32,7 +32,7 @@ defaultSpawnPoint:
   x: 0
   y:
     terrain: 0
-  z: 0
+  z: 5
 gravity:
   x: 0
   y: -24
