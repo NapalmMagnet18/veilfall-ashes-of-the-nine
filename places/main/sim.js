@@ -3,6 +3,7 @@
 import C from "../../scripts/lib/data/combat.yml";
 import E from "../../scripts/lib/data/economy.yml";
 import { body } from "../../scripts/lib/data/models.js";
+import { FEN, FEN_HEART, WAYSTONES } from "../../scripts/lib/data/veilfall-map.js";
 export const cadence = "250ms";
 const MUSIC = "/cdn/moodboard-gothic-horror/music-broken-lantern-road-dusk-candles-and-fog-ambient.mp3";
 // the jukebox follows the room's mood: the road at rest, drums when the wax wakes, the Bailiff's own theme in his court
@@ -20,6 +21,7 @@ const BEDS = [
   { id: "bed-gate", x: 0, z: -89, clip: "ambience-dripping-hot-wax-hiss-and-low-murmuring-voices-loop", gain: 0.22, max: 16 },
   { id: "bed-abbey", x: 0, z: -180, clip: "ambience-mouthless-choir-humming-and-cracked-bell-in-ruined-abbey-loop", gain: 0.16, max: 30 },
   { id: "bed-crypt", x: 0, z: -251, clip: "ambience-slow-cracked-bell-tolling-underground-crypt-with-dripping-wax-loop", gain: 0.16, max: 26 },
+  { id: "bed-fen", x: -64, z: -10, clip: "ambience-night-marsh-frogs-dripping-water-and-faint-ghostly-chimes-loop", gain: 0.16, max: 30 },
   { id: "bed-court", x: 0, z: -105, clip: "ambience-low-ominous-choir-drone-cathedral-loop", gain: 0.14, max: 26 },
 ];
 const PACKS = [
@@ -47,7 +49,11 @@ const LINES = {
   8: "Maelin Sore: A door that keeps its own counsel. Lay your hand on it before you come back to me.",
   9: "Maelin Sore: You touched the door? Sit, Bearer. Tell me everything.",
   11: "Maelin Sore: The nave is open? Then the crypt is under it. Go down, Bearer. Whatever rings that bell has been ringing it for a hundred years. Let it rest.",
-  13: "Maelin Sore: Silent. I'd forgotten what the road sounds like without it. And this... the ninth lantern, in your hands. The Nine meant it for someone. Keep it lit. Eight were carried out of this valley, and I know where the first one went.",
+  13: "Maelin Sore: Silent. I'd forgotten what the road sounds like without it. And this... the ninth lantern, in your hands. Eight were carried out of this valley. The first went west, past my fire, down the Fen Path. The Lanternmere took it, and the man who carried it never let go.",
+  14: "Maelin Sore: Three waystones stand in the mere. The pilgrims lit them so the drowned could find their way home. Put the ninth flame to each of them.",
+  15: "Maelin Sore: The stones burn and something stood up in the water? That is Tobin Vey. He swore to keep the first lantern until a Bearer came for it. Show him one has.",
+  16: "Maelin Sore: Tobin's lantern. Still warm. He kept his oath for a hundred years, under black water. Rest it here by the fire a while. Then we decide where the second one went.",
+  17: "Maelin Sore: Two lanterns found. Six still out there. Warm yourself, Bearer. The road is long, and it isn't done with us.",
   10: "Maelin Sore: The Ninth Bell. My mother sang of it: the Nine lit eight lanterns and hid the ninth inside the bell, so no hand could carry it off. Someone is ringing it from the inside. Take this. The door gave way under your hand, Bearer. Walk through it, down the nave, and stop that bell.",
 };
 // the Abbey chapter: where it begins, the three saints that speak, the door that won't
@@ -64,6 +70,9 @@ const AUTO = { 2: "The road falls quiet. The tollhouse lies ahead: find five wax
   8: "The saints are quiet again. The Abbey door stands at the top of the yard. Touch its seal.",
   9: "The seal is warm, and something behind it is ringing a bell very slowly. Bring this back to Maelin.",
   11: "The Burned Nave. The roof came down mid-hymn. Under your feet, a bell is ringing. The crypt lies at the nave's end.",
+  14: "The Lanternmere. Black water to the knee, drowned trees, and three dark waystones standing in it. Light each with the ninth flame.",
+  15: "The third stone takes the flame. At the heart of the mere the water rises, and something tall rises with it.",
+  16: "The Warden sinks, and lets go. An iron lantern rolls onto the dais, its flame cold blue and steady. Carry it to Maelin.",
   12: "The Ninth Bell falls silent. In its crack a small gold flame still burns: the ninth lantern. Carry it back to Maelin." };
 const NAVE_IN = (x, z) => z < -206 && z > -238 && Math.abs(x) < 7.5;
 // the Wax Deacon's censer: bronze thurible hung at his right hip, coals glowing, incense smoke rising
@@ -121,6 +130,22 @@ export function tick(ctx) {
       ...body("ringer"), behavior: ["scripts/humanoid-locomotion.js", "scripts/ringer.js"],
       fx: { script: `fx\npop m rate=6 on=sphere(.4).c(3.6) life=1..1.8 v=up(.3..0.6) size=.03..0.06 col=hdr(3,2.2,.8) a=0>.9:1>0 r=sprite(mote,add)\npop l n=1 at=point().c(3.7) glo=fire()*.7 r=light(<1,.7,.35>,$glo*4,9)` } });
   }
+  // the Lantern Warden: sleeps under the mere until a Bearer has lit all three stones; 120 s after he sinks, the water gives him back
+  const warden = objs["warden"], called = ctx.place.players.some((p) => (p.state.quest?.stage ?? 0) === 15);
+  if (warden && warden.state.dead && now - warden.state.deadAt > 120000 && !near(ctx, FEN_HEART.x, FEN_HEART.z, 22)) ctx.destroy("warden");
+  else if (!warden && called) ctx.spawn("warden", { tags: ["enemy", "boss"], physics: "character", feetPosition: { x: FEN_HEART.x, z: FEN_HEART.z, y: { terrain: 0 } }, scale: 1.7, rotation: 90,
+    ...body("warden"), behavior: ["scripts/humanoid-locomotion.js", "scripts/warden.js"],
+    fx: { script: `fx\npop w rate=8 on=sphere(.35).c(3.5) life=1..1.8 v=up(.2..0.5)+sdir()*.15 size=.04..0.07 col=hdr(.6,2.2,2) a=0>.9:1>0 r=sprite(mote,add)\npop d rate=10 on=disc(.8) life=.6..1 v=up(.1..0.3) size=.04..0.08 acc=grav()*.3 col=<.5,.62,.64> a=.6>0 r=sprite(soft-disc,alpha)\npop l n=1 at=point().c(3.6) glo=fire()*.7 r=light(<.45,1,.95>,$glo*5,10)` } });
+  // the waystones burn for anyone who has lit them, and go dark while the Warden drowns them
+  const litAny = new Set();
+  for (const p of ctx.place.players) { const qq = p.state.quest; if (!qq) continue; if (qq.stage >= 15) WAYSTONES.forEach((w) => litAny.add(w.id)); else if (qq.stage === 14) (qq.stones ?? []).forEach((id) => litAny.add(id)); }
+  for (const w of WAYSTONES) {
+    const want = litAny.has(w.id) && !st.fenDark, fl = objs[`fen-stone-${w.id}/flame`];
+    if (fl && !!fl.state.lit !== want) {
+      fl.state.lit = want;
+      fl.fx = want ? { script: `fx\npop f rate=flick(.5,.3)*30 on=disc(.08) life=.3..0.6 v=up(.5..1) size=.08..0.16 col=hdr(.7,2.6,2.3)>hdr(.2,.9,.9) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 at=point() glo=fire() r=light(<.5,1,.95>,$glo*3.5,9)` } : null;
+    }
+  }
   // each player's road
   for (const p of ctx.place.players) {
     const s = p.state; if (s.hp === undefined || s.menu || !s.charId) continue; // only a Bearer who entered the world
@@ -166,6 +191,17 @@ export function tick(ctx) {
         }
         next = { stage: 13 };
       }
+      else if (q.stage === 16) {
+        if (!s.claimed?.["Z01-MAIN-08"]) {
+          s.claimed = { ...(s.claimed ?? {}), "Z01-MAIN-08": now };
+          s.xp = (s.xp ?? 0) + 800; s.copper = (s.copper ?? 0) + E.quests["Z01-MAIN-08"]; s.maxHp = (s.maxHp ?? 100) + 10; s.hp = s.maxHp; s.tonics = Math.max(s.tonics ?? 0, 5);
+          ctx.emit("playSound", { clip: "/cdn/moodboard-gothic-horror/sfx-quest-complete-low-bells-and-choir.mp3", position: p.feetPosition, volume: 1 }, { audience: { player: p.id } });
+          ctx.emit("screenFlash", { color: "#bff3ee", duration: 0.4, intensity: 0.12 }, { audience: { player: p.id } });
+          ctx.emit("damageNumber", { position: { ...p.feetPosition, y: p.feetPosition.y + 2.6 }, text: "THE FIRST LANTERN · +10 LIFE", color: "#9fe8e0", size: 1.2 }, { audience: { player: p.id } });
+          ctx.emit("milestone", { step: 17, name: "drowned-lantern-chapter-complete" }, { audience: { player: p.id } });
+        }
+        next = { stage: 17 };
+      }
       say(ctx, p, next ? next.stage : q.stage);
       if (!next) s.quest = { ...q, heardAt: s.talk.at };
     }
@@ -196,6 +232,22 @@ export function tick(ctx) {
     if (!next && q.stage === 10 && NAVE_IN(px, pz)) next = { stage: 11 };
     if (!next && q.stage === 11 && s.ringerKilled) next = { stage: 12 };
     if (q.stage < 11 && s.ringerKilled) s.ringerKilled = false;
+    // the Drowned Lantern
+    if (!next && q.stage === 13 && Math.hypot(px - FEN.x, pz - FEN.z) < FEN.r) next = { stage: 14, stones: [] };
+    if (!next && q.stage === 14) {
+      const lit = q.stones ?? [];
+      for (const w of WAYSTONES) if (!lit.includes(w.id) && Math.hypot(px - w.x, pz - w.z) < 2.6) {
+        const l = [...lit, w.id];
+        s.quest = { ...q, stones: l };
+        s.dialog = { text: `The ninth flame leans toward the stone, and the stone takes it. (${l.length}/3)`, at: now };
+        ctx.emit("playSound", { clip: "/cdn/moodboard-gothic-horror/sfx-cold-lantern-flame-catches-with-soft-whoosh-and-chime.mp3", position: { x: w.x, y: 1.6, z: w.z }, volume: 0.9 }, { audience: { player: p.id } });
+        ctx.emit("fx", { position: { x: w.x, y: 1.6, z: w.z }, script: `fx\npop m burst=50 on=sphere(.4) life=.8..1.6 v=up(.6..1.4)+sdir()*.5 size=.03..0.06 col=hdr(.8,2.4,2.2) a=1>0 r=sprite(mote,add)` });
+        if (l.length >= WAYSTONES.length) next = { stage: 15, stones: l };
+        break;
+      }
+    }
+    if (!next && q.stage === 15 && s.wardenKilled) next = { stage: 16 };
+    if (q.stage < 15 && s.wardenKilled) s.wardenKilled = false;
     if (next) {
       s.quest = { ...q, ...next, heardAt: talked ? s.talk.at : q.heardAt };
       if (!talked && next.stage !== 8) s.dialog = { text: AUTO[next.stage], at: now };
@@ -216,15 +268,15 @@ export function tick(ctx) {
 }
 
 function musicTick(ctx, st, now, objs) {
-  if (!st.bedsV4) { st.bedsV4 = true;
+  if (!st.bedsV5) { st.bedsV5 = true;
     for (const b of BEDS) if (!(b.id in objs)) ctx.spawn(b.id, { tags: ["ambience"], feetPosition: { x: b.x, y: 1.5, z: b.z },
       audio: { clip: `/cdn/moodboard-gothic-horror/${b.clip}.mp3`, loop: true, gain: b.gain, spatial: b.spatial ?? true, maxDistance: b.max ?? 40, bus: "Ambience" } }); }
   const boss = objs["bailiff"]?.state;
   let fighting = false;
   for (const e of ctx.query({ tags: ["enemy"] })) if (e.state?.hunting && !e.state?.dead) { fighting = true; break; }
   if (fighting) st.fightUntil = now + 6000; // a short tail so the drums don't stutter between pulls
-  const rg = objs["ringer"]?.state;
-  const mood = (boss?.engaged && !boss?.dead) || (rg?.engaged && !rg?.dead) ? "boss" : now < (st.fightUntil ?? 0) ? "fight" : "road";
+  const rg = objs["ringer"]?.state, wd = objs["warden"]?.state;
+  const mood = (boss?.engaged && !boss?.dead) || (rg?.engaged && !rg?.dead) || (wd?.engaged && !wd?.dead) ? "boss" : now < (st.fightUntil ?? 0) ? "fight" : "road";
   if (!ctx.place.players.some((p) => p.state?.charId && !p.state?.menu)) return; // nobody on the road: the Veil owns the jukebox
   if (mood !== st.mood || ctx.music.now()?.ref !== TRACKS[mood]) { st.mood = mood; ctx.music?.play(TRACKS[mood], { fade: mood === "road" ? 4 : 1.2, volume: mood === "road" ? 0.7 : 0.8 }); }
 }

@@ -3,7 +3,7 @@
 import C from "./data/combat.yml";
 import R from "./data/realms.yml";
 
-export const CHAR_KEYS = ["hp", "maxHp", "edge", "tonics", "xp", "level", "copper", "kills", "shards", "bag", "petitions", "quest", "claimed", "weapon", "bossKilled", "ringerKilled", "ancestry", "cls", "seen"];
+export const CHAR_KEYS = ["hp", "maxHp", "edge", "tonics", "xp", "level", "copper", "kills", "shards", "bag", "petitions", "quest", "claimed", "weapon", "bossKilled", "ringerKilled", "wardenKilled", "ancestry", "cls", "seen"];
 export function fresh(ancestry, cls) {
   return { hp: C.hero.hp, maxHp: C.hero.hp, edge: 0, tonics: C.hero.tonics, xp: 0, level: 1, copper: 0, kills: 0, shards: 0, bag: {}, petitions: [], quest: { stage: 0 }, claimed: {}, weapon: null, bossKilled: false, ancestry, cls, seen: [] };
 }
