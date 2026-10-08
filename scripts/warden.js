@@ -1,3 +1,4 @@
+import { bossVoice } from "./lib/boss-voice.js";
 // Boss 03: the Lantern Warden, risen from the heart of the Lanternmere once its three waystones burn.
 // Phase I 100–60%: Undertow (a ring around him) and Drowned Lights (a line of marks walking out toward a Bearer).
 // Phase II 60–25%: he snuffs the waystones; drowned pilgrims climb out of the mere; the lights walk two lines.
@@ -34,7 +35,7 @@ export function update(ctx, dt) {
   const here = players(ctx);
   if (s.dead) { self.velocity = { x: 0, y: self.velocity.y, z: 0 }; return; }
   if (s.hp <= 0) {
-    s.dead = true; s.deadAt = now; s.engaged = false; s.cast = null; clearAdds(ctx);
+    s.dead = true; s.deadAt = now; bossVoice(ctx, "warden", "die", f); s.engaged = false; s.cast = null; clearAdds(ctx);
     ctx.place.state.fenDark = false;
     ctx.emit("slowMo", { scale: 0.3, duration: 1.4 }, { audience: { place: self.place } });
     ctx.emit("shockwave", { position: { ...f, y: f.y + 1 }, speed: 20, thickness: 2.4, intensity: 1 });
@@ -48,7 +49,7 @@ export function update(ctx, dt) {
   }
   if (here.length) {
     s.emptySince = null;
-    if (!s.engaged) { s.engaged = true; s.next = now + 2200; s.turn = 0; ctx.emit("playSound", { clip: sfx("drowned-giant-rises-from-water-roar-and-chains"), position: f, volume: 1, maxDistance: 90 }); }
+    if (!s.engaged) { s.engaged = true; bossVoice(ctx, "warden", "wake", f); s.next = now + 2200; s.turn = 0; ctx.emit("playSound", { clip: sfx("drowned-giant-rises-from-water-roar-and-chains"), position: f, volume: 1, maxDistance: 90 }); }
     const want = Math.round(W.hp * (1 + W.perExtra * (here.length - 1)));
     if (want > s.maxHp) { s.hp += want - s.maxHp; s.maxHp = want; }
   } else if (s.engaged) {
@@ -65,6 +66,7 @@ export function update(ctx, dt) {
       ctx.emit("shockwave", { position: { ...f, y: 1 }, speed: 14, thickness: 1.6, intensity: 0.6 });
       if (phase === 2) { s.addAt = now + 1500; ctx.place.state.fenDark = true; }
     }
+    if (s.phase && phase > s.phase) bossVoice(ctx, "warden", "phase", f);
     s.phase = phase;
   }
   // phase II+: drowned pilgrims climb out of the mere at its rim

@@ -1,3 +1,4 @@
+import { bossVoice } from "./lib/boss-voice.js";
 // Boss 01: the Bailiff of the Dripping Gate (VEILFALL boss bible).
 // Phase A 100–70%: Taxman's Arc and Unpaid Debt, one at a time, long pauses.
 // Phase B 70–35%: two ledger pillars light; they pour slow walkers and stack Fray (+10% damage taken
@@ -87,7 +88,7 @@ export function update(ctx, dt) {
   const here = players(ctx);
   if (s.dead) { self.velocity = { x: 0, y: self.velocity.y, z: 0 }; return; }
   if (s.hp <= 0) {
-    s.dead = true; s.deadAt = now; s.engaged = false; s.cast = null; clearAdds(ctx);
+    s.dead = true; s.deadAt = now; bossVoice(ctx, "bailiff", "die", f); s.engaged = false; s.cast = null; clearAdds(ctx);
     ctx.emit("slowMo", { scale: 0.35, duration: 1.2 }, { audience: { place: self.place } });
     ctx.emit("shockwave", { position: { ...f, y: f.y + 1 }, speed: 18, thickness: 2, intensity: 1 });
     ctx.emit("screenFlash", { color: "#ffd9a0", duration: 0.4, intensity: 0.12 });
@@ -103,7 +104,7 @@ export function update(ctx, dt) {
   // engage, scale, reset on empty arena / wipe
   if (here.length) {
     s.emptySince = null;
-    if (!s.engaged) { s.engaged = true; s.next = now + 2000; s.turn = 0; ctx.emit("playSound", { clip: sfx("bailiff-roar-wax-choir-and-bell"), position: f, volume: 1, maxDistance: 80 }); }
+    if (!s.engaged) { s.engaged = true; bossVoice(ctx, "bailiff", "wake", f); s.next = now + 2000; s.turn = 0; ctx.emit("playSound", { clip: sfx("bailiff-roar-wax-choir-and-bell"), position: f, volume: 1, maxDistance: 80 }); }
     const want = Math.round(B.hp * (1 + B.perExtra * (here.length - 1)));
     if (want > s.maxHp) { s.hp += want - s.maxHp; s.maxHp = want; }
   } else if (s.engaged) {
@@ -116,6 +117,7 @@ export function update(ctx, dt) {
   const ratio = s.hp / s.maxHp, phase = ratio > 0.7 ? 1 : ratio > 0.35 ? 2 : 3;
   if (phase !== s.phase) {
     if (s.phase && phase > s.phase) { ctx.emit("playSound", { clip: sfx("bailiff-roar-wax-choir-and-bell"), position: f, volume: 1, maxDistance: 80 }); ctx.emit("shockwave", { position: { ...f, y: f.y + 1 }, speed: 12, thickness: 1.5, intensity: 0.5 }); }
+    if (s.phase && phase > s.phase) bossVoice(ctx, "bailiff", "phase", f);
     s.phase = phase;
     if (phase === 2 && !s.ledgersLit) {
       s.ledgersLit = true; s.ledgersUp = 2; s.frayAt = now + B.frayEvery * 1000; s.walkerAt = now + 3000;

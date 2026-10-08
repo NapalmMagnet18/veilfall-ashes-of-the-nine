@@ -1,3 +1,4 @@
+import { bossVoice } from "./lib/boss-voice.js";
 // Boss 02: the Ringer of the Ninth Bell, in the Bell Crypt under the Ashen Abbey.
 // Phase I 100–60%: Knell (a ring around him) and Peal (a ring under each Bearer), long pauses.
 // Phase II 60–25%: the bell wakes: Peal falls three times per Bearer, and wax pilgrims pour from the bell.
@@ -33,7 +34,7 @@ export function update(ctx, dt) {
   const here = players(ctx);
   if (s.dead) { self.velocity = { x: 0, y: self.velocity.y, z: 0 }; return; }
   if (s.hp <= 0) {
-    s.dead = true; s.deadAt = now; s.engaged = false; s.cast = null; clearAdds(ctx);
+    s.dead = true; s.deadAt = now; bossVoice(ctx, "ringer", "die", f); s.engaged = false; s.cast = null; clearAdds(ctx);
     ctx.emit("slowMo", { scale: 0.3, duration: 1.4 }, { audience: { place: self.place } });
     ctx.emit("shockwave", { position: { ...f, y: f.y + 1 }, speed: 20, thickness: 2.4, intensity: 1 });
     ctx.emit("screenFlash", { color: "#ffd59a", duration: 0.5, intensity: 0.14 });
@@ -47,7 +48,7 @@ export function update(ctx, dt) {
   }
   if (here.length) {
     s.emptySince = null;
-    if (!s.engaged) { s.engaged = true; s.next = now + 2200; s.turn = 0; ctx.emit("playSound", { clip: sfx("ringer-awakens-cracked-bell-boom-and-hollow-choir"), position: f, volume: 1, maxDistance: 90 }); }
+    if (!s.engaged) { s.engaged = true; bossVoice(ctx, "ringer", "wake", f); s.next = now + 2200; s.turn = 0; ctx.emit("playSound", { clip: sfx("ringer-awakens-cracked-bell-boom-and-hollow-choir"), position: f, volume: 1, maxDistance: 90 }); }
     const want = Math.round(R.hp * (1 + R.perExtra * (here.length - 1)));
     if (want > s.maxHp) { s.hp += want - s.maxHp; s.maxHp = want; }
   } else if (s.engaged) {
@@ -64,6 +65,7 @@ export function update(ctx, dt) {
       ctx.emit("shockwave", { position: { ...BELL, y: 2 }, speed: 14, thickness: 1.6, intensity: 0.6 });
       if (phase === 2) s.addAt = now + 1500;
     }
+    if (s.phase && phase > s.phase) bossVoice(ctx, "ringer", "phase", f);
     s.phase = phase;
   }
   // phase II+: the bell pours wax pilgrims at its feet

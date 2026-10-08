@@ -1,3 +1,4 @@
+import { bossVoice } from "./lib/boss-voice.js";
 // Boss 04: the Hangman of Saint Corvin, who climbs down from the gallows once a Bearer has cut down all three hanged.
 // Phase I 100–60%: Noose (a mark drops under every Bearer) and Trapdoors (a ring of marks around him: hug him or run wide).
 // Phase II 60–25%: the hanged drop from the trees and walk; nooses fall twice, the second where you were going.
@@ -34,7 +35,7 @@ export function update(ctx, dt) {
   const here = players(ctx);
   if (s.dead) { self.velocity = { x: 0, y: self.velocity.y, z: 0 }; return; }
   if (s.hp <= 0) {
-    s.dead = true; s.deadAt = now; s.engaged = false; s.cast = null; clearAdds(ctx);
+    s.dead = true; s.deadAt = now; bossVoice(ctx, "hangman", "die", f); s.engaged = false; s.cast = null; clearAdds(ctx);
     ctx.emit("slowMo", { scale: 0.3, duration: 1.4 }, { audience: { place: self.place } });
     ctx.emit("shockwave", { position: { ...f, y: f.y + 1 }, speed: 20, thickness: 2.4, intensity: 1 });
     ctx.emit("screenFlash", { color: "#ffd9a0", duration: 0.5, intensity: 0.14 });
@@ -47,7 +48,7 @@ export function update(ctx, dt) {
   }
   if (here.length) {
     s.emptySince = null;
-    if (!s.engaged) { s.engaged = true; s.next = now + 2200; s.turn = 0; ctx.emit("playSound", { clip: sfx("executioner-laughs-low-under-hood-and-drags-iron-hook-on-wood"), position: f, volume: 1, maxDistance: 90 }); }
+    if (!s.engaged) { s.engaged = true; bossVoice(ctx, "hangman", "wake", f); s.next = now + 2200; s.turn = 0; ctx.emit("playSound", { clip: sfx("executioner-laughs-low-under-hood-and-drags-iron-hook-on-wood"), position: f, volume: 1, maxDistance: 90 }); }
     const want = Math.round(H.hp * (1 + H.perExtra * (here.length - 1)));
     if (want > s.maxHp) { s.hp += want - s.maxHp; s.maxHp = want; }
   } else if (s.engaged) {
@@ -64,6 +65,7 @@ export function update(ctx, dt) {
       ctx.emit("shockwave", { position: { ...f, y: 1 }, speed: 14, thickness: 1.6, intensity: 0.6 });
       if (phase === 2) s.addAt = now + 1500;
     }
+    if (s.phase && phase > s.phase) bossVoice(ctx, "hangman", "phase", f);
     s.phase = phase;
   }
   // phase II+: the hanged drop from the orchard trees and walk on him
