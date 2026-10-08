@@ -205,7 +205,7 @@ export default function (ctx, player) {
   const lo = L[lv - 1] ?? 0, hi = L[lv] ?? lo + 500, xpPct = Math.max(0, Math.min(100, (((s.xp ?? 0) - lo) / (hi - lo)) * 100));
   const boss = ctx.place.state.boss;
   const dashLeft = Math.max(0, (s.dashReadyAt ?? 0) - now), dashPct = Math.min(100, (dashLeft / 3000) * 100);
-  const dlg = s.dialog && now - s.dialog.at < 9000 ? s.dialog : null;
+  const dlg = s.dialog && now - s.dialog.at < 9000 && !s.shop ? s.dialog : null;
   const touch = typeof matchMedia !== "undefined" && matchMedia("(pointer: coarse)").matches;
   const rail = "calc(var(--spawn-chrome-reservation-right-inset, 50px) + 24px)";
   return `${THEME}${FRAME_CSS}<div id="vf" class="fixed inset-0 pointer-events-none">
