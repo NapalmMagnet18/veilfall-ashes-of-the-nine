@@ -6,6 +6,7 @@ assets:
     "/cdn/value.152e0e3dca8080958e96297d180738dd46f2ecd43c02f2d1e4a43c5e9f09757a.png": {bytes: 462, kind: image, name: vf-slothot, uploadedAt: "2026-10-08T16:02:17.991Z"}
     "/cdn/value.193f20b46037db4dcd9364748d5428843007d8e0cecf0e528e934ced25605c5b.png": {bytes: 482, kind: image, name: vf-btnmain, uploadedAt: "2026-10-08T15:56:06.141Z"}
     "/cdn/value.3fd974bdd97c1ea22b5ba235accb1fe25780ad93f7003d0addeb07a1840090a8.png": {bytes: 464, kind: image, name: vf-rowon, uploadedAt: "2026-10-08T15:56:19.719Z"}
+    "/cdn/value.406b9c00757d0bbec005d0c122246c4dbdef6515e4f2b8501aad10482f3a510d.glb": {bytes: 1572396, kind: model, name: road-gibbet, uploadedAt: "2026-10-08T17:22:52.835Z"}
     "/cdn/value.419a89626be7e028858090009f767cdc899e865773ca5891ed2e3a53434aa2ac.png": {bytes: 413, kind: image, name: vf-dull, uploadedAt: "2026-10-08T16:07:08.449Z"}
     "/cdn/value.539265c044e21cd672fcba79cb0e1c8fda1d8035563e1bc9d50719bc71c545bf.png": {bytes: 453, kind: image, name: vf-thin, uploadedAt: "2026-10-08T16:13:41.203Z"}
     "/cdn/value.6333346fa6808b148d9ba468df826a3a49a29b8a0afb51a66a9e78d477c84abc.md": {bytes: 578766, kind: text, name: veilfall-design-package, uploadedAt: "2026-10-08T11:22:35.616Z"}

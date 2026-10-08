@@ -198,6 +198,7 @@ function menu(ctx, player, s) {
   </div>${tail(s, now)}`;
 }
 let firstSeen = null;
+const PORTRAITS = { Maelin: "/cdn/value.9b2ca380585d594996aa46048b8512b39fa6833033ee030624573e83f72ea96b.png", Oswin: "/cdn/value.90e281c6498bfb21ffee4d1f51afea300d3d58b948c66aaff56355f765ca2e17.png" };
 export default function (ctx, player) {
   const s = player.state ?? {}, now = ctx.now();
   if (s.hp === undefined) return "";
@@ -250,7 +251,10 @@ export default function (ctx, player) {
     <div style="font-size:clamp(22px,4vw,34px);letter-spacing:.14em;color:var(--wax);text-shadow:0 2px 0 #0d0b0a,0 0 18px rgba(196,156,99,.45)">${ban.name.toUpperCase()}</div>
     <div class="dv d${ban.fresh ? "f1" : "f0"}" style="width:min(100%,360px)"></div>
     <div style="font-size:14px;font-style:italic;color:#d9c9a6;text-shadow:0 1px 0 #0d0b0a">${ban.sub}</div></div>` : ""}
-  ${dlg ? `<div id="dlg${dlg.at}" class="absolute plate dl" style="left:50%;transform:translateX(-50%);bottom:${touch ? 210 : 150}px;width:min(560px,calc(100vw - 2*${rail}));animation:vfin .35s;font-size:17px;line-height:1.35">${dlg.text}<div class="dv d0" style="margin:8px auto 0"></div></div>` : ""}
+  ${dlg ? (() => { const m = /^([A-Z][\w' ]{1,22}):\s*(.*)$/s.exec(dlg.text); const who = m ? m[1] : null, line = m ? m[2] : dlg.text, face = who && PORTRAITS[who.split(" ")[0]];
+    return `<div id="dlg${dlg.at}" class="absolute plate dl" style="left:50%;transform:translateX(-50%);bottom:${touch ? 210 : 150}px;width:min(620px,calc(100vw - 2*${rail}));animation:vfin .35s;display:flex;gap:14px;align-items:flex-start">
+    ${face ? `<div style="flex:none;width:${touch ? 56 : 84}px;height:${touch ? 56 : 84}px;background:url(${face}) center/cover;box-shadow:0 0 0 2px #0d0b0a,0 0 0 3px #8a6f45,0 0 0 5px #0d0b0a,0 0 18px rgba(240,154,58,.25)"></div>` : ""}
+    <div style="flex:1;min-width:0">${who ? `<div class="lbl" style="color:#C49C63;letter-spacing:.22em;margin-bottom:3px">${who.toUpperCase()}</div>` : ""}<div style="font-size:${touch ? 15 : 17}px;line-height:1.4;${who ? "" : "font-style:italic;"}animation:vftype 1.4s ease-out">${line}</div><div class="dv d0" style="margin:8px 0 0"></div></div></div>`; })() : ""}
   <div class="absolute dk" style="left:24px;bottom:24px;display:flex;align-items:flex-end;gap:14px">
     <div class="orb"><div class="fill" style="height:${hpPct}%;background:radial-gradient(circle at 50% 30%,#e0473a,#7d1410 70%)${hpPct < 30 ? ";animation:vfpulse 1s infinite" : ""}"></div><div class="shine"></div><div class="val">${hp}</div></div>
     <div class="plate pp" style="padding:6px 10px"><div class="lbl">${s.charName ? s.charName + " · " : ""}Lv ${lv} ${s.ancestry ? s.ancestry[0].toUpperCase() + s.ancestry.slice(1) + " " : ""}Bladewraith</div><div style="width:150px;height:6px;background:#120e0c;margin-top:4px"><div style="height:6px;width:${xpPct}%;background:#9d86e0"></div></div><div style="font-size:13px;margin-top:4px;color:var(--wax)">${coinHTML(s.copper ?? 0, 14)}${s.weapon === "ITEM-001" ? " · Rusted Oathblade" : ""}</div></div>
