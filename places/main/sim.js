@@ -19,6 +19,7 @@ const BEDS = [
   { id: "bed-toll", x: 9, z: -46, clip: "ambience-creaking-wooden-shutters-and-chains-in-wind-loop", gain: 0.18, max: 16 },
   { id: "bed-gate", x: 0, z: -89, clip: "ambience-dripping-hot-wax-hiss-and-low-murmuring-voices-loop", gain: 0.22, max: 16 },
   { id: "bed-abbey", x: 0, z: -180, clip: "ambience-mouthless-choir-humming-and-cracked-bell-in-ruined-abbey-loop", gain: 0.16, max: 30 },
+  { id: "bed-crypt", x: 0, z: -251, clip: "ambience-slow-cracked-bell-tolling-underground-crypt-with-dripping-wax-loop", gain: 0.16, max: 26 },
   { id: "bed-court", x: 0, z: -105, clip: "ambience-low-ominous-choir-drone-cathedral-loop", gain: 0.14, max: 26 },
 ];
 const PACKS = [
@@ -45,6 +46,8 @@ const LINES = {
   7: "Maelin Sore: Wax saints in the yard... they poured the faithful over the dead so they'd remember. Listen to them. Wax keeps what stone forgets.",
   8: "Maelin Sore: A door that keeps its own counsel. Lay your hand on it before you come back to me.",
   9: "Maelin Sore: You touched the door? Sit, Bearer. Tell me everything.",
+  11: "Maelin Sore: The nave is open? Then the crypt is under it. Go down, Bearer. Whatever rings that bell has been ringing it for a hundred years. Let it rest.",
+  13: "Maelin Sore: Silent. I'd forgotten what the road sounds like without it. And this... the ninth lantern, in your hands. The Nine meant it for someone. Keep it lit. Eight were carried out of this valley, and I know where the first one went.",
   10: "Maelin Sore: The Ninth Bell. My mother sang of it: the Nine lit eight lanterns and hid the ninth inside the bell, so no hand could carry it off. Someone is ringing it from the inside. Take this, and rest. When that door opens, I want you standing in front of it.",
 };
 // the Abbey chapter: where it begins, the three saints that speak, the door that won't
@@ -59,7 +62,10 @@ const AUTO = { 2: "The road falls quiet. The tollhouse lies ahead: find five wax
   6: "The Ashen Abbey. Its yard is full of the faithful, still singing with no mouths. Silence six of them.",
   7: "The yard holds its breath. Three wax saints stand among the graves. Go close and listen.",
   8: "The saints are quiet again. The Abbey door stands at the top of the yard. Touch its seal.",
-  9: "The seal is warm, and something behind it is ringing a bell very slowly. Bring this back to Maelin." };
+  9: "The seal is warm, and something behind it is ringing a bell very slowly. Bring this back to Maelin.",
+  11: "The Burned Nave. The roof came down mid-hymn. Under your feet, a bell is ringing. The crypt lies at the nave's end.",
+  12: "The Ninth Bell falls silent. In its crack a small gold flame still burns: the ninth lantern. Carry it back to Maelin." };
+const NAVE_IN = (x, z) => z < -206 && z > -238 && Math.abs(x) < 7.5;
 // the Wax Deacon's censer: bronze thurible hung at his right hip, coals glowing, incense smoke rising
 const CENSER = { id: "censer", feetPosition: { x: 0.34, y: 0.62, z: -0.08 }, pivot: "top", behavior: "scripts/censer-swing.js", castShadow: true, primitive: { kind: "scripted", script: "scripts/gen/censer.js", params: { chain: 0.42 }, seed: 7 },
   fx: { script: `fx\npop smoke rate=?mobile:5|9 on=sphere(.05) life=1.6..2.6 v=up(.35..0.6)+sdir()*.08 size=.07..0.12 acc=buoy(.4)+curl(.4)*.4+drag(.9) sz=$size*(.6>3) col=<.42,.38,.34>><.2,.2,.22> a=0>.2:.35>.7:.2>0 rot=spin(.2) r=sprite(smoke-puff,alpha)\npop glow n=1 glo=fire()*.6 r=light(<1,.5,.2>,$glo*.8,2.5)`, params: {} } };
@@ -107,6 +113,14 @@ export function tick(ctx) {
       ...body("bailiff"), behavior: ["scripts/humanoid-locomotion.js", "scripts/bailiff.js"],
       fx: { script: `fx\npop f rate=flick(.6,.3)*40 on=disc(.35).c(3.9) life=.25..0.5 v=up(.6..1.1) size=.06..0.12 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 at=point().c(4) glo=fire() r=light(<1,.55,.25>,$glo*4,10)` } });
   }
+  // the Ringer: waits in the Bell Crypt; 120 s after he falls, the bell makes another
+  const ringer = objs["ringer"];
+  if (!ringer || (ringer.state.dead && now - ringer.state.deadAt > 120000 && !near(ctx, 0, -251, 26))) {
+    if (ringer) ctx.destroy("ringer");
+    else ctx.spawn("ringer", { tags: ["enemy", "boss"], physics: "character", feetPosition: { x: 0, z: -252, y: { terrain: 0 } }, scale: 1.8, rotation: 0,
+      ...body("ringer"), behavior: ["scripts/humanoid-locomotion.js", "scripts/ringer.js"],
+      fx: { script: `fx\npop m rate=6 on=sphere(.4).c(3.6) life=1..1.8 v=up(.3..0.6) size=.03..0.06 col=hdr(3,2.2,.8) a=0>.9:1>0 r=sprite(mote,add)\npop l n=1 at=point().c(3.7) glo=fire()*.7 r=light(<1,.7,.35>,$glo*4,9)` } });
+  }
   // each player's road
   for (const p of ctx.place.players) {
     const s = p.state; if (s.hp === undefined || s.menu || !s.charId) continue; // only a Bearer who entered the world
@@ -141,6 +155,17 @@ export function tick(ctx) {
         }
         next = { stage: 10 };
       }
+      else if (q.stage === 12) {
+        if (!s.claimed?.["Z01-MAIN-07"]) {
+          s.claimed = { ...(s.claimed ?? {}), "Z01-MAIN-07": now };
+          s.xp = (s.xp ?? 0) + 600; s.copper = (s.copper ?? 0) + E.quests["Z01-MAIN-07"]; s.maxHp = (s.maxHp ?? 100) + 10; s.hp = s.maxHp;
+          ctx.emit("playSound", { clip: "/cdn/moodboard-gothic-horror/sfx-quest-complete-low-bells-and-choir.mp3", position: p.feetPosition, volume: 1 }, { audience: { player: p.id } });
+          ctx.emit("screenFlash", { color: "#ffe2a8", duration: 0.4, intensity: 0.12 }, { audience: { player: p.id } });
+          ctx.emit("damageNumber", { position: { ...p.feetPosition, y: p.feetPosition.y + 2.6 }, text: "THE NINTH FLAME · +10 LIFE", color: "#ffd27a", size: 1.2 }, { audience: { player: p.id } });
+          ctx.emit("milestone", { step: 13, name: "ninth-bell-chapter-complete" }, { audience: { player: p.id } });
+        }
+        next = { stage: 13 };
+      }
       say(ctx, p, next ? next.stage : q.stage);
       if (!next) s.quest = { ...q, heardAt: s.talk.at };
     }
@@ -168,6 +193,9 @@ export function tick(ctx) {
       ctx.emit("screenShake", { intensity: 0.25, duration: 0.6 }, { audience: { player: p.id } });
       ctx.emit("playSound", { clip: "/cdn/moodboard-gothic-horror/sfx-cracked-bell-tolls-once-behind-a-sealed-door.mp3", position: p.feetPosition, volume: 1 }, { audience: { player: p.id } });
     }
+    if (!next && q.stage === 10 && NAVE_IN(px, pz)) next = { stage: 11 };
+    if (!next && q.stage === 11 && s.ringerKilled) next = { stage: 12 };
+    if (q.stage < 11 && s.ringerKilled) s.ringerKilled = false;
     if (next) {
       s.quest = { ...q, ...next, heardAt: talked ? s.talk.at : q.heardAt };
       if (!talked && next.stage !== 8) s.dialog = { text: AUTO[next.stage], at: now };
@@ -188,14 +216,15 @@ export function tick(ctx) {
 }
 
 function musicTick(ctx, st, now, objs) {
-  if (!st.bedsV3) { st.bedsV3 = true;
+  if (!st.bedsV4) { st.bedsV4 = true;
     for (const b of BEDS) if (!(b.id in objs)) ctx.spawn(b.id, { tags: ["ambience"], feetPosition: { x: b.x, y: 1.5, z: b.z },
       audio: { clip: `/cdn/moodboard-gothic-horror/${b.clip}.mp3`, loop: true, gain: b.gain, spatial: b.spatial ?? true, maxDistance: b.max ?? 40, bus: "Ambience" } }); }
   const boss = objs["bailiff"]?.state;
   let fighting = false;
   for (const e of ctx.query({ tags: ["enemy"] })) if (e.state?.hunting && !e.state?.dead) { fighting = true; break; }
   if (fighting) st.fightUntil = now + 6000; // a short tail so the drums don't stutter between pulls
-  const mood = boss?.engaged && !boss?.dead ? "boss" : now < (st.fightUntil ?? 0) ? "fight" : "road";
+  const rg = objs["ringer"]?.state;
+  const mood = (boss?.engaged && !boss?.dead) || (rg?.engaged && !rg?.dead) ? "boss" : now < (st.fightUntil ?? 0) ? "fight" : "road";
   if (!ctx.place.players.some((p) => p.state?.charId && !p.state?.menu)) return; // nobody on the road: the Veil owns the jukebox
   if (mood !== st.mood || ctx.music.now()?.ref !== TRACKS[mood]) { st.mood = mood; ctx.music?.play(TRACKS[mood], { fade: mood === "road" ? 4 : 1.2, volume: mood === "road" ? 0.7 : 0.8 }); }
 }

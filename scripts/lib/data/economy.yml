@@ -5,6 +5,7 @@ drops:
   flagellant: [15, 32]
   deacon: [45, 80]
   bailiff: 12000        # 1g 20s, once per kill to each eligible player
+  ringer: 18000         # 1g 80s, the Ringer of the Ninth Bell
 quests:
   Z01-MAIN-05: 300      # 3s turn-in
   Z01-MAIN-06: 500      # 5s, the Abbey chapter
