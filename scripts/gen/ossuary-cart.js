@@ -45,7 +45,7 @@ export function geometry(ctx) {
   ctx.color(WAXC[1]); ctx.roughness(0.45);
   for (let i = 0; i < (hi ? 8 : 3); i++) { const p = B([(R() - 0.5) * 1.1, 0.07, 0.97]); drip(ctx, p[0], p[1], p[2], 0.2 + R() * 0.45, 0.03, 5); }
   // a shroud hanging off the back
-  ctx.flat(); ctx.albedo(TEX.cloth ?? TEX.wood); ctx.color("oklch(.38 .05 25)"); ctx.roughness(1);
+  ctx.flat(); ctx.albedo("cdn/texture-rotten-torn-burgundy-burial-cloth.png"); ctx.color("oklch(.38 .05 25)"); ctx.roughness(1);
   const sh = (u, v) => B([-0.45 + u * 0.9, 0.46 - v * 0.75 - Math.sin(u * 3.14) * 0.06, 0.99 + v * 0.12 + Math.sin(u * 9 + v * 4) * 0.025]);
   const T3 = (a, b, c) => ctx.tri(a[0], a[1], a[2], b[0], b[1], b[2], c[0], c[1], c[2]);
   const SU = hi ? 8 : 4, SV = hi ? 5 : 3;
