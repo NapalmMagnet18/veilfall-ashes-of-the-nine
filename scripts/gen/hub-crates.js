@@ -12,7 +12,7 @@ function crate(ctx, T, s, fine) {
     for (const x of [-h, h]) box(ctx, compose(T, xf([x, y, 0])), b, b, s - 0.02);
   }
   if (fine) {
-    for (const z of [-s / 2, s / 2]) box(ctx, compose(T, xf([0, s / 2 - 0.02, z], [0, 0, 45], [s * 1.25, 0.06, 0.03].map((v, i) => [1 / s, 1, 1][i] * v))), s, 0.06 / 0.06 * 0.06, 0.03);
+    for (const z of [-s / 2, s / 2]) box(ctx, compose(T, xf([0, s / 2 - 0.02, z], [0, 0, 45])), s * 1.25, 0.06, 0.03);
     for (const x of [-s / 2, s / 2]) box(ctx, compose(T, xf([x, s / 2 - 0.02, 0], [90, 0, 45])), s * 1.25, 0.06, 0.03);
   }
 }
