@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "basedOnSpecVersion": 126,
-  "updatedAt": "2026-10-08T11:05:46.670Z",
-  "summary": "VEILFALL: ASHES OF THE NINE is an isometric action RPG; its active slice is Z01, Broken Lantern Road, from the Wayside Fire through the Dripping Gate. The main-place referee stages quests and actors, player and enemy behaviors own combat state, and authored scene cells plus procedural generators build the ravine.",
+  "basedOnSpecVersion": 148,
+  "updatedAt": "2026-10-08T11:26:00.349Z",
+  "summary": "VEILFALL: Ashes of the Nine is an isometric action RPG; its active slice is Z01, Broken Lantern Road, from the Wayside Fire through the Dripping Gate. The main-place referee stages quests and actors, player and enemy behaviors own combat, and authored scene cells plus procedural generators build the ravine.",
   "scriptPaths": [
     "scripts/arrival.js",
     "scripts/bailiff.js",
@@ -51,26 +51,28 @@
     "scripts/wax-pack.js"
   ],
   "places": [
-    "places/main/ - active Z01 place: Wayside Fire hub, candle road, tollhouse court, Dripping Gate and Bailiff arena; sim.js coordinates quests and actors.",
-    "places/main/cells/x0z0.scene - camp and candle-road landmarks/dressing, including ruin-road walls, fire-lit braziers, candle milestones and Tollhouse.",
-    "places/main/cells/x0z-1.scene - extended candle-road, Dripping Gate and Bailiff arena dressing, including ruin-road walls and braziers.",
-    "places/main/config.yaml - main-place atmosphere, terrain material channels and procedural grass, clover and mushroom layers."
+    "places/main/ - the active Z01 place: Wayside Fire hub, candle road, tollhouse court, Dripping Gate and Bailiff arena; sim.js coordinates quests and actors.",
+    "places/main/cells/x0z0.scene - authored camp and candle-road/court landmarks and dressing, including ruin-road props.",
+    "places/main/cells/x0z-1.scene - authored extended road, Dripping Gate and Bailiff arena dressing.",
+    "places/main/config.yaml - place look, terrain/material configuration and procedural grass, clover and mushroom layers."
   ],
   "roots": [
-    "world.config.yaml - world entry: default place main, player and camera templates, lighting, UI, arrival behavior and input actions including I bag and 1 guard.",
+    "world.config.yaml - world entry: default place main, player/camera templates, lighting, UI, arrival behavior and desktop/touch input actions.",
     "templates/player.js - player character template composing scripts/humanoid-locomotion.js and scripts/player.js.",
     "templates/camera.js - custom camera template running scripts/camera.js.",
     "places/main/sim.js - place referee: ensures Maelin, petitions, enemy pack and Bailiff exist; advances per-player quest/levels and grants the one-time turn-in reward.",
-    "places/main/cells/x0z0.scene - authored Wayside Fire, candle-road/court content and ruin-road props.",
-    "places/main/cells/x0z-1.scene - authored gate, extended road and Bailiff arena content, including ruin-road props."
+    "places/main/cells/x0z0.scene - authored Wayside Fire and candle-road/court content.",
+    "places/main/cells/x0z-1.scene - authored gate, extended road and Bailiff arena content.",
+    "places/main/config.yaml - binds the place's terrain and environmental layers."
   ],
   "shared": [
-    "scripts/lib/data/combat.yml - combat tuning consumed by player, wax-pack and Bailiff, including guard, arc/debt and ledger/Fray parameters.",
-    "scripts/lib/data/veilfall-map.js - shared HUB/ROAD/COURTS/GATE coordinates and floor-distance reference, used by terrain and place layout logic.",
+    "scripts/lib/data/combat.yml - runtime combat tuning consumed by player, wax-pack and Bailiff, including guard, boss attacks and ledger/Fray parameters.",
+    "scripts/lib/data/veilfall-map.js - shared HUB/ROAD/COURTS/GATE coordinates and floorDist reference used by terrain, player boundary/path logic and place layout.",
     "scripts/gen/hub-kit.js - vector, transform, mesh and composition helpers for hub prop generators.",
     "scripts/gen/vf-kit.js - seeded RNG and modeling helpers for Veilfall generators.",
     "scripts/gen/shapes.js - shared mesh construction helpers for generated wax, arena and landmark geometry.",
-    "scripts/wax-pack.js - ordinary enemy manager and combat helpers reused by scripts/bailiff.js for payout."
+    "scripts/wax-pack.js - ordinary enemy manager and combat helpers reused by scripts/bailiff.js for payout.",
+    "world.assets.yaml - registers the external veilfall-design-package aggregate at /cdn/value.6333346fa6808b148d9ba468df826a3a49a29b8a0afb51a66a9e78d477c84abc.md; it is not runtime scripts/lib/data."
   ],
   "notableExports": [
     "places/main/sim.js - cadence, tick",
@@ -80,33 +82,34 @@
     "scripts/petition.js - onTriggerEnter",
     "scripts/camera.js - onInput, update",
     "scripts/humanoid-locomotion.js - sit, onInput, update",
-    "scripts/gen/vf-ruin.js - geometry, collider (wall or brazier from params.kind)"
+    "scripts/terrain.js - heightAt, materialAt; scripts/gen/vf-ruin.js - geometry, collider"
   ],
   "ownership": [
-    "scripts/player.js - per-player hp/edge/tonics, XP/level/gold/kills, quest/inventory/reward fields, movement and death/i-frame state; guardUntil, guardReadyAt and riposte support Afterimage Guard.",
+    "scripts/player.js - per-player hp/edge/tonics, XP/level/gold/kills, quest/inventory/reward fields, movement, death/i-frame state and Afterimage Guard fields.",
     "places/main/sim.js - per-player Z01 quest stage/dialog, kill baseline, level thresholds and claimed['Z01-MAIN-05'] reward; place orchestration state.",
     "scripts/wax-pack.js - ordinary enemy AI/hp/death, player damage, nearby XP/gold/kill payouts and eligible wax shards.",
     "scripts/bailiff.js - boss hp/phases/casts, arena engagement/reset, ledger pillars, walkers and Fray; publishes place.state.boss and records bailiffDownAt.",
     "scripts/humanoid-locomotion.js - gait/seat animation and foot grounding; consumes player faceYaw.",
-    "scripts/camera.js - camera zoom distance and smoothed follow position."
+    "scripts/camera.js - camera zoom distance and smoothed follow position.",
+    "scripts/ui.js - renders the HUD, dialogue and inventory from player/place state; it does not own gameplay state."
   ],
   "flows": [
     "templates/player.js attaches scripts/player.js; onSpawn initializes combat state from combat.yml and update owns movement, attacks, healing and death/respawn.",
-    "world.config.yaml binds I to bag and 1 to guard → scripts/player.js toggles bagOpen or arms Afterimage Guard; scripts/ui.js reads bagOpen and guardReadyAt for HUD.",
+    "world.config.yaml maps desktop and touch actions to player inputs; scripts/ui.js provides the phone HUD/chips and PACK action → scripts/player.js handles skills and bagOpen.",
+    "scripts/player.js uses veilfall-map.js floorDist for reachable click goals and keepOnFloor movement/dash → the hero stays on the defined floor and is prevented from climbing banks/cliffs.",
     "scripts/player.js strikes write enemy.state.hp and lastHit → scripts/wax-pack.js resolves ordinary enemy death and pays nearby players XP/gold/kills; eligible kills can award shards.",
     "scripts/wax-pack.js and scripts/bailiff.js check iframesUntil and guardUntil before damaging a player; caught blows consume guardUntil and write riposte → scripts/player.js guardTick ripostes nearby foes.",
-    "On a guard catch scripts/player.js emits the CATCH shard/light FX, shockwave and owner-targeted screenFlash; guard activation emits the GUARD FX.",
+    "On a guard catch scripts/player.js emits CATCH FX, shockwave and owner-targeted screenFlash; guard activation emits GUARD FX.",
     "scripts/bailiff.js spawns phase-II ledger pillars and walkers; player attacks lower pillar hp, while intact pillars increase Fray and boss damage taken by players.",
-    "scripts/bailiff.js writes hp/max/phase/engaged/dead/fray/ledgers/cast to place.state.boss → scripts/ui.js renders the boss bar and phase/Fray/ledger guidance.",
-    "scripts/bailiff.js marks present eligible players bossKilled on defeat and records place.state.bailiffDownAt → places/main/sim.js advances the stage-gated quest; the referee owns one-time reward claiming.",
+    "scripts/bailiff.js publishes hp/max/phase/engaged/dead/fray/ledgers/cast to place.state.boss → scripts/ui.js renders boss bar and guidance; ledger ignition/Fray emits highlights and FX.",
+    "scripts/bailiff.js marks present eligible players bossKilled on defeat and records place.state.bailiffDownAt → places/main/sim.js advances the stage-gated quest and owns one-time reward claiming.",
     "places/main/sim.js spawns petition objects using scripts/petition.js → trigger entry at quest stage 2 adds that petition to player state; five collected petitions advance the quest.",
     "player.state.talk with Maelin → places/main/sim.js stages the quest; kills since killsAt, petition count and bossKilled drive road, tollhouse and boss objectives.",
-    "Maelin turn-in at quest stage 4 → places/main/sim.js sets claimed['Z01-MAIN-05'], grants ITEM-001/XP/gold and advances to stage 5.",
-    "scripts/ui.js reads player quest, combat, inventory and dialogue state plus place.state.boss; it presents the HUD without owning those gameplay values; player faceYaw drives humanoid-locomotion orientation."
+    "scripts/ui.js reads player quest/combat/inventory/dialogue state and place.state.boss; player faceYaw drives humanoid-locomotion orientation."
   ],
   "behaviorFamilies": [
     "scripts/gen/hub-*.js - reusable Wayside Fire camp props, varied by instance params, seed and scene transform; share scripts/gen/hub-kit.js.",
-    "scripts/gen/vf-*.js other than vf-ruin.js - Broken Lantern Road landmarks and clutter, including milestone, props and Tollhouse, varied by parameters/seeds and built with scripts/gen/vf-kit.js.",
+    "scripts/gen/vf-*.js other than vf-ruin.js - Broken Lantern Road landmarks and clutter, varied by parameters/seeds and built with scripts/gen/vf-kit.js.",
     "scripts/gen/vf-ruin.js - reused for road and arena broken ashlar walls and iron braziers; params.kind selects wall/brazier, dimensions and seed vary geometry.",
     "scripts/gen/arena-floor.js, arena-pillar.js, gibbet.js and toll-throne.js - Bailiff arena dressing generators sharing scripts/gen/shapes.js.",
     "scripts/gen/wax-figure.js - shared wax character mesh for ordinary pilgrims/deacons and Bailiff, varied by kind and seed.",
@@ -118,9 +121,9 @@
   "migrationNotes": [
     "Player attacks directly mutate enemy.state.hp; ordinary-enemy death, XP and kill credit are resolved later by scripts/wax-pack.js, so preserve that handoff.",
     "Quest stage, killsAt, petition IDs and claimed rewards are per-player state; petition triggers count only at stage 2 and ITEM-001 is guarded by claimed['Z01-MAIN-05'].",
-    "Boss attacks and ordinary enemy attacks consume the same player guardUntil and write riposte; scripts/player.js owns the riposte reaction and must retain this state handoff.",
+    "Boss and ordinary enemy attacks share player guardUntil/riposte; scripts/player.js owns the riposte reaction and must retain this state handoff.",
     "The boss HUD consumes place.state.boss projection (including fray and ledgers), not boss internals; retain its published fields when changing boss behavior.",
-    "scripts/lib/data/combat.yml is the runtime tuning source: values are seconds/meters as appropriate; preserve its current guard, Taxman's Arc/Unpaid Debt, ledger and Fray handoffs.",
-    "places/main/config.yaml material IDs must match scripts/terrain.js weights (including stone); scene-cell generators receive params and seeds, so preserve each generator contract and scene script path."
+    "scripts/lib/data/combat.yml is runtime tuning (seconds/meters as appropriate); scripts/lib/data/veilfall-map.js floorDist < 0 defines the walkable floor used by player boundary/path logic.",
+    "The 35-doc design package was removed from scripts/lib/data and survives as the byte-identical aggregate in world.assets.yaml at /cdn/value.6333346fa6808b148d9ba468df826a3a49a29b8a0afb51a66a9e78d477c84abc.md; runtime tuning YAML remains in scripts/lib/data."
   ]
 }
