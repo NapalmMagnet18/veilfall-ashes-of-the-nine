@@ -1,0 +1,274 @@
+[
+  {
+    "id": "Z04-MAIN-01",
+    "title": "The Inward Compass",
+    "kind": "main",
+    "zone_id": "Z04",
+    "required_level": 18,
+    "giver": "Nera Vale",
+    "objective": "Receive Nera’s compass and follow its wounded bearing.",
+    "quantity": "wound compass",
+    "story_beat": "Nera questions her father’s attempt to end suffering.",
+    "reward": {
+      "xp": 990,
+      "currency": 235,
+      "items": [],
+      "waypoint": null
+    },
+    "prerequisites": [
+      "Z03-MAIN-06"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"Nera questions her father’s attempt to end suffering. We need you to receive nera’s compass and follow its wounded bearing.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. Nera questions her father’s attempt to end suffering.\""
+    }
+  },
+  {
+    "id": "Z04-MAIN-02",
+    "title": "Four Valves, One Tide",
+    "kind": "main",
+    "zone_id": "Z04",
+    "required_level": 19,
+    "giver": "Nera Vale",
+    "objective": "Reopen the four cistern sluices in a safe sequence.",
+    "quantity": "4 sluices",
+    "story_beat": "Water and memories have been stored beneath the town.",
+    "reward": {
+      "xp": 1090,
+      "currency": 257,
+      "items": [],
+      "waypoint": null
+    },
+    "prerequisites": [
+      "Z04-MAIN-01"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"Water and memories have been stored beneath the town. We need you to reopen the four cistern sluices in a safe sequence.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. Water and memories have been stored beneath the town.\""
+    }
+  },
+  {
+    "id": "Z04-MAIN-03",
+    "title": "The Names in the Hull",
+    "kind": "main",
+    "zone_id": "Z04",
+    "required_level": 20,
+    "giver": "Nera Vale",
+    "objective": "Free trapped drowned memories by identifying their families.",
+    "quantity": "6 name-plates",
+    "story_beat": "Each name breaks a tether without destroying the memory.",
+    "reward": {
+      "xp": 1190,
+      "currency": 279,
+      "items": [],
+      "waypoint": null
+    },
+    "prerequisites": [
+      "Z04-MAIN-02"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"Each name breaks a tether without destroying the memory. We need you to free trapped drowned memories by identifying their families.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. Each name breaks a tether without destroying the memory.\""
+    }
+  },
+  {
+    "id": "Z04-MAIN-04",
+    "title": "Harpoon of Regret",
+    "kind": "main",
+    "zone_id": "Z04",
+    "required_level": 21,
+    "giver": "Nera Vale",
+    "objective": "Disarm Kareth’s binding anchors inside the cistern.",
+    "quantity": "3 harpoon anchors",
+    "story_beat": "Kareth weaponizes remorse to immobilize his enemies.",
+    "reward": {
+      "xp": 1290,
+      "currency": 301,
+      "items": [],
+      "waypoint": null
+    },
+    "prerequisites": [
+      "Z04-MAIN-03"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"Kareth weaponizes remorse to immobilize his enemies. We need you to disarm kareth’s binding anchors inside the cistern.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. Kareth weaponizes remorse to immobilize his enemies.\""
+    }
+  },
+  {
+    "id": "Z04-MAIN-05",
+    "title": "A Kingdom of Regret",
+    "kind": "main",
+    "zone_id": "Z04",
+    "required_level": 22,
+    "giver": "Nera Vale",
+    "objective": "Defeat Kareth and recover the second Oath.",
+    "quantity": "Lord Kareth",
+    "story_beat": "The tide retreats but accountability remains.",
+    "reward": {
+      "xp": 1390,
+      "currency": 323,
+      "items": [
+        "ash_oath_second"
+      ],
+      "waypoint": null
+    },
+    "prerequisites": [
+      "Z04-MAIN-04"
+    ],
+    "world_flags": [
+      "z04_boss_down",
+      "act_2_complete"
+    ],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"The tide retreats but accountability remains. We need you to defeat kareth and recover the second oath.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. The tide retreats but accountability remains.\""
+    }
+  },
+  {
+    "id": "Z04-MAIN-06",
+    "title": "Bitter Shore, Green Road",
+    "kind": "main",
+    "zone_id": "Z04",
+    "required_level": 23,
+    "giver": "Nera Vale",
+    "objective": "Use Maelin’s altered map to find the forest route.",
+    "quantity": "Thornvein pass",
+    "story_beat": "A living map reveals a kingdom buried under trees.",
+    "reward": {
+      "xp": 1490,
+      "currency": 345,
+      "items": [],
+      "waypoint": "Z04"
+    },
+    "prerequisites": [
+      "Z04-MAIN-05"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"A living map reveals a kingdom buried under trees. We need you to use maelin’s altered map to find the forest route.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. A living map reveals a kingdom buried under trees.\""
+    }
+  },
+  {
+    "id": "Z04-SIDE-01",
+    "title": "Tidebound Letters",
+    "kind": "side",
+    "zone_id": "Z04",
+    "required_level": 19,
+    "giver": "Nera Vale",
+    "objective": "Retrieve four letters in flooded valve rooms.",
+    "quantity": 3,
+    "story_beat": "Families deserve their words back.",
+    "reward": {
+      "xp": 420,
+      "currency": 100,
+      "reputation": 5
+    },
+    "prerequisites": [
+      "Z04-MAIN-01"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"Families deserve their words back. We need you to retrieve four letters in flooded valve rooms.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. Families deserve their words back.\""
+    }
+  },
+  {
+    "id": "Z04-SIDE-02",
+    "title": "A Question for Nera",
+    "kind": "side",
+    "zone_id": "Z04",
+    "required_level": 20,
+    "giver": "Nera Vale",
+    "objective": "Deliver a refusal of the Curator’s proposed bargain.",
+    "quantity": 1,
+    "story_beat": "Dissent can be familial.",
+    "reward": {
+      "xp": 470,
+      "currency": 130,
+      "reputation": 5
+    },
+    "prerequisites": [
+      "Z04-MAIN-01"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"Dissent can be familial. We need you to deliver a refusal of the curator’s proposed bargain.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. Dissent can be familial.\""
+    }
+  },
+  {
+    "id": "Z04-SIDE-03",
+    "title": "What the Wells Remember",
+    "kind": "side",
+    "zone_id": "Z04",
+    "required_level": 21,
+    "giver": "Nera Vale",
+    "objective": "Drain a side chamber to recover a relic.",
+    "quantity": 1,
+    "story_beat": "Forgotten trades shaped the harbor.",
+    "reward": {
+      "xp": 520,
+      "currency": 160,
+      "reputation": 5
+    },
+    "prerequisites": [
+      "Z04-MAIN-01"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"Forgotten trades shaped the harbor. We need you to drain a side chamber to recover a relic.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. Forgotten trades shaped the harbor.\""
+    }
+  }
+]

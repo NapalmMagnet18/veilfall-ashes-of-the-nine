@@ -1,0 +1,273 @@
+[
+  {
+    "id": "Z07-MAIN-01",
+    "title": "One Bowl for a Memory",
+    "kind": "main",
+    "zone_id": "Z07",
+    "required_level": 32,
+    "giver": "Veska Rell",
+    "objective": "Observe a Curator relief line trading food for names.",
+    "quantity": "4 stations",
+    "story_beat": "Charity can be made into an instrument of control.",
+    "reward": {
+      "xp": 1630,
+      "currency": 405,
+      "items": [],
+      "waypoint": null
+    },
+    "prerequisites": [
+      "Z06-MAIN-06"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"Charity can be made into an instrument of control. We need you to observe a curator relief line trading food for names.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. Charity can be made into an instrument of control.\""
+    }
+  },
+  {
+    "id": "Z07-MAIN-02",
+    "title": "Streets That Disappear",
+    "kind": "main",
+    "zone_id": "Z07",
+    "required_level": 33,
+    "giver": "Veska Rell",
+    "objective": "Restore the clocks of three districts to reveal routes.",
+    "quantity": "3 clock towers",
+    "story_beat": "City topology changes whenever its history is erased.",
+    "reward": {
+      "xp": 1730,
+      "currency": 427,
+      "items": [],
+      "waypoint": null
+    },
+    "prerequisites": [
+      "Z07-MAIN-01"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"City topology changes whenever its history is erased. We need you to restore the clocks of three districts to reveal routes.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. City topology changes whenever its history is erased.\""
+    }
+  },
+  {
+    "id": "Z07-MAIN-03",
+    "title": "Ledger of the Missing",
+    "kind": "main",
+    "zone_id": "Z07",
+    "required_level": 34,
+    "giver": "Veska Rell",
+    "objective": "Steal receipts from the Counting House.",
+    "quantity": "ledger bundle",
+    "story_beat": "The Curators track erased lives as inventory.",
+    "reward": {
+      "xp": 1830,
+      "currency": 449,
+      "items": [],
+      "waypoint": null
+    },
+    "prerequisites": [
+      "Z07-MAIN-02"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"The Curators track erased lives as inventory. We need you to steal receipts from the counting house.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. The Curators track erased lives as inventory.\""
+    }
+  },
+  {
+    "id": "Z07-MAIN-04",
+    "title": "The Nurse and the Knife",
+    "kind": "main",
+    "zone_id": "Z07",
+    "required_level": 35,
+    "giver": "Veska Rell",
+    "objective": "Evacuate a ward while the city guard mobilizes.",
+    "quantity": "12 civilians",
+    "story_beat": "The party protects ordinary people who believe in the Archive.",
+    "reward": {
+      "xp": 1930,
+      "currency": 471,
+      "items": [],
+      "waypoint": null
+    },
+    "prerequisites": [
+      "Z07-MAIN-03"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"The party protects ordinary people who believe in the Archive. We need you to evacuate a ward while the city guard mobilizes.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. The party protects ordinary people who believe in the Archive.\""
+    }
+  },
+  {
+    "id": "Z07-MAIN-05",
+    "title": "The Remittance Judge",
+    "kind": "main",
+    "zone_id": "Z07",
+    "required_level": 36,
+    "giver": "Veska Rell",
+    "objective": "Defeat the Judge without harming bound witnesses.",
+    "quantity": "The Remittance Judge",
+    "story_beat": "The hero learns to focus damage and control adds.",
+    "reward": {
+      "xp": 2030,
+      "currency": 493,
+      "items": [
+        "z07_boss_relic"
+      ],
+      "waypoint": null
+    },
+    "prerequisites": [
+      "Z07-MAIN-04"
+    ],
+    "world_flags": [
+      "z07_boss_down"
+    ],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"The hero learns to focus damage and control adds. We need you to defeat the judge without harming bound witnesses.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. The hero learns to focus damage and control adds.\""
+    }
+  },
+  {
+    "id": "Z07-MAIN-06",
+    "title": "Key to the Nine Vaults",
+    "kind": "main",
+    "zone_id": "Z07",
+    "required_level": 37,
+    "giver": "Veska Rell",
+    "objective": "Meet Nera and take the hidden archive passage.",
+    "quantity": "vault entrance",
+    "story_beat": "Nera reveals the Quiet Crown is nearing completion.",
+    "reward": {
+      "xp": 2130,
+      "currency": 515,
+      "items": [],
+      "waypoint": "Z07"
+    },
+    "prerequisites": [
+      "Z07-MAIN-05"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"Nera reveals the Quiet Crown is nearing completion. We need you to meet nera and take the hidden archive passage.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. Nera reveals the Quiet Crown is nearing completion.\""
+    }
+  },
+  {
+    "id": "Z07-SIDE-01",
+    "title": "The Soup Ledger",
+    "kind": "side",
+    "zone_id": "Z07",
+    "required_level": 33,
+    "giver": "Veska Rell",
+    "objective": "Find evidence of memory trade in relief lines.",
+    "quantity": 3,
+    "story_beat": "Aid must not require surrendering agency.",
+    "reward": {
+      "xp": 620,
+      "currency": 100,
+      "reputation": 5
+    },
+    "prerequisites": [
+      "Z07-MAIN-01"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"Aid must not require surrendering agency. We need you to find evidence of memory trade in relief lines.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. Aid must not require surrendering agency.\""
+    }
+  },
+  {
+    "id": "Z07-SIDE-02",
+    "title": "One Clock for All",
+    "kind": "side",
+    "zone_id": "Z07",
+    "required_level": 34,
+    "giver": "Veska Rell",
+    "objective": "Reopen a district’s mechanical timekeeping.",
+    "quantity": 1,
+    "story_beat": "Public time is a public good.",
+    "reward": {
+      "xp": 670,
+      "currency": 130,
+      "reputation": 5
+    },
+    "prerequisites": [
+      "Z07-MAIN-01"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"Public time is a public good. We need you to reopen a district’s mechanical timekeeping.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. Public time is a public good.\""
+    }
+  },
+  {
+    "id": "Z07-SIDE-03",
+    "title": "The Missing Shop Sign",
+    "kind": "side",
+    "zone_id": "Z07",
+    "required_level": 35,
+    "giver": "Veska Rell",
+    "objective": "Help a shopkeeper recover her family name.",
+    "quantity": 1,
+    "story_beat": "Local identity survives administration.",
+    "reward": {
+      "xp": 720,
+      "currency": 160,
+      "reputation": 5
+    },
+    "prerequisites": [
+      "Z07-MAIN-01"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"Local identity survives administration. We need you to help a shopkeeper recover her family name.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. Local identity survives administration.\""
+    }
+  }
+]

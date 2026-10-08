@@ -1,0 +1,273 @@
+[
+  {
+    "id": "Z03-MAIN-01",
+    "title": "The Sea Has Returned",
+    "kind": "main",
+    "zone_id": "Z03",
+    "required_level": 14,
+    "giver": "Captain Rusk",
+    "objective": "Examine floodlines in buildings with no water nearby.",
+    "quantity": "5 salt lines",
+    "story_beat": "Rusk denies that the drowned can cross dry land.",
+    "reward": {
+      "xp": 990,
+      "currency": 235,
+      "items": [],
+      "waypoint": null
+    },
+    "prerequisites": [
+      "Z02-MAIN-06"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"Rusk denies that the drowned can cross dry land. We need you to examine floodlines in buildings with no water nearby.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. Rusk denies that the drowned can cross dry land.\""
+    }
+  },
+  {
+    "id": "Z03-MAIN-02",
+    "title": "The Ledger of Sinking",
+    "kind": "main",
+    "zone_id": "Z03",
+    "required_level": 15,
+    "giver": "Captain Rusk",
+    "objective": "Recover passenger records from stranded hulls.",
+    "quantity": "3 ship logs",
+    "story_beat": "Names erased after a preventable disaster return.",
+    "reward": {
+      "xp": 1090,
+      "currency": 257,
+      "items": [],
+      "waypoint": null
+    },
+    "prerequisites": [
+      "Z03-MAIN-01"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"Names erased after a preventable disaster return. We need you to recover passenger records from stranded hulls.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. Names erased after a preventable disaster return.\""
+    }
+  },
+  {
+    "id": "Z03-MAIN-03",
+    "title": "A Bucket of Ocean",
+    "kind": "main",
+    "zone_id": "Z03",
+    "required_level": 16,
+    "giver": "Captain Rusk",
+    "objective": "Defend citizens while collecting safe brine from old wells.",
+    "quantity": "4 brine wells",
+    "story_beat": "Ordinary saltwater appears from nowhere and remembers the sea.",
+    "reward": {
+      "xp": 1190,
+      "currency": 279,
+      "items": [],
+      "waypoint": null
+    },
+    "prerequisites": [
+      "Z03-MAIN-02"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"Ordinary saltwater appears from nowhere and remembers the sea. We need you to defend citizens while collecting safe brine from old wells.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. Ordinary saltwater appears from nowhere and remembers the sea.\""
+    }
+  },
+  {
+    "id": "Z03-MAIN-04",
+    "title": "Captain of No Fleet",
+    "kind": "main",
+    "zone_id": "Z03",
+    "required_level": 16,
+    "giver": "Captain Rusk",
+    "objective": "Face Rusk and convince him to unlock the lighthouse route.",
+    "quantity": "Rusk confession",
+    "story_beat": "The harbor master chooses to tell the truth about his past.",
+    "reward": {
+      "xp": 1290,
+      "currency": 301,
+      "items": [],
+      "waypoint": null
+    },
+    "prerequisites": [
+      "Z03-MAIN-03"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"The harbor master chooses to tell the truth about his past. We need you to face rusk and convince him to unlock the lighthouse route.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. The harbor master chooses to tell the truth about his past.\""
+    }
+  },
+  {
+    "id": "Z03-MAIN-05",
+    "title": "Reflections on Salt",
+    "kind": "main",
+    "zone_id": "Z03",
+    "required_level": 17,
+    "giver": "Captain Rusk",
+    "objective": "Defeat the Mirror Captain in the dried harbor.",
+    "quantity": "Mirror Captain",
+    "story_beat": "Reflections attack out of sync with living combatants.",
+    "reward": {
+      "xp": 1390,
+      "currency": 323,
+      "items": [
+        "z03_boss_relic"
+      ],
+      "waypoint": null
+    },
+    "prerequisites": [
+      "Z03-MAIN-04"
+    ],
+    "world_flags": [
+      "z03_boss_down"
+    ],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"Reflections attack out of sync with living combatants. We need you to defeat the mirror captain in the dried harbor.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. Reflections attack out of sync with living combatants.\""
+    }
+  },
+  {
+    "id": "Z03-MAIN-06",
+    "title": "The Below-Harbor Stair",
+    "kind": "main",
+    "zone_id": "Z03",
+    "required_level": 18,
+    "giver": "Captain Rusk",
+    "objective": "Descend under the lighthouse to the Salt Crypts.",
+    "quantity": "salt stair",
+    "story_beat": "The second Oath is hidden inside a tidal machine.",
+    "reward": {
+      "xp": 1490,
+      "currency": 345,
+      "items": [],
+      "waypoint": "Z03"
+    },
+    "prerequisites": [
+      "Z03-MAIN-05"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"The second Oath is hidden inside a tidal machine. We need you to descend under the lighthouse to the salt crypts.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. The second Oath is hidden inside a tidal machine.\""
+    }
+  },
+  {
+    "id": "Z03-SIDE-01",
+    "title": "Every Ship a Grave",
+    "kind": "side",
+    "zone_id": "Z03",
+    "required_level": 15,
+    "giver": "Captain Rusk",
+    "objective": "Place floating markers for three erased vessels.",
+    "quantity": 3,
+    "story_beat": "History gives the dead a shoreline.",
+    "reward": {
+      "xp": 420,
+      "currency": 100,
+      "reputation": 5
+    },
+    "prerequisites": [
+      "Z03-MAIN-01"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"History gives the dead a shoreline. We need you to place floating markers for three erased vessels.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. History gives the dead a shoreline.\""
+    }
+  },
+  {
+    "id": "Z03-SIDE-02",
+    "title": "The Captain’s Last Log",
+    "kind": "side",
+    "zone_id": "Z03",
+    "required_level": 16,
+    "giver": "Captain Rusk",
+    "objective": "Compare Rusk’s testimony to a hidden log.",
+    "quantity": 1,
+    "story_beat": "Accountability becomes public.",
+    "reward": {
+      "xp": 470,
+      "currency": 130,
+      "reputation": 5
+    },
+    "prerequisites": [
+      "Z03-MAIN-01"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"Accountability becomes public. We need you to compare rusk’s testimony to a hidden log.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. Accountability becomes public.\""
+    }
+  },
+  {
+    "id": "Z03-SIDE-03",
+    "title": "Salt for Tomorrow",
+    "kind": "side",
+    "zone_id": "Z03",
+    "required_level": 17,
+    "giver": "Captain Rusk",
+    "objective": "Help miners harvest safe salt without cursed mirrors.",
+    "quantity": 1,
+    "story_beat": "A local livelihood survives.",
+    "reward": {
+      "xp": 520,
+      "currency": 160,
+      "reputation": 5
+    },
+    "prerequisites": [
+      "Z03-MAIN-01"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"A local livelihood survives. We need you to help miners harvest safe salt without cursed mirrors.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. A local livelihood survives.\""
+    }
+  }
+]
