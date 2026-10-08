@@ -719,7 +719,7 @@ ninth-bell:
   feetPosition: {x: 0, y: 0, z: -259}
   id: ninth-bell
   model: {forward: "+z", id: /cdn/value.631a9b6409554b72ded306f638c008a9a9f3bc2dc09be4021cb93b7790b0b329.glb}
-  physics: {body: static, collider: box}
+  physics: {body: static, collider: mesh}
   receiveShadow: true
   rotation: {yaw: 0}
   tags: [abbey, crypt, z01-dressing]
