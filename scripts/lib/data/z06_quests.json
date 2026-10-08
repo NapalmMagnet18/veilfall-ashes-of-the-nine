@@ -1,0 +1,274 @@
+[
+  {
+    "id": "Z06-MAIN-01",
+    "title": "The Keeper Who Remained",
+    "kind": "main",
+    "zone_id": "Z06",
+    "required_level": 27,
+    "giver": "Mother Sile",
+    "objective": "Speak to Mother Sile about the ancient Veil.",
+    "quantity": "Mother Sile",
+    "story_beat": "The Witness tells a story the Archive suppressed.",
+    "reward": {
+      "xp": 1310,
+      "currency": 320,
+      "items": [],
+      "waypoint": null
+    },
+    "prerequisites": [
+      "Z05-MAIN-06"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"The Witness tells a story the Archive suppressed. We need you to speak to mother sile about the ancient veil.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. The Witness tells a story the Archive suppressed.\""
+    }
+  },
+  {
+    "id": "Z06-MAIN-02",
+    "title": "The First Tithe",
+    "kind": "main",
+    "zone_id": "Z06",
+    "required_level": 28,
+    "giver": "Mother Sile",
+    "objective": "Experience three playable visions of the original catastrophe.",
+    "quantity": "3 memory scenes",
+    "story_beat": "The Nine chose coercive forgetting as an emergency defense.",
+    "reward": {
+      "xp": 1410,
+      "currency": 342,
+      "items": [],
+      "waypoint": null
+    },
+    "prerequisites": [
+      "Z06-MAIN-01"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"The Nine chose coercive forgetting as an emergency defense. We need you to experience three playable visions of the original catastrophe.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. The Nine chose coercive forgetting as an emergency defense.\""
+    }
+  },
+  {
+    "id": "Z06-MAIN-03",
+    "title": "The Desires of Friends",
+    "kind": "main",
+    "zone_id": "Z06",
+    "required_level": 29,
+    "giver": "Mother Sile",
+    "objective": "Free Tarven, Maelin and Veska from wish-root bindings.",
+    "quantity": "3 companions",
+    "story_beat": "Each dream embodies an intimate unresolved desire.",
+    "reward": {
+      "xp": 1510,
+      "currency": 364,
+      "items": [],
+      "waypoint": null
+    },
+    "prerequisites": [
+      "Z06-MAIN-02"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"Each dream embodies an intimate unresolved desire. We need you to free tarven, maelin and veska from wish-root bindings.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. Each dream embodies an intimate unresolved desire.\""
+    }
+  },
+  {
+    "id": "Z06-MAIN-04",
+    "title": "A Choice Offered",
+    "kind": "main",
+    "zone_id": "Z06",
+    "required_level": 30,
+    "giver": "Mother Sile",
+    "objective": "Refuse a false future without losing the present.",
+    "quantity": "refuse wish bargain",
+    "story_beat": "Personal identity is made by imperfect choices.",
+    "reward": {
+      "xp": 1610,
+      "currency": 386,
+      "items": [],
+      "waypoint": null
+    },
+    "prerequisites": [
+      "Z06-MAIN-03"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"Personal identity is made by imperfect choices. We need you to refuse a false future without losing the present.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. Personal identity is made by imperfect choices.\""
+    }
+  },
+  {
+    "id": "Z06-MAIN-05",
+    "title": "A Hundred Familiar Faces",
+    "kind": "main",
+    "zone_id": "Z06",
+    "required_level": 31,
+    "giver": "Mother Sile",
+    "objective": "Defeat the Bloom and gain the third Oath.",
+    "quantity": "The Hundred-Faced Bloom",
+    "story_beat": "The remnant combines stolen gestures from dead loved ones.",
+    "reward": {
+      "xp": 1710,
+      "currency": 408,
+      "items": [
+        "ash_oath_third"
+      ],
+      "waypoint": null
+    },
+    "prerequisites": [
+      "Z06-MAIN-04"
+    ],
+    "world_flags": [
+      "z06_boss_down",
+      "act_3_complete"
+    ],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"The remnant combines stolen gestures from dead loved ones. We need you to defeat the bloom and gain the third oath.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. The remnant combines stolen gestures from dead loved ones.\""
+    }
+  },
+  {
+    "id": "Z06-MAIN-06",
+    "title": "Leaves Above Marrowgate",
+    "kind": "main",
+    "zone_id": "Z06",
+    "required_level": 32,
+    "giver": "Mother Sile",
+    "objective": "Leave the withering grove for the capital.",
+    "quantity": "Marrowgate gate",
+    "story_beat": "The capital has already begun to lose its streets.",
+    "reward": {
+      "xp": 1810,
+      "currency": 430,
+      "items": [],
+      "waypoint": "Z06"
+    },
+    "prerequisites": [
+      "Z06-MAIN-05"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"The capital has already begun to lose its streets. We need you to leave the withering grove for the capital.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. The capital has already begun to lose its streets.\""
+    }
+  },
+  {
+    "id": "Z06-SIDE-01",
+    "title": "A Witness in Winter",
+    "kind": "side",
+    "zone_id": "Z06",
+    "required_level": 28,
+    "giver": "Mother Sile",
+    "objective": "Record Mother Sile’s alternate account of the Tithe.",
+    "quantity": 3,
+    "story_beat": "Truth comes from those who took part.",
+    "reward": {
+      "xp": 520,
+      "currency": 100,
+      "reputation": 5
+    },
+    "prerequisites": [
+      "Z06-MAIN-01"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"Truth comes from those who took part. We need you to record mother sile’s alternate account of the tithe.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. Truth comes from those who took part.\""
+    }
+  },
+  {
+    "id": "Z06-SIDE-02",
+    "title": "Roots of the Other Life",
+    "kind": "side",
+    "zone_id": "Z06",
+    "required_level": 29,
+    "giver": "Mother Sile",
+    "objective": "Break an optional dream-loop to free a traveler.",
+    "quantity": 1,
+    "story_beat": "Fantasy is not consent.",
+    "reward": {
+      "xp": 570,
+      "currency": 130,
+      "reputation": 5
+    },
+    "prerequisites": [
+      "Z06-MAIN-01"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"Fantasy is not consent. We need you to break an optional dream-loop to free a traveler.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. Fantasy is not consent.\""
+    }
+  },
+  {
+    "id": "Z06-SIDE-03",
+    "title": "Seeds for the Living",
+    "kind": "side",
+    "zone_id": "Z06",
+    "required_level": 30,
+    "giver": "Mother Sile",
+    "objective": "Restore herb beds for the shelter.",
+    "quantity": 1,
+    "story_beat": "The forest remains a home, not only a boss map.",
+    "reward": {
+      "xp": 620,
+      "currency": 160,
+      "reputation": 5
+    },
+    "prerequisites": [
+      "Z06-MAIN-01"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"The forest remains a home, not only a boss map. We need you to restore herb beds for the shelter.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. The forest remains a home, not only a boss map.\""
+    }
+  }
+]

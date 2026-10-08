@@ -1,0 +1,274 @@
+[
+  {
+    "id": "Z08-MAIN-01",
+    "title": "The Ninth Chamber",
+    "kind": "main",
+    "zone_id": "Z08",
+    "required_level": 37,
+    "giver": "Serath Vale",
+    "objective": "Reach the chamber by matching three Witness seals.",
+    "quantity": "3 Witness seals",
+    "story_beat": "The archive’s architecture enforces selective memory.",
+    "reward": {
+      "xp": 1630,
+      "currency": 405,
+      "items": [],
+      "waypoint": null
+    },
+    "prerequisites": [
+      "Z07-MAIN-06"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"The archive’s architecture enforces selective memory. We need you to reach the chamber by matching three witness seals.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. The archive’s architecture enforces selective memory.\""
+    }
+  },
+  {
+    "id": "Z08-MAIN-02",
+    "title": "Daughter of the Curator",
+    "kind": "main",
+    "zone_id": "Z08",
+    "required_level": 38,
+    "giver": "Serath Vale",
+    "objective": "Recover the music box and free Nera.",
+    "quantity": "Nera Vale",
+    "story_beat": "A mother’s song persists after her words are gone.",
+    "reward": {
+      "xp": 1730,
+      "currency": 427,
+      "items": [],
+      "waypoint": null
+    },
+    "prerequisites": [
+      "Z08-MAIN-01"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"A mother’s song persists after her words are gone. We need you to recover the music box and free nera.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. A mother’s song persists after her words are gone.\""
+    }
+  },
+  {
+    "id": "Z08-MAIN-03",
+    "title": "A Wife in the Ledger",
+    "kind": "main",
+    "zone_id": "Z08",
+    "required_level": 39,
+    "giver": "Serath Vale",
+    "objective": "Find Serath’s confession among restricted records.",
+    "quantity": "confession",
+    "story_beat": "His obsession begins with an experiment on his wife.",
+    "reward": {
+      "xp": 1830,
+      "currency": 449,
+      "items": [],
+      "waypoint": null
+    },
+    "prerequisites": [
+      "Z08-MAIN-02"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"His obsession begins with an experiment on his wife. We need you to find serath’s confession among restricted records.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. His obsession begins with an experiment on his wife.\""
+    }
+  },
+  {
+    "id": "Z08-MAIN-04",
+    "title": "The Cost of Mercy",
+    "kind": "main",
+    "zone_id": "Z08",
+    "required_level": 39,
+    "giver": "Serath Vale",
+    "objective": "Speak with Serath and refuse compulsory silence.",
+    "quantity": "Serath debate",
+    "story_beat": "His argument is compelling enough to attract followers.",
+    "reward": {
+      "xp": 1930,
+      "currency": 471,
+      "items": [],
+      "waypoint": null
+    },
+    "prerequisites": [
+      "Z08-MAIN-03"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"His argument is compelling enough to attract followers. We need you to speak with serath and refuse compulsory silence.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. His argument is compelling enough to attract followers.\""
+    }
+  },
+  {
+    "id": "Z08-MAIN-05",
+    "title": "The Broken Crown",
+    "kind": "main",
+    "zone_id": "Z08",
+    "required_level": 40,
+    "giver": "Serath Vale",
+    "objective": "Survive Serath and the rising Choir without resolving the threat.",
+    "quantity": "High Curator Serath",
+    "story_beat": "The party discovers each broken Oath fed the Crown.",
+    "reward": {
+      "xp": 2030,
+      "currency": 493,
+      "items": [
+        "z08_boss_relic"
+      ],
+      "waypoint": null
+    },
+    "prerequisites": [
+      "Z08-MAIN-04"
+    ],
+    "world_flags": [
+      "z08_boss_down",
+      "act_4_complete"
+    ],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"The party discovers each broken Oath fed the Crown. We need you to survive serath and the rising choir without resolving the threat.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. The party discovers each broken Oath fed the Crown.\""
+    }
+  },
+  {
+    "id": "Z08-MAIN-06",
+    "title": "Through the Breach",
+    "kind": "main",
+    "zone_id": "Z08",
+    "required_level": 41,
+    "giver": "Serath Vale",
+    "objective": "Escape to the Ember Observatory with Ilyra’s lantern.",
+    "quantity": "observatory breach",
+    "story_beat": "The Deep Archive is beginning to overwrite Eredh.",
+    "reward": {
+      "xp": 2130,
+      "currency": 515,
+      "items": [],
+      "waypoint": "Z08"
+    },
+    "prerequisites": [
+      "Z08-MAIN-05"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"The Deep Archive is beginning to overwrite Eredh. We need you to escape to the ember observatory with ilyra’s lantern.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. The Deep Archive is beginning to overwrite Eredh.\""
+    }
+  },
+  {
+    "id": "Z08-SIDE-01",
+    "title": "The Archivist’s Doubt",
+    "kind": "side",
+    "zone_id": "Z08",
+    "required_level": 38,
+    "giver": "Serath Vale",
+    "objective": "Copy records of dissenting Curators.",
+    "quantity": 3,
+    "story_beat": "Institutions are not morally uniform.",
+    "reward": {
+      "xp": 620,
+      "currency": 100,
+      "reputation": 5
+    },
+    "prerequisites": [
+      "Z08-MAIN-01"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"Institutions are not morally uniform. We need you to copy records of dissenting curators.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. Institutions are not morally uniform.\""
+    }
+  },
+  {
+    "id": "Z08-SIDE-02",
+    "title": "A Music Box with No Song",
+    "kind": "side",
+    "zone_id": "Z08",
+    "required_level": 39,
+    "giver": "Serath Vale",
+    "objective": "Find the missing gear from Nera’s keepsake.",
+    "quantity": 1,
+    "story_beat": "Love can survive imperfect recollection.",
+    "reward": {
+      "xp": 670,
+      "currency": 130,
+      "reputation": 5
+    },
+    "prerequisites": [
+      "Z08-MAIN-01"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"Love can survive imperfect recollection. We need you to find the missing gear from nera’s keepsake.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. Love can survive imperfect recollection.\""
+    }
+  },
+  {
+    "id": "Z08-SIDE-03",
+    "title": "No More Empty Shelves",
+    "kind": "side",
+    "zone_id": "Z08",
+    "required_level": 40,
+    "giver": "Serath Vale",
+    "objective": "Preserve lists before the Vault is destroyed.",
+    "quantity": 1,
+    "story_beat": "A revolution should guard evidence.",
+    "reward": {
+      "xp": 720,
+      "currency": 160,
+      "reputation": 5
+    },
+    "prerequisites": [
+      "Z08-MAIN-01"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"A revolution should guard evidence. We need you to preserve lists before the vault is destroyed.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. A revolution should guard evidence.\""
+    }
+  }
+]

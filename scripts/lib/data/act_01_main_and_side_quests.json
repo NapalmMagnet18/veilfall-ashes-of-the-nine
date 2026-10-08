@@ -1,0 +1,546 @@
+[
+  {
+    "id": "Z01-MAIN-01",
+    "title": "Pilgrims in White",
+    "kind": "main",
+    "zone_id": "Z01",
+    "required_level": 6,
+    "giver": "Maelin Sore",
+    "objective": "Investigate the moving wax pilgrims at milepost three.",
+    "quantity": "3 pilgrim marks",
+    "story_beat": "Maelin finds an honest road erased from every map.",
+    "reward": {
+      "xp": 670,
+      "currency": 150,
+      "items": [],
+      "waypoint": null
+    },
+    "prerequisites": [
+      "origin_complete",
+      "class_trial_complete"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"Maelin finds an honest road erased from every map. We need you to investigate the moving wax pilgrims at milepost three.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. Maelin finds an honest road erased from every map.\""
+    }
+  },
+  {
+    "id": "Z01-MAIN-02",
+    "title": "The Toll of Remembrance",
+    "kind": "main",
+    "zone_id": "Z01",
+    "required_level": 7,
+    "giver": "Maelin Sore",
+    "objective": "Recover five wax-sealed petitions at the abandoned tollhouse.",
+    "quantity": "5 sealed petitions",
+    "story_beat": "The petitions ask to surrender more memory than the lawful Tithe.",
+    "reward": {
+      "xp": 770,
+      "currency": 172,
+      "items": [],
+      "waypoint": null
+    },
+    "prerequisites": [
+      "Z01-MAIN-01"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"The petitions ask to surrender more memory than the lawful Tithe. We need you to recover five wax-sealed petitions at the abandoned tollhouse.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. The petitions ask to surrender more memory than the lawful Tithe.\""
+    }
+  },
+  {
+    "id": "Z01-MAIN-03",
+    "title": "The Last Family Lamp",
+    "kind": "main",
+    "zone_id": "Z01",
+    "required_level": 8,
+    "giver": "Maelin Sore",
+    "objective": "Escort the lampkeeper Ada through the collapsed mile bridge.",
+    "quantity": "protect Ada",
+    "story_beat": "A survivor remembers her sister only while her lamp burns.",
+    "reward": {
+      "xp": 870,
+      "currency": 194,
+      "items": [],
+      "waypoint": null
+    },
+    "prerequisites": [
+      "Z01-MAIN-02"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"A survivor remembers her sister only while her lamp burns. We need you to escort the lampkeeper ada through the collapsed mile bridge.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. A survivor remembers her sister only while her lamp burns.\""
+    }
+  },
+  {
+    "id": "Z01-MAIN-04",
+    "title": "Ash Below the Cobblestones",
+    "kind": "main",
+    "zone_id": "Z01",
+    "required_level": 8,
+    "giver": "Maelin Sore",
+    "objective": "Reveal the buried waystone with the Bearer’s true-name echo.",
+    "quantity": "activate 3 waystone pins",
+    "story_beat": "The road was deliberately redirected toward the Abbey.",
+    "reward": {
+      "xp": 970,
+      "currency": 216,
+      "items": [],
+      "waypoint": null
+    },
+    "prerequisites": [
+      "Z01-MAIN-03"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"The road was deliberately redirected toward the Abbey. We need you to reveal the buried waystone with the bearer’s true-name echo.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. The road was deliberately redirected toward the Abbey.\""
+    }
+  },
+  {
+    "id": "Z01-MAIN-05",
+    "title": "The Dripping Gate",
+    "kind": "main",
+    "zone_id": "Z01",
+    "required_level": 9,
+    "giver": "Maelin Sore",
+    "objective": "Defeat the Bailiff and extinguish his tax-fire.",
+    "quantity": "Bailiff of the Dripping Gate",
+    "story_beat": "The Bailiff demands a memory for every attack the hero makes.",
+    "reward": {
+      "xp": 1070,
+      "currency": 238,
+      "items": [
+        "z01_boss_relic"
+      ],
+      "waypoint": null
+    },
+    "prerequisites": [
+      "Z01-MAIN-04"
+    ],
+    "world_flags": [
+      "z01_boss_down"
+    ],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"The Bailiff demands a memory for every attack the hero makes. We need you to defeat the bailiff and extinguish his tax-fire.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. The Bailiff demands a memory for every attack the hero makes.\""
+    }
+  },
+  {
+    "id": "Z01-MAIN-06",
+    "title": "Beyond the Mile of Bells",
+    "kind": "main",
+    "zone_id": "Z01",
+    "required_level": 10,
+    "giver": "Maelin Sore",
+    "objective": "Open the Abbey approach and register the first waypoint.",
+    "quantity": "Abbey approach",
+    "story_beat": "A bell pulls the party east, beginning the first act’s main mystery.",
+    "reward": {
+      "xp": 1170,
+      "currency": 260,
+      "items": [],
+      "waypoint": "Z01"
+    },
+    "prerequisites": [
+      "Z01-MAIN-05"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"A bell pulls the party east, beginning the first act’s main mystery. We need you to open the abbey approach and register the first waypoint.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. A bell pulls the party east, beginning the first act’s main mystery.\""
+    }
+  },
+  {
+    "id": "Z02-MAIN-01",
+    "title": "A Robe Without an Order",
+    "kind": "main",
+    "zone_id": "Z02",
+    "required_level": 10,
+    "giver": "Veska Rell",
+    "objective": "Rescue Veska from the waxbound novice cells.",
+    "quantity": "Veska Rell",
+    "story_beat": "The former Curator admits she carried illegal requests to forget.",
+    "reward": {
+      "xp": 670,
+      "currency": 150,
+      "items": [],
+      "waypoint": null
+    },
+    "prerequisites": [
+      "Z01-MAIN-06"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"The former Curator admits she carried illegal requests to forget. We need you to rescue veska from the waxbound novice cells.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. The former Curator admits she carried illegal requests to forget.\""
+    }
+  },
+  {
+    "id": "Z02-MAIN-02",
+    "title": "Petitions of Mercy",
+    "kind": "main",
+    "zone_id": "Z02",
+    "required_level": 11,
+    "giver": "Veska Rell",
+    "objective": "Match four identities to the Abbey ledgers.",
+    "quantity": "4 identity seals",
+    "story_beat": "The Saint traded relief for permanent loss of self.",
+    "reward": {
+      "xp": 770,
+      "currency": 172,
+      "items": [],
+      "waypoint": null
+    },
+    "prerequisites": [
+      "Z02-MAIN-01"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"The Saint traded relief for permanent loss of self. We need you to match four identities to the abbey ledgers.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. The Saint traded relief for permanent loss of self.\""
+    }
+  },
+  {
+    "id": "Z02-MAIN-03",
+    "title": "Hands of the Devout",
+    "kind": "main",
+    "zone_id": "Z02",
+    "required_level": 12,
+    "giver": "Veska Rell",
+    "objective": "Disable the altar braziers while waves of petitioners attack.",
+    "quantity": "3 braziers",
+    "story_beat": "The altar harvests memories during prayers.",
+    "reward": {
+      "xp": 870,
+      "currency": 194,
+      "items": [],
+      "waypoint": null
+    },
+    "prerequisites": [
+      "Z02-MAIN-02"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"The altar harvests memories during prayers. We need you to disable the altar braziers while waves of petitioners attack.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. The altar harvests memories during prayers.\""
+    }
+  },
+  {
+    "id": "Z02-MAIN-04",
+    "title": "Words Behind the Wall",
+    "kind": "main",
+    "zone_id": "Z02",
+    "required_level": 12,
+    "giver": "Veska Rell",
+    "objective": "Read the Nine Witnesses’ confession behind the nave.",
+    "quantity": "hidden wall inscription",
+    "story_beat": "The Nine were mortal survivors, not divine beings.",
+    "reward": {
+      "xp": 970,
+      "currency": 216,
+      "items": [],
+      "waypoint": null
+    },
+    "prerequisites": [
+      "Z02-MAIN-03"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"The Nine were mortal survivors, not divine beings. We need you to read the nine witnesses’ confession behind the nave.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. The Nine were mortal survivors, not divine beings.\""
+    }
+  },
+  {
+    "id": "Z02-MAIN-05",
+    "title": "The First Oath",
+    "kind": "main",
+    "zone_id": "Z02",
+    "required_level": 13,
+    "giver": "Veska Rell",
+    "objective": "Defeat Saint of Wax and break the Ash Oath.",
+    "quantity": "Saint of Wax",
+    "story_beat": "The Oath’s release awakens another across the Saltwound.",
+    "reward": {
+      "xp": 1070,
+      "currency": 238,
+      "items": [
+        "ash_oath_first"
+      ],
+      "waypoint": null
+    },
+    "prerequisites": [
+      "Z02-MAIN-04"
+    ],
+    "world_flags": [
+      "z02_boss_down",
+      "act_1_complete"
+    ],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"The Oath’s release awakens another across the Saltwound. We need you to defeat saint of wax and break the ash oath.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. The Oath’s release awakens another across the Saltwound.\""
+    }
+  },
+  {
+    "id": "Z02-MAIN-06",
+    "title": "The Road That Turns to Salt",
+    "kind": "main",
+    "zone_id": "Z02",
+    "required_level": 14,
+    "giver": "Veska Rell",
+    "objective": "Report to Maelin and depart for the coast.",
+    "quantity": "Saltwound gate",
+    "story_beat": "The old route now points toward a vanished sea.",
+    "reward": {
+      "xp": 1170,
+      "currency": 260,
+      "items": [],
+      "waypoint": "Z02"
+    },
+    "prerequisites": [
+      "Z02-MAIN-05"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"The old route now points toward a vanished sea. We need you to report to maelin and depart for the coast.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. The old route now points toward a vanished sea.\""
+    }
+  },
+  {
+    "id": "Z01-SIDE-01",
+    "title": "The Lamp Without Oil",
+    "kind": "side",
+    "zone_id": "Z01",
+    "required_level": 7,
+    "giver": "Maelin Sore",
+    "objective": "Bring lampglass to a missing pilgrim’s daughter.",
+    "quantity": 3,
+    "story_beat": "Character loss in a single household.",
+    "reward": {
+      "xp": 320,
+      "currency": 100,
+      "reputation": 5
+    },
+    "prerequisites": [
+      "Z01-MAIN-01"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"Character loss in a single household. We need you to bring lampglass to a missing pilgrim’s daughter.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. Character loss in a single household.\""
+    }
+  },
+  {
+    "id": "Z01-SIDE-02",
+    "title": "Dead End Milestones",
+    "kind": "side",
+    "zone_id": "Z01",
+    "required_level": 8,
+    "giver": "Maelin Sore",
+    "objective": "Chart three false roads to correct Maelin’s map.",
+    "quantity": 1,
+    "story_beat": "The road has concealed safer paths.",
+    "reward": {
+      "xp": 370,
+      "currency": 130,
+      "reputation": 5
+    },
+    "prerequisites": [
+      "Z01-MAIN-01"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"The road has concealed safer paths. We need you to chart three false roads to correct maelin’s map.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. The road has concealed safer paths.\""
+    }
+  },
+  {
+    "id": "Z01-SIDE-03",
+    "title": "A Warm Place for Strangers",
+    "kind": "side",
+    "zone_id": "Z01",
+    "required_level": 9,
+    "giver": "Maelin Sore",
+    "objective": "Rebuild the roadside shelter and unlock a healer.",
+    "quantity": 1,
+    "story_beat": "Small generosity resists impersonal catastrophe.",
+    "reward": {
+      "xp": 420,
+      "currency": 160,
+      "reputation": 5
+    },
+    "prerequisites": [
+      "Z01-MAIN-01"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"Small generosity resists impersonal catastrophe. We need you to rebuild the roadside shelter and unlock a healer.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. Small generosity resists impersonal catastrophe.\""
+    }
+  },
+  {
+    "id": "Z02-SIDE-01",
+    "title": "A Choir of Small Voices",
+    "kind": "side",
+    "zone_id": "Z02",
+    "required_level": 11,
+    "giver": "Veska Rell",
+    "objective": "Recover children’s prayer names from the lower nave.",
+    "quantity": 3,
+    "story_beat": "The Abbey silenced even harmless songs.",
+    "reward": {
+      "xp": 320,
+      "currency": 100,
+      "reputation": 5
+    },
+    "prerequisites": [
+      "Z02-MAIN-01"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"The Abbey silenced even harmless songs. We need you to recover children’s prayer names from the lower nave.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. The Abbey silenced even harmless songs.\""
+    }
+  },
+  {
+    "id": "Z02-SIDE-02",
+    "title": "Wax and Witness",
+    "kind": "side",
+    "zone_id": "Z02",
+    "required_level": 12,
+    "giver": "Veska Rell",
+    "objective": "Identify a petitioner who asked to forget a theft.",
+    "quantity": 1,
+    "story_beat": "Removing guilt does not remove harm.",
+    "reward": {
+      "xp": 370,
+      "currency": 130,
+      "reputation": 5
+    },
+    "prerequisites": [
+      "Z02-MAIN-01"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"Removing guilt does not remove harm. We need you to identify a petitioner who asked to forget a theft.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. Removing guilt does not remove harm.\""
+    }
+  },
+  {
+    "id": "Z02-SIDE-03",
+    "title": "The Lost Bell Rope",
+    "kind": "side",
+    "zone_id": "Z02",
+    "required_level": 13,
+    "giver": "Veska Rell",
+    "objective": "Repair a ceremonial bell to open a hidden crypt.",
+    "quantity": 1,
+    "story_beat": "Sacred objects become tools again.",
+    "reward": {
+      "xp": 420,
+      "currency": 160,
+      "reputation": 5
+    },
+    "prerequisites": [
+      "Z02-MAIN-01"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"Sacred objects become tools again. We need you to repair a ceremonial bell to open a hidden crypt.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. Sacred objects become tools again.\""
+    }
+  }
+]

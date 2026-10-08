@@ -1,0 +1,273 @@
+[
+  {
+    "id": "Z09-MAIN-01",
+    "title": "The Woman in Glass",
+    "kind": "main",
+    "zone_id": "Z09",
+    "required_level": 41,
+    "giver": "Ilyra Venn",
+    "objective": "Release Ilyra from the lantern without breaking its promise.",
+    "quantity": "lantern latch",
+    "story_beat": "The youngest Witness survives within a closed time-loop.",
+    "reward": {
+      "xp": 1950,
+      "currency": 490,
+      "items": [],
+      "waypoint": null
+    },
+    "prerequisites": [
+      "Z08-MAIN-06"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"The youngest Witness survives within a closed time-loop. We need you to release ilyra from the lantern without breaking its promise.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. The youngest Witness survives within a closed time-loop.\""
+    }
+  },
+  {
+    "id": "Z09-MAIN-02",
+    "title": "First Unraveling",
+    "kind": "main",
+    "zone_id": "Z09",
+    "required_level": 42,
+    "giver": "Ilyra Venn",
+    "objective": "Listen to Ilyra’s account and inspect the ancient machine.",
+    "quantity": "ancient recordings",
+    "story_beat": "The Archive stores possibilities, not only dead souls.",
+    "reward": {
+      "xp": 2050,
+      "currency": 512,
+      "items": [],
+      "waypoint": null
+    },
+    "prerequisites": [
+      "Z09-MAIN-01"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"The Archive stores possibilities, not only dead souls. We need you to listen to ilyra’s account and inspect the ancient machine.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. The Archive stores possibilities, not only dead souls.\""
+    }
+  },
+  {
+    "id": "Z09-MAIN-03",
+    "title": "Nine Unlit Windows",
+    "kind": "main",
+    "zone_id": "Z09",
+    "required_level": 43,
+    "giver": "Ilyra Venn",
+    "objective": "Align the observatory’s three lens rings.",
+    "quantity": "3 lens rings",
+    "story_beat": "The stars are hidden by imposed histories.",
+    "reward": {
+      "xp": 2150,
+      "currency": 534,
+      "items": [],
+      "waypoint": null
+    },
+    "prerequisites": [
+      "Z09-MAIN-02"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"The stars are hidden by imposed histories. We need you to align the observatory’s three lens rings.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. The stars are hidden by imposed histories.\""
+    }
+  },
+  {
+    "id": "Z09-MAIN-04",
+    "title": "The Remaining Watch",
+    "kind": "main",
+    "zone_id": "Z09",
+    "required_level": 43,
+    "giver": "Ilyra Venn",
+    "objective": "Protect the party while the last escape vessels launch.",
+    "quantity": "3 extraction waves",
+    "story_beat": "Civilian evacuation has a visible effect on the finale.",
+    "reward": {
+      "xp": 2250,
+      "currency": 556,
+      "items": [],
+      "waypoint": null
+    },
+    "prerequisites": [
+      "Z09-MAIN-03"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"Civilian evacuation has a visible effect on the finale. We need you to protect the party while the last escape vessels launch.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. Civilian evacuation has a visible effect on the finale.\""
+    }
+  },
+  {
+    "id": "Z09-MAIN-05",
+    "title": "Custodian of the False Sky",
+    "kind": "main",
+    "zone_id": "Z09",
+    "required_level": 44,
+    "giver": "Ilyra Venn",
+    "objective": "Defeat the Astral Custodian at the summit.",
+    "quantity": "Astral Custodian",
+    "story_beat": "Its attacks reveal changing safe platforms.",
+    "reward": {
+      "xp": 2350,
+      "currency": 578,
+      "items": [
+        "z09_boss_relic"
+      ],
+      "waypoint": null
+    },
+    "prerequisites": [
+      "Z09-MAIN-04"
+    ],
+    "world_flags": [
+      "z09_boss_down"
+    ],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"Its attacks reveal changing safe platforms. We need you to defeat the astral custodian at the summit.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. Its attacks reveal changing safe platforms.\""
+    }
+  },
+  {
+    "id": "Z09-MAIN-06",
+    "title": "The Door That Is Tomorrow",
+    "kind": "main",
+    "zone_id": "Z09",
+    "required_level": 45,
+    "giver": "Ilyra Venn",
+    "objective": "Cross the Archive gate after an explicit point-of-no-return warning.",
+    "quantity": "Deep Archive gate",
+    "story_beat": "The final region presents possible lives as physical geography.",
+    "reward": {
+      "xp": 2450,
+      "currency": 600,
+      "items": [],
+      "waypoint": "Z09"
+    },
+    "prerequisites": [
+      "Z09-MAIN-05"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"The final region presents possible lives as physical geography. We need you to cross the archive gate after an explicit point-of-no-return warning.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. The final region presents possible lives as physical geography.\""
+    }
+  },
+  {
+    "id": "Z09-SIDE-01",
+    "title": "The Ninth Star",
+    "kind": "side",
+    "zone_id": "Z09",
+    "required_level": 42,
+    "giver": "Ilyra Venn",
+    "objective": "Calibrate a hidden telescope to reveal a bridge.",
+    "quantity": 3,
+    "story_beat": "Physical space is memory-sensitive.",
+    "reward": {
+      "xp": 720,
+      "currency": 100,
+      "reputation": 5
+    },
+    "prerequisites": [
+      "Z09-MAIN-01"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"Physical space is memory-sensitive. We need you to calibrate a hidden telescope to reveal a bridge.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. Physical space is memory-sensitive.\""
+    }
+  },
+  {
+    "id": "Z09-SIDE-02",
+    "title": "The Watch’s Last Meal",
+    "kind": "side",
+    "zone_id": "Z09",
+    "required_level": 43,
+    "giver": "Ilyra Venn",
+    "objective": "Bring supplies to an evacuated watch crew.",
+    "quantity": 1,
+    "story_beat": "Heroic sacrifices require unheroic logistics.",
+    "reward": {
+      "xp": 770,
+      "currency": 130,
+      "reputation": 5
+    },
+    "prerequisites": [
+      "Z09-MAIN-01"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"Heroic sacrifices require unheroic logistics. We need you to bring supplies to an evacuated watch crew.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. Heroic sacrifices require unheroic logistics.\""
+    }
+  },
+  {
+    "id": "Z09-SIDE-03",
+    "title": "A Letter for Ilyra",
+    "kind": "side",
+    "zone_id": "Z09",
+    "required_level": 44,
+    "giver": "Ilyra Venn",
+    "objective": "Deliver an account of nine centuries of change.",
+    "quantity": 1,
+    "story_beat": "A Witness deserves to know what followed.",
+    "reward": {
+      "xp": 820,
+      "currency": 160,
+      "reputation": 5
+    },
+    "prerequisites": [
+      "Z09-MAIN-01"
+    ],
+    "world_flags": [],
+    "branch": null,
+    "co_op": "individual credit; shared combat, owner-authoritative progress",
+    "difficulty": "solo_1_to_4",
+    "completion_rule": "server-validated objective and claim at NPC/scene",
+    "dialogue": {
+      "offer": "\"A Witness deserves to know what followed. We need you to deliver an account of nine centuries of change.\"",
+      "accept": "\"I will see this through.\"",
+      "turn_in": "\"The ledger will show what changed. A Witness deserves to know what followed.\""
+    }
+  }
+]
