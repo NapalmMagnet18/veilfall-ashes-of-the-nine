@@ -391,6 +391,7 @@ function zoneTick(ctx, s, f, now) {
 export function update(ctx, dt) {
   if (ctx.self.state.hp === undefined) onSpawn(ctx);
   const s = ctx.self.state, now = ctx.now(), f = ctx.self.feetPosition;
+  ABBEY_OPEN = (s.quest?.stage ?? 0) >= 4 || !!ctx.place.state?.abbeyOpenAll;
   const vy = (ctx.self.velocity?.y ?? 0) + (ctx.self.grounded ? 0 : ctx.place.gravity.y * dt);
   // a fresh visit opens on the title in the Veil; a realm cross lands on that realm's character list
   if (ctx.self.isLocal !== false && !ctx.session.vfDoor) {
