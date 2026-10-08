@@ -173,7 +173,7 @@ export function tick(ctx) {
     fx: { script: `fx\npop f rate=flick(.6,.3)*14 on=sphere(.12).c(2.4) life=.3..0.6 v=up(.3..0.7) size=.05..0.1 col=hdr(4,2.6,.9)>hdr(1.4,.5,.1) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 at=point().c(2.4) glo=fire() r=light(<1,.62,.3>,$glo*4,10)` } });
   // the hanged hang until someone has cut them down
   const cutAny = new Set();
-  for (const p of ctx.place.players) { const qq = p.state.quest; if (!qq) continue; if (qq.stage >= 20) GIBBETS.forEach((g) => cutAny.add(g.id)); else if (qq.stage === 19) (qq.cut ?? []).forEach((id) => cutAny.add(id)); }
+  for (const p of ctx.place.players) { const qq = p.state.quest; if (!qq) continue; if (p.state.menu) continue; if (qq.stage === 20) GIBBETS.forEach((g) => cutAny.add(g.id)); else if (qq.stage === 19) (qq.cut ?? []).forEach((id) => cutAny.add(id)); }
   for (const g of GIBBETS) { const h = objs[`orch-gibbet-${g.id}/hanged`], want = !cutAny.has(g.id); if (h && h.visible !== want) h.visible = want; }
   // the Lantern Rail by the fire: each lantern of the Nine hangs burning once a Bearer here has brought it home
   let top = 0; for (const p of ctx.place.players) if (p.state.charId && !p.state.menu) top = Math.max(top, p.state.quest?.stage ?? 0);
