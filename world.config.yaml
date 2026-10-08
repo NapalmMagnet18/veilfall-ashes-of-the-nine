@@ -35,6 +35,8 @@ inputs:
       keys:
         - i
       touch: { button: false }
+    menu:
+      touch: { button: false }
     guard:
       keys:
         - "1"

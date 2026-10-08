@@ -64,8 +64,34 @@ export function onSpawn(ctx) {
   s.dead = false; s.target = null; s.goal = null;
 }
 
+// the title and the Bearer screen: the UI's buttons send { a, v, n }; n is a click's stamp so one press acts once
+const CLASSES = ["bladewraith", "soulweaver", "hellwarden", "shadowmancer", "primalist", "gloamstalker"];
+const ANCESTRIES = ["cinderkin", "fenborn", "stonebound", "skyforged"];
+const PLAYABLE = { bladewraith: true }; // M1: one hero; the other five are sealed until their milestone
+function menuInput(ctx, d) {
+  const s = ctx.self.state;
+  if (!d || d.n === me.menuN) return; me.menuN = d.n;
+  const click = (pitch) => ctx.emit("playSound", { clip: sfx("stone-ledger-page-turn-soft"), position: ctx.self.feetPosition, volume: 0.5, pitch }, { audience: "local" });
+  const pick = s.pick ?? { anc: s.ancestry ?? "cinderkin", cls: s.cls ?? "bladewraith" };
+  if (d.a === "continue") { if (!s.ancestry) { s.pick = pick; s.menu = "bearer"; click(1); } else enterRoad(ctx); }
+  else if (d.a === "bearer") { s.pick = pick; s.menu = "bearer"; click(1); }
+  else if (d.a === "back") { s.menu = "title"; click(0.85); }
+  else if (d.a === "anc" && ANCESTRIES.includes(d.v)) { s.pick = { ...pick, anc: d.v }; click(1.1); }
+  else if (d.a === "cls" && CLASSES.includes(d.v)) { s.pick = { ...pick, cls: d.v }; click(PLAYABLE[d.v] ? 1.15 : 0.7); }
+  else if (d.a === "confirm" && PLAYABLE[pick.cls]) { s.ancestry = pick.anc; s.cls = pick.cls; enterRoad(ctx); }
+}
+function enterRoad(ctx) {
+  const s = ctx.self.state, f = ctx.self.feetPosition;
+  s.menu = null; s.started = true; s.goal = null; s.target = null;
+  ctx.emit("fx", { position: { x: f.x, y: f.y + 0.1, z: f.z }, script: `fx\npop rise burst=40 on=disc(.7) life=.8..1.4 v=up(1.5..3)+sdir()*.4 size=.04..0.08 col=hdr(3.4,1.6,.5)>hdr(1,.3,.05) acc=curl(.6)+drag(.6) a=1>0 r=sprite(ember,add,velocity,.03)\npop fl burst=1 life=.5 size=2.4 col=hdr(2,1.1,.4) a=.7>0 sz=$size*(.3>1.4) r=sprite(soft-disc,add)` });
+  ctx.emit("playSound", { clip: sfx("deep-bell-toll-distant-with-embers"), position: f, volume: 0.8 }, { audience: "local" });
+  ctx.emit("milestone", { step: 0, name: "bearer-chosen" }, { audience: { player: ctx.self.id } });
+}
+
 export function onInput(ctx, input) {
   const s = ctx.self.state;
+  if (input.pressed.menu || input.actionData?.menu) menuInput(ctx, input.actionData?.menu);
+  if (s.menu) return;
   if (s.dead || ctx.self.inputHeld) return;
   const ray = getInputRay(ctx, input);
   const now = ctx.now();
@@ -163,6 +189,8 @@ function griefstep(ctx) {
   me.dash = { dx, dz, until: now + g.time * 1000 };
   s.iframesUntil = now + g.iframes * 1000;
   s.faceYaw = yawTo(dx, dz); s.goal = null; s.target = null; me.route = null;
+  if (s.ancestry === "fenborn") me.hasteUntil = now + (g.time + C.traits.fenborn.secs) * 1000;
+  if (s.ancestry === "skyforged") s.edge = Math.min(100, (s.edge ?? 0) + C.traits.skyforged.edge);
   ctx.emit("fx", { position: { x: f.x, y: f.y + 0.9, z: f.z }, script: DASH });
   ctx.emit("playSound", { clip: sfx("ghostly-dash-whoosh-glass-chime"), position: f, volume: 0.7 });
 }
@@ -213,6 +241,23 @@ function tonic(ctx) {
   ctx.emit("playSound", { clip: sfx("drinking-tonic-gulp-and-glass-clink"), position: f, volume: 0.7 });
 }
 
+// ancestry traits, read off the life lost since last tick (every damage path writes hp directly)
+function traitTick(ctx, now) {
+  const s = ctx.self.state, T = C.traits, drop = (me.lastHp ?? s.hp) - s.hp;
+  if (drop > 0 && s.hp > 0) {
+    const f = ctx.self.feetPosition, at = { x: f.x, y: f.y + 2.2, z: f.z };
+    if (s.ancestry === "cinderkin" && now >= (s.wardReadyAt ?? 0)) {
+      s.hp += Math.min(T.cinderkin.ward, drop); s.wardReadyAt = now + T.cinderkin.every * 1000;
+      ctx.emit("damageNumber", { position: at, text: "EMBER WARD", color: "#ff9a5a", size: 0.8 });
+      ctx.emit("fx", { position: { x: f.x, y: f.y + 1, z: f.z }, script: `fx\npop e burst=22 on=sphere(.6) life=.4..0.8 v=sdir()*(1..2)+up(1) size=.03..0.06 col=hdr(4,1.6,.4) a=1>0 r=sprite(ember,add,velocity,.03)` });
+    } else if (s.ancestry === "stonebound" && drop >= T.stonebound.heavy) {
+      s.hp += Math.round(drop * T.stonebound.cut);
+      ctx.emit("damageNumber", { position: at, text: "STONEBOUND", color: "#d8c28a", size: 0.8 });
+    }
+  }
+  me.lastHp = s.hp;
+}
+
 function walkTo(ctx, goal, speed, dt) {
   const f = ctx.self.feetPosition, now = ctx.now();
   let r = me.route;
@@ -232,6 +277,14 @@ export function update(ctx, dt) {
   if (ctx.self.state.hp === undefined) onSpawn(ctx);
   const s = ctx.self.state, now = ctx.now(), f = ctx.self.feetPosition;
   const vy = (ctx.self.velocity?.y ?? 0) + (ctx.self.grounded ? 0 : ctx.place.gravity.y * dt);
+  // a fresh visit opens on the title, drawn over the living camp; nothing can touch the Bearer while it stands
+  if (ctx.self.isLocal !== false && !ctx.session.vfTitle) { ctx.session.vfTitle = true; if (!s.dead) s.menu = "title"; }
+  if (s.menu) {
+    if ((s.iframesUntil ?? 0) < now + 500) s.iframesUntil = now + 1500;
+    ctx.self.velocity = { x: 0, y: vy, z: 0 }; me.lastHp = s.hp;
+    return;
+  }
+  traitTick(ctx, now);
   if (me.animOff && now > me.animOff) { ctx.self.anim.attack = null; me.animOff = 0; }
 
   // death: a beat, then back on your feet at the Wayside Fire
@@ -272,7 +325,8 @@ export function update(ctx, dt) {
 
   let v = null;
   if (me.keys) {
-    v = { x: me.keys.x * C.hero.speed, z: me.keys.z * C.hero.speed };
+    const sp = C.hero.speed * (now < (me.hasteUntil ?? 0) ? C.traits.fenborn.haste : 1);
+    v = { x: me.keys.x * sp, z: me.keys.z * sp };
     const l = Math.hypot(v.x, v.z); if (l > C.hero.speed) { v.x *= C.hero.speed / l; v.z *= C.hero.speed / l; }
   } else if (s.target) {
     const foe = ctx.getObject(s.target);
@@ -288,7 +342,7 @@ export function update(ctx, dt) {
       }
     }
   } else if (s.goal) {
-    v = walkTo(ctx, s.goal, C.hero.speed, dt);
+    v = walkTo(ctx, s.goal, C.hero.speed * (now < (me.hasteUntil ?? 0) ? C.traits.fenborn.haste : 1), dt);
     if (!v) { s.goal = null; me.route = null; }
   }
   if (me.talk) {
