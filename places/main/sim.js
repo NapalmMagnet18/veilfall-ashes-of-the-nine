@@ -2,7 +2,7 @@
 // packs out of sight, walks each player's quest forward, levels them, and brings the Bailiff back.
 import C from "../../scripts/lib/data/combat.yml";
 import E from "../../scripts/lib/data/economy.yml";
-import { body, HEIGHT } from "../../scripts/lib/data/models.js";
+import { body } from "../../scripts/lib/data/models.js";
 export const cadence = "250ms";
 const MUSIC = "/cdn/moodboard-gothic-horror/music-broken-lantern-road-dusk-candles-and-fog-ambient.mp3";
 // the jukebox follows the room's mood: the road at rest, drums when the wax wakes, the Bailiff's own theme in his court
@@ -43,7 +43,7 @@ const enemySpec = (pk) => ({
   feetPosition: { x: pk.x, z: pk.z, y: { terrain: 0 } },
   scale: pk.kind === "deacon" ? 1.35 : 1,
   ...body(pk.kind), behavior: ["scripts/humanoid-locomotion.js"],
-  fx: { script: `fx\npop f rate=flick(.5,.3)*18 on=point().c(${(HEIGHT[pk.kind] * (pk.kind === "deacon" ? 1.35 : 1) - 0.05).toFixed(2)}) life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 on=point().c(${(HEIGHT[pk.kind] * (pk.kind === "deacon" ? 1.35 : 1) - 0.05).toFixed(2)}) glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)`, params: {} },
+  children: [{ id: "head-flame", feetPosition: { x: 0, y: pk.kind === "deacon" ? 1.72 : 1.62, z: 0 }, fx: { script: `fx\npop f rate=flick(.5,.3)*18 on=point() life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)`, params: {} } }],
   state: { kind: pk.kind, hp: C[pk.kind].hp, maxHp: C[pk.kind].hp, home: { x: pk.x, y: 0, z: pk.z } },
 });
 const near = (ctx, x, z, r) => ctx.place.players.some((p) => Math.hypot(p.feetPosition.x - x, p.feetPosition.z - z) < r);
