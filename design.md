@@ -88,3 +88,5 @@ places/main/sim.js referee: spawns packs, quest stages, XP/levels, death and res
 - Seven slots: weapon, helm, chest, gloves, boots, ring, amulet. Worn stats: damage, % damage, crit, life, armor (armor/(armor+120) mitigation), speed (cap +40%), edge, leech, copper find, regen.
 - Pack (I): paper doll, hover cards that compare to what you wear, equip/unequip, salvage to dust, sell at the trader, sort, salvage-all.
 - Open: crafting with ash dust, professions, auction house. Proposed order: dust crafting next, then the auction house.
+
+- 2026-10-08 (Savi, creator said "continue building all your suggestions"): the Wayside Forge by the fire (x 8.6, z -0.8). Within 3.6 m the pack shows TEMPER (+1 item level, max 3, 6+2·il dust), REFORGE (reroll a Hallowed/Gilded item's affixes, name kept), ASCEND (Ashen→Hallowed 18 dust, Hallowed→Gilded 45). Relics/Vowbound are beyond the forge. Numbers in loot.yml `forge:`. The roster shrine Bearer now stands in their ancestry's light (cinder embers, fen mist, stone grit, sky gusts).
