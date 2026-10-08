@@ -2,6 +2,7 @@
 import { coinHTML, fmt } from "./lib/coins.js";
 import { shopPanel } from "./lib/shop-ui.js";
 import R from "./lib/data/realms.yml";
+import { FRAME_CSS } from "./lib/frames.js";
 const STAGES = [
   ["Pilgrims in White", "Speak with Maelin at the Wayside Fire"],
   ["Pilgrims in White", "Silence the wax pilgrims on the road"],
@@ -90,7 +91,7 @@ const MX = `<style>
  #vm .msg{bottom:auto;top:8px;max-width:calc(100vw - 90px)} #vm .namebox{font-size:18px}
 }
 </style>`;
-const head = (s) => `${MSTYLE}${MX}<div id="vm"><div class="veil" style="background:radial-gradient(ellipse at 50% 50%,transparent 30%,rgba(6,7,12,.45) 65%,rgba(4,4,8,.85))"></div>`;
+const head = (s) => `${MSTYLE}${MX}${FRAME_CSS}<div id="vm"><div class="veil" style="background:radial-gradient(ellipse at 50% 50%,transparent 30%,rgba(6,7,12,.45) 65%,rgba(4,4,8,.85))"></div>`;
 const tail = (s, now) => `${s.busy ? `<div class="panel msg" style="color:#f2d38a">${s.busy}…</div>` : s.msg && now - s.msg.at < 5000 ? `<div class="panel msg">${s.msg.text}</div>` : ""}</div>`;
 const realmName = (room) => R.realms.find((r) => r.room === room)?.name ?? room;
 const ago = (now, t) => { const m = Math.floor((now - t) / 60000); return m < 2 ? "just now" : m < 60 ? `${m} min ago` : m < 2880 ? `${Math.floor(m / 60)} h ago` : `${Math.floor(m / 1440)} days ago`; };
@@ -202,7 +203,7 @@ export default function (ctx, player) {
   const dlg = s.dialog && now - s.dialog.at < 9000 ? s.dialog : null;
   const touch = typeof matchMedia !== "undefined" && matchMedia("(pointer: coarse)").matches;
   const rail = "calc(var(--spawn-chrome-reservation-right-inset, 50px) + 24px)";
-  return `${THEME}<div id="vf" class="fixed inset-0 pointer-events-none">
+  return `${THEME}${FRAME_CSS}<div id="vf" class="fixed inset-0 pointer-events-none">
   <div class="absolute plate qp" style="left:24px;top:24px;max-width:300px;animation:vfin .4s">
     <div class="lbl">${q.stage >= 5 ? "Complete" : "Quest"} · Broken Lantern Road</div>
     <div style="font-size:19px;color:var(--wax)">${qt}</div>
