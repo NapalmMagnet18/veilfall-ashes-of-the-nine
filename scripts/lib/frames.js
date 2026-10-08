@@ -9,6 +9,8 @@ export const FR = {
   row: U("e7160ea1f290518c9f70bb4444978e619c424d4ea45f4ec59d41f26421ea0043"),
   rowon: U("3fd974bdd97c1ea22b5ba235accb1fe25780ad93f7003d0addeb07a1840090a8"),
   card: U("cd396819d656f0cac99b4c6b3eda49cccae72af69dcf6c99ba4a9b69b4afab38"),
+  btnhot: U("11da33d216fa2a9ff50216ec30653b9e9aa047f0606e6bad8de4c4ff767a3de4"),
+  slothot: U("152e0e3dca8080958e96297d180738dd46f2ecd43c02f2d1e4a43c5e9f09757a"),
   cardon: U("e395b42f71101818ed0b0b78153d07acd1f2f99b1b29c415db1c6c877b098c7e"),
 };
 const bi = (img, slice, w) => `border:${w}px solid transparent;border-image:url(${img}) ${slice} fill / ${w}px stretch;image-rendering:pixelated;box-sizing:border-box;background:none`;
@@ -24,4 +26,8 @@ export const FRAME_CSS = `<style>
 #vm .card.on{${bi(FR.cardon, 24, 12)};box-shadow:0 0 16px rgba(242,211,138,.3)!important}
 #vm .namebox{${bi(FR.slot, 24, 12)};box-shadow:none!important;padding:2px 6px}
 @media (pointer:coarse),(max-width:700px){#vf .plate,#vfshop .plate{border-width:9px;border-image-width:9px;padding:2px 5px!important}}
+#vm .btn:not([disabled]):hover,#vm .btn:not([disabled]):active,#vfshop .bt:not(.off):hover,#vfshop .bt:not(.off):active,#vm .mini:hover{border-image-source:url(${FR.btnhot});color:#ffe2a8!important;box-shadow:0 0 18px rgba(255,150,70,.35)!important}
+#vm .btn:not([disabled]):active,#vfshop .bt:not(.off):active{transform:translateY(1px)}
+#vf .slot:hover,#vf .slot:active,#vfshop .x:hover,#vm .card:hover,#vm .namebox:hover{border-image-source:url(${FR.slothot})}
+#vm .row:hover{border-image-source:url(${FR.rowon})}
 </style>`;
