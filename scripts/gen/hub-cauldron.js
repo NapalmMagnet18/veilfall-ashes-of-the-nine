@@ -3,6 +3,10 @@
 import { xf, compose, tube, loft, ringH, rock, cbox, IRON, STONE, WOOD } from "./hub-kit.js";
 export function geometry(ctx) {
   const I = xf();
+  if ((ctx.lod ?? 1) >= 4) { // far: the pot and its glow, a few dozen faces
+    ctx.flat(); ctx.color("oklch(0.24 0.012 40)"); loft(ctx, I, [ringH(0, 0.32, 0, 0.2, 0.2, 6), ringH(0, 0.6, 0, 0.47, 0.47, 6), ringH(0, 0.95, 0, 0.42, 0.42, 6)], true, false);
+    ctx.color("oklch(0.75 0.15 70)"); ctx.emissive(1.8, 1.0, 0.3); loft(ctx, I, [ringH(0, 0.9, 0, 0.4, 0.4, 6)], false, true); ctx.emissive(null); return;
+  }
   // hearth stones, soot-black on their inner faces
   ctx.flat(); ctx.albedo(STONE); ctx.metalness(0); ctx.roughness(0.9);
   for (let i = 0; i < 9; i++) { const a = (i / 9) * 6.283 + ctx.random() * 0.2, r = 0.62 + ctx.random() * 0.06;
@@ -47,4 +51,4 @@ export function geometry(ctx) {
   ctx.albedo(null); ctx.color("oklch(0.88 0.04 85)"); ctx.roughness(0.5);
   for (let i = 0; i < 5; i++) tube(ctx, compose(xf([0.95, 0.26, -0.55], [0, 25, 0]), xf([-0.13 + i * 0.065, 0, (i % 2) * 0.06 - 0.03])), [[0, -0.05, 0], [0, 0.09 + (i % 3) * 0.02, 0]], 0.022, 6);
 }
-export function collider() { return { kind: "cylinder", radius: 0.6, height: 1.0 }; }
+export function collider(ctx) { ctx.box(-0.55, 0, -0.55, 0.55, 1.0, 0.55); }
