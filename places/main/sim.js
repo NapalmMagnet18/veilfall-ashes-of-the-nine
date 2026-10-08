@@ -3,7 +3,7 @@
 import C from "../../scripts/lib/data/combat.yml";
 import E from "../../scripts/lib/data/economy.yml";
 import { body } from "../../scripts/lib/data/models.js";
-import { FEN, FEN_HEART, WAYSTONES, ORCHARD, GIBBETS, GALLOWS } from "../../scripts/lib/data/veilfall-map.js";
+import { FEN, FEN_HEART, WAYSTONES, ORCHARD, GIBBETS, GALLOWS, OSSUARY, RELIQUARY } from "../../scripts/lib/data/veilfall-map.js";
 export const cadence = "250ms";
 const MUSIC = "/cdn/moodboard-gothic-horror/music-broken-lantern-road-dusk-candles-and-fog-ambient.mp3";
 // the jukebox follows the room's mood: the road at rest, drums when the wax wakes, the Bailiff's own theme in his court
@@ -14,6 +14,8 @@ const TRACKS = {
   bailiff: "/cdn/moodboard-gothic-horror/music-dark-fantasy-boss-tribunal-judge-theme-pounding-timpani-brass-stabs-and-low-male-choir-chanting-loop.mp3",
   ringer: "/cdn/moodboard-gothic-horror/music-dark-fantasy-boss-great-bell-theme-tolling-bronze-bells-pipe-organ-and-frantic-strings-loop.mp3",
   warden: "/cdn/moodboard-gothic-horror/music-dark-fantasy-boss-drowned-giant-theme-deep-brass-swells-taiko-and-underwater-choir-loop.mp3",
+  abbess: "/cdn/moodboard-gothic-horror/music-dark-fantasy-boss-undead-abbess-theme-dead-nuns-choir-requiem-pipe-organ-and-bone-percussion-loop.mp3",
+  ossuary: "/cdn/moodboard-gothic-horror/music-dark-fantasy-ossuary-catacomb-whispered-plainchant-and-low-bowed-bass-drone-loop.mp3",
   hangman: "/cdn/moodboard-gothic-horror/music-dark-fantasy-boss-executioner-theme-slow-heavy-war-drums-scraping-fiddle-and-chains-loop.mp3",
   camp: "/cdn/moodboard-gothic-horror/music-dark-fantasy-safe-haven-campfire-lone-nylon-guitar-slow-arpeggio-and-low-cello-loop.mp3",
   abbey: "/cdn/moodboard-gothic-horror/music-dark-fantasy-ruined-cathedral-distant-pipe-organ-drone-and-wordless-female-choir-loop.mp3",
@@ -21,7 +23,7 @@ const TRACKS = {
   orchard: "/cdn/moodboard-gothic-horror/music-dark-fantasy-hanging-orchard-out-of-tune-fiddle-and-creaking-music-box-over-low-strings-loop.mp3",
 };
 // which track rests over each stretch of the road when nothing is fighting
-const ZONE_MOOD = { fire: "camp", road: "road", toll: "road", gate: "road", court: "road", climb: "abbey", abbey: "abbey", nave: "abbey", crypt: "abbey", fenpath: "fen", fen: "fen", orchpath: "orchard", orchard: "orchard" };
+const ZONE_MOOD = { fire: "camp", road: "road", toll: "road", gate: "road", court: "road", climb: "abbey", abbey: "abbey", nave: "abbey", crypt: "abbey", bonestair: "ossuary", ossuary: "ossuary", fenpath: "fen", fen: "fen", orchpath: "orchard", orchard: "orchard" };
 // far-off sounds in the dark: one every 22-45 s, somewhere 14-26 m from a Bearer, picked by the stretch they walk
 const DISTANT = {
   road: ["crow-caws-twice-and-flaps-away-in-fog", "distant-woman-sobbing-carried-on-wind", "iron-lantern-swinging-on-rusted-chain-creak", "far-off-wolf-howl-in-cold-night"],
@@ -43,6 +45,8 @@ const BEDS = [
   { id: "bed-crypt", x: 0, z: -251, clip: "ambience-slow-cracked-bell-tolling-underground-crypt-with-dripping-wax-loop", gain: 0.16, max: 26 },
   { id: "bed-fen", x: -64, z: -10, clip: "ambience-night-marsh-frogs-dripping-water-and-faint-ghostly-chimes-loop", gain: 0.16, max: 30 },
   { id: "bed-orchard", x: 62, z: 6, clip: "ambience-dead-orchard-at-night-creaking-ropes-crows-and-dry-leaves-loop", gain: 0.16, max: 30 },
+  { id: "bed-ossuary", x: -42, z: -266, clip: "ambience-vast-bone-ossuary-skulls-settling-dripping-wax-and-distant-whispered-prayer-loop", gain: 0.18, max: 24 },
+  { id: "bed-bonestair", x: -20, z: -260, clip: "ambience-narrow-stone-stair-cold-draft-and-bones-clicking-loop", gain: 0.14, max: 12 },
   { id: "bed-court", x: 0, z: -105, clip: "ambience-low-ominous-choir-drone-cathedral-loop", gain: 0.14, max: 26 },
 ];
 const PACKS = [
@@ -55,6 +59,7 @@ const PACKS = [
   { id: "a7", kind: "deacon", x: 4, z: -184 }, { id: "a8", kind: "deacon", x: -6, z: -188 }, { id: "a9", kind: "chorister", x: 9, z: -186 },
   { id: "p8", kind: "pilgrim", x: -3, z: -65 }, { id: "p9", kind: "pilgrim", x: 0, z: -69 }, { id: "p10", kind: "pilgrim", x: -5, z: -71 }, { id: "d2", kind: "deacon", x: -2, z: -68 },
 ];
+PACKS.push({ id: "o1", kind: "chorister", x: -36, z: -257 }, { id: "o2", kind: "chorister", x: -38, z: -275 }, { id: "o3", kind: "deacon", x: -33, z: -266 }, { id: "o4", kind: "flagellant", x: -24, z: -261 }); // the Ossuary's sisters
 const PETITIONS = [[4, -40], [13, -42], [11, -52], [3, -50], [17, -53]];
 const MAELIN = { x: -5, z: -3 };
 const OSWIN = { x: -6.2, z: 5.6 }; // the peddler at his handcart (x -7.6, z 4.4), facing the fire
@@ -79,6 +84,10 @@ const LINES = {
   20: "Maelin Sore: He climbed down? Then he's angry. Good. Angry men swing wide. Watch the boards under you, his gallows has more doors than floor.",
   21: "Maelin Sore: You have it? Bring it here, to the fire.",
   22: "Maelin Sore: He read the names to the very end, didn't he. Every one. The lantern smells of rope... Three found now. Five more burn somewhere in the dark, and the fire's warmer for each one. Have you noticed?",
+  23: "Maelin Sore: The ledger in the Hangman's lantern names one more keeper. Ysolde, the last abbess. When the bell started ringing she took her sisters down under the crypt, into the ossuary, and sealed the stair with their own bones. The third lantern went down with her. The bell is quiet now, Bearer. The stair is open. Go west from the crypt and down.",
+  24: "Maelin Sore: She woke? Then she knows what you came for. Don't kneel, whatever she says.",
+  25: "Maelin Sore: Bring it up, Bearer. Bring it into the air.",
+  26: "Maelin Sore: Cold light. The Abbess kept it lit with her own wax for a hundred years and never once let it warm her. Four lanterns on the rail now. Four still out in the dark, and one I won't name yet. Keep the candle she gave you. The cauldron will know what to do with it.",
   17: "Maelin Sore: Two lanterns found. Six still out there. Warm yourself, Bearer. The road is long, and it isn't done with us.",
   10: "Maelin Sore: The Ninth Bell. My mother sang of it: the Nine lit eight lanterns and hid the ninth inside the bell, so no hand could carry it off. Someone is ringing it from the inside. Take this. The door gave way under your hand, Bearer. Walk through it, down the nave, and stop that bell.",
 };
@@ -102,6 +111,8 @@ const AUTO = { 2: "The road falls quiet. The tollhouse lies ahead: find five wax
   19: "Saint Corvin's orchard. Black apple trees, and on three gibbets the hanged still turn. Stand beneath each one and cut the rope.",
   20: "The third body drops into the dead leaves. On the gallows, something in a hood climbs down, a lantern swinging from its chest.",
   21: "The Hangman falls across his own trapdoor. A rusted lantern rolls free, burning gold. Carry it to Maelin.",
+  24: "The Ossuary of Saint Ysolde. Skulls to the vault, ten thousand of them, and every one turned toward the dais. On it, something tall in a black wax habit lifts its head.",
+  25: "The Abbess folds down into her own bones. A pale lantern rolls off the reliquary, its flame cold as well water. Carry it up to Maelin.",
   12: "The Ninth Bell falls silent. In its crack a small gold flame still burns: the ninth lantern. Carry it back to Maelin." };
 const NAVE_IN = (x, z) => z < -206 && z > -238 && Math.abs(x) < 7.5;
 // the Wax Deacon's censer: bronze thurible hung at his right hip, coals glowing, incense smoke rising
@@ -175,6 +186,12 @@ export function tick(ctx) {
   else if (!hangman && hcalled) ctx.spawn("hangman", { tags: ["enemy", "boss"], physics: "character", feetPosition: { x: GALLOWS.x, z: GALLOWS.z, y: { terrain: 0 } }, scale: 1.7, rotation: 90,
     ...body("hangman"), behavior: ["scripts/humanoid-locomotion.js", "scripts/hangman.js"],
     fx: { script: `fx\npop f rate=flick(.6,.3)*14 on=sphere(.12).c(2.4) life=.3..0.6 v=up(.3..0.7) size=.05..0.1 col=hdr(4,2.6,.9)>hdr(1.4,.5,.1) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 at=point().c(2.4) glo=fire() r=light(<1,.62,.3>,$glo*4,10)` } });
+  // the Ossuary Abbess: sleeps on her reliquary until a Bearer walks into the ossuary on her chapter; 150 s after she falls, the wax stands her up again
+  const abbess = objs["abbess"], acalled = ctx.place.players.some((p) => (p.state.quest?.stage ?? 0) === 24);
+  if (abbess && abbess.state.dead && now - abbess.state.deadAt > 150000 && !near(ctx, OSSUARY.x, OSSUARY.z, 22)) ctx.destroy("abbess");
+  else if (!abbess && acalled) ctx.spawn("abbess", { tags: ["enemy", "boss"], physics: "character", feetPosition: { x: RELIQUARY.x, z: RELIQUARY.z, y: { terrain: 0 } }, scale: 1.6, rotation: { lookAt: { x: OSSUARY.x + 10, y: 0, z: OSSUARY.z } },
+    ...body("abbess"), behavior: ["scripts/humanoid-locomotion.js", "scripts/abbess.js"],
+    fx: { script: `fx\npop m rate=7 on=sphere(.3).c(2.6) life=1.2..2 v=up(.2..0.5)+sdir()*.1 size=.03..0.06 col=hdr(.8,2.2,2.1) a=0>.9:1>0 r=sprite(mote,add)\npop c rate=flick(.5,.3)*16 on=point().c(2.75) life=.3..0.5 v=up(.4..0.8) size=.05..0.09 col=hdr(1.2,2.6,2.6)>hdr(.3,.8,.9) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 at=point().c(2.7) glo=fire()*.8 r=light(<.6,.95,1>,$glo*4,10)` } });
   // the hanged hang until someone has cut them down
   const cutAny = new Set();
   for (const p of ctx.place.players) { const qq = p.state.quest; if (!qq) continue; if (p.state.menu) continue; if (qq.stage === 20) GIBBETS.forEach((g) => cutAny.add(g.id)); else if (qq.stage === 19) (qq.cut ?? []).forEach((id) => cutAny.add(id)); }
@@ -270,6 +287,18 @@ export function tick(ctx) {
         next = { stage: 17 };
       }
       else if (q.stage === 17) next = { stage: 18 };
+      else if (q.stage === 22) next = { stage: 23 };
+      else if (q.stage === 25) {
+        if (!s.claimed?.["Z01-MAIN-10"]) {
+          s.claimed = { ...(s.claimed ?? {}), "Z01-MAIN-10": now };
+          s.xp = (s.xp ?? 0) + 1300; s.copper = (s.copper ?? 0) + E.quests["Z01-MAIN-10"]; s.maxHp = (s.maxHp ?? 100) + 10; s.hp = s.maxHp; s.tonics = Math.max(s.tonics ?? 0, 5);
+          ctx.emit("playSound", { clip: "/cdn/moodboard-gothic-horror/sfx-quest-complete-low-bells-and-choir.mp3", position: p.feetPosition, volume: 1 }, { audience: { player: p.id } });
+          ctx.emit("screenFlash", { color: "#bff3ee", duration: 0.4, intensity: 0.12 }, { audience: { player: p.id } });
+          ctx.emit("damageNumber", { position: { ...p.feetPosition, y: p.feetPosition.y + 2.6 }, text: "THE THIRD LANTERN · +10 LIFE", color: "#bff3ee", size: 1.2 }, { audience: { player: p.id } });
+          ctx.emit("milestone", { step: 26, name: "ossuary-chapter-complete" }, { audience: { player: p.id } });
+        }
+        next = { stage: 26 };
+      }
       else if (q.stage === 21) {
         if (!s.claimed?.["Z01-MAIN-09"]) {
           s.claimed = { ...(s.claimed ?? {}), "Z01-MAIN-09": now };
@@ -346,6 +375,10 @@ export function tick(ctx) {
       }
     }
     if (!next && q.stage === 20 && s.hangmanKilled) next = { stage: 21 };
+    // the Ossuary
+    if (!next && q.stage === 23 && Math.hypot(px - OSSUARY.x, pz - OSSUARY.z) < OSSUARY.r - 3) next = { stage: 24 };
+    if (!next && q.stage === 24 && s.abbessKilled) next = { stage: 25 };
+    if (q.stage < 24 && s.abbessKilled) s.abbessKilled = false;
     if (q.stage < 20 && s.hangmanKilled) s.hangmanKilled = false;
     if (next) {
       s.quest = { ...q, ...next, heardAt: talked ? s.talk.at : q.heardAt };
@@ -367,21 +400,21 @@ export function tick(ctx) {
 }
 
 function musicTick(ctx, st, now, objs) {
-  if (!st.bedsV6) { st.bedsV6 = true;
+  if (!st.bedsV7) { st.bedsV7 = true;
     for (const b of BEDS) if (!(b.id in objs)) ctx.spawn(b.id, { tags: ["ambience"], feetPosition: { x: b.x, y: 1.5, z: b.z },
       audio: { clip: `/cdn/moodboard-gothic-horror/${b.clip}.mp3`, loop: true, gain: b.gain, spatial: b.spatial ?? true, maxDistance: b.max ?? 40, bus: "Ambience" } }); }
   const boss = objs["bailiff"]?.state;
   let fighting = false;
   for (const e of ctx.query({ tags: ["enemy"] })) if (e.state?.hunting && !e.state?.dead) { fighting = true; break; }
   if (fighting) st.fightUntil = now + 6000; // a short tail so the drums don't stutter between pulls
-  const rg = objs["ringer"]?.state, wd = objs["warden"]?.state, hg = objs["hangman"]?.state;
+  const rg = objs["ringer"]?.state, wd = objs["warden"]?.state, hg = objs["hangman"]?.state, ab = objs["abbess"]?.state;
   const live = ctx.place.players.filter((p) => p.state?.charId && !p.state?.menu && !p.state?.dead);
   if (!live.length) return; // nobody on the road: the Veil owns the jukebox
   const tally = {}; for (const p of live) { const z = ZONE_MOOD[p.state.area] ?? "road"; tally[z] = (tally[z] ?? 0) + 1; }
   const rest = Object.entries(tally).sort((a, b) => b[1] - a[1])[0][0];
   const up = (b) => b?.engaged && !b?.dead;
-  const mood = up(boss) ? "bailiff" : up(rg) ? "ringer" : up(wd) ? "warden" : up(hg) ? "hangman" : now < (st.fightUntil ?? 0) ? "fight" : rest;
-  const calm = !["bailiff", "ringer", "warden", "hangman", "fight"].includes(mood);
+  const mood = up(boss) ? "bailiff" : up(rg) ? "ringer" : up(wd) ? "warden" : up(hg) ? "hangman" : up(ab) ? "abbess" : now < (st.fightUntil ?? 0) ? "fight" : rest;
+  const calm = !["bailiff", "ringer", "warden", "hangman", "abbess", "fight"].includes(mood);
   if (mood !== st.mood || ctx.music.now()?.ref !== TRACKS[mood]) { st.mood = mood; ctx.music?.play(TRACKS[mood], { fade: calm ? 4 : 1.2, volume: calm ? 0.7 : 0.8 }); }
   if (now > (st.distantAt ?? 0)) {
     st.distantAt = now + 22000 + ctx.random() * 23000;
