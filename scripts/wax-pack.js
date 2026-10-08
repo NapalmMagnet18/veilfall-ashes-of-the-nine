@@ -20,7 +20,7 @@ const MUTTER = {
   flagellant: { clip: "penitent-murmured-litany-and-soft-chain-clink", lines: ["...one stroke for the first flame...", "...I was the one who let it go out...", "...again. again.", "...the wax remembers my sin..."] },
   deacon: { clip: "huge-wax-priest-low-droning-sermon-murmur", lines: ["...AND THE NINE WERE GIVEN TO ASH...", "...kneel, little candle...", "...tithe your light...", "...the Veil keeps what it is owed..."] },
 };
-const EAR = 14, mutterAt = new Map();
+const EAR = 24, mutterAt = new Map();
 function mutter(ctx, w, s, f, now, players) {
   const next = mutterAt.get(w.id);
   if (next === undefined) { mutterAt.set(w.id, now + 3000 + ctx.random() * 9000); return; }
