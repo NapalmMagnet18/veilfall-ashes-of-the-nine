@@ -297,7 +297,7 @@ en-d2:
   bones: {}
   castShadow: true
   feetPosition: {x: -0.15367915862235804, y: -0.01744058525764336, z: -66.97078594245829}
-  fx: {params: {}, script: "fx\npop f rate=flick(.5,.3)*18 on=point().c(2.38) life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 on=point().c(2.38) glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)"}
+  fx: {params: {}, script: "fx\npop f rate=flick(.5,.3)*18 on=disc(.02).c(2.38) life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 at=disc(.02).c(2.38) glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)"}
   id: en-d2
   layout: {maxExtents: {y: 1.8}}
   material: {key: Std/PBR-VPBR}
@@ -319,7 +319,7 @@ en-p10:
   bones: {}
   castShadow: true
   feetPosition: {x: -7.478544757094638, y: -0.03727057056189975, z: -68.21128363005695}
-  fx: {params: {}, script: "fx\npop f rate=flick(.5,.3)*18 on=point().c(1.65) life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 on=point().c(1.65) glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)"}
+  fx: {params: {}, script: "fx\npop f rate=flick(.5,.3)*18 on=disc(.02).c(1.65) life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 at=disc(.02).c(1.65) glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)"}
   id: en-p10
   layout: {maxExtents: {y: 1.7}}
   material: {key: Std/PBR-VPBR}
@@ -341,7 +341,7 @@ en-p8:
   bones: {}
   castShadow: true
   feetPosition: {x: -3.9946843340839875, y: 0.022836172377456943, z: -68.5921427555412}
-  fx: {params: {}, script: "fx\npop f rate=flick(.5,.3)*18 on=point().c(1.65) life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 on=point().c(1.65) glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)"}
+  fx: {params: {}, script: "fx\npop f rate=flick(.5,.3)*18 on=disc(.02).c(1.65) life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 at=disc(.02).c(1.65) glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)"}
   id: en-p8
   layout: {maxExtents: {y: 1.7}}
   material: {key: Std/PBR-VPBR}
@@ -363,7 +363,7 @@ en-p9:
   bones: {}
   castShadow: true
   feetPosition: {x: -2.198977962285297, y: 0.013712781637712057, z: -68.90750835173488}
-  fx: {params: {}, script: "fx\npop f rate=flick(.5,.3)*18 on=point().c(1.65) life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 on=point().c(1.65) glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)"}
+  fx: {params: {}, script: "fx\npop f rate=flick(.5,.3)*18 on=disc(.02).c(1.65) life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 at=disc(.02).c(1.65) glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)"}
   id: en-p9
   layout: {maxExtents: {y: 1.7}}
   material: {key: Std/PBR-VPBR}
