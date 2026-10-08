@@ -24,7 +24,7 @@ function herald(ctx, fall) {
   ctx.emit("playSound", { clip: TOLL, position: at, volume: 0.9, maxDistance: 40 }, aud);
   ctx.emit("playSound", { clip: line, position: at, volume: 1, maxDistance: 40 }, aud);
   ctx.emit("damageNumber", { position: at, text: (ctx.self.state.lastCall = `${name} has fallen · slain by ${who}`), color: "#ff9a6a", size: 2.2, lifetime: 7 }, aud);
-  ctx.self.anim.talk = { clip: "talk", weight: 1 }; ctx.after(5, "quiet");
+  ctx.self.anim.talk = { clip: "cdn/clip-wave.glb", weight: 4, loop: "once", mask: { from: "Spine" } }; ctx.after(5, "quiet");
 }
 const me = { leg: 0, pause: 0, callAt: 0, seen: 0, n: 0, told: {} }; // told: charId → sold count he already announced
 export function onSpawn(ctx) { ctx.self.state.turnTo = "none"; }
