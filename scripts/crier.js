@@ -24,6 +24,7 @@ async function call(ctx, listener) {
   ctx.emit("playSound", { clip: BELL, position: at, volume: 0.55 }, aud);
   ctx.emit("playSound", { clip: row ? CALLS[me.n % CALLS.length] : BARE[me.n % BARE.length], position: at, volume: 0.9, maxDistance: EAR + 6 }, aud);
   const text = row ? (() => { const it = JSON.parse(row.item); return `${it.n} · ${fmt(row.price)} · from ${row.seller_name}`; })() : "The board stands bare";
+  ctx.log("crier call", { text });
   ctx.emit("damageNumber", { position: at, text, color: row ? "#f2d38a" : "#b9ae98", size: 0.9, lifetime: 4 }, aud);
   ctx.self.anim.talk = { clip: "cdn/clip-wave.glb", weight: 4, loop: "once", mask: { from: "Spine" } };
   ctx.after(2.4, "quiet");
