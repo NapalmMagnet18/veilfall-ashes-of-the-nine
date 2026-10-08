@@ -221,7 +221,7 @@ export default function (ctx, player) {
       <div style="position:absolute;inset:0;width:${(boss.hp / boss.max) * 100}%;background:linear-gradient(#c9402f,#7a1610);transition:width .2s"></div>
       <div style="position:absolute;top:0;bottom:0;left:70%;width:2px;background:#0d0b0a"></div><div style="position:absolute;top:0;bottom:0;left:35%;width:2px;background:#0d0b0a"></div>
     </div><div class="lbl" style="margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:clamp(9px,1.6vw,12px)">${boss.phase === 1 ? "PHASE I · wedge: get behind him · marked: step away" : boss.phase === 2 ? `PHASE II · break the ledger pillars (${boss.ledgers} lit)` : "PHASE III · arc, debt, then he falters"}${boss.fray ? ` · FRAY ×${boss.fray} (+${boss.fray * 10}% damage taken)` : ""}</div></div>` : ""}
-  ${ban ? `<div id="ban${ban.at}" class="absolute vfban" style="left:50%;top:${touch ? 64 : 120}px;transform:translateX(-50%);width:min(520px,calc(100vw - 2*${rail}));text-align:center;pointer-events:none">
+  ${ban ? `<div id="ban${ban.at}" class="absolute vfban" style="left:50%;top:${touch ? "36vh" : "120px"};transform:translateX(-50%);width:min(520px,calc(100vw - 2*${rail}));text-align:center;pointer-events:none">
     ${ban.fresh ? `<div class="lbl" style="letter-spacing:.32em;color:#6DB8C0">AREA DISCOVERED</div>` : ""}
     <div style="font-size:clamp(22px,4vw,34px);letter-spacing:.14em;color:var(--wax);text-shadow:0 2px 0 #0d0b0a,0 0 18px rgba(196,156,99,.45)">${ban.name.toUpperCase()}</div>
     <div class="dv d${ban.fresh ? "f1" : "f0"}" style="width:min(100%,360px)"></div>
