@@ -254,6 +254,182 @@ candle-road/wagon-lantern-glow:
   material: {pbr: true}
   parent: candle-road
   tags: [z01-dressing, road]
+en-d1:
+  animated3DCharacter: {modelId: cdn/model-tall-wax-deacon-priest-melting-candle-flesh-iron-censer-chain-tattered-vestments-dark-fantasy.glb}
+  behavior: [scripts/humanoid-locomotion.js]
+  bones: {}
+  castShadow: true
+  feetPosition: {x: 4.526216506191619, y: 0.06623440195017194, z: -45.10059384882476}
+  fx: {params: {}, paused: false, script: "fx\npop f rate=flick(.5,.3)*18 on=point() life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)", seed: 2722077792}
+  id: en-d1
+  layout: {maxExtents: {y: 1.8}}
+  material: {key: Std/PBR-VPBR}
+  mixer: {_default: {clip: "", loop: loop, speed: 1, weight: 1}}
+  model: cdn/model-tall-wax-deacon-priest-melting-candle-flesh-iron-censer-chain-tattered-vestments-dark-fantasy.glb
+  physics: {body: character, capsule: {height: 1.9, radius: 0.35}, collider: capsule}
+  receiveShadow: true
+  render: true
+  rotation: {w: 0.22426114976406097, x: 0, y: 0.9745290875434875, z: 0}
+  scale: {x: 1.350000023841858, y: 1.350000023841858, z: 1.350000023841858}
+  state: {home: {x: 8, y: 0, z: -46}, hp: 170, hunting: false, kind: deacon, maxHp: 170, nextAtk: 42886733.333333336, roam: {x: 4.266116380691528, z: -44.5653874874115}, roamUntil: 43412390.11783501, slam: null, yawW: 154.0811309956721}
+  tags: [enemy, deacon]
+  visible: true
+  visibleTo: all
+  yaw: 154.0811303681293
+en-p1:
+  animated3DCharacter: {modelId: cdn/model-hunched-pilgrim-made-of-melted-candle-wax-hooded-robe-dripping-wax-candle-burning-on-head-dark-fantasy.glb}
+  behavior: [scripts/humanoid-locomotion.js]
+  bones: {}
+  castShadow: true
+  feetPosition: {x: -0.1767775884403256, y: 0.10608239969305999, z: -20.050842161012156}
+  fx: {params: {}, paused: false, script: "fx\npop f rate=flick(.5,.3)*18 on=point() life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)", seed: 3127992052}
+  id: en-p1
+  layout: {maxExtents: {y: 1.7}}
+  material: {key: Std/PBR-VPBR}
+  mixer: {_default: {clip: "", loop: loop, speed: 1, weight: 1}}
+  model: cdn/model-hunched-pilgrim-made-of-melted-candle-wax-hooded-robe-dripping-wax-candle-burning-on-head-dark-fantasy.glb
+  physics: {body: character, capsule: {height: 1.9, radius: 0.35}, collider: capsule}
+  receiveShadow: true
+  render: true
+  rotation: {w: 0.7256982922554016, x: 0, y: -0.6880130767822266, z: 0}
+  scale: {x: 1, y: 1, z: 1}
+  state: {home: {x: -1, y: 0, z: -21}, hp: 40, kind: pilgrim, maxHp: 40, roam: {x: 2.9230291843414307, z: -20.2190762758255}, roamUntil: 43407165.29495952, yawW: -86.94606100202539}
+  tags: [enemy, pilgrim]
+  visible: true
+  visibleTo: all
+  yaw: -86.94606351272118
+en-p2:
+  animated3DCharacter: {modelId: cdn/model-hunched-pilgrim-made-of-melted-candle-wax-hooded-robe-dripping-wax-candle-burning-on-head-dark-fantasy.glb}
+  behavior: [scripts/humanoid-locomotion.js]
+  bones: {}
+  castShadow: true
+  feetPosition: {x: 1.1317156306283471, y: 0.10746907614210466, z: -19.78887680998119}
+  fx: {params: {}, paused: false, script: "fx\npop f rate=flick(.5,.3)*18 on=point() life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)", seed: 3178324909}
+  id: en-p2
+  layout: {maxExtents: {y: 1.7}}
+  material: {key: Std/PBR-VPBR}
+  mixer: {_default: {clip: "", loop: loop, speed: 1, weight: 1}}
+  model: cdn/model-hunched-pilgrim-made-of-melted-candle-wax-hooded-robe-dripping-wax-candle-burning-on-head-dark-fantasy.glb
+  physics: {body: character, capsule: {height: 1.9, radius: 0.35}, collider: capsule}
+  receiveShadow: true
+  render: true
+  rotation: {w: 0.2954500913619995, x: 0, y: -0.9553582072257996, z: 0}
+  scale: {x: 1, y: 1, z: 1}
+  state: {home: {x: 3, y: 0, z: -23}, hp: 40, kind: pilgrim, maxHp: 40, roam: {x: 1.4605165719985962, z: -19.30811834335327}, roamUntil: 43410718.94731242, yawW: -145.63094389793739}
+  tags: [enemy, pilgrim]
+  visible: true
+  visibleTo: all
+  yaw: -145.63094548341246
+en-p3:
+  animated3DCharacter: {modelId: cdn/model-hunched-pilgrim-made-of-melted-candle-wax-hooded-robe-dripping-wax-candle-burning-on-head-dark-fantasy.glb}
+  behavior: [scripts/humanoid-locomotion.js]
+  bones: {}
+  castShadow: true
+  feetPosition: {x: 3.4073927932012618, y: 0.07822031712704858, z: -28.691681336297286}
+  fx: {params: {}, paused: false, script: "fx\npop f rate=flick(.5,.3)*18 on=point() life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)", seed: 3161547290}
+  id: en-p3
+  layout: {maxExtents: {y: 1.7}}
+  material: {key: Std/PBR-VPBR}
+  mixer: {_default: {clip: "", loop: loop, speed: 1, weight: 1}}
+  model: cdn/model-hunched-pilgrim-made-of-melted-candle-wax-hooded-robe-dripping-wax-candle-burning-on-head-dark-fantasy.glb
+  physics: {body: character, capsule: {height: 1.9, radius: 0.35}, collider: capsule}
+  receiveShadow: true
+  render: true
+  rotation: {w: 0.7544941306114197, x: 0, y: -0.6563067436218262, z: 0}
+  scale: {x: 1, y: 1, z: 1}
+  state: {home: {x: 0, y: 0, z: -29}, hp: 11, hunting: false, kind: pilgrim, lastHit: "player/c_actor:pa_decf43708bb35452f7c8d1e1c1f7435c", maxHp: 40, nextAtk: 43153066.666666664, roam: {x: 3.9935836791992188, z: -28.773526921868324}, roamUntil: 43410297.680447124, yawW: -82.0376206870766}
+  tags: [enemy, pilgrim]
+  visible: true
+  visibleTo: all
+  yaw: -82.03761674466656
+en-p4:
+  animated3DCharacter: {modelId: cdn/model-hunched-pilgrim-made-of-melted-candle-wax-hooded-robe-dripping-wax-candle-burning-on-head-dark-fantasy.glb}
+  behavior: [scripts/humanoid-locomotion.js]
+  bones: {}
+  castShadow: true
+  feetPosition: {x: 3.1198194335428586, y: -0.009073516646360358, z: -34.25906317028838}
+  fx: {params: {}, paused: false, script: "fx\npop f rate=flick(.5,.3)*18 on=point() life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)", seed: 3077659195}
+  id: en-p4
+  layout: {maxExtents: {y: 1.7}}
+  material: {key: Std/PBR-VPBR}
+  mixer: {_default: {clip: "", loop: loop, speed: 1, weight: 1}}
+  model: cdn/model-hunched-pilgrim-made-of-melted-candle-wax-hooded-robe-dripping-wax-candle-burning-on-head-dark-fantasy.glb
+  physics: {body: character, capsule: {height: 1.9, radius: 0.35}, collider: capsule}
+  receiveShadow: true
+  render: true
+  rotation: {w: 0.6485544443130493, x: 0, y: 0.7611682415008545, z: 0}
+  scale: {x: 1, y: 1, z: 1}
+  state: {home: {x: 3, y: 0, z: -31}, hp: 11, hunting: false, kind: pilgrim, lastHit: "player/c_actor:pa_decf43708bb35452f7c8d1e1c1f7435c", maxHp: 40, nextAtk: 43153700, roam: {x: 0.12097358703613281, z: -33.77690601348877}, roamUntil: 43414671.94803519, yawW: 99.13459504761568}
+  tags: [enemy, pilgrim]
+  visible: true
+  visibleTo: all
+  yaw: 99.13459243033765
+en-p5:
+  animated3DCharacter: {modelId: cdn/model-hunched-pilgrim-made-of-melted-candle-wax-hooded-robe-dripping-wax-candle-burning-on-head-dark-fantasy.glb}
+  behavior: [scripts/humanoid-locomotion.js]
+  bones: {}
+  castShadow: true
+  feetPosition: {x: -2.3451324725238107, y: 0.0003127146628354449, z: -35.284359972383804}
+  fx: {params: {}, paused: false, script: "fx\npop f rate=flick(.5,.3)*18 on=point() life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)", seed: 3060881576}
+  id: en-p5
+  layout: {maxExtents: {y: 1.7}}
+  material: {key: Std/PBR-VPBR}
+  mixer: {_default: {clip: "", loop: loop, speed: 1, weight: 1}}
+  model: cdn/model-hunched-pilgrim-made-of-melted-candle-wax-hooded-robe-dripping-wax-candle-burning-on-head-dark-fantasy.glb
+  physics: {body: character, capsule: {height: 1.9, radius: 0.35}, collider: capsule}
+  receiveShadow: true
+  render: true
+  rotation: {w: 0.9494714736938477, x: 0, y: 0.31385332345962524, z: 0}
+  scale: {x: 1, y: 1, z: 1}
+  state: {home: {x: -2, y: 0, z: -33}, hp: 40, hunting: false, kind: pilgrim, maxHp: 40, nextAtk: 43104766.666666664, roam: {x: -3.4239985942840576, z: -36.73794436454773}, roamUntil: 43408199.368274085, yawW: 36.58320694935656}
+  tags: [enemy, pilgrim]
+  visible: true
+  visibleTo: all
+  yaw: 36.583207530997775
+en-p6:
+  animated3DCharacter: {modelId: cdn/model-hunched-pilgrim-made-of-melted-candle-wax-hooded-robe-dripping-wax-candle-burning-on-head-dark-fantasy.glb}
+  behavior: [scripts/humanoid-locomotion.js]
+  bones: {}
+  castShadow: true
+  feetPosition: {x: 6.137017476162185, y: 0.029418135359391195, z: -40.52081255017505}
+  fx: {params: {}, paused: false, script: "fx\npop f rate=flick(.5,.3)*18 on=point() life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)", seed: 3111214433}
+  id: en-p6
+  layout: {maxExtents: {y: 1.7}}
+  material: {key: Std/PBR-VPBR}
+  mixer: {_default: {clip: "", loop: loop, speed: 1, weight: 1}}
+  model: cdn/model-hunched-pilgrim-made-of-melted-candle-wax-hooded-robe-dripping-wax-candle-burning-on-head-dark-fantasy.glb
+  physics: {body: character, capsule: {height: 1.9, radius: 0.35}, collider: capsule}
+  receiveShadow: true
+  render: true
+  rotation: {w: 0.6171011924743652, x: 0, y: -0.7868838310241699, z: 0}
+  scale: {x: 1, y: 1, z: 1}
+  state: {home: {x: 5, y: 0, z: -44}, hp: 23, hunting: false, kind: pilgrim, lastHit: null, maxHp: 40, nextAtk: 42884100, roam: {x: 6.703937292098999, z: -40.38107776641846}, roamUntil: 43407428.03545216, yawW: -103.79048911800324}
+  tags: [enemy, pilgrim]
+  visible: true
+  visibleTo: all
+  yaw: -103.79049289381312
+en-p7:
+  animated3DCharacter: {modelId: cdn/model-hunched-pilgrim-made-of-melted-candle-wax-hooded-robe-dripping-wax-candle-burning-on-head-dark-fantasy.glb}
+  behavior: [scripts/humanoid-locomotion.js]
+  bones: {}
+  castShadow: true
+  feetPosition: {x: 13.323796673129104, y: 0.07000000029802322, z: -47.420072167698464}
+  fx: {params: {}, paused: false, script: "fx\npop f rate=flick(.5,.3)*18 on=point() life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)", seed: 3094436814}
+  id: en-p7
+  layout: {maxExtents: {y: 1.7}}
+  material: {key: Std/PBR-VPBR}
+  mixer: {_default: {clip: "", loop: loop, speed: 1, weight: 1}}
+  model: cdn/model-hunched-pilgrim-made-of-melted-candle-wax-hooded-robe-dripping-wax-candle-burning-on-head-dark-fantasy.glb
+  physics: {body: character, capsule: {height: 1.9, radius: 0.35}, collider: capsule}
+  receiveShadow: true
+  render: true
+  rotation: {w: 0.9973754286766052, x: 0, y: 0.07240353524684906, z: 0}
+  scale: {x: 1, y: 1, z: 1}
+  state: {home: {x: 10, y: 0, z: -49}, hp: 40, hunting: false, kind: pilgrim, maxHp: 40, nextAtk: 42883400, roam: {x: 12.65081524848938, z: -51.99552631378174}, roamUntil: 43413424.20974262, yawW: 8.304100450445544}
+  tags: [enemy, pilgrim]
+  visible: true
+  visibleTo: all
+  yaw: 8.30410025306481
 ruin-road:
   feetPosition: {x: 0, y: 0, z: 0}
   id: ruin-road

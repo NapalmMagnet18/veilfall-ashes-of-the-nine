@@ -1,4 +1,26 @@
 # spawn-scene v2 yaml x0z-1
+bailiff:
+  animated3DCharacter: {modelId: cdn/model-giant-wax-bailiff-tax-collector-crown-of-burning-candles-iron-ledger-chained-to-chest-bell-mace-dark-fantasy-boss.glb}
+  behavior: [scripts/humanoid-locomotion.js, scripts/bailiff.js]
+  bones: {}
+  castShadow: true
+  feetPosition: {x: 0.05262211337685585, y: 0.014634723938172112, z: -110.08503477275372}
+  fx: {params: {}, paused: false, script: "fx\npop f rate=flick(.6,.3)*40 on=disc(.35).c(3.9) life=.25..0.5 v=up(.6..1.1) size=.06..0.12 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 at=point().c(4) glo=fire() r=light(<1,.55,.25>,$glo*4,10)", seed: 1884452062}
+  id: bailiff
+  layout: {maxExtents: {y: 2}}
+  material: {key: Std/PBR-VPBR}
+  mixer: {idle: {blendIn: 0.15, clip: Idle, loop: loop, startTick: 1302200, weight: 1}, run: {blendIn: 0.15, clip: Run, loop: loop, speed: 1, startTick: 1302200, weight: 0.001}, walk: {blendIn: 0.15, clip: Walk, loop: loop, speed: 1, startTick: 1302200, weight: 0.001}}
+  model: cdn/model-giant-wax-bailiff-tax-collector-crown-of-burning-candles-iron-ledger-chained-to-chest-bell-mace-dark-fantasy-boss.glb
+  physics: {body: character, capsule: {height: 1.9, radius: 0.35}, collider: capsule}
+  receiveShadow: true
+  render: true
+  rotation: {w: 0.1289522647857666, x: 0, y: -0.9916508197784424, z: 0}
+  scale: {x: 2.0999999046325684, y: 2.0999999046325684, z: 2.0999999046325684}
+  state: {__onSpawnRan: true, cast: null, emptySince: 42798533.333333336, engaged: false, fray: 0, frayAt: 42792866.666666664, hp: 900, kind: bailiff, lastHit: "player/c_actor:pa_41cfa791f39dcb1851bf98bca54b6788", ledgersLit: false, ledgersUp: 0, maxHp: 900, next: 42800566.666666664, nextSwing: 42798566.666666664, phase: 1, turn: 13, walkerAt: 42804866.666666664}
+  tags: [enemy, boss]
+  visible: true
+  visibleTo: all
+  yaw: -165.18189695048747
 bailiff-arena:
   feetPosition: {x: 0, y: {terrain: 0}, z: -105}
   id: bailiff-arena
@@ -269,6 +291,94 @@ dripping-gate/gate-flames-3:
   id: dripping-gate/gate-flames-3
   parent: dripping-gate
   tags: [z01-dressing, gate]
+en-d2:
+  animated3DCharacter: {modelId: cdn/model-tall-wax-deacon-priest-melting-candle-flesh-iron-censer-chain-tattered-vestments-dark-fantasy.glb}
+  behavior: [scripts/humanoid-locomotion.js]
+  bones: {}
+  castShadow: true
+  feetPosition: {x: -0.15367915862235804, y: -0.01744058525764336, z: -66.97078594245829}
+  fx: {params: {}, paused: false, script: "fx\npop f rate=flick(.5,.3)*18 on=point() life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)", seed: 2772410649}
+  id: en-d2
+  layout: {maxExtents: {y: 1.8}}
+  material: {key: Std/PBR-VPBR}
+  mixer: {_default: {clip: "", loop: loop, speed: 1, weight: 1}}
+  model: cdn/model-tall-wax-deacon-priest-melting-candle-flesh-iron-censer-chain-tattered-vestments-dark-fantasy.glb
+  physics: {body: character, capsule: {height: 1.9, radius: 0.35}, collider: capsule}
+  receiveShadow: true
+  render: true
+  rotation: {w: 0.7129387259483337, x: 0, y: 0.7012263536453247, z: 0}
+  scale: {x: 1.350000023841858, y: 1.350000023841858, z: 1.350000023841858}
+  state: {home: {x: -2, y: 0, z: -68}, hp: 170, hunting: false, kind: deacon, maxHp: 170, nextAtk: 42953166.666666664, roam: {x: -5.889379501342773, z: -67.06580090522766}, roamUntil: 43408545.074450284, slam: null, yawW: 89.05095454949407}
+  tags: [enemy, deacon]
+  visible: true
+  visibleTo: all
+  yaw: 89.05095506298449
+en-p10:
+  animated3DCharacter: {modelId: cdn/model-hunched-pilgrim-made-of-melted-candle-wax-hooded-robe-dripping-wax-candle-burning-on-head-dark-fantasy.glb}
+  behavior: [scripts/humanoid-locomotion.js]
+  bones: {}
+  castShadow: true
+  feetPosition: {x: -7.478544757094638, y: -0.03727057056189975, z: -68.21128363005695}
+  fx: {params: {}, paused: false, script: "fx\npop f rate=flick(.5,.3)*18 on=point() life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)", seed: 1148726924}
+  id: en-p10
+  layout: {maxExtents: {y: 1.7}}
+  material: {key: Std/PBR-VPBR}
+  mixer: {_default: {clip: "", loop: loop, speed: 1, weight: 1}}
+  model: cdn/model-hunched-pilgrim-made-of-melted-candle-wax-hooded-robe-dripping-wax-candle-burning-on-head-dark-fantasy.glb
+  physics: {body: character, capsule: {height: 1.9, radius: 0.35}, collider: capsule}
+  receiveShadow: true
+  render: true
+  rotation: {w: 0.8095487356185913, x: 0, y: 0.5870527029037476, z: 0}
+  scale: {x: 1, y: 1, z: 1}
+  state: {home: {x: -5, y: 0, z: -71}, hp: 40, hunting: false, kind: pilgrim, maxHp: 40, nextAtk: 42954533.333333336, roam: {x: -8.03348183631897, z: -68.39270496368408}, roamUntil: 43408554.60873271, yawW: 71.89627192065755}
+  tags: [enemy, pilgrim]
+  visible: true
+  visibleTo: all
+  yaw: 71.89627403706582
+en-p8:
+  animated3DCharacter: {modelId: cdn/model-hunched-pilgrim-made-of-melted-candle-wax-hooded-robe-dripping-wax-candle-burning-on-head-dark-fantasy.glb}
+  behavior: [scripts/humanoid-locomotion.js]
+  bones: {}
+  castShadow: true
+  feetPosition: {x: -3.9946843340839875, y: 0.022836172377456943, z: -68.5921427555412}
+  fx: {params: {}, paused: false, script: "fx\npop f rate=flick(.5,.3)*18 on=point() life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)", seed: 3010548719}
+  id: en-p8
+  layout: {maxExtents: {y: 1.7}}
+  material: {key: Std/PBR-VPBR}
+  mixer: {_default: {clip: "", loop: loop, speed: 1, weight: 1}}
+  model: cdn/model-hunched-pilgrim-made-of-melted-candle-wax-hooded-robe-dripping-wax-candle-burning-on-head-dark-fantasy.glb
+  physics: {body: character, capsule: {height: 1.9, radius: 0.35}, collider: capsule}
+  receiveShadow: true
+  render: true
+  rotation: {w: 0.9045048952102661, x: 0, y: -0.42646318674087524, z: 0}
+  scale: {x: 1, y: 1, z: 1}
+  state: {home: {x: -3, y: 0, z: -65}, hp: 40, kind: pilgrim, maxHp: 40, roam: {x: -3.5454476475715637, z: -68.96263647079468}, roamUntil: 43408770.018739566, yawW: -50.48662732571321}
+  tags: [enemy, pilgrim]
+  visible: true
+  visibleTo: all
+  yaw: -50.48662635023854
+en-p9:
+  animated3DCharacter: {modelId: cdn/model-hunched-pilgrim-made-of-melted-candle-wax-hooded-robe-dripping-wax-candle-burning-on-head-dark-fantasy.glb}
+  behavior: [scripts/humanoid-locomotion.js]
+  bones: {}
+  castShadow: true
+  feetPosition: {x: -2.198977962285297, y: 0.013712781637712057, z: -68.90750835173488}
+  fx: {params: {}, paused: false, script: "fx\npop f rate=flick(.5,.3)*18 on=point() life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)", seed: 2993771100}
+  id: en-p9
+  layout: {maxExtents: {y: 1.7}}
+  material: {key: Std/PBR-VPBR}
+  mixer: {_default: {clip: "", loop: loop, speed: 1, weight: 1}}
+  model: cdn/model-hunched-pilgrim-made-of-melted-candle-wax-hooded-robe-dripping-wax-candle-burning-on-head-dark-fantasy.glb
+  physics: {body: character, capsule: {height: 1.9, radius: 0.35}, collider: capsule}
+  receiveShadow: true
+  render: true
+  rotation: {w: 0.7745883464813232, x: 0, y: -0.6324657201766968, z: 0}
+  scale: {x: 1, y: 1, z: 1}
+  state: {home: {x: 0, y: 0, z: -69}, hp: 40, kind: pilgrim, maxHp: 40, roam: {x: 3.8344342708587646, z: -70.13890886306763}, roamUntil: 43410178.689447105, yawW: -78.46454382656782}
+  tags: [enemy, pilgrim]
+  visible: true
+  visibleTo: all
+  yaw: -78.4645481203619
 ruin-road/brazier-12:
   children: [{audio: {clip: /cdn/moodboard-realistic-gritty/sfx-iron-brazier-fire-crackle-loop.mp3, gain: 0.12, loop: true, maxDistance: 12}, feetPosition: {x: 0, y: 1.42, z: 0}, fx: {script: "fx\npop coals n=5 on=disc(.25) size=.05..0.1 tint=<2.4,.9,.25>..<1.1,.3,.08> sz=$size*flick(.5,.12) col=$tint*flick(.8,.3) a=.9 r=sprite(soft-disc,add)\npop flame rate=flick(.45,.2)*40 on=disc(.22) life=.4..0.75 v=up(1.4)+cone(20)*(.3..0.7) size=.18..0.34 acc=curl(.5)*1.2+buoy(2.2)+drag(1.5)\n  sz=$size*(.5>.25:1>.7:.7>.14) col=hdr(4.6,3.4,1.4)>.3:hdr(3.2,1.4,.3)>.65:hdr(1.8,.5,.1)>hdr(.6,.12,.03) a=0>.12:1>.75:.85>0 rot=spin(.2) r=sprite(flame-wisp,add)\npop embers rate=3 on=disc(.2) life=.8..1.6 v=up(2)+cone(30)*(.4..1.2) size=.02..0.04 acc=curl(.8)+grav()*.4+drag(.5) col=hdr(5,2.8,.8)>.6:hdr(2.4,.8,.15)>hdr(1,.22,.04) a=(0>.08:1>.65:.9>0)*flick(11,.35) r=sprite(ember,add,velocity,.02)\npop smoke on=@flame?.15 inh=p;v:$v*.4 life=1.6..2.6 size=.14..0.22 acc=buoy(.9)+curl(.35)*.5+drag(.8) sz=$size*(.7>3) col=<.22,.2,.2> a=0>.22:.3>.7:.15>0 rot=spin(.15) r=sprite(smoke-puff,alpha)"}, id: flame, light: {color: "#ff9446", distance: 15, intensity: 16, kind: point}}]
   feetPosition: {x: 6.10786074565587, y: {terrain: 0}, z: -64.21264219772256}
