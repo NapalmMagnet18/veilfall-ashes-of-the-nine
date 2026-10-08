@@ -1,5 +1,5 @@
 // The Bearer's pack: paper doll left, 24-slot grid right, item cards on hover, a pinned card with its verbs below.
-import { SLOTS, TIER, icon, cardHTML, mitigation, sellValue, BAG } from "./loot.js";
+import { SLOTS, TIER, icon, cardHTML, mitigation, sellValue, BAG, forgeCost, forgeCan } from "./loot.js";
 import { coinHTML } from "./coins.js";
 
 const SLOT_POS = { helm: [70, 0], amulet: [134, 14], weapon: [6, 70], chest: [70, 66], gloves: [6, 140], ring: [134, 84], boots: [70, 140] };
@@ -72,6 +72,11 @@ export function packPanel(ctx, player, { rail, touch }) {
         ${s.shop ? `<button class="vb" onclick="${act("sell", `,u:'${sel.u}'`)}">SELL · ${sellValue(sel)}c</button>` : ""}
         <button class="vb" onclick="${act("sel")}">CANCEL</button>
       </div>
+      ${s.atForge ? `<div style="display:flex;flex-direction:column;gap:6px;padding-left:10px;border-left:1px solid #e0a86633">
+        <div style="font-size:10px;letter-spacing:.22em;color:#e0a866">THE WAYSIDE FORGE</div>
+        ${[["temper", "TEMPER", "+1 item level"], ["reforge", "REFORGE", "new affixes"], ["ascend", "ASCEND", "one tier up"]].map(([op, label, hint]) => { const no = forgeCan(sel, op), c = no ? null : forgeCost(sel, op), poor = c != null && (s.dust ?? 0) < c;
+          return `<button class="vb" ${no ? "disabled" : ""} style="${no ? "opacity:.35;" : poor ? "opacity:.6;" : "border-color:#e0a866aa;"}" title="${no ?? hint}" onclick="${act("forge", `,u:'${sel.u}',op:'${op}'`)}">${label}${no ? "" : ` · <img src="${icon("dust")}" style="width:13px;height:13px;vertical-align:-2px">${c}`}<div style="font-size:9px;letter-spacing:.1em;color:#9a907e">${no ?? hint}</div></button>`; }).join("")}
+      </div>` : ""}
       ${worn ? `<div style="opacity:.8"><div style="font-size:10px;letter-spacing:.2em;color:#9a907e;margin-bottom:3px">WORN</div>${cardHTML(worn, gear)}</div>` : ""}
     </div>` : `<div style="font-size:11px;color:#7d7466;margin-top:10px">${touch ? "tap an item to inspect" : "hover to read · click to inspect · double-click to equip"}</div>`}
     <button class="vb" style="margin-top:12px;width:100%" onclick="sendAction('menu',{a:'logout',n:Date.now()})">REST · CHARACTER SELECT</button>

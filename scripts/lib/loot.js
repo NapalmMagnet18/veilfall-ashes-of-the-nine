@@ -138,6 +138,7 @@ export function cardHTML(it, gear) {
     <div style="color:#9a907e;font-size:11px;letter-spacing:.14em;text-transform:uppercase">${T.name} ${slotOf(it)} · item level ${it.il}</div>
     <div style="height:1px;background:linear-gradient(90deg,transparent,${T.color}88,transparent);margin:5px 0"></div>
     ${lines}${setHTML}
+    ${it.tp ? `<div style="margin-top:4px;color:#e0a866;font-size:11px;letter-spacing:.12em">${"◆".repeat(it.tp)}${"◇".repeat(Math.max(0, L.forge.temper.max - it.tp))} TEMPERED</div>` : ""}
     ${relic ? `<div style="margin-top:6px;color:#c08850;font-style:italic;font-size:12px">"${relic.lore}"</div>` : ""}
     <div style="margin-top:6px;color:#7d7466;font-size:11px">sells for ${sellValue(it)}c · salvages to ${dustValue(it)} ash dust</div>
   </div>`;

@@ -2,7 +2,7 @@
 // Space: Griefstep dash toward the cursor. Q: tonic. WASD also walks. Hits are judged here, on the
 // striker's machine, and written to the enemy's state; the wax-pack manager reads hp and pays XP.
 import { body as heroBody } from "./lib/data/models.js";
-import { gearStats, mitigation, slotOf, sellValue, dustValue, SLOTS } from "./lib/loot.js";
+import { gearStats, mitigation, slotOf, sellValue, dustValue, SLOTS, forge, FORGE } from "./lib/loot.js";
 import { raycast, getInputRay } from "builtin/physics";
 import { findPath } from "builtin/nav";
 import { floorDist as mapFloor, areaAt } from "./lib/data/veilfall-map.js";
@@ -285,7 +285,21 @@ function deriveGear(ctx) {
   if (d) { s.maxHp = (s.maxHp ?? 100) + d; s.hp = Math.max(1, Math.min(s.maxHp, (s.hp ?? s.maxHp) + Math.max(0, d))); s.gearLife = g.life ?? 0; me.lastHp = s.hp; }
 }
 
-const ITEM_SFX = { equip: "armor-equip-leather-and-chainmail-rustle", sell: "coins-into-leather-purse", salvage: "salvage-item-crumble-to-ash-hiss", drop: "loot-drop-cloth-thud-soft" };
+// the Wayside Forge: within reach of the anvil the pack grows its three verbs
+const FORGE_HIT = `fx
+pop spark burst=40..60 on=point() life=.3..0.8 v=sdir()*(2..5)+up(1.5) size=.012..0.03 acc=grav()*.8+drag(.6) col=hdr(6,3,.8)>hdr(2,.6,.1) a=1>0 sz=$size floor=bounce(.3) r=sprite(ember,add,velocity,.03)
+pop glow burst=1 life=.35 at=point() r=light(<1,.6,.25>,25*(1>0),6)`;
+const FORGE_BIG = `fx
+pop spark burst=90 on=point() life=.5..1.3 v=sdir()*(3..7)+up(2.5) size=.015..0.04 acc=grav()*.6+drag(.5) col=hdr(7,3.4,1)>hdr(2,.6,.1) a=1>0 sz=$size floor=bounce(.3) r=sprite(ember,add,velocity,.03)
+pop pillar burst=30 on=disc(.3) life=.8..1.4 v=up(3..5) size=.1..0.2 acc=drag(1) col=hdr(4,2.4,.8)>hdr(1,.3,.05) a=0>.1:1>0 sz=$size*(1>.3) r=sprite(flame-wisp,add)
+pop glow burst=1 life=.9 at=point() r=light(<1,.65,.3>,60*(1>0),9)`;
+function forgeNear(ctx) {
+  const now = ctx.now(); if (now < (me.forgeAt ?? 0)) return; me.forgeAt = now + 400;
+  const s = ctx.self.state, o = ctx.getObject("wayside-forge"), f = ctx.self.feetPosition;
+  const near = !!o && !s.menu && !s.dead && Math.hypot(o.feetPosition.x - f.x, o.feetPosition.z - f.z) < FORGE.reach;
+  if (!!s.atForge !== near) { s.atForge = near; if (near && !s.forgeSeen) { s.forgeSeen = true; msg(ctx, "The forge's coals still breathe. Open your pack (I) to temper, reforge or ascend with ash dust."); } }
+}
+const ITEM_SFX = { forge: "anvil-hammer-strikes-three-ringing-blows-and-hiss", forgeBig: "anvil-heavy-blow-ember-burst-choir-swell", equip: "armor-equip-leather-and-chainmail-rustle", sell: "coins-into-leather-purse", salvage: "salvage-item-crumble-to-ash-hiss", drop: "loot-drop-cloth-thud-soft" };
 function itemInput(ctx, a) {
   const s = ctx.self.state, inv = JSON.parse(JSON.stringify(s.inv ?? [])), gear = JSON.parse(JSON.stringify(s.gear ?? {}));
   if (!a || a.n === me.itemN) return; me.itemN = a.n;
@@ -307,6 +321,18 @@ function itemInput(ctx, a) {
     inv.length = 0; inv.push(...keep); snd = "salvage";
   } else if (a.a === "sort") {
     const rank = { vowbound: 0, relic: 1, gilded: 2, hallowed: 3, ashen: 4 }; inv.sort((x, y) => rank[x.t] - rank[y.t] || y.il - x.il); snd = "drop";
+  } else if (a.a === "forge") {
+    if (!s.atForge) return; const i = inv.findIndex((x) => x.u === a.u); if (i < 0) return;
+    const r = forge(ctx, inv[i], a.op);
+    if (r.error) { msg(ctx, r.error); return; }
+    if ((s.dust ?? 0) < r.cost) { msg(ctx, `The forge wants ${r.cost} ash dust. You carry ${s.dust ?? 0}.`); ctx.emit("playSound", { clip: sfx("dull-click-denied"), position: ctx.self.feetPosition, volume: 0.3 }, { audience: { player: ctx.self.id } }); return; }
+    s.dust -= r.cost; inv[i] = r.item; snd = a.op === "ascend" ? "forgeBig" : "forge";
+    const o = ctx.getObject("wayside-forge"), at = o ? { x: o.feetPosition.x, y: o.feetPosition.y + 1, z: o.feetPosition.z } : ctx.self.feetPosition;
+    ctx.emit("fx", { position: at, script: a.op === "ascend" ? FORGE_BIG : FORGE_HIT });
+    if (a.op === "ascend") ctx.emit("screenFlash", { color: "#ffb060", duration: 0.25, intensity: 0.25 }, { audience: { player: ctx.self.id } });
+    s.invSel = r.item.u; s.inv = inv; s.gear = gear;
+    ctx.emit("playSound", { clip: "/cdn/moodboard-gothic-horror/sfx-" + ITEM_SFX[snd] + ".mp3", position: at, volume: 0.75 });
+    return;
   } else if (a.a === "sel") { s.invSel = a.u ?? null; return; }
   s.inv = inv; s.gear = gear; s.invSel = null;
   if (snd) ctx.emit("playSound", { clip: "/cdn/moodboard-gothic-horror/sfx-" + ITEM_SFX[snd] + ".mp3", position: ctx.self.feetPosition, volume: 0.6 }, { audience: { player: ctx.self.id } });
@@ -514,7 +540,7 @@ export function update(ctx, dt) {
   const s = ctx.self.state, now = ctx.now(), f = ctx.self.feetPosition;
   gate(ctx);
   if (ctx.self.isLocal !== false) showcase(ctx);
-  if (!ctx.self.state.menu && ctx.self.state.charId) { drainLoot(ctx); deriveGear(ctx); }
+  if (!ctx.self.state.menu && ctx.self.state.charId) { drainLoot(ctx); deriveGear(ctx); if (ctx.self.isLocal !== false) forgeNear(ctx); }
   const vy = (ctx.self.velocity?.y ?? 0) + (ctx.self.grounded ? 0 : ctx.place.gravity.y * dt);
   // a fresh visit opens on the title in the Veil; a realm cross lands on that realm's character list
   if (ctx.self.isLocal !== false && !ctx.session.vfDoor) {
