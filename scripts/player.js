@@ -411,6 +411,7 @@ function zoneTick(ctx, s, f, now) {
 // One actor per machine, rebuilt only when the pick changes; gone the moment the roster closes.
 function showcase(ctx) {
   const s = ctx.self.state;
+  me.dbgN = (me.dbgN ?? 0) + 1; if (me.dbgN % 30 === 1) s.dbgShow = { n: me.dbgN, place: ctx.self.place ?? null, menu: s.menu ?? null, sel: s.sel ?? null, id: me.showId ?? null, for: me.showFor ?? null };
   const want = s.menu === "chars" && ctx.self.place === MENU_PLACE && s.sel ? String(s.sel) : null;
   if (want === (me.showFor ?? null) && (!want || (me.showId && ctx.getObject(me.showId)))) return;
   if (me.showId) { try { ctx.destroy(me.showId); } catch {} me.showId = null; }
