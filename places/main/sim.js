@@ -44,7 +44,7 @@ const LINES = {
 };
 const AUTO = { 2: "The road falls quiet. The tollhouse lies ahead: find five wax-sealed petitions in its court.", 3: "Five petitions, five erased names. Beyond the Dripping Gate, the Bailiff is still collecting.", 4: "The bell is cracked. Return to Maelin at the Wayside Fire." };
 // the Wax Deacon's censer: bronze thurible hung at his right hip, coals glowing, incense smoke rising
-const CENSER = { id: "censer", feetPosition: { x: 0.34, y: 0.62, z: -0.08 }, castShadow: true, primitive: { kind: "scripted", script: "scripts/gen/censer.js", params: { chain: 0.42 }, seed: 7 },
+const CENSER = { id: "censer", feetPosition: { x: 0.34, y: 0.62, z: -0.08 }, pivot: "top", behavior: "scripts/censer-swing.js", castShadow: true, primitive: { kind: "scripted", script: "scripts/gen/censer.js", params: { chain: 0.42 }, seed: 7 },
   fx: { script: `fx\npop smoke rate=?mobile:5|9 on=sphere(.05) life=1.6..2.6 v=up(.35..0.6)+sdir()*.08 size=.07..0.12 acc=buoy(.4)+curl(.4)*.4+drag(.9) sz=$size*(.6>3) col=<.42,.38,.34>><.2,.2,.22> a=0>.2:.35>.7:.2>0 rot=spin(.2) r=sprite(smoke-puff,alpha)\npop glow n=1 glo=fire()*.6 r=light(<1,.5,.2>,$glo*.8,2.5)`, params: {} } };
 const enemySpec = (pk) => ({
   id: "en-" + pk.id, tags: ["enemy", pk.kind], physics: "character",
