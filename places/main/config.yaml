@@ -86,7 +86,7 @@ terrain:
               - 1.8
             script: scripts/mushroom.js
             seed: 1
-  generator: scripts/flat-starter-terrain.js
+  generator: scripts/terrain.js
   kind: heightmap
   materials:
     - albedo: cdn/texture-terrain-grass-realistic-albedo-summer-exploration.png
