@@ -9,6 +9,7 @@ export function geometry(ctx) {
   const L = ctx.lod, R = () => ctx.random(), h = ctx.params.h ?? 4;
   const J = L <= 2 ? rough(ctx, 0.025, 1.6) : null, bev = L <= 2 ? 0.04 : 0, seg = L <= 2 ? 8 : 6, sseg = L <= 2 ? 8 : 5;
   const stone = (c) => { ctx.flat(); ctx.albedo(TEX.stone); ctx.roughness(0.85); ctx.metalness(0); ctx.color(c); };
+  if (L >= 5) { stone("oklch(.78 .012 250)"); bevelBox(ctx, xf([0, 0, 0]), 0.8, 0.45, 0.8, 0); bevelBox(ctx, xf([0, 0.45 + (h - 0.8) / 2, 0], 22), 0.55, (h - 0.8) / 2, 0.55, 0); return; }
   stone("oklch(.8 .012 250)"); bevelBox(ctx, xf([0, 0, 0], R() * 4 - 2), 0.8, 0.32, 0.8, bev, J);
   stone("oklch(.84 .012 250)"); bevelBox(ctx, xf([0, 0.4, 0], R() * 4 - 2), 0.68, 0.08, 0.68, bev, J);
   // banded shaft: soot low, pale mid, soot high

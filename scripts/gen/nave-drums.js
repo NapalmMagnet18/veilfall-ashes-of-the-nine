@@ -16,6 +16,7 @@ export function geometry(ctx) {
   const L = ctx.lod, R = () => ctx.random(), n = ctx.params.n ?? 5, sp = ctx.params.sp ?? 1.25;
   const J = L <= 2 ? rough(ctx, 0.02, 1.8) : null, seg = L <= 2 ? 8 : 6, sseg = L <= 2 ? 8 : 5;
   ctx.flat(); ctx.albedo(TEX.stone); ctx.roughness(0.85); ctx.metalness(0);
+  if (L >= 5) { ctx.color("oklch(.74 .012 250)"); for (let i = 0; i <= n; i++) bevelBox(ctx, xf([i * sp, 0.5, 0], (i * 37) % 20 - 10), 0.45, 0.5, 0.5, 0); return; }
   for (let i = 0; i < n; i++) {
     const d = 0.72 + R() * 0.32, cx = i * sp + (R() - 0.5) * 0.25, cz = (R() - 0.5) * 0.4 + i * 0.03;
     ctx.color(`oklch(${(0.66 + R() * 0.22).toFixed(2)} .012 ${R() < 0.5 ? 250 : 60})`);
