@@ -7,6 +7,7 @@
 import C from "./lib/data/combat.yml";
 import { animate } from "builtin/tween";
 import { payout } from "./wax-pack.js";
+import E from "./lib/data/economy.yml";
 const B = C.bailiff, HOME = { x: 0, y: 0, z: -110 }, ARENA = { x: 0, z: -105, r: 17 };
 const LEDGERS = [{ id: "ledger-west", x: -9, z: -103 }, { id: "ledger-east", x: 9, z: -103 }];
 const sfx = (n) => `/cdn/moodboard-gothic-horror/sfx-${n}.mp3`;
@@ -93,7 +94,7 @@ export function update(ctx, dt) {
     animate(ctx, self, { "scale.y": 0.1, "scale.x": 3, "scale.z": 3 }, { duration: 2.4 });
     // entitlement: each player present is credited once per life of this boss (sim.js grants the quest reward once ever)
     for (const p of here) { p.state.bossKilled = true; ctx.emit("milestone", { step: 3, name: "bailiff-defeated" }, { audience: { player: p.id } }); }
-    payout(ctx, f, B.xp, 60, false);
+    payout(ctx, f, B.xp, E.drops.bailiff, false, "heavy");
     ctx.place.state.bailiffDownAt = now;
     publish(ctx); return;
   }

@@ -2,6 +2,8 @@
 // Players judge their own hits (enemy.state.hp -= d); this reads hp, pays XP/kills to everyone near.
 import { animate } from "builtin/tween";
 import C from "./lib/data/combat.yml";
+import E from "./lib/data/economy.yml";
+import { fmt } from "./lib/coins.js";
 const sfx = (n) => `/cdn/moodboard-gothic-horror/sfx-${n}.mp3`;
 const MELT = `fx
 pop wax burst=20..28 on=disc(.35) life=.6..1.1 v=up(1.5..3)+sdir()*(1..2) size=.06..0.12 spin=-6..6 tint=oklch(.93 .04 88)..oklch(.8 .06 75) acc=grav()+drag(.6) col=$tint a=1>.8:1>0 sz=$size rot=$age*$spin floor=stick r=sprite(chip,alpha,velocity,.02)
@@ -11,6 +13,14 @@ const SLAM = `fx
 pop dust burst=30 on=disc(%r|3) life=.6..1.2 v=up(1..2.5)+sdir()*.8 size=.3..0.6 acc=drag(1.5)+buoy(.3) col=<.55,.5,.45> a=0>.4:.4>0 sz=$size*(.6>1.8) r=sprite(smoke-puff,alpha)
 pop wax burst=24 on=disc(.5) life=.5..0.9 v=sdir()*(3..6)+up(2..3) size=.05..0.1 col=oklch(.85 .12 60) acc=grav() a=1>0 floor=stick r=sprite(chip,alpha,velocity,.02)
 pop fl burst=1 life=.25 size=%r|3 col=hdr(3,1.2,.3) a=.8>0 sz=$size*(.5>2) r=sprite(soft-disc,add)`;
+// coins hop out of the corpse: glinting metal that bounces on the flagstones; count and height scale with the purse
+const SPILL = (n, lo, hi) => `fx
+pop coin burst=${n} on=disc(.3) life=.8..1.2 v=up(${lo}..${hi})+sdir()*(.6..1.5) size=.07..0.11 spin=-14..14 acc=grav() col=hdr(2.2,1.6,.6) a=1>.8:1>0 sz=$size rot=$age*$spin floor=bounce(.3) r=sprite(chip,add,velocity,.02)
+pop glint on=@coin?.5 life=.25..0.4 size=.12..0.2 col=hdr(3,2.2,.9) a=1>0 sz=$size*(1>.2) r=sprite(soft-disc,add)
+pop flash burst=1 life=.3 size=.9 col=hdr(2.2,1.6,.6) a=.6>0 sz=$size*(.4>1.6) r=sprite(soft-disc,add)`;
+const SPILLS = { small: { fx: SPILL("10..16", 5.4, 7), clip: "/cdn/moodboard-gothic-horror/sfx-coins-spill-small-clink.mp3" },
+  heavy: { fx: SPILL("60..80", 6, 9), clip: "/cdn/moodboard-gothic-horror/sfx-gold-coins-pour-heavy.mp3" } };
+export const roll = (ctx, [lo, hi]) => lo + Math.floor(ctx.random() * (hi - lo + 1));
 const flat = (a, b) => Math.hypot(a.x - b.x, a.z - b.z);
 const CAMP = { x: 0, z: 0 }, SAFE = 12; // the Wayside Fire: nothing hunts inside its light
 const safe = (p) => flat(p, CAMP) < SAFE;
@@ -38,15 +48,23 @@ export function hurtPlayers(ctx, center, r, dmg, now) {
   }
 }
 
-export function payout(ctx, at, xp, gold, countsForQuest) {
+export function payout(ctx, at, xp, copper, countsForQuest, spill = "small") {
+  const S = SPILLS[spill] ?? SPILLS.small;
+  let paid = 0;
   for (const p of ctx.place.players) {
     if (p.state.menu || !p.state.charId || flat(p.feetPosition, at) > 28) continue;
     p.state.xp = (p.state.xp ?? 0) + xp;
-    p.state.gold = (p.state.gold ?? 0) + gold;
+    p.state.copper = (p.state.copper ?? 0) + copper;
     if (countsForQuest) p.state.kills = (p.state.kills ?? 0) + 1;
     if (countsForQuest && ctx.random() < 0.5) p.state.shards = (p.state.shards ?? 0) + 1;
     ctx.emit("damageNumber", { position: { ...at, y: at.y + 2.4 }, text: `+${xp} XP`, color: "#c9b6ff", size: 0.8 }, { audience: { player: p.id } });
+    if (copper > 0) {
+      ctx.emit("damageNumber", { position: { x: at.x - 0.7, y: at.y + 2.0, z: at.z + 0.7 }, text: `+${fmt(copper)}`, color: "#e6c76a", size: 0.8 }, { audience: { player: p.id } });
+      ctx.emit("playSound", { clip: S.clip, position: at, volume: 0.8 }, { audience: { player: p.id } });
+    }
+    paid++;
   }
+  if (paid && copper > 0) ctx.emit("fx", { position: { x: at.x, y: at.y + 0.5, z: at.z }, script: S.fx });
 }
 
 export function update(ctx, dt) {
@@ -60,7 +78,7 @@ export function update(ctx, dt) {
       ctx.emit("fx", { position: { x: f.x, y: f.y + 0.4, z: f.z }, script: MELT });
       ctx.emit("playSound", { clip: sfx("wax-figure-collapsing-hiss-and-sigh"), position: f, volume: 0.8, pitch: 0.9 + ctx.random() * 0.2 });
       animate(ctx, w, { "scale.y": 0.08, "scale.x": 1.5, "scale.z": 1.5 }, { duration: 1.2 });
-      payout(ctx, f, K.xp, s.kind === "deacon" ? 25 : 3 + Math.floor(ctx.random() * 4), true);
+      payout(ctx, f, K.xp, roll(ctx, E.drops[s.kind] ?? E.drops.pilgrim), true);
       continue;
     }
     // who to hunt

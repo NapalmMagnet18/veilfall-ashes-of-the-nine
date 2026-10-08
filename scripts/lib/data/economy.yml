@@ -1,0 +1,13 @@
+# Every money number in VEILFALL. Money is one integer, player.state.copper (100c = 1s, 100s = 1g).
+drops:
+  pilgrim: [6, 14]      # copper, rolled per kill
+  deacon: [45, 80]
+  bailiff: 12000        # 1g 20s, once per kill to each eligible player
+quests:
+  Z01-MAIN-05: 300      # 3s turn-in
+sell:
+  shard: 6              # Wax Shard buyback, each (Sealed Petitions are quest items: never sold)
+shops:
+  oswin:
+    - { id: tonic, glyph: "♥", name: "Ash Tonic", effect: "Drink for +50 life (Q). Carry 5.", price: 30, cap: 5 }
+    - { id: charm, glyph: "✦", name: "Lantern Oil Charm", effect: "+10 max life, for good.", price: 250, once: true, maxHp: 10 }

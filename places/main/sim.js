@@ -1,6 +1,7 @@
 // Broken Lantern Road's referee: stands the camp's people and the road's enemies, respawns cleared
 // packs out of sight, walks each player's quest forward, levels them, and brings the Bailiff back.
 import C from "../../scripts/lib/data/combat.yml";
+import E from "../../scripts/lib/data/economy.yml";
 export const cadence = "250ms";
 const MUSIC = "/cdn/moodboard-gothic-horror/music-broken-lantern-road-dusk-candles-and-fog-ambient.mp3";
 const PACKS = [
@@ -11,6 +12,7 @@ const PACKS = [
 ];
 const PETITIONS = [[4, -40], [13, -42], [11, -52], [3, -50], [17, -53]];
 const MAELIN = { x: -5, z: -3 };
+const OSWIN = { x: -6.2, z: 5.6 }; // the peddler at his handcart (x -7.6, z 4.4), facing the fire
 const LINES = {
   0: "Maelin Sore: Another one who walked out of the fog. Sit, warm your hands. The road north was erased from every map I own, but the pilgrims still walk it, wax and all.",
   1: "Maelin Sore: They were people once. Now they shuffle toward the Abbey and tear at anything warm. Silence eight of them past the third milepost, and I'll trust the road again.",
@@ -38,6 +40,8 @@ export function tick(ctx) {
   if (!("wax-pack" in objs)) ctx.spawn("wax-pack", { tags: ["system"], feetPosition: { x: 0, y: -50, z: 0 }, behavior: "scripts/wax-pack.js" });
   if (!("maelin" in objs)) ctx.spawn("maelin", { tags: ["npc"], physics: "character", feetPosition: { x: MAELIN.x, z: MAELIN.z, y: { terrain: 0 } }, rotation: 120,
     model: "cdn/model-weathered-woman-mapmaker-hooded-cloak-satchel-of-maps.glb", behavior: ["scripts/humanoid-locomotion.js"], state: { name: "Maelin Sore" } });
+  if (!("oswin" in objs)) ctx.spawn("oswin", { tags: ["npc", "vendor"], physics: "character", feetPosition: { x: OSWIN.x, z: OSWIN.z, y: { terrain: 0 } }, rotation: { lookAt: { x: 0, y: 0, z: 4.5 } },
+    model: "cdn/model-hunched-old-peddler-man-leather-apron-candle-bundles-on-back.glb", behavior: ["scripts/humanoid-locomotion.js"], state: { name: "Oswin Tallowmonger" } });
   PETITIONS.forEach(([x, z], i) => {
     const id = "petition-" + (i + 1);
     if (!(id in objs)) ctx.spawn(id, { tags: ["petition"], feetPosition: { x, z, y: { terrain: 0.25 } }, rotation: { yaw: i * 70, roll: 90 },
@@ -65,6 +69,12 @@ export function tick(ctx) {
   // each player's road
   for (const p of ctx.place.players) {
     const s = p.state; if (s.hp === undefined || s.menu || !s.charId) continue; // only a Bearer who entered the world
+    // Oswin's cart: talking opens it; walking off or falling closes it
+    if (s.talk?.id === "oswin" && s.talk.at !== s.shopAt) {
+      s.shop = "oswin"; s.shopAt = s.talk.at;
+      s.dialog = { text: "Oswin: \"Candles, oil, tonics. Coin up front, Bearer: the road doesn't refund.\"", at: now };
+    }
+    if (s.shop) { const o = objs["oswin"]; if (s.dead || !o || Math.hypot(o.feetPosition.x - p.feetPosition.x, o.feetPosition.z - p.feetPosition.z) > 5) s.shop = null; }
     const q = s.quest ?? { stage: 0 };
     let next = null;
     const talked = s.talk && s.talk.id === "maelin" && s.talk.at !== q.heardAt;
@@ -73,7 +83,7 @@ export function tick(ctx) {
       else if (q.stage === 4) {
         if (!s.claimed?.["Z01-MAIN-05"]) {
           s.claimed = { ...(s.claimed ?? {}), "Z01-MAIN-05": now };
-          s.xp = (s.xp ?? 0) + 300; s.gold = (s.gold ?? 0) + 120; s.weapon = "ITEM-001";
+          s.xp = (s.xp ?? 0) + 300; s.copper = (s.copper ?? 0) + E.quests["Z01-MAIN-05"]; s.weapon = "ITEM-001";
           ctx.emit("playSound", { clip: "/cdn/moodboard-gothic-horror/sfx-quest-complete-low-bells-and-choir.mp3", position: p.feetPosition, volume: 1 }, { audience: { player: p.id } });
           ctx.emit("screenFlash", { color: "#ffe2a8", duration: 0.35, intensity: 0.1 }, { audience: { player: p.id } });
           ctx.emit("milestone", { step: 4, name: "z01-complete" }, { audience: { player: p.id } });
