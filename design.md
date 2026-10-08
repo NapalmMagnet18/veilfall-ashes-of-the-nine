@@ -66,3 +66,10 @@ places/main/sim.js referee: spawns packs, quest stages, XP/levels, death and res
 - 16: turn in to Maelin, Z01-MAIN-08: +800 xp, 12s, +10 max life, tonics topped to 5 · 17: chapter complete.
 - 2026-10-08: Ringer fix: his hammer swing now waits 1 s after a bell cast resolves (measured: a peal and a swing on the same frame landed as one 32-dmg hit).
 - 2026-10-08: Lanternmere chapter (stages 13–17, still a Savi proposal) played through on a test Bearer: fen gate opens at stage 13, three waystones wake the Warden, his hits land once each (swing 14, lights 18, undertow 26), real swings kill him, Maelin's Z01-MAIN-08 pays once (+10 max hp, +1200 copper, 5 tonics), wardenKilled and stage 17 saved to the character row. Standing still against him kills a level-9 Bearer in ~17 s; dodging is the fight.
+
+## 2026-10-08 · Chapter IV: The Gallows Orchard (Savi's proposal, built on "focus the questline")
+- Stage 17 → talk to Maelin → 18: the Gallows Path opens east of the Wayside Fire (map ORCH_PATH/ORCHARD; player gate stage ≥ 18).
+- 18 → enter Saint Corvin's orchard (r 18 at 62,6) → 19: stand under each of 3 gibbets (GIBBETS g1/g2/g3, r 2.6) for 1.5 s to cut the rope; the hanged child hides.
+- 19 → all three cut → 20: the Hangman spawns on the gallows dais (GALLOWS 62,5 r 9). scripts/hangman.js, combat.yml hangman: 2100 hp, +55%/extra Bearer; Noose (mark under each Bearer, P2+ leads a second), Trapdoor ring (9 marks r 6, P3 adds an outer ring offset into the gaps), P2 flagellant adds every 14 s.
+- 20 → hangmanKilled (persistent CHAR_KEY) → 21 → Maelin turn-in Z01-MAIN-09: +1000 xp, +1500 copper, +10 max life, tonics to 5 → 22 "Three Flames".
+- Tested 2026-10-08 with Savi's Bearer: talk, walking the path, area banners, all three cuts by walking, spawn + engage at 2100 hp, a stationary Bearer killed and respawned; defeat branch from hp set to 60 + real swings; turn-in paid once. Not yet tested: a full-health natural fight, several Bearers, reload persistence.

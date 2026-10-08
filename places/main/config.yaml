@@ -136,3 +136,5 @@ terrain:
       tint: oklch(0.90 0.01 250)
       textureScale: 2.5
   seed: 1
+
+arrivalBudget: { bytes: 520000 }
