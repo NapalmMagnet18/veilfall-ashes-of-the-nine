@@ -16,10 +16,10 @@ const LINES = {
   1: "Maelin Sore: They were people once. Now they shuffle toward the Abbey and tear at anything warm. Silence eight of them past the third milepost, and I'll trust the road again.",
   2: "Maelin Sore: The tollhouse kept petitions, the names of everyone who paid to pass. Bring me five. Wax-sealed. Someone wanted them forgotten.",
   3: "Maelin Sore: These names were taxed twice, once in coin and once in memory. The Bailiff still collects behind the Dripping Gate. Break him, and the road is ours.",
-  3.5: "",
   4: "Maelin Sore: You rang his bell for the last time. Take this blade, it was my brother's oath. It cut true once. It will again.",
   5: "Maelin Sore: The Abbey road is open now. I'll redraw the map by firelight. Come back when you've seen what waits under the ash.",
 };
+const AUTO = { 2: "The road falls quiet. The tollhouse lies ahead: find five wax-sealed petitions in its court.", 3: "Five petitions, five erased names. Beyond the Dripping Gate, the Bailiff is still collecting.", 4: "The bell is cracked. Return to Maelin at the Wayside Fire." };
 const enemySpec = (pk) => ({
   id: "en-" + pk.id, tags: ["enemy", pk.kind], physics: "character",
   feetPosition: { x: pk.x, z: pk.z, y: { terrain: 0 } },
@@ -47,6 +47,7 @@ export function tick(ctx) {
   });
   // enemies: a slain pack member returns after 45 s, only where nobody is watching
   st.respawn ??= {};
+  if (!st.seeded) { st.seeded = true; for (const pk of PACKS) if (!(("en-" + pk.id) in objs)) ctx.spawn(enemySpec(pk)); return; }
   for (const pk of PACKS) {
     const id = "en-" + pk.id;
     if (id in objs) continue;
@@ -88,7 +89,7 @@ export function tick(ctx) {
     if (q.stage < 3 && s.bossKilled) s.bossKilled = false; // only counts once the hunt is yours
     if (next) {
       s.quest = { ...q, ...next, heardAt: talked ? s.talk.at : q.heardAt };
-      if (!talked && next.stage <= 4) say(ctx, p, next.stage);
+      if (!talked) s.dialog = { text: AUTO[next.stage], at: now };
       if (next.stage !== 1) ctx.emit("playSound", { clip: "/cdn/moodboard-gothic-horror/sfx-objective-complete-soft-bell.mp3", position: p.feetPosition, volume: 0.8 }, { audience: { player: p.id } });
       ctx.emit("milestone", { step: next.stage, name: "z01-stage-" + next.stage }, { audience: { player: p.id } });
     }
