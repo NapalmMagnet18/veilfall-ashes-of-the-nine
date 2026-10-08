@@ -18,12 +18,17 @@ const BEDS = [
   { id: "bed-road", x: 3, z: -32, clip: "ambience-distant-church-bell-tolling-slow-with-crows-loop", gain: 0.15, max: 30 },
   { id: "bed-toll", x: 9, z: -46, clip: "ambience-creaking-wooden-shutters-and-chains-in-wind-loop", gain: 0.18, max: 16 },
   { id: "bed-gate", x: 0, z: -89, clip: "ambience-dripping-hot-wax-hiss-and-low-murmuring-voices-loop", gain: 0.22, max: 16 },
+  { id: "bed-abbey", x: 0, z: -180, clip: "ambience-mouthless-choir-humming-and-cracked-bell-in-ruined-abbey-loop", gain: 0.16, max: 30 },
   { id: "bed-court", x: 0, z: -105, clip: "ambience-low-ominous-choir-drone-cathedral-loop", gain: 0.14, max: 26 },
 ];
 const PACKS = [
   { id: "p1", kind: "pilgrim", x: -1, z: -21 }, { id: "p2", kind: "pilgrim", x: 3, z: -23 },
   { id: "p3", kind: "pilgrim", x: 0, z: -29 }, { id: "p4", kind: "pilgrim", x: 3, z: -31 }, { id: "p5", kind: "pilgrim", x: -2, z: -33 },
   { id: "p6", kind: "pilgrim", x: 5, z: -44 }, { id: "p7", kind: "pilgrim", x: 10, z: -49 }, { id: "d1", kind: "deacon", x: 8, z: -46 },
+  // past the Wax Veil: the Penitent Climb and the Ashen Abbey's yard
+  { id: "a1", kind: "pilgrim", x: 17, z: -131 }, { id: "a2", kind: "pilgrim", x: 15, z: -139 }, { id: "a3", kind: "deacon", x: 9, z: -149 },
+  { id: "a4", kind: "pilgrim", x: -4, z: -168 }, { id: "a5", kind: "pilgrim", x: 6, z: -171 }, { id: "a6", kind: "pilgrim", x: -8, z: -181 },
+  { id: "a7", kind: "deacon", x: 4, z: -184 }, { id: "a8", kind: "deacon", x: -6, z: -188 }, { id: "a9", kind: "pilgrim", x: 9, z: -186 },
   { id: "p8", kind: "pilgrim", x: -3, z: -65 }, { id: "p9", kind: "pilgrim", x: 0, z: -69 }, { id: "p10", kind: "pilgrim", x: -5, z: -71 }, { id: "d2", kind: "deacon", x: -2, z: -68 },
 ];
 const PETITIONS = [[4, -40], [13, -42], [11, -52], [3, -50], [17, -53]];
