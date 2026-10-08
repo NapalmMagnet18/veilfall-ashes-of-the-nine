@@ -37,7 +37,7 @@ export function shopPanel(ctx, player) {
   return `${CSS}<div id="vfshop" class="plate">
     <div class="x" onclick="${act("close", "")}">${GLYPH.x}</div>
     <div class="lbl">Wayside Fire · peddler</div>
-    <div style="font-size:20px;color:var(--wax);letter-spacing:.06em">${NAMES[s.shop] ?? "CART"}</div>
+    <div style="font-size:20px;color:var(--wax);letter-spacing:.06em">${NAMES[s.shop] ?? "CART"}</div><div class="dv"></div>
     <div style="font-size:14px;margin:4px 0 6px;display:flex;align-items:center;gap:6px"><span class="lbl">Purse</span>${coinHTML(purse, 14)}</div>
     ${rows}<div class="lbl" style="margin-top:6px">Buyback</div>${sell}</div>`;
 }

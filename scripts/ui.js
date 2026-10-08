@@ -103,7 +103,7 @@ function menu(ctx, player, s) {
     <div class="ttl" style="font-size:84px;letter-spacing:.22em;color:#e7d9b8;animation:vmglow 4s infinite">VEILFALL</div>
     <div class="sub" style="font-size:20px;letter-spacing:.5em;color:#c49c63;margin-top:4px">ASHES OF THE NINE</div>
     <div style="width:220px;height:2px;margin:16px auto;background:linear-gradient(90deg,transparent,#ac4c42,transparent)"></div>
-    <div class="qt" style="font-size:14px;color:#b9a77f;font-style:italic;max-width:520px;margin:0 auto;padding:0 70px 0 16px">"Every book in this place is a person who no longer knows what they lost."</div>
+    <div class="dv"></div><div class="qt" style="font-size:14px;color:#b9a77f;font-style:italic;max-width:520px;margin:0 auto;padding:0 70px 0 16px">"Every book in this place is a person who no longer knows what they lost."</div>
   </div>
   <div class="tb" style="position:absolute;left:0;right:0;bottom:11%;text-align:center;padding-right:60px;animation:vmin 1.1s">
     <button class="btn main" onclick="${act("chars")}">Enter the Veil</button>
@@ -114,7 +114,7 @@ function menu(ctx, player, s) {
 
   if (s.menu === "realms") {
     const per = s.roster?.per ?? {};
-    return `${head(s)}<div class="mid"><div class="lbl">Choose a realm</div><div style="font-size:30px;color:#e7d9b8;letter-spacing:.1em">THE NINE ROADS</div></div>
+    return `${head(s)}<div class="mid"><div class="lbl">Choose a realm</div><div style="font-size:30px;color:#e7d9b8;letter-spacing:.1em">THE NINE ROADS</div><div class="dv"></div></div>
     <div class="wrap" style="justify-content:center"><div class="panel side" style="width:min(460px,100%);animation:vmin .4s;margin-top:70px">
       <div class="lbl">Realms</div>
       <div style="font-size:13px;color:#b9a77f;margin:4px 0 2px">A Bearer is written into one realm and walks only there.</div>
@@ -159,7 +159,7 @@ function menu(ctx, player, s) {
   // character select
   const chars = s.roster?.chars ?? [], sel = chars.find((c) => c.id === s.sel);
   const C = sel && (CLASSES.find((c) => c.id === sel.cls) ?? CLASSES[0]), A = sel && (ANC.find((a) => a.id === sel.ancestry) ?? ANC[0]);
-  return `${head(s)}<div class="mid"><div class="lbl">Realm</div><div style="font-size:28px;color:#e7d9b8;letter-spacing:.12em">${realmName(here).toUpperCase()}</div></div>
+  return `${head(s)}<div class="mid"><div class="lbl">Realm</div><div style="font-size:28px;color:#e7d9b8;letter-spacing:.12em">${realmName(here).toUpperCase()}</div><div class="dv"></div></div>
   <div class="wrap">
     <div class="panel side" style="animation:vmin .4s">
       <div class="lbl">Your Bearers · ${chars.length}/${R.maxChars}</div>
@@ -206,11 +206,11 @@ export default function (ctx, player) {
   return `${THEME}${FRAME_CSS}<div id="vf" class="fixed inset-0 pointer-events-none">
   <div class="absolute plate qp" style="left:24px;top:24px;max-width:300px;animation:vfin .4s">
     <div class="lbl">${q.stage >= 5 ? "Complete" : "Quest"} · Broken Lantern Road</div>
-    <div style="font-size:19px;color:var(--wax)">${qt}</div>
+    <div style="font-size:19px;color:var(--wax)">${qt}</div><div class="dv"></div>
     <div style="font-size:15px">› ${qo}<span style="color:var(--wax)">${prog}</span></div>
   </div>
   ${boss && boss.engaged && !boss.dead ? `<div class="absolute ornate" style="top:24px;left:50%;transform:translateX(-50%);width:min(520px,calc(100vw - 2*${rail}));text-align:center;animation:vfin .3s">
-    <div style="font-size:20px;color:var(--wax);letter-spacing:.06em">${boss.name.toUpperCase()}</div>
+    <div style="font-size:20px;color:var(--wax);letter-spacing:.06em">${boss.name.toUpperCase()}</div><div class="dv"></div>
     <div style="height:16px;background:#120e0c;box-shadow:0 0 0 2px #0d0b0a,0 0 0 4px #5a4a33;position:relative">
       <div style="position:absolute;inset:0;width:${(boss.hp / boss.max) * 100}%;background:linear-gradient(#c9402f,#7a1610);transition:width .2s"></div>
       <div style="position:absolute;top:0;bottom:0;left:70%;width:2px;background:#0d0b0a"></div><div style="position:absolute;top:0;bottom:0;left:35%;width:2px;background:#0d0b0a"></div>
@@ -238,7 +238,7 @@ export default function (ctx, player) {
   <div class="absolute ph" style="right:12px;top:12px;pointer-events:auto" onclick="sendAction('bag')"><div class="slot" style="width:48px;height:40px;font-size:11px">PACK</div></div>
   ${q.stage === 0 || q.stage === 4 ? `<div data-world-anchor="maelin" data-anchor-offset="0 2.3 0" style="font-size:30px;color:var(--wax);text-align:center;animation:vfpulse 1.4s infinite">!<div style="font-size:12px">MAELIN</div></div>` : ""}
   ${s.bagOpen ? `<div class="absolute plate" style="right:${rail};top:50%;transform:translateY(-50%);width:260px;animation:vfin .25s">
-    <div class="lbl">${s.charName ?? "Bearer"} · Pack (I to close)</div>
+    <div class="lbl">${s.charName ?? "Bearer"} · Pack (I to close)</div><div class="dv"></div>
     <div style="display:grid;grid-template-columns:repeat(4,52px);gap:8px;margin-top:8px">
       ${[["⚔", s.weapon === "ITEM-001" ? "Rusted Oathblade" : "Pilgrim's Shortblade", 1], ["♥", "Ash Tonic", s.tonics ?? 0], ["◆", "Wax Shard", s.shards ?? 0], ["✉", "Sealed Petition", s.petitions?.length ?? 0]].filter((i) => i[2]).map(([g, n, c]) => `<div class="slot" title="${n}" style="width:52px;height:52px">${g}<span class="n">${c}</span></div>`).join("")}
     </div>
