@@ -34,12 +34,13 @@ function charmrope(ctx, K, r, p, L) {
   ctx.albedo(TX.wood); ctx.roughness(0.9); ctx.metalness(0);
   for (const s of [-1, 1]) {
     ctx.color("oklch(.62 .035 60)");
-    K.push().t(0, 0, s * S / 2).rx(s * lean + (r() - 0.5) * 3).rz((r() - 0.5) * 6);
+    const th = s * lean * Math.PI / 180;
+    K.push().t(0, 0, s * S / 2).rx(s * lean);
     K.cyl(0, -0.2, 0, 0.11, 0.08, H + 0.2, 7);
     K.tube([-0.25, H - 0.35, 0], [0.25, H - 0.25, 0], 0.045, 0.04, 5, true);
     ctx.albedo(TX.iron); ctx.color("oklch(.55 .04 45)"); ctx.metalness(0.5); K.cyl(0, H - 0.6, 0, 0.12, 0.12, 0.06, 8); ctx.albedo(TX.wood); ctx.metalness(0);
     ctx.albedo(TX.wax); for (let k = 0; k < 5; k++) { ctx.color(WAX[k % 3]); K.cyl((r() - 0.5) * 0.18, 1.0 + k * 0.05, -0.12 - r() * 0.05, 0.025, 0.022, 0.18 + r() * 0.1, 5); } ctx.albedo(TX.wood);
-    tops.push(K.P([0, H - 0.3, 0]));
+    tops.push([0, (H - 0.3) * Math.cos(th), s * S / 2 + (H - 0.3) * Math.sin(th)]);
     K.pop();
   }
   const [A, B] = tops, sag = p.sag ?? 0.75, N = 22, pt = (t) => [A[0] + (B[0] - A[0]) * t, A[1] + (B[1] - A[1]) * t - sag * (1 - (2 * t - 1) ** 2), A[2] + (B[2] - A[2]) * t];
