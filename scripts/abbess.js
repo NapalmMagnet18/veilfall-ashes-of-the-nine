@@ -64,7 +64,10 @@ export function update(ctx, dt) {
       p.state.msg = { text: "Heartwax ×2 and the Abbess's Candle, still burning cold. Only the Wayside cauldron can render it: Requiem Tallow.", at: now + 2500 };
       ctx.emit("milestone", { step: 24, name: "abbess-defeated" }, { audience: { player: p.id } });
     }
-    ctx.place.state.lastFall = { boss: "abbess", by: here.map((p) => p.state?.charName || p.displayName).filter(Boolean).slice(0, 3), at: now }; // Brother Ledd heralds it at the fire
+    if (here.length) { // nobody in the hall (a reset, a wipe): no herald, no relic
+      ctx.place.state.lastFall = { boss: "abbess", by: here.map((p) => p.state?.charName || p.displayName).filter(Boolean).slice(0, 3), at: now }; // Brother Ledd heralds it at the fire
+      if (!ctx.world.state.trophies?.abbess?.by) ctx.world.state.trophies = { ...(ctx.world.state.trophies ?? {}), abbess: { at: now, by: ctx.place.state.lastFall.by } }; // her Candle-cage hangs on the Trophy Post
+    }
     payout(ctx, f, A.xp, E.drops.abbess, false, "heavy", "abbess");
     publish(ctx); return;
   }

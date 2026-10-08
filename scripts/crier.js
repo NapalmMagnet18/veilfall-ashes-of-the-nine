@@ -15,12 +15,14 @@ const FALL = { // boss → [name he calls, voice line]
   ringer: ["The Ringer of the Ninth Bell", V("hear-ye-the-ninth-bell-is-silenced-the-abbey-sleeps")],
   warden: ["The Lantern Warden", V("hear-ye-the-lantern-warden-is-snuffed-the-fen-sees-again")],
   hangman: ["The Hangman of Saint Corvin", V("hear-ye-the-hangman-swings-no-more-cut-the-ropes")],
+  abbess: ["The Ossuary Abbess", V("hear-ye-the-ossuary-abbess-is-laid-to-rest-saint-ysolde-sleeps-at-last")],
 };
 const MARKED = { // boss mark worn → [what he sees, voice line]
   bailiff: ["the Bailiff's Toll on your steel. may it never be paid in blood again", V("thats-the-bailiffs-toll-on-you-may-it-never-be-paid-in-blood-again")],
   ringer: ["the Ninth Bell's peal rides your blade. I hear it ringing still", V("the-ninth-bells-peal-rides-your-blade-i-hear-it-ringing-still")],
   warden: ["you carry the Warden's Lantern. cold light, but it is yours now", V("you-carry-the-wardens-lantern-cold-light-but-it-is-yours-now")],
   hangman: ["the Hangman's Knot on you. mind it does not tighten", V("the-hangmans-knot-on-you-mind-it-does-not-tighten")],
+  abbess: ["the Abbess's Requiem hums in your gear. the dead sing for you now", V("the-abbesss-requiem-hums-in-your-gear-the-dead-sing-for-you-now")],
 };
 const TOLL = "/cdn/moodboard-gothic-horror/sfx-iron-handbell-rung-hard-many-times-urgent.mp3";
 function herald(ctx, fall) {

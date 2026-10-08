@@ -1,6 +1,6 @@
 // The Trophy Post at the Wayside Fire: params.kind = "post" (the weathered rack itself) or one relic
 // that hangs from a hook: "bailiff" (chained toll ledger, wax seals), "ringer" (cracked bronze bell),
-// "warden" (snuffed lantern, cold glass), "hangman" (the noose). A relic's origin is its hook point.
+// "warden" (snuffed lantern, cold glass), "hangman" (the noose), "abbess" (a rib-cage reliquary, her cold candle). A relic's origin is its hook point.
 import { xf, compose, cbox, box, tube, loft, ringH, rock, candle, rnd, IRON, STONE, WOOD } from "./hub-kit.js";
 export const HOOKS = [-0.95, -0.32, 0.32, 0.95], HOOK_Y = 2.36;
 function chain(ctx, T, len) {
@@ -73,7 +73,31 @@ function hangman(ctx, T) {
   tube(ctx, T, loop, 0.02, 6, false, false);
   tube(ctx, T, [[0.02, -0.62, 0], [0.05, -0.74, 0.02], [0.03, -0.82, 0.04]], [0.016, 0.013, 0.01], 4);
 }
-const RELIC = { bailiff, ringer, warden, hangman };
+// the Abbess: her Candle in a little reliquary of ribs, hung low on a long chain from the beam's centre
+function abbess(ctx, T) {
+  chain(ctx, T, 0.42);
+  const B = compose(T, xf([0, -0.44, 0]));
+  const BONE = "cdn/texture-old-yellowed-bone-surface-cracked.png";
+  ctx.albedo(BONE); ctx.color("oklch(0.84 0.035 85)"); ctx.metalness(0); ctx.roughness(0.75);
+  loft(ctx, B, [ringH(0, -0.03, 0, 0.05, 0.05, 8), ringH(0, 0, 0, 0.075, 0.075, 8), ringH(0, 0.012, 0, 0.02, 0.02, 8)]); // the cap, a knuckle of vertebra
+  const n = 7;
+  for (let i = 0; i < n; i++) { // ribs bow out and gather again at the foot
+    const a = (i / n) * Math.PI * 2, c = Math.cos(a), s = Math.sin(a);
+    tube(ctx, B, [0, 0.25, 0.5, 0.75, 1].map((t) => { const r = 0.065 + Math.sin(t * Math.PI) * 0.07; return [c * r, -0.02 - t * 0.34, s * r]; }), [0.011, 0.014, 0.012, 0.01, 0.011], 5, false, false);
+  }
+  loft(ctx, compose(B, xf([0, -0.38, 0])), [ringH(0, 0, 0, 0.03, 0.03, 8), ringH(0, 0.025, 0, 0.075, 0.075, 8), ringH(0, 0.04, 0, 0.07, 0.07, 8)]); // the cradle
+  // a skull small as a fist, crowning it
+  ctx.color("oklch(0.88 0.03 85)");
+  loft(ctx, compose(B, xf([0, 0.012, 0])), [ringH(0, 0, 0, 0.02, 0.025, 8), ringH(0, 0.03, 0, 0.045, 0.05, 8), ringH(0, 0.065, 0, 0.042, 0.047, 8), ringH(0, 0.09, 0, 0.012, 0.014, 8)]);
+  ctx.albedo(null); ctx.color("oklch(0.12 0.01 250)");
+  for (const x of [-0.017, 0.017]) box(ctx, compose(B, xf([x, 0.048, 0.042])), 0.016, 0.014, 0.012);
+  // her candle inside, black wax, a cold flame
+  ctx.color("oklch(0.2 0.01 280)"); ctx.roughness(0.4);
+  loft(ctx, compose(B, xf([0, -0.355, 0])), [ringH(0, 0, 0, 0.026, 0.026, 8), ringH(0, 0.13, 0, 0.022, 0.024, 8, 0.12, ctx)]);
+  ctx.color("oklch(0.93 0.09 195)"); ctx.roughness(0.2);
+  loft(ctx, compose(B, xf([0, -0.22, 0])), [ringH(0, 0, 0, 0.008, 0.008, 6), ringH(0, 0.025, 0, 0.012, 0.012, 6), ringH(0, 0.06, 0, 0.001, 0.001, 6)]);
+}
+const RELIC = { bailiff, ringer, warden, hangman, abbess };
 export function geometry(ctx) {
   const k = ctx.params?.kind ?? "post";
   if (k === "post") return post(ctx);

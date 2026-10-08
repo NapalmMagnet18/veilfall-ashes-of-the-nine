@@ -159,6 +159,7 @@ export const MARKS = {
   ringer: { name: "Ringer's Peal", color: "#c9b7ff", prefer: ["crit", "dmgp", "dmg", "life"] },
   warden: { name: "Warden's Lantern", color: "#6db8c0", prefer: ["regen", "edge", "life"] },
   hangman: { name: "Hangman's Knot", color: "#c0574a", prefer: ["leech", "speed", "crit", "life"] },
+  abbess: { name: "Abbess's Requiem", color: "#bff3ee", prefer: ["life", "regen", "armor", "leech"] },
 };
 export function markBoss(ctx, s) {
   const n = s?.charName; if (!n) return null;
