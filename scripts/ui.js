@@ -69,7 +69,7 @@ const MSTYLE = `<style>
  #vm .panel{padding:8px 10px} #vm .grid{grid-template-columns:repeat(3,1fr);gap:7px} #vm .grid .card{height:92px}
  #vm .anc img{width:40px;height:40px} #vm .anc span{font-size:9px}
  #vm .det{width:auto} #vm .det .big{display:none} #vm .det .sk{display:none} #vm .btn{min-width:0;font-size:15px;padding:10px 14px}
- #vm .ttl{font-size:46px!important} #vm .sub{font-size:14px!important}
+ #vm .tb{bottom:auto!important;top:46%} #vm .qt{padding:0 64px 0 24px!important;font-size:12px!important} #vm .wrap{right:62px} #vm .ttl{font-size:46px!important} #vm .sub{font-size:14px!important}
 }
 </style>`;
 function menu(ctx, player, s) {
@@ -79,9 +79,9 @@ function menu(ctx, player, s) {
     <div class="ttl" style="font-size:84px;letter-spacing:.22em;color:#e7d9b8;animation:vmglow 4s infinite">VEILFALL</div>
     <div class="sub" style="font-size:20px;letter-spacing:.5em;color:#c49c63;margin-top:4px">ASHES OF THE NINE</div>
     <div style="width:220px;height:2px;margin:16px auto;background:linear-gradient(90deg,transparent,#ac4c42,transparent)"></div>
-    <div style="font-size:14px;color:#b9a77f;font-style:italic;max-width:520px;margin:0 auto;padding:0 16px">"Every book in this place is a person who no longer knows what they lost."</div>
+    <div class="qt" style="font-size:14px;color:#b9a77f;font-style:italic;max-width:520px;margin:0 auto;padding:0 16px">"Every book in this place is a person who no longer knows what they lost."</div>
   </div>
-  <div style="position:absolute;left:0;right:0;bottom:12%;text-align:center;animation:vmin 1.1s">
+  <div class="tb" style="position:absolute;left:0;right:0;bottom:12%;text-align:center;animation:vmin 1.1s">
     ${started ? `<button class="btn main" onclick="${act("continue")}">Continue</button>
       <div class="lbl" style="margin-top:6px">${s.ancestry ? ANC.find((a) => a.id === s.ancestry)?.name + " · " : ""}Bladewraith · Lv ${s.level ?? 1} · ${STAGES[s.quest?.stage ?? 0]?.[0] ?? ""}</div>
       <button class="btn" onclick="${act("bearer")}">The Bearer</button>`
