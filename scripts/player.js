@@ -300,7 +300,20 @@ function forgeNear(ctx) {
   const s = ctx.self.state, o = ctx.getObject("wayside-forge"), f = ctx.self.feetPosition;
   const near = !!o && !s.menu && !s.dead && Math.hypot(o.feetPosition.x - f.x, o.feetPosition.z - f.z) < FORGE.reach;
   if (!!s.atForge !== near) { s.atForge = near; if (near && !s.forgeSeen) { s.forgeSeen = true; msg(ctx, "The forge's coals still breathe. Open your pack (I) to temper, reforge or ascend with ash dust."); } }
+  // Firstblood's due: the anvil burns for this Bearer alone while a free reforge waits (within 8 m)
+  const want = !!o && !s.menu && freeReforges(ctx, s) > 0 && Math.hypot(o.feetPosition.x - f.x, o.feetPosition.z - f.z) < 8;
+  if (want && !me.anvilGlow) {
+    const yaw = (typeof o.rotation === "number" ? o.rotation : o.rotation?.yaw ?? 0) * Math.PI / 180;
+    const at = { x: o.feetPosition.x + 0.75 * Math.cos(yaw), y: o.feetPosition.y + 0.9, z: o.feetPosition.z - 0.75 * Math.sin(yaw) };
+    me.anvilGlow = ctx.spawn({ audience: "local", scope: "session", feetPosition: at, fx: { script: ANVIL_GLOW } });
+    if (!me.anvilRung) { me.anvilRung = true; ctx.emit("playSound", { clip: "/cdn/moodboard-gothic-horror/sfx-hot-iron-hiss-and-low-anvil-hum.mp3", position: at, volume: 0.5, maxDistance: 14 }, { audience: { player: ctx.self.id } }); }
+  } else if (!want && me.anvilGlow) { ctx.destroy(me.anvilGlow); me.anvilGlow = null; }
 }
+const ANVIL_GLOW = `fx
+pop heat n=10 on=box(.2,.01,.07) size=.05..0.09 tint=<2.8,.7,.18>..<1.6,.3,.06> sz=$size*flick(.6,.2) col=$tint*flick(1.1,.35) a=.85 r=sprite(soft-disc,add)
+pop sparks rate=flick(.5,.3)*7 on=box(.2,.01,.07) life=.5..1 v=up(.8..1.6)+sdir()*.3 size=.015..0.03 acc=grav()*.3+drag(.6) col=hdr(5,2.4,.6)>hdr(1.5,.35,.05) a=(1>.6:.9>0)*flick(9,.4) r=sprite(ember,add,velocity,.02)
+pop haze rate=3 on=box(.2,.01,.07) life=1.2..1.8 v=up(.4..0.7) size=.18..0.3 acc=buoy(.4)+curl(.3) col=<.9,.3,.12> a=0>.12:.18>0 sz=$size*(.6>1.8) r=sprite(smoke-puff,add)
+pop glow n=1 at=point() g=flick(.7,.35) r=light(<1,.36,.14>,6+$g*5,4)`;
 function boardNear(ctx) {
   const now = ctx.now(); if (now < (me.boardAt ?? 0)) return; me.boardAt = now + 400;
   const s = ctx.self.state, o = ctx.getObject("trade-board"), f = ctx.self.feetPosition;
