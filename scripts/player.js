@@ -81,10 +81,9 @@ export function onInput(ctx, input) {
       else if (g && (input.pressed.move || !s.target)) {
         if (input.pressed.move) { s.target = null; me.talk = null; }
         const at = reachable(g.position, ctx.self.feetPosition);
-        if (!at) return;
-        if (!s.goal || flat(s.goal, at) > 1.2) me.route = null;
-        s.goal = at; g.position = at;
-        if (input.pressed.move) ctx.emit("fx", { position: { x: g.position.x, y: g.position.y + 0.05, z: g.position.z }, script: `fx\npop ring burst=1 life=.4 size=.9 col=hdr(1.8,1.3,.6) a=.9>0 sz=$size*(.4>1.2) r=sprite(soft-disc,add)` }, { audience: "local" });
+        if (at && (!s.goal || flat(s.goal, at) > 1.2)) me.route = null;
+        if (at) { s.goal = at; g.position = at; }
+        if (at && input.pressed.move) ctx.emit("fx", { position: { x: g.position.x, y: g.position.y + 0.05, z: g.position.z }, script: `fx\npop ring burst=1 life=.4 size=.9 col=hdr(1.8,1.3,.6) a=.9>0 sz=$size*(.4>1.2) r=sprite(soft-disc,add)` }, { audience: "local" });
       }
     }
   }
