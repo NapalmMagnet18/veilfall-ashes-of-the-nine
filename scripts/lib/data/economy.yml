@@ -6,10 +6,12 @@ drops:
   deacon: [45, 80]
   bailiff: 12000        # 1g 20s, once per kill to each eligible player
   ringer: 18000         # 1g 80s, the Ringer of the Ninth Bell
+  warden: 22000         # 2g 20s, the Lantern Warden of the Lanternmere
 quests:
   Z01-MAIN-05: 300      # 3s turn-in
   Z01-MAIN-06: 500      # 5s, the Abbey chapter
   Z01-MAIN-07: 900      # 9s, the Ninth Bell silenced
+  Z01-MAIN-08: 1200     # 12s, the first lantern raised from the Lanternmere
 sell:
   shard: 6              # Wax Shard buyback, each (Sealed Petitions are quest items: never sold)
 shops:

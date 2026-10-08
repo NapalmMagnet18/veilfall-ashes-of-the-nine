@@ -7,8 +7,9 @@ export const MODELS = {
   chorister: "cdn/model-gaunt-hollow-chorister-choir-robe-of-soot-black-and-blood-red-face-melted-smooth-wax-mouth-sealed-crown-of-thin-candles-long-wax-fingers-dark-fantasy.glb",
   flagellant: "cdn/model-gaunt-hooded-penitent-monk-stitched-leather-mask-bare-shoulders-crusted-with-dripping-candle-wax-knotted-rope-cords-tipped-with-candle-stubs-dark-fantasy.glb",
   ringer: "cdn/model-tall-gaunt-bell-ringer-monk-hooded-verdigris-bronze-robes-cracked-bronze-bell-for-a-head-glowing-gold-inside-long-iron-bell-hammer-dark-fantasy-boss.glb",
+  warden: "cdn/model-towering-drowned-lantern-keeper-waterlogged-black-robes-dripping-weeds-rusted-iron-cage-lantern-for-a-head-cold-blue-green-flame-inside-long-hooked-pole-dark-fantasy-boss.glb",
   bailiff: "cdn/model-giant-wax-bailiff-tax-collector-crown-of-burning-candles-iron-ledger-chained-to-chest-bell-mace-dark-fantasy-boss.glb",
 };
 // true height in metres before the row's own scale
-export const HEIGHT = { hero: 1.85, pilgrim: 1.7, walker: 1.7, deacon: 1.8, chorister: 1.95, flagellant: 1.8, bailiff: 2.0, ringer: 2.2 };
+export const HEIGHT = { hero: 1.85, pilgrim: 1.7, walker: 1.7, deacon: 1.8, chorister: 1.95, flagellant: 1.8, bailiff: 2.0, ringer: 2.2, warden: 2.4 };
 export const body = (k) => ({ model: MODELS[k], layout: { maxExtents: { y: HEIGHT[k] } } });
