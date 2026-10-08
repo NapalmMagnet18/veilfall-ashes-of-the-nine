@@ -9,5 +9,5 @@ jumpSpeed: 10
 turnInPlace: 90
 turnSmoothing: 0.06
 turnSpeed: 900
-turnTo: movement
+turnTo: walk
 walkSpeed: 6

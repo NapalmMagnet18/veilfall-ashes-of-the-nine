@@ -1,6 +1,6 @@
 # name: the game's name: fill it once you know what this is. description: one line for the box art.
-name: ""
-description: ""
+name: "VEILFALL: Ashes of the Nine"
+description: "Walk the candle road at dusk, silence the wax pilgrims, break the Bailiff of the Dripping Gate."
 camera: templates/camera.js#camera
 lighting: scripts/lighting.js
 defaultPlace: main
@@ -14,14 +14,27 @@ engine:
       font: Geist Pixel Square
 inputs:
   actions:
-    jump:
+    move:
+      mouse: left
+      touch:
+        gesture: press
+    crosswound:
+      mouse: right
+      keys:
+        - e
+    griefstep:
       keys:
         - space
+    tonic:
+      keys:
+        - q
   axes:
     moveX:
       keys: a/d
     moveZ:
       keys: s/w
+    zoomIn:
+      mouse: wheelY
 player: templates/player.js#player
 ui:
   render: scripts/ui.js

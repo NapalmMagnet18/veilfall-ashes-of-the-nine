@@ -1,8 +1,9 @@
-// spawn6 native template "camera"
+// VEILFALL's isometric eye: high over the hero's shoulder from the south-east, the cursor free.
 export const camera = {
   behavior: ["scripts/camera.js"],
   kind: "custom",
-  orientation: { source: "look" },
-  sensitivity: 3,
-  state: { pitch: 0, yaw: 0 },
+  orientation: { source: "script" },
+  pointerLock: false,
+  fov: 38,
+  state: { dist: 26 },
 };
