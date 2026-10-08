@@ -554,6 +554,127 @@ candle-road/milestone-9:
   physics: static
   primitive: {kind: scripted, params: {candles: [[0, 0, 0.122, 0.034, 1], [-0.1, -0.005, 0.136, 0.04, 1], [0.033, -0.089, 0.19, 0.041, 1], [0.024, 0.15, 0.163, 0.037, 1]], h: 1.17, notch: 2, seed: 9, snap: false, w: 0.275, yaw: -104}, script: scripts/gen/vf-milestone.js, seed: 9}
   tags: [z01-dressing, road]
+climb-dress-0:
+  castShadow: true
+  feetPosition: {x: 18.15147914213295, y: {terrain: -0.1}, z: -113.56832052791817}
+  id: climb-dress-0
+  physics: static
+  primitive: {kind: scripted, params: {h: 6.649643368157392}, script: scripts/gen/hub-deadtree.js, seed: 301}
+  rotation: 8.307821065330794
+  tags: [abbey, z01-dressing]
+climb-dress-1:
+  castShadow: true
+  feetPosition: {x: 8.817409135206084, y: {terrain: -0.1}, z: -129.17005591679626}
+  id: climb-dress-1
+  physics: static
+  primitive: {kind: scripted, params: {h: 5.824149916797946}, script: scripts/gen/hub-deadtree.js, seed: 302}
+  rotation: 349.68707547974174
+  tags: [abbey, z01-dressing]
+climb-dress-10:
+  castShadow: true
+  feetPosition: {x: 12.499488537992749, y: {terrain: -0.05}, z: -155.49948853799276}
+  id: climb-dress-10
+  model: /cdn/value.406b9c00757d0bbec005d0c122246c4dbdef6515e4f2b8501aad10482f3a510d.glb
+  physics: static
+  receiveShadow: true
+  rotation: -59.74802118714341
+  tags: [abbey, z01-dressing, gibbet]
+climb-dress-11:
+  castShadow: true
+  feetPosition: {x: -3.7321643724813693, y: {terrain: -0.05}, z: -150.1339178137593}
+  id: climb-dress-11
+  model: /cdn/value.406b9c00757d0bbec005d0c122246c4dbdef6515e4f2b8501aad10482f3a510d.glb
+  physics: static
+  receiveShadow: true
+  rotation: 120.6412499910846
+  tags: [abbey, z01-dressing, gibbet]
+climb-dress-12:
+  castShadow: true
+  feetPosition: {x: 10.072486371411788, y: {terrain: -0.05}, z: -157.0362431857059}
+  id: climb-dress-12
+  model: /cdn/value.3cb51fb3edc8baa35cda1a3e29fe6f3e2294dbb59c778d668295d99e1e16092a.glb
+  physics: static
+  receiveShadow: true
+  rotation: -60.32460176890321
+  tags: [abbey, z01-dressing]
+climb-dress-13:
+  castShadow: true
+  feetPosition: {x: -5.73516809012111, y: {terrain: -0.05}, z: -154.63241595493943}
+  id: climb-dress-13
+  model: /cdn/value.406b9c00757d0bbec005d0c122246c4dbdef6515e4f2b8501aad10482f3a510d.glb
+  physics: static
+  receiveShadow: true
+  rotation: 110.82399297520382
+  tags: [abbey, z01-dressing, gibbet]
+climb-dress-2:
+  castShadow: true
+  feetPosition: {x: 23.658614891600504, y: {terrain: -0.05}, z: -120.03700622055354}
+  id: climb-dress-2
+  model: /cdn/value.3cb51fb3edc8baa35cda1a3e29fe6f3e2294dbb59c778d668295d99e1e16092a.glb
+  physics: static
+  receiveShadow: true
+  rotation: -116.74592692781297
+  tags: [abbey, z01-dressing]
+climb-dress-3:
+  castShadow: true
+  feetPosition: {x: 9.820477884186435, y: {terrain: -0.05}, z: -128.69156510976757}
+  id: climb-dress-3
+  model: /cdn/value.406b9c00757d0bbec005d0c122246c4dbdef6515e4f2b8501aad10482f3a510d.glb
+  physics: static
+  receiveShadow: true
+  rotation: 111.30047311935253
+  tags: [abbey, z01-dressing, gibbet]
+climb-dress-4:
+  castShadow: true
+  feetPosition: {x: 25.266359497976794, y: {terrain: -0.05}, z: -133.1046741422791}
+  id: climb-dress-4
+  model: /cdn/value.406b9c00757d0bbec005d0c122246c4dbdef6515e4f2b8501aad10482f3a510d.glb
+  physics: static
+  receiveShadow: true
+  rotation: -84.64903543120082
+  tags: [abbey, z01-dressing, gibbet]
+climb-dress-5:
+  castShadow: true
+  feetPosition: {x: 7.577390840115836, y: {terrain: -0.05}, z: -136.37925452574737}
+  id: climb-dress-5
+  model: /cdn/value.3cb51fb3edc8baa35cda1a3e29fe6f3e2294dbb59c778d668295d99e1e16092a.glb
+  physics: static
+  receiveShadow: true
+  rotation: 101.48144090019822
+  tags: [abbey, z01-dressing]
+climb-dress-6:
+  castShadow: true
+  feetPosition: {x: 23.139699384853742, y: {terrain: -0.1}, z: -140.8256283956725}
+  id: climb-dress-6
+  physics: static
+  primitive: {kind: scripted, params: {h: 5.37940024252953}, script: scripts/gen/hub-deadtree.js, seed: 307}
+  rotation: 29.266771799543303
+  tags: [abbey, z01-dressing]
+climb-dress-7:
+  castShadow: true
+  feetPosition: {x: 6.662810542120177, y: {terrain: -0.05}, z: -138.66281054212018}
+  id: climb-dress-7
+  model: /cdn/value.3cb51fb3edc8baa35cda1a3e29fe6f3e2294dbb59c778d668295d99e1e16092a.glb
+  physics: static
+  receiveShadow: true
+  rotation: 122.84111843111046
+  tags: [abbey, z01-dressing]
+climb-dress-8:
+  castShadow: true
+  feetPosition: {x: 18.034359880802917, y: {terrain: -0.1}, z: -150.03435988080292}
+  id: climb-dress-8
+  physics: static
+  primitive: {kind: scripted, params: {h: 5.185088530036197}, script: scripts/gen/hub-deadtree.js, seed: 309}
+  rotation: 244.18984070615372
+  tags: [abbey, z01-dressing]
+climb-dress-9:
+  castShadow: true
+  feetPosition: {x: 0.44026841559134233, y: {terrain: -0.1}, z: -143.44026841559133}
+  id: climb-dress-9
+  physics: static
+  primitive: {kind: scripted, params: {h: 4.5549854780803365}, script: scripts/gen/hub-deadtree.js, seed: 310}
+  rotation: 47.18795251435971
+  tags: [abbey, z01-dressing]
 dripping-gate:
   feetPosition: {x: 0, y: {terrain: 0}, z: -89}
   id: dripping-gate
