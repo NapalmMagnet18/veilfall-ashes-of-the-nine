@@ -3,7 +3,7 @@
 // striker's machine, and written to the enemy's state; the wax-pack manager reads hp and pays XP.
 import { raycast, getInputRay } from "builtin/physics";
 import { findPath } from "builtin/nav";
-import { floorDist } from "./lib/data/veilfall-map.js";
+import { floorDist, areaAt } from "./lib/data/veilfall-map.js";
 import C from "./lib/data/combat.yml";
 import { shopInput } from "./lib/shop.js";
 import * as CH from "./lib/character.js";
@@ -156,7 +156,7 @@ function menuInput(ctx, d) {
         const base = CH.fresh(c.ancestry, c.cls);
         for (const k of CH.CHAR_KEYS) s[k] = c.data[k] ?? base[k];
         s.ancestry = c.ancestry; s.cls = c.cls; s.charId = c.id; s.charName = c.name;
-        s.dead = false; s.goal = null; s.target = null; s.talk = null; s.dialog = null; s.shop = null; s.bagOpen = false;
+        s.dead = false; s.goal = null; s.target = null; s.talk = null; s.dialog = null; s.shop = null; s.bagOpen = false; s.area = null; s.banner = null;
         if (s.hp <= 0) s.hp = s.maxHp;
         s.pendingPos = c.data.pos ?? CH.START; s.enteredAt = ctx.now(); s.menu = null;
         me.lastHp = s.hp; me.saved = JSON.stringify(CH.pack(s)); me.saveAt = ctx.now();
@@ -362,6 +362,19 @@ function walkTo(ctx, goal, speed, dt) {
   return { x: (dx / d) * speed, z: (dz / d) * speed };
 }
 
+// the road names itself: a banner when a Bearer walks into a new stretch, "discovered" the first time
+function zoneTick(ctx, s, f, now) {
+  if (now - (me.zoneAt ?? 0) < 400 || s.dead) return;
+  me.zoneAt = now;
+  const a = areaAt(f.x, f.z);
+  if (!a || a.id === s.area) return;
+  s.area = a.id;
+  const seen = s.seen ?? [], fresh = !seen.includes(a.id);
+  if (fresh) { s.seen = [...seen, a.id]; ctx.emit("milestone", { step: s.seen.length, name: "found " + a.name }, { audience: { player: ctx.self.id } }); }
+  if (s.banner?.name === a.name && now - s.banner.at < 8000) return; // stepping back and forth over a line stays quiet
+  s.banner = { name: a.name, sub: a.sub, fresh, at: now };
+  ctx.emit("playSound", { clip: sfx(fresh ? "area-discovered-low-choir-swell-and-bell" : "area-enter-soft-wind-and-distant-bell"), position: f, volume: fresh ? 0.75 : 0.4 }, { audience: { player: ctx.self.id } });
+}
 export function update(ctx, dt) {
   if (ctx.self.state.hp === undefined) onSpawn(ctx);
   const s = ctx.self.state, now = ctx.now(), f = ctx.self.feetPosition;
@@ -400,6 +413,7 @@ export function update(ctx, dt) {
     if (snap !== me.saved) { me.saved = snap; CH.save(ctx, s.charId, s, f).catch((e) => ctx.log("save failed", String(e))); }
   }
   traitTick(ctx, now);
+  zoneTick(ctx, s, f, now);
   if (me.animOff && now > me.animOff) { ctx.self.anim.attack = null; me.animOff = 0; }
 
   // death: a beat, then back on your feet at the Wayside Fire

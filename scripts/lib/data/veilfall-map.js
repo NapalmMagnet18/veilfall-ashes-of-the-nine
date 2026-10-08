@@ -19,3 +19,20 @@ export function floorDist(x, z) {
   }
   return d; // < 0 = on the floor
 }
+
+// the named stretches of Z01: what the banner says when a Bearer walks into one
+export const AREAS = [
+  { id: "fire", name: "Wayside Fire", sub: "the last warm place on the road" },
+  { id: "road", name: "Broken Lantern Road", sub: "every lamp a name nobody speaks" },
+  { id: "toll", name: "The Tollhouse", sub: "petitions sealed in wax, never read" },
+  { id: "gate", name: "The Dripping Gate", sub: "the wax still runs" },
+  { id: "court", name: "The Bailiff's Court", sub: "all debts are called here" },
+];
+export function areaAt(x, z) {
+  const by = (id) => AREAS.find((a) => a.id === id);
+  if (Math.hypot(x - HUB.x, z - HUB.z) < HUB.r) return by("fire");
+  if (Math.hypot(x - COURTS[0].x, z - COURTS[0].z) < COURTS[0].r) return by("toll");
+  if (z < -92) return by("court");
+  if (z < -80) return by("gate");
+  return floorDist(x, z) < 0.5 ? by("road") : null;
+}

@@ -3,9 +3,9 @@
 import C from "./data/combat.yml";
 import R from "./data/realms.yml";
 
-export const CHAR_KEYS = ["hp", "maxHp", "edge", "tonics", "xp", "level", "copper", "kills", "shards", "bag", "petitions", "quest", "claimed", "weapon", "bossKilled", "ancestry", "cls"];
+export const CHAR_KEYS = ["hp", "maxHp", "edge", "tonics", "xp", "level", "copper", "kills", "shards", "bag", "petitions", "quest", "claimed", "weapon", "bossKilled", "ancestry", "cls", "seen"];
 export function fresh(ancestry, cls) {
-  return { hp: C.hero.hp, maxHp: C.hero.hp, edge: 0, tonics: C.hero.tonics, xp: 0, level: 1, copper: 0, kills: 0, shards: 0, bag: {}, petitions: [], quest: { stage: 0 }, claimed: {}, weapon: null, bossKilled: false, ancestry, cls };
+  return { hp: C.hero.hp, maxHp: C.hero.hp, edge: 0, tonics: C.hero.tonics, xp: 0, level: 1, copper: 0, kills: 0, shards: 0, bag: {}, petitions: [], quest: { stage: 0 }, claimed: {}, weapon: null, bossKilled: false, ancestry, cls, seen: [] };
 }
 // where a new Bearer wakes: by the Wayside Fire, facing the road
 export const START = { x: 1.2, y: 0.4, z: 1.5 };

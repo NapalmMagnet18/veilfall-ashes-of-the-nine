@@ -27,7 +27,7 @@ const THEME = `<style>
 #vf .ph{display:none} @media (pointer:coarse),(max-width:700px),(max-height:520px){#vf .dk{display:none!important} #vf .ph{display:block} #vf .qp{left:10px!important;top:10px!important;max-width:210px!important;padding:6px 9px!important} #vf .qp div{font-size:13px!important} #vf .qp .lbl{font-size:10px!important} #vf .qp.bossup{display:none!important}}
 #vf .bar{height:10px;background:#120e0c;box-shadow:0 0 0 2px #0d0b0a,0 0 0 3px #5a4a33;position:relative;margin-top:5px}
 @keyframes vfin{from{opacity:0;transform:translateY(8px)}} @keyframes vffade{to{opacity:0}} @keyframes vfpulse{50%{opacity:.55}}
-</style>`;
+#vf .vfban{animation:vfban 4.2s ease forwards} @keyframes vfban{0%{opacity:0;filter:blur(3px)}12%{opacity:1;filter:none}78%{opacity:1}100%{opacity:0}}</style>`;
 
 // ---- title + the Bearer screen (character selection): drawn over the living camp, never a loading wall ----
 const CDN = (h) => `/cdn/value.${h}.png`;
@@ -205,6 +205,7 @@ export default function (ctx, player) {
   const lo = L[lv - 1] ?? 0, hi = L[lv] ?? lo + 500, xpPct = Math.max(0, Math.min(100, (((s.xp ?? 0) - lo) / (hi - lo)) * 100));
   const boss = ctx.place.state.boss;
   const dashLeft = Math.max(0, (s.dashReadyAt ?? 0) - now), dashPct = Math.min(100, (dashLeft / 3000) * 100);
+  const ban = s.banner && now - s.banner.at < 4200 && !s.shop ? s.banner : null;
   const dlg = s.dialog && now - s.dialog.at < 9000 && !s.shop ? s.dialog : null;
   const touch = typeof matchMedia !== "undefined" && matchMedia("(pointer: coarse)").matches;
   const rail = "calc(var(--spawn-chrome-reservation-right-inset, 50px) + 24px)";
@@ -220,6 +221,11 @@ export default function (ctx, player) {
       <div style="position:absolute;inset:0;width:${(boss.hp / boss.max) * 100}%;background:linear-gradient(#c9402f,#7a1610);transition:width .2s"></div>
       <div style="position:absolute;top:0;bottom:0;left:70%;width:2px;background:#0d0b0a"></div><div style="position:absolute;top:0;bottom:0;left:35%;width:2px;background:#0d0b0a"></div>
     </div><div class="lbl" style="margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:clamp(9px,1.6vw,12px)">${boss.phase === 1 ? "PHASE I · wedge: get behind him · marked: step away" : boss.phase === 2 ? `PHASE II · break the ledger pillars (${boss.ledgers} lit)` : "PHASE III · arc, debt, then he falters"}${boss.fray ? ` · FRAY ×${boss.fray} (+${boss.fray * 10}% damage taken)` : ""}</div></div>` : ""}
+  ${ban ? `<div id="ban${ban.at}" class="absolute vfban" style="left:50%;top:${touch ? 64 : 120}px;transform:translateX(-50%);width:min(520px,calc(100vw - 2*${rail}));text-align:center;pointer-events:none">
+    ${ban.fresh ? `<div class="lbl" style="letter-spacing:.32em;color:#6DB8C0">AREA DISCOVERED</div>` : ""}
+    <div style="font-size:clamp(22px,4vw,34px);letter-spacing:.14em;color:var(--wax);text-shadow:0 2px 0 #0d0b0a,0 0 18px rgba(196,156,99,.45)">${ban.name.toUpperCase()}</div>
+    <div class="dv d${ban.fresh ? "f1" : "f0"}" style="width:min(100%,360px)"></div>
+    <div style="font-size:14px;font-style:italic;color:#d9c9a6;text-shadow:0 1px 0 #0d0b0a">${ban.sub}</div></div>` : ""}
   ${dlg ? `<div id="dlg${dlg.at}" class="absolute plate dl" style="left:50%;transform:translateX(-50%);bottom:${touch ? 210 : 150}px;width:min(560px,calc(100vw - 2*${rail}));animation:vfin .35s;font-size:17px;line-height:1.35">${dlg.text}<div class="dv d0" style="margin:8px auto 0"></div></div>` : ""}
   <div class="absolute dk" style="left:24px;bottom:24px;display:flex;align-items:flex-end;gap:14px">
     <div class="orb"><div class="fill" style="height:${hpPct}%;background:radial-gradient(circle at 50% 30%,#e0473a,#7d1410 70%)${hpPct < 30 ? ";animation:vfpulse 1s infinite" : ""}"></div><div class="shine"></div><div class="val">${hp}</div></div>
