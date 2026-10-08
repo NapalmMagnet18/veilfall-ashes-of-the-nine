@@ -826,6 +826,15 @@ en-p9/head-flame:
   fx: {script: "fx\npop f rate=flick(.5,.3)*18 on=point() life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)"}
   id: en-p9/head-flame
   parent: en-p9
+ossuary-cart:
+  castShadow: true
+  children: [{feetPosition: {x: 0.9, y: 1.8, z: -0.9}, id: lamp, light: {color: "#ffa45a", distance: 7, intensity: 3, kind: point}}]
+  feetPosition: {x: -7.5, y: {terrain: -0.05}, z: -166}
+  id: ossuary-cart
+  physics: static
+  primitive: {kind: scripted, params: {tip: 9}, script: scripts/gen/ossuary-cart.js, seed: 77}
+  rotation: 205
+  tags: [abbey, z01-dressing]
 pen-wheel-1:
   castShadow: true
   children: [{feetPosition: {x: 0, y: 3.6, z: 0}, id: glow, light: {color: oklch(.8 .14 60), distance: 6, intensity: 1.2, kind: point}}]
