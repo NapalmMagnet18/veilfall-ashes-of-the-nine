@@ -287,6 +287,7 @@ const ITEM_SFX = { equip: "armor-equip-leather-and-chainmail-rustle", sell: "coi
 function itemInput(ctx, a) {
   const s = ctx.self.state, inv = [...(s.inv ?? [])], gear = { ...(s.gear ?? {}) };
   if (!a || a.n === me.itemN) return; me.itemN = a.n;
+  ctx.log("itemInput", { a: a.a, local: ctx.self.isLocal, inv: (s.inv ?? []).length });
   let snd = null;
   if (a.a === "equip") {
     const i = inv.findIndex((x) => x.u === a.u); if (i < 0) return;
