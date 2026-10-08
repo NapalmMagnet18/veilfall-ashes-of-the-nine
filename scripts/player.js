@@ -88,7 +88,7 @@ const ANC_STING = { cinderkin: "ember-flare-whoosh-and-coal-crackle-sting", fenb
   stonebound: "deep-stone-grind-and-anvil-ring-sting", skyforged: "high-wind-gust-and-bright-chime-sting" };
 function heroCue(ctx, clip, volume) { ctx.emit("playSound", { clip, position: ctx.self.feetPosition, volume }, { audience: { player: ctx.self.id } }); }
 function msg(ctx, text) { ctx.self.state.msg = { text, at: ctx.now() }; }
-function click(ctx, pitch = 1) { ctx.emit("playSound", { clip: sfx("stone-ledger-page-turn-soft"), position: ctx.self.feetPosition, volume: 0.5, pitch }, { audience: { player: ctx.self.id } }); }
+function click(ctx, pitch = 1) { const at = { audience: { player: ctx.self.id } }; ctx.emit("playSound", { clip: sfx("stone-ledger-page-turn-soft"), position: ctx.self.feetPosition, volume: 0.4, pitch }, at); ctx.emit("playSound", { clip: sfx("menu-press-heavy-gilded-metal-clunk"), position: ctx.self.feetPosition, volume: 0.55, pitch }, at); }
 async function refresh(ctx) {
   const s = ctx.self.state, realm = CH.realmOf(ctx).room;
   try {
@@ -112,6 +112,7 @@ async function busy(ctx, label, fn) {
 }
 function menuInput(ctx, d) {
   const s = ctx.self.state;
+  if (d?.a === "hover") { if (d.n !== me.menuN && ctx.now() - (me.hoverAt ?? 0) > 70) { me.hoverAt = ctx.now(); ctx.emit("playSound", { clip: sfx("menu-hover-soft-stone-whoosh"), position: ctx.self.feetPosition, volume: 0.28, pitch: 0.94 + ctx.random() * 0.12 }, { audience: { player: ctx.self.id } }); } me.menuN = d.n; return; }
   if (!d || d.n === me.menuN || s.busy) return; me.menuN = d.n;
   const pick = s.pick ?? { anc: "cinderkin", cls: "bladewraith", name: CH.rollName("cinderkin", () => ctx.random()) };
   const max = R.maxChars, here = CH.realmOf(ctx).room;

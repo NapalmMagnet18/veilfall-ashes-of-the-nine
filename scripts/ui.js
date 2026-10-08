@@ -70,6 +70,7 @@ const ANC = [
   { id: "stonebound", name: "Stonebound", home: "Underhollow Steps", color: "#ac9968", img: CDN("d6b87ccf4d5714f8d7067ab43ccee72b850c1c64257d5e290510bde5b8e44d86"), ethos: "Mountain clans carve genealogies into staircases, never statues.", trait: "Carved Stance: heavy blows (15+) land 25% lighter." },
   { id: "skyforged", name: "Skyforged", home: "Gale Spires", color: "#819ec4", img: CDN("8ef7be812171fb7a2dc3ef03c904c365e54475469f2973b75bdffd4170688f96"), ethos: "Cliff dwellers play their histories on funeral wind instruments.", trait: "Gust Return: every Griefstep restores 10 Edge." },
 ];
+const HOV = `sendAction('menu',{a:'hover',n:Date.now()})`;
 const act = (a, v) => `sendAction('menu',{a:'${a}'${v !== undefined ? `,v:'${v}'` : ""},n:Date.now()})`;
 const MSTYLE = `<style>
 #vm{position:fixed;inset:0;color:#e9dfc8;text-shadow:2px 2px 0 #0d0b0a;pointer-events:none}
@@ -239,9 +240,9 @@ function menu(ctx, player, s) {
     return `${head(s)}<div id="vt"><div class="shade"></div>${EMBERS}
     <div class="logo"><img class="crest" src="${CREST}"><div class="word gold">VEILFALL</div><div class="subt"><i></i><b></b>ASHES OF THE NINE<b></b><i></i></div></div>
     <div class="menu"><div class="cap">THE LANTERN SHRINE</div>
-      ${last ? `<button class="it main" onclick="${act("enter")}">Continue<span class="sub">${last.name} · Level ${last.level} ${lk.name} · ${last.zone}</span></button><div class="rule"></div>` : ""}
-      <button class="it ${last ? "" : "main"}" onclick="${act("chars")}">${last ? "Bearers" : "Enter the Veil"}<span class="sub">${last ? "choose another, or write a new name" : "write your first Bearer"}</span></button>
-      <button class="it" onclick="${act("realms")}">Realms<span class="sub">${realmName(here)} · ${R.realms.length} roads</span></button>
+      ${last ? `<button class="it main" onmouseenter="${HOV}" onclick="${act("enter")}">Continue<span class="sub">${last.name} · Level ${last.level} ${lk.name} · ${last.zone}</span></button><div class="rule"></div>` : ""}
+      <button class="it ${last ? "" : "main"}" onmouseenter="${HOV}" onclick="${act("chars")}">${last ? "Bearers" : "Enter the Veil"}<span class="sub">${last ? "choose another, or write a new name" : "write your first Bearer"}</span></button>
+      <button class="it" onmouseenter="${HOV}" onclick="${act("realms")}">Realms<span class="sub">${realmName(here)} · ${R.realms.length} roads</span></button>
     </div>
     <div class="chron"><h4>THE CHRONICLE</h4>${CHRONICLE.map(([n, t, d, nw]) => `<div class="ch ${nw ? "new" : ""}"><div class="n">${n}</div><div><div class="tt">${t}</div><div class="dd">${d}</div></div></div>`).join("")}</div>
     <div class="quote">"Every book in this place is a person who no longer knows what they lost."</div>
@@ -270,12 +271,12 @@ function menu(ctx, player, s) {
 @media (pointer:coarse),(max-width:760px),(max-height:520px){#vm .rl{top:8px;transform:translateX(-50%);width:calc(100vw - 90px)} #vm .rh{display:none} #vm .rr{grid-template-columns:48px 1fr 54px;gap:10px;padding:8px} #vm .rr .sg{width:48px;height:48px} #vm .rr .nm{font-size:16px} #vm .rr .ds,#vm .rr .c2{display:none}}
 </style>
     <div class="rl"><div class="rh"><div class="lbl">Choose a realm</div><div class="h1 gold">THE NINE ROADS</div><div class="dv df5"></div></div>
-      ${R.realms.map((r) => `<div class="rr ${r.room === here ? "on" : ""}" onclick="${act("realm", r.room)}">
+      ${R.realms.map((r) => `<div class="rr ${r.room === here ? "on" : ""}" onmouseenter="${HOV}" onclick="${act("realm", r.room)}">
         <div class="sg">${SIG[r.room] ? `<img src="/cdn/value.${SIG[r.room]}.png">` : ""}</div>
         <div><div class="nm">${r.name}${r.room === here ? `<span class="here">CURRENT</span>` : ""}</div><div class="ds">${r.note}</div></div>
         <div class="col c2"><div class="st">OPEN</div><span>${r.kind.toUpperCase()}</span></div>
         <div class="col"><b>${per[r.room] ?? 0}<span style="font-size:12px;letter-spacing:0">/${R.maxChars}</span></b><span>BEARERS</span></div></div>`).join("")}
-      <div class="rfoot"><span>A Bearer is written into one realm and walks only there.</span><button class="btn" style="margin:0;min-width:0;display:inline-block" onclick="${act("title")}">Back</button></div>
+      <div class="rfoot"><span>A Bearer is written into one realm and walks only there.</span><button class="btn" style="margin:0;min-width:0;display:inline-block" onmouseenter="${HOV}" onclick="${act("title")}">Back</button></div>
     </div>${tail(s, now)}`;
   }
 
@@ -287,14 +288,14 @@ function menu(ctx, player, s) {
     <div class="panel" style="animation:vmin .4s">
       <div class="lbl">New Bearer · ${realmName(here)}</div><div class="dv df3"></div>
       <div class="sec">ANCESTRY</div>
-      <div style="display:flex;gap:14px;justify-content:space-between">${ANC.map((a) => `<div class="anc ${a.id === A.id ? "on" : ""}" style="--c:${a.color};pointer-events:auto" onclick="${act("anc", a.id)}"><img src="${a.img}"><span style="color:${a.id === A.id ? a.color : "#e9dfc8"}">${a.name.toUpperCase()}</span></div>`).join("")}</div>
+      <div style="display:flex;gap:14px;justify-content:space-between">${ANC.map((a) => `<div class="anc ${a.id === A.id ? "on" : ""}" style="--c:${a.color};pointer-events:auto" onmouseenter="${HOV}" onclick="${act("anc", a.id)}"><img src="${a.img}"><span style="color:${a.id === A.id ? a.color : "#e9dfc8"}">${a.name.toUpperCase()}</span></div>`).join("")}</div>
       <div class="sec">CLASS</div>
-      <div class="grid">${CLASSES.map((c) => `<div class="card ${c.id === C.id ? "on" : ""} ${c.open ? "" : "sealed"}" onclick="${act("cls", c.id)}"><img src="${c.img}"><div class="nm">${c.name}</div>${c.open ? "" : `<div class="seal">SEALED</div>`}</div>`).join("")}</div>
+      <div class="grid">${CLASSES.map((c) => `<div class="card ${c.id === C.id ? "on" : ""} ${c.open ? "" : "sealed"}" onmouseenter="${HOV}" onclick="${act("cls", c.id)}"><img src="${c.img}"><div class="nm">${c.name}</div>${c.open ? "" : `<div class="seal">SEALED</div>`}</div>`).join("")}</div>
     </div>
     <div class="panel det" style="animation:vmin .55s">
       <div class="big"><img src="${C.img}" style="${C.open ? "" : "filter:grayscale(.8) brightness(.5)"}"><div style="position:absolute;left:0;right:0;bottom:0;height:80px;background:linear-gradient(transparent,#1a1715)"></div></div>
       <div class="lbl">Name</div>
-      <div class="namebox"><span>${pk.name}</span><button class="mini" onclick="${act("reroll")}">ANOTHER NAME</button></div>
+      <div class="namebox"><span>${pk.name}</span><button class="mini" onmouseenter="${HOV}" onclick="${act("reroll")}">ANOTHER NAME</button></div>
       <div class="bname gold" style="margin-top:10px">${C.name}</div>
       <div class="lbl">${C.role} · ${C.res}</div>
       <div style="font-size:14px;margin:6px 0 8px;line-height:1.35">${C.fantasy}</div>
@@ -303,9 +304,9 @@ function menu(ctx, player, s) {
       <div style="font-size:16px;color:${A.color}">${A.name} <span class="lbl">of ${A.home}</span></div>
       <div style="font-size:12px;color:#b9a77f;margin:2px 0 4px;font-style:italic">${A.ethos}</div>
       <div style="font-size:13px;line-height:1.35">${A.trait}</div>
-      ${C.open ? `<button class="btn main" style="margin-top:12px;min-width:0" onclick="${act("create")}">Write the name</button>`
+      ${C.open ? `<button class="btn main" style="margin-top:12px;min-width:0" onmouseenter="${HOV}" onclick="${act("create")}">Write the name</button>`
         : `<button class="btn" disabled style="margin-top:12px;min-width:0">Sealed · its trial comes later</button>`}
-      <button class="btn" style="min-width:0;font-size:14px;padding:8px" onclick="${act("chars")}">Back</button>
+      <button class="btn" style="min-width:0;font-size:14px;padding:8px" onmouseenter="${HOV}" onclick="${act("chars")}">Back</button>
     </div>
   </div>${tail(s, now)}`;
   }
@@ -319,11 +320,11 @@ function menu(ctx, player, s) {
       <div class="sec" style="margin-top:0">YOUR BEARERS <span style="color:#8f7d5c;letter-spacing:.1em">${chars.length}/${R.maxChars}</span></div>
       ${!s.roster ? `<div style="margin-top:10px;color:#b9a77f">Reading the realm's ledger…</div>`
         : chars.length ? chars.map((c) => { const k = CLASSES.find((x) => x.id === c.cls) ?? CLASSES[0], an = ANC.find((x) => x.id === c.ancestry) ?? ANC[0];
-          return `<div class="row ${c.id === s.sel ? "on" : ""}" onclick="${act("sel", c.id)}"><img src="${k.img}"><div style="flex:1;min-width:0"><div class="t">${c.name}</div><div class="d"><span style="color:${an.color}">${an.name}</span> ${k.name} · Lv ${c.level}</div><div class="d">${c.zone}</div></div></div>`; }).join("")
+          return `<div class="row ${c.id === s.sel ? "on" : ""}" onmouseenter="${HOV}" onclick="${act("sel", c.id)}"><img src="${k.img}"><div style="flex:1;min-width:0"><div class="t">${c.name}</div><div class="d"><span style="color:${an.color}">${an.name}</span> ${k.name} · Lv ${c.level}</div><div class="d">${c.zone}</div></div></div>`; }).join("")
         : `<div style="margin-top:10px;font-size:14px;line-height:1.4;color:#b9a77f">No Bearer walks ${realmName(here)} in your name yet.</div>`}
-      ${chars.length < R.maxChars ? `<button class="btn" style="min-width:0;font-size:15px;padding:9px;margin-top:14px" onclick="${act("new")}">+ New Bearer</button>` : ""}
-      <button class="btn" style="min-width:0;font-size:13px;padding:7px;margin-top:8px" onclick="${act("realms")}">Change realm</button>
-      <button class="btn" style="min-width:0;font-size:13px;padding:7px;margin-top:8px" onclick="${act("title")}">Back</button>
+      ${chars.length < R.maxChars ? `<button class="btn" style="min-width:0;font-size:15px;padding:9px;margin-top:14px" onmouseenter="${HOV}" onclick="${act("new")}">+ New Bearer</button>` : ""}
+      <button class="btn" style="min-width:0;font-size:13px;padding:7px;margin-top:8px" onmouseenter="${HOV}" onclick="${act("realms")}">Change realm</button>
+      <button class="btn" style="min-width:0;font-size:13px;padding:7px;margin-top:8px" onmouseenter="${HOV}" onclick="${act("title")}">Back</button>
     </div>
     ${sel ? `<div class="panel det" style="animation:vmin .5s">
       <div class="big"><img src="${C.img}"><div style="position:absolute;left:0;right:0;bottom:0;height:80px;background:linear-gradient(transparent,#1a1715)"></div></div>
@@ -331,10 +332,10 @@ function menu(ctx, player, s) {
       <div class="lbl" style="margin-top:4px"><span style="color:${A.color}">${A.name}</span> · ${C.name} · ${C.role}</div>
       <div class="stats"><div><b>${sel.level}</b><span>LEVEL</span></div><div><b style="font-size:13px;line-height:22px">${sel.zone}</b><span>WHERE</span></div><div><b style="font-size:13px;line-height:22px">${ago(now, sel.played_at)}</b><span>LAST WALKED</span></div></div>
       <div style="font-size:15px;font-style:italic;color:#a8977a;margin:8px 0 0;line-height:1.35">${C.fantasy}</div>
-      <button class="btn main" style="margin-top:14px;min-width:0" onclick="${act("enter")}">Enter the world</button>
+      <button class="btn main" style="margin-top:14px;min-width:0" onmouseenter="${HOV}" onclick="${act("enter")}">Enter the world</button>
       ${s.confirmDel === sel.id ? `<div style="margin-top:12px;font-size:13px;color:#d8442f;text-align:center">Unwrite ${sel.name} forever?</div>
-        <div style="display:flex;gap:8px"><button class="btn" style="min-width:0;flex:1;font-size:13px;padding:7px;color:#d8442f" onclick="${act("delete-yes")}">Unwrite</button><button class="btn" style="min-width:0;flex:1;font-size:13px;padding:7px" onclick="${act("delete-no")}">Keep</button></div>`
-        : `<button class="btn" style="min-width:0;font-size:12px;padding:6px;margin-top:10px;color:#9a8e78" onclick="${act("delete")}">Delete Bearer</button>`}
+        <div style="display:flex;gap:8px"><button class="btn" style="min-width:0;flex:1;font-size:13px;padding:7px;color:#d8442f" onmouseenter="${HOV}" onclick="${act("delete-yes")}">Unwrite</button><button class="btn" style="min-width:0;flex:1;font-size:13px;padding:7px" onmouseenter="${HOV}" onclick="${act("delete-no")}">Keep</button></div>`
+        : `<button class="btn" style="min-width:0;font-size:12px;padding:6px;margin-top:10px;color:#9a8e78" onmouseenter="${HOV}" onclick="${act("delete")}">Delete Bearer</button>`}
     </div>` : ""}
   </div>${tail(s, now)}`;
 }
