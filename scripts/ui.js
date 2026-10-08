@@ -220,7 +220,7 @@ export default function (ctx, player) {
   const cwLeft = Math.max(0, (s.cwReadyAt ?? 0) - now), cwPct = Math.min(100, (cwLeft / (CB.crosswound.cd * 1000)) * 100);
   const guardLeft = Math.max(0, (s.guardReadyAt ?? 0) - now), guardPct = Math.min(100, guardLeft / 80), guardOn = (s.guardUntil ?? 0) > now;
   const foe = s.foe, foeOn = foe && !s.dead && (foe.gone ? now - foe.at < 1500 : s.target === foe.id || now - foe.at < 4000);
-  const FOES = { pilgrim: "Wax Pilgrim", deacon: "Wax Deacon" };
+  const FOES = { pilgrim: "Wax Pilgrim", deacon: "Wax Deacon", chorister: "Hollow Chorister", flagellant: "Tallow Flagellant" };
   const chips = [];
   if (guardOn) chips.push(`<div class="plate chip" style="color:#6DB8C0">◇ GUARDING</div>`);
   if ((s.hasteUntil ?? 0) > now) chips.push(`<div class="plate chip" style="color:#9fe0c8">» MIST STRIDE ${Math.ceil(((s.hasteUntil ?? 0) - now) / 1000)}s</div>`);

@@ -26,8 +26,8 @@ const PACKS = [
   { id: "p3", kind: "pilgrim", x: 0, z: -29 }, { id: "p4", kind: "pilgrim", x: 3, z: -31 }, { id: "p5", kind: "pilgrim", x: -2, z: -33 },
   { id: "p6", kind: "pilgrim", x: 5, z: -44 }, { id: "p7", kind: "pilgrim", x: 10, z: -49 }, { id: "d1", kind: "deacon", x: 8, z: -46 },
   // past the Wax Veil: the Penitent Climb and the Ashen Abbey's yard
-  { id: "a1", kind: "pilgrim", x: 17, z: -131 }, { id: "a2", kind: "chorister", x: 15, z: -139 }, { id: "a3", kind: "deacon", x: 9, z: -149 },
-  { id: "a4", kind: "pilgrim", x: -4, z: -168 }, { id: "a5", kind: "chorister", x: 6, z: -171 }, { id: "a6", kind: "chorister", x: -8, z: -181 },
+  { id: "a1", kind: "flagellant", x: 17, z: -131 }, { id: "a2", kind: "chorister", x: 15, z: -139 }, { id: "a3", kind: "deacon", x: 9, z: -149 },
+  { id: "a4", kind: "flagellant", x: -4, z: -168 }, { id: "a5", kind: "chorister", x: 6, z: -171 }, { id: "a6", kind: "chorister", x: -8, z: -181 },
   { id: "a7", kind: "deacon", x: 4, z: -184 }, { id: "a8", kind: "deacon", x: -6, z: -188 }, { id: "a9", kind: "chorister", x: 9, z: -186 },
   { id: "p8", kind: "pilgrim", x: -3, z: -65 }, { id: "p9", kind: "pilgrim", x: 0, z: -69 }, { id: "p10", kind: "pilgrim", x: -5, z: -71 }, { id: "d2", kind: "deacon", x: -2, z: -68 },
 ];
@@ -51,7 +51,7 @@ const enemySpec = (pk) => ({
   feetPosition: { x: pk.x, z: pk.z, y: { terrain: 0 } },
   scale: pk.kind === "deacon" ? 1.35 : 1,
   ...body(pk.kind), behavior: ["scripts/humanoid-locomotion.js"],
-  children: [{ id: "head-flame", feetPosition: { x: 0, y: pk.kind === "deacon" ? 1.72 : pk.kind === "chorister" ? 1.9 : 1.62, z: 0 }, fx: { script: `fx\npop f rate=flick(.5,.3)*18 on=point() life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)`, params: {} } }, ...(pk.kind === "deacon" ? [CENSER] : [])],
+  children: [{ id: "head-flame", feetPosition: { x: 0, y: pk.kind === "deacon" ? 1.72 : pk.kind === "chorister" ? 1.9 : pk.kind === "flagellant" ? 1.05 : 1.62, z: 0 }, fx: { script: `fx\npop f rate=flick(.5,.3)*18 on=point() life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)`, params: {} } }, ...(pk.kind === "deacon" ? [CENSER] : [])],
   state: { kind: pk.kind, hp: C[pk.kind].hp, maxHp: C[pk.kind].hp, home: { x: pk.x, y: 0, z: pk.z } },
 });
 const near = (ctx, x, z, r) => ctx.place.players.some((p) => Math.hypot(p.feetPosition.x - x, p.feetPosition.z - z) < r);

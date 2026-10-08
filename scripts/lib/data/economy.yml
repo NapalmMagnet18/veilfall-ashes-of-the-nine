@@ -2,6 +2,7 @@
 drops:
   pilgrim: [6, 14]      # copper, rolled per kill
   chorister: [12, 26]
+  flagellant: [15, 32]
   deacon: [45, 80]
   bailiff: 12000        # 1g 20s, once per kill to each eligible player
 quests:
