@@ -1,6 +1,7 @@
 # Every money number in VEILFALL. Money is one integer, player.state.copper (100c = 1s, 100s = 1g).
 drops:
   pilgrim: [6, 14]      # copper, rolled per kill
+  chorister: [12, 26]
   deacon: [45, 80]
   bailiff: 12000        # 1g 20s, once per kill to each eligible player
 quests:
