@@ -176,6 +176,48 @@ ${FONT("VCinzel", "f4d83d34d1f6c741193e4acf4b3dff9531e5a67b6aa65228d00a7db72a4e0
 }
 @media (max-height:520px){#vt .logo{width:min(260px,40vw)} #vt .word{font-size:40px} #vt .subt{display:none}}
 </style>`;
+// the menu screens past the title: gilded frames over the pixel kit (the kit still dresses the in-game HUD)
+const VM2 = `<style>
+#vm#vm .panel,#vm#vm .btn,#vm#vm .row,#vm#vm .card,#vm#vm .anc,#vm#vm .namebox,#vm#vm .mini{isolation:auto}
+#vm#vm .panel::before,#vm#vm .panel::after,#vm#vm .btn::before,#vm#vm .btn::after,#vm#vm .row::before,#vm#vm .row::after,#vm#vm .card::before,#vm#vm .card::after,#vm#vm .anc::before,#vm#vm .anc::after,#vm#vm .namebox::before,#vm#vm .namebox::after,#vm#vm .mini::before,#vm#vm .mini::after{border-image:none!important;filter:none!important;border:0!important;inset:auto;content:none}
+#vm#vm .panel{padding:20px 22px!important;background:linear-gradient(180deg,rgba(24,20,17,.93),rgba(10,9,8,.95))!important;box-shadow:inset 0 0 0 1px rgba(196,156,99,.42),inset 0 0 0 4px rgba(10,8,6,.92),inset 0 0 0 5px rgba(196,156,99,.2),0 14px 40px rgba(0,0,0,.65)!important}
+#vm#vm .panel::before,#vm#vm .panel::after{content:"";position:absolute;width:18px;height:18px;opacity:.9;z-index:1;border:2px solid #c49c63!important}
+#vm#vm .panel::before{left:-4px;top:-4px;border-right:0!important;border-bottom:0!important} #vm#vm .panel::after{right:-4px;bottom:-4px;border-left:0!important;border-top:0!important}
+#vm#vm .panel.msg{padding:10px 18px!important}
+#vm#vm .btn{position:relative;padding:11px 26px!important;font-size:15px;letter-spacing:.2em;color:#e7d9b8;background:linear-gradient(180deg,#2a221c,#120e0b)!important;box-shadow:inset 0 0 0 1px rgba(196,156,99,.55),inset 0 1px 0 2px rgba(255,230,180,.06),0 4px 12px rgba(0,0,0,.6)!important}
+#vm#vm .btn:not([disabled]):hover{color:#ffe7b0!important;box-shadow:inset 0 0 0 1px #f2d38a,inset 0 0 18px rgba(255,170,80,.18),0 0 16px rgba(255,150,60,.25)!important;transform:none}
+#vm#vm .btn::before,#vm#vm .btn::after{content:"";position:absolute;top:50%;width:7px;height:7px;margin-top:-4px;transform:rotate(45deg);background:#c49c63;box-shadow:0 0 0 2px #0d0b0a}
+#vm#vm .btn::before{left:-4px} #vm#vm .btn::after{right:-4px}
+#vm#vm .btn.main{font-size:19px;padding:15px 30px!important;color:#ffe9bd;text-shadow:0 2px 0 #3a0d06,0 0 14px rgba(255,140,60,.6);background:linear-gradient(180deg,#8e2a1c 0%,#5a160d 48%,#3a0d07 52%,#5c1a10 100%)!important;box-shadow:inset 0 0 0 1px #f2c27a,inset 0 0 0 3px rgba(40,8,4,.8),inset 0 0 0 4px rgba(242,194,122,.35),0 0 26px rgba(220,80,40,.35),0 6px 16px rgba(0,0,0,.7)!important}
+#vm#vm .btn.main:hover{background:linear-gradient(180deg,#a8331f 0%,#6c1b0f 48%,#45100a 52%,#6e2014 100%)!important}
+#vm#vm .btn.main::before,#vm#vm .btn.main::after{background:#f2c27a;box-shadow:0 0 0 2px #2a0905,0 0 10px #ff8a40}
+#vm#vm .btn[disabled]{color:#6e655a;background:linear-gradient(180deg,#1c1815,#100d0b)!important}
+#vm#vm .btn[disabled]::before,#vm#vm .btn[disabled]::after{background:#4e4434}
+#vm#vm .mini{padding:6px 12px!important;background:#1a1512!important;box-shadow:inset 0 0 0 1px rgba(196,156,99,.5)!important;font-size:11px}
+#vm#vm .mini:hover{color:#ffe7b0;box-shadow:inset 0 0 0 1px #f2d38a!important}
+#vm#vm .row{padding:10px 12px 10px 10px!important;margin-top:8px;background:linear-gradient(90deg,rgba(30,24,20,.95),rgba(16,13,11,.85))!important;box-shadow:inset 0 0 0 1px rgba(196,156,99,.22)!important;transition:all .18s}
+#vm#vm .row:hover{transform:translateX(4px);box-shadow:inset 0 0 0 1px rgba(242,211,138,.55)!important}
+#vm#vm .row.on{background:linear-gradient(90deg,rgba(110,34,20,.55),rgba(30,20,16,.9) 60%)!important;box-shadow:inset 0 0 0 1px #f2d38a,inset 3px 0 0 0 #ff9a4a,0 0 18px rgba(255,140,60,.2)!important}
+#vm#vm .row img{width:54px;height:54px;border-radius:50%;object-position:50% 18%;box-shadow:0 0 0 2px #0d0b0a,0 0 0 3px #c49c63,0 0 0 5px #0d0b0a}
+#vm#vm .row.on img{box-shadow:0 0 0 2px #0d0b0a,0 0 0 3px #f2d38a,0 0 14px 4px rgba(255,140,60,.45)}
+#vm#vm .row .t{font-size:17px;font-weight:700;letter-spacing:.06em;color:#f2d38a}
+#vm#vm .card{background:#0d0a08!important;box-shadow:inset 0 0 0 1px rgba(196,156,99,.4),0 6px 14px rgba(0,0,0,.6)!important;transition:all .18s}
+#vm#vm .card::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 1px rgba(196,156,99,.4),inset 0 -60px 40px -20px rgba(0,0,0,.85);z-index:2}
+#vm#vm .card:hover{transform:translateY(-3px)} #vm#vm .card.on{box-shadow:0 0 0 1px #f2d38a,0 0 0 3px #0d0b0a,0 0 0 4px rgba(242,211,138,.5),0 0 24px rgba(255,140,60,.35)!important}
+#vm#vm .card .nm{font-weight:700;letter-spacing:.08em;font-size:12px;color:#e7d9b8} #vm#vm .card.on .nm{color:#ffe7b0}
+#vm#vm .anc{opacity:.55} #vm#vm .anc.on{opacity:1} #vm#vm .anc:hover{opacity:.9}
+#vm#vm .anc img{box-shadow:0 0 0 2px #0d0b0a,0 0 0 3px #8f7d5c,0 0 0 5px #0d0b0a} #vm#vm .anc.on img{box-shadow:0 0 0 2px #0d0b0a,0 0 0 3px var(--c),0 0 0 5px #0d0b0a,0 0 20px var(--c)}
+#vm#vm .namebox{padding:10px 12px!important;background:linear-gradient(180deg,#0c0a08,#17120f)!important;box-shadow:inset 0 0 0 1px rgba(196,156,99,.45),inset 0 2px 8px rgba(0,0,0,.8)!important;font-family:'VCinzel',serif;font-weight:700;letter-spacing:.05em}
+#vm .det .big{height:min(340px,34vh)!important;margin:-20px -22px 12px!important;box-shadow:inset 0 -1px 0 rgba(196,156,99,.35)}
+#vm .det .big img{transition:transform 6s ease} #vm .det:hover .big img{transform:scale(1.04)}
+#vm .bname{font-family:'VCinzel',serif;font-weight:700;font-size:32px;letter-spacing:.06em;line-height:1.05}
+#vm .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin:12px 0 4px;background:rgba(196,156,99,.25);box-shadow:0 0 0 1px rgba(196,156,99,.25)}
+#vm .stats>div{background:#100d0b;padding:7px 6px;text-align:center} #vm .stats b{display:block;font-family:'VCinzel',serif;font-size:18px;color:#f2d38a} #vm .stats span{font-family:'VCinzel',serif;font-size:9px;letter-spacing:.2em;color:#8f7d5c}
+#vm .sec{display:flex;align-items:center;gap:10px;font-family:'VCinzel',serif;font-weight:700;font-size:13px;letter-spacing:.3em;color:#c49c63;margin:14px 0 10px}
+#vm .sec::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,rgba(196,156,99,.55),transparent)}
+#vm .sec::before{content:"";width:6px;height:6px;transform:rotate(45deg);background:#ac4c42;box-shadow:0 0 6px #ff7a3a}
+@media (pointer:coarse),(max-width:760px),(max-height:520px){#vm#vm .panel{padding:12px 14px!important} #vm .bname{font-size:22px} #vm#vm .row img{width:38px;height:38px} #vm#vm .btn.main{font-size:16px;padding:11px 18px!important}}
+</style>`;
 const EMBERS = Array.from({ length: 22 }, (_, i) => { const r = (k) => ((Math.sin(i * 12.9898 + k * 78.233) * 43758.5453) % 1 + 1) % 1;
   return `<i class="em" style="left:${(r(1) * 100).toFixed(1)}%;--dx:${((r(2) - .5) * 160).toFixed(0)}px;animation-duration:${(7 + r(3) * 9).toFixed(1)}s;animation-delay:-${(r(4) * 14).toFixed(1)}s;width:${(2 + r(5) * 3).toFixed(1)}px;height:${(2 + r(5) * 3).toFixed(1)}px"></i>`; }).join("");
 const CHRONICLE = [
@@ -184,7 +226,7 @@ const CHRONICLE = [
   ["III", "Lanternmere", "The drowned fen and its Warden."],
   ["IV", "Saint Corvin's Orchard", "Cut down the hanged. Face the Hangman.", true],
 ];
-const head = (s) => `${MSTYLE}${MX}${FRAME_CSS}${VT}<div id="vm"><div class="veil" style="background:radial-gradient(ellipse at 50% 50%,transparent 30%,rgba(6,7,12,.45) 65%,rgba(4,4,8,.85))"></div>`;
+const head = (s) => `${MSTYLE}${MX}${FRAME_CSS}${VT}${VM2}<div id="vm"><div class="veil" style="background:radial-gradient(ellipse at 50% 50%,transparent 30%,rgba(6,7,12,.45) 65%,rgba(4,4,8,.85))"></div>`;
 const tail = (s, now) => `${s.busy ? `<div class="panel msg" style="color:#f2d38a">${s.busy}…</div>` : s.msg && now - s.msg.at < 5000 ? `<div class="panel msg">${s.msg.text}</div>` : ""}</div>`;
 const realmName = (room) => R.realms.find((r) => r.room === room)?.name ?? room;
 const ago = (now, t) => { const m = Math.floor((now - t) / 60000); return m < 2 ? "just now" : m < 60 ? `${m} min ago` : m < 2880 ? `${Math.floor(m / 60)} h ago` : `${Math.floor(m / 1440)} days ago`; };
@@ -227,16 +269,16 @@ function menu(ctx, player, s) {
   <div class="wrap">
     <div class="panel" style="animation:vmin .4s">
       <div class="lbl">New Bearer · ${realmName(here)}</div><div class="dv df3"></div>
-      <div style="font-size:22px;color:#f2d38a;margin:2px 0 10px">Ancestry</div>
+      <div class="sec">ANCESTRY</div>
       <div style="display:flex;gap:14px;justify-content:space-between">${ANC.map((a) => `<div class="anc ${a.id === A.id ? "on" : ""}" style="--c:${a.color};pointer-events:auto" onclick="${act("anc", a.id)}"><img src="${a.img}"><span style="color:${a.id === A.id ? a.color : "#e9dfc8"}">${a.name.toUpperCase()}</span></div>`).join("")}</div>
-      <div style="font-size:22px;color:#f2d38a;margin:14px 0 10px">Class</div>
+      <div class="sec">CLASS</div>
       <div class="grid">${CLASSES.map((c) => `<div class="card ${c.id === C.id ? "on" : ""} ${c.open ? "" : "sealed"}" onclick="${act("cls", c.id)}"><img src="${c.img}"><div class="nm">${c.name}</div>${c.open ? "" : `<div class="seal">SEALED</div>`}</div>`).join("")}</div>
     </div>
     <div class="panel det" style="animation:vmin .55s">
       <div class="big"><img src="${C.img}" style="${C.open ? "" : "filter:grayscale(.8) brightness(.5)"}"><div style="position:absolute;left:0;right:0;bottom:0;height:80px;background:linear-gradient(transparent,#1a1715)"></div></div>
       <div class="lbl">Name</div>
       <div class="namebox"><span>${pk.name}</span><button class="mini" onclick="${act("reroll")}">ANOTHER NAME</button></div>
-      <div style="font-size:24px;color:#f2d38a;letter-spacing:.06em;margin-top:8px">${C.name}</div>
+      <div class="bname gold" style="margin-top:10px">${C.name}</div>
       <div class="lbl">${C.role} · ${C.res}</div>
       <div style="font-size:14px;margin:6px 0 8px;line-height:1.35">${C.fantasy}</div>
       <div class="sk" style="display:grid;grid-template-columns:1fr 1fr;gap:4px 10px;font-size:12px;margin-bottom:8px">${C.skills.map(([n, d]) => `<div><span style="color:${C.open ? "#e9dfc8" : "#8a7f70"}">${n}</span>${d ? `<div style="color:#9a8e78;font-size:11px">${d}</div>` : ""}</div>`).join("")}</div>
@@ -257,7 +299,7 @@ function menu(ctx, player, s) {
   return `${head(s)}<div class="mid"><div class="lbl">Realm</div><div class="h1 gold" style="font-size:40px">${realmName(here).toUpperCase()}</div><div class="dv df0"></div></div>
   <div class="wrap">
     <div class="panel side" style="animation:vmin .4s">
-      <div class="lbl">Your Bearers · ${chars.length}/${R.maxChars}</div><div class="dv df2"></div>
+      <div class="sec" style="margin-top:0">YOUR BEARERS <span style="color:#8f7d5c;letter-spacing:.1em">${chars.length}/${R.maxChars}</span></div>
       ${!s.roster ? `<div style="margin-top:10px;color:#b9a77f">Reading the realm's ledger…</div>`
         : chars.length ? chars.map((c) => { const k = CLASSES.find((x) => x.id === c.cls) ?? CLASSES[0], an = ANC.find((x) => x.id === c.ancestry) ?? ANC[0];
           return `<div class="row ${c.id === s.sel ? "on" : ""}" onclick="${act("sel", c.id)}"><img src="${k.img}"><div style="flex:1;min-width:0"><div class="t">${c.name}</div><div class="d"><span style="color:${an.color}">${an.name}</span> ${k.name} · Lv ${c.level}</div><div class="d">${c.zone}</div></div></div>`; }).join("")
@@ -268,10 +310,10 @@ function menu(ctx, player, s) {
     </div>
     ${sel ? `<div class="panel det" style="animation:vmin .5s">
       <div class="big"><img src="${C.img}"><div style="position:absolute;left:0;right:0;bottom:0;height:80px;background:linear-gradient(transparent,#1a1715)"></div></div>
-      <div style="font-size:28px;color:#f2d38a;letter-spacing:.04em">${sel.name}</div>
-      <div class="lbl"><span style="color:${A.color}">${A.name}</span> ${C.name} · Level ${sel.level}</div>
-      <div style="font-size:14px;margin:8px 0 2px">${sel.zone}</div>
-      <div class="d" style="font-size:12px;color:#9a8e78">Last walked ${ago(now, sel.played_at)}</div>
+      <div class="bname gold">${sel.name}</div>
+      <div class="lbl" style="margin-top:4px"><span style="color:${A.color}">${A.name}</span> · ${C.name} · ${C.role}</div>
+      <div class="stats"><div><b>${sel.level}</b><span>LEVEL</span></div><div><b style="font-size:13px;line-height:22px">${sel.zone}</b><span>WHERE</span></div><div><b style="font-size:13px;line-height:22px">${ago(now, sel.played_at)}</b><span>LAST WALKED</span></div></div>
+      <div style="font-size:15px;font-style:italic;color:#a8977a;margin:8px 0 0;line-height:1.35">${C.fantasy}</div>
       <button class="btn main" style="margin-top:14px;min-width:0" onclick="${act("enter")}">Enter the world</button>
       ${s.confirmDel === sel.id ? `<div style="margin-top:12px;font-size:13px;color:#d8442f;text-align:center">Unwrite ${sel.name} forever?</div>
         <div style="display:flex;gap:8px"><button class="btn" style="min-width:0;flex:1;font-size:13px;padding:7px;color:#d8442f" onclick="${act("delete-yes")}">Unwrite</button><button class="btn" style="min-width:0;flex:1;font-size:13px;padding:7px" onclick="${act("delete-no")}">Keep</button></div>`
