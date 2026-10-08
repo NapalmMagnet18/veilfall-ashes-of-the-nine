@@ -1,5 +1,6 @@
 // The Wayside forge: a squat fieldstone hearth with a coal bed and a leaning hood, an anvil on an oak stump,
 // a quench tub, hammer and tongs. Origin = centre on the ground; the hearth sits at -X, the anvil at +X, working face -Z.
+import { boxC } from "./shapes.js";
 import { xf, cbox, tube, loft, ringH, rock, extrudeXY, rnd, IRON, STONE, WOOD } from "./hub-kit.js";
 export const COALS = [-0.75, 0.86, 0]; // where the glow lives (for the scene's fx)
 export function geometry(ctx) {
@@ -52,4 +53,4 @@ export function geometry(ctx) {
   ctx.albedo(null); ctx.color("oklch(0.12 0.015 230)"); ctx.metalness(0); ctx.roughness(0.05);
   loft(ctx, xf([0.85, 0, 0.75]), [ringH(0, 0.36, 0, 0.285, 0.285, 12)], false, true);
 }
-export function collider() { return [{ kind: "box", center: [-0.75, 0.6, 0], size: [1.3, 1.2, 1.05] }, { kind: "box", center: [0.8, 0.45, 0.3], size: [0.7, 0.9, 1.1] }]; }
+export function collider(ctx) { boxC(ctx, -1.4, -0.1, 0, 1.2, -0.52, 0.52); boxC(ctx, 0.45, 1.15, 0, 0.9, -0.3, 1.05); }
