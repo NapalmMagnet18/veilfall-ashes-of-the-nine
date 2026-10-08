@@ -143,3 +143,10 @@ export function cardHTML(it, gear) {
     <div style="margin-top:6px;color:#7d7466;font-size:11px">sells for ${sellValue(it)}c · salvages to ${dustValue(it)} ash dust</div>
   </div>`;
 }
+
+// Firstblood's gift: one free reforge for each boss this Bearer is named on THE FALLEN plaque for (world.state.trophies[boss].by)
+export function freeReforges(ctx, s) {
+  const n = s?.charName; if (!n) return 0;
+  const won = Object.values(ctx.world?.state?.trophies ?? {}).filter((r) => r?.by?.includes?.(n)).length;
+  return Math.max(0, won - (s.freeUsed ?? 0));
+}

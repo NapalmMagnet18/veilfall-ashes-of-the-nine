@@ -64,8 +64,8 @@ export function packPanel(ctx, player, { rail, touch }) {
         </div>
         ${s.atForge ? (sel ? `<div style="display:flex;gap:6px;align-items:stretch;margin-top:10px;padding-top:8px;border-top:1px solid #e0a86633">
         <div style="font-size:10px;letter-spacing:.2em;color:#e0a866;width:56px;line-height:1.3;align-self:center">WAYSIDE FORGE</div>
-        ${[["temper", "TEMPER", "+1 item level"], ["reforge", "REFORGE", "new affixes"], ["ascend", "ASCEND", "one tier up"]].map(([op, label, hint]) => { const no = forgeCan(sel, op), c = no ? null : forgeCost(sel, op), poor = c != null && (s.dust ?? 0) < c;
-          return `<button class="vb" ${no ? "disabled" : ""} style="flex:1;${no ? "opacity:.35;" : poor ? "opacity:.6;" : "border-color:#e0a866aa;"}" title="${no ?? hint}" onclick="${act("forge", `,u:'${sel.u}',op:'${op}'`)}">${label}${no ? "" : ` · <img src="${icon("dust")}" style="width:13px;height:13px;vertical-align:-2px">${c}`}<div style="font-size:9px;letter-spacing:.1em;color:#9a907e">${no ?? hint}</div></button>`; }).join("")}
+        ${[["temper", "TEMPER", "+1 item level"], ["reforge", "REFORGE", "new affixes"], ["ascend", "ASCEND", "one tier up"]].map(([op, label, hint]) => { const no = forgeCan(sel, op), fr = !no && op === "reforge" ? freeReforges(ctx, s) : 0, c = no ? null : fr ? 0 : forgeCost(sel, op), poor = c != null && (s.dust ?? 0) < c;
+          return `<button class="vb" ${no ? "disabled" : ""} style="flex:1;${no ? "opacity:.35;" : poor ? "opacity:.6;" : "border-color:#e0a866aa;"}" title="${no ?? hint}" onclick="${act("forge", `,u:'${sel.u}',op:'${op}'`)}">${label}${no ? "" : fr ? ` · <span style="color:#e0a26a;text-shadow:0 0 6px #ac4c42">✦ FREE ×${fr}</span>` : ` · <img src="${icon("dust")}" style="width:13px;height:13px;vertical-align:-2px">${c}`}<div style="font-size:9px;letter-spacing:.1em;color:#9a907e">${no ?? hint}</div></button>`; }).join("")}
       </div>` : `<div style="margin-top:10px;padding-top:8px;border-top:1px solid #e0a86633;font-size:11px;color:#e0a866;letter-spacing:.08em">WAYSIDE FORGE · select an item to temper, reforge or ascend</div>`) : ""}
       </div>
     </div>
