@@ -5,17 +5,19 @@ const clamp01 = (v) => Math.min(1, Math.max(0, v))
 export function heightAt(ctx) {
   const { x, z, noise, seedOffset } = ctx
   const d = floorDist(x, z)
-  const wobble = noise.fbm2({ x, z, frequency: 1 / 14, octaves: 3, seed: seedOffset(1) }) * 2.5
+  // cost: noise only where it can change the answer (deep floor skips the bank noise, low banks skip the crags)
+  if (d < -3) return noise.fbm2({ x, z, frequency: 1 / 9, octaves: 1, seed: seedOffset(2) }) * 0.12
+  const wobble = noise.fbm2({ x, z, frequency: 1 / 14, octaves: 2, seed: seedOffset(1) }) * 2.5
   const e = d + wobble
-  if (e <= 0) return noise.fbm2({ x, z, frequency: 1 / 9, octaves: 2, seed: seedOffset(2) }) * 0.12
+  if (e <= 0) return noise.fbm2({ x, z, frequency: 1 / 9, octaves: 1, seed: seedOffset(2) }) * 0.12
   const bank = clamp01(e / 2.5) // a short scree lip, then the wall
   const wall = clamp01((e - 2.5) / 3) * 8
-  const crag = noise.ridged({ x, z, frequency: 1 / 22, octaves: 4, seed: seedOffset(3) }) * 4 * clamp01((e - 4) / 6)
+  const crag = e > 4 ? noise.ridged({ x, z, frequency: 1 / 22, octaves: 3, seed: seedOffset(3) }) * 4 * clamp01((e - 4) / 6) : 0
   return bank * 1.2 + wall + crag + clamp01((e - 10) / 30) * 10
 }
 export function materialAt(ctx) {
   const { x, z, worldHeight, slope, noise, seedOffset } = ctx
-  const n = noise.fbm2({ x, z, frequency: 1 / 8, octaves: 3, seed: seedOffset(5) })
+  const n = noise.fbm2({ x, z, frequency: 1 / 8, octaves: 2, seed: seedOffset(5) })
   const rock = clamp01((slope - 0.18 + n * 0.12) * 5)
   if (worldHeight < 0.4) {
     const d = floorDist(x, z)
