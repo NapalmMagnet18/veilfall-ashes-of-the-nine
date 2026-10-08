@@ -1,6 +1,7 @@
 // The Wayside rendering cauldron: a pot-bellied iron cauldron hung by chain from a lashed timber tripod over a
 // ring of fire-blackened stones and a bed of embers. Origin = ground centre; the pot's rim sits at ~0.95 m.
 import { xf, compose, tube, loft, ringH, rock, cbox, IRON, STONE, WOOD } from "./hub-kit.js";
+import { boxC } from "./shapes.js";
 export function geometry(ctx) {
   const I = xf();
   if ((ctx.lod ?? 1) >= 4) { // far: the pot and its glow, a few dozen faces
@@ -51,4 +52,4 @@ export function geometry(ctx) {
   ctx.albedo(null); ctx.color("oklch(0.88 0.04 85)"); ctx.roughness(0.5);
   for (let i = 0; i < 5; i++) tube(ctx, compose(xf([0.95, 0.26, -0.55], [0, 25, 0]), xf([-0.13 + i * 0.065, 0, (i % 2) * 0.06 - 0.03])), [[0, -0.05, 0], [0, 0.09 + (i % 3) * 0.02, 0]], 0.022, 6);
 }
-export function collider(ctx) { ctx.box(-0.55, 0, -0.55, 0.55, 1.0, 0.55); }
+export function collider(ctx) { boxC(ctx, -0.55, 0.55, 0, 1.0, -0.55, 0.55); }
