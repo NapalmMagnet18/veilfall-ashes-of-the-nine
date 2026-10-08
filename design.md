@@ -58,3 +58,10 @@ places/main/sim.js referee: spawns packs, quest stages, XP/levels, death and res
 - The Ringer (scripts/ringer.js, combat.yml ringer): 1300 hp (+55%/extra Bearer). I: Knell (ring r4.5 round him, 1.1 s) and Peal (ring r2.2 under each Bearer, 1.3 s), alternating, 2.6 s pauses. II (<60%): Peal falls 3× leading your path, two wax walkers pour from the bell every 14 s (cap 4). III (<25%): no rest, a 1.2 s breath every second cast. Swing 12 dmg up close. Drops 1g80s. Respawns 120 s after death when nobody's near. Boss bar reads place.state.ringer while he's engaged.
 - Levels table extended to 10 (1750, 2300) so the chapter's XP still means something.
 - Untested in real play at time of writing; the nave/crypt dressing and the Ninth Bell model are a crew's.
+
+## Chapter: The Drowned Lantern (proposed by Savi 2026-10-08, built; not yet creator-approved)
+- Stage 13: Maelin sends the Bearer west down the Fen Path (floor opens at stage 13+) to the Lanternmere.
+- 14: relight three waystones (stand within 2.6 m of each) · 15: the Lantern Warden (Tobin Vey) rises at the heart.
+- Warden: 1700 hp (+55% per extra Bearer). Undertow ring r5 / 26 dmg / 1.2 s wind; Drowned Lights: a line of 5 marks r1.8 / 18 dmg walking out every 3.8 m (two fanned lines from phase II); hook swing 14. Phase II snuffs the stones and raises drowned pilgrims every 15 s.
+- 16: turn in to Maelin, Z01-MAIN-08: +800 xp, 12s, +10 max life, tonics topped to 5 · 17: chapter complete.
+- 2026-10-08: Ringer fix: his hammer swing now waits 1 s after a bell cast resolves (measured: a peal and a swing on the same frame landed as one 32-dmg hit).
