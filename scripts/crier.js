@@ -11,7 +11,7 @@ const BARE = [V("the-board-stands-bare-pin-your-spoils-by-the-fire"), V("nothing
 const BELL = "/cdn/moodboard-gothic-horror/sfx-small-iron-handbell-two-rings.mp3";
 const SOLD = [V("bearer-your-notice-sold-your-coin-waits-at-the-board"), V("hear-ye-a-buyer-took-your-wares-collect-your-due")];
 const FALL = { // boss → [name he calls, voice line]
-  bailiff: ["The Wax Bailiff", V("hear-ye-the-wax-bailiff-is-fallen-the-toll-road-is-free")],
+  bailiff: ["The Bailiff of the Dripping Gate", V("hear-ye-the-bailiff-of-the-dripping-gate-is-fallen-the-toll-road-is-free")],
   ringer: ["The Ringer of the Ninth Bell", V("hear-ye-the-ninth-bell-is-silenced-the-abbey-sleeps")],
   warden: ["The Lantern Warden", V("hear-ye-the-lantern-warden-is-snuffed-the-fen-sees-again")],
   hangman: ["The Hangman of Saint Corvin", V("hear-ye-the-hangman-swings-no-more-cut-the-ropes")],
