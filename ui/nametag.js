@@ -41,6 +41,7 @@ const STYLE = `<style>
 </style>`;
 
 export default function (ctx, tag) {
+  if (ctx.getObject?.(tag.id)?.state?.menu) return ""; // a Bearer still at the character screen is not in the world
   const states = [
     "named",
     "earshot",
