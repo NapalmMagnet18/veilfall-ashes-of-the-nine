@@ -163,6 +163,7 @@ function walkTo(ctx, goal, speed, dt) {
 }
 
 export function update(ctx, dt) {
+  if (ctx.self.state.hp === undefined) onSpawn(ctx);
   const s = ctx.self.state, now = ctx.now(), f = ctx.self.feetPosition;
   const vy = (ctx.self.velocity?.y ?? 0) + (ctx.self.grounded ? 0 : ctx.place.gravity.y * dt);
   if (me.animOff && now > me.animOff) { ctx.self.anim.attack = null; me.animOff = 0; }
