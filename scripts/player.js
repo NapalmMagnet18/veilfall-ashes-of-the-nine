@@ -85,7 +85,7 @@ async function refresh(ctx) {
     if (!r.chars.some((c) => c.id === s.sel)) s.sel = r.chars[0]?.id ?? null;
   } catch (e) { ctx.log("roster failed", String(e)); s.roster = { realm, chars: [], per: {}, at: ctx.now(), error: true }; msg(ctx, "The realm's ledger is unreadable. Try again."); }
 }
-function hasVeil(ctx) { return me.veil ??= (ctx.world.files ?? []).includes("places/veil/config.yaml"); }
+function hasVeil(ctx) { if (!me.veil) me.veil = (ctx.world.files ?? []).includes("places/veil/config.yaml"); return me.veil; }
 function goVeil(ctx) {
   if (!hasVeil(ctx) || ctx.self.place === MENU_PLACE) return;
   if (me.crossAt && ctx.now() - me.crossAt < 4000) return;
