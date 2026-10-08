@@ -41,6 +41,8 @@ inputs:
       touch: { button: false }
     item:
       touch: { button: false }
+    trade:
+      touch: { button: false }
     guard:
       keys:
         - "1"
