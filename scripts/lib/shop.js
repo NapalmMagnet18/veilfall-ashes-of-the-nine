@@ -22,7 +22,7 @@ export function shopInput(ctx, data) {
     else { s.bag = { ...(s.bag ?? {}), [it.id]: 1 }; if (it.maxHp) { s.maxHp = (s.maxHp ?? 100) + it.maxHp; s.hp += it.maxHp; } }
     ctx.emit("playSound", { clip: SND + "sfx-coin-purse-drop-on-wood.mp3", position: me.feetPosition, volume: 0.8 }, { audience: { player: me.id } });
     tell(it.name.toUpperCase(), "#f2d38a");
-  } else if (data.a === "sell" && data.id === "heartwax") {
+  } else if (data.a === "sell" && data.item === "heartwax") {
     if (!(s.heartwax > 0)) return;
     s.heartwax -= 1; s.copper = (s.copper ?? 0) + E.sell.heartwax;
     ctx.emit("playSound", { clip: SND + "sfx-coin-purse-drop-on-wood.mp3", position: me.feetPosition, volume: 0.9 }, { audience: { player: me.id } });
