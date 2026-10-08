@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "basedOnSpecVersion": 613,
-  "updatedAt": "2026-10-08T21:09:05.368Z",
-  "summary": "VEILFALL: Ashes of the Nine is an isometric action RPG following Bearers through the shared Z01 main world and a solo Veil menu stage. The main sim coordinates quests and encounters; player and enemy/boss systems own play state, character.js persists Bearers, and shared loot code now also powers the Wayside Forge beside the fire.",
+  "basedOnSpecVersion": 630,
+  "updatedAt": "2026-10-08T21:21:58.425Z",
+  "summary": "VEILFALL: Ashes of the Nine is an isometric action RPG following Bearers through the shared Z01 main world and a solo Veil menu stage. The main sim coordinates quests and encounters; player and enemy/boss systems own play state, character.js persists Bearers, and shared loot code powers combat drops and the Wayside Forge.",
   "scriptPaths": [
     "scripts/arrival.js",
     "scripts/bailiff.js",
@@ -141,7 +141,7 @@
     "scripts/lib/character.js CHAR_KEYS - persistent Bearer fields including quest/reward claims, boss flags, inv/gear/dust/gearLife; packed position is separate.",
     "scripts/player.js - active body's movement, combat, death/i-frame and skill timers, menu/options scratch, floor gates, inventory item actions and derived gear stats gs; local proximity owns transient atForge state.",
     "places/main/sim.js - per-player quest/dialog/cut progress and reward claims; enemy packs, progression, boss spawning/reset, orchard hanged visibility and room sound/music orchestration.",
-    "scripts/wax-pack.js - ordinary enemy AI/hp/death and nearby eligible Bearers' XP/copper/kills/shards plus personal gear-drop inboxes.",
+    "scripts/wax-pack.js - ordinary enemy AI/hp/death and nearby eligible Bearers' XP/copper/kills/shards plus personal gear-drop inboxes; transient mutterAt cooldowns by enemy id.",
     "scripts/bailiff.js, scripts/ringer.js, scripts/warden.js and scripts/hangman.js - respective boss hp/phases/casts/adds/defeat; publish place.state boss rows and set participant defeat flags.",
     "scripts/lib/shop.js - trade validation and buyer copper, tonics, bag and maxHp mutations; shop-open state is on player.state.",
     "scripts/player.js itemInput - validates forge actions and writes dust/inv item changes; scripts/lib/loot.js computes forge costs/eligibility and returns transformed item data without owning player state.",
@@ -151,14 +151,14 @@
     "world.config.yaml attaches scripts/player.js through templates/player.js and maps desktop/touch actions; UI menu actions → player.js routes title/realm/character/create/enter/logout/options.",
     "player.js menuInput → character.js roster/create/load/remove using caller-owned character rows; realms.yml maps selected realm to room and Bearer fields hydrate player.state.",
     "While player.state.menu is set, player.js hides the body and moves it to solo place veil → realm/Bearer/options screens remain state-driven, with no characters in that place.",
-    "scripts/controls.js selects menu touch surface when player/charId is absent or menu active and while shop/bag is open; otherwise world.config.yaml supplies fight controls; ui.js sends HUD/menu actions back through player.js and shop-ui.js actions through shop.js.",
+    "scripts/controls.js selects menu touch surface when player/charId is absent or menu active and while shop/bag is open; otherwise world.config.yaml supplies fight controls; ui.js sends HUD/menu actions back through player.js and shop-ui.js.",
     "Options and menu hover/selection rows in ui.js → player.js update opt settings and emit deduplicated private sounds; scripts/camera.js reads menu state and menu-shot.yml for Veil framing.",
     "player.js saves changed CHAR_KEYS plus position periodically/on rest → character.js writes characters; arrival.js saves an active Bearer leaving main.",
     "player.js derives Abbey/Nave/Fen/Orchard floor gates from quest stage or abbeyOpenAll, then uses veilfall-map.js floorDist for goals and movement/dash.",
     "Main sim advances Abbey/Nave, Fen and Orchard quest stages; stage 19 records timed rope cuts, stage 20 summons Hangman, stage 21 turn-in claims Z01-MAIN-09 and advances to 22.",
     "wax-pack payout (called for ordinary enemies and by boss scripts) rolls personal gear from loot.js → writes per-item player.state.lootIn inbox; that Bearer's local player.js drains it into inv or converts overflow to dust.",
-    "Pack UI from pack-ui.js sends item actions → player.js equips/unequips/sells/salvages/sorts; at the Wayside Forge, player.js checks distance against FORGE.reach and routes pack forge actions through loot.js → spends dust, replaces the selected inv item and emits forge FX/sound.",
-    "Boss scripts publish place.state boss rows → ui.js bars/hints, and boss lifecycles call bossVoice → positional playSound.",
+    "Pack UI from pack-ui.js sends item actions → player.js equips/unequips/sells/salvages/sorts; at the Wayside Forge, player.js checks distance against FORGE.reach and routes pack forge actions through loot.js → spends dust and replaces the selected item.",
+    "Idle non-hunting wax enemies in wax-pack.js → timed, per-enemy mutter sounds and scripture damageNumber text for players within 24 m; boss scripts publish place.state boss rows → ui.js bars/hints and call bossVoice for positional playSound.",
     "Roster selection in player.js reads the selected character ancestry → creates the Veil shrine showcase actor with matching aura/light/scale and emits a selection flare/chime."
   ],
   "behaviorFamilies": [
@@ -181,6 +181,6 @@
     "The Veil is solo and ephemeral, has no characters, and parks the hidden menu body at its origin; menu framing in camera.js is tuned against that stage's shrine/ledge layout, and roster showcase styling follows the selected ancestry.",
     "The jukebox is room-shared: main sim chooses mood from live Bearers' area majority and boss/fight overrides; Veil sim plays the menu theme when nobody eligible is on main. Main acoustics reverb is 0.22; world audio mix defines bus gains.",
     "Boss state is separate from ordinary enemy hp: boss scripts publish place.state rows and mark participants; main sim owns encounter spawning and quest progression/reset. Orchard cut IDs and shared hanged visibility are tied to act state.",
-    "Loot is personal: wax-pack payout writes unique item-keyed lootIn entries, local player.js is the sole inv-array writer/drainer and forge item-action writer; loot.yml defines the 24-slot bag and forge rules, while gearLife tracks contribution to maxHp."
+    "Loot is personal: wax-pack payout writes unique item-keyed lootIn entries, local player.js is the sole inv-array writer/drainer and forge item-action writer; loot.yml defines the 24-slot bag, while gearLife tracks contribution to item durability. Wax murmurs use module-local per-enemy cooldowns, only while idle, and emit nearby scripture text/sound."
   ]
 }
