@@ -155,6 +155,21 @@ export function tick(ctx) {
   const cutAny = new Set();
   for (const p of ctx.place.players) { const qq = p.state.quest; if (!qq) continue; if (qq.stage >= 20) GIBBETS.forEach((g) => cutAny.add(g.id)); else if (qq.stage === 19) (qq.cut ?? []).forEach((id) => cutAny.add(id)); }
   for (const g of GIBBETS) { const h = objs[`orch-gibbet-${g.id}/hanged`], want = !cutAny.has(g.id); if (h && h.visible !== want) h.visible = want; }
+  // the Lantern Rail by the fire: each lantern of the Nine hangs burning once a Bearer here has brought it home
+  let top = 0; for (const p of ctx.place.players) if (p.state.charId && !p.state.menu) top = Math.max(top, p.state.quest?.stage ?? 0);
+  for (const [n, at] of [[9, 13], [1, 17], [2, 22]]) {
+    const l = objs[`lantern-rail/lantern-${n}`], want = top >= at;
+    if (l && !!l.state.lit !== want) {
+      l.state.lit = want; l.visible = want;
+      l.light = want ? { kind: "point", color: l.state.light, intensity: 3, distance: 7 } : null;
+      if (want && st.railSeen?.[n] !== true) {
+        st.railSeen = { ...(st.railSeen ?? {}), [n]: true };
+        const w = l.worldFeetPosition ?? l.feetPosition;
+        ctx.emit("fx", { position: { x: w.x, y: w.y - 0.3, z: w.z }, script: `fx\npop m burst=40 on=sphere(.2) life=.8..1.6 v=up(.4..1)+sdir()*.4 size=.03..0.06 col=hdr(3,2.2,1) a=1>0 r=sprite(mote,add)` });
+        ctx.emit("playSound", { clip: "/cdn/moodboard-gothic-horror/sfx-cold-lantern-flame-catches-with-soft-whoosh-and-chime.mp3", position: w, volume: 0.7, maxDistance: 20 });
+      }
+    }
+  }
   // the waystones burn for anyone who has lit them, and go dark while the Warden drowns them
   const litAny = new Set();
   for (const p of ctx.place.players) { const qq = p.state.quest; if (!qq) continue; if (qq.stage >= 15) WAYSTONES.forEach((w) => litAny.add(w.id)); else if (qq.stage === 14) (qq.stones ?? []).forEach((id) => litAny.add(id)); }
