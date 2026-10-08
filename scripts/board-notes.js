@@ -7,7 +7,7 @@ const WANT = new Map(), ASKED = new Map(); // board id → open listings in the 
 const note = (x, y, rz) => ({ feetPosition: { x, y, z: -0.075 }, rotation: { yaw: 0, pitch: 0, roll: rz }, castShadow: false, tags: ["board-note"],
   primitive: { kind: "box", width: 0.3, height: 0.38, depth: 0.008 }, material: { color: "oklch(0.88 0.04 85)", roughness: 0.92 },
   children: [{ id: "seal", feetPosition: { x: 0, y: 0.3, z: -0.008 }, primitive: { kind: "cylinder", radiusTop: 0.035, radiusBottom: 0.04, height: 0.012 }, rotation: { yaw: 0, pitch: 90, roll: 0 }, material: { color: "oklch(0.42 0.15 27)", roughness: 0.4 } },
-    { id: "ink", feetPosition: { x: 0, y: 0.08, z: -0.006 }, primitive: { kind: "box", width: 0.2, height: 0.16, depth: 0.002 }, material: { texture: "cdn/texture-faded-handwritten-ink-lines-on-parchment.png", color: "oklch(0.75 0.03 70)", roughness: 0.95 } }] });
+    ...[0.17, 0.12, 0.07, 0.02, -0.04].map((y, k) => ({ id: `line-${k}`, feetPosition: { x: k === 4 ? -0.04 : 0, y: y + 0.1, z: -0.005 }, primitive: { kind: "box", width: k === 4 ? 0.12 : 0.2 - (k % 2) * 0.03, height: 0.012, depth: 0.002 }, material: { color: "oklch(0.25 0.02 40)", roughness: 1 } }))] });
 export function update(ctx) {
   const f = ctx.self.feetPosition, id = ctx.self.id, now = ctx.now();
   ctx.sleep(2);
