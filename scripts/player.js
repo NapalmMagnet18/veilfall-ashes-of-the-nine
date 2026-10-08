@@ -2,7 +2,7 @@
 // Space: Griefstep dash toward the cursor. Q: tonic. WASD also walks. Hits are judged here, on the
 // striker's machine, and written to the enemy's state; the wax-pack manager reads hp and pays XP.
 import { body as heroBody } from "./lib/data/models.js";
-import { gearStats, mitigation, slotOf, sellValue, dustValue, SLOTS, forge, FORGE, freeReforges, markBoss, applyMark, MARKS } from "./lib/loot.js";
+import { gearStats, mitigation, slotOf, sellValue, dustValue, SLOTS, forge, FORGE, freeReforges, markBoss, applyMark, MARKS, craft, craftCost, smithRank, SMITH } from "./lib/loot.js";
 import { raycast, getInputRay } from "builtin/physics";
 import { findPath } from "builtin/nav";
 import { floorDist as mapFloor, areaAt } from "./lib/data/veilfall-map.js";
@@ -307,6 +307,17 @@ const FORGE_BIG = `fx
 pop spark burst=90 on=point() life=.5..1.3 v=sdir()*(3..7)+up(2.5) size=.015..0.04 acc=grav()*.6+drag(.5) col=hdr(7,3.4,1)>hdr(2,.6,.1) a=1>0 sz=$size floor=bounce(.3) r=sprite(ember,add,velocity,.03)
 pop pillar burst=30 on=disc(.3) life=.8..1.4 v=up(3..5) size=.1..0.2 acc=drag(1) col=hdr(4,2.4,.8)>hdr(1,.3,.05) a=0>.1:1>0 sz=$size*(1>.3) r=sprite(flame-wisp,add)
 pop glow burst=1 life=.9 at=point() r=light(<1,.65,.3>,60*(1>0),9)`;
+function smithGain(ctx, n) {
+  const s = ctx.self.state, before = smithRank(s.smithXp ?? 0).i;
+  s.smithXp = (s.smithXp ?? 0) + n;
+  const after = smithRank(s.smithXp);
+  if (after.i > before) {
+    msg(ctx, `Smithing rank ${after.i + 1}: ${after.name}. Your patterns come hotter now.`);
+    ctx.emit("playSound", { clip: sfx("anvil-rank-up-triple-ring-and-low-choir"), volume: 0.8 }, { audience: { player: ctx.self.id } });
+    ctx.emit("damageNumber", { position: { ...ctx.self.feetPosition, y: ctx.self.feetPosition.y + 2.4 }, text: `⚒ ${after.name.toUpperCase()}`, color: "#e0a866", size: 2, lifetime: 3 }, { audience: { player: ctx.self.id } });
+    ctx.emit("milestone", { step: 20 + after.i, name: `smith rank ${after.i + 1}` }, { audience: { player: ctx.self.id } });
+  }
+}
 function forgeNear(ctx) {
   const now = ctx.now(); if (now < (me.forgeAt ?? 0)) return; me.forgeAt = now + 400;
   const s = ctx.self.state, o = ctx.getObject("wayside-forge"), f = ctx.self.feetPosition;
@@ -358,6 +369,21 @@ function itemInput(ctx, a) {
     inv.length = 0; inv.push(...keep); snd = "salvage";
   } else if (a.a === "sort") {
     const rank = { vowbound: 0, relic: 1, gilded: 2, hallowed: 3, ashen: 4 }; inv.sort((x, y) => rank[x.t] - rank[y.t] || y.il - x.il); snd = "drop";
+  } else if (a.a === "craft") {
+    if (!s.atForge) return;
+    if (inv.length >= 24) { msg(ctx, "Your pack is full. The smith won't hand you steel to drop."); return; }
+    const c = craftCost(s.smithXp ?? 0);
+    if ((s.dust ?? 0) < c.dust || (s.shards ?? 0) < c.shards) { msg(ctx, `A pattern wants ${c.dust} ash dust and ${c.shards} wax shards. You carry ${s.dust ?? 0} and ${s.shards ?? 0}.`); ctx.emit("playSound", { clip: sfx("dull-click-denied"), position: ctx.self.feetPosition, volume: 0.3 }, { audience: { player: ctx.self.id } }); return; }
+    const r = craft(ctx, a.b, s.level ?? 1, s.smithXp ?? 0); if (r.error) { msg(ctx, r.error); return; }
+    s.dust -= c.dust; s.shards -= c.shards; inv.push(r.item);
+    const big = r.item.t === "gilded" || r.item.t === "relic";
+    const o = ctx.getObject("wayside-forge"), at = o ? { x: o.feetPosition.x, y: o.feetPosition.y + 1, z: o.feetPosition.z } : ctx.self.feetPosition;
+    ctx.emit("fx", { position: at, script: big ? FORGE_BIG : FORGE_HIT });
+    if (big) ctx.emit("screenFlash", { color: r.item.t === "relic" ? "#ff9040" : "#f0cf55", duration: 0.25, intensity: 0.22 }, { audience: { player: ctx.self.id } });
+    ctx.emit("playSound", { clip: "/cdn/moodboard-gothic-horror/sfx-" + ITEM_SFX[big ? "forgeBig" : "forge"] + ".mp3", position: at, volume: 0.8 });
+    s.invSel = r.item.u; s.inv = inv; s.gear = gear;
+    smithGain(ctx, SMITH.xp.craft);
+    return;
   } else if (a.a === "forge") {
     if (!s.atForge) return; const i = inv.findIndex((x) => x.u === a.u); if (i < 0) return;
     const r = forge(ctx, inv[i], a.op);
@@ -366,6 +392,7 @@ function itemInput(ctx, a) {
     if ((s.dust ?? 0) < r.cost) { msg(ctx, `The forge wants ${r.cost} ash dust. You carry ${s.dust ?? 0}.`); ctx.emit("playSound", { clip: sfx("dull-click-denied"), position: ctx.self.feetPosition, volume: 0.3 }, { audience: { player: ctx.self.id } }); return; }
     if (gift) { const mb = markBoss(ctx, s); if (mb) applyMark(r.item, mb); s.freeUsed = (s.freeUsed ?? 0) + 1; msg(ctx, mb ? `Firstblood's due: the smith works ${MARKS[mb].name} into the steel, and asks nothing.` : "Firstblood's due: the smith asks nothing of you this time."); }
     s.dust -= r.cost; inv[i] = r.item; snd = a.op === "ascend" ? "forgeBig" : "forge";
+    smithGain(ctx, SMITH.xp[a.op] ?? 0);
     const o = ctx.getObject("wayside-forge"), at = o ? { x: o.feetPosition.x, y: o.feetPosition.y + 1, z: o.feetPosition.z } : ctx.self.feetPosition;
     ctx.emit("fx", { position: at, script: a.op === "ascend" ? FORGE_BIG : FORGE_HIT });
     if (a.op === "ascend") ctx.emit("screenFlash", { color: "#ffb060", duration: 0.25, intensity: 0.25 }, { audience: { player: ctx.self.id } });

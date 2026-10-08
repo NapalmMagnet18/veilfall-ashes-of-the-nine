@@ -105,3 +105,4 @@ places/main/sim.js referee: spawns packs, quest stages, XP/levels, death and res
 - 2026-10-08 · A free Firstblood reforge applies that boss mark (loot.js MARKS): one themed affix at 1.5x a full roll, item.mk names it on the card.
 - 2026-10-08 · Two or more boss-marked pieces worn: each ashcut emits a trail fx in those marks colours (player.js markTrail).
 - 2026-10-08 · Brother Ledd remarks once per Bearer per worn boss mark (crier.js MARKED), after uncollected-sale news, before board notices.
+- 2026-10-08 · Smithing profession: craft a chosen base at the Wayside Forge for dust + 2 shards; smithXp (saved) from every forge job; 5 ranks raise ilvl and tier odds (loot.yml smith).

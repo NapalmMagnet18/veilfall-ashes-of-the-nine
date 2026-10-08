@@ -69,3 +69,14 @@ forge:
   reforge: { base: 4, perIlvl: 1, perTier: 3 }
   ascend:  { cost: { ashen: 18, hallowed: 45 } }
   reach: 3.6
+# SMITHING, the Wayside profession: craft a chosen base from dust + wax shards. every forge job earns smith xp;
+# rank n crafts at ilvl (level + ilvlPerRank*n) and rolls tiers from its row's weights. craft xp > temper/reforge > ascend
+smith:
+  craft: { dust: 10, perRank: 4, shards: 2 }
+  xp: { craft: 30, temper: 12, reforge: 12, ascend: 40 }
+  ranks:
+    - { name: "Ash-Hand",      xp: 0,    ilvl: 0, tiers: { ashen: 70, hallowed: 30 } }
+    - { name: "Bellows-Boy",   xp: 90,   ilvl: 1, tiers: { ashen: 45, hallowed: 50, gilded: 5 } }
+    - { name: "Journeysmith",  xp: 260,  ilvl: 2, tiers: { ashen: 20, hallowed: 65, gilded: 15 } }
+    - { name: "Anvil-Sworn",   xp: 600,  ilvl: 3, tiers: { hallowed: 70, gilded: 30 } }
+    - { name: "Master of the Wayside", xp: 1200, ilvl: 4, tiers: { hallowed: 50, gilded: 48, relic: 2 } }

@@ -138,6 +138,7 @@ export function cardHTML(it, gear) {
     <div style="color:#9a907e;font-size:11px;letter-spacing:.14em;text-transform:uppercase">${T.name} ${slotOf(it)} · item level ${it.il}</div>
     <div style="height:1px;background:linear-gradient(90deg,transparent,${T.color}88,transparent);margin:5px 0"></div>
     ${lines}${setHTML}
+    ${it.cr ? `<div style="margin-top:4px;color:#b9a27a;font-size:10px;letter-spacing:.16em">⚒ WAYSIDE-FORGED</div>` : ""}
     ${it.mk && MARKS[it.mk] ? `<div style="margin-top:4px;color:${MARKS[it.mk].color};font-size:11px;letter-spacing:.14em;text-shadow:0 0 6px ${MARKS[it.mk].color}66">✦ ${MARKS[it.mk].name.toUpperCase()} ✦</div>` : ""}
     ${it.tp ? `<div style="margin-top:4px;color:#e0a866;font-size:11px;letter-spacing:.12em">${Array.from({ length: L.forge.temper.max }, (_, i) => `<span style="display:inline-block;width:6px;height:6px;margin-right:4px;transform:rotate(45deg);border:1px solid #e0a866;background:${i < it.tp ? "#e0a866" : "transparent"}"></span>`).join("")} TEMPERED</div>` : ""}
     ${relic ? `<div style="margin-top:6px;color:#c08850;font-style:italic;font-size:12px">"${relic.lore}"</div>` : ""}
@@ -171,4 +172,22 @@ export function applyMark(item, boss) {
   if (!a) return item;
   const v = Math.max(1, Math.round((a.base[1] + a.per * ((item.il ?? 1) - 1)) * 1.5));
   item.s[a.id] = (item.s[a.id] ?? 0) + v; item.mk = boss; return item;
+}
+
+// SMITHING: rank from smithXp, a crafted base at the rank's ilvl and tier odds
+export const SMITH = L.smith;
+export function smithRank(xp = 0) {
+  let i = 0; for (let k = 0; k < L.smith.ranks.length; k++) if (xp >= L.smith.ranks[k].xp) i = k;
+  const R = L.smith.ranks[i], N = L.smith.ranks[i + 1];
+  return { i, name: R.name, next: N ? N.xp : null, from: R.xp, R };
+}
+export function craftCost(xp) { const r = smithRank(xp).i; return { dust: L.smith.craft.dust + L.smith.craft.perRank * r, shards: L.smith.craft.shards }; }
+export function craft(ctx, base, level, xp) {
+  if (!L.bases[base]) return { error: "the smith knows no such pattern" };
+  const { R } = smithRank(xp), il = Math.max(1, (level ?? 1) + R.ilvl);
+  const tot = Object.values(R.tiers).reduce((a, b) => a + b, 0); let r = ctx.random() * tot, t = "ashen";
+  for (const [k, w] of Object.entries(R.tiers)) { if ((r -= w) <= 0) { t = k; break; } }
+  const u = Math.floor(ctx.now() % 1e9).toString(36) + Math.floor(ctx.random() * 1e6).toString(36);
+  if (t === "relic") { const pool = L.relics.filter((x) => x.base === base); if (pool.length) { const X = pick(ctx, pool); return { item: { u, b: base, t, n: X.name, il, r: X.id, s: { ...implicit(base, il), ...X.stats }, cr: 1 } }; } t = "gilded"; }
+  return { item: { u, b: base, t, il, ...dress(ctx, base, t, il), cr: 1 } };
 }

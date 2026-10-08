@@ -1,5 +1,5 @@
 // The Bearer's pack: paper doll left, 24-slot grid right, item cards on hover, a pinned card with its verbs below.
-import { SLOTS, TIER, icon, cardHTML, mitigation, sellValue, BAG, forgeCost, forgeCan, freeReforges } from "./loot.js";
+import { SLOTS, TIER, icon, cardHTML, mitigation, sellValue, BAG, forgeCost, forgeCan, freeReforges, smithRank, craftCost } from "./loot.js";
 import { coinHTML } from "./coins.js";
 
 const SLOT_POS = { helm: [70, 0], amulet: [134, 14], weapon: [6, 70], chest: [70, 66], gloves: [6, 140], ring: [134, 84], boots: [70, 140] };
@@ -66,7 +66,14 @@ export function packPanel(ctx, player, { rail, touch }) {
         <div style="font-size:10px;letter-spacing:.2em;color:#e0a866;width:56px;line-height:1.3;align-self:center">WAYSIDE FORGE</div>
         ${[["temper", "TEMPER", "+1 item level"], ["reforge", "REFORGE", "new affixes"], ["ascend", "ASCEND", "one tier up"]].map(([op, label, hint]) => { const no = forgeCan(sel, op), fr = !no && op === "reforge" ? freeReforges(ctx, s) : 0, c = no ? null : fr ? 0 : forgeCost(sel, op), poor = c != null && (s.dust ?? 0) < c;
           return `<button class="vb" ${no ? "disabled" : ""} style="flex:1;${no ? "opacity:.35;" : poor ? "opacity:.6;" : "border-color:#e0a866aa;"}" title="${no ?? hint}" onclick="${act("forge", `,u:'${sel.u}',op:'${op}'`)}">${label}${no ? "" : fr ? ` · <span style="color:#e0a26a;text-shadow:0 0 6px #ac4c42">✦ FREE ×${fr}</span>` : ` · <img src="${icon("dust")}" style="width:13px;height:13px;vertical-align:-2px">${c}`}<div style="font-size:9px;letter-spacing:.1em;color:#9a907e">${no ?? hint}</div></button>`; }).join("")}
-      </div>` : `<div style="margin-top:10px;padding-top:8px;border-top:1px solid #e0a86633;font-size:11px;color:#e0a866;letter-spacing:.08em">WAYSIDE FORGE · select an item to temper, reforge or ascend</div>`) : ""}
+      </div>` : (() => { const rk = smithRank(s.smithXp ?? 0), cc = craftCost(s.smithXp ?? 0), poor = (s.dust ?? 0) < cc.dust || (s.shards ?? 0) < cc.shards, pct = rk.next ? Math.round(100 * ((s.smithXp ?? 0) - rk.from) / (rk.next - rk.from)) : 100;
+        return `<div style="margin-top:10px;padding-top:8px;border-top:1px solid #e0a86633">
+          <div style="display:flex;align-items:center;gap:8px;font-size:10px;letter-spacing:.18em;color:#e0a866">⚒ SMITHING · RANK ${rk.i + 1} · ${rk.name.toUpperCase()}
+            <div style="flex:1;height:5px;background:#1a1612;border:1px solid #e0a86644"><div style="width:${pct}%;height:100%;background:linear-gradient(90deg,#7a3a1c,#e0a866)"></div></div>
+            <span style="color:#9a907e">${rk.next ? `${s.smithXp ?? 0}/${rk.next}` : "MASTER"}</span></div>
+          <div style="font-size:10px;color:#9a907e;margin:4px 0 6px;letter-spacing:.06em">forge a pattern · <img src="${icon("dust")}" style="width:12px;height:12px;vertical-align:-2px">${cc.dust} + ◆${cc.shards} · item level ${(s.level ?? 1) + rk.R.ilvl} · select an item to temper, reforge or ascend</div>
+          <div style="display:grid;grid-template-columns:repeat(8,1fr);gap:4px">${["blade", "great", "helm", "chest", "gloves", "boots", "ring", "amulet"].map((b) => `<button class="vb" ${poor ? "disabled" : ""} title="forge a ${b}" style="padding:3px;${poor ? "opacity:.4" : "border-color:#e0a866aa"}" onclick="${act("craft", `,b:'${b}'`)}"><img src="${icon(b)}" style="width:100%;aspect-ratio:1;display:block;image-rendering:auto"></button>`).join("")}</div>
+        </div>`; })()) : ""}
       </div>
     </div>
     ${sel ? `<div style="display:flex;gap:12px;margin-top:12px;align-items:flex-start">
