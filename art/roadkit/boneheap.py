@@ -77,7 +77,8 @@ for i in range(14):
     e = pts[-1]; tube([e, e + Vector((0, 0, -.06)), e + Vector((0, 0, -.1))], [.014, .01, .001], 5, M["wax"])
 for i in range(3):
     a = R.uniform(0, 6.28); x, y = math.cos(a) * .7, math.sin(a) * .7
-    p = prim("cyl", M["wax"], loc=(x, y, .008), vertices=12, radius=R.uniform(.1, .16), depth=.016); jitter(p, .03, 10, i, (1, 1, 0))
+    p = prim("cyl", M["wax"], loc=(x, y, .008), vertices=12, radius=R.uniform(.1, .16), depth=.016)
+    for v in p.data.vertices: v.co.xy = Vector((x, y)) + (v.co.xy - Vector((x, y))) * (1 + .3 * mnoise.noise(Vector((v.co.x * 8, v.co.y * 8, i))))
 for i, (x, y, h) in enumerate([(.08, -.18, .07), (-.16, -.1, .05)]):
     candle(M, (x, y, H(x, y) + .02), h, .028, False, i)
 finish("boneheap")
