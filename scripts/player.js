@@ -5,8 +5,10 @@ import { raycast, getInputRay } from "builtin/physics";
 import { findPath } from "builtin/nav";
 import { floorDist as mapFloor, areaAt } from "./lib/data/veilfall-map.js";
 // the Abbey road is floor only once the Bailiff has fallen in this room (place.state.abbeyOpen, set by the sim)
-let ABBEY_OPEN = false, NAVE_OPEN = false;
-const floorDist = (x, z) => mapFloor(x, z, ABBEY_OPEN, NAVE_OPEN);
+// which floors this Bearer may walk: derived from their own quest row at the top of every hook that moves them
+const GATE = { abbey: false, nave: false };
+const gate = (ctx) => { const st = ctx.self.state.quest?.stage ?? 0, all = !!ctx.place.state?.abbeyOpenAll; GATE.abbey = st >= 4 || all; GATE.nave = st >= 10 || all; };
+const floorDist = (x, z) => mapFloor(x, z, GATE.abbey, GATE.nave);
 import C from "./lib/data/combat.yml";
 import { shopInput } from "./lib/shop.js";
 import * as CH from "./lib/character.js";
@@ -180,6 +182,7 @@ function menuInput(ctx, d) {
 }
 
 export function onInput(ctx, input) {
+  gate(ctx);
   const s = ctx.self.state;
   if (input.actionData?.menu) menuInput(ctx, input.actionData.menu);
   if (s.menu) return;
@@ -391,8 +394,7 @@ function zoneTick(ctx, s, f, now) {
 export function update(ctx, dt) {
   if (ctx.self.state.hp === undefined) onSpawn(ctx);
   const s = ctx.self.state, now = ctx.now(), f = ctx.self.feetPosition;
-  ABBEY_OPEN = (s.quest?.stage ?? 0) >= 4 || !!ctx.place.state?.abbeyOpenAll;
-  NAVE_OPEN = (s.quest?.stage ?? 0) >= 10 || !!ctx.place.state?.abbeyOpenAll;
+  gate(ctx);
   const vy = (ctx.self.velocity?.y ?? 0) + (ctx.self.grounded ? 0 : ctx.place.gravity.y * dt);
   // a fresh visit opens on the title in the Veil; a realm cross lands on that realm's character list
   if (ctx.self.isLocal !== false && !ctx.session.vfDoor) {
