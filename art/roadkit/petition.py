@@ -5,6 +5,8 @@ from common import *
 _tex = common.tex
 RES = {"parchment": 1024, "seal": 512}
 common.tex = lambda kind, seed, n=256: _tex(kind, seed, RES.get(kind, n))
+KINDS["parchment"] = ("#5a4529", "#b89d68", .9, 0, 1)
+KINDS["seal"] = ("#3f0f0d", "#962f28", .36, 0, 1)
 KINDS["ink"] = ("#100a08", "#2b1913", .55, 0, 1)
 KINDS["cord"] = ("#3a0d0c", "#8e2c25", .92, 0, 3)
 reset()
@@ -105,7 +107,7 @@ def curl(u, v):
     if u < .03 or u > .97: x += .004 * N(v * 30, 0, 22)
     return (x, y, z)
 c = sheet(curl, 40, 10, M["parchment"], "curl")
-xform(c, Matrix.Translation((.11, .085, 0)) @ Matrix.Rotation(math.radians(-28), 4, "Z"))
+xform(c, Matrix.Translation((.12, .1, 0)) @ Matrix.Rotation(math.radians(-28), 4, "Z"))
 # wax drops beneath
 for i, (dx, dy, r) in enumerate(((.035, -.075, .008), (-.05, -.16, .006), (.09, -.15, .0095), (-.02, .06, .007), (.15, -.04, .005))):
     d = prim("sph", M["wax_seal"], loc=(dx, dy, .0), segments=10, ring_count=6, radius=1)
