@@ -42,7 +42,7 @@ export function update(ctx, dt) {
     ctx.emit("fx", { position: { x: f.x, y: f.y + 0.3, z: f.z }, script: TOLL, params: { r: 5 } });
     animate(ctx, self, { "scale.y": 0.1, "scale.x": 2.6, "scale.z": 2.6 }, { duration: 2.6 });
     for (const p of here) { p.state.ringerKilled = true; ctx.emit("milestone", { step: 11, name: "ringer-defeated" }, { audience: { player: p.id } }); }
-    payout(ctx, f, R.xp, E.drops.ringer, false, "heavy");
+    payout(ctx, f, R.xp, E.drops.ringer, false, "heavy", "ringer");
     ctx.place.state.ringerDownAt = now;
     publish(ctx); return;
   }

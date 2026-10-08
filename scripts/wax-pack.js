@@ -4,6 +4,7 @@ import { animate } from "builtin/tween";
 import C from "./lib/data/combat.yml";
 import E from "./lib/data/economy.yml";
 import { fmt } from "./lib/coins.js";
+import { rollDrops, TIER, BAG, dustValue } from "./lib/loot.js";
 const sfx = (n) => `/cdn/moodboard-gothic-horror/sfx-${n}.mp3`;
 // every kind has its own throat: the cry when it wakes to you, the sound it makes coming apart
 const VOX = {
@@ -56,13 +57,40 @@ export function hurtPlayers(ctx, center, r, dmg, now) {
   }
 }
 
-export function payout(ctx, at, xp, copper, countsForQuest, spill = "small") {
+// personal loot: each eligible Bearer rolls their own; a find rises as a beam of its tier's colour
+const BEAM = `fx
+pop beam burst=1 life=2.6 size=.5 col=%c|<1,1,1> a=0>.08:.85>.7:.6>0 sz=$size r=mesh(cylinder,.18,9,.18)
+pop motes burst=26 on=disc(.35) life=1.2..2.4 v=up(1.5..3.5) size=.03..0.06 acc=curl(.4)*.3 col=%c|<1,1,1>*2.4 a=1>.6:.8>0 r=sprite(ember,add)
+pop glow burst=1 life=2.4 at=point().c(1) r=light(%c|<1,1,1>,12*(1>.7:.8>0),7)`;
+const HEX = (h) => { const n = parseInt(h.slice(1), 16); return { x: ((n >> 16) & 255) / 255, y: ((n >> 8) & 255) / 255, z: (n & 255) / 255 }; };
+const FIND = { ashen: "loot-drop-cloth-thud-soft", hallowed: "loot-drop-blue-glass-chime", gilded: "loot-drop-gold-bell-chime-bright", relic: "loot-drop-legendary-deep-choir-swell-with-anvil-ring", vowbound: "loot-drop-set-item-emerald-harp-shimmer" };
+function dropLoot(ctx, p, at, kind) {
+  const found = rollDrops(ctx, kind); if (!found.length) return;
+  const inv = [...(p.state.inv ?? [])];
+  let best = null;
+  for (const it of found) {
+    if (inv.length >= BAG) { p.state.dust = (p.state.dust ?? 0) + dustValue(it); ctx.emit("damageNumber", { position: { ...at, y: at.y + 3 }, text: `pack full: +${dustValue(it)} ash dust`, color: "#9a907e", size: 0.7 }, { audience: { player: p.id } }); continue; }
+    inv.push(it);
+    if (!best || Object.keys(TIER).indexOf(it.t) > Object.keys(TIER).indexOf(best.t)) best = it;
+    ctx.emit("damageNumber", { position: { x: at.x + 0.6, y: at.y + 2.8, z: at.z - 0.4 }, text: it.n, color: TIER[it.t].color, size: it.t === "relic" || it.t === "vowbound" ? 1.1 : 0.85, lifetime: 2.6 }, { audience: { player: p.id } });
+  }
+  p.state.inv = inv;
+  if (!best) return;
+  const c = HEX(TIER[best.t].color);
+  if (best.t !== "ashen") ctx.emit("fx", { position: { x: at.x, y: at.y + 0.05, z: at.z }, script: BEAM, params: { c } }, { audience: { player: p.id } });
+  ctx.emit("playSound", { clip: "/cdn/moodboard-gothic-horror/sfx-" + FIND[best.t] + ".mp3", position: at, volume: best.t === "ashen" ? 0.5 : 0.9 }, { audience: { player: p.id } });
+  if (best.t === "relic" || best.t === "vowbound") { ctx.emit("screenFlash", { color: TIER[best.t].color, duration: 0.35, intensity: 0.25 }, { audience: { player: p.id } }); ctx.emit("uiEvent", { name: "relic", payload: { n: best.n, t: best.t } }, { audience: { player: p.id } }); }
+}
+
+export function payout(ctx, at, xp, copper, countsForQuest, spill = "small", kind = "pilgrim") {
   const S = SPILLS[spill] ?? SPILLS.small;
   let paid = 0;
   for (const p of ctx.place.players) {
     if (p.state.menu || !p.state.charId || flat(p.feetPosition, at) > 28) continue;
     p.state.xp = (p.state.xp ?? 0) + xp;
+    copper = Math.round(copper * (1 + (p.state.gs?.gold ?? 0) / 100));
     p.state.copper = (p.state.copper ?? 0) + copper;
+    dropLoot(ctx, p, at, kind);
     if (countsForQuest) p.state.kills = (p.state.kills ?? 0) + 1;
     if (countsForQuest && ctx.random() < 0.5) p.state.shards = (p.state.shards ?? 0) + 1;
     ctx.emit("damageNumber", { position: { ...at, y: at.y + 2.4 }, text: `+${xp} XP`, color: "#c9b6ff", size: 0.8 }, { audience: { player: p.id } });
@@ -86,7 +114,7 @@ export function update(ctx, dt) {
       ctx.emit("fx", { position: { x: f.x, y: f.y + 0.4, z: f.z }, script: MELT });
       ctx.emit("playSound", { clip: sfx((VOX[s.kind] ?? VOX.pilgrim).death), position: f, volume: s.kind === "deacon" ? 1 : 0.8, pitch: 0.9 + ctx.random() * 0.2 });
       animate(ctx, w, { "scale.y": 0.08, "scale.x": 1.5, "scale.z": 1.5 }, { duration: 1.2 });
-      payout(ctx, f, K.xp, roll(ctx, E.drops[s.kind] ?? E.drops.pilgrim), true);
+      payout(ctx, f, K.xp, roll(ctx, E.drops[s.kind] ?? E.drops.pilgrim), true, "small", s.kind);
       continue;
     }
     // who to hunt

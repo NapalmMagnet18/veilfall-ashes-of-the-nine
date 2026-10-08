@@ -96,7 +96,7 @@ export function update(ctx, dt) {
     animate(ctx, self, { "scale.y": 0.1, "scale.x": 3, "scale.z": 3 }, { duration: 2.4 });
     // entitlement: each player present is credited once per life of this boss (sim.js grants the quest reward once ever)
     for (const p of here) { p.state.bossKilled = true; ctx.emit("milestone", { step: 3, name: "bailiff-defeated" }, { audience: { player: p.id } }); }
-    payout(ctx, f, B.xp, E.drops.bailiff, false, "heavy");
+    payout(ctx, f, B.xp, E.drops.bailiff, false, "heavy", "bailiff");
     ctx.place.state.bailiffDownAt = now;
     publish(ctx); return;
   }

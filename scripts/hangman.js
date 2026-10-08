@@ -43,7 +43,7 @@ export function update(ctx, dt) {
     ctx.emit("fx", { position: { x: f.x, y: f.y + 0.2, z: f.z }, script: SNAP, params: { r: 4 } });
     animate(ctx, self, { "rotation.pitch": -80, "feetPosition.y": f.y - 0.6 }, { duration: 1.6 });
     for (const p of here) { p.state.hangmanKilled = true; ctx.emit("milestone", { step: 20, name: "hangman-defeated" }, { audience: { player: p.id } }); }
-    payout(ctx, f, H.xp, E.drops.hangman, false, "heavy");
+    payout(ctx, f, H.xp, E.drops.hangman, false, "heavy", "hangman");
     publish(ctx); return;
   }
   if (here.length) {
