@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "basedOnSpecVersion": 319,
-  "updatedAt": "2026-10-08T17:41:09.304Z",
-  "summary": "VEILFALL: Ashes of the Nine is an isometric action RPG with Broken Lantern Road (Z01) as its playable stage and the separate, solo Veil for title and Bearer screens. Player, UI and camera connect realm/Bearer selection to the main-place referee, enemies and authored terrain; rigged CDN models supply the hero and wax enemies, with new bespoke models dressing the road and Wayside Fire. Place simulations coordinate combat ambience and a room-shared music jukebox, while the look pass and player template provide tiered mist and a carried light.",
+  "basedOnSpecVersion": 328,
+  "updatedAt": "2026-10-08T17:58:09.278Z",
+  "summary": "VEILFALL: Ashes of the Nine is an isometric action RPG whose playable Z01 Broken Lantern Road shares a world with the separate solo Veil menu stage. Player, UI and camera connect realm/Bearer selection to the main-place referee, enemies and authored terrain; place simulations coordinate quest/combat ambience and a room-shared music jukebox. CDN character models and bespoke road/camp props are dressed by terrain, fog, lighting and shadow passes.",
   "scriptPaths": [
     "scripts/arrival.js",
     "scripts/bailiff.js",
@@ -64,17 +64,17 @@
   ],
   "places": [
     "places/main/ - playable Z01: Wayside Fire, candle road, Tollhouse, Dripping Gate and Bailiff's Court/arena; sim.js coordinates NPCs, enemies, petitions, quest progression and place audio.",
-    "places/main/cells/x0z0.scene and x0z-1.scene - authored camp, road, tollhouse, gate and arena dressing, with placed rigged wax enemies/Bailiff and new road gibbets, reliquaries and bone heaps; x0z0 also places the Waystone of the Nine at the camp.",
-    "places/main/config.yaml - main terrain, environment and procedural vegetation layers.",
+    "places/main/cells/x0z0.scene and x0z-1.scene - authored camp/road/tollhouse/gate/arena contents, placed enemies and Bailiff, Waystone, gibbets, reliquaries and bone heaps; brazier child lights now cast shadows.",
+    "places/main/config.yaml - main terrain, atmosphere and procedural vegetation; terrain materials use stochastic anti-tiling, stronger normals, reduced roughness intensity and macro variation.",
     "places/veil/ - ephemeral solo menu stage: Lantern Shrine ledge above a misty ravine; hidden menu body is parked there.",
     "places/veil/cells/x0z0.scene, x0z-1.scene and x0z-2.scene; places/veil/config.yaml - shrine/ledge, cliffs, far ridge, spawn and menu-stage atmosphere."
   ],
   "roots": [
     "world.config.yaml - world entry: main default place, player/camera templates, lighting, arrival behavior, nametag, desktop actions and touch surfaces; touch controller is scripts/controls.js.",
-    "templates/player.js - player body combines humanoid-locomotion.js with scripts/player.js, assigns the Bladewraith CDN model and 1.85 m layout, and carries warm point-light child lightradius.",
+    "templates/player.js - body combines humanoid-locomotion.js and scripts/player.js, assigns the Bladewraith CDN model and 1.85 m layout, and carries warm point-light child lightradius.",
     "templates/camera.js - custom camera template running scripts/camera.js.",
     "places/main/sim.js - Z01 referee for NPCs, enemy/petition/quest stages, levels, reward turn-in and road ambience/music; dynamically spawned enemies use models.js bodies.",
-    "places/main/cells/x0z0.scene and x0z-1.scene - authored playable-place content, including placed rigged wax enemies, Bailiff, bespoke road dressing and Waystone.",
+    "places/main/cells/x0z0.scene and x0z-1.scene - authored playable-place content, including placed rigged wax enemies, Bailiff, road dressing and Waystone.",
     "places/veil/cells/x0z0.scene, x0z-1.scene and x0z-2.scene plus places/veil/config.yaml - authored menu-stage shrine/ravine and its spawn/environment.",
     "places/veil/sim.js - menu-stage ravine wind and title theme when no eligible Bearer is on the road.",
     "scripts/arrival.js - world doorway behavior; saves an active Bearer when leaving main."
@@ -86,18 +86,18 @@
     "scripts/lib/data/economy.yml and scripts/lib/coins.js - economy values and copper formatting shared by sim, drops, shop and HUD.",
     "scripts/lib/data/combat.yml - hero, enemy, skill, guard and Bailiff tuning consumed by combat scripts and HUD.",
     "scripts/lib/data/veilfall-map.js - shared Z01 layout, floorDist and named AREAS/areaAt used by terrain, player movement and zone banners.",
-    "scripts/lib/data/menu-shot.yml - Veil camera framing used by camera.js; scripts/lib/data/models.js - CDN model IDs, metre heights and body(kind) helper used by main sim/Bailiff, with hero model assigned by player template.",
-    "art/roadkit/common.py - shared Blender construction/material/render helpers imported by art/roadkit/gibbet.py, boneheap.py and reliquary.py; offline art tooling, not a place behavior."
+    "scripts/lib/data/menu-shot.yml and scripts/lib/data/models.js - Veil camera framing and CDN model IDs/metre heights/body(kind) helper used by camera and main sim/Bailiff.",
+    "art/roadkit/common.py - shared Blender construction/material/render helpers imported by roadkit prop builders; offline art tooling, not a place behavior."
   ],
   "notableExports": [
-    "places/main/sim.js - cadence, tick; places/veil/sim.js - cadence, tick",
-    "scripts/player.js - onSpawn, onInput, update",
-    "scripts/wax-pack.js - roll, telegraph, hurtPlayers, payout, update; scripts/bailiff.js - onSpawn, update",
-    "scripts/lib/character.js - CHAR_KEYS, fresh, START, realmOf, pack, zoneOf, rollName, roster, create, load, save, remove",
-    "scripts/lib/shop.js - owned, shopInput; scripts/lib/shop-ui.js - shopPanel",
-    "scripts/camera.js - onInput, update; scripts/arrival.js - onArrive, onLeave; scripts/controls.js - default touch-surface selector",
-    "scripts/lib/frames.js - FRAME_CSS; scripts/lib/data/ui-kit.js - default; scripts/ui.js - default",
-    "scripts/lib/data/veilfall-map.js - AREAS, areaAt, floorDist; scripts/lib/data/models.js - MODELS, HEIGHT, body; scripts/gen/veil-shrine.js - shrine structure/constants and geometry/collider"
+    "places/main/sim.js - cadence, tick; places/veil/sim.js - cadence, tick.",
+    "scripts/player.js - onSpawn, onInput, update.",
+    "scripts/wax-pack.js - roll, telegraph, hurtPlayers, payout, update; scripts/bailiff.js - onSpawn, update.",
+    "scripts/lib/character.js - CHAR_KEYS, fresh, START, realmOf, pack, zoneOf, rollName, roster, create, load, save, remove.",
+    "scripts/lib/shop.js - owned, shopInput; scripts/lib/shop-ui.js - shopPanel.",
+    "scripts/camera.js - onInput, update; scripts/arrival.js - onArrive, onLeave; scripts/controls.js - default touch-surface selector.",
+    "scripts/lib/frames.js - FRAME_CSS; scripts/lib/data/ui-kit.js - default; scripts/ui.js - default.",
+    "scripts/lib/data/veilfall-map.js - AREAS, areaAt, floorDist; scripts/lib/data/models.js - MODELS, HEIGHT, body; scripts/gen/veil-shrine.js - shrine structure/constants and geometry/collider."
   ],
   "ownership": [
     "scripts/lib/character.js CHAR_KEYS - persistent Bearer fields including seen area IDs; position is packed separately, transient UI/movement state is not saved.",
@@ -107,15 +107,15 @@
     "scripts/bailiff.js - boss hp/phases/casts, arena reset, ledger pillars/walkers and Fray; publishes place.state.boss and bailiffDownAt.",
     "scripts/lib/shop.js - trade validation and buyer copper, tonics, bag and maxHp mutations; shop-open state is on player.state.",
     "scripts/camera.js - camera zoom/follow and menu/arrival framing; scripts/ui.js renders menus and gameplay panels from player/place state.",
-    "places/veil/sim.js - Veil wind emitter and menu-theme selection; scripts/look-default.js owns the screen post-process, and templates/player.js owns the carried light's placement/settings."
+    "places/veil/sim.js - Veil wind emitter and menu-theme selection; scripts/look-default.js owns screen post-process, and templates/player.js owns carried-light placement/settings."
   ],
   "flows": [
     "world.config.yaml attaches scripts/player.js through templates/player.js and maps desktop/touch actions; UI menu buttons send menu action data → player.js routes title/realm/character/create/enter/logout.",
     "player.js menuInput → character.js roster/create/load/remove using caller-owned character rows; realms.yml maps selected realm to room and Bearer fields hydrate player.state.",
     "While player.state.menu is set, player.js hides the body and crosses to solo place veil → realm and Bearer screens remain state-driven, with no characters in that place.",
     "scripts/controls.js reads ctx.player.state.menu/shop/bagOpen → world.config.yaml chooses empty menu touch surface or default movement/skill buttons; UI panels continue receiving their own button actions.",
-    "scripts/ui.js draws title, realm, Bearer screens and HUD from player/place state → menu/shop/combat actions return through player.js; named Maelin/Oswin dialogue prefixes select portrait/nameplate and animate the spoken line; boss phase/hp fields drive the candle markers and layered boss bar.",
-    "scripts/ui.js calls scripts/lib/shop-ui.js shopPanel when player.state.shop is set → shop buttons send shop action data; shop-ui.js uses economy/UI data and Oswin portrait/item icon assets, while scripts/lib/shop.js validates and applies trades.",
+    "scripts/ui.js draws title, realm, Bearer screens and HUD from player/place state → menu/shop/combat actions return through player.js; named Maelin/Oswin dialogue prefixes select portrait/nameplate and animate the spoken line; boss phase/hp and quest state feed the HUD.",
+    "scripts/ui.js calls scripts/lib/shop-ui.js shopPanel when player.state.shop is set → shop buttons send shop action data; shop-ui.js uses economy/UI data and portrait/item icon assets, while scripts/lib/shop.js validates and applies trades.",
     "scripts/camera.js reads target.state.menu and menu-shot.yml for the Veil shot; when entering play it cranes into follow view.",
     "player.js saves changed CHAR_KEYS plus position periodically and on rest → character.js writes characters; arrival.js also saves an active character leaving main.",
     "player.js uses veilfall-map.js floorDist for reachable click goals and floor-constrained movement/dash → hero remains on the defined Z01 floor.",
@@ -129,9 +129,9 @@
     "scripts/gen/vf-ruin.js - road, arena and Veil ashlar walls/braziers; kind and dimensions select forms, seed varies geometry.",
     "scripts/gen/veil-land.js - Veil ledge, cliff and distant ridge forms selected by params.kind and dimensions/coordinates.",
     "scripts/gen/veil-shrine.js - unique Lantern Shrine of the Nine; exported structure/constants describe its steps, states, chain, hooks and clusters.",
-    "scripts/gen/arena-floor.js, arena-pillar.js, gibbet.js and toll-throne.js - Bailiff arena dressing generators sharing scripts/gen/shapes.js.",
+    "scripts/gen/arena-floor.js, arena-pillar.js, gibbet.js and toll-throne.js - Bailiff arena dressing generators sharing scripts/gen/shapes.js; shared WAXC palette is now soot-stained dark wax.",
     "scripts/humanoid-locomotion.js - shared body/input locomotion behavior on player and wax enemy actors; model choice and scale differ by actor.",
-    "art/roadkit/{gibbet,boneheap,reliquary}.py - offline Blender road-prop model builders share common.py/materials; art/waystone/build.py builds the unique Waystone model placed at the camp."
+    "art/roadkit/{gibbet,boneheap,reliquary}.py - offline Blender road-prop model builders share common.py/materials; art/waystone/build.py builds the unique Waystone model placed at camp."
   ],
   "probableOrphans": [
     "scripts/flat-starter-terrain.js",
@@ -143,6 +143,6 @@
     "The Veil is solo and ephemeral, has no characters, and parks the hidden menu body at its origin; menu framing in camera.js is tuned by menu-shot.yml against that stage's shrine/ledge layout.",
     "The music jukebox is room-shared, not owned independently by each place: main sim changes it for road/fight/boss only when an eligible Bearer is on main; Veil supplies the menu theme when no one is on the road.",
     "Player attacks directly mutate enemy.state.hp; ordinary-enemy death, XP and kill credit are resolved later by wax-pack.js. Preserve that handoff and its menu/charId eligibility check.",
-    "Waystone candle flame FX and its teal glyph light are children of the placed waystone entity; the separate road dressing models are static scene placements with child lights only on selected gibbets/reliquaries."
+    "Main braziers' child lights cast shadows; places/main/config.yaml terrain materials carry stochastic anti-tiling and macro variation, and scripts/gen/shapes.js WAXC sets the dark soot-stained arena wax palette."
   ]
 }
