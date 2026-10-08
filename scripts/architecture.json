@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "basedOnSpecVersion": 153,
-  "updatedAt": "2026-10-08T11:34:27.562Z",
-  "summary": "VEILFALL: Ashes of the Nine is an isometric action RPG; its active slice is Z01, Broken Lantern Road, from the Wayside Fire through the Dripping Gate. The main-place referee stages quests and actors, player and enemy behaviors own combat, and authored scene cells plus procedural generators build the ravine.",
+  "basedOnSpecVersion": 171,
+  "updatedAt": "2026-10-08T15:33:42.731Z",
+  "summary": "VEILFALL: Ashes of the Nine is an isometric action RPG whose active slice is Z01, Broken Lantern Road, from the Wayside Fire through the Dripping Gate. The main-place referee stages quests and actors, player and enemy behaviors own combat, and authored scene cells plus procedural generators build the ravine; title and Bearer selection are drawn over the live camp.",
   "scriptPaths": [
     "scripts/arrival.js",
     "scripts/bailiff.js",
@@ -57,7 +57,7 @@
     "places/main/config.yaml - place look, terrain/material configuration and procedural grass, clover and mushroom layers."
   ],
   "roots": [
-    "world.config.yaml - world entry: default place main, player/camera templates, lighting, UI, arrival behavior and desktop/touch input actions.",
+    "world.config.yaml - world entry: default place main, player/camera templates, lighting, UI, arrival behavior and desktop/touch input actions, including menu action.",
     "templates/player.js - player character template composing scripts/humanoid-locomotion.js and scripts/player.js.",
     "templates/camera.js - custom camera template running scripts/camera.js.",
     "places/main/sim.js - place referee: ensures Maelin, petitions, enemy pack and Bailiff exist; advances per-player quest/levels and grants the one-time turn-in reward.",
@@ -66,7 +66,7 @@
     "places/main/config.yaml - binds the place's terrain and environmental layers."
   ],
   "shared": [
-    "scripts/lib/data/combat.yml - runtime combat tuning consumed by player, wax-pack and Bailiff, including guard, boss attacks and ledger/Fray parameters.",
+    "scripts/lib/data/combat.yml - runtime combat tuning consumed by player, wax-pack and Bailiff, including guard, boss attacks, ledger/Fray and four ancestry traits.",
     "scripts/lib/data/veilfall-map.js - shared HUB/ROAD/COURTS/GATE coordinates and floorDist reference used by terrain, player boundary/path logic and place layout.",
     "scripts/gen/hub-kit.js - vector, transform, mesh and composition helpers for hub prop generators.",
     "scripts/gen/vf-kit.js - seeded RNG and modeling helpers for Veilfall generators.",
@@ -85,17 +85,19 @@
     "scripts/terrain.js - heightAt, materialAt; scripts/gen/vf-ruin.js - geometry, collider"
   ],
   "ownership": [
-    "scripts/player.js - per-player hp/edge/tonics, XP/level/gold/kills, quest/inventory/reward fields, movement, death/i-frame state and Afterimage Guard fields.",
+    "scripts/player.js - per-player hp/edge/tonics, XP/level/gold/kills, quest/inventory/reward fields, movement, death/i-frame state, Afterimage Guard and ancestry trait timers; owns menu/pick/ancestry/class/start state.",
     "places/main/sim.js - per-player Z01 quest stage/dialog, kill baseline, level thresholds and claimed['Z01-MAIN-05'] reward; place orchestration state.",
     "scripts/wax-pack.js - ordinary enemy AI/hp/death, player damage, nearby XP/gold/kill payouts and eligible wax shards.",
     "scripts/bailiff.js - boss hp/phases/casts, arena engagement/reset, ledger pillars, walkers and Fray; publishes place.state.boss and records bailiffDownAt.",
     "scripts/humanoid-locomotion.js - gait/seat animation and foot grounding; consumes player faceYaw.",
-    "scripts/camera.js - camera zoom distance and smoothed follow position.",
-    "scripts/ui.js - renders HUD, dialogue and inventory from player/place state; it does not own gameplay state."
+    "scripts/camera.js - camera zoom distance and smoothed follow position; blends to an orbiting menu shot while target.state.menu is set.",
+    "scripts/ui.js - renders title/Bearer selection while menu state is set, otherwise HUD/dialogue/inventory from player/place state; it does not own gameplay state."
   ],
   "flows": [
     "templates/player.js attaches scripts/player.js; onSpawn initializes combat state from combat.yml and update owns movement, attacks, healing and death/respawn.",
-    "world.config.yaml maps desktop and touch actions to player inputs; scripts/ui.js provides phone HUD/chips and PACK action → scripts/player.js handles skills and bagOpen.",
+    "world.config.yaml maps desktop and touch actions to player inputs; scripts/ui.js menu buttons send menu action data → scripts/player.js menuInput applies selection and enterRoad clears menu; ordinary UI PACK action is also handled by player.js.",
+    "A fresh local player visit sets player.state.menu='title'; scripts/ui.js draws title/Bearer UI over the live camp → selecting ancestry/class confirms through scripts/player.js, which stores ancestry/class and enters the road.",
+    "scripts/camera.js reads target.state.menu → blends from isometric follow to a slow low orbit around the Bearer, then eases back to iso when menu clears.",
     "scripts/player.js uses veilfall-map.js floorDist for reachable click goals and keepOnFloor movement/dash → the hero stays on defined floor and cannot climb banks/cliffs.",
     "scripts/player.js strikes write enemy.state.hp and lastHit → scripts/wax-pack.js resolves ordinary enemy death and pays nearby players XP/gold/kills; eligible kills can award shards.",
     "scripts/wax-pack.js and scripts/bailiff.js check iframesUntil and guardUntil before damaging a player; caught blows consume guardUntil and write riposte → scripts/player.js guardTick ripostes nearby foes.",
@@ -103,9 +105,7 @@
     "scripts/bailiff.js spawns phase-II ledger pillars and walkers; player attacks lower pillar hp, while intact pillars increase Fray and boss damage taken by players.",
     "scripts/bailiff.js publishes hp/max/phase/engaged/dead/fray/ledgers/cast to place.state.boss → scripts/ui.js renders boss bar and guidance; ledger ignition/Fray emits highlights and FX.",
     "scripts/bailiff.js marks present eligible players bossKilled on defeat and records place.state.bailiffDownAt → places/main/sim.js advances the stage-gated quest and owns one-time reward claiming.",
-    "places/main/sim.js spawns petition objects using scripts/petition.js → trigger entry at quest stage 2 adds that petition to player state; five collected petitions advance the quest.",
-    "player.state.talk with Maelin → places/main/sim.js stages the quest; kills since killsAt, petition count and bossKilled drive road, tollhouse and boss objectives.",
-    "scripts/ui.js reads player quest/combat/inventory/dialogue state and place.state.boss; player faceYaw drives humanoid-locomotion orientation."
+    "places/main/sim.js spawns petition objects using scripts/petition.js → trigger entry at quest stage 2 adds that petition to player state; five collected petitions advance the quest."
   ],
   "behaviorFamilies": [
     "scripts/gen/hub-*.js - reusable Wayside Fire camp props, varied by instance params, seed and scene transform; share scripts/gen/hub-kit.js.",
@@ -121,9 +121,9 @@
   "migrationNotes": [
     "Player attacks directly mutate enemy.state.hp; ordinary-enemy death, XP and kill credit are resolved later by scripts/wax-pack.js, so preserve that handoff.",
     "Quest stage, killsAt, petition IDs and claimed rewards are per-player state; petition triggers count only at stage 2 and ITEM-001 is guarded by claimed['Z01-MAIN-05'].",
-    "Boss and ordinary enemy attacks share player guardUntil/riposte; scripts/player.js owns the riposte reaction and must retain this state handoff. design.md records a held-body catch at t+1.0 s inside the 1.4 s window, consuming guardUntil.",
+    "Boss and ordinary enemy attacks share player guardUntil/riposte; scripts/player.js owns the riposte reaction and must retain this state handoff.",
     "The boss HUD consumes place.state.boss projection (including fray and ledgers), not boss internals; retain its published fields when changing boss behavior.",
-    "scripts/lib/data/combat.yml is runtime tuning (seconds/meters as appropriate); scripts/lib/data/veilfall-map.js floorDist < 0 defines walkable floor for player boundary/path logic.",
-    "The 35-doc design package was removed from scripts/lib/data and survives as the byte-identical aggregate in world.assets.yaml at /cdn/value.6333346fa6808b148d9ba468df826a3a49a29b8a0afb51a66a9e78d477c84abc.md; runtime tuning YAML remains in scripts/lib/data."
+    "Menu is state-driven rather than a separate place: UI sends action data {a,v,n} and player.js deduplicates by n; keep player.state.menu synchronized with the camera's menu orbit and clear it when entering the road.",
+    "scripts/lib/data/combat.yml is runtime tuning in seconds/meters as appropriate; scripts/lib/data/veilfall-map.js floorDist < 0 defines walkable floor for player boundary/path logic."
   ]
 }
