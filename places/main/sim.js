@@ -137,7 +137,7 @@ export function tick(ctx) {
 }
 
 function musicTick(ctx, st, now, objs) {
-  if (!st.bedsV2) { st.bedsV2 = true;
+  if (!st.bedsV3) { st.bedsV3 = true;
     for (const b of BEDS) if (!(b.id in objs)) ctx.spawn(b.id, { tags: ["ambience"], feetPosition: { x: b.x, y: 1.5, z: b.z },
       audio: { clip: `/cdn/moodboard-gothic-horror/${b.clip}.mp3`, loop: true, gain: b.gain, spatial: b.spatial ?? true, maxDistance: b.max ?? 40, bus: "Ambience" } }); }
   const boss = objs["bailiff"]?.state;
