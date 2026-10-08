@@ -80,6 +80,13 @@ const CLASSES = ["bladewraith", "soulweaver", "hellwarden", "shadowmancer", "pri
 const ANCESTRIES = ["cinderkin", "fenborn", "stonebound", "skyforged"];
 const PLAYABLE = { bladewraith: true }; // M1: one hero; the other five are sealed until their milestone
 const MENU_PLACE = "veil";
+// Diablo-style hero voices on the create screen: one line per class, one sting per ancestry
+const CLASS_VOICE = { bladewraith: "/cdn/value.0cf29b47991304e1214bf5f1fabe9184116f7a1d2b47f4a14fda33a61eac7cf9.mp3", soulweaver: "/cdn/value.9ce10f1ad47a45a1d7530b371be14e9e5e824680040e8288aebbdb99719f1189.mp3",
+  hellwarden: "/cdn/value.aa483379ca9b6dd18701a4a0f774f42b0e84d2028cf8464a19f9102f7ab87383.mp3", shadowmancer: "/cdn/value.7de7ed8325d60c82c70aa00735483ba943947c58a2a79d98ace8671950926122.mp3",
+  primalist: "/cdn/value.6336310ec452e596e6a5d22bfd71e33902b479b4a310e1393921e8e8661cf5c8.mp3", gloamstalker: "/cdn/value.e68e45d40549c8edafc57904dd8c47ed6ddd60795a8ba9cb0c38487751744d12.mp3" };
+const ANC_STING = { cinderkin: "ember-flare-whoosh-and-coal-crackle-sting", fenborn: "marsh-water-ripple-and-low-reed-flute-sting",
+  stonebound: "deep-stone-grind-and-anvil-ring-sting", skyforged: "high-wind-gust-and-bright-chime-sting" };
+function heroCue(ctx, clip, volume) { ctx.emit("playSound", { clip, position: ctx.self.feetPosition, volume }, { audience: { player: ctx.self.id } }); }
 function msg(ctx, text) { ctx.self.state.msg = { text, at: ctx.now() }; }
 function click(ctx, pitch = 1) { ctx.emit("playSound", { clip: sfx("stone-ledger-page-turn-soft"), position: ctx.self.feetPosition, volume: 0.5, pitch }, { audience: { player: ctx.self.id } }); }
 async function refresh(ctx) {
@@ -125,8 +132,8 @@ function menuInput(ctx, d) {
     case "new":
       if ((s.roster?.chars?.length ?? 0) >= max) { msg(ctx, `${max} Bearers is the most one realm will hold.`); break; }
       s.pick = { anc: pick.anc, cls: "bladewraith", name: CH.rollName(pick.anc, () => ctx.random()) }; s.menu = "create"; click(ctx); break;
-    case "anc": if (ANCESTRIES.includes(d.v)) { s.pick = { ...pick, anc: d.v, name: CH.rollName(d.v, () => ctx.random()) }; click(ctx, 1.1); } break;
-    case "cls": if (CLASSES.includes(d.v)) { s.pick = { ...pick, cls: d.v }; click(ctx, PLAYABLE[d.v] ? 1.15 : 0.7); } break;
+    case "anc": if (ANCESTRIES.includes(d.v)) { s.pick = { ...pick, anc: d.v, name: CH.rollName(d.v, () => ctx.random()) }; click(ctx, 1.1); heroCue(ctx, sfx(ANC_STING[d.v]), 0.6); } break;
+    case "cls": if (CLASSES.includes(d.v)) { const again = pick.cls === d.v; s.pick = { ...pick, cls: d.v }; click(ctx, PLAYABLE[d.v] ? 1.15 : 0.7); if (!again && ctx.now() > (s.voiceAt ?? 0)) { heroCue(ctx, CLASS_VOICE[d.v], 0.95); s.voiceAt = ctx.now() + 1500; } } break;
     case "reroll": s.pick = { ...pick, name: CH.rollName(pick.anc, () => ctx.random()) }; click(ctx, 1.2); break;
     case "create":
       if (!PLAYABLE[pick.cls]) { msg(ctx, "That path is sealed for now."); break; }
