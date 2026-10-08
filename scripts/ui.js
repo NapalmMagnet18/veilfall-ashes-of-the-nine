@@ -135,9 +135,9 @@ ${FONT("VCinzel", "f4d83d34d1f6c741193e4acf4b3dff9531e5a67b6aa65228d00a7db72a4e0
 /* title */
 #vt{position:absolute;inset:0;pointer-events:none}
 #vt .shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,5,8,.88) 0%,rgba(5,5,8,.55) 26%,transparent 46%),linear-gradient(0deg,rgba(5,5,8,.8) 0%,transparent 28%),linear-gradient(180deg,rgba(5,5,8,.6) 0%,transparent 22%)}
-#vt .logo{position:absolute;left:50%;top:2.5vh;transform:translateX(-50%);width:min(620px,52vw);text-align:center;animation:vtin 1.6s ease both}
+#vt .logo{position:absolute;left:50%;top:2.5vh;transform:translateX(-50%);width:min(600px,40vw);text-align:center;animation:vtin 1.6s ease both}
 #vt .crest{width:100%;display:block;filter:drop-shadow(0 6px 14px rgba(0,0,0,.8)) drop-shadow(0 0 30px rgba(255,150,60,.18));animation:vtbreathe 6s ease-in-out infinite}
-#vt .word{margin-top:-9%;font-family:'VDeco','VCinzel',serif;font-weight:700;font-size:clamp(52px,6.6vw,118px);letter-spacing:.08em;line-height:1}
+#vt .word{margin-top:-9%;font-family:'VDeco','VCinzel',serif;font-weight:700;font-size:clamp(52px,6vw,112px);letter-spacing:.08em;line-height:1}
 #vt .subt{white-space:nowrap;display:flex;align-items:center;justify-content:center;gap:14px;margin-top:6px;font-family:'VCinzel',serif;font-weight:600;font-size:clamp(13px,1.15vw,19px);letter-spacing:.55em;color:#c49c63;text-indent:.55em}
 #vt .subt i{flex:0 0 clamp(40px,7vw,120px);height:1px;background:linear-gradient(90deg,transparent,#c49c63)} #vt .subt i:last-child{transform:scaleX(-1)}
 #vt .subt b{width:7px;height:7px;transform:rotate(45deg);background:#ac4c42;box-shadow:0 0 8px #ff7a3a;flex:none}
@@ -153,7 +153,7 @@ ${FONT("VCinzel", "f4d83d34d1f6c741193e4acf4b3dff9531e5a67b6aa65228d00a7db72a4e0
 #vt .it.main::before{opacity:.9;transform:rotate(45deg) scale(.8);background:#ac4c42;box-shadow:0 0 10px #ff7a3a}
 #vt .it .sub{display:block;font-family:'VGara',serif;font-weight:500;font-size:14px;letter-spacing:.04em;text-transform:none;color:#9c8b6b;margin-top:2px}
 #vt .rule{height:1px;margin:6px 0 6px 34px;background:linear-gradient(90deg,rgba(196,156,99,.55),transparent)}
-#vt .chron{position:absolute;right:calc(var(--spawn-chrome-reservation-right-inset,50px) + 34px);bottom:9vh;width:min(330px,26vw);pointer-events:auto;padding:18px 20px 16px;background:linear-gradient(180deg,rgba(22,18,16,.88),rgba(10,9,8,.92));box-shadow:inset 0 0 0 1px rgba(196,156,99,.35),inset 0 0 0 4px rgba(10,8,6,.9),inset 0 0 0 5px rgba(196,156,99,.18),0 10px 30px rgba(0,0,0,.6);animation:vtin 1.4s .6s ease both}
+#vt .chron{position:absolute;right:calc(var(--spawn-chrome-reservation-right-inset,50px) + 34px);bottom:11vh;width:min(330px,22vw);pointer-events:auto;padding:18px 20px 16px;background:linear-gradient(180deg,rgba(22,18,16,.88),rgba(10,9,8,.92));box-shadow:inset 0 0 0 1px rgba(196,156,99,.35),inset 0 0 0 4px rgba(10,8,6,.9),inset 0 0 0 5px rgba(196,156,99,.18),0 10px 30px rgba(0,0,0,.6);animation:vtin 1.4s .6s ease both}
 #vt .chron::before,#vt .chron::after{content:"";position:absolute;width:14px;height:14px;border:2px solid #c49c63;opacity:.8}
 #vt .chron::before{left:-3px;top:-3px;border-right:0;border-bottom:0} #vt .chron::after{right:-3px;bottom:-3px;border-left:0;border-top:0}
 #vt .chron h4{margin:0 0 4px;font-family:'VCinzel',serif;font-size:13px;letter-spacing:.35em;color:#c49c63;font-weight:700}
@@ -163,7 +163,7 @@ ${FONT("VCinzel", "f4d83d34d1f6c741193e4acf4b3dff9531e5a67b6aa65228d00a7db72a4e0
 #vt .ch.new .tt::after{content:"NEW";margin-left:8px;font-size:9px;letter-spacing:.2em;color:#ffcf7a;padding:1px 5px;box-shadow:inset 0 0 0 1px rgba(255,180,90,.6)}
 #vt .foot{position:absolute;left:clamp(24px,6vw,120px);bottom:3.2vh;font-family:'VCinzel',serif;font-size:11px;letter-spacing:.28em;color:#6f6250}
 #vt .foot b{color:#6db8c0;font-weight:600} #vt .foot .dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#6db8c0;box-shadow:0 0 8px #6db8c0;margin:0 6px 1px 0;animation:vtpulse 2.4s infinite}
-#vt .quote{position:absolute;left:50%;bottom:3vh;transform:translateX(-50%);width:min(560px,40vw);text-align:center;font-style:italic;font-size:16px;color:#a8977a;text-shadow:0 2px 6px #000}
+#vt .quote{position:absolute;left:50%;bottom:6.8vh;transform:translateX(-50%);width:min(560px,40vw);text-align:center;font-style:italic;font-size:16px;color:#a8977a;text-shadow:0 2px 6px #000}
 #vt .em{position:absolute;bottom:-10px;width:3px;height:3px;border-radius:50%;background:#ffb862;box-shadow:0 0 6px 2px rgba(255,130,40,.7);opacity:0;animation:vtember linear infinite}
 @keyframes vtember{0%{opacity:0;transform:translate(0,0)}10%{opacity:.9}70%{opacity:.6}100%{opacity:0;transform:translate(var(--dx),-85vh)}}
 @keyframes vtin{from{opacity:0;filter:blur(4px)}to{opacity:1;filter:none}}
