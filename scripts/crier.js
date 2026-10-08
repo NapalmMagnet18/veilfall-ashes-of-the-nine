@@ -23,7 +23,7 @@ async function call(ctx, listener) {
       const who = listener.state?.charName ?? listener.displayName ?? "Bearer";
       ctx.emit("playSound", { clip: BELL, position: at, volume: 0.6 }, aud0);
       ctx.emit("playSound", { clip: SOLD[me.n % SOLD.length], position: at, volume: 0.95, maxDistance: EAR + 6 }, aud0);
-      ctx.emit("damageNumber", { position: at, text: `${who}, your notice sold · ${fmt(Math.floor(o.c * 0.9))} waits at the board`, color: "#ffd77a", size: 1, lifetime: 5 }, aud0);
+      ctx.emit("damageNumber", { position: at, text: (ctx.self.state.lastCall = `${who}, your notice sold · ${fmt(Math.floor(o.c * 0.9))} waits at the board`), color: "#ffd77a", size: 1, lifetime: 5 }, aud0);
       ctx.emit("playSound", { clip: "/cdn/moodboard-gothic-horror/sfx-coin-purse-clink-soft.mp3", volume: 0.7 }, { audience: { player: listener.id } });
       ctx.self.anim.talk = { clip: "cdn/clip-wave.glb", weight: 4, loop: "once", mask: { from: "Spine" } };
       ctx.after(2.4, "quiet");
@@ -41,6 +41,7 @@ async function call(ctx, listener) {
   ctx.emit("playSound", { clip: BELL, position: at, volume: 0.55 }, aud);
   ctx.emit("playSound", { clip: row ? CALLS[me.n % CALLS.length] : BARE[me.n % BARE.length], position: at, volume: 0.9, maxDistance: EAR + 6 }, aud);
   const text = row ? (() => { const it = JSON.parse(row.item); return `${it.n} · ${fmt(row.price)} · from ${row.seller_name}`; })() : "The board stands bare";
+  ctx.self.state.lastCall = text;
   ctx.emit("damageNumber", { position: at, text, color: row ? "#f2d38a" : "#b9ae98", size: 0.9, lifetime: 4 }, aud);
   ctx.self.anim.talk = { clip: "cdn/clip-wave.glb", weight: 4, loop: "once", mask: { from: "Spine" } };
   ctx.after(2.4, "quiet");
