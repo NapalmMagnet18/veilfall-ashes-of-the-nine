@@ -22,6 +22,7 @@ assets:
     "/cdn/value.7cae4a7da68ba6bd1b43c79775e944262bfbf0d1e034043e806b051ce14fbde6.glb": {bytes: 657176, kind: model, name: grave-lancet, uploadedAt: "2026-10-08T18:13:25.714Z"}
     "/cdn/value.a2605b2cc3a81b3017dc37e70db702f5d8bc19876c5b91473921a28a733d3467.png": {bytes: 265, kind: image, name: vf-div, uploadedAt: "2026-10-08T16:11:15.123Z"}
     "/cdn/value.a653a5ebfcccb33300582bba7d25b0912ff6b147bc340943eeb0a5a772ab6283.glb": {bytes: 1486772, kind: model, name: wax-saint-c, uploadedAt: "2026-10-08T18:13:21.541Z"}
+    "/cdn/value.bba925e4e433e115eeed76c95225f1769bfc11061a2a7d75b358ec2ab422204d.glb": {bytes: 621540, kind: model, name: grave-broken, uploadedAt: "2026-10-08T18:13:33.794Z"}
     "/cdn/value.cd396819d656f0cac99b4c6b3eda49cccae72af69dcf6c99ba4a9b69b4afab38.png": {bytes: 456, kind: image, name: vf-card, uploadedAt: "2026-10-08T15:56:23.075Z"}
     "/cdn/value.d502a11179b049d3da0da9e5a9096754b6a72312519548047fe425ffcca9fdbf.png": {bytes: 461, kind: image, name: vf-slot, uploadedAt: "2026-10-08T15:56:11.909Z"}
     "/cdn/value.dd5ff981d773f728a783caeecfd8602774b8b949c55b7be9faaef1de1a509637.glb": {bytes: 2737532, kind: model, name: maelin-map-table, uploadedAt: "2026-10-08T18:01:30.377Z"}
