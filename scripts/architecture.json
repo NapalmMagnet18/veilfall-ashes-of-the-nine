@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "basedOnSpecVersion": 273,
-  "updatedAt": "2026-10-08T17:13:00.030Z",
-  "summary": "VEILFALL: Ashes of the Nine is an isometric action RPG centered on playable Broken Lantern Road (Z01), with a separate solo Veil stage for the title and Bearer screens. Player, UI and camera scripts connect database-backed realm/Bearer selection to the main-place referee, enemy behaviors and authored terrain assembled with procedural generators.",
+  "basedOnSpecVersion": 280,
+  "updatedAt": "2026-10-08T17:16:58.120Z",
+  "summary": "VEILFALL: Ashes of the Nine is an isometric action RPG with playable Broken Lantern Road (Z01) and a separate solo Veil stage for title and Bearer screens. Player, UI and camera connect realm/Bearer selection to the main-place referee, enemies and authored terrain; rigged CDN character models now supply the hero and wax enemy appearances.",
   "scriptPaths": [
     "scripts/arrival.js",
     "scripts/bailiff.js",
@@ -41,6 +41,7 @@
     "scripts/humanoid-locomotion.js",
     "scripts/lib/character.js",
     "scripts/lib/coins.js",
+    "scripts/lib/data/models.js",
     "scripts/lib/data/ui-kit.js",
     "scripts/lib/data/veilfall-map.js",
     "scripts/lib/frames.js",
@@ -62,17 +63,17 @@
   ],
   "places": [
     "places/main/ - playable Z01: Wayside Fire, candle road, Tollhouse, Dripping Gate and Bailiff's Court/arena; sim.js coordinates NPCs, enemies, petitions and quest progression.",
-    "places/main/cells/x0z0.scene, x0z-1.scene - authored camp, road, tollhouse, gate and arena landmarks/dressing.",
+    "places/main/cells/x0z0.scene and x0z-1.scene - authored camp, road, tollhouse, gate and arena dressing; now also contain placed wax enemy and Bailiff character actors.",
     "places/main/config.yaml - main terrain, environment and procedural vegetation layers.",
-    "places/veil/ - ephemeral solo menu stage: Lantern Shrine ledge above a misty ravine, with cliffs and distant ridge; hidden menu body is parked there.",
+    "places/veil/ - ephemeral solo menu stage: Lantern Shrine ledge above a misty ravine; hidden menu body is parked there.",
     "places/veil/cells/x0z0.scene, x0z-1.scene, x0z-2.scene and config.yaml - shrine/ledge, cliffs, far ridge, spawn and atmosphere."
   ],
   "roots": [
     "world.config.yaml - world entry: main default place, player/camera templates, lighting, arrival behavior, nametag, desktop actions and touch surfaces; touch controller is scripts/controls.js.",
-    "templates/player.js - player body combines humanoid-locomotion.js with scripts/player.js.",
+    "templates/player.js - player body combines humanoid-locomotion.js with scripts/player.js and assigns the Bladewraith CDN model and 1.85 m layout.",
     "templates/camera.js - custom camera template running scripts/camera.js.",
-    "places/main/sim.js - Z01 referee for NPCs, enemy/petition/quest stages, levels and reward turn-in.",
-    "places/main/cells/x0z0.scene and x0z-1.scene - authored playable-place content.",
+    "places/main/sim.js - Z01 referee for NPCs, enemy/petition/quest stages, levels and reward turn-in; dynamically spawned enemies use models.js bodies.",
+    "places/main/cells/x0z0.scene and x0z-1.scene - authored playable-place content, including placed rigged wax enemies and Bailiff.",
     "places/veil/cells/x0z0.scene, x0z-1.scene and x0z-2.scene - authored menu-stage shrine and ravine set.",
     "places/veil/config.yaml - binds the solo menu stage's spawn and environment.",
     "scripts/arrival.js - world doorway behavior; saves an active Bearer when leaving main."
@@ -85,7 +86,7 @@
     "scripts/lib/data/combat.yml - hero, enemy, skill, guard and Bailiff tuning consumed by combat scripts and HUD.",
     "scripts/lib/data/veilfall-map.js - shared Z01 layout, floorDist and named AREAS/areaAt used by terrain, player movement and zone banners.",
     "scripts/lib/data/menu-shot.yml - Veil camera framing used by camera.js.",
-    "scripts/lib/data/ui-kit.js and scripts/lib/frames.js - UI shape/divider atlas and reusable frame CSS consumed by UI and shop UI."
+    "scripts/lib/data/models.js - CDN model IDs, metre heights and body(kind) layout helper used by main sim and Bailiff spawns; catalog also names the hero model used directly by templates/player.js."
   ],
   "notableExports": [
     "places/main/sim.js - cadence, tick",
@@ -95,7 +96,7 @@
     "scripts/lib/shop.js - owned, shopInput; scripts/lib/shop-ui.js - shopPanel",
     "scripts/camera.js - onInput, update; scripts/arrival.js - onArrive, onLeave; scripts/controls.js - default touch-surface selector",
     "scripts/lib/frames.js - FRAME_CSS; scripts/lib/data/ui-kit.js - default; scripts/ui.js - default",
-    "scripts/lib/data/veilfall-map.js - AREAS, areaAt, floorDist; scripts/gen/veil-shrine.js - shrine structure/constants and geometry/collider"
+    "scripts/lib/data/veilfall-map.js - AREAS, areaAt, floorDist; scripts/lib/data/models.js - MODELS, HEIGHT, body; scripts/gen/veil-shrine.js - shrine structure/constants and geometry/collider"
   ],
   "ownership": [
     "scripts/lib/character.js CHAR_KEYS - persistent Bearer fields including seen area IDs; position is packed separately, transient UI/movement state is not saved.",
@@ -119,7 +120,7 @@
     "player.js zoneTick reads areaAt at the Bearer's position → transient player.state.area/banner drives UI banner; first entry adds area ID to persistent seen and emits a player-targeted milestone and discovery sound.",
     "player.js strikes mutate enemy.state.hp/lastHit → wax-pack.js resolves ordinary deaths and eligible payouts; Bailiff reuses wax-pack payout on defeat.",
     "wax-pack.js and bailiff.js test player iframe/guard fields before damage; guard catches write riposte → player.js guardTick performs the reaction.",
-    "player.js writes player.state.foe when target or ordinary foe hp changes, plus cooldown/buff fields and body vignette → scripts/ui.js draws target plate, skill cooldowns, buff chips and low-life presentation; Bailiff bar reads place.state.boss."
+    "places/main/sim.js and scripts/bailiff.js create enemy bodies through models.js body(kind); templates/player.js assigns its model directly → humanoid-locomotion.js supplies locomotion animation on hero and enemy actors."
   ],
   "behaviorFamilies": [
     "scripts/gen/hub-*.js - reusable Wayside Fire camp props varied by instance params, seed and scene transform; share hub-kit.js.",
@@ -128,7 +129,7 @@
     "scripts/gen/veil-land.js - Veil ledge, cliff and distant ridge forms selected by params.kind and dimensions/coordinates.",
     "scripts/gen/veil-shrine.js - unique Lantern Shrine of the Nine; exported structure/constants describe its steps, states, chain, hooks and clusters.",
     "scripts/gen/arena-floor.js, arena-pillar.js, gibbet.js and toll-throne.js - Bailiff arena dressing generators sharing scripts/gen/shapes.js.",
-    "scripts/gen/wax-figure.js - shared wax character mesh for ordinary pilgrims/deacons and Bailiff, varied by kind and seed.",
+    "scripts/humanoid-locomotion.js - shared body/input locomotion behavior on player and wax enemy actors; model choice and scale differ by actor.",
     "scripts/grass.js, clover.js and mushroom.js - procedural main-place vegetation layers; grass appearance uses grass-look.js."
   ],
   "probableOrphans": [
@@ -140,6 +141,6 @@
     "The Veil is solo and ephemeral, has no characters, and parks the hidden menu body at its origin; menu framing in camera.js is tuned by menu-shot.yml against that stage's shrine/ledge layout.",
     "Player attacks directly mutate enemy.state.hp; ordinary-enemy death, XP and kill credit are resolved later by wax-pack.js. Preserve that handoff and its menu/charId eligibility check.",
     "Area discovery uses veilfall-map.js areaAt boundaries; only first discoveries append IDs to saved seen, while current area/banner timestamps are runtime presentation state.",
-    "Boss HUD consumes place.state.boss projection, not boss internals; money is integer copper (100 copper = 1 silver, 100 silver = 1 gold), with drop/shop/quest values in economy.yml."
+    "models.js body(kind) pairs CDN model IDs with true metre maxExtents; actor scale remains separate. Dynamic enemy and Bailiff creation now bypass scripts/gen/wax-figure.js, which remains referenced by design/report prose but is not an active mesh spawn path."
   ]
 }
