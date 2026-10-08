@@ -1,0 +1,9 @@
+# The realm servers. Each realm is its own room of this world: its own camp, its own road, its own players.
+# A character is made on one realm and lives there for good (the characters table keys it by realm).
+# room: the Spawn room name ("main" is the world's default room). maxChars: per account, per realm.
+maxChars: 4
+realms:
+  - { room: main, name: Lanternfall, kind: Normal, note: "The first realm. The fire was lit here." }
+  - { room: realm-ninth-bell, name: Ninth Bell, kind: Normal, note: "Quiet roads, long nights." }
+  - { room: realm-ashwake, name: Ashwake, kind: Normal, note: "Where Cinderkin pilgrims gather." }
+  - { room: realm-gloamfen, name: Gloamfen, kind: Normal, note: "Rain on the road, every night." }
