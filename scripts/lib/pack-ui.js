@@ -1,5 +1,5 @@
 // The Bearer's pack: paper doll left, 24-slot grid right, item cards on hover, a pinned card with its verbs below.
-import { SLOTS, TIER, icon, cardHTML, mitigation, sellValue, BAG, forgeCost, forgeCan } from "./loot.js";
+import { SLOTS, TIER, icon, cardHTML, mitigation, sellValue, BAG, forgeCost, forgeCan, freeReforges } from "./loot.js";
 import { coinHTML } from "./coins.js";
 
 const SLOT_POS = { helm: [70, 0], amulet: [134, 14], weapon: [6, 70], chest: [70, 66], gloves: [6, 140], ring: [134, 84], boots: [70, 140] };

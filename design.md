@@ -100,3 +100,4 @@ places/main/sim.js referee: spawns packs, quest stages, XP/levels, death and res
 - 2026-10-08 · Trophy Post at the Wayside Fire (-1.5, -5): each boss death writes world.state.trophies[boss]; scripts/trophies.js shows that relic on its hook (Bailiff: chained wax-sealed ledger · Ringer: cracked bronze bell · Warden: snuffed lantern · Hangman: noose) with a chain clank + flash. Per room, persistent. Savi's suggestion.
 - 2026-10-08 · Trophy Post carries a parchment "THE FALLEN": each boss lists its first slayers (up to 3 names, kept forever per room) or "still walks". trophies[boss] is now { at, by }.
 - 2026-10-08 · Firstblood: a Bearer named on THE FALLEN plaque shows a "Firstblood" line over their nametag (ui/nametag.js reads world.state.trophies by charName).
+- 2026-10-08 · Firstblood gift: one free reforge per boss a Bearer is on THE FALLEN for (loot.js freeReforges; spent count saved as freeUsed).
