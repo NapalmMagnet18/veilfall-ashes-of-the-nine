@@ -21,3 +21,5 @@ places/main/sim.js referee: spawns packs, quest stages, XP/levels, death and res
 
 ## Decisions
 - 2026-10-09: M1 is a compressed Z01 (MAIN-01, -02, -05) on one place; full 6-quest chain comes with M2/M4. (Savi, from the roadmap)
+
+- 2026-10-08: look moved to the creator's dungeon reference: night 20.6, moonlit blue air, wet flagstone road, ruined ashlar walls and iron braziers (scripts/gen/vf-ruin.js, ruin-road/*). Grass thinned to dead moss. Was dusk 17.45 with summer grass.
