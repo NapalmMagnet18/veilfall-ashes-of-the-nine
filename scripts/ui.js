@@ -2,6 +2,7 @@
 import { coinHTML, fmt } from "./lib/coins.js";
 import { shopPanel } from "./lib/shop-ui.js";
 import { packPanel, PACK_CSS } from "./lib/pack-ui.js";
+import { BREW } from "./lib/brews.js";
 import { boardPanel } from "./lib/board-ui.js";
 import R from "./lib/data/realms.yml";
 import { FRAME_CSS } from "./lib/frames.js";
@@ -404,6 +405,7 @@ export default function (ctx, player) {
   const chips = [];
   if (guardOn) chips.push(`<div class="plate chip" style="color:#6DB8C0">◇ GUARDING</div>`);
   if ((s.hasteUntil ?? 0) > now) chips.push(`<div class="plate chip" style="color:#9fe0c8">» MIST STRIDE ${Math.ceil(((s.hasteUntil ?? 0) - now) / 1000)}s</div>`);
+  if (s.brew && s.brew.until > now) { const D = BREW.brews[s.brew.id]; if (D) chips.push(`<div class="plate chip" style="color:${D.color}">${D.glyph} ${D.name.toUpperCase()} ${Math.ceil((s.brew.until - now) / 1000)}s</div>`); }
   if (boss && boss.engaged && !boss.dead && boss.fray) chips.push(`<div class="plate chip" style="color:#e0473a">✕ FRAY ×${boss.fray}</div>`);
   if (hpPct < 30 && (s.tonics ?? 0) > 0) chips.push(`<div class="plate chip" style="color:#e0473a;animation:vfpulse 1s infinite">♥ DRINK · ${touch ? "TONIC" : "Q"}</div>`);
   const ban = s.banner && now - s.banner.at < 4200 && !s.shop ? s.banner : null;

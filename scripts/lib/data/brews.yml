@@ -1,0 +1,14 @@
+# WAX-RENDERING, the second Wayside profession: the cauldron boils shards + ash dust into one active brew.
+# a brew is gs on top of gear for `secs`; rank n multiplies potency and duration by (1 + per * n).
+reach: 2.6
+per: 0.25
+xp: 20
+brews:
+  vigil: { name: "Vigil Tallow",  color: "#e0a866", glyph: "✹", dust: 6, shards: 1, secs: 180, stats: { dmgp: 15 }, line: "+{dmgp}% damage", lore: "Rendered from a chorister's wick. Burns behind the eyes." }
+  ward:  { name: "Tallow Ward",   color: "#c9c2b4", glyph: "⛨", dust: 6, shards: 1, secs: 180, stats: { armor: 20 }, line: "+{armor} armor", lore: "Smeared thick on the mail; blades skid off it like rain." }
+  ember: { name: "Bottled Ember", color: "#e06a3a", glyph: "♨", dust: 8, shards: 2, secs: 150, stats: { regen: 6, leech: 2 }, line: "+{regen} life every 5 s · {leech}% leech", lore: "A coal from the Wayside Fire, drowned in wax and still warm." }
+ranks:
+  - { name: "Wick-Trimmer", xp: 0 }
+  - { name: "Tallow-Wife",  xp: 100 }
+  - { name: "Renderer",     xp: 300 }
+  - { name: "Chandler of the Nine", xp: 700 }

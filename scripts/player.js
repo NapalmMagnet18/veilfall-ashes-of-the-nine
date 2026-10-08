@@ -2,6 +2,7 @@
 // Space: Griefstep dash toward the cursor. Q: tonic. WASD also walks. Hits are judged here, on the
 // striker's machine, and written to the enemy's state; the wax-pack manager reads hp and pays XP.
 import { body as heroBody } from "./lib/data/models.js";
+import { BREW, renderRank, brewMade, brewActive } from "./lib/brews.js";
 import { gearStats, mitigation, slotOf, sellValue, dustValue, SLOTS, forge, FORGE, freeReforges, markBoss, applyMark, MARKS, craft, craftCost, smithRank, SMITH } from "./lib/loot.js";
 import { raycast, getInputRay } from "builtin/physics";
 import { findPath } from "builtin/nav";
@@ -287,10 +288,13 @@ function drainLoot(ctx) {
   s.inv = inv;
 }
 function deriveGear(ctx) {
-  const s = ctx.self.state, key = JSON.stringify(s.gear ?? {});
+  const s = ctx.self.state, bw = brewActive(s, ctx.now());
+  if (s.brew && !bw) { s.brew = null; msg(ctx, "The brew's warmth fades from your blood."); }
+  const key = JSON.stringify(s.gear ?? {}) + (bw ? bw.id + bw.until : "");
   if (key === me.gearKey && s.gs) return;
   me.gearKey = key;
   const g = gearStats(s.gear); delete g.setCount;
+  if (bw) for (const [k, v] of Object.entries(bw.stats ?? {})) g[k] = (g[k] ?? 0) + v;
   s.gs = g;
   // boss marks worn: two or more marked pieces and the blade carries their colours
   const worn = Object.values(s.gear ?? {}).filter((it) => it?.mk && MARKS[it.mk]);
@@ -307,6 +311,18 @@ const FORGE_BIG = `fx
 pop spark burst=90 on=point() life=.5..1.3 v=sdir()*(3..7)+up(2.5) size=.015..0.04 acc=grav()*.6+drag(.5) col=hdr(7,3.4,1)>hdr(2,.6,.1) a=1>0 sz=$size floor=bounce(.3) r=sprite(ember,add,velocity,.03)
 pop pillar burst=30 on=disc(.3) life=.8..1.4 v=up(3..5) size=.1..0.2 acc=drag(1) col=hdr(4,2.4,.8)>hdr(1,.3,.05) a=0>.1:1>0 sz=$size*(1>.3) r=sprite(flame-wisp,add)
 pop glow burst=1 life=.9 at=point() r=light(<1,.65,.3>,60*(1>0),9)`;
+const hexV = (h) => { const n = parseInt(h.slice(1), 16); return { x: ((n >> 16) & 255) / 255, y: ((n >> 8) & 255) / 255, z: (n & 255) / 255 }; };
+const BREW_FX = `fx
+pop gout burst=26..34 on=disc(.3) life=.5..1 v=up(2..3.4)+sdir()*.8 size=.04..0.08 acc=grav()*.9+drag(.6) col=<%c|1,.6,.3>*3>.6:<%c|1,.6,.3>*.6 a=1>0 sz=$size floor=die r=sprite(soft-disc,add)
+pop steam burst=8 on=disc(.3) life=1.2..2 v=up(1..1.6) size=.3..0.5 acc=buoy(.4)+drag(.8)+curl(.3)*.4 sz=$size*(.6>2.2) col=<.85,.78,.62> a=0>.1:.35>0 r=sprite(smoke-puff,alpha)
+pop flare burst=1 life=.5 at=point().c(.2) r=light(<%c|1,.6,.3>,10*(1>0),6)`;
+// the Wayside cauldron: within reach the pack grows the brew row
+function cauldronNear(ctx) {
+  const now = ctx.now(); if (now < (me.cauldAt ?? 0)) return; me.cauldAt = now + 400;
+  const s = ctx.self.state, o = ctx.getObject("wayside-cauldron"), f = ctx.self.feetPosition;
+  const near = !!o && !s.menu && !s.dead && Math.hypot(o.feetPosition.x - f.x, o.feetPosition.z - f.z) < BREW.reach;
+  if (!!s.atCauldron !== near) { s.atCauldron = near; if (near && !s.cauldSeen) { s.cauldSeen = true; msg(ctx, "The rendering cauldron. Open your pack (I) to boil shards and dust into a brew."); } }
+}
 function smithGain(ctx, n) {
   const s = ctx.self.state, before = smithRank(s.smithXp ?? 0).i;
   s.smithXp = (s.smithXp ?? 0) + n;
@@ -369,6 +385,22 @@ function itemInput(ctx, a) {
     inv.length = 0; inv.push(...keep); snd = "salvage";
   } else if (a.a === "sort") {
     const rank = { vowbound: 0, relic: 1, gilded: 2, hallowed: 3, ashen: 4 }; inv.sort((x, y) => rank[x.t] - rank[y.t] || y.il - x.il); snd = "drop";
+  } else if (a.a === "brew") {
+    if (!s.atCauldron) return; const D = BREW.brews[a.id]; if (!D) return;
+    if ((s.dust ?? 0) < D.dust || (s.shards ?? 0) < D.shards) { msg(ctx, `${D.name} wants ${D.dust} ash dust and ${D.shards} wax shard${D.shards > 1 ? "s" : ""}.`); ctx.emit("playSound", { clip: sfx("dull-click-denied"), position: ctx.self.feetPosition, volume: 0.3 }, { audience: { player: ctx.self.id } }); return; }
+    const before = renderRank(s.renderXp ?? 0).i, b = brewMade(a.id, s.renderXp ?? 0);
+    s.dust -= D.dust; s.shards -= D.shards;
+    s.brew = { id: a.id, stats: b.stats, until: ctx.now() + b.secs * 1000, secs: b.secs };
+    s.renderXp = (s.renderXp ?? 0) + BREW.xp;
+    const o = ctx.getObject("wayside-cauldron"), at = o ? { x: o.feetPosition.x, y: o.feetPosition.y + 1, z: o.feetPosition.z } : ctx.self.feetPosition;
+    ctx.emit("fx", { position: at, script: BREW_FX, params: { c: hexV(D.color) } });
+    ctx.emit("playSound", { clip: sfx("ladle-dips-into-hot-wax-pour-into-clay-flask-and-gulp"), position: at, volume: 0.8 });
+    ctx.emit("screenFlash", { color: D.color, duration: 0.3, intensity: 0.18 }, { audience: { player: ctx.self.id } });
+    msg(ctx, `${D.name}. ${b.secs}s of it in your blood.`);
+    const after = renderRank(s.renderXp);
+    if (after.i > before) { msg(ctx, `Rendering rank ${after.i + 1}: ${after.name}. Your brews run stronger and longer.`); ctx.emit("playSound", { clip: sfx("anvil-rank-up-triple-ring-and-low-choir"), volume: 0.7, pitch: 1.2 }, { audience: { player: ctx.self.id } }); ctx.emit("milestone", { step: 30 + after.i, name: `render rank ${after.i + 1}` }, { audience: { player: ctx.self.id } }); }
+    deriveGear(ctx);
+    return;
   } else if (a.a === "craft") {
     if (!s.atForge) return;
     if (inv.length >= 24) { msg(ctx, "Your pack is full. The smith won't hand you steel to drop."); return; }
@@ -606,7 +638,7 @@ export function update(ctx, dt) {
   const s = ctx.self.state, now = ctx.now(), f = ctx.self.feetPosition;
   gate(ctx);
   if (ctx.self.isLocal !== false) showcase(ctx);
-  if (!ctx.self.state.menu && ctx.self.state.charId) { drainLoot(ctx); deriveGear(ctx); if (ctx.self.isLocal !== false) { forgeNear(ctx); boardNear(ctx); } }
+  if (!ctx.self.state.menu && ctx.self.state.charId) { drainLoot(ctx); deriveGear(ctx); if (ctx.self.isLocal !== false) { forgeNear(ctx); boardNear(ctx); cauldronNear(ctx); } }
   const vy = (ctx.self.velocity?.y ?? 0) + (ctx.self.grounded ? 0 : ctx.place.gravity.y * dt);
   // a fresh visit opens on the title in the Veil; a realm cross lands on that realm's character list
   if (ctx.self.isLocal !== false && !ctx.session.vfDoor) {

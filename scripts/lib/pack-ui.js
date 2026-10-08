@@ -1,4 +1,5 @@
 // The Bearer's pack: paper doll left, 24-slot grid right, item cards on hover, a pinned card with its verbs below.
+import { BREW, renderRank, brewMade, brewActive, brewLine } from "./brews.js";
 import { SLOTS, TIER, icon, cardHTML, mitigation, sellValue, BAG, forgeCost, forgeCan, freeReforges, smithRank, craftCost } from "./loot.js";
 import { coinHTML } from "./coins.js";
 
@@ -62,6 +63,15 @@ export function packPanel(ctx, player, { rail, touch }) {
           <span>♥ ${s.tonics ?? 0}</span><span>◆ ${s.shards ?? 0}</span><span>✉ ${s.petitions?.length ?? 0}</span>
           <span style="display:flex;align-items:center">${coinHTML(s.copper ?? 0, 13)}</span>
         </div>
+        ${s.atCauldron ? (() => { const rk = renderRank(s.renderXp ?? 0), pct = rk.next ? Math.round(100 * ((s.renderXp ?? 0) - rk.from) / (rk.next - rk.from)) : 100, on = brewActive(s, ctx.now());
+          return `<div style="margin-top:10px;padding-top:8px;border-top:1px solid #e0a86633">
+          <div style="display:flex;align-items:center;gap:8px;font-size:10px;letter-spacing:.18em;color:#d9b77a">♨ WAX-RENDERING · RANK ${rk.i + 1} · ${rk.name.toUpperCase()}
+            <div style="flex:1;height:5px;background:#1a1612;border:1px solid #d9b77a44"><div style="width:${pct}%;height:100%;background:linear-gradient(90deg,#6b4a2a,#e7d9b8)"></div></div>
+            <span style="color:#9a907e">${rk.next ? `${s.renderXp ?? 0}/${rk.next}` : "MASTER"}</span></div>
+          <div style="font-size:10px;color:#9a907e;margin:4px 0 6px">${on ? `in your blood: <span style="color:${BREW.brews[on.id].color}">${BREW.brews[on.id].name}</span>, ${Math.ceil((on.until - ctx.now()) / 1000)}s left · a new brew replaces it` : "one brew at a time · it fades on its own"}</div>
+          <div style="display:flex;gap:6px">${Object.entries(BREW.brews).map(([id, D]) => { const b = brewMade(id, s.renderXp ?? 0), poor = (s.dust ?? 0) < D.dust || (s.shards ?? 0) < D.shards;
+            return `<button class="vb" ${poor ? "disabled" : ""} title="${D.lore}" style="flex:1;text-align:left;padding:5px 7px;${poor ? "opacity:.4;" : `border-color:${D.color}aa;`}" onclick="${act("brew", `,id:'${id}'`)}"><div style="color:${D.color};font-size:12px">${D.glyph} ${D.name}</div><div style="font-size:10px;color:#8fb4ff">${brewLine(id, b.stats)}</div><div style="font-size:9px;color:#9a907e;letter-spacing:.06em">${b.secs}s · <img src="${icon("dust")}" style="width:11px;height:11px;vertical-align:-2px">${D.dust} + ◆${D.shards}</div></button>`; }).join("")}</div>
+        </div>`; })() : ""}
         ${s.atForge ? (sel ? `<div style="display:flex;gap:6px;align-items:stretch;margin-top:10px;padding-top:8px;border-top:1px solid #e0a86633">
         <div style="font-size:10px;letter-spacing:.2em;color:#e0a866;width:56px;line-height:1.3;align-self:center">WAYSIDE FORGE</div>
         ${[["temper", "TEMPER", "+1 item level"], ["reforge", "REFORGE", "new affixes"], ["ascend", "ASCEND", "one tier up"]].map(([op, label, hint]) => { const no = forgeCan(sel, op), fr = !no && op === "reforge" ? freeReforges(ctx, s) : 0, c = no ? null : fr ? 0 : forgeCost(sel, op), poor = c != null && (s.dust ?? 0) < c;
