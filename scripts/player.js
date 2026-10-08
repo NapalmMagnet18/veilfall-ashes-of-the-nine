@@ -5,7 +5,7 @@ import { raycast, getInputRay } from "builtin/physics";
 import { findPath } from "builtin/nav";
 import { floorDist as mapFloor, areaAt } from "./lib/data/veilfall-map.js";
 // the Abbey road is floor only once the Bailiff has fallen in this room (place.state.abbeyOpen, set by the sim)
-let ABBEY_OPEN = false;
+let ABBEY_OPEN = false, NAVE_OPEN = false;
 const floorDist = (x, z) => mapFloor(x, z, ABBEY_OPEN, NAVE_OPEN);
 import C from "./lib/data/combat.yml";
 import { shopInput } from "./lib/shop.js";
