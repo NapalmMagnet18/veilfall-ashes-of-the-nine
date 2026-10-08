@@ -5,6 +5,13 @@ import C from "./lib/data/combat.yml";
 import E from "./lib/data/economy.yml";
 import { fmt } from "./lib/coins.js";
 const sfx = (n) => `/cdn/moodboard-gothic-horror/sfx-${n}.mp3`;
+// every kind has its own throat: the cry when it wakes to you, the sound it makes coming apart
+const VOX = {
+  pilgrim: { aggro: "hollow-wax-moan-short", death: "wax-figure-collapsing-hiss-and-sigh" },
+  chorister: { aggro: "wax-choirboy-sings-one-broken-high-note-then-shrieks", death: "melting-wax-singer-gargled-hymn-fading-into-hiss" },
+  flagellant: { aggro: "penitent-cracks-a-chain-scourge-and-screams-in-ecstasy", death: "chains-clatter-onto-stone-as-wax-body-slumps" },
+  deacon: { aggro: "huge-wax-priest-bellows-a-low-sermon-word-and-scrapes-censer", death: "giant-wax-body-topples-heavy-thud-and-long-boiling-hiss" },
+};
 const MELT = `fx
 pop wax burst=20..28 on=disc(.35) life=.6..1.1 v=up(1.5..3)+sdir()*(1..2) size=.06..0.12 spin=-6..6 tint=oklch(.93 .04 88)..oklch(.8 .06 75) acc=grav()+drag(.6) col=$tint a=1>.8:1>0 sz=$size rot=$age*$spin floor=stick r=sprite(chip,alpha,velocity,.02)
 pop smoke burst=8 on=disc(.3) life=1.2..2 v=up(.6..1.2) size=.3..0.5 acc=buoy(.4)+drag(1) col=<.3,.28,.27> a=0>.3:.4>0 sz=$size*(.6>2.2) r=sprite(smoke-puff,alpha)
@@ -77,7 +84,7 @@ export function update(ctx, dt) {
     if (s.hp <= 0) {
       s.dead = true; s.deadAt = now; w.physics = "none";
       ctx.emit("fx", { position: { x: f.x, y: f.y + 0.4, z: f.z }, script: MELT });
-      ctx.emit("playSound", { clip: sfx("wax-figure-collapsing-hiss-and-sigh"), position: f, volume: 0.8, pitch: 0.9 + ctx.random() * 0.2 });
+      ctx.emit("playSound", { clip: sfx((VOX[s.kind] ?? VOX.pilgrim).death), position: f, volume: s.kind === "deacon" ? 1 : 0.8, pitch: 0.9 + ctx.random() * 0.2 });
       animate(ctx, w, { "scale.y": 0.08, "scale.x": 1.5, "scale.z": 1.5 }, { duration: 1.2 });
       payout(ctx, f, K.xp, roll(ctx, E.drops[s.kind] ?? E.drops.pilgrim), true);
       continue;
@@ -87,7 +94,7 @@ export function update(ctx, dt) {
     for (const p of players) { const d = flat(p.feetPosition, f); if (d < best) { best = d; prey = p; } }
     if (s.lastHit && !prey) { const p = players.find((q) => q.id === s.lastHit); if (p && flat(p.feetPosition, f) < 30) { prey = p; best = flat(p.feetPosition, f); } }
     if (s.home && flat(f, s.home) > 22) { prey = null; s.lastHit = null; }
-    if (!!prey !== !!s.hunting) { s.hunting = !!prey; if (prey) ctx.emit("playSound", { clip: sfx("hollow-wax-moan-short"), position: f, volume: 0.5, pitch: 0.8 + ctx.random() * 0.4 }); }
+    if (!!prey !== !!s.hunting) { s.hunting = !!prey; if (prey) ctx.emit("playSound", { clip: sfx((VOX[s.kind] ?? VOX.pilgrim).aggro), position: f, volume: s.kind === "pilgrim" ? 0.5 : 0.7, mode: "restart", pitch: 0.8 + ctx.random() * 0.4 }); }
     let vx = 0, vz = 0;
     // a slam in its windup holds the body still, then lands
     if (s.slam) {

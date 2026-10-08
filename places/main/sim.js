@@ -11,6 +11,10 @@ const TRACKS = {
   road: MUSIC,
   fight: "/cdn/moodboard-gothic-horror/music-dark-fantasy-combat-pounding-low-drums-cello-ostinato-tense-loop.mp3",
   boss: "/cdn/moodboard-gothic-horror/music-dark-fantasy-boss-battle-choir-pipe-organ-war-drums-bells-loop.mp3",
+  bailiff: "/cdn/moodboard-gothic-horror/music-dark-fantasy-boss-tribunal-judge-theme-pounding-timpani-brass-stabs-and-low-male-choir-chanting-loop.mp3",
+  ringer: "/cdn/moodboard-gothic-horror/music-dark-fantasy-boss-great-bell-theme-tolling-bronze-bells-pipe-organ-and-frantic-strings-loop.mp3",
+  warden: "/cdn/moodboard-gothic-horror/music-dark-fantasy-boss-drowned-giant-theme-deep-brass-swells-taiko-and-underwater-choir-loop.mp3",
+  hangman: "/cdn/moodboard-gothic-horror/music-dark-fantasy-boss-executioner-theme-slow-heavy-war-drums-scraping-fiddle-and-chains-loop.mp3",
   camp: "/cdn/moodboard-gothic-horror/music-dark-fantasy-safe-haven-campfire-lone-nylon-guitar-slow-arpeggio-and-low-cello-loop.mp3",
   abbey: "/cdn/moodboard-gothic-horror/music-dark-fantasy-ruined-cathedral-distant-pipe-organ-drone-and-wordless-female-choir-loop.mp3",
   fen: "/cdn/moodboard-gothic-horror/music-dark-fantasy-drowned-marsh-cold-glass-harmonica-and-detuned-harp-over-deep-drone-loop.mp3",
@@ -364,8 +368,9 @@ function musicTick(ctx, st, now, objs) {
   if (!live.length) return; // nobody on the road: the Veil owns the jukebox
   const tally = {}; for (const p of live) { const z = ZONE_MOOD[p.state.area] ?? "road"; tally[z] = (tally[z] ?? 0) + 1; }
   const rest = Object.entries(tally).sort((a, b) => b[1] - a[1])[0][0];
-  const mood = (boss?.engaged && !boss?.dead) || (rg?.engaged && !rg?.dead) || (wd?.engaged && !wd?.dead) || (hg?.engaged && !hg?.dead) ? "boss" : now < (st.fightUntil ?? 0) ? "fight" : rest;
-  const calm = mood !== "boss" && mood !== "fight";
+  const up = (b) => b?.engaged && !b?.dead;
+  const mood = up(boss) ? "bailiff" : up(rg) ? "ringer" : up(wd) ? "warden" : up(hg) ? "hangman" : now < (st.fightUntil ?? 0) ? "fight" : rest;
+  const calm = !["bailiff", "ringer", "warden", "hangman", "fight"].includes(mood);
   if (mood !== st.mood || ctx.music.now()?.ref !== TRACKS[mood]) { st.mood = mood; ctx.music?.play(TRACKS[mood], { fade: calm ? 4 : 1.2, volume: calm ? 0.7 : 0.8 }); }
   if (now > (st.distantAt ?? 0)) {
     st.distantAt = now + 22000 + ctx.random() * 23000;
