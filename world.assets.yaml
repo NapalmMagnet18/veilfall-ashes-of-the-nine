@@ -16,6 +16,7 @@ assets:
     "/cdn/value.419a89626be7e028858090009f767cdc899e865773ca5891ed2e3a53434aa2ac.png": {bytes: 413, kind: image, name: vf-dull, uploadedAt: "2026-10-08T16:07:08.449Z"}
     "/cdn/value.539265c044e21cd672fcba79cb0e1c8fda1d8035563e1bc9d50719bc71c545bf.png": {bytes: 453, kind: image, name: vf-thin, uploadedAt: "2026-10-08T16:13:41.203Z"}
     "/cdn/value.61659b3826ad61134e907251d03dbc168593f3edda03dd17713562729dc8c8fc.glb": {bytes: 5797528, kind: model, name: tollhouse-ruin, uploadedAt: "2026-10-08T18:13:53.096Z"}
+    "/cdn/value.631a9b6409554b72ded306f638c008a9a9f3bc2dc09be4021cb93b7790b0b329.glb": {bytes: 10497264, kind: model, name: ninth-bell, uploadedAt: "2026-10-08T19:28:59.080Z"}
     "/cdn/value.6333346fa6808b148d9ba468df826a3a49a29b8a0afb51a66a9e78d477c84abc.md": {bytes: 578766, kind: text, name: veilfall-design-package, uploadedAt: "2026-10-08T11:22:35.616Z"}
     "/cdn/value.6c628aebe76197d9fe57d3e9adef8d02bf2d20a012e1a2d423d718b1877e155e.glb": {bytes: 1283088, kind: model, name: wax-saint-a, uploadedAt: "2026-10-08T18:13:14.926Z"}
     "/cdn/value.707684534d6dd1f99aff9e4a18a21122d2540867b6751169a315b094b24fc0cf.png": {bytes: 370, kind: image, name: vf-divf, uploadedAt: "2026-10-08T16:12:22.505Z"}
