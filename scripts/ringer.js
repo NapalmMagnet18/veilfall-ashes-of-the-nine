@@ -43,6 +43,7 @@ export function update(ctx, dt) {
     animate(ctx, self, { "scale.y": 0.1, "scale.x": 2.6, "scale.z": 2.6 }, { duration: 2.6 });
     for (const p of here) { p.state.ringerKilled = true; ctx.emit("milestone", { step: 11, name: "ringer-defeated" }, { audience: { player: p.id } }); }
     ctx.place.state.lastFall = { boss: "ringer", by: here.map((p) => p.state?.charName || p.displayName).filter(Boolean).slice(0, 3), at: now }; // Brother Ledd heralds it at the fire
+    ctx.world.state.trophies = { ...(ctx.world.state.trophies ?? {}), ["ringer"]: now }; // its relic hangs on the Trophy Post
     payout(ctx, f, R.xp, E.drops.ringer, false, "heavy", "ringer");
     ctx.place.state.ringerDownAt = now;
     publish(ctx); return;
