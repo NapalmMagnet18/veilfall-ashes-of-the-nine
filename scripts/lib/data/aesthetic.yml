@@ -1,16 +1,12 @@
-# The art direction of this world, how everything built here LOOKS: its light, palette, material
-# finishes, air and grade. What is built is the creator's ask; this file adds, removes and replaces
-# nothing. It stands until an ask names a theme; then the theme wins: replace this look with one that
-# fits and tune the place's light and grade to it. This file holds the look and nothing else; a note on
-# a build or a decision belongs in memory/game/ or design.md. A script may import it.
-name: milk-mist
-palette: ["#3d4a44", "#7a9a86", "#b9cfc2", "#e8f0ea", "#f7d774"]
-finish: ["wet bark", "milk-white mist", "cold dewy grass", "pale sun"]
-era: "an early morning, mist lifting"
-mood: "mist to the knees, the sun a pale disc, everything hushed"
-hour: 7.4
-clouds: { density: 0.5, opacity: 0.6 }
-fog: { near: 150, far: 500 }
-ground: oklch(0.60 0.07 145)
-grade: { exposure: 1.03, saturation: 0.85, contrast: 0.97, temperature: -0.02 }
-reference: "Mist on cold grass and a pale sun coming through."
+# The art direction of this world, how everything built here LOOKS. Set 2026-10-08 from the creator's
+# Veilfall reference boards: isometric ruin at night, wet stone, fire against cold air.
+name: veilfall-ash
+palette: ["#12141B", "#23232C", "#AC4C42", "#C49C63", "#E7D9B8", "#6DB8C0"]
+finish: ["wet flagstone", "broken masonry", "brazier fire", "wax and soot", "cold memory-light"]
+era: "a ruined pilgrim road, long after the lanterns failed"
+mood: "dark and readable: cold blue air, every fire a warm pool, the floor always legible"
+hour: 20.6
+fog: { near: 30, far: 170 }
+ground: dark wet flagstone, ash dirt, dead moss
+grade: { exposure: 1.06, saturation: 0.82, contrast: 1.1, temperature: -0.06 }
+reference: "Wet stone stairs at night, a brazier's orange against blue spell-light, ruined walls framing the fight."

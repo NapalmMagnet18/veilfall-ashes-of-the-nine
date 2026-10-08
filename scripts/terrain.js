@@ -18,8 +18,13 @@ export function materialAt(ctx) {
   const n = noise.fbm2({ x, z, frequency: 1 / 8, octaves: 3, seed: seedOffset(5) })
   const rock = clamp01((slope - 0.18 + n * 0.12) * 5)
   if (worldHeight < 0.4) {
-    const g = clamp01(0.5 + n * 1.4)
-    return { gravel: (1 - g) * (1 - rock), grass: g * (1 - rock), rock }
+    const d = floorDist(x, z)
+    const camp = clamp01(1 - Math.hypot(x, z) / 14) // the Wayside Fire keeps its trodden earth
+    // the pilgrim road: old flagstone, broken toward its edges, ash in the cracks
+    const paved = clamp01((-d - 1.2 + n * 2.2) / 1.6) * (1 - camp)
+    const moss = clamp01(0.35 + n * 1.6) * (1 - paved) * (0.4 + camp * 0.6)
+    const rest = Math.max(0, 1 - paved - moss)
+    return { stone: paved * (1 - rock), grass: moss * (1 - rock), gravel: rest * (1 - rock), rock }
   }
-  return { rock: Math.max(rock, 0.4), grass: 1 - Math.max(rock, 0.4) }
+  return { rock: Math.max(rock, 0.55), gravel: 1 - Math.max(rock, 0.55) }
 }

@@ -13,16 +13,17 @@ export function look(ctx) {
   // params drive that glow live: edit a number here and the bloom retunes with no recompile
   // (a patchAtmosphere'd look param overrides the script's default). They're surfaced here so
   // the dials sit where you can reach them; the look itself never re-blooms.
-  const bloomStrength = ctx.param('bloomStrength', 0.15);
+  const bloomStrength = ctx.param('bloomStrength', 0.5);
   const bloomRadius = ctx.param('bloomRadius', 0.6);
   const bloomThreshold = ctx.param('bloomThreshold', 1);
 
   let c = ctx.scene;
   // Uncomment to start grading: a touch warmer, a little more contrast:
-  c = grade(c, { exposure: 1.03, saturation: 0.85, contrast: 0.97, temperature: -0.02 });
+  // Veilfall: cold ash-blue mids, true blacks, fire left hot
+  c = grade(c, { exposure: 1.06, saturation: 0.82, contrast: 1.1, temperature: -0.06, haze: 0.05 });
   // Uncomment to darken the edges of the frame:
-  // c = vignette(c, ctx.param('vignette', 0.2), { color: [0.02, 0.02, 0.05] });
+  c = vignette(c, ctx.param('vignette', 0.32), { color: [0.01, 0.015, 0.03] });
   // Uncomment for a faint film grain:
-  // c = grain(c, 0.04);
+  c = grain(c, 0.035);
   return c;
 }
