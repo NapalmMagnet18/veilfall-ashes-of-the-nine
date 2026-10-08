@@ -38,6 +38,20 @@ abbey-litter-11:
   receiveShadow: true
   rotation: 83
   tags: [abbey, z01-dressing]
+abbey-wing-wall-e:
+  feetPosition: {x: 7.55, y: 0, z: -197.5}
+  id: abbey-wing-wall-e
+  physics: {body: static, collider: box}
+  primitive: {depth: 11.6, height: 9, kind: box, width: 9.9}
+  tags: [abbey, collider]
+  visible: false
+abbey-wing-wall-w:
+  feetPosition: {x: -7.55, y: 0, z: -197.5}
+  id: abbey-wing-wall-w
+  physics: {body: static, collider: box}
+  primitive: {depth: 11.6, height: 9, kind: box, width: 9.9}
+  tags: [abbey, collider]
+  visible: false
 nave-blueprint:
   feetPosition: {x: 0, y: 0, z: -220}
   id: nave-blueprint
