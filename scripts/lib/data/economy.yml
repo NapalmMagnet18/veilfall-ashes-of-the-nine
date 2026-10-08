@@ -8,6 +8,7 @@ drops:
 quests:
   Z01-MAIN-05: 300      # 3s turn-in
   Z01-MAIN-06: 500      # 5s, the Abbey chapter
+  Z01-MAIN-07: 900      # 9s, the Ninth Bell silenced
 sell:
   shard: 6              # Wax Shard buyback, each (Sealed Petitions are quest items: never sold)
 shops:

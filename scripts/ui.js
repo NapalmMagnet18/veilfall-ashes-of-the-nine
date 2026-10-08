@@ -15,7 +15,10 @@ const STAGES = [
   ["Saints Who Remember", "Listen at the wax saints in the graveyard"],
   ["The Sealed Door", "Lay your hand on the Abbey door"],
   ["The Sealed Door", "Return to Maelin at the Wayside Fire"],
-  ["The Ninth Bell", "The Abbey door waits. The next chapter is coming."],
+  ["The Ninth Bell", "Pass through the Abbey door into the Burned Nave"],
+  ["The Ninth Bell", "Descend to the Bell Crypt and silence its Ringer"],
+  ["The Ninth Bell", "Return to Maelin at the Wayside Fire"],
+  ["The Ninth Flame", "The bell is silent. The ninth lantern still burns. The road goes on."],
 ];
 const THEME = `<style>
 #vf{--ink:#0d0b0a;--bone:#e9dfc8;--wax:#f2d38a;--blood:#b3261e;--edge:#d98c2b;--stone:#2a2724;color:var(--bone);font-size:16px;text-shadow:2px 2px 0 var(--ink)}
@@ -217,9 +220,9 @@ export default function (ctx, player) {
   if (q.stage === 2) prog = ` ${Math.min(5, s.petitions?.length ?? 0)}/5`;
   if (q.stage === 6) prog = ` ${Math.min(6, (s.kills ?? 0) - (q.killsAt ?? 0))}/6`;
   if (q.stage === 7) prog = ` ${(q.saints ?? []).length}/3`;
-  const L = [0, 60, 150, 280, 450, 680, 960, 1300], lv = s.level ?? 1;
+  const L = [0, 60, 150, 280, 450, 680, 960, 1300, 1750, 2300], lv = s.level ?? 1;
   const lo = L[lv - 1] ?? 0, hi = L[lv] ?? lo + 500, xpPct = Math.max(0, Math.min(100, (((s.xp ?? 0) - lo) / (hi - lo)) * 100));
-  const boss = ctx.place.state.boss;
+  const rg = ctx.place.state.ringer, boss = rg && rg.engaged && !rg.dead ? rg : ctx.place.state.boss;
   const dashLeft = Math.max(0, (s.dashReadyAt ?? 0) - now), dashPct = Math.min(100, (dashLeft / 3000) * 100);
   const touch = typeof matchMedia !== "undefined" && matchMedia("(pointer: coarse)").matches;
   const IC = {"ash": "/cdn/value.11ea8210258744da6aa7d65226e3fda61337efea5eb71fe047d65096b3dc053b.png", "cross": "/cdn/value.13d726eaf2133c0f3838076422f781f3068d081b31dbcd6d880212c2ddda7de3.png", "step": "/cdn/value.eecac6103d8be9ec4c6e6909f2dbd61c3fc4bda234bc585e389c850c1c74e3f3.png", "guard": "/cdn/value.02dc0fd2d6f126cd0a5fd2f2dbfc43058486b706d34ed8ffd30222d57c3d3490.png", "tonic": "/cdn/value.f4e985f51d72e39ecd4691f462076ba4a14206d864edb85895ea8ef710ceccfc.png", "pack": "/cdn/value.961ecd8b3ded845823729ea6364b6a1eb5e20e03cd1090dbdb1b4cda98a6872d.png"};
@@ -238,7 +241,7 @@ export default function (ctx, player) {
   const rail = "calc(var(--spawn-chrome-reservation-right-inset, 50px) + 24px)";
   return `${THEME}${FRAME_CSS}<div id="vf" class="fixed inset-0 pointer-events-none">
   <div class="absolute plate qp${boss && boss.engaged && !boss.dead ? " bossup" : ""}" style="left:24px;top:24px;max-width:300px;animation:vfin .4s">
-    <div class="lbl">${q.stage >= 10 ? "Chapter complete" : "Quest"} · ${q.stage >= 5 ? "The Ashen Abbey" : "Broken Lantern Road"}</div>
+    <div class="lbl">${q.stage === 9 || q.stage >= 12 ? "Chapter complete" : "Quest"} · ${q.stage >= 10 ? "The Ninth Bell" : q.stage >= 5 ? "The Ashen Abbey" : "Broken Lantern Road"}</div>
     <div style="font-size:19px;color:var(--wax)">${qt}</div><div class="dv df1"></div>
     <div style="font-size:15px">› ${qo}<span style="color:var(--wax)">${prog}</span></div>
   </div>
@@ -252,7 +255,7 @@ export default function (ctx, player) {
         <div style="position:absolute;top:0;bottom:0;left:70%;width:2px;background:#0d0b0a;box-shadow:1px 0 0 #8a6f45"></div><div style="position:absolute;top:0;bottom:0;left:35%;width:2px;background:#0d0b0a;box-shadow:1px 0 0 #8a6f45"></div>
       </div>
       <div style="position:absolute;left:-12px;top:50%;width:14px;height:14px;transform:translateY(-50%) rotate(45deg);background:#1a1410;box-shadow:0 0 0 2px #8a6f45,0 0 0 4px #0d0b0a"></div><div style="position:absolute;right:-12px;top:50%;width:14px;height:14px;transform:translateY(-50%) rotate(45deg);background:#1a1410;box-shadow:0 0 0 2px #8a6f45,0 0 0 4px #0d0b0a"></div>
-    </div><div class="lbl" style="margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:clamp(9px,1.6vw,12px)">${boss.phase === 1 ? "PHASE I · wedge: get behind him · marked: step away" : boss.phase === 2 ? `PHASE II · break the ledger pillars (${boss.ledgers} lit)` : "PHASE III · arc, debt, then he falters"}${boss.fray ? ` · FRAY ×${boss.fray} (+${boss.fray * 10}% damage taken)` : ""}</div></div>` : ""}
+    </div><div class="lbl" style="margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:clamp(9px,1.6vw,12px)">${boss.hint ? boss.hint : boss.phase === 1 ? "PHASE I · wedge: get behind him · marked: step away" : boss.phase === 2 ? `PHASE II · break the ledger pillars (${boss.ledgers} lit)` : "PHASE III · arc, debt, then he falters"}${boss.fray ? ` · FRAY ×${boss.fray} (+${boss.fray * 10}% damage taken)` : ""}</div></div>` : ""}
   ${ban ? `<div id="ban${ban.at}" class="absolute vfban" style="left:50%;top:${touch ? "36vh" : "120px"};transform:translateX(-50%);width:min(520px,calc(100vw - 2*${rail}));text-align:center;pointer-events:none">
     ${ban.fresh ? `<div class="lbl" style="letter-spacing:.32em;color:#6DB8C0">AREA DISCOVERED</div>` : ""}
     <div style="font-size:clamp(22px,4vw,34px);letter-spacing:.14em;color:var(--wax);text-shadow:0 2px 0 #0d0b0a,0 0 18px rgba(196,156,99,.45)">${ban.name.toUpperCase()}</div>
@@ -287,7 +290,7 @@ export default function (ctx, player) {
     <div style="font-size:11px;margin-top:4px;color:#e0473a">♥ ${s.tonics ?? 0}</div>
   </div>
   <div class="absolute ph" style="left:190px;top:150px;pointer-events:auto" onclick="sendAction('bag')"><div class="slot" style="width:48px;height:40px;font-size:11px">PACK</div></div>
-  ${q.stage === 0 || q.stage === 4 || q.stage === 9 ? `<div data-world-anchor="maelin" data-anchor-offset="0 2.3 0" style="font-size:30px;color:var(--wax);text-align:center;animation:vfpulse 1.4s infinite">!<div style="font-size:12px">MAELIN</div></div>` : ""}
+  ${q.stage === 0 || q.stage === 4 || q.stage === 9 || q.stage === 12 ? `<div data-world-anchor="maelin" data-anchor-offset="0 2.3 0" style="font-size:30px;color:var(--wax);text-align:center;animation:vfpulse 1.4s infinite">!<div style="font-size:12px">MAELIN</div></div>` : ""}
   ${s.bagOpen ? `<div class="absolute plate pk" style="right:${rail};top:50%;transform:translateY(-50%);width:290px;max-width:calc(100vw - 2*${rail});max-height:calc(100vh - 16px);overflow:auto;pointer-events:auto;animation:vfin .25s">
     <div class="lbl" style="display:flex;justify-content:space-between">${s.charName ?? "Bearer"} · Pack${touch ? "" : " (I to close)"}${touch ? `<span style="cursor:pointer;color:#f2d38a" onclick="sendAction('bag')">CLOSE</span>` : ""}</div><div class="dv d5"></div>
     <div style="display:grid;grid-template-columns:repeat(4,52px);gap:6px;margin-top:8px">
