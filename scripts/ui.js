@@ -61,8 +61,8 @@ const MSTYLE = `<style>
 #vm .grid{display:grid;grid-template-columns:repeat(3,118px);gap:12px}
 #vm .grid .card{height:162px}
 #vm .wrap{position:absolute;left:24px;right:calc(var(--spawn-chrome-reservation-right-inset,50px) + 24px);top:24px;bottom:24px;display:flex;justify-content:space-between;align-items:flex-start;gap:20px}
-#vm .det{width:380px;display:flex;flex-direction:column}
-#vm .det .big{height:300px;margin:-14px -16px 10px;overflow:hidden;position:relative} #vm .det .big img{width:100%;height:100%;object-fit:cover;object-position:50% 20%}
+#vm .det{width:380px;display:flex;flex-direction:column;max-height:100%;overflow:auto}
+#vm .det .big{height:min(300px,30vh);margin:-14px -16px 10px;overflow:hidden;position:relative} #vm .det .big img{width:100%;height:100%;object-fit:cover;object-position:50% 20%}
 @keyframes vmin{from{opacity:0;transform:translateY(10px)}} @keyframes vmglow{50%{text-shadow:2px 2px 0 #0d0b0a,0 0 26px rgba(240,140,60,.55)}}
 @media (pointer:coarse),(max-width:760px){
  #vm .wrap{left:8px;right:8px;top:8px;bottom:8px;flex-direction:column;gap:8px;overflow:auto}
