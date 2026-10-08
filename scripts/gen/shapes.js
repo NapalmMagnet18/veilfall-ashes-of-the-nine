@@ -8,7 +8,7 @@ export const TEX = {
   wood: "cdn/texture-rotten-weathered-wood-planks.png",
   moss: "cdn/texture-dark-wet-moss.png",
 };
-export const WAXC = ["oklch(.95 .02 90)", "oklch(.93 .035 88)", "oklch(.9 .05 84)", "oklch(.86 .065 80)", "oklch(.92 .03 75)"];
+export const WAXC = ["oklch(.74 .035 85)", "oklch(.68 .045 82)", "oklch(.62 .055 78)", "oklch(.54 .06 70)", "oklch(.66 .04 72)"];
 const D = Math.PI / 180;
 export function xf(o = [0, 0, 0], yaw = 0, pitch = 0, roll = 0, s = 1) {
   const S = Array.isArray(s) ? s : [s, s, s];
