@@ -121,16 +121,17 @@ function ridge(ctx) {
   }
   for (let r = 0; r < rows.length - 1; r++) for (let i = 0; i < nx; i++) quad(ctx, P[r][i], P[r][i + 1], P[r + 1][i + 1], P[r + 1][i], [P[r][i][0], -150, -20]);
   // the Dripping Gate in the saddle: two towers and a span, its doorway burning
-  const gy = ridgeY(p, gx) * 0.6, gz = -12;
-  ctx.color("oklch(0.3 0.012 260)");
+  const gy = ridgeY(p, gx) * 0.55, gz = -12, g = 0.45;
+  ctx.color("oklch(0.28 0.012 260)");
   for (const s of [-1, 1]) {
-    bevelBox(ctx, xf([gx + s * 8, gy + 12, gz]), 3.2, 14, 3.2, 0);
-    for (const t of [-1, 1]) bevelBox(ctx, xf([gx + s * 8 + t * 2.2, gy + 27, gz + 2.4]), 0.7, 1.2, 0.7, 0);
+    bevelBox(ctx, xf([gx + s * 8 * g, gy + 12 * g, gz]), 3.2 * g, 14 * g, 3.2 * g, 0);
+    for (const t of [-1, 1]) bevelBox(ctx, xf([gx + (s * 8 + t * 2.2) * g, gy + 27 * g, gz + 2.4 * g]), 0.7 * g, 1.2 * g, 0.7 * g, 0);
   }
-  bevelBox(ctx, xf([gx, gy + 19.5, gz]), 5, 3, 2.6, 0);
-  ctx.color("oklch(0.5 0.12 50)"); ctx.emissive(3.6, 1.2, 0.25);
-  bevelBox(ctx, xf([gx, gy + 8.25, gz + 1.6]), 4.6, 8.25, 0.3, 0);
-  for (const s of [-1, 1]) bevelBox(ctx, xf([gx + s * 8, gy + 18, gz + 3.25]), 0.35, 1.1, 0.1, 0);
+  bevelBox(ctx, xf([gx, gy + 19.5 * g, gz]), 5 * g, 3 * g, 2.6 * g, 0);
+  ctx.color("oklch(0.45 0.1 45)"); ctx.emissive(2.4, 0.75, 0.14);
+  bevelBox(ctx, xf([gx, gy + 6 * g, gz + 1.6 * g]), 3.2 * g, 6 * g, 0.3, 0);
+  ctx.emissive(1.6, 0.5, 0.1);
+  for (const s of [-1, 1]) bevelBox(ctx, xf([gx + s * 8 * g, gy + 18 * g, gz + 3.25 * g]), 0.35 * g, 1.1 * g, 0.1, 0);
   ctx.emissive(null);
 }
 export function geometry(ctx) { ({ ledge, cliff, ridge })[ctx.params.kind ?? "ledge"](ctx); }

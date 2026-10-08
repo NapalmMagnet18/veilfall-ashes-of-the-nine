@@ -11,7 +11,7 @@ worldBounds: {bottom: -40}
 gravity: {x: 0, y: -24, z: 0}
 atmosphere:
   sky: {kind: realistic, model: hosek}
-  timeOfDay: 21
+  timeOfDay: 20.6
   stars: {enabled: true, density: 0.7, milkyWay: 0.35}
   moon: {enabled: true, intensity: 5, phase: 0.62, size: 1.7}
   clouds: {enabled: true, density: 0.3, opacity: 0.7, altitude: 420, thickness: 400, color: "#2c3038", speed: 1}
@@ -20,7 +20,7 @@ atmosphere:
     near: 12
     far: 160
     height: {base: -3, falloff: 5}
-  hemisphere: {groundColor: "#1c1712", intensity: 2.0, skyColor: "#4a6290"}
+  hemisphere: {groundColor: "#1c1712", intensity: 2.6, skyColor: "#4a6290"}
   ambient:
     light: {color: "#2a3550", intensity: 0.6}
   wet: 0.7
