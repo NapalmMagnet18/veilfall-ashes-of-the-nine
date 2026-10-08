@@ -45,7 +45,7 @@ export function update(ctx, dt) {
     animate(ctx, self, { "feetPosition.y": f.y - 3, "scale.x": 0.6, "scale.z": 0.6 }, { duration: 2.8 });
     for (const p of here) { p.state.wardenKilled = true; ctx.emit("milestone", { step: 15, name: "warden-defeated" }, { audience: { player: p.id } }); }
     ctx.place.state.lastFall = { boss: "warden", by: here.map((p) => p.state?.charName || p.displayName).filter(Boolean).slice(0, 3), at: now }; // Brother Ledd heralds it at the fire
-    ctx.world.state.trophies = { ...(ctx.world.state.trophies ?? {}), ["warden"]: now }; // its relic hangs on the Trophy Post
+    if (!ctx.world.state.trophies?.["warden"]?.by) ctx.world.state.trophies = { ...(ctx.world.state.trophies ?? {}), ["warden"]: { at: now, by: ctx.place.state.lastFall?.by ?? [] } }; // its relic hangs on the Trophy Post
     payout(ctx, f, W.xp, E.drops.warden, false, "heavy", "warden");
     publish(ctx); return;
   }

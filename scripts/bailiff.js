@@ -97,7 +97,7 @@ export function update(ctx, dt) {
     // entitlement: each player present is credited once per life of this boss (sim.js grants the quest reward once ever)
     for (const p of here) { p.state.bossKilled = true; ctx.emit("milestone", { step: 3, name: "bailiff-defeated" }, { audience: { player: p.id } }); }
     ctx.place.state.lastFall = { boss: "bailiff", by: here.map((p) => p.state?.charName || p.displayName).filter(Boolean).slice(0, 3), at: now }; // Brother Ledd heralds it at the fire
-    ctx.world.state.trophies = { ...(ctx.world.state.trophies ?? {}), ["bailiff"]: now }; // its relic hangs on the Trophy Post
+    if (!ctx.world.state.trophies?.["bailiff"]?.by) ctx.world.state.trophies = { ...(ctx.world.state.trophies ?? {}), ["bailiff"]: { at: now, by: ctx.place.state.lastFall?.by ?? [] } }; // its relic hangs on the Trophy Post
     payout(ctx, f, B.xp, E.drops.bailiff, false, "heavy", "bailiff");
     ctx.place.state.bailiffDownAt = now;
     publish(ctx); return;

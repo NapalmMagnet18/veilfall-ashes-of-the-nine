@@ -13,5 +13,8 @@ export function update(ctx) {
       ctx.emit("shake", { target: r.id, intensity: 0.4, duration: 1.2 });
     }
   }
+  const NAMES = { bailiff: "The Bailiff", ringer: "The Ringer", warden: "The Lantern Warden", hangman: "The Hangman" };
+  const pl = ctx.place.objects[`${id}/plaque`];
+  if (pl) for (const k of KINDS) { const r = t[k], line = r ? `${NAMES[k]} · ${(r.by?.length ? r.by.join(" & ") : "unknown hands")}` : `${NAMES[k]} · still walks`; if (pl.state[k] !== line) pl.state[k] = line; }
   synced = true; ctx.sleep(3);
 }
