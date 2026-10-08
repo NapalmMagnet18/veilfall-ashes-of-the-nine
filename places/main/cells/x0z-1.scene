@@ -390,7 +390,7 @@ rd-boneheap-4:
   tags: [road-dressing, boneheap]
 rd-gibbet-3:
   castShadow: true
-  feetPosition: {x: -7.5, y: 0, z: -78}
+  feetPosition: {x: -6.3, y: 0, z: -76.2}
   id: rd-gibbet-3
   model: /cdn/value.406b9c00757d0bbec005d0c122246c4dbdef6515e4f2b8501aad10482f3a510d.glb
   physics: static

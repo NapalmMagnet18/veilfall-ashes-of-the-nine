@@ -469,7 +469,7 @@ rd-gibbet-1:
 rd-gibbet-2:
   castShadow: true
   children: [{feetPosition: {x: 1.1, y: 1.75, z: 0}, light: {color: oklch(0.78 0.15 55), distance: 7, intensity: 3, kind: point}}]
-  feetPosition: {x: -1.23, y: 0, z: -36}
+  feetPosition: {x: -0.45, y: 0, z: -36}
   id: rd-gibbet-2
   model: /cdn/value.406b9c00757d0bbec005d0c122246c4dbdef6515e4f2b8501aad10482f3a510d.glb
   physics: static
@@ -498,7 +498,7 @@ rd-reliquary-2:
 rd-reliquary-3:
   castShadow: true
   children: [{feetPosition: {x: -0.2, y: 1.35, z: -0.02}, light: {color: oklch(0.78 0.15 55), distance: 6, intensity: 2, kind: point}}]
-  feetPosition: {x: -0.11, y: 0, z: -52.8}
+  feetPosition: {x: 0.5, y: 0, z: -52.5}
   id: rd-reliquary-3
   model: /cdn/value.3cb51fb3edc8baa35cda1a3e29fe6f3e2294dbb59c778d668295d99e1e16092a.glb
   physics: static
