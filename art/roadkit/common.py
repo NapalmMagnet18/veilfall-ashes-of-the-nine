@@ -25,7 +25,7 @@ def lerp3(a, b, t):
 KINDS = {  # dark, light, roughness, metal, normal strength
     "stone": ("#1b1d25", "#55565f", .55, 0, 4), "wood": ("#24180f", "#5e4630", .8, 0, 3),
     "iron": ("#1e1e23", "#3e3d43", .5, .75, 2), "rust": ("#33201a", "#86492a", .85, .35, 3),
-    "wax": ("#bfb291", "#ece2c4", .42, 0, 1), "bone": ("#8a7a5a", "#dacfae", .7, 0, 2),
+    "wax": ("#9c8f70", "#d6caa6", .42, 0, 1), "bone": ("#8a7a5a", "#dacfae", .7, 0, 2),
     "parchment": ("#86704b", "#d6c292", .9, 0, 1), "seal": ("#5e1d1a", "#ac4c42", .38, 0, 1),
     "soot": ("#0a0a0d", "#1d1b20", .95, 0, 1), "ash": ("#19181b", "#3d3734", .9, 0, 3),
     "cloth": ("#1f1b1c", "#4a3b34", .95, 0, 2),
@@ -45,7 +45,7 @@ def tex(kind, seed, n=256):
         col = lerp3(col, hexc("#2b3326"), moss * .6)
     elif kind == "iron":
         h = .6 * a + .4 * b; col = lerp3(dk, lt, h)
-        col = lerp3(col, hexc("#6b3a22"), np.clip((c - .6) * 4, 0, 1))
+        col = lerp3(col, hexc("#4e2c1d"), np.clip((c - .68) * 4, 0, 1) * .8)
     elif kind == "rust":
         h = .5 * a + .5 * b; col = lerp3(dk, lt, h)
         col = lerp3(col, hexc("#2a2a2e"), np.clip((c - .62) * 4, 0, 1))

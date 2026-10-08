@@ -48,8 +48,8 @@ for k in range(NB):
     tube(pts, .012, 4, M["iron"], cap=False)
 prim("torus", M["iron"], loc=C + Vector((0, 0, 2.43)), major_radius=.035, minor_radius=.01, major_segments=8, minor_segments=4)
 # broken door, swung out and sagging off one hinge
-hinge = C + Vector((math.cos(ga0) * rc, math.sin(ga0) * rc, 0))
-D = Matrix.Translation(hinge) @ Matrix.Rotation(math.radians(-115), 4, "Z") @ Matrix.Rotation(math.radians(14), 4, "X") @ Matrix.Translation(-hinge)
+hinge = C + Vector((math.cos(ga0) * rc, math.sin(ga0) * rc, 1.65))
+D = Matrix.Translation(hinge) @ Matrix.Rotation(math.radians(-80), 4, "Z") @ Matrix.Rotation(math.radians(9), 4, "Y") @ Matrix.Translation(-hinge)
 dbars = []
 for k in door:
     a = k / NB * 6.283; p = C + Vector((math.cos(a) * rc, math.sin(a) * rc, 0))
