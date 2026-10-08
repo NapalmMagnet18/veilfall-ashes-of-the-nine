@@ -121,26 +121,91 @@ const MX = `<style>
  #vm .msg{bottom:auto;top:8px;max-width:calc(100vw - 90px)} #vm .namebox{font-size:18px}
 }
 </style>`;
-const head = (s) => `${MSTYLE}${MX}${FRAME_CSS}<div id="vm"><div class="veil" style="background:radial-gradient(ellipse at 50% 50%,transparent 30%,rgba(6,7,12,.45) 65%,rgba(4,4,8,.85))"></div>`;
+const FONT = (n, h, w = "400 900") => `@font-face{font-family:'${n}';src:url(/cdn/value.${h}.ttf);font-weight:${w};font-display:swap}`;
+const CREST = "/cdn/value.e5c8c1c327ab59446dbe79af31ecdeed39c39e210ab8e7cd8d525f94c4827c9d.png";
+const VT = `<style>
+${FONT("VCinzel", "f4d83d34d1f6c741193e4acf4b3dff9531e5a67b6aa65228d00a7db72a4e0f34")}${FONT("VDeco", "e854e68a388aa50d742a4415c1ae5c17a617ef7956c95a70021d0a4a44f20518", "700")}${FONT("VGara", "b20b7d9626dd956b2c5e558692ad328b1f19e3275e2782db4fa07670d83f35e0", "300 700")}
+#vm{font-family:'VGara',Georgia,serif;font-size:17px}
+#vm .lbl,#vm .btn,#vm .mini,#vm .t,#vm .nm,#vm .anc span,#vm .namebox{font-family:'VCinzel',Georgia,serif}
+#vm .lbl{font-weight:600}
+#vm .btn{font-weight:700;letter-spacing:.16em}
+#vm .gold{background:linear-gradient(180deg,#fff3cf 0%,#f2d38a 28%,#b8863e 52%,#6e4a1f 56%,#c99a52 74%,#f7e2a6 100%);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:none;filter:drop-shadow(0 2px 0 #1a0f08) drop-shadow(0 0 18px rgba(240,140,60,.35))}
+#vm .h1{font-family:'VCinzel',serif;font-weight:700;letter-spacing:.14em}
+/* title */
+#vt{position:absolute;inset:0;pointer-events:none}
+#vt .shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,5,8,.88) 0%,rgba(5,5,8,.55) 26%,transparent 46%),linear-gradient(0deg,rgba(5,5,8,.8) 0%,transparent 28%),linear-gradient(180deg,rgba(5,5,8,.6) 0%,transparent 22%)}
+#vt .logo{position:absolute;left:50%;top:2.5vh;transform:translateX(-50%);width:min(620px,52vw);text-align:center;animation:vtin 1.6s ease both}
+#vt .crest{width:100%;display:block;filter:drop-shadow(0 6px 14px rgba(0,0,0,.8)) drop-shadow(0 0 30px rgba(255,150,60,.18));animation:vtbreathe 6s ease-in-out infinite}
+#vt .word{margin-top:-9%;font-family:'VDeco','VCinzel',serif;font-weight:700;font-size:clamp(52px,6.6vw,118px);letter-spacing:.08em;line-height:1}
+#vt .subt{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:6px;font-family:'VCinzel',serif;font-weight:600;font-size:clamp(13px,1.15vw,19px);letter-spacing:.55em;color:#c49c63;text-indent:.55em}
+#vt .subt i{flex:0 0 clamp(40px,7vw,120px);height:1px;background:linear-gradient(90deg,transparent,#c49c63)} #vt .subt i:last-child{transform:scaleX(-1)}
+#vt .subt b{width:7px;height:7px;transform:rotate(45deg);background:#ac4c42;box-shadow:0 0 8px #ff7a3a;flex:none}
+#vt .menu{position:absolute;left:clamp(24px,6vw,120px);top:50%;transform:translateY(-38%);width:min(380px,34vw);pointer-events:auto;animation:vtside 1.2s .3s ease both}
+#vt .menu .cap{font-family:'VCinzel',serif;font-size:12px;letter-spacing:.4em;color:#8f7d5c;margin-bottom:10px}
+#vt .it{position:relative;display:block;width:100%;text-align:left;background:none;border:0;cursor:pointer;padding:12px 0 12px 34px;font-family:'VCinzel',serif;font-weight:700;font-size:clamp(18px,1.55vw,26px);letter-spacing:.14em;text-transform:uppercase;color:#cdbf9f;text-shadow:0 2px 0 #0b0806,0 0 12px rgba(0,0,0,.9);transition:color .18s,letter-spacing .25s,padding .2s}
+#vt .it::before{content:"";position:absolute;left:6px;top:50%;width:9px;height:9px;margin-top:-5px;transform:rotate(45deg) scale(.4);border:1px solid #c49c63;opacity:0;transition:all .2s}
+#vt .it::after{content:"";position:absolute;left:34px;right:20%;bottom:6px;height:1px;background:linear-gradient(90deg,#f2d38a,rgba(172,76,66,.6),transparent);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+#vt .it:hover{color:#ffe7b0;padding-left:40px;text-shadow:0 2px 0 #0b0806,0 0 18px rgba(255,160,70,.55)}
+#vt .it:hover::before{opacity:1;transform:rotate(45deg) scale(1);background:#ac4c42;box-shadow:0 0 10px #ff7a3a}
+#vt .it:hover::after{transform:scaleX(1)}
+#vt .it.main{color:#f2d38a;font-size:clamp(21px,1.9vw,32px)}
+#vt .it.main::before{opacity:.9;transform:rotate(45deg) scale(.8);background:#ac4c42;box-shadow:0 0 10px #ff7a3a}
+#vt .it .sub{display:block;font-family:'VGara',serif;font-weight:500;font-size:14px;letter-spacing:.04em;text-transform:none;color:#9c8b6b;margin-top:2px}
+#vt .rule{height:1px;margin:6px 0 6px 34px;background:linear-gradient(90deg,rgba(196,156,99,.55),transparent)}
+#vt .chron{position:absolute;right:calc(var(--spawn-chrome-reservation-right-inset,50px) + 34px);bottom:9vh;width:min(330px,26vw);pointer-events:auto;padding:18px 20px 16px;background:linear-gradient(180deg,rgba(22,18,16,.88),rgba(10,9,8,.92));box-shadow:inset 0 0 0 1px rgba(196,156,99,.35),inset 0 0 0 4px rgba(10,8,6,.9),inset 0 0 0 5px rgba(196,156,99,.18),0 10px 30px rgba(0,0,0,.6);animation:vtin 1.4s .6s ease both}
+#vt .chron::before,#vt .chron::after{content:"";position:absolute;width:14px;height:14px;border:2px solid #c49c63;opacity:.8}
+#vt .chron::before{left:-3px;top:-3px;border-right:0;border-bottom:0} #vt .chron::after{right:-3px;bottom:-3px;border-left:0;border-top:0}
+#vt .chron h4{margin:0 0 4px;font-family:'VCinzel',serif;font-size:13px;letter-spacing:.35em;color:#c49c63;font-weight:700}
+#vt .ch{display:flex;gap:12px;align-items:baseline;padding:7px 0;border-top:1px solid rgba(196,156,99,.14)}
+#vt .ch .n{font-family:'VDeco',serif;font-size:15px;color:#ac4c42;width:22px;flex:none;text-align:center}
+#vt .ch .tt{font-family:'VCinzel',serif;font-size:13px;font-weight:700;letter-spacing:.06em;color:#e7d9b8} #vt .ch .dd{font-size:13px;color:#9c8b6b;line-height:1.25}
+#vt .ch.new .tt::after{content:"NEW";margin-left:8px;font-size:9px;letter-spacing:.2em;color:#ffcf7a;padding:1px 5px;box-shadow:inset 0 0 0 1px rgba(255,180,90,.6)}
+#vt .foot{position:absolute;left:clamp(24px,6vw,120px);bottom:3.2vh;font-family:'VCinzel',serif;font-size:11px;letter-spacing:.28em;color:#6f6250}
+#vt .foot b{color:#6db8c0;font-weight:600} #vt .foot .dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#6db8c0;box-shadow:0 0 8px #6db8c0;margin:0 6px 1px 0;animation:vtpulse 2.4s infinite}
+#vt .quote{position:absolute;left:50%;bottom:3vh;transform:translateX(-50%);width:min(560px,40vw);text-align:center;font-style:italic;font-size:16px;color:#a8977a;text-shadow:0 2px 6px #000}
+#vt .em{position:absolute;bottom:-10px;width:3px;height:3px;border-radius:50%;background:#ffb862;box-shadow:0 0 6px 2px rgba(255,130,40,.7);opacity:0;animation:vtember linear infinite}
+@keyframes vtember{0%{opacity:0;transform:translate(0,0)}10%{opacity:.9}70%{opacity:.6}100%{opacity:0;transform:translate(var(--dx),-85vh)}}
+@keyframes vtin{from{opacity:0;filter:blur(4px)}to{opacity:1;filter:none}}
+@keyframes vtside{from{opacity:0;transform:translate(-24px,-38%)}to{opacity:1;transform:translateY(-38%)}}
+@keyframes vtbreathe{50%{filter:drop-shadow(0 6px 14px rgba(0,0,0,.8)) drop-shadow(0 0 44px rgba(255,150,60,.32))}}
+@keyframes vtpulse{50%{opacity:.35}}
+@media (pointer:coarse),(max-width:760px),(max-height:520px){
+ #vt .logo{width:min(380px,70vw);top:1vh} #vt .menu{left:16px;width:calc(100vw - 110px);top:auto;bottom:12px;transform:none;animation:none}
+ #vt .chron,#vt .quote{display:none} #vt .it{padding:7px 0 7px 28px} #vt .it .sub{font-size:12px} #vt .foot{display:none}
+ #vt .shade{background:linear-gradient(0deg,rgba(5,5,8,.9) 0%,rgba(5,5,8,.4) 45%,transparent 70%)}
+}
+@media (max-height:520px){#vt .logo{width:min(260px,40vw)} #vt .word{font-size:40px} #vt .subt{display:none}}
+</style>`;
+const EMBERS = Array.from({ length: 22 }, (_, i) => { const r = (k) => ((Math.sin(i * 12.9898 + k * 78.233) * 43758.5453) % 1 + 1) % 1;
+  return `<i class="em" style="left:${(r(1) * 100).toFixed(1)}%;--dx:${((r(2) - .5) * 160).toFixed(0)}px;animation-duration:${(7 + r(3) * 9).toFixed(1)}s;animation-delay:-${(r(4) * 14).toFixed(1)}s;width:${(2 + r(5) * 3).toFixed(1)}px;height:${(2 + r(5) * 3).toFixed(1)}px"></i>`; }).join("");
+const CHRONICLE = [
+  ["I", "The Broken Lantern Road", "The Wayside Fire, the Wax Veil and the Bailiff's toll."],
+  ["II", "Ashen Abbey · the Bell Crypt", "Down the nave to the great cracked bell."],
+  ["III", "Lanternmere", "The drowned fen and its Warden."],
+  ["IV", "Saint Corvin's Orchard", "Cut down the hanged. Face the Hangman.", true],
+];
+const head = (s) => `${MSTYLE}${MX}${FRAME_CSS}${VT}<div id="vm"><div class="veil" style="background:radial-gradient(ellipse at 50% 50%,transparent 30%,rgba(6,7,12,.45) 65%,rgba(4,4,8,.85))"></div>`;
 const tail = (s, now) => `${s.busy ? `<div class="panel msg" style="color:#f2d38a">${s.busy}…</div>` : s.msg && now - s.msg.at < 5000 ? `<div class="panel msg">${s.msg.text}</div>` : ""}</div>`;
 const realmName = (room) => R.realms.find((r) => r.room === room)?.name ?? room;
 const ago = (now, t) => { const m = Math.floor((now - t) / 60000); return m < 2 ? "just now" : m < 60 ? `${m} min ago` : m < 2880 ? `${Math.floor(m / 60)} h ago` : `${Math.floor(m / 1440)} days ago`; };
 
 function menu(ctx, player, s) {
   const now = ctx.now(), here = s.roster?.realm ?? "main";
-  if (s.menu === "title") return `${head(s)}
-  <div style="position:absolute;left:0;right:0;top:9%;text-align:center;animation:vmin .8s">
-    <div class="ttl" style="font-size:84px;letter-spacing:.22em;color:#e7d9b8;animation:vmglow 4s infinite">VEILFALL</div>
-    <div class="sub" style="font-size:20px;letter-spacing:.5em;color:#c49c63;margin-top:4px">ASHES OF THE NINE</div>
-    <div class="tline" style="width:220px;height:2px;margin:16px auto;background:linear-gradient(90deg,transparent,#ac4c42,transparent)"></div>
-    <div class="dv df4"></div><div class="qt" style="font-size:14px;color:#b9a77f;font-style:italic;max-width:520px;margin:0 auto;padding:0 70px 0 16px">"Every book in this place is a person who no longer knows what they lost."</div>
-  </div>
-  <div class="tb" style="position:absolute;left:0;right:0;bottom:11%;text-align:center;padding-right:60px;animation:vmin 1.1s">
-    <button class="btn main" onclick="${act("chars")}">Enter the Veil</button>
-    <div class="lbl" style="margin-top:6px">Realm · ${realmName(here)}</div>
-    <button class="btn" onclick="${act("realms")}">Realms</button>
-    <div class="lbl foot" style="margin-top:22px;opacity:.6">Broken Lantern Road · M1</div>
+  if (s.menu === "title") {
+    const last = (s.roster?.chars ?? []).find((c) => c.id === s.sel);
+    const lk = last && (CLASSES.find((c) => c.id === last.cls) ?? CLASSES[0]);
+    return `${head(s)}<div id="vt"><div class="shade"></div>${EMBERS}
+    <div class="logo"><img class="crest" src="${CREST}"><div class="word gold">VEILFALL</div><div class="subt"><i></i><b></b>ASHES OF THE NINE<b></b><i></i></div></div>
+    <div class="menu"><div class="cap">THE LANTERN SHRINE</div>
+      ${last ? `<button class="it main" onclick="${act("enter")}">Continue<span class="sub">${last.name} · Level ${last.level} ${lk.name} · ${last.zone}</span></button><div class="rule"></div>` : ""}
+      <button class="it ${last ? "" : "main"}" onclick="${act("chars")}">${last ? "Bearers" : "Enter the Veil"}<span class="sub">${last ? "choose another, or write a new name" : "write your first Bearer"}</span></button>
+      <button class="it" onclick="${act("realms")}">Realms<span class="sub">${realmName(here)} · ${R.realms.length} roads</span></button>
+    </div>
+    <div class="chron"><h4>THE CHRONICLE</h4>${CHRONICLE.map(([n, t, d, nw]) => `<div class="ch ${nw ? "new" : ""}"><div class="n">${n}</div><div><div class="tt">${t}</div><div class="dd">${d}</div></div></div>`).join("")}</div>
+    <div class="quote">"Every book in this place is a person who no longer knows what they lost."</div>
+    <div class="foot"><span class="dot"></span><b>${realmName(here).toUpperCase()}</b> · ONLINE · VEILFALL 0.9</div>
   </div>${tail(s, now)}`;
+  }
 
   if (s.menu === "realms") {
     const per = s.roster?.per ?? {};
