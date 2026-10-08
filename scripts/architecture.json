@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "basedOnSpecVersion": 441,
-  "updatedAt": "2026-10-08T19:16:39.991Z",
-  "summary": "VEILFALL: Ashes of the Nine is an isometric action RPG set along Broken Lantern Road and into the Ashen Abbey. The main place referee coordinates quest progression, enemy packs and shared ambience; player, UI, persistence and procedural/authored world assets provide the playable systems and setting, while a separate solo Veil place hosts character menus.",
+  "basedOnSpecVersion": 457,
+  "updatedAt": "2026-10-08T19:23:23.180Z",
+  "summary": "VEILFALL: Ashes of the Nine is an isometric action RPG following Bearers from the Wayside Fire along Broken Lantern Road into the Ashen Abbey, its Burned Nave and Bell Crypt. The main-place referee owns quest and encounter orchestration; player, combat, character persistence and UI scripts provide the shared play systems, while the solo Veil place hosts character menus.",
   "scriptPaths": [
     "scripts/arrival.js",
     "scripts/bailiff.js",
@@ -61,6 +61,7 @@
     "scripts/places/main/sim.js",
     "scripts/places/veil/sim.js",
     "scripts/player.js",
+    "scripts/ringer.js",
     "scripts/sim.js",
     "scripts/templates/camera.js",
     "scripts/templates/player.js",
@@ -70,50 +71,51 @@
     "scripts/wax-pack.js"
   ],
   "places": [
-    "places/main/ - playable Z01 from Wayside Fire through the Bailiff's Court and Wax Veil to the Penitent Climb and Ashen Abbey; sim.js coordinates NPCs, quest stages, packs, progression and ambience.",
-    "places/main/cells/x0z0.scene, x0z-1.scene, x0z-2.scene - 3 authored cells/218 placements spanning camp, road, court, climb and Abbey yard; x0z-1 includes Abbey uplights, bell glow and the ossuary cart.",
-    "places/main/config.yaml - main terrain, atmosphere and procedural vegetation.",
-    "places/veil/ - ephemeral solo Lantern Shrine menu stage above the ravine; the hidden menu body is parked there.",
-    "places/veil/cells/x0z0.scene, x0z-1.scene, x0z-2.scene and places/veil/config.yaml - shrine ledge, cliffs, far ridge, spawn and menu-stage atmosphere."
+    "places/main/ - playable Z01 from the Wayside Fire through the road, Bailiff's Court, Wax Veil, Penitent Climb and Ashen Abbey to the Burned Nave and Bell Crypt; sim.js coordinates quests, packs, progression, boss respawn and ambience/music.",
+    "places/main/cells/ - three authored cells with 222 placements; x0z-2.scene contains Abbey wing colliders and blueprint placeholders for the Nave and Ninth Bell; the Abbey façade is an offline Blender build in art/abbey/facade.py.",
+    "places/main/config.yaml - main terrain, atmosphere and procedural vegetation configuration.",
+    "places/veil/ - ephemeral solo Lantern Shrine menu stage above the ravine; the hidden menu body is parked here.",
+    "places/veil/cells/ and places/veil/config.yaml - authored shrine ledge, cliffs, far ridge, spawn and menu-stage environment.",
+    "places/veil/sim.js - selects menu theme and wind when no eligible Bearer is on main."
   ],
   "roots": [
     "world.config.yaml - world entry: main default place, player/camera templates, lighting, arrival behavior, nametag and desktop/touch action routing.",
     "templates/player.js - Bladewraith body, humanoid-locomotion.js and scripts/player.js behavior, layout and carried-light child.",
     "templates/camera.js - custom camera template running scripts/camera.js.",
-    "places/main/sim.js - Z01 referee for NPCs, quest progression, enemy packs, levels, reward turn-ins, local ambience and road/fight/boss/Abbey audio beds.",
-    "places/main/cells/ - authored playable dressing from camp and road through Bailiff arena, Wax Veil, Penitent Climb and Abbey front/yard.",
-    "places/veil/cells/ and places/veil/config.yaml - authored menu-stage shrine/ravine and its spawn/environment.",
+    "places/main/sim.js - Z01 referee for quest stages, NPCs, enemy packs, progression, reward turn-ins, boss respawn and ambience/music.",
+    "places/main/cells/ - authored playable dressing from camp and road through Bailiff arena, Wax Veil, Penitent Climb, Abbey yard, nave and crypt.",
+    "places/veil/cells/ and places/veil/config.yaml - authored menu-stage shrine/ravine and spawn/environment.",
     "places/veil/sim.js - Veil wind and menu-theme selection when no eligible Bearer is on main.",
     "scripts/arrival.js - world doorway behavior; saves an active Bearer when leaving main."
   ],
   "shared": [
-    "scripts/lib/character.js - Bearer schema, fresh state, realm roster/create/load/save/delete and position packing; used by player and arrival behavior.",
-    "scripts/db.js and scripts/lib/data/realms.yml - character table schema and realm room/name registry used by player menus and UI.",
-    "scripts/lib/data/economy.yml and scripts/lib/coins.js - copper denomination/formatting plus enemy drops, quest rewards, sell values and shop stock; used by sim, drops, shop and HUD.",
-    "scripts/lib/data/combat.yml - hero, skills, enemy and Bailiff tuning, including Tallow Flagellant; consumed by combat/referee scripts and HUD.",
-    "scripts/lib/data/veilfall-map.js - shared Z01 floor/areas, Abbey road and Wax Veil seal geometry; terrain, movement and zone banners use its data/functions.",
-    "scripts/lib/data/menu-shot.yml and scripts/lib/data/models.js - Veil camera framing and CDN model IDs/heights/body(kind) helper used by camera and enemy spawning.",
-    "scripts/lib/frames.js, scripts/lib/data/ui-kit.js and scripts/lib/shop-ui.js - shared HUD styling and shop panel presentation used by UI.",
-    "art/roadkit/common.py - offline Blender construction/material/render helpers imported by roadkit and art/abbey builders."
+    "scripts/lib/character.js - Bearer schema, fresh state, realm roster/create/load/save/delete and packed position; player and arrival behavior reuse it.",
+    "scripts/db.js and scripts/lib/data/realms.yml - character-table schema and realm room/name registry for player menus and UI.",
+    "scripts/lib/data/economy.yml and scripts/lib/coins.js - copper denomination/formatting, drops, quest rewards, sell values and shop stock used by sim, combat payouts, shop and HUD.",
+    "scripts/lib/data/combat.yml - hero/skill/enemy and Bailiff/Ringer tuning consumed by player, enemy, boss and HUD systems.",
+    "scripts/lib/data/veilfall-map.js - shared Z01 floor/area and Abbey/Nave/Crypt geometry; terrain, player movement and zone banners use it.",
+    "scripts/lib/data/menu-shot.yml and scripts/lib/data/models.js - Veil camera framing and CDN model IDs/heights/body(kind) helper used by camera and actor spawning.",
+    "scripts/lib/frames.js, scripts/lib/data/ui-kit.js and scripts/lib/shop-ui.js - shared HUD styling and shop-panel presentation used by UI.",
+    "art/roadkit/common.py - offline Blender construction/material/render helpers imported by roadkit and Abbey builders."
   ],
   "notableExports": [
     "places/main/sim.js - cadence, tick; places/veil/sim.js - cadence, tick.",
     "scripts/player.js - onSpawn, onInput, update; scripts/ui.js - default HUD/menu renderer.",
-    "scripts/wax-pack.js - roll, telegraph, hurtPlayers, payout, update; scripts/bailiff.js - onSpawn, update.",
+    "scripts/wax-pack.js - roll, telegraph, hurtPlayers, payout, update; scripts/bailiff.js and scripts/ringer.js - onSpawn, update.",
     "scripts/lib/character.js - CHAR_KEYS, fresh, START, realmOf, pack, zoneOf, rollName, roster, create, load, save, remove.",
     "scripts/lib/shop.js - owned, shopInput; scripts/lib/shop-ui.js - shopPanel; scripts/controls.js - default touch-surface selector.",
-    "scripts/lib/data/models.js - MODELS, HEIGHT, body; scripts/lib/data/veilfall-map.js - ABBEY_ROAD, ABBEY_SEAL, sealSide, floorDist, AREAS, areaAt.",
+    "scripts/lib/data/models.js - MODELS, HEIGHT, body; scripts/lib/data/veilfall-map.js - NAVE_DOOR, NAVE, NAVE_HALF, CRYPT, BELL, floorDist, areaAt.",
     "scripts/gen/ossuary-cart.js - geometry, collider; scripts/gen/censer.js - geometry; scripts/gen/penitent-wheel.js - geometry, collider.",
     "scripts/camera.js - onInput, update; scripts/arrival.js - onArrive, onLeave; scripts/lib/frames.js - FRAME_CSS."
   ],
   "ownership": [
-    "scripts/lib/character.js CHAR_KEYS - persistent Bearer fields including seen area IDs; position is packed separately, transient UI/movement state is not saved.",
-    "scripts/player.js - active body's movement, combat, death/i-frame and skill timers, menu/selection scratch, area/banner/foe HUD projection and selected Bearer hydration/save.",
-    "places/main/sim.js - per-player quest stage/dialog/kills/saints and claimed turn-in rewards; place NPC/shop range behavior, enemy packs, progression and ambience/music orchestration.",
+    "scripts/lib/character.js CHAR_KEYS - persistent Bearer fields including seen areas, quest/reward claims and ringerKilled; packed position is separate and UI/movement scratch is transient.",
+    "scripts/player.js - active body's movement, combat, death/i-frame and skill timers, menu/selection scratch, area/banner/foe projection, floor access gates and selected Bearer hydration/save.",
+    "places/main/sim.js - per-player quest stage/dialog/kills/saints and claimed rewards; place NPC/shop range behavior, enemy packs, progression, Ringer spawn/respawn and ambience/music orchestration.",
     "scripts/wax-pack.js - ordinary enemy AI/hp/death and eligible nearby Bearers' XP/copper/kills/shards payouts.",
-    "scripts/bailiff.js - boss hp/phases/casts, arena reset, ledger pillars/walkers and Fray; publishes place.state.boss and bailiffDownAt.",
+    "scripts/bailiff.js - Bailiff hp/phases/casts, arena reset, ledger pillars/walkers and Fray; publishes place.state.boss.",
+    "scripts/ringer.js - Ringer hp/phases/casts/adds, engagement/reset and defeat; publishes place.state.ringer and marks participating Bearers ringerKilled.",
     "scripts/lib/shop.js - trade validation and buyer copper, tonics, bag and maxHp mutations; shop-open state is on player.state.",
-    "scripts/censer-swing.js - spawned Deacon censer child rotation tween; its generator supplies geometry and child FX supplies smoke/glow presentation.",
     "scripts/camera.js and scripts/ui.js - camera zoom/follow/menu framing and presentation of menu/gameplay panels from player/place state."
   ],
   "flows": [
@@ -121,20 +123,20 @@
     "player.js menuInput → character.js roster/create/load/remove using caller-owned character rows; realms.yml maps selected realm to room and Bearer fields hydrate player.state.",
     "While player.state.menu is set, player.js hides the body and moves it to solo place veil → realm/Bearer screens remain state-driven, with no characters in that place.",
     "scripts/controls.js selects the menu touch surface when player/charId is absent or menu is active, and while shop/bag is open; otherwise world.config.yaml supplies fight controls.",
-    "scripts/ui.js renders menus and HUD from player/place state → menu/shop/combat actions return through player.js; scripts/lib/shop-ui.js presents shop buttons and scripts/lib/shop.js validates trades.",
+    "scripts/ui.js renders menus and HUD from player/place state → menu/shop/combat actions return through player.js; shop-ui.js presents shop buttons and shop.js validates trades.",
     "scripts/camera.js reads target.state.menu and menu-shot.yml for Veil framing; entering play transitions to follow view.",
     "player.js saves changed CHAR_KEYS plus position periodically/on rest → character.js writes characters; arrival.js saves an active character leaving main.",
-    "player.js uses veilfall-map.js floorDist for reachable goals and floor-constrained movement/dash → stage 4+ or place.state.abbeyOpenAll enables ABBEY_OPEN beyond the Wax Veil.",
-    "player.js zoneTick reads areaAt → transient area/banner drives UI; first entry records persistent seen and emits player-targeted milestone/discovery sound.",
-    "main sim advances the Abbey quest after Bailiff return: enter yard (stage 5→6), silence six foes, approach three saints, wait at the door (stage 8→9), then return to Maelin for the once-only Z01-MAIN-06 reward and stage 10.",
-    "main sim selects pack kind/model → combat.yml tunes stats and models.js supplies CDN bodies; Tallow Flagellant joins the Penitent Climb packs, while Deacons receive the censer child.",
-    "main sim selects road/fight/boss/Abbey music and local ambience; Veil sim selects menu theme and wind when no eligible Bearer is on main → both coordinate through the room-shared jukebox."
+    "player.js uses veilfall-map.js floorDist for reachable goals and movement/dash → ABBEY floor opens at quest stage 4+ (or abbeyOpenAll), Nave/Crypt floor at stage 10+ (or abbeyOpenAll); stage 10 entry into NAVE_IN advances quest to 11.",
+    "main sim advances Abbey chapter stages 5–10 (yard, six foes, three saints, door, Maelin); stages 11–13 track Nave entry, Ringer defeat and Maelin turn-in for the once-only Z01-MAIN-07 reward.",
+    "main sim spawns scripts/ringer.js at the Bell Crypt using models.js body('ringer'); the boss publishes place.state.ringer → ui.js displays its engaged boss bar and phase hint.",
+    "Ringer defeat writes player.state.ringerKilled for crypt participants → main sim consumes it at quest stage 11; combat payout gives XP/copper, and Maelin's stage-12 turn-in claims reward and raises maxHp.",
+    "main sim selects pack kind/model → combat.yml tunes stats and models.js supplies CDN bodies; wax-pack.js resolves ordinary kills, while main and Veil sims coordinate ambience/music through the room-shared jukebox."
   ],
   "behaviorFamilies": [
     "scripts/gen/hub-*.js - reusable Wayside Fire camp props varied by instance params, seed and scene transform; share hub-kit.js.",
     "scripts/gen/vf-*.js other than vf-ruin.js - Broken Lantern Road landmarks/clutter varied by parameters and seeds, built with vf-kit.js.",
     "scripts/gen/vf-ruin.js - road, arena, Wax Veil approach, Veil ashlar and Abbey door braziers; kind/dimensions select forms, seed varies geometry.",
-    "scripts/gen/veil-land.js and veil-shrine.js - Veil ledge/cliff/ridge forms vary by kind/dimensions; the unique Lantern Shrine exports its structure and hook constants.",
+    "scripts/gen/veil-land.js and veil-shrine.js - Veil ledge/cliff/ridge forms vary by kind/dimensions; the unique Lantern Shrine exports structure and hook constants.",
     "scripts/gen/arena-floor.js, arena-pillar.js, gibbet.js and toll-throne.js - Bailiff arena dressing generators sharing scripts/gen/shapes.js and its soot-stained wax palette.",
     "scripts/gen/abbey-litter.js and abbey-court.js - Abbey yard dressing; litter varies by kind/seed/transform, court makes ringed slabs and a clear local -Z door path; penitent-wheel.js adds seeded road forms.",
     "scripts/gen/ossuary-cart.js - bespoke static bone-cart mesh/collider placed once in the Abbey approach; parameters vary its tip.",
@@ -145,11 +147,11 @@
     "scripts/gen/wax-figure.js - legacy procedural enemy-figure generator; current wax actors use CDN models."
   ],
   "migrationNotes": [
-    "Persistent character data is exactly scripts/lib/character.js CHAR_KEYS plus packed position; seen is persistent per-Bearer, while area/banner/foe, menu and movement state remain transient. Add persistent fields to CHAR_KEYS.",
+    "Persistent character data is exactly scripts/lib/character.js CHAR_KEYS plus packed position; seen and ringerKilled are persistent per-Bearer, while area/banner/foe, menu and movement state remain transient. Add persistent fields to CHAR_KEYS.",
     "Character rows are caller-owned and realm-bound; character.js scopes roster/load/save by owner and realm, while live names are unique per realm. realms.yml room IDs are routing identities, not places in this tree.",
     "The Veil is solo and ephemeral, has no characters, and parks the hidden menu body at its origin; menu framing in camera.js is tuned against that stage's shrine/ledge layout.",
     "The music jukebox is room-shared, not owned independently by each place: main sim changes it for road/fight/boss/Abbey only when an eligible Bearer is on main; Veil supplies the menu theme otherwise.",
-    "Player attacks mutate enemy.state.hp; wax-pack.js later resolves ordinary-enemy death, XP and kill credit. Preserve its menu/charId eligibility check; Deacons are ordinary enemies with a visual censer child.",
-    "ABBEY_ROAD/ABBEY coordinates in veilfall-map.js are world metres; player.js gates floorDist through quest stage 4+ (Bailiff down) or abbeyOpenAll. The Wax Veil seal-side boundary remains coupled to the placed seal position/orientation."
+    "Player attacks mutate enemy.state.hp; wax-pack.js resolves ordinary-enemy death, XP and kill credit. Ringer boss state is separate: it scales from crypt participants, resets after 6 s with the crypt empty/downed, and main sim respawns its dead entity after 120 s when the crypt is clear.",
+    "ABBEY_ROAD/ABBEY/NAVE/CRYPT coordinates in veilfall-map.js are world metres; player.js gates Abbey and Nave floor by quest state or abbeyOpenAll. The Wax Veil seal-side boundary remains coupled to the placed seal position/orientation."
   ]
 }
