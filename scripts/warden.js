@@ -112,7 +112,7 @@ export function update(ctx, dt) {
         for (const off of lines) {
           const cs = Math.cos(off), sn = Math.sin(off), lx = ux * cs - uz * sn, lz = ux * sn + uz * cs;
           for (let i = 0; i < W.lightCount; i++) {
-            const dist = 2 + i * 2.1, t = W.lightWind + i * W.lightStep;
+            const dist = 2 + i * 3.8, t = W.lightWind + i * W.lightStep;
             const m = { x: f.x + lx * dist, y: f.y, z: f.z + lz * dist, r: W.lightR, dmg: W.lightDmg, at: now + t * 1000, first: i === 0 };
             marks.push(m); telegraph(ctx, m.x, m.y, m.z, m.r, t);
           }
