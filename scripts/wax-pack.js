@@ -28,7 +28,6 @@ function mutter(ctx, w, s, f, now, players) {
   mutterAt.set(w.id, now + 9000 + ctx.random() * 9000);
   if (!players.some((p) => flat(p.feetPosition, f) < EAR)) return;
   const M = MUTTER[s.kind] ?? MUTTER.pilgrim, deep = s.kind === "deacon";
-  s.said = (s.said ?? 0) + 1;
   ctx.emit("playSound", { clip: sfx(M.clip), position: f, volume: deep ? 0.55 : 0.38, pitch: 0.85 + ctx.random() * 0.3, maxDistance: EAR });
   ctx.emit("damageNumber", { position: { x: f.x, y: f.y + (deep ? 2.6 : 2.1), z: f.z }, text: M.lines[Math.floor(ctx.random() * M.lines.length)], color: deep ? "#c9a46a" : "#b8ad98", size: deep ? 0.9 : 0.7, lifetime: 2.6 }, { audience: { nearby: f, radius: EAR } });
 }
