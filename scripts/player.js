@@ -6,6 +6,8 @@ import { findPath } from "builtin/nav";
 import { floorDist } from "./lib/data/veilfall-map.js";
 import C from "./lib/data/combat.yml";
 import { shopInput } from "./lib/shop.js";
+import * as CH from "./lib/character.js";
+import R from "./lib/data/realms.yml";
 
 const FIRE = { x: 0, y: 0, z: 4.5 };
 const A = Math.SQRT1_2; // iso basis: screen-up is (-A,-A) on xz
@@ -60,38 +62,123 @@ function isFoe(o) { return o && o.tags?.includes("enemy") && !(o.state?.dead) &&
 export function onSpawn(ctx) {
   const s = ctx.self.state;
   if (s.hp === undefined) {
-    Object.assign(s, { hp: C.hero.hp, maxHp: C.hero.hp, edge: 0, tonics: C.hero.tonics, xp: 0, level: 1, gold: 0, kills: 0, petitions: [], quest: { stage: 0 }, claimed: {}, cls: "bladewraith" });
+    Object.assign(s, CH.fresh(null, "bladewraith"));
   }
   s.dead = false; s.target = null; s.goal = null;
 }
 
-// the title and the Bearer screen: the UI's buttons send { a, v, n }; n is a click's stamp so one press acts once
+// THE FRONT DOOR: title → realm list → character select → create → enter world. The UI's buttons send
+// sendAction('menu', { a, v, n }); n is a click's stamp so one press acts once. A Bearer lives in the characters
+// table (scripts/lib/character.js), one realm each; player.state only carries the one that is in the world now.
+// While s.menu is set the body is hidden and parked in the Veil (places/veil, a solo copy: nobody else there).
 const CLASSES = ["bladewraith", "soulweaver", "hellwarden", "shadowmancer", "primalist", "gloamstalker"];
 const ANCESTRIES = ["cinderkin", "fenborn", "stonebound", "skyforged"];
 const PLAYABLE = { bladewraith: true }; // M1: one hero; the other five are sealed until their milestone
+const MENU_PLACE = "veil";
+function msg(ctx, text) { ctx.self.state.msg = { text, at: ctx.now() }; }
+function click(ctx, pitch = 1) { ctx.emit("playSound", { clip: sfx("stone-ledger-page-turn-soft"), position: ctx.self.feetPosition, volume: 0.5, pitch }, { audience: "local" }); }
+async function refresh(ctx) {
+  const s = ctx.self.state, realm = CH.realmOf(ctx).room;
+  try {
+    const r = await CH.roster(ctx, realm);
+    s.roster = { realm, chars: r.chars, per: r.per, at: ctx.now() };
+    if (!r.chars.some((c) => c.id === s.sel)) s.sel = r.chars[0]?.id ?? null;
+  } catch (e) { ctx.log("roster failed", String(e)); s.roster = { realm, chars: [], per: {}, at: ctx.now(), error: true }; msg(ctx, "The realm's ledger is unreadable. Try again."); }
+}
+function hasVeil(ctx) { return me.veil ??= (ctx.world.files ?? []).includes("places/veil/config.yaml"); }
+function goVeil(ctx) {
+  if (!hasVeil(ctx) || ctx.self.place === MENU_PLACE) return;
+  if (me.crossAt && ctx.now() - me.crossAt < 4000) return;
+  me.crossAt = ctx.now();
+  const out = ctx.cross(ctx.self, MENU_PLACE);
+  if (!out?.crossed) ctx.log("veil cross refused", out?.verdict);
+}
+async function busy(ctx, label, fn) {
+  const s = ctx.self.state; if (s.busy) return; s.busy = label;
+  try { await fn(); } catch (e) { ctx.log(label + " failed", String(e)); msg(ctx, "Something in the ledger tore. Try again."); }
+  finally { s.busy = null; }
+}
 function menuInput(ctx, d) {
   const s = ctx.self.state;
-  if (!d || d.n === me.menuN) return; me.menuN = d.n;
-  const click = (pitch) => ctx.emit("playSound", { clip: sfx("stone-ledger-page-turn-soft"), position: ctx.self.feetPosition, volume: 0.5, pitch }, { audience: "local" });
-  const pick = s.pick ?? { anc: s.ancestry ?? "cinderkin", cls: s.cls ?? "bladewraith" };
-  if (d.a === "continue") { if (!s.ancestry) { s.pick = pick; s.menu = "bearer"; click(1); } else enterRoad(ctx); }
-  else if (d.a === "bearer") { s.pick = pick; s.menu = "bearer"; click(1); }
-  else if (d.a === "back") { s.menu = "title"; click(0.85); }
-  else if (d.a === "anc" && ANCESTRIES.includes(d.v)) { s.pick = { ...pick, anc: d.v }; click(1.1); }
-  else if (d.a === "cls" && CLASSES.includes(d.v)) { s.pick = { ...pick, cls: d.v }; click(PLAYABLE[d.v] ? 1.15 : 0.7); }
-  else if (d.a === "confirm" && PLAYABLE[pick.cls]) { s.ancestry = pick.anc; s.cls = pick.cls; enterRoad(ctx); }
-}
-function enterRoad(ctx) {
-  const s = ctx.self.state, f = ctx.self.feetPosition;
-  s.menu = null; s.started = true; s.goal = null; s.target = null;
-  ctx.emit("fx", { position: { x: f.x, y: f.y + 0.1, z: f.z }, script: `fx\npop rise burst=40 on=disc(.7) life=.8..1.4 v=up(1.5..3)+sdir()*.4 size=.04..0.08 col=hdr(3.4,1.6,.5)>hdr(1,.3,.05) acc=curl(.6)+drag(.6) a=1>0 r=sprite(ember,add,velocity,.03)\npop fl burst=1 life=.5 size=2.4 col=hdr(2,1.1,.4) a=.7>0 sz=$size*(.3>1.4) r=sprite(soft-disc,add)` });
-  ctx.emit("playSound", { clip: sfx("deep-bell-toll-distant-with-embers"), position: f, volume: 0.8 }, { audience: "local" });
-  ctx.emit("milestone", { step: 0, name: "bearer-chosen" }, { audience: { player: ctx.self.id } });
+  if (!d || d.n === me.menuN || s.busy) return; me.menuN = d.n;
+  const pick = s.pick ?? { anc: "cinderkin", cls: "bladewraith", name: CH.rollName("cinderkin", () => ctx.random()) };
+  const max = R.maxChars, here = CH.realmOf(ctx).room;
+  switch (d.a) {
+    case "title": s.menu = "title"; s.confirmDel = null; click(ctx, 0.85); break;
+    case "realms": s.menu = "realms"; click(ctx); refresh(ctx); break;
+    case "chars": s.menu = "chars"; s.confirmDel = null; click(ctx); refresh(ctx); break;
+    case "realm": {
+      const r = R.realms.find((x) => x.room === d.v); if (!r) break;
+      click(ctx, 1.1);
+      if (r.room === here) { s.menu = "chars"; refresh(ctx); break; }
+      s.menu = "chars"; s.menuNext = "chars"; s.roster = null; s.busy = "Crossing to " + r.name;
+      const out = ctx.cross(ctx.self, `world:${ctx.world.id}/room:${r.room}` + (hasVeil(ctx) ? "+" + MENU_PLACE : ""));
+      if (!out?.crossed) { s.busy = null; msg(ctx, "That realm would not open. Try again."); ctx.log("realm cross refused", out?.verdict); }
+      break;
+    }
+    case "sel": s.sel = Number(d.v); s.confirmDel = null; click(ctx, 1.05); break;
+    case "new":
+      if ((s.roster?.chars?.length ?? 0) >= max) { msg(ctx, `${max} Bearers is the most one realm will hold.`); break; }
+      s.pick = { anc: pick.anc, cls: "bladewraith", name: CH.rollName(pick.anc, () => ctx.random()) }; s.menu = "create"; click(ctx); break;
+    case "anc": if (ANCESTRIES.includes(d.v)) { s.pick = { ...pick, anc: d.v, name: CH.rollName(d.v, () => ctx.random()) }; click(ctx, 1.1); } break;
+    case "cls": if (CLASSES.includes(d.v)) { s.pick = { ...pick, cls: d.v }; click(ctx, PLAYABLE[d.v] ? 1.15 : 0.7); } break;
+    case "reroll": s.pick = { ...pick, name: CH.rollName(pick.anc, () => ctx.random()) }; click(ctx, 1.2); break;
+    case "create":
+      if (!PLAYABLE[pick.cls]) { msg(ctx, "That path is sealed for now."); break; }
+      busy(ctx, "Writing your name", async () => {
+        let data = CH.fresh(pick.anc, pick.cls);
+        // the Bearer someone already walked before realms existed: their road becomes their first character
+        const total = Object.values(s.roster?.per ?? {}).reduce((a, b) => a + b, 0);
+        if (!s.legacyDone && total === 0 && (s.xp ?? 0) > 0) {
+          data = { ...CH.fresh(pick.anc, pick.cls), ...CH.pack(s), ancestry: pick.anc, cls: pick.cls, copper: (s.copper ?? 0) + (s.gold ?? 0) * 10 };
+          s.legacyDone = true;
+        }
+        let name = pick.name, out = await CH.create(ctx, here, name, pick.anc, pick.cls, data);
+        for (let i = 0; out.error === "taken" && i < 6; i++) { name = CH.rollName(pick.anc, () => ctx.random()); out = await CH.create(ctx, here, name, pick.anc, pick.cls, data); }
+        if (out.error === "full") { msg(ctx, `${max} Bearers is the most one realm will hold.`); return; }
+        if (out.error) { msg(ctx, "That name is already walking this realm."); return; }
+        ctx.emit("playSound", { clip: sfx("quill-scratch-and-wax-seal-press"), position: ctx.self.feetPosition, volume: 0.8 }, { audience: "local" });
+        s.sel = out.id; s.menu = "chars"; s.pick = null; msg(ctx, `${name} is written into ${CH.realmOf(ctx).name}.`);
+        await refresh(ctx);
+      });
+      break;
+    case "delete": if (s.sel) { s.confirmDel = s.sel; click(ctx, 0.7); } break;
+    case "delete-no": s.confirmDel = null; click(ctx, 0.85); break;
+    case "delete-yes":
+      if (!s.confirmDel) break;
+      busy(ctx, "Unwriting", async () => { await CH.remove(ctx, s.confirmDel); s.confirmDel = null; s.sel = null; await refresh(ctx); msg(ctx, "The name is unwritten."); });
+      break;
+    case "enter":
+      if (!s.sel) break;
+      busy(ctx, "Entering the world", async () => {
+        const c = await CH.load(ctx, s.sel, here);
+        if (!c) { msg(ctx, "That Bearer is not on this realm."); await refresh(ctx); return; }
+        const base = CH.fresh(c.ancestry, c.cls);
+        for (const k of CH.CHAR_KEYS) s[k] = c.data[k] ?? base[k];
+        s.ancestry = c.ancestry; s.cls = c.cls; s.charId = c.id; s.charName = c.name;
+        s.dead = false; s.goal = null; s.target = null; s.talk = null; s.dialog = null; s.shop = null; s.bagOpen = false;
+        if (s.hp <= 0) s.hp = s.maxHp;
+        s.pendingPos = c.data.pos ?? CH.START; s.enteredAt = ctx.now(); s.menu = null;
+        me.lastHp = s.hp; me.saved = JSON.stringify(CH.pack(s)); me.saveAt = ctx.now();
+        ctx.emit("playSound", { clip: sfx("deep-bell-toll-distant-with-embers"), position: ctx.self.feetPosition, volume: 0.8 }, { audience: "local" });
+        ctx.emit("milestone", { step: 0, name: "entered-world" }, { audience: { player: ctx.self.id } });
+        if (ctx.self.place !== "main") { me.crossAt = ctx.now(); ctx.cross(ctx.self, "main"); }
+      });
+      break;
+    case "logout":
+      if (!s.charId) { s.menu = "chars"; break; }
+      busy(ctx, "Resting at the fire", async () => {
+        await CH.save(ctx, s.charId, s, ctx.self.feetPosition);
+        s.charId = null; s.menu = "chars"; s.shop = null; s.bagOpen = false;
+        await refresh(ctx);
+      });
+      break;
+  }
 }
 
 export function onInput(ctx, input) {
   const s = ctx.self.state;
-  if (input.pressed.menu || input.actionData?.menu) menuInput(ctx, input.actionData?.menu);
+  if (input.actionData?.menu) menuInput(ctx, input.actionData.menu);
   if (s.menu) return;
   if (input.actionData?.shop) shopInput(ctx, input.actionData.shop);
   if (s.dead || ctx.self.inputHeld) return;
@@ -279,12 +366,33 @@ export function update(ctx, dt) {
   if (ctx.self.state.hp === undefined) onSpawn(ctx);
   const s = ctx.self.state, now = ctx.now(), f = ctx.self.feetPosition;
   const vy = (ctx.self.velocity?.y ?? 0) + (ctx.self.grounded ? 0 : ctx.place.gravity.y * dt);
-  // a fresh visit opens on the title, drawn over the living camp; nothing can touch the Bearer while it stands
-  if (ctx.self.isLocal !== false && !ctx.session.vfTitle) { ctx.session.vfTitle = true; if (!s.dead) s.menu = "title"; }
+  // a fresh visit opens on the title in the Veil; a realm cross lands on that realm's character list
+  if (ctx.self.isLocal !== false && !ctx.session.vfDoor) {
+    ctx.session.vfDoor = true;
+    if (s.charId && !s.menu && s.menuNext !== "chars") CH.save(ctx, s.charId, s, f).catch(() => {}); // a body left in the world: its last stand is kept
+    s.menu = s.menuNext ?? "title"; s.menuNext = null; s.charId = null; s.pendingPos = null; s.busy = null; s.confirmDel = null;
+    refresh(ctx);
+  }
   if (s.menu) {
+    if (ctx.self.visible !== false) ctx.self.visible = false; // nobody sees a Bearer who is not in the world, not even its player
     if ((s.iframesUntil ?? 0) < now + 500) s.iframesUntil = now + 1500;
     ctx.self.velocity = { x: 0, y: vy, z: 0 }; me.lastHp = s.hp;
+    goVeil(ctx);
+    if (s.menuNext === "chars" && ctx.self.place) s.menuNext = null;
+    if (s.roster && s.roster.realm !== CH.realmOf(ctx).room && !s.busy) { s.roster = null; refresh(ctx); } // landed on another realm
+    if (s.busy?.startsWith("Crossing") && s.roster === null && !me.crossBusyAt) me.crossBusyAt = now;
+    if (me.crossBusyAt && now - me.crossBusyAt > 8000) { s.busy = null; me.crossBusyAt = 0; }
     return;
+  }
+  if (!s.charId) { s.menu = "title"; return; } // never in the world without a Bearer
+  if (ctx.self.place && ctx.self.place !== "main") { if (!me.crossAt || now - me.crossAt > 4000) { me.crossAt = now; ctx.cross(ctx.self, "main"); } ctx.self.velocity = { x: 0, y: vy, z: 0 }; return; }
+  if (s.pendingPos) { ctx.self.feetPosition = s.pendingPos; ctx.self.velocity = { x: 0, y: 0, z: 0 }; s.pendingPos = null; s.enteredAt = now; return; }
+  if (ctx.self.visible === false) ctx.self.visible = true;
+  // the save: every 20 s, when the Bearer changed
+  if (now - (me.saveAt ?? 0) > 20000) {
+    me.saveAt = now;
+    const snap = JSON.stringify(CH.pack(s));
+    if (snap !== me.saved) { me.saved = snap; CH.save(ctx, s.charId, s, f).catch((e) => ctx.log("save failed", String(e))); }
   }
   traitTick(ctx, now);
   if (me.animOff && now > me.animOff) { ctx.self.anim.attack = null; me.animOff = 0; }
