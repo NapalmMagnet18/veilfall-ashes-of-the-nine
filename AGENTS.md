@@ -1,5 +1,9 @@
 # @whispers/veilfall-ashes-of-the-nine — a live multiplayer world on Spawn
 
+## Shared builder coordination
+
+Connected editors build directly through Git and the supported world APIs. Read `.spawn/builder-workflow.md` and `.spawn/build-tasks.json` before selecting work. Claim a small nonoverlapping task through a pushed board update, preserve concurrent Savi/editor changes, and record verification and handoffs. The board is advisory; it is not an enforced lock. Savi's closed messaging lane does not prevent editor pushes.
+
 This tree IS the world. A push to main reaches every room open on main with no build and no deploy. Most pushes land in seconds and the rooms hear them seconds later; a large change or a large or busy world can take a minute or more. People may be standing in it while you edit. Play it:
 https://www.spawn.co/@whispers/veilfall-ashes-of-the-nine
 

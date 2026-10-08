@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "world": "@whispers/veilfall-ashes-of-the-nine",
+  "coordination": "Advisory Git task claims; read builder-workflow.md before claiming.",
+  "tasks": [
+    {
+      "id": "VF-QA-LOOT-01",
+      "status": "open",
+      "owner": null,
+      "title": "Validate personal loot, overflow, rewards and reconnect",
+      "scope": "Audit existing authority and duplicate protection. Exercise loot intake, full pack behavior, repeated reward claims and save/rejoin without modifying creator characters.",
+      "files": ["scripts/lib/loot.js", "scripts/player.js"],
+      "acceptance": "Evidence for owner isolation, no duplicate grants, documented overflow behavior and save/rejoin; identify or repair failures before trade expansion."
+    },
+    {
+      "id": "VF-QA-FORGE-01",
+      "status": "open",
+      "owner": null,
+      "title": "Validate the existing Wayside Forge",
+      "scope": "Temper, Reforge and Ascend already exist. Test dust costs, level caps, rarity eligibility, distance, duplicate input and save/rejoin; do not recreate them.",
+      "files": ["scripts/lib/loot.js", "scripts/lib/pack-ui.js", "scripts/player.js"],
+      "dependsOn": ["VF-QA-LOOT-01"],
+      "acceptance": "Valid operations apply once and charge once; invalid operations preserve inventory/dust; save compatibility verified."
+    },
+    {
+      "id": "VF-ART-ABBEY-01",
+      "status": "open",
+      "owner": null,
+      "title": "Finish one original Abbey prop or environment set",
+      "scope": "Inspect current generation crews and placed art first. Select an unfinished nonoverlapping detail consistent with the atlas and art references; model/import it with provenance and LOD/collision appropriate to its use.",
+      "files": [],
+      "acceptance": "Actual CDN/model or scripted geometry placed and visually reviewed; traversal remains clear; performance impact measured or explicitly unverified."
+    },
+    {
+      "id": "VF-QA-QUEST-01",
+      "status": "open",
+      "owner": null,
+      "title": "Verify one chapter with natural play and reconnect",
+      "scope": "Study matching quest records and live stage mapping. Choose an existing chapter whose previous test used forced state. Test natural progression, boss fight, repeated turn-in and reconnect on a test character.",
+      "files": [],
+      "acceptance": "Quest gates, boss completion and reward idempotence supported by recorded play evidence; failures repaired or documented before expansion."
+    },
+    {
+      "id": "VF-ECON-PROFESSION-01",
+      "status": "open",
+      "owner": null,
+      "title": "Add a small profession and recipe progression slice",
+      "scope": "Extend the verified forge with an original source-defined profession/recipe loop; preserve existing loot and saves.",
+      "files": [],
+      "dependsOn": ["VF-QA-LOOT-01", "VF-QA-FORGE-01"],
+      "acceptance": "Earn materials, learn recipe, craft/equip and reconnect without lost or duplicated inputs/rewards."
+    }
+  ]
+}
