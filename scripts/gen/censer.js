@@ -12,9 +12,9 @@ export function geometry(ctx) {
   for (const t of [0.0, 0.45]) { const pts = []; for (let k = 0; k <= 14; k++) { const a = (k / 14) * 6.283; pts.push([Math.cos(a) * rAt(t), 0.03 + t * 0.2, Math.sin(a) * rAt(t)]); } tube(ctx, pts, 0.014); }
   lathe(ctx, I, [[0.025, 0.22], [0.02, 0.3], [0.006, 0.36], [0, 0.37]], 6, {});
   // embers inside
-  ctx.albedo(null); ctx.metalness(0); ctx.roughness(1); ctx.emissive?.("oklch(.75 .2 45)", 3); ctx.color("oklch(.6 .2 40)");
+  ctx.albedo(null); ctx.metalness(0); ctx.roughness(1); ctx.emissive("oklch(.8 .2 45)"); ctx.color("oklch(.6 .2 40)");
   lathe(ctx, I, [[0, 0.0], [0.1, 0.0], [0.07, 0.04], [0, 0.05]], 8, {});
-  ctx.emissive?.(null);
+  ctx.emissive(null);
   // three chains from the lid rim up to the hand ring
   const top = [0, up, 0];
   for (let i = 0; i < 3; i++) { const a = (i / 3) * 6.283; chain(ctx, [[Math.cos(a) * 0.11, 0.04, Math.sin(a) * 0.11], top], L, 0.7); }

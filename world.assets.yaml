@@ -21,6 +21,7 @@ assets:
     "/cdn/value.707684534d6dd1f99aff9e4a18a21122d2540867b6751169a315b094b24fc0cf.png": {bytes: 370, kind: image, name: vf-divf, uploadedAt: "2026-10-08T16:12:22.505Z"}
     "/cdn/value.75a658d631981a665ceca8773fec687cb292ed5ca6833b19d6156b214b7e9bc1.png": {bytes: 492, kind: image, name: vf-ornate, uploadedAt: "2026-10-08T16:06:34.469Z"}
     "/cdn/value.7cae4a7da68ba6bd1b43c79775e944262bfbf0d1e034043e806b051ce14fbde6.glb": {bytes: 657176, kind: model, name: grave-lancet, uploadedAt: "2026-10-08T18:13:25.714Z"}
+    "/cdn/value.7ed95daacf1b4a9d2bba90de827510c3bd227b5dd5b099a9f8c494f3b4e4dfb8.glb": {bytes: 21833688, kind: model, name: abbey-facade, uploadedAt: "2026-10-08T18:20:39.621Z"}
     "/cdn/value.7f79683fa382b0c4cf247217d7856c58041712eb2c018ae355701c4a01ab107a.glb": {bytes: 886556, kind: model, name: grave-ledger, uploadedAt: "2026-10-08T18:13:37.088Z"}
     "/cdn/value.a2605b2cc3a81b3017dc37e70db702f5d8bc19876c5b91473921a28a733d3467.png": {bytes: 265, kind: image, name: vf-div, uploadedAt: "2026-10-08T16:11:15.123Z"}
     "/cdn/value.a653a5ebfcccb33300582bba7d25b0912ff6b147bc340943eeb0a5a772ab6283.glb": {bytes: 1486772, kind: model, name: wax-saint-c, uploadedAt: "2026-10-08T18:13:21.541Z"}
@@ -32,3 +33,4 @@ assets:
     "/cdn/value.e7160ea1f290518c9f70bb4444978e619c424d4ea45f4ec59d41f26421ea0043.png": {bytes: 466, kind: image, name: vf-row, uploadedAt: "2026-10-08T15:56:15.581Z"}
     "/cdn/value.efe39eecfc97d68d46617bd1d458e5911ab198326813fc093bb482ff510fd61e.png": {bytes: 481, kind: image, name: vf-btn, uploadedAt: "2026-10-08T15:55:59.357Z"}
     "/cdn/value.f783f422d9a4f9d95b085cec04840cff18609af18ff793d4e0d0d2ff4dfe8f22.glb": {bytes: 3247824, kind: model, name: waystone-of-the-nine, uploadedAt: "2026-10-08T17:24:40.455Z"}
+    "/cdn/value.fc4c148debba7a63ae7aece00b8d6da267174c9429d997dddfc43477d97a8a17.glb": {bytes: 9424436, kind: model, name: abbey-belltower, uploadedAt: "2026-10-08T18:20:44.246Z"}
