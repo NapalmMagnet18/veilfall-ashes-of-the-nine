@@ -6,3 +6,4 @@ asks: [2, 4, 8]     # the price buttons, as multiples of the vendor's sell value
 minPrice: 10        # copper
 show: 30            # newest listings shown
 refresh: 8          # seconds between board reads while the pack is open at it
+hwAsks: [120, 200, 320] # heartwax pin prices, copper (Oswin pays 150)
