@@ -463,28 +463,50 @@ function zoneTick(ctx, s, f, now) {
 }
 
 // D2-style roster: the selected Bearer stands in the shrine arch (the Veil's solo copy), torch-lit, idling.
-// One actor per machine, rebuilt only when the pick changes; gone the moment the roster closes.
+// Each ancestry stands in its own light: rim colour, aura, build. One actor per machine, rebuilt only when the pick changes.
+const AURA = {
+  cinderkin: { rim: "#ff8a3c", key: 8, scale: 1.0, fx: `fx
+pop ember n=?mobile:14|30 on=disc(.6) life=1.4..2.6 v=up(.5..1.1)+sdir()*.12 size=.015..0.035 acc=curl(.6)*.3+buoy(.3) col=hdr(3.2,1.3,.3)>hdr(1,.3,.06) a=(0>.15:1>.7:.7>0)*flick(7,.4) sz=$size r=sprite(ember,add)` },
+  fenborn: { rim: "#6DB8C0", key: 5, scale: 0.98, fx: `fx
+pop mist n=?mobile:6|12 on=disc(.9) life=3..5 v=sdir()*.08 size=.6..1.1 acc=curl(.2)*.1 col=<.42,.62,.66> a=0>.18:.3>.7:.18>0 sz=$size*(.7>1.4) rot=spin(.1) r=sprite(smoke-puff,alpha)
+pop mote n=?mobile:6|14 on=disc(.7) life=2..3.5 v=up(.1..0.3) size=.02..0.04 acc=curl(.4)*.2 col=hdr(.6,1.8,2) a=(0>.3:1>.7:.8>0)*flick(3,.5) sz=$size r=sprite(soft-disc,add)` },
+  stonebound: { rim: "#C49C63", key: 7, scale: 1.07, fx: `fx
+pop grit n=?mobile:8|18 on=disc(.8) life=1.5..3 v=up(.05..0.2)+sdir()*.08 size=.02..0.05 acc=grav()*.05+drag(1) col=<.6,.52,.42> a=0>.5:.5>.7:.4>0 sz=$size r=sprite(soft-disc,alpha)
+pop dust n=?mobile:3|6 on=disc(.9) life=3..5 v=sdir()*.05 size=.5..0.9 col=<.45,.4,.34> a=0>.12:.3>.7:.12>0 sz=$size*(.8>1.5) r=sprite(smoke-puff,alpha)` },
+  skyforged: { rim: "#cfe3ff", key: 6, scale: 1.0, fx: `fx
+pop gust n=?mobile:8|16 on=disc(.8).c(.4) life=1..1.8 v=<1.6,0,.3>*(.6..1.2)+up(.2) size=.01..0.02 acc=curl(.8)*.4 col=hdr(1.6,1.8,2.2) a=0>.6:.6>.6:.5>0 sz=$size r=sprite(ember,add,velocity,.05)
+pop spark n=?mobile:4|8 on=disc(.5).c(1.4) life=.4..0.9 size=.02..0.04 col=hdr(2,2.4,3) a=(0>1:1>0)*flick(14,.6) sz=$size r=sprite(soft-disc,add)` },
+};
+const FLARE = `fx
+pop ring burst=1 life=.7 size=2.2 col=%c|<1,.7,.4> a=.9>0 sz=$size*(.2>1.2) r=sprite(soft-disc,add)
+pop rise burst=26 on=disc(.5) life=.6..1.2 v=up(1.5..3)+sdir()*.4 size=.02..0.05 acc=drag(1.2) col=%c|<1,.7,.4>*3 a=1>0 sz=$size r=sprite(ember,add)
+pop glow burst=1 life=.8 at=point().c(1.2) r=light(%c|<1,.7,.4>,30*(1>0),7)`;
+const HEXV = (h) => { const n = parseInt(h.slice(1), 16); return { x: ((n >> 16) & 255) / 255, y: ((n >> 8) & 255) / 255, z: (n & 255) / 255 }; };
 function showcase(ctx) {
   const s = ctx.self.state;
   const want = s.menu === "chars" && String(ctx.self.place ?? "").startsWith(MENU_PLACE) && s.sel ? String(s.sel) : null;
   if (want === (me.showFor ?? null) && (!want || (me.showId && ctx.getObject(me.showId)))) return;
   if (me.showId) { try { ctx.destroy(me.showId); } catch {} me.showId = null; }
+  const swapped = !!me.showFor && !!want;
   me.showFor = want;
   if (!want) return;
+  const row = (s.roster?.chars ?? []).find((c) => String(c.id) === want);
+  const A = AURA[row?.ancestry] ?? AURA.cinderkin;
   const hit = raycast(ctx, { x: -0.3, y: 6, z: -10.2 }, { x: 0, y: -1, z: 0 }, { distance: 12, bodies: "static", physicsOnly: true });
-  const y = hit ? hit.position.y : 0;
+  const y = hit ? hit.position.y : 0, at = { x: -0.3, y, z: -10.2 };
   me.showId = ctx.spawn({
-    ...heroBody("hero"), scope: "session",
-    feetPosition: { x: -0.3, y, z: -10.2 }, rotation: { yaw: 174 },
-    mixer: { base: { clip: "Idle", loop: "loop", weight: 1 } },
+    ...heroBody("hero"), scope: "session", scale: A.scale,
+    feetPosition: at, rotation: { yaw: 174 },
+    mixer: { base: { clip: "Idle", loop: "loop", weight: 1, speed: row?.ancestry === "stonebound" ? 0.85 : 1 } },
     tags: ["menu-showcase"],
     children: [
-      { feetPosition: { x: 1.1, y: 2.3, z: 1.4 }, light: { kind: "point", color: "#ffb070", intensity: 7, distance: 6 } },
-      { feetPosition: { x: -0.9, y: 2.6, z: -1.3 }, light: { kind: "point", color: "#6DB8C0", intensity: 2.5, distance: 6 } },
-      { feetPosition: { x: 0, y: 0.02, z: 0 }, fx: { script: `fx
-pop dust n=?mobile:10|22 on=disc(.7) life=2..4 v=up(.05..0.15)+sdir()*.05 size=.012..0.025 acc=curl(.3)*.12 col=hdr(2.6,1.2,.35)>hdr(.8,.3,.08) a=(0>.2:.8>.8:.6>0)*flick(5,.3) sz=$size r=sprite(ember,add)` } },
+      { feetPosition: { x: 1.1, y: 2.3, z: 1.4 }, light: { kind: "point", color: "#ffb070", intensity: A.key, distance: 6 } },
+      { feetPosition: { x: -0.9, y: 2.6, z: -1.3 }, light: { kind: "point", color: A.rim, intensity: 4, distance: 6 } },
+      { feetPosition: { x: 0, y: 0.02, z: 0 }, fx: { script: A.fx } },
     ],
   });
+  ctx.emit("fx", { position: at, script: FLARE, params: { c: HEXV(A.rim) } }, { audience: { player: ctx.self.id } });
+  if (swapped) ctx.emit("playSound", { clip: sfx("bearer-select-soft-bell-and-cloak-rustle"), position: at, volume: 0.55 }, { audience: { player: ctx.self.id } });
 }
 
 export function update(ctx, dt) {
