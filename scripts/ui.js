@@ -1,6 +1,7 @@
 // VEILFALL HUD: life orb, edge orb, skill bar, quest tracker, boss bar, dialogue, death beat.
 import { coinHTML, fmt } from "./lib/coins.js";
 import { shopPanel } from "./lib/shop-ui.js";
+import { packPanel, PACK_CSS } from "./lib/pack-ui.js";
 import R from "./lib/data/realms.yml";
 import { FRAME_CSS } from "./lib/frames.js";
 import CB from "./lib/data/combat.yml";
@@ -460,12 +461,7 @@ export default function (ctx, player) {
   </div>
   <div class="absolute ph" style="left:190px;top:150px;pointer-events:auto" onclick="sendAction('bag')"><div class="slot" style="width:48px;height:40px;font-size:11px">PACK</div></div>
   ${q.stage === 0 || q.stage === 4 || q.stage === 9 || q.stage === 12 || q.stage === 16 || q.stage === 17 || q.stage === 21 ? `<div data-world-anchor="maelin" data-anchor-offset="0 2.3 0" style="font-size:30px;color:var(--wax);text-align:center;animation:vfpulse 1.4s infinite">!<div style="font-size:12px">MAELIN</div></div>` : ""}
-  ${s.bagOpen ? `<div class="absolute plate pk" style="right:${rail};top:50%;transform:translateY(-50%);width:290px;max-width:calc(100vw - 2*${rail});max-height:calc(100vh - 16px);overflow:auto;pointer-events:auto;animation:vfin .25s">
-    <div class="lbl" style="display:flex;justify-content:space-between">${s.charName ?? "Bearer"} · Pack${touch ? "" : " (I to close)"}${touch ? `<span style="cursor:pointer;color:#f2d38a" onclick="sendAction('bag')">CLOSE</span>` : ""}</div><div class="dv d5"></div>
-    <div style="display:grid;grid-template-columns:repeat(4,52px);gap:6px;margin-top:8px">
-      ${[["⚔", s.weapon === "ITEM-001" ? "Rusted Oathblade" : "Pilgrim's Shortblade", 1], ["♥", "Ash Tonic", s.tonics ?? 0], ["◆", "Wax Shard", s.shards ?? 0], ["✉", "Sealed Petition", s.petitions?.length ?? 0]].filter((i) => i[2]).concat(Array(12).fill(null)).slice(0, 12).map((it) => it ? `<div class="slot" title="${it[1]}" style="width:52px;height:52px">${it[0]}<span class="n">${it[2]}</span></div>` : `<div class="slot e" style="width:52px;height:52px"></div>`).join("")}
-    </div>
-    <div style="font-size:13px;margin-top:8px;line-height:1.4">${s.weapon === "ITEM-001" ? "Rusted Oathblade · +30% damage" : "Pilgrim's Shortblade"}<br>${s.shards ?? 0} wax shards · ${s.petitions?.length ?? 0} petitions</div><div style="font-size:14px;margin-top:6px;display:flex;align-items:center">${coinHTML(s.copper ?? 0, 14)}</div><button style="pointer-events:auto;cursor:pointer;margin-top:10px;width:100%;padding:8px;font-family:inherit;font-size:13px;letter-spacing:.12em;color:#e9dfc8;background:linear-gradient(#2c2825,#171412);border:0;box-shadow:0 0 0 2px #0d0b0a,0 0 0 3px #5a4a33" onclick="sendAction('menu',{a:'logout',n:Date.now()})">REST · CHARACTER SELECT</button></div>` : ""}
+  ${s.bagOpen ? packPanel(ctx, player, { rail, touch }) : ""}
   ${s.shop ? shopPanel(ctx, player) : ""}
   ${s.dead ? `<div class="absolute inset-0" style="display:flex;align-items:center;justify-content:center;background:radial-gradient(transparent 30%,rgba(40,0,0,.6));animation:vfin .4s"><div class="kd" style="font-size:54px;color:#d8442f;letter-spacing:.1em">THE ROAD TAKES YOU</div></div>` : ""}
   ${now - firstSeen < 9000 && !touch ? `<div class="absolute inset-x-0 text-center dk" style="bottom:150px;font-size:17px;padding:0 ${rail};animation:vffade 1s 8s forwards">Click to walk · click a foe to strike · Right-click Crosswound · Space Griefstep · Q tonic · I pack</div>` : ""}
