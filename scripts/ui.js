@@ -237,17 +237,49 @@ function menu(ctx, player, s) {
   if (s.menu === "title") {
     const last = (s.roster?.chars ?? []).find((c) => c.id === s.sel);
     const lk = last && (CLASSES.find((c) => c.id === last.cls) ?? CLASSES[0]);
-    return `${head(s)}<div id="vt"><div class="shade"></div>${EMBERS}
+    return `${head(s)}<div id="vt"><div class="shade"></div>${s.opt?.embers === false ? "" : EMBERS}
     <div class="logo"><img class="crest" src="${CREST}"><div class="word gold">VEILFALL</div><div class="subt"><i></i><b></b>ASHES OF THE NINE<b></b><i></i></div></div>
     <div class="menu"><div class="cap">THE LANTERN SHRINE</div>
       ${last ? `<button class="it main" onmouseenter="${HOV}" onclick="${act("enter")}">Continue<span class="sub">${last.name} · Level ${last.level} ${lk.name} · ${last.zone}</span></button><div class="rule"></div>` : ""}
       <button class="it ${last ? "" : "main"}" onmouseenter="${HOV}" onclick="${act("chars")}">${last ? "Bearers" : "Enter the Veil"}<span class="sub">${last ? "choose another, or write a new name" : "write your first Bearer"}</span></button>
       <button class="it" onmouseenter="${HOV}" onclick="${act("realms")}">Realms<span class="sub">${realmName(here)} · ${R.realms.length} roads</span></button>
+      <button class="it" onmouseenter="${HOV}" onclick="${act("options")}">Options<span class="sub">interface, sound, the shrine</span></button>
     </div>
     <div class="chron"><h4>THE CHRONICLE</h4>${CHRONICLE.map(([n, t, d, nw]) => `<div class="ch ${nw ? "new" : ""}"><div class="n">${n}</div><div><div class="tt">${t}</div><div class="dd">${d}</div></div></div>`).join("")}</div>
     <div class="quote">"Every book in this place is a person who no longer knows what they lost."</div>
     <div class="foot"><span class="dot"></span><b>${realmName(here).toUpperCase()}</b> · ONLINE · VEILFALL 0.9</div>
   </div>${tail(s, now)}`;
+  }
+
+  if (s.menu === "options") {
+    const o = s.opt ?? {}, sc = o.scale ?? 1;
+    const row = (k, name, desc, val, on) => `<div class="orow" onmouseenter="${HOV}" onclick="${act("opt", k)}"><div><div class="on">${name}</div><div class="od">${desc}</div></div><div class="ov ${on ? "lit" : ""}"><i>‹</i><b>${val}</b><i>›</i></div></div>`;
+    return `${head(s)}<style>
+#vm .opw{position:absolute;left:50%;top:50%;transform:translate(-50%,-46%);width:min(560px,calc(100vw - 140px));animation:vmin .45s}
+#vm .opw .h1{font-size:40px;text-align:center}
+#vm .opp{margin-top:16px;padding:10px 22px 18px;background:linear-gradient(180deg,rgba(24,19,16,.95),rgba(11,9,8,.93));box-shadow:inset 0 0 0 1px rgba(196,156,99,.3),inset 0 0 0 5px rgba(0,0,0,.5),inset 0 0 0 6px rgba(196,156,99,.16),0 10px 30px rgba(0,0,0,.6)}
+#vm .osec{font-family:'VCinzel',serif;font-size:10px;letter-spacing:.3em;color:#8f7d5c;margin:16px 0 4px}
+#vm .orow{pointer-events:auto;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:10px 4px;border-bottom:1px solid rgba(196,156,99,.12);transition:background .2s}
+#vm .orow:hover{background:linear-gradient(90deg,transparent,rgba(196,120,60,.12),transparent)}
+#vm .orow .on{font-family:'VCinzel',serif;font-weight:700;font-size:17px;letter-spacing:.06em;color:#e7d9b8}
+#vm .orow .od{font-size:14px;font-style:italic;color:#8f7d5c}
+#vm .ov{display:flex;align-items:center;gap:10px;font-family:'VCinzel',serif;color:#a8977a;min-width:120px;justify-content:center;padding:5px 8px;box-shadow:inset 0 0 0 1px rgba(196,156,99,.25);background:rgba(0,0,0,.35)}
+#vm .ov b{font-size:14px;letter-spacing:.12em;min-width:56px;text-align:center} #vm .ov i{font-style:normal;color:#6b5c44}
+#vm .ov.lit{color:#f2d38a;box-shadow:inset 0 0 0 1px rgba(242,211,138,.55),0 0 12px rgba(255,150,60,.15)}
+@media (pointer:coarse),(max-width:760px),(max-height:520px){#vm .opw{top:8px;transform:translateX(-50%);width:calc(100vw - 90px)} #vm .opw .h1,#vm .opw .lbl.t{display:none} #vm .orow .od{display:none}}
+</style>
+    <div class="opw"><div class="lbl t" style="text-align:center">The Lantern Shrine</div><div class="h1 gold">OPTIONS</div><div class="dv df5"></div>
+      <div class="opp">
+        <div class="osec">INTERFACE</div>
+        ${row("scale", "Interface Scale", "the size of every plate on the road", Math.round(sc * 100) + "%", sc !== 1)}
+        ${row("tracker", "Quest Tracker", "the chapter plate in the corner", o.tracker === false ? "HIDDEN" : "SHOWN", o.tracker !== false)}
+        <div class="osec">SOUND</div>
+        ${row("hoverSfx", "Menu Whispers", "stone whoosh when you hover an option", o.hoverSfx === false ? "OFF" : "ON", o.hoverSfx !== false)}
+        <div class="osec">THE SHRINE</div>
+        ${row("embers", "Drifting Embers", "ash rising past the title", o.embers === false ? "OFF" : "ON", o.embers !== false)}
+      </div>
+      <div style="text-align:center;margin-top:16px"><button class="btn" style="margin:0;min-width:0;display:inline-block" onmouseenter="${HOV}" onclick="${act("title")}">Back</button></div>
+    </div>${tail(s, now)}`;
   }
 
   if (s.menu === "realms") {
@@ -375,7 +407,8 @@ export default function (ctx, player) {
   const ban = s.banner && now - s.banner.at < 4200 && !s.shop ? s.banner : null;
   const dlg = s.dialog && now - s.dialog.at < 9000 && !s.shop ? s.dialog : null;
   const rail = "calc(var(--spawn-chrome-reservation-right-inset, 50px) + 24px)";
-  return `${THEME}${FRAME_CSS}<div id="vf" class="fixed inset-0 pointer-events-none">
+  const OPT = s.opt ?? {};
+  return `${THEME}${FRAME_CSS}<style>#vf{zoom:${OPT.scale ?? 1}}${OPT.tracker === false ? "#vf .qp{display:none}" : ""}</style><div id="vf" class="fixed inset-0 pointer-events-none">
   <div class="absolute plate qp${boss && boss.engaged && !boss.dead ? " bossup" : ""}" style="left:24px;top:24px;max-width:300px;animation:vfin .4s">
     <div class="lbl">${[9, 12, 16, 21, 22].includes(q.stage) ? "Chapter complete" : "Quest"} · ${q.stage >= 18 ? "The Second Lantern" : q.stage >= 13 ? "The Drowned Lantern" : q.stage >= 10 ? "The Ninth Bell" : q.stage >= 5 ? "The Ashen Abbey" : "Broken Lantern Road"}</div>
     <div style="font-size:19px;color:var(--wax)">${qt}</div><div class="dv df1"></div>

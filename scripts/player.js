@@ -112,13 +112,15 @@ async function busy(ctx, label, fn) {
 }
 function menuInput(ctx, d) {
   const s = ctx.self.state;
-  if (d?.a === "hover") { if (d.n !== me.menuN && ctx.now() - (me.hoverAt ?? 0) > 70) { me.hoverAt = ctx.now(); ctx.emit("playSound", { clip: sfx("menu-hover-soft-stone-whoosh"), position: ctx.self.feetPosition, volume: 0.28, pitch: 0.94 + ctx.random() * 0.12 }, { audience: { player: ctx.self.id } }); } me.menuN = d.n; return; }
+  if (d?.a === "hover") { if (s.opt?.hoverSfx !== false && d.n !== me.menuN && ctx.now() - (me.hoverAt ?? 0) > 70) { me.hoverAt = ctx.now(); ctx.emit("playSound", { clip: sfx("menu-hover-soft-stone-whoosh"), position: ctx.self.feetPosition, volume: 0.28, pitch: 0.94 + ctx.random() * 0.12 }, { audience: { player: ctx.self.id } }); } me.menuN = d.n; return; }
   if (!d || d.n === me.menuN || s.busy) return; me.menuN = d.n;
   const pick = s.pick ?? { anc: "cinderkin", cls: "bladewraith", name: CH.rollName("cinderkin", () => ctx.random()) };
   const max = R.maxChars, here = CH.realmOf(ctx).room;
   switch (d.a) {
     case "title": s.menu = "title"; s.confirmDel = null; click(ctx, 0.85); break;
     case "realms": s.menu = "realms"; click(ctx); refresh(ctx); break;
+    case "options": s.menu = "options"; click(ctx); break;
+    case "opt": { const OPT = { scale: [0.85, 1, 1.15, 1.3], hoverSfx: [true, false], embers: [true, false], tracker: [true, false] }; const o = s.opt ?? {}; const list = OPT[d.v]; if (list) { const cur = o[d.v] ?? list[d.v === "scale" ? 1 : 0]; s.opt = { ...o, [d.v]: list[(list.indexOf(cur) + 1) % list.length] }; click(ctx, 1.1); } break; }
     case "chars": s.menu = "chars"; s.confirmDel = null; click(ctx); refresh(ctx); break;
     case "realm": {
       const r = R.realms.find((x) => x.room === d.v); if (!r) break;
