@@ -71,7 +71,7 @@ class Bulk:
             off = Vector((R.random() * 90, R.random() * 90, R.random() * 90))
             for v in verts: v.co += mnoise.noise_vector(v.co * freq + off) * jit
         s._uv(faces); return verts
-    def box(s, Mg, bevel=0, jit=0, freq=3.0):
+    def box(s, Mg, bevel=0, jit=0, freq=4.5):
         r = bmesh.ops.create_cube(s.bm, size=1.0, matrix=GR @ Mg); return s._fin(r["verts"], bevel, jit, freq)
     def cyl(s, Mg, r1=.5, r2=.5, depth=1, seg=8, jit=0):
         r = bmesh.ops.create_cone(s.bm, cap_ends=True, cap_tris=False, segments=seg, radius1=r1, radius2=r2, depth=depth, matrix=GR @ Mg)
@@ -142,7 +142,7 @@ def wall(axis, t0, t1, s0, s1, prof, opens, out):
                 top = interp(prof, x + w / 2)
                 if y < top - .08:
                     yt = min(y + h, top + R.uniform(-.04, .06)); d = R.uniform(-.012, .02)
-                    wbox("fieldstone", axis, x + .014, x + w - .014, y + .012, yt - .012, t0 - d + R.uniform(-.01, .01), t1 + d, .035, .018)
+                    wbox("quoin" if R.random() < .12 else "fieldstone", axis, x + .014, x + w - .014, y + .012, yt - .012, t0 - d + R.uniform(-.01, .01), t1 + d, .035, .032)
                 x += w
         y += h
     # mortar core: the dark joint behind every stone, holes left open
