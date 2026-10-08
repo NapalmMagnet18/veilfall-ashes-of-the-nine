@@ -1,0 +1,13 @@
+# spawn-scene v2 yaml x0z-1
+bailiff-arena:
+  feetPosition: {x: 0, y: {terrain: 0}, z: -100}
+  id: bailiff-arena
+  material: {kind: scripted, script: engine/blueprint}
+  physics: none
+  primitive: {depth: 30, height: 2, kind: box, width: 30}
+dripping-gate:
+  feetPosition: {x: 0, y: {terrain: 0}, z: -82}
+  id: dripping-gate
+  material: {kind: scripted, script: engine/blueprint}
+  physics: none
+  primitive: {depth: 3, height: 10, kind: box, width: 16}

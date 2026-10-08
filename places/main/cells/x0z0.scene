@@ -1,0 +1,19 @@
+# spawn-scene v2 yaml x0z0
+candle-road:
+  feetPosition: {x: 0, y: {terrain: 0}, z: -40}
+  id: candle-road
+  material: {kind: scripted, script: engine/blueprint}
+  physics: none
+  primitive: {depth: 60, height: 1, kind: box, width: 8}
+tollhouse:
+  feetPosition: {x: 0, y: {terrain: 0}, z: -48}
+  id: tollhouse
+  material: {kind: scripted, script: engine/blueprint}
+  physics: none
+  primitive: {depth: 10, height: 7, kind: box, width: 14}
+wayside-fire:
+  feetPosition: {x: 0, y: {terrain: 0}, z: 0}
+  id: wayside-fire
+  material: {kind: scripted, script: engine/blueprint}
+  physics: none
+  primitive: {depth: 24, height: 4, kind: box, width: 24}
