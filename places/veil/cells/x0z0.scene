@@ -1,0 +1,8 @@
+# spawn-scene v2 yaml x0z0
+veil-shrine:
+  feetPosition: {x: 0, y: 0, z: -12}
+  id: veil-shrine
+  material: {kind: scripted, script: engine/blueprint}
+  physics: none
+  primitive: {depth: 12, height: 9, kind: box, width: 16}
+  tags: [blueprint]
