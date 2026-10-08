@@ -140,5 +140,5 @@ function musicTick(ctx, st, now, objs) {
   for (const e of ctx.query({ tags: ["enemy"] })) if (e.state?.hunting && !e.state?.dead) { fighting = true; break; }
   if (fighting) st.fightUntil = now + 6000; // a short tail so the drums don't stutter between pulls
   const mood = boss?.engaged && !boss?.dead ? "boss" : now < (st.fightUntil ?? 0) ? "fight" : "road";
-  if (mood !== st.mood) { st.mood = mood; ctx.music?.play(TRACKS[mood], { fade: mood === "road" ? 4 : 1.2, volume: mood === "road" ? 0.7 : 0.8 }); }
+  if (mood !== st.mood || ctx.music.now()?.ref !== TRACKS[mood]) { st.mood = mood; ctx.music?.play(TRACKS[mood], { fade: mood === "road" ? 4 : 1.2, volume: mood === "road" ? 0.7 : 0.8 }); }
 }
