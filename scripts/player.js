@@ -267,7 +267,9 @@ function weaponMul(s) { const g = s.gs ?? {}; return (s.weapon === "ITEM-001" ? 
 const HERO_SPEED = (s) => C.hero.speed * (1 + Math.min(40, ctx_gs(s).speed ?? 0) / 100);
 const ctx_gs = (s) => s?.gs ?? {};
 function drainLoot(ctx) {
-  const s = ctx.self.state, box = s.lootIn; if (!box) return;
+  const s = ctx.self.state, box = s.lootIn;
+  if (s.inv && new Set(s.inv.map((x) => x.u)).size !== s.inv.length) { const seen = new Set(); s.inv = s.inv.filter((x) => !seen.has(x.u) && seen.add(x.u)); }
+  if (!box) return;
   const keys = Object.keys(box); if (!keys.length) return;
   const inv = [...(s.inv ?? [])], have = new Set(inv.map((x) => x.u));
   for (const k of keys) { const it = box[k]; if (it && !have.has(it.u)) { if (inv.length < 24) inv.push(it); else s.dust = (s.dust ?? 0) + dustValue(it); } delete s.lootIn[k]; }
@@ -287,7 +289,6 @@ const ITEM_SFX = { equip: "armor-equip-leather-and-chainmail-rustle", sell: "coi
 function itemInput(ctx, a) {
   const s = ctx.self.state, inv = [...(s.inv ?? [])], gear = { ...(s.gear ?? {}) };
   if (!a || a.n === me.itemN) return; me.itemN = a.n;
-  ctx.log("itemInput", { a: a.a, local: ctx.self.isLocal, inv: (s.inv ?? []).length });
   let snd = null;
   if (a.a === "equip") {
     const i = inv.findIndex((x) => x.u === a.u); if (i < 0) return;
