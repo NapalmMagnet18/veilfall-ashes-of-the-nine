@@ -40,3 +40,4 @@ assets:
     "/cdn/value.f4d83d34d1f6c741193e4acf4b3dff9531e5a67b6aa65228d00a7db72a4e0f34.ttf": {bytes: 125468, kind: font, name: cinzel, uploadedAt: "2026-10-08T20:09:56.047Z"}
     "/cdn/value.f783f422d9a4f9d95b085cec04840cff18609af18ff793d4e0d0d2ff4dfe8f22.glb": {bytes: 3247824, kind: model, name: waystone-of-the-nine, uploadedAt: "2026-10-08T17:24:40.455Z"}
     "/cdn/value.fc4c148debba7a63ae7aece00b8d6da267174c9429d997dddfc43477d97a8a17.glb": {bytes: 9424436, kind: model, name: abbey-belltower, uploadedAt: "2026-10-08T18:20:44.246Z"}
+    "/cdn/value.fe868b233c1ac6e6cc4bf419d87cbd276ffeffb08bc2f44f23fc3b48057f42f6.glb": {bytes: 2271304, kind: model, name: crier-slim2, uploadedAt: "2026-10-08T21:59:33.069Z"}
