@@ -24,10 +24,103 @@ const THEME = `<style>
 #vf .bar{height:10px;background:#120e0c;box-shadow:0 0 0 2px #0d0b0a,0 0 0 3px #5a4a33;position:relative;margin-top:5px}
 @keyframes vfin{from{opacity:0;transform:translateY(8px)}} @keyframes vffade{to{opacity:0}} @keyframes vfpulse{50%{opacity:.55}}
 </style>`;
+
+// ---- title + the Bearer screen (character selection): drawn over the living camp, never a loading wall ----
+const CDN = (h) => `/cdn/value.${h}.png`;
+const CLASSES = [
+  { id: "bladewraith", name: "Bladewraith", role: "Melee burst · guard-break", res: "Edge", img: CDN("1552ce71451180080c4bb9ccdeee8a943470179d762dbeb541ac018d80d15394"), fantasy: "A duelist who turns remembered regrets into precise swordplay.", skills: [["Ashcut", "basic strike, builds Edge"], ["Crosswound", "140° cleave for 30 Edge"], ["Griefstep", "7 m dash through harm"], ["Afterimage Guard", "catch a blow, riposte all near"]], open: true },
+  { id: "soulweaver", name: "Soulweaver", role: "Ranged spell · support", res: "Resonance", img: CDN("06f9e024d84a3ca9283a701cb60689a35e1297dd46192608b059eefc3c205f11"), fantasy: "A memory-singer who weaves protective harmonics from chosen names.", skills: [["Pulse Thread", ""], ["Wound of Light", ""], ["Threadwalk", ""], ["Warding Chorus", ""]] },
+  { id: "hellwarden", name: "Hellwarden", role: "Shield frontline · fire", res: "Resolve", img: CDN("8b5fc2d7eab1e92732ba85e82cddc5d09d79466e9608c0c1ae298b4bb240540e"), fantasy: "A covenant knight forged to shelter civilians during breaches.", skills: [["Cinder Strike", ""], ["Furnace Sweep", ""], ["Oath Charge", ""], ["Ember Bastion", ""]] },
+  { id: "shadowmancer", name: "Shadowmancer", role: "Debuff · traps · control", res: "Shroud", img: CDN("1d3722f1f2b08fb094d253ae9840c060766126b4ef39d6301a64b30843461399"), fantasy: "A scholar of unchosen lives who bends reflections and occlusion.", skills: [["Gloam Needle", ""], ["Borrowed Shadow", ""], ["Unseen Door", ""], ["Mirror Snare", ""]] },
+  { id: "primalist", name: "Primalist", role: "Shapeshift · nature", res: "Pulse", img: CDN("b536c08e6c94cf5b5e0d26ab9080c9ffdd8bea0de2c28e3b4c5a7f26ba8da409"), fantasy: "A guardian whose body borrows endurance from living ecosystems.", skills: [["Rootlash", ""], ["Stormhorn", ""], ["Briar Leap", ""], ["Thornskin", ""]] },
+  { id: "gloamstalker", name: "Gloamstalker", role: "Ranged precision · ambush", res: "Focus", img: CDN("bf53d127661ebfc83f336ce66ae7078c9cd4250378648a8c9b5d33fbbc1a8885"), fantasy: "A boundary scout tracking beasts created by lost memories.", skills: [["Bonearrow", ""], ["Glassbolt Volley", ""], ["Silent Traverse", ""], ["Smoke Veil", ""]] },
+];
+const ANC = [
+  { id: "cinderkin", name: "Cinderkin", home: "Ashwake Moor", color: "#aa4e3c", img: CDN("9c69f92c34a4b961e1acfac921f118e1871b170c627327df1c7094082d2216ea"), ethos: "Families inscribe the names of their lost into coal-fired clay.", trait: "Ember Ward: once a minute, the first blow you take is softened by up to 12." },
+  { id: "fenborn", name: "Fenborn", home: "Gloamfen Reach", color: "#368783", img: CDN("657d460456caf2572c15e722fe7460d7b3ebc7e26991e41e7159cff6542564e4"), ethos: "Fenspeople keep reed tablets that hold a memory until the rain.", trait: "Mist Stride: move 30% faster for 1.5 s after every Griefstep." },
+  { id: "stonebound", name: "Stonebound", home: "Underhollow Steps", color: "#ac9968", img: CDN("d6b87ccf4d5714f8d7067ab43ccee72b850c1c64257d5e290510bde5b8e44d86"), ethos: "Mountain clans carve genealogies into staircases, never statues.", trait: "Carved Stance: heavy blows (15+) land 25% lighter." },
+  { id: "skyforged", name: "Skyforged", home: "Gale Spires", color: "#819ec4", img: CDN("8ef7be812171fb7a2dc3ef03c904c365e54475469f2973b75bdffd4170688f96"), ethos: "Cliff dwellers play their histories on funeral wind instruments.", trait: "Gust Return: every Griefstep restores 10 Edge." },
+];
+const act = (a, v) => `sendAction('menu',{a:'${a}'${v ? `,v:'${v}'` : ""},n:Date.now()})`;
+const MSTYLE = `<style>
+#vm{position:fixed;inset:0;color:#e9dfc8;text-shadow:2px 2px 0 #0d0b0a;pointer-events:none}
+#vm .veil{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 55%,transparent 25%,rgba(6,7,12,.55) 70%,rgba(4,4,8,.9))}
+#vm .btn{pointer-events:auto;cursor:pointer;display:block;min-width:250px;padding:12px 22px;margin:10px auto 0;text-align:center;font-size:19px;letter-spacing:.2em;text-transform:uppercase;color:#e9dfc8;background:linear-gradient(#2c2825,#171412);box-shadow:0 0 0 2px #0d0b0a,0 0 0 4px #5a4a33,4px 6px 0 4px rgba(0,0,0,.5);border:0;font-family:inherit;transition:transform .12s,color .12s}
+#vm .btn:hover{color:#f2d38a;transform:translateY(-2px)} #vm .btn.main{color:#f2d38a;font-size:22px;box-shadow:0 0 0 2px #0d0b0a,0 0 0 4px #ac4c42,0 0 24px rgba(240,140,60,.35),4px 6px 0 4px rgba(0,0,0,.5)}
+#vm .btn[disabled]{color:#6e655a;cursor:default;transform:none}
+#vm .lbl{font-size:12px;letter-spacing:.16em;color:#b9a77f;text-transform:uppercase}
+#vm .panel{pointer-events:auto;background:linear-gradient(rgba(36,32,29,.94),rgba(20,18,16,.96));box-shadow:0 0 0 2px #0d0b0a,0 0 0 4px #5a4a33,6px 8px 0 4px rgba(0,0,0,.45);padding:14px 16px}
+#vm .card{position:relative;cursor:pointer;overflow:hidden;background:#120e0c;box-shadow:0 0 0 2px #0d0b0a,0 0 0 3px #4a3d2b;transition:transform .12s}
+#vm .card:hover{transform:translateY(-2px)} #vm .card.on{box-shadow:0 0 0 2px #0d0b0a,0 0 0 4px #f2d38a,0 0 18px rgba(242,211,138,.35)}
+#vm .card img{width:100%;height:100%;object-fit:cover;display:block} #vm .card.sealed img{filter:grayscale(.85) brightness(.45)}
+#vm .card .nm{position:absolute;left:0;right:0;bottom:0;padding:14px 4px 4px;font-size:12px;text-align:center;background:linear-gradient(transparent,rgba(0,0,0,.9))}
+#vm .card .seal{position:absolute;top:4px;right:5px;font-size:10px;letter-spacing:.1em;color:#c98a5a}
+#vm .anc{display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;opacity:.6;transition:opacity .12s} #vm .anc.on{opacity:1}
+#vm .anc img{width:58px;height:58px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 2px #0d0b0a} #vm .anc.on img{box-shadow:0 0 0 2px #0d0b0a,0 0 0 4px var(--c),0 0 16px var(--c)}
+#vm .anc span{font-size:11px;letter-spacing:.08em}
+#vm .grid{display:grid;grid-template-columns:repeat(3,118px);gap:12px}
+#vm .grid .card{height:162px}
+#vm .wrap{position:absolute;left:24px;right:calc(var(--spawn-chrome-reservation-right-inset,50px) + 24px);top:24px;bottom:24px;display:flex;justify-content:space-between;align-items:flex-start;gap:20px}
+#vm .det{width:380px;display:flex;flex-direction:column}
+#vm .det .big{height:300px;margin:-14px -16px 10px;overflow:hidden;position:relative} #vm .det .big img{width:100%;height:100%;object-fit:cover;object-position:50% 20%}
+@keyframes vmin{from{opacity:0;transform:translateY(10px)}} @keyframes vmglow{50%{text-shadow:2px 2px 0 #0d0b0a,0 0 26px rgba(240,140,60,.55)}}
+@media (pointer:coarse),(max-width:760px){
+ #vm .wrap{left:8px;right:8px;top:8px;bottom:8px;flex-direction:column;gap:8px;overflow:auto}
+ #vm .panel{padding:8px 10px} #vm .grid{grid-template-columns:repeat(3,1fr);gap:7px} #vm .grid .card{height:92px}
+ #vm .anc img{width:40px;height:40px} #vm .anc span{font-size:9px}
+ #vm .det{width:auto} #vm .det .big{display:none} #vm .det .sk{display:none} #vm .btn{min-width:0;font-size:15px;padding:10px 14px}
+ #vm .ttl{font-size:46px!important} #vm .sub{font-size:14px!important}
+}
+</style>`;
+function menu(ctx, player, s) {
+  const started = !!(s.started || (s.xp ?? 0) > 0 || (s.quest?.stage ?? 0) > 0);
+  if (s.menu === "title") return `${MSTYLE}<div id="vm"><div class="veil"></div>
+  <div style="position:absolute;left:0;right:0;top:12%;text-align:center;animation:vmin .8s">
+    <div class="ttl" style="font-size:84px;letter-spacing:.22em;color:#e7d9b8;animation:vmglow 4s infinite">VEILFALL</div>
+    <div class="sub" style="font-size:20px;letter-spacing:.5em;color:#c49c63;margin-top:4px">ASHES OF THE NINE</div>
+    <div style="width:220px;height:2px;margin:16px auto;background:linear-gradient(90deg,transparent,#ac4c42,transparent)"></div>
+    <div style="font-size:14px;color:#b9a77f;font-style:italic;max-width:520px;margin:0 auto;padding:0 16px">"Every book in this place is a person who no longer knows what they lost."</div>
+  </div>
+  <div style="position:absolute;left:0;right:0;bottom:12%;text-align:center;animation:vmin 1.1s">
+    ${started ? `<button class="btn main" onclick="${act("continue")}">Continue</button>
+      <div class="lbl" style="margin-top:6px">${s.ancestry ? ANC.find((a) => a.id === s.ancestry)?.name + " · " : ""}Bladewraith · Lv ${s.level ?? 1} · ${STAGES[s.quest?.stage ?? 0]?.[0] ?? ""}</div>
+      <button class="btn" onclick="${act("bearer")}">The Bearer</button>`
+      : `<button class="btn main" onclick="${act("bearer")}">Begin</button>`}
+    <div class="lbl" style="margin-top:22px;opacity:.6">Broken Lantern Road · M1</div>
+  </div></div>`;
+  // the Bearer screen
+  const pk = s.pick ?? { anc: s.ancestry ?? "cinderkin", cls: s.cls ?? "bladewraith" };
+  const C = CLASSES.find((c) => c.id === pk.cls) ?? CLASSES[0], A = ANC.find((a) => a.id === pk.anc) ?? ANC[0];
+  return `${MSTYLE}<div id="vm"><div class="veil" style="background:radial-gradient(ellipse at 50% 55%,transparent 20%,rgba(6,7,12,.5) 60%,rgba(4,4,8,.85))"></div>
+  <div class="wrap">
+    <div class="panel" style="animation:vmin .4s">
+      <div class="lbl">Choose your Bearer</div>
+      <div style="font-size:22px;color:#f2d38a;margin:2px 0 10px">Ancestry</div>
+      <div style="display:flex;gap:14px;justify-content:space-between">${ANC.map((a) => `<div class="anc ${a.id === A.id ? "on" : ""}" style="--c:${a.color}" onclick="${act("anc", a.id)}"><img src="${a.img}"><span style="color:${a.id === A.id ? a.color : "#e9dfc8"}">${a.name.toUpperCase()}</span></div>`).join("")}</div>
+      <div style="font-size:22px;color:#f2d38a;margin:14px 0 10px">Class</div>
+      <div class="grid">${CLASSES.map((c) => `<div class="card ${c.id === C.id ? "on" : ""} ${c.open ? "" : "sealed"}" onclick="${act("cls", c.id)}"><img src="${c.img}"><div class="nm">${c.name}</div>${c.open ? "" : `<div class="seal">SEALED</div>`}</div>`).join("")}</div>
+    </div>
+    <div class="panel det" style="animation:vmin .55s">
+      <div class="big"><img src="${C.img}" style="${C.open ? "" : "filter:grayscale(.8) brightness(.5)"}"><div style="position:absolute;left:0;right:0;bottom:0;height:80px;background:linear-gradient(transparent,#1a1715)"></div></div>
+      <div style="font-size:28px;color:#f2d38a;letter-spacing:.06em">${C.name}</div>
+      <div class="lbl">${C.role} · ${C.res}</div>
+      <div style="font-size:14px;margin:6px 0 8px;line-height:1.35">${C.fantasy}</div>
+      <div class="sk" style="display:grid;grid-template-columns:1fr 1fr;gap:4px 10px;font-size:12px;margin-bottom:8px">${C.skills.map(([n, d]) => `<div><span style="color:${C.open ? "#e9dfc8" : "#8a7f70"}">${n}</span>${d ? `<div style="color:#9a8e78;font-size:11px">${d}</div>` : ""}</div>`).join("")}</div>
+      <div style="height:2px;background:linear-gradient(90deg,${A.color},transparent);margin:2px 0 8px"></div>
+      <div style="font-size:16px;color:${A.color}">${A.name} <span class="lbl">of ${A.home}</span></div>
+      <div style="font-size:12px;color:#b9a77f;margin:2px 0 4px;font-style:italic">${A.ethos}</div>
+      <div style="font-size:13px;line-height:1.35">${A.trait}</div>
+      ${C.open ? `<button class="btn main" style="margin-top:12px;min-width:0" onclick="${act("confirm")}">${s.started ? "Return to the road" : "Walk into the fog"}</button>`
+        : `<button class="btn" disabled style="margin-top:12px;min-width:0">Sealed · its trial comes later</button>`}
+      <button class="btn" style="min-width:0;font-size:14px;padding:8px" onclick="${act("back")}">Back</button>
+    </div>
+  </div></div>`;
+}
 let firstSeen = null;
 export default function (ctx, player) {
   const s = player.state ?? {}, now = ctx.now();
   if (s.hp === undefined) return "";
+  if (s.menu) return menu(ctx, player, s);
   firstSeen ??= now;
   const hp = Math.max(0, Math.round(s.hp)), max = s.maxHp ?? 100, hpPct = Math.max(0, Math.min(100, (hp / max) * 100));
   const edge = Math.round(s.edge ?? 0);
@@ -57,7 +150,7 @@ export default function (ctx, player) {
   ${dlg ? `<div id="dlg${dlg.at}" class="absolute plate" style="left:50%;transform:translateX(-50%);bottom:${touch ? 210 : 150}px;width:min(560px,calc(100vw - 2*${rail}));animation:vfin .35s;font-size:17px;line-height:1.35">${dlg.text}</div>` : ""}
   <div class="absolute dk" style="left:24px;bottom:24px;display:flex;align-items:flex-end;gap:14px">
     <div class="orb"><div class="fill" style="height:${hpPct}%;background:radial-gradient(circle at 50% 30%,#e0473a,#7d1410 70%)${hpPct < 30 ? ";animation:vfpulse 1s infinite" : ""}"></div><div class="shine"></div><div class="val">${hp}</div></div>
-    <div class="plate" style="padding:6px 10px"><div class="lbl">Bladewraith · Lv ${lv}</div><div style="width:150px;height:6px;background:#120e0c;margin-top:4px"><div style="height:6px;width:${xpPct}%;background:#9d86e0"></div></div><div style="font-size:13px;margin-top:4px;color:var(--wax)">${s.gold ?? 0} gold${s.weapon === "ITEM-001" ? " · Rusted Oathblade" : ""}</div></div>
+    <div class="plate" style="padding:6px 10px"><div class="lbl">${s.ancestry ? s.ancestry[0].toUpperCase() + s.ancestry.slice(1) + " " : ""}Bladewraith · Lv ${lv}</div><div style="width:150px;height:6px;background:#120e0c;margin-top:4px"><div style="height:6px;width:${xpPct}%;background:#9d86e0"></div></div><div style="font-size:13px;margin-top:4px;color:var(--wax)">${s.gold ?? 0} gold${s.weapon === "ITEM-001" ? " · Rusted Oathblade" : ""}</div></div>
   </div>
   ${touch ? "" : `<div class="absolute dk" style="left:50%;bottom:24px;transform:translateX(-50%);display:flex;gap:10px">
     <div class="slot"><span class="k">LMB</span>⚔</div>
