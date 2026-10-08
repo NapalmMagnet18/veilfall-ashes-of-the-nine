@@ -486,6 +486,38 @@ fen-stone-w3:
   material: {kind: scripted, script: engine/blueprint}
   physics: none
   primitive: {depth: 1.4, height: 2.6, kind: box, width: 1.4}
+orch-gallows:
+  feetPosition: {x: 62, y: {terrain: 0}, z: 5}
+  id: orch-gallows
+  material: {kind: scripted, script: engine/blueprint}
+  physics: none
+  primitive: {depth: 8, height: 1.2, kind: box, width: 8}
+  rotation: 0
+  tags: [orchard, blueprint]
+orch-gibbet-g1:
+  feetPosition: {x: 52, y: {terrain: 0}, z: 15}
+  id: orch-gibbet-g1
+  material: {kind: scripted, script: engine/blueprint}
+  physics: none
+  primitive: {depth: 1.4, height: 5.5, kind: box, width: 1.4}
+  rotation: 0
+  tags: [orchard, blueprint]
+orch-grove:
+  feetPosition: {x: 62, y: {terrain: 0}, z: 6}
+  id: orch-grove
+  material: {kind: scripted, script: engine/blueprint}
+  physics: none
+  primitive: {depth: 34, height: 0.4, kind: box, width: 34}
+  rotation: 0
+  tags: [orchard, blueprint]
+orch-path:
+  feetPosition: {x: 30, y: {terrain: 0}, z: 2}
+  id: orch-path
+  material: {kind: scripted, script: engine/blueprint}
+  physics: none
+  primitive: {depth: 9, height: 0.3, kind: box, width: 34}
+  rotation: -5
+  tags: [orchard, blueprint]
 rd-boneheap-1:
   castShadow: true
   feetPosition: {x: -3.54, y: 0, z: -28.6}
@@ -794,7 +826,7 @@ wayside-fire/camp-stores:
   rotation: {yaw: 35}
   tags: [z01-dressing, hub]
 wayside-fire/dead-tree-1:
-  feetPosition: {x: 14, y: 0, z: 3}
+  feetPosition: {x: 13.5, y: 0, z: 6.2}
   id: wayside-fire/dead-tree-1
   material: {pbr: true}
   parent: wayside-fire
