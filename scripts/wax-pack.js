@@ -123,7 +123,7 @@ export function payout(ctx, at, xp, copper, countsForQuest, spill = "small", kin
 }
 
 export function update(ctx, dt) {
-  const now = ctx.now(), players = ctx.place.players.filter((p) => !p.state.dead && !p.state.menu && !safe(p.feetPosition));
+  const now = ctx.now(), ears = ctx.place.players.filter((p) => !p.state.menu), players = ears.filter((p) => !p.state.dead && !safe(p.feetPosition));
   for (const row of ctx.query({ tags: ["enemy"], excludeTags: ["boss"] })) {
     const w = ctx.getObject(row.id); if (!w) continue;
     const s = w.state, K = C[s.kind] ?? C.pilgrim, f = w.feetPosition;
@@ -142,7 +142,7 @@ export function update(ctx, dt) {
     if (s.lastHit && !prey) { const p = players.find((q) => q.id === s.lastHit); if (p && flat(p.feetPosition, f) < 30) { prey = p; best = flat(p.feetPosition, f); } }
     if (s.home && flat(f, s.home) > 22) { prey = null; s.lastHit = null; }
     if (!!prey !== !!s.hunting) { s.hunting = !!prey; if (prey) ctx.emit("playSound", { clip: sfx((VOX[s.kind] ?? VOX.pilgrim).aggro), position: f, volume: s.kind === "pilgrim" ? 0.5 : 0.7, mode: "restart", pitch: 0.8 + ctx.random() * 0.4 }); }
-    if (!s.hunting) mutter(ctx, w, s, f, now, players);
+    if (!s.hunting) mutter(ctx, w, s, f, now, ears);
     let vx = 0, vz = 0;
     // a slam in its windup holds the body still, then lands
     if (s.slam) {
