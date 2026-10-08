@@ -63,7 +63,7 @@ export default function (ctx, player) {
     <div class="slot"><span class="k">SPC</span>»<div class="cd" style="height:${dashPct}%"></div></div>
     <div class="slot"><span class="k">1</span><span style="color:#9fc4ff;font-size:13px">GUARD</span><div class="cd" style="height:${Math.max(0, Math.min(100, ((s.guardReadyAt ?? 0) - now) / 80))}%"></div></div>
     <div class="slot ${(s.tonics ?? 0) ? "" : "dim"}"><span class="k">Q</span><span style="color:#e0473a">♥</span><span class="n">${s.tonics ?? 0}</span></div>
-    <div class="slot"><span class="k">I</span><span style="font-size:13px">PACK</span></div>
+    <div class="slot" style="pointer-events:auto;cursor:pointer" onclick="sendAction('bag')"><span class="k">I</span><span style="font-size:13px">PACK</span></div>
   </div>`}
   <div class="absolute" style="right:24px;bottom:24px"><div class="orb"><div class="fill" style="height:${edge}%;background:radial-gradient(circle at 50% 30%,#f2b04a,#8a4a10 70%)"></div><div class="shine"></div><div class="val">${edge}</div></div><div class="lbl" style="text-align:center;margin-top:8px">Edge</div></div>
   ${q.stage === 0 || q.stage === 4 ? `<div data-world-anchor="maelin" data-anchor-offset="0 2.3 0" style="font-size:30px;color:var(--wax);text-align:center;animation:vfpulse 1.4s infinite">!<div style="font-size:12px">MAELIN</div></div>` : ""}

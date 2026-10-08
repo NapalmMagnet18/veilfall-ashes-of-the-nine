@@ -22,18 +22,23 @@ inputs:
       mouse: right
       keys:
         - e
+      touch: { slot: 1, label: SLASH }
     griefstep:
       keys:
         - space
+      touch: { slot: 2, label: DASH }
     tonic:
       keys:
         - q
+      touch: { slot: 4, label: TONIC }
     bag:
       keys:
         - i
+      touch: { button: false }
     guard:
       keys:
         - "1"
+      touch: { slot: 3, label: GUARD }
   axes:
     moveX:
       keys: a/d
