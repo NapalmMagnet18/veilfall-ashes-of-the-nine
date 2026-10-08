@@ -260,7 +260,7 @@ en-d1:
   bones: {}
   castShadow: true
   feetPosition: {x: 4.526216506191619, y: 0.06623440195017194, z: -45.10059384882476}
-  fx: {params: {}, paused: false, script: "fx\npop f rate=flick(.5,.3)*18 on=point() life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)", seed: 2722077792}
+  fx: {params: {}, script: "fx\npop f rate=flick(.5,.3)*18 on=point().c(2.38) life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 on=point().c(2.38) glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)"}
   id: en-d1
   layout: {maxExtents: {y: 1.8}}
   material: {key: Std/PBR-VPBR}
@@ -282,7 +282,7 @@ en-p1:
   bones: {}
   castShadow: true
   feetPosition: {x: -0.1767775884403256, y: 0.10608239969305999, z: -20.050842161012156}
-  fx: {params: {}, paused: false, script: "fx\npop f rate=flick(.5,.3)*18 on=point() life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)", seed: 3127992052}
+  fx: {params: {}, script: "fx\npop f rate=flick(.5,.3)*18 on=point().c(1.65) life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 on=point().c(1.65) glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)"}
   id: en-p1
   layout: {maxExtents: {y: 1.7}}
   material: {key: Std/PBR-VPBR}
@@ -304,7 +304,7 @@ en-p2:
   bones: {}
   castShadow: true
   feetPosition: {x: 1.1317156306283471, y: 0.10746907614210466, z: -19.78887680998119}
-  fx: {params: {}, paused: false, script: "fx\npop f rate=flick(.5,.3)*18 on=point() life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)", seed: 3178324909}
+  fx: {params: {}, script: "fx\npop f rate=flick(.5,.3)*18 on=point().c(1.65) life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 on=point().c(1.65) glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)"}
   id: en-p2
   layout: {maxExtents: {y: 1.7}}
   material: {key: Std/PBR-VPBR}
@@ -326,7 +326,7 @@ en-p3:
   bones: {}
   castShadow: true
   feetPosition: {x: 3.4073927932012618, y: 0.07822031712704858, z: -28.691681336297286}
-  fx: {params: {}, paused: false, script: "fx\npop f rate=flick(.5,.3)*18 on=point() life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)", seed: 3161547290}
+  fx: {params: {}, script: "fx\npop f rate=flick(.5,.3)*18 on=point().c(1.65) life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 on=point().c(1.65) glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)"}
   id: en-p3
   layout: {maxExtents: {y: 1.7}}
   material: {key: Std/PBR-VPBR}
@@ -348,7 +348,7 @@ en-p4:
   bones: {}
   castShadow: true
   feetPosition: {x: 3.1198194335428586, y: -0.009073516646360358, z: -34.25906317028838}
-  fx: {params: {}, paused: false, script: "fx\npop f rate=flick(.5,.3)*18 on=point() life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)", seed: 3077659195}
+  fx: {params: {}, script: "fx\npop f rate=flick(.5,.3)*18 on=point().c(1.65) life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 on=point().c(1.65) glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)"}
   id: en-p4
   layout: {maxExtents: {y: 1.7}}
   material: {key: Std/PBR-VPBR}
@@ -370,7 +370,7 @@ en-p5:
   bones: {}
   castShadow: true
   feetPosition: {x: -2.3451324725238107, y: 0.0003127146628354449, z: -35.284359972383804}
-  fx: {params: {}, paused: false, script: "fx\npop f rate=flick(.5,.3)*18 on=point() life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)", seed: 3060881576}
+  fx: {params: {}, script: "fx\npop f rate=flick(.5,.3)*18 on=point().c(1.65) life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 on=point().c(1.65) glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)"}
   id: en-p5
   layout: {maxExtents: {y: 1.7}}
   material: {key: Std/PBR-VPBR}
@@ -392,7 +392,7 @@ en-p6:
   bones: {}
   castShadow: true
   feetPosition: {x: 6.137017476162185, y: 0.029418135359391195, z: -40.52081255017505}
-  fx: {params: {}, paused: false, script: "fx\npop f rate=flick(.5,.3)*18 on=point() life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)", seed: 3111214433}
+  fx: {params: {}, script: "fx\npop f rate=flick(.5,.3)*18 on=point().c(1.65) life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 on=point().c(1.65) glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)"}
   id: en-p6
   layout: {maxExtents: {y: 1.7}}
   material: {key: Std/PBR-VPBR}
@@ -414,7 +414,7 @@ en-p7:
   bones: {}
   castShadow: true
   feetPosition: {x: 13.323796673129104, y: 0.07000000029802322, z: -47.420072167698464}
-  fx: {params: {}, paused: false, script: "fx\npop f rate=flick(.5,.3)*18 on=point() life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)", seed: 3094436814}
+  fx: {params: {}, script: "fx\npop f rate=flick(.5,.3)*18 on=point().c(1.65) life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 on=point().c(1.65) glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)"}
   id: en-p7
   layout: {maxExtents: {y: 1.7}}
   material: {key: Std/PBR-VPBR}
