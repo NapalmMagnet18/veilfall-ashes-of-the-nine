@@ -38,7 +38,7 @@ const ROLES = [
   ["#vm .anc", 18, 10, -6, null],
   ["#vm .namebox", 1, 12, -4, null],
   ["#vf .qp", 31, 16, 0, "16px 20px"],
-  ["#vf .pp", 12, 14, 0, "14px 18px"],
+  ["#vf .pp", 12, 12, 0, "9px 13px"],
   ["#vf .dl", 25, 18, 0, "20px 26px"],
   ["#vf .bb", 26, 16, 0, "14px 22px"],
   ["#vf .pk", 4, 16, 0, "18px 20px"],
@@ -85,4 +85,5 @@ ${roleCSS}
 .dv::before,.dv::after{content:"";flex:1;background:var(--dv) right center/100% 100% no-repeat;image-rendering:pixelated}
 .dv::after{transform:scaleX(-1)}
 ${DV}
+#vf .slot .k{left:9px!important;top:6px!important;font-size:9px!important;z-index:1} #vf .slot .n{right:9px!important;bottom:6px!important;z-index:1} #vf .slot .cd{left:6px!important;right:6px!important;bottom:6px!important}
 </style>`;
