@@ -137,7 +137,7 @@ ${FONT("VCinzel", "f4d83d34d1f6c741193e4acf4b3dff9531e5a67b6aa65228d00a7db72a4e0
 #vt .logo{position:absolute;left:50%;top:2.5vh;transform:translateX(-50%);width:min(620px,52vw);text-align:center;animation:vtin 1.6s ease both}
 #vt .crest{width:100%;display:block;filter:drop-shadow(0 6px 14px rgba(0,0,0,.8)) drop-shadow(0 0 30px rgba(255,150,60,.18));animation:vtbreathe 6s ease-in-out infinite}
 #vt .word{margin-top:-9%;font-family:'VDeco','VCinzel',serif;font-weight:700;font-size:clamp(52px,6.6vw,118px);letter-spacing:.08em;line-height:1}
-#vt .subt{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:6px;font-family:'VCinzel',serif;font-weight:600;font-size:clamp(13px,1.15vw,19px);letter-spacing:.55em;color:#c49c63;text-indent:.55em}
+#vt .subt{white-space:nowrap;display:flex;align-items:center;justify-content:center;gap:14px;margin-top:6px;font-family:'VCinzel',serif;font-weight:600;font-size:clamp(13px,1.15vw,19px);letter-spacing:.55em;color:#c49c63;text-indent:.55em}
 #vt .subt i{flex:0 0 clamp(40px,7vw,120px);height:1px;background:linear-gradient(90deg,transparent,#c49c63)} #vt .subt i:last-child{transform:scaleX(-1)}
 #vt .subt b{width:7px;height:7px;transform:rotate(45deg);background:#ac4c42;box-shadow:0 0 8px #ff7a3a;flex:none}
 #vt .menu{position:absolute;left:clamp(24px,6vw,120px);top:50%;transform:translateY(-38%);width:min(380px,34vw);pointer-events:auto;animation:vtside 1.2s .3s ease both}
@@ -209,7 +209,7 @@ function menu(ctx, player, s) {
 
   if (s.menu === "realms") {
     const per = s.roster?.per ?? {};
-    return `${head(s)}<div class="mid"><div class="lbl">Choose a realm</div><div style="font-size:30px;color:#e7d9b8;letter-spacing:.1em">THE NINE ROADS</div><div class="dv df5"></div></div>
+    return `${head(s)}<div class="mid"><div class="lbl">Choose a realm</div><div class="h1 gold" style="font-size:40px">THE NINE ROADS</div><div class="dv df5"></div></div>
     <div class="wrap" style="justify-content:center"><div class="panel side" style="width:min(460px,100%);animation:vmin .4s;margin-top:70px">
       <div class="lbl">Realms</div><div class="dv d1"></div>
       <div style="font-size:13px;color:#b9a77f;margin:4px 0 2px">A Bearer is written into one realm and walks only there.</div>
@@ -254,7 +254,7 @@ function menu(ctx, player, s) {
   // character select
   const chars = s.roster?.chars ?? [], sel = chars.find((c) => c.id === s.sel);
   const C = sel && (CLASSES.find((c) => c.id === sel.cls) ?? CLASSES[0]), A = sel && (ANC.find((a) => a.id === sel.ancestry) ?? ANC[0]);
-  return `${head(s)}<div class="mid"><div class="lbl">Realm</div><div style="font-size:28px;color:#e7d9b8;letter-spacing:.12em">${realmName(here).toUpperCase()}</div><div class="dv df0"></div></div>
+  return `${head(s)}<div class="mid"><div class="lbl">Realm</div><div class="h1 gold" style="font-size:40px">${realmName(here).toUpperCase()}</div><div class="dv df0"></div></div>
   <div class="wrap">
     <div class="panel side" style="animation:vmin .4s">
       <div class="lbl">Your Bearers · ${chars.length}/${R.maxChars}</div><div class="dv df2"></div>
