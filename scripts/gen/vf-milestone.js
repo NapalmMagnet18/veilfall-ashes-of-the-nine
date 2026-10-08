@@ -3,7 +3,7 @@
 // a crack, moss at the foot, a wax cap and a cluster of candles whose wax runs down the stone.
 // params: { h, w, snap, yaw, seed, notch, candles: [[x, z, height, radius, lit], …] } (x, z on the top, pre-yaw)
 import { kit, rng } from "./vf-kit.js";
-const STONE = "cdn/texture-wet-dark-weathered-granite.png";
+const STONE = "cdn/texture-weathered-grey-granite.png";
 const WAX = ["oklch(0.9 0.03 88)", "oklch(0.86 0.05 84)", "oklch(0.82 0.07 80)", "oklch(0.92 0.02 92)", "oklch(0.78 0.08 78)"];
 export function topY(p) { return p.snap ? p.h - 0.02 : p.h + 0.12; }
 export function geometry(ctx) {

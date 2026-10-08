@@ -3,7 +3,7 @@
 // roof on a gable; the south half has fallen to bare rafters, a snapped ridge and rubble.
 // A toll counter stands inside; melted wax-figure stubs huddle on the door step.
 import { kit, rng } from "./vf-kit.js";
-const STONE = "cdn/texture-wet-dark-weathered-granite.png";
+const STONE = "cdn/texture-weathered-grey-fieldstone-masonry.png";
 const WOOD = "cdn/texture-rotten-weathered-wood-planks.png";
 const SLATE = "cdn/texture-mossy-dark-slate-roof-shingles.png";
 const X = 3.4, Z = 3.9, T = 0.4, H = 3.2, RIDGE = 5.0;
