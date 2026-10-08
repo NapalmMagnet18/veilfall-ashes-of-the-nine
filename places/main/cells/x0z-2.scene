@@ -38,6 +38,13 @@ abbey-litter-11:
   receiveShadow: true
   rotation: 83
   tags: [abbey, z01-dressing]
+nave-blueprint:
+  feetPosition: {x: 0, y: 0, z: -220}
+  id: nave-blueprint
+  material: {kind: scripted, script: engine/blueprint}
+  physics: none
+  primitive: {depth: 32, height: 6, kind: box, width: 17}
+  tags: [blueprint]
 ninth-bell:
   feetPosition: {x: 0, y: 0, z: -259}
   id: ninth-bell
