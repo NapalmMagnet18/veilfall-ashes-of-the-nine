@@ -15,26 +15,19 @@ function ensure(ctx) {
   });
 }
 export function onSpawn(ctx) { ensure(ctx); }
+const WANT = new Map(), ASKED = new Map(); // board id → count the table holds; when it was last asked
 export function update(ctx) {
-  const f = ctx.self.feetPosition;
-  ctx.sleep(8);
+  const f = ctx.self.feetPosition, id = ctx.self.id, now = ctx.now();
+  ctx.sleep(2);
   if (!ctx.place.players.some((p) => Math.hypot(p.feetPosition.x - f.x, p.feetPosition.z - f.z) < 40)) return;
-  refresh(ctx, f);
-}
-async function refresh(ctx, f) {
-  ensure(ctx);
-  ctx.self.state.notesAt = ctx.now();
-  let n = 0;
-  try {
-    const { rows: [r] } = await ctx.sql`SELECT COUNT(*) AS n FROM trades WHERE realm = ${CH.realmOf(ctx).room} AND sold_at IS NULL AND removed = 0`;
-    n = Math.min(SLOTS.length, r?.n ?? 0);
-  } catch (e) { ctx.log("board notes read failed", String(e)); ctx.self.state.notesErr = String(e).slice(0, 240); return; }
-  ctx.self.state.notesN = n;
-  const was = SHOWN.get(ctx.self.id) ?? -1;
+  if (now - (ASKED.get(id) ?? 0) > 8000) { ASKED.set(id, now); refresh(ctx); }
+  const n = WANT.get(id); if (n === undefined) return;
+  const was = SHOWN.get(id) ?? -1;
   if (n === was) return;
-  SHOWN.set(ctx.self.id, n);
+  ensure(ctx);
+  SHOWN.set(id, n);
   for (let i = 0; i < SLOTS.length; i++) {
-    const o = ctx.getObject(`${ctx.self.id}/note-${i}`); if (!o) continue;
+    const o = ctx.getObject(`${id}/note-${i}`); if (!o) continue;
     const on = i < n;
     if (o.visible !== on) {
       o.visible = on;
@@ -42,4 +35,11 @@ async function refresh(ctx, f) {
     }
   }
   if (n > was && was >= 0) ctx.emit("playSound", { clip: "/cdn/moodboard-gothic-horror/sfx-parchment-pinned-to-wood-board-tack.mp3", position: { x: f.x, y: f.y + 1.4, z: f.z }, volume: 0.6 }, { audience: { nearby: f, radius: 14 } });
+}
+async function refresh(ctx) {
+  const id = ctx.self.id;
+  try {
+    const { rows: [r] } = await ctx.sql`SELECT COUNT(*) AS n FROM trades WHERE realm = ${CH.realmOf(ctx).room} AND sold_at IS NULL AND removed = 0`;
+    WANT.set(id, Math.min(SLOTS.length, r?.n ?? 0));
+  } catch (e) { ctx.log("board notes read failed", String(e)); }
 }
