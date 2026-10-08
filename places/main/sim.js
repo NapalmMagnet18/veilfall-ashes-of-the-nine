@@ -2,7 +2,7 @@
 // packs out of sight, walks each player's quest forward, levels them, and brings the Bailiff back.
 import C from "../../scripts/lib/data/combat.yml";
 import E from "../../scripts/lib/data/economy.yml";
-import { body } from "../../scripts/lib/data/models.js";
+import { body, HEIGHT } from "../../scripts/lib/data/models.js";
 export const cadence = "250ms";
 const MUSIC = "/cdn/moodboard-gothic-horror/music-broken-lantern-road-dusk-candles-and-fog-ambient.mp3";
 // the jukebox follows the room's mood: the road at rest, drums when the wax wakes, the Bailiff's own theme in his court
