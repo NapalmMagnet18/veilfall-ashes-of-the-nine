@@ -39,6 +39,8 @@ inputs:
       touch: { button: false }
     shop:
       touch: { button: false }
+    item:
+      touch: { button: false }
     guard:
       keys:
         - "1"

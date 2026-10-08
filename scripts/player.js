@@ -2,6 +2,7 @@
 // Space: Griefstep dash toward the cursor. Q: tonic. WASD also walks. Hits are judged here, on the
 // striker's machine, and written to the enemy's state; the wax-pack manager reads hp and pays XP.
 import { body as heroBody } from "./lib/data/models.js";
+import { gearStats, mitigation, slotOf, sellValue, dustValue, SLOTS } from "./lib/loot.js";
 import { raycast, getInputRay } from "builtin/physics";
 import { findPath } from "builtin/nav";
 import { floorDist as mapFloor, areaAt } from "./lib/data/veilfall-map.js";
@@ -198,6 +199,7 @@ export function onInput(ctx, input) {
   if (input.actionData?.menu) menuInput(ctx, input.actionData.menu);
   if (s.menu) return;
   if (input.actionData?.shop) shopInput(ctx, input.actionData.shop);
+  if (input.actionData?.item) itemInput(ctx, input.actionData.item);
   if (s.dead || ctx.self.inputHeld) return;
   const ray = getInputRay(ctx, input);
   const now = ctx.now();
@@ -253,13 +255,54 @@ function ashcut(ctx, foe) {
   me.swingAt = now + C.ashcut.cd * 1000;
   swingAnim(ctx, "cdn/clip-attack.glb");
   ctx.emit("playSound", { clip: sfx("sword-swing-whoosh-short"), position: ctx.self.feetPosition, volume: 0.5, pitch: 0.95 + ctx.random() * 0.15 });
-  const crit = ctx.random() < 0.12;
+  const crit = ctx.random() < 0.12 + (s.gs?.crit ?? 0) / 100;
   const dmg = Math.round(C.ashcut.dmg * weaponMul(s) * (crit ? 1.8 : 1) * (0.9 + ctx.random() * 0.2));
   strike(ctx, foe, dmg, crit);
-  s.edge = Math.min(100, (s.edge ?? 0) + C.ashcut.edge);
+  s.edge = Math.min(100, (s.edge ?? 0) + C.ashcut.edge + (s.gs?.edge ?? 0));
 }
 
-function weaponMul(s) { return (s.weapon === "ITEM-001" ? 1.3 : 1) * (1 + 0.08 * ((s.level ?? 1) - 1)); }
+function weaponMul(s) { const g = s.gs ?? {}; return (s.weapon === "ITEM-001" ? 1.3 : 1) * (1 + 0.08 * ((s.level ?? 1) - 1)) * (1 + (g.dmgp ?? 0) / 100) + (g.dmg ?? 0) / C.ashcut.dmg; }
+
+// worn gear → s.gs (derived, everyone's HUD reads it); maxHp carries gear life as gearLife so a reload never double-counts
+const HERO_SPEED = (s) => C.hero.speed * (1 + Math.min(40, ctx_gs(s).speed ?? 0) / 100);
+const ctx_gs = (s) => s?.gs ?? {};
+function deriveGear(ctx) {
+  const s = ctx.self.state, key = JSON.stringify(s.gear ?? {});
+  if (key === me.gearKey && s.gs) return;
+  me.gearKey = key;
+  const g = gearStats(s.gear); delete g.setCount;
+  s.gs = g;
+  const d = (g.life ?? 0) - (s.gearLife ?? 0);
+  if (d) { s.maxHp = (s.maxHp ?? 100) + d; s.hp = Math.max(1, Math.min(s.maxHp, (s.hp ?? s.maxHp) + Math.max(0, d))); s.gearLife = g.life ?? 0; me.lastHp = s.hp; }
+}
+
+const ITEM_SFX = { equip: "armor-equip-leather-and-chainmail-rustle", sell: "coins-into-leather-purse", salvage: "salvage-item-crumble-to-ash-hiss", drop: "loot-drop-cloth-thud-soft" };
+function itemInput(ctx, a) {
+  const s = ctx.self.state, inv = [...(s.inv ?? [])], gear = { ...(s.gear ?? {}) };
+  if (!a || a.n === me.itemN) return; me.itemN = a.n;
+  let snd = null;
+  if (a.a === "equip") {
+    const i = inv.findIndex((x) => x.u === a.u); if (i < 0) return;
+    const it = inv[i], slot = slotOf(it);
+    inv.splice(i, 1); if (gear[slot]) inv.push(gear[slot]); gear[slot] = it; snd = "equip";
+  } else if (a.a === "unequip") {
+    if (!gear[a.slot] || inv.length >= 24) return; inv.push(gear[a.slot]); delete gear[a.slot]; snd = "equip";
+  } else if (a.a === "salvage") {
+    const i = inv.findIndex((x) => x.u === a.u); if (i < 0) return;
+    s.dust = (s.dust ?? 0) + dustValue(inv[i]); inv.splice(i, 1); snd = "salvage";
+  } else if (a.a === "sell") {
+    if (!s.shop) return; const i = inv.findIndex((x) => x.u === a.u); if (i < 0) return;
+    s.copper = (s.copper ?? 0) + sellValue(inv[i]); inv.splice(i, 1); snd = "sell";
+  } else if (a.a === "salvageAll") {
+    const keep = []; for (const it of inv) { if (it.t === "ashen" || (a.blue && it.t === "hallowed")) s.dust = (s.dust ?? 0) + dustValue(it); else keep.push(it); }
+    inv.length = 0; inv.push(...keep); snd = "salvage";
+  } else if (a.a === "sort") {
+    const rank = { vowbound: 0, relic: 1, gilded: 2, hallowed: 3, ashen: 4 }; inv.sort((x, y) => rank[x.t] - rank[y.t] || y.il - x.il); snd = "drop";
+  } else if (a.a === "sel") { s.invSel = a.u ?? null; return; }
+  s.inv = inv; s.gear = gear; s.invSel = null;
+  if (snd) ctx.emit("playSound", { clip: "/cdn/moodboard-gothic-horror/sfx-" + ITEM_SFX[snd] + ".mp3", position: ctx.self.feetPosition, volume: 0.6 }, { audience: { player: ctx.self.id } });
+  deriveGear(ctx);
+}
 
 function crosswound(ctx) {
   const s = ctx.self.state, now = ctx.now(), cw = C.crosswound;
@@ -349,7 +392,10 @@ function tonic(ctx) {
 
 // ancestry traits, read off the life lost since last tick (every damage path writes hp directly)
 function traitTick(ctx, now) {
-  const s = ctx.self.state, T = C.traits, drop = (me.lastHp ?? s.hp) - s.hp;
+  const s = ctx.self.state, T = C.traits;
+  let drop = (me.lastHp ?? s.hp) - s.hp;
+  if (drop > 0 && (s.gs?.armor ?? 0) > 0) { const back = Math.round(drop * mitigation(s.gs.armor)); if (back > 0) { s.hp += back; drop -= back; } }
+  if ((s.gs?.regen ?? 0) > 0 && s.hp > 0 && s.hp < s.maxHp && now - (me.regenAt ?? 0) > 5000) { me.regenAt = now; s.hp = Math.min(s.maxHp, s.hp + s.gs.regen); }
   if (drop > 0 && s.hp > 0) {
     const f = ctx.self.feetPosition, at = { x: f.x, y: f.y + 2.2, z: f.z };
     if (s.ancestry === "cinderkin" && now >= (s.wardReadyAt ?? 0)) {
@@ -437,6 +483,7 @@ export function update(ctx, dt) {
   const s = ctx.self.state, now = ctx.now(), f = ctx.self.feetPosition;
   gate(ctx);
   if (ctx.self.isLocal !== false) showcase(ctx);
+  if (!ctx.self.state.menu && ctx.self.state.charId) deriveGear(ctx);
   const vy = (ctx.self.velocity?.y ?? 0) + (ctx.self.grounded ? 0 : ctx.place.gravity.y * dt);
   // a fresh visit opens on the title in the Veil; a realm cross lands on that realm's character list
   if (ctx.self.isLocal !== false && !ctx.session.vfDoor) {
@@ -519,9 +566,9 @@ export function update(ctx, dt) {
 
   let v = null;
   if (me.keys) {
-    const sp = C.hero.speed * (now < (me.hasteUntil ?? 0) ? C.traits.fenborn.haste : 1);
+    const sp = HERO_SPEED(s) * (now < (me.hasteUntil ?? 0) ? C.traits.fenborn.haste : 1);
     v = { x: me.keys.x * sp, z: me.keys.z * sp };
-    const l = Math.hypot(v.x, v.z); if (l > C.hero.speed) { v.x *= C.hero.speed / l; v.z *= C.hero.speed / l; }
+    const l = Math.hypot(v.x, v.z); if (l > HERO_SPEED(s)) { v.x *= HERO_SPEED(s) / l; v.z *= HERO_SPEED(s) / l; }
   } else if (s.target) {
     const foe = ctx.getObject(s.target);
     if (!isFoe(foe)) { if (s.foe && s.foe.id === s.target && !s.foe.gone) s.foe = { ...s.foe, hp: 0, gone: true, at: now }; s.target = null; }
@@ -534,14 +581,14 @@ export function update(ctx, dt) {
       const d = flat(foe.feetPosition, f);
       if (d > C.ashcut.reach) {
         if (!me.chase || flat(me.chase, foe.feetPosition) > 1) { me.chase = { ...foe.feetPosition }; me.route = null; }
-        v = walkTo(ctx, foe.feetPosition, C.hero.speed, dt);
+        v = walkTo(ctx, foe.feetPosition, HERO_SPEED(s), dt);
       } else {
         s.faceYaw = yawTo(foe.feetPosition.x - f.x, foe.feetPosition.z - f.z);
         ashcut(ctx, foe);
       }
     }
   } else if (s.goal) {
-    v = walkTo(ctx, s.goal, C.hero.speed * (now < (me.hasteUntil ?? 0) ? C.traits.fenborn.haste : 1), dt);
+    v = walkTo(ctx, s.goal, HERO_SPEED(s) * (now < (me.hasteUntil ?? 0) ? C.traits.fenborn.haste : 1), dt);
     if (!v) { s.goal = null; me.route = null; }
   }
   if (me.talk) {
