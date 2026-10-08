@@ -411,7 +411,7 @@ function zoneTick(ctx, s, f, now) {
 // One actor per machine, rebuilt only when the pick changes; gone the moment the roster closes.
 function showcase(ctx) {
   const s = ctx.self.state;
-  me.dbgN = (me.dbgN ?? 0) + 1; if (me.dbgN % 30 === 1) s.dbgShow = { n: me.dbgN, place: ctx.self.place ?? null, menu: s.menu ?? null, sel: s.sel ?? null, id: me.showId ?? null, for: me.showFor ?? null };
+  me.dbgN = (me.dbgN ?? 0) + 1; if (me.dbgN % 30 === 1) s.dbgShow = { n: me.dbgN, place: ctx.self.place ?? null, menu: s.menu ?? null, sel: s.sel ?? null, id: me.showId ?? null, for: me.showFor ?? null, o: (() => { const o = me.showId && ctx.getObject(me.showId); return o ? { f: o.feetPosition, b: o.bounds?.size ?? null, v: o.visible, pl: o.place } : null; })() };
   const want = s.menu === "chars" && String(ctx.self.place ?? "").startsWith(MENU_PLACE) && s.sel ? String(s.sel) : null;
   if (want === (me.showFor ?? null) && (!want || (me.showId && ctx.getObject(me.showId)))) return;
   if (me.showId) { try { ctx.destroy(me.showId); } catch {} me.showId = null; }
@@ -421,7 +421,7 @@ function showcase(ctx) {
   const hit = raycast(ctx, { x: -0.4, y: 6, z: -7.5 }, { x: 0, y: -1, z: 0 }, { distance: 12, bodies: "static", physicsOnly: true });
   const y = hit ? hit.position.y : 0;
   me.showId = ctx.spawn({
-    ...heroBody("hero"), scope: "session", audience: "local",
+    ...heroBody("hero"), scope: "session",
     feetPosition: { x: -0.4, y, z: -7.5 }, rotation: { yaw: 172 },
     mixer: { base: { clip: "Idle", loop: "loop", weight: 1 } },
     tags: ["menu-showcase"],
