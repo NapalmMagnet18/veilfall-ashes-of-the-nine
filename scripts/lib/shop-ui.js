@@ -16,6 +16,9 @@ const CSS = `<style>
 #vfshop .bt.off{background:#24201c;color:#6b6152;box-shadow:0 0 0 2px #0d0b0a,0 0 0 3px #3a3129;cursor:default}
 #vfshop .x{position:absolute;right:8px;top:6px;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;background:#171412;box-shadow:0 0 0 2px #0d0b0a,0 0 0 3px #5a4a33}
 </style>`;
+// the pixel face lacks ✦ ◆ ✕: these are drawn
+const SVG = (d, c) => `<svg viewBox="0 0 16 16" width="18" height="18" style="filter:drop-shadow(1px 1px 0 #0d0b0a)"><path d="${d}" fill="${c}"/></svg>`;
+const GLYPH = { tonic: `<span style="color:#e0473a">♥</span>`, charm: SVG("M8 1C10 5 12 7 12 10a4 4 0 0 1-8 0C4 7 6 5 8 1z", "#f2b04a"), shard: SVG("M8 1l5 7-5 7-5-7z", "#9fc4ff"), x: SVG("M3 1l5 5 5-5 2 2-5 5 5 5-2 2-5-5-5 5-2-2 5-5-5-5z", "#e9dfc8") };
 const act = (a, item) => `sendAction('shop',{a:'${a}',item:'${item}',n:Date.now()})`;
 export function shopPanel(ctx, player) {
   const s = player.state ?? {}, stock = E.shops[s.shop] ?? [], purse = s.copper ?? 0;
@@ -23,16 +26,16 @@ export function shopPanel(ctx, player) {
     const have = owned(s, it), poor = purse < it.price, off = have || poor;
     const label = have ? (it.once ? "OWNED" : "FULL") : "BUY";
     const count = it.id === "tonic" ? ` <span style="color:#b9a77f;font-size:11px">${s.tonics ?? 0}/${it.cap}</span>` : "";
-    return `<div class="row"><div class="gl" style="color:${it.id === "tonic" ? "#e0473a" : "#f2b04a"}">${it.glyph}</div>
+    return `<div class="row"><div class="gl">${GLYPH[it.id] ?? it.glyph}</div>
       <div style="flex:1;min-width:0"><div class="nm">${it.name}${count}</div><div class="ef">${it.effect}</div><div class="pr">${coinHTML(it.price, 12)}</div></div>
       <div class="bt ${off ? "off" : ""}" ${off ? "" : `onclick="${act("buy", it.id)}"`}>${label}</div></div>`;
   }).join("");
   const n = s.shards ?? 0;
-  const sell = `<div class="row"><div class="gl" style="color:#9fc4ff">◆</div>
+  const sell = `<div class="row"><div class="gl">${GLYPH.shard}</div>
     <div style="flex:1;min-width:0"><div class="nm">Wax Shard × ${n}</div><div class="ef">Oswin pays ${E.sell.shard}c each. Petitions aren't for sale.</div><div class="pr">${n ? coinHTML(n * E.sell.shard, 12) : "&nbsp;"}</div></div>
     <div class="bt ${n ? "" : "off"}" ${n ? `onclick="${act("sell", "shard")}"` : ""}>SELL</div></div>`;
   return `${CSS}<div id="vfshop" class="plate">
-    <div class="x" onclick="${act("close", "")}">✕</div>
+    <div class="x" onclick="${act("close", "")}">${GLYPH.x}</div>
     <div class="lbl">Wayside Fire · peddler</div>
     <div style="font-size:20px;color:var(--wax);letter-spacing:.06em">${NAMES[s.shop] ?? "CART"}</div>
     <div style="font-size:14px;margin:4px 0 6px;display:flex;align-items:center;gap:6px"><span class="lbl">Purse</span>${coinHTML(purse, 14)}</div>
