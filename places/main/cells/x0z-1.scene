@@ -110,6 +110,12 @@ abbey-cloister/w2:
   primitive: {kind: scripted, params: {h: 4.6, kind: wall, len: 5.5, s: 9, t: 0.9}, script: scripts/gen/vf-ruin.js, seed: 92}
   receiveShadow: true
   rotation: 96
+abbey-court:
+  feetPosition: {x: 0, y: 0, z: -176}
+  id: abbey-court
+  primitive: {kind: scripted, params: {door: 19, r: 19}, script: scripts/gen/abbey-court.js, seed: 31}
+  receiveShadow: true
+  tags: [abbey, z01-dressing]
 abbey-litter-0:
   castShadow: true
   children: [{feetPosition: {x: 0, y: 0.6, z: 0}, id: glow, light: {color: "#ffa45a", distance: 6, intensity: 2.2, kind: point}}]
