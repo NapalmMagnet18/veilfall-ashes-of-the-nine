@@ -60,8 +60,8 @@ export function tick(ctx) {
     model: "cdn/model-hunched-old-peddler-man-leather-apron-candle-bundles-on-back.glb", behavior: ["scripts/humanoid-locomotion.js"], state: { name: "Oswin Tallowmonger" } });
   PETITIONS.forEach(([x, z], i) => {
     const id = "petition-" + (i + 1);
-    if (!(id in objs)) ctx.spawn(id, { tags: ["petition"], feetPosition: { x, z, y: { terrain: 0.25 } }, rotation: { yaw: i * 70, roll: 90 },
-      primitive: { kind: "cylinder", radiusTop: 0.07, radiusBottom: 0.07, height: 0.42 }, material: { color: "oklch(0.88 0.04 85)", roughness: 0.8 },
+    if (!(id in objs)) ctx.spawn(id, { tags: ["petition"], feetPosition: { x, z, y: { terrain: 0.02 } }, rotation: { yaw: i * 70 },
+      model: { id: "/cdn/value.3c60cb6d850afbc2c860e26a7eb36a99277bd2ba780f319efaa32e5aaa99622d.glb", forward: "+z" }, layout: { maxExtents: { x: 0.45 } }, castShadow: true, receiveShadow: true,
       physics: { body: "static", trigger: true, collider: "sphere" }, behavior: "scripts/petition.js",
       fx: { script: `fx\npop m rate=4 on=disc(.4) life=1..1.6 v=up(.3..0.6) size=.03..0.05 col=hdr(2.4,1.6,.6) a=0>.8:1>0 r=sprite(mote,add)` } });
   });
