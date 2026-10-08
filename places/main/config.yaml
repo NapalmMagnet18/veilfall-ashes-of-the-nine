@@ -1,33 +1,40 @@
 atmosphere:
   clouds:
-    altitude: 500
-    density: 0.7
+    altitude: 450
+    density: 0.55
     enabled: true
-    opacity: 0.8
-    thickness: 600
-    color: "#5a5560"
-    speed: 1
+    opacity: 0.85
+    thickness: 500
+    color: "#2c3038"
+    speed: 1.5
   fog:
-    far: 220
+    far: 170
     kind: linear
-    near: 60
-    height: {base: 1, falloff: 6}
+    near: 30
+    height: {base: 0.5, falloff: 5}
   look:
     script: scripts/look-default.js
   moon:
-    intensity: 3
+    intensity: 4.2
     enabled: true
+    phase: 0.5
+    size: 1.3
   sky:
     kind: realistic
     model: hosek
   stars:
-    density: 0.6
+    density: 0.5
     enabled: true
-    milkyWay: 0.6
-  timeOfDay: 17.45
+    milkyWay: 0.3
+  timeOfDay: 20.6
   wind:
     direction: 200
-    speed: 2
+    speed: 3
+  hemisphere:
+    groundColor: "#15120f"
+    intensity: 0.55
+    skyColor: "#3a4a66"
+  wet: 0.55
 defaultSpawnPoint:
   x: 0
   y:
