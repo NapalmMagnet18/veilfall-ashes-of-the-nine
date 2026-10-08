@@ -51,7 +51,7 @@ export function areaAt(x, z) {
   if (Math.hypot(x - COURTS[0].x, z - COURTS[0].z) < COURTS[0].r) return by("toll");
   if (Math.hypot(x - ABBEY.x, z - ABBEY.z) < ABBEY.r) return by("abbey");
   if (Math.hypot(x - COURTS[1].x, z - COURTS[1].z) >= COURTS[1].r && segDist(x, z, ABBEY_ROAD, ABBEY_HALF) < 0.5 && z < -110) return by("climb");
-  if (z < -92) return by("court");
+  if (z < -92 && Math.hypot(x - COURTS[1].x, z - COURTS[1].z) < COURTS[1].r + 2) return by("court");
   if (z < -80) return by("gate");
   return floorDist(x, z) < 0.5 ? by("road") : null;
 }

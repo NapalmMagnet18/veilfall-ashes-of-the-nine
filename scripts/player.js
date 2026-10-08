@@ -3,7 +3,10 @@
 // striker's machine, and written to the enemy's state; the wax-pack manager reads hp and pays XP.
 import { raycast, getInputRay } from "builtin/physics";
 import { findPath } from "builtin/nav";
-import { floorDist, areaAt } from "./lib/data/veilfall-map.js";
+import { floorDist as mapFloor, areaAt } from "./lib/data/veilfall-map.js";
+// the Abbey road is floor only once the Bailiff has fallen in this room (place.state.abbeyOpen, set by the sim)
+let ABBEY_OPEN = false;
+const floorDist = (x, z) => mapFloor(x, z, ABBEY_OPEN);
 import C from "./lib/data/combat.yml";
 import { shopInput } from "./lib/shop.js";
 import * as CH from "./lib/character.js";
