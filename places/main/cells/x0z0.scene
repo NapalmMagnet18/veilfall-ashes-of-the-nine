@@ -589,7 +589,7 @@ ruin-road/wall-3:
   rotation: 240.80140948635182
   tags: [z01-dressing, ruin]
 ruin-road/wall-4:
-  feetPosition: {x: -3.543922668663116, y: {terrain: -0.3}, z: -54.172568646045924}
+  feetPosition: {x: -3.543922668663116, y: -0.15, z: -54.172568646045924}
   id: ruin-road/wall-4
   parent: ruin-road
   physics: static
