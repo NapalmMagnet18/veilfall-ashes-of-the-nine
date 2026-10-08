@@ -1,0 +1,27 @@
+{
+  "game": "VEILFALL: ASHES OF THE NINE",
+  "date": "2026-10-07",
+  "narrative_status": "original complete campaign novella and implementation quest bible",
+  "research_limit": "major continuity & expansion synthesis, not all line-by-line codex",
+  "spawn_upload": "extract ZIP; use Savi with milestone prompts; archive is not a direct engine project",
+  "counts": {
+    "origins": 4,
+    "classes": 6,
+    "class_origin_combos": 24,
+    "acts": 5,
+    "main_zones": 10,
+    "quests_total": 128,
+    "main_quests": 60,
+    "origin_quests": 20,
+    "class_quests": 18,
+    "side_quests": 30
+  },
+  "source_of_truth": {
+    "quests": "09_DATA/quests.json",
+    "atlas": "09_DATA/zones.json",
+    "classes": "09_DATA/classes.json",
+    "origins": "09_DATA/ancestries.json",
+    "bridges": "09_DATA/ancestry_class_bridges.json",
+    "lore": "02_NARRATIVE/01_VEILFALL_ASHES_OF_THE_NINE_NOVEL.md"
+  }
+}
