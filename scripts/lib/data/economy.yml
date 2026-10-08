@@ -7,6 +7,7 @@ drops:
   bailiff: 12000        # 1g 20s, once per kill to each eligible player
 quests:
   Z01-MAIN-05: 300      # 3s turn-in
+  Z01-MAIN-06: 500      # 5s, the Abbey chapter
 sell:
   shard: 6              # Wax Shard buyback, each (Sealed Petitions are quest items: never sold)
 shops:

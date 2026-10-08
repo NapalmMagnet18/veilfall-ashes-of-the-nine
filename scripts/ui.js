@@ -10,7 +10,12 @@ const STAGES = [
   ["The Toll of Remembrance", "Recover wax-sealed petitions at the tollhouse"],
   ["The Dripping Gate", "Defeat the Bailiff beyond the Dripping Gate"],
   ["The Dripping Gate", "Return to Maelin at the Wayside Fire"],
-  ["Beyond the Mile of Bells", "The Abbey road is open. (more soon)"],
+  ["Beyond the Mile of Bells", "Climb the Penitent Climb to the Ashen Abbey"],
+  ["The Mouthless Choir", "Silence the Abbey's wax faithful"],
+  ["Saints Who Remember", "Listen at the wax saints in the graveyard"],
+  ["The Sealed Door", "Lay your hand on the Abbey door"],
+  ["The Sealed Door", "Return to Maelin at the Wayside Fire"],
+  ["The Ninth Bell", "The Abbey door waits. The next chapter is coming."],
 ];
 const THEME = `<style>
 #vf{--ink:#0d0b0a;--bone:#e9dfc8;--wax:#f2d38a;--blood:#b3261e;--edge:#d98c2b;--stone:#2a2724;color:var(--bone);font-size:16px;text-shadow:2px 2px 0 var(--ink)}
@@ -210,6 +215,8 @@ export default function (ctx, player) {
   let prog = "";
   if (q.stage === 1) prog = ` ${Math.min(8, (s.kills ?? 0) - (q.killsAt ?? 0))}/8`;
   if (q.stage === 2) prog = ` ${Math.min(5, s.petitions?.length ?? 0)}/5`;
+  if (q.stage === 6) prog = ` ${Math.min(6, (s.kills ?? 0) - (q.killsAt ?? 0))}/6`;
+  if (q.stage === 7) prog = ` ${(q.saints ?? []).length}/3`;
   const L = [0, 60, 150, 280, 450, 680, 960, 1300], lv = s.level ?? 1;
   const lo = L[lv - 1] ?? 0, hi = L[lv] ?? lo + 500, xpPct = Math.max(0, Math.min(100, (((s.xp ?? 0) - lo) / (hi - lo)) * 100));
   const boss = ctx.place.state.boss;
@@ -231,7 +238,7 @@ export default function (ctx, player) {
   const rail = "calc(var(--spawn-chrome-reservation-right-inset, 50px) + 24px)";
   return `${THEME}${FRAME_CSS}<div id="vf" class="fixed inset-0 pointer-events-none">
   <div class="absolute plate qp${boss && boss.engaged && !boss.dead ? " bossup" : ""}" style="left:24px;top:24px;max-width:300px;animation:vfin .4s">
-    <div class="lbl">${q.stage >= 5 ? "Complete" : "Quest"} · Broken Lantern Road</div>
+    <div class="lbl">${q.stage >= 10 ? "Chapter complete" : "Quest"} · ${q.stage >= 5 ? "The Ashen Abbey" : "Broken Lantern Road"}</div>
     <div style="font-size:19px;color:var(--wax)">${qt}</div><div class="dv df1"></div>
     <div style="font-size:15px">› ${qo}<span style="color:var(--wax)">${prog}</span></div>
   </div>
@@ -280,7 +287,7 @@ export default function (ctx, player) {
     <div style="font-size:11px;margin-top:4px;color:#e0473a">♥ ${s.tonics ?? 0}</div>
   </div>
   <div class="absolute ph" style="left:190px;top:150px;pointer-events:auto" onclick="sendAction('bag')"><div class="slot" style="width:48px;height:40px;font-size:11px">PACK</div></div>
-  ${q.stage === 0 || q.stage === 4 ? `<div data-world-anchor="maelin" data-anchor-offset="0 2.3 0" style="font-size:30px;color:var(--wax);text-align:center;animation:vfpulse 1.4s infinite">!<div style="font-size:12px">MAELIN</div></div>` : ""}
+  ${q.stage === 0 || q.stage === 4 || q.stage === 9 ? `<div data-world-anchor="maelin" data-anchor-offset="0 2.3 0" style="font-size:30px;color:var(--wax);text-align:center;animation:vfpulse 1.4s infinite">!<div style="font-size:12px">MAELIN</div></div>` : ""}
   ${s.bagOpen ? `<div class="absolute plate pk" style="right:${rail};top:50%;transform:translateY(-50%);width:290px;max-width:calc(100vw - 2*${rail});max-height:calc(100vh - 16px);overflow:auto;pointer-events:auto;animation:vfin .25s">
     <div class="lbl" style="display:flex;justify-content:space-between">${s.charName ?? "Bearer"} · Pack${touch ? "" : " (I to close)"}${touch ? `<span style="cursor:pointer;color:#f2d38a" onclick="sendAction('bag')">CLOSE</span>` : ""}</div><div class="dv d5"></div>
     <div style="display:grid;grid-template-columns:repeat(4,52px);gap:6px;margin-top:8px">

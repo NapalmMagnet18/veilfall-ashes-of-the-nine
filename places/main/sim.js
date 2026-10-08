@@ -40,9 +40,26 @@ const LINES = {
   2: "Maelin Sore: The tollhouse kept petitions, the names of everyone who paid to pass. Bring me five. Wax-sealed. Someone wanted them forgotten.",
   3: "Maelin Sore: These names were taxed twice, once in coin and once in memory. The Bailiff still collects behind the Dripping Gate. Break him, and the road is ours.",
   4: "Maelin Sore: You rang his bell for the last time. Take this blade, it was my brother's oath. It cut true once. It will again.",
-  5: "Maelin Sore: The Abbey road is open now. I'll redraw the map by firelight. Come back when you've seen what waits under the ash.",
+  5: "Maelin Sore: The Abbey road is open now. Climb it. The Ashen Abbey kept the lanterns of the Nine, once. Tell me what's left of it.",
+  6: "Maelin Sore: The yard is crawling? Then quiet it. Nothing that sings without a mouth should be left standing.",
+  7: "Maelin Sore: Wax saints in the yard... they poured the faithful over the dead so they'd remember. Listen to them. Wax keeps what stone forgets.",
+  8: "Maelin Sore: A door that keeps its own counsel. Lay your hand on it before you come back to me.",
+  9: "Maelin Sore: The Ninth Bell. My mother sang of it: the Nine lit eight lanterns and hid the ninth inside the bell, so no hand could carry it off. Someone is ringing it from the inside, Bearer. Take this, and rest. The Abbey has waited this long.",
+  10: "Maelin Sore: The door won't hold forever. When it opens, I want you standing in front of it.",
 };
-const AUTO = { 2: "The road falls quiet. The tollhouse lies ahead: find five wax-sealed petitions in its court.", 3: "Five petitions, five erased names. Beyond the Dripping Gate, the Bailiff is still collecting.", 4: "The bell is cracked. Return to Maelin at the Wayside Fire." };
+// the Abbey chapter: where it begins, the three saints that speak, the door that won't
+const ABBEY_YARD = { x: 0, z: -176, r: 18 };
+const SAINTS = [
+  { id: "a", x: 15, z: -183.2, line: "The Saint of Ledgers (wax, murmuring): \"I counted every coin the road paid. I counted the names. When the Bailiff asked for the ninth lantern, I gave him my ledger instead. He's still reading it.\"" },
+  { id: "b", x: 16.2, z: -180, line: "The Saint of the Open Hand (wax, murmuring): \"We poured ourselves over the dead so the Abbey would remember them. The wax was warm. Then the bell rang, and it never stopped being warm.\"" },
+  { id: "c", x: 14.6, z: -176.4, line: "The Saint Without Eyes (wax, murmuring): \"Nine lanterns. Eight were carried out. The ninth is in the bell, and the bell is behind the door, and the door only opens for a Bearer who carries fire.\"" },
+];
+const ABBEY_DOOR = { x: 0, z: -195.5 };
+const AUTO = { 2: "The road falls quiet. The tollhouse lies ahead: find five wax-sealed petitions in its court.", 3: "Five petitions, five erased names. Beyond the Dripping Gate, the Bailiff is still collecting.", 4: "The bell is cracked. Return to Maelin at the Wayside Fire.",
+  6: "The Ashen Abbey. Its yard is full of the faithful, still singing with no mouths. Silence six of them.",
+  7: "The yard holds its breath. Three wax saints stand among the graves. Go close and listen.",
+  8: "The saints are quiet again. The Abbey door stands at the top of the yard. Touch its seal.",
+  9: "The seal is warm, and something behind it is ringing a bell very slowly. Bring this back to Maelin." };
 // the Wax Deacon's censer: bronze thurible hung at his right hip, coals glowing, incense smoke rising
 const CENSER = { id: "censer", feetPosition: { x: 0.34, y: 0.62, z: -0.08 }, pivot: "top", behavior: "scripts/censer-swing.js", castShadow: true, primitive: { kind: "scripted", script: "scripts/gen/censer.js", params: { chain: 0.42 }, seed: 7 },
   fx: { script: `fx\npop smoke rate=?mobile:5|9 on=sphere(.05) life=1.6..2.6 v=up(.35..0.6)+sdir()*.08 size=.07..0.12 acc=buoy(.4)+curl(.4)*.4+drag(.9) sz=$size*(.6>3) col=<.42,.38,.34>><.2,.2,.22> a=0>.2:.35>.7:.2>0 rot=spin(.2) r=sprite(smoke-puff,alpha)\npop glow n=1 glo=fire()*.6 r=light(<1,.5,.2>,$glo*.8,2.5)`, params: {} } };
@@ -114,6 +131,16 @@ export function tick(ctx) {
         }
         next = { stage: 5 };
       }
+      else if (q.stage === 9) {
+        if (!s.claimed?.["Z01-MAIN-06"]) {
+          s.claimed = { ...(s.claimed ?? {}), "Z01-MAIN-06": now };
+          s.xp = (s.xp ?? 0) + 400; s.copper = (s.copper ?? 0) + E.quests["Z01-MAIN-06"]; s.tonics = Math.max(s.tonics ?? 0, 5);
+          ctx.emit("playSound", { clip: "/cdn/moodboard-gothic-horror/sfx-quest-complete-low-bells-and-choir.mp3", position: p.feetPosition, volume: 1 }, { audience: { player: p.id } });
+          ctx.emit("screenFlash", { color: "#ffe2a8", duration: 0.35, intensity: 0.1 }, { audience: { player: p.id } });
+          ctx.emit("milestone", { step: 9, name: "abbey-chapter-complete" }, { audience: { player: p.id } });
+        }
+        next = { stage: 10 };
+      }
       say(ctx, p, next ? next.stage : q.stage);
       if (!next) s.quest = { ...q, heardAt: s.talk.at };
     }
@@ -121,6 +148,26 @@ export function tick(ctx) {
     if (q.stage === 2 && (s.petitions?.length ?? 0) >= 5) next = { stage: 3 };
     if (q.stage === 3 && s.bossKilled) next = { stage: 4 };
     if (q.stage < 3 && s.bossKilled) s.bossKilled = false; // only counts once the hunt is yours
+    // the Abbey chapter
+    const px = p.feetPosition.x, pz = p.feetPosition.z;
+    if (!next && q.stage === 5 && Math.hypot(px - ABBEY_YARD.x, pz - ABBEY_YARD.z) < ABBEY_YARD.r) next = { stage: 6, killsAt: s.kills ?? 0 };
+    if (!next && q.stage === 6 && (s.kills ?? 0) - (q.killsAt ?? 0) >= 6) next = { stage: 7, saints: [] };
+    if (!next && q.stage === 7) {
+      const heard = q.saints ?? [];
+      for (const st of SAINTS) if (!heard.includes(st.id) && Math.hypot(px - st.x, pz - st.z) < 2.6) {
+        const h = [...heard, st.id];
+        s.quest = { ...q, saints: h }; s.dialog = { text: st.line, at: now };
+        ctx.emit("playSound", { clip: "/cdn/moodboard-gothic-horror/sfx-wax-saint-whisper-murmur-chime.mp3", position: { x: st.x, y: p.feetPosition.y + 1.5, z: st.z }, volume: 0.9 }, { audience: { player: p.id } });
+        ctx.emit("fx", { position: { x: st.x, y: p.feetPosition.y + 1.6, z: st.z }, script: `fx\npop m burst=40 on=sphere(.5) life=1..1.8 v=up(.4..0.9)+sdir()*.3 size=.03..0.06 col=hdr(.8,2,2.2) a=1>0 r=sprite(mote,add)` }, { audience: { player: p.id } });
+        if (h.length >= SAINTS.length) next = { stage: 8, saints: h, silentAt: now };
+        break;
+      }
+    }
+    if (!next && q.stage === 8 && now - (q.silentAt ?? 0) > 6000 && Math.hypot(px - ABBEY_DOOR.x, pz - ABBEY_DOOR.z) < 3.5) {
+      next = { stage: 9 };
+      ctx.emit("screenShake", { intensity: 0.25, duration: 0.6 }, { audience: { player: p.id } });
+      ctx.emit("playSound", { clip: "/cdn/moodboard-gothic-horror/sfx-cracked-bell-tolls-once-behind-a-sealed-door.mp3", position: p.feetPosition, volume: 1 }, { audience: { player: p.id } });
+    }
     if (next) {
       s.quest = { ...q, ...next, heardAt: talked ? s.talk.at : q.heardAt };
       if (!talked) s.dialog = { text: AUTO[next.stage], at: now };
