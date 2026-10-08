@@ -86,6 +86,219 @@ nave-brazier-3:
   physics: static
   primitive: {kind: scripted, params: {h: 1.5, kind: brazier}, script: scripts/gen/vf-ruin.js, seed: 83}
   tags: [abbey, nave, z01-dressing]
+nave-drift-0:
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, fx: {params: {power: 1.8, radius: 5, tips: "0.08,0.44,0.04;-0.22,0.36,0.18;0.26,0.33,-0.16"}, script: scripts/effects/candles.fx.js}, id: flames}]
+  feetPosition: {x: 5.75, y: {terrain: 0}, z: -213}
+  id: nave-drift-0
+  physics: static
+  primitive: {kind: scripted, params: {H: 0.3, n: 220, rx: 0.5, rz: 0.75, tips: "0.08,0.44,0.04;-0.22,0.36,0.18;0.26,0.33,-0.16"}, script: scripts/gen/nave-candles.js, seed: 180}
+  rotation: {yaw: 0}
+  tags: [abbey, nave, z01-dressing]
+nave-drift-1:
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, fx: {params: {power: 1.8, radius: 5, tips: "-0.1,0.4,0.1;0.2,0.37,-0.12"}, script: scripts/effects/candles.fx.js}, id: flames}]
+  feetPosition: {x: -5.75, y: {terrain: 0}, z: -218}
+  id: nave-drift-1
+  physics: static
+  primitive: {kind: scripted, params: {H: 0.3, n: 220, rx: 0.5, rz: 0.75, tips: "-0.1,0.4,0.1;0.2,0.37,-0.12"}, script: scripts/gen/nave-candles.js, seed: 181}
+  rotation: {yaw: 40}
+  tags: [abbey, nave, z01-dressing]
+nave-drift-2:
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, fx: {params: {power: 1.8, radius: 5, tips: "0.0,0.46,-0.05;0.24,0.34,0.15;-0.26,0.31,-0.1"}, script: scripts/effects/candles.fx.js}, id: flames}]
+  feetPosition: {x: 5.75, y: {terrain: 0}, z: -223}
+  id: nave-drift-2
+  physics: static
+  primitive: {kind: scripted, params: {H: 0.3, n: 220, rx: 0.5, rz: 0.75, tips: "0.0,0.46,-0.05;0.24,0.34,0.15;-0.26,0.31,-0.1"}, script: scripts/gen/nave-candles.js, seed: 182}
+  rotation: {yaw: 80}
+  tags: [abbey, nave, z01-dressing]
+nave-drift-3:
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, fx: {params: {power: 1.8, radius: 5, tips: "0.08,0.44,0.04;-0.22,0.36,0.18;0.26,0.33,-0.16"}, script: scripts/effects/candles.fx.js}, id: flames}]
+  feetPosition: {x: -5.75, y: {terrain: 0}, z: -233}
+  id: nave-drift-3
+  physics: static
+  primitive: {kind: scripted, params: {H: 0.3, n: 220, rx: 0.5, rz: 0.75, tips: "0.08,0.44,0.04;-0.22,0.36,0.18;0.26,0.33,-0.16"}, script: scripts/gen/nave-candles.js, seed: 183}
+  rotation: {yaw: 120}
+  tags: [abbey, nave, z01-dressing]
+nave-fallen-column:
+  feetPosition: {x: 6, y: {terrain: 0}, z: -218.6}
+  id: nave-fallen-column
+  physics: static
+  primitive: {kind: scripted, params: {n: 5, sp: 1.25}, script: scripts/gen/nave-drums.js, seed: 150}
+  rotation: {yaw: 123.5}
+  tags: [abbey, nave, z01-dressing]
+nave-floor-0:
+  feetPosition: {x: -3.6, y: {terrain: 0}, z: -206.8}
+  id: nave-floor-0
+  primitive: {kind: scripted, params: {kind: ash, rx: 1.4, rz: 0.9}, script: scripts/gen/nave-floor.js, seed: 190}
+  rotation: {yaw: 0}
+  tags: [abbey, nave, z01-dressing]
+nave-floor-1:
+  feetPosition: {x: 3.4, y: {terrain: 0}, z: -207.2}
+  id: nave-floor-1
+  primitive: {kind: scripted, params: {kind: ash, rx: 1.1, rz: 0.8}, script: scripts/gen/nave-floor.js, seed: 191}
+  rotation: {yaw: 23}
+  tags: [abbey, nave, z01-dressing]
+nave-floor-2:
+  feetPosition: {x: -3.3, y: {terrain: 0}, z: -220.2}
+  id: nave-floor-2
+  primitive: {kind: scripted, params: {kind: wax, rx: 1.3, rz: 0.7}, script: scripts/gen/nave-floor.js, seed: 192}
+  rotation: {yaw: 46}
+  tags: [abbey, nave, z01-dressing]
+nave-floor-3:
+  feetPosition: {x: 3.5, y: {terrain: 0}, z: -226}
+  id: nave-floor-3
+  primitive: {kind: scripted, params: {kind: ash, rx: 1.2, rz: 0.8}, script: scripts/gen/nave-floor.js, seed: 193}
+  rotation: {yaw: 69}
+  tags: [abbey, nave, z01-dressing]
+nave-floor-4:
+  feetPosition: {x: 3.3, y: {terrain: 0}, z: -217.9}
+  id: nave-floor-4
+  primitive: {kind: scripted, params: {kind: wax, rx: 0.9, rz: 0.6}, script: scripts/gen/nave-floor.js, seed: 194}
+  rotation: {yaw: 92}
+  tags: [abbey, nave, z01-dressing]
+nave-floor-5:
+  feetPosition: {x: -3.4, y: {terrain: 0}, z: -234.2}
+  id: nave-floor-5
+  primitive: {kind: scripted, params: {kind: ash, rx: 1.5, rz: 0.9}, script: scripts/gen/nave-floor.js, seed: 195}
+  rotation: {yaw: 115}
+  tags: [abbey, nave, z01-dressing]
+nave-floor-6:
+  feetPosition: {x: 3.8, y: {terrain: 0}, z: -234.6}
+  id: nave-floor-6
+  primitive: {kind: scripted, params: {kind: wax, rx: 1, rz: 0.7}, script: scripts/gen/nave-floor.js, seed: 196}
+  rotation: {yaw: 138}
+  tags: [abbey, nave, z01-dressing]
+nave-floor-7:
+  feetPosition: {x: -4.2, y: {terrain: 0}, z: -224}
+  id: nave-floor-7
+  primitive: {kind: scripted, params: {kind: ash, rx: 0.9, rz: 0.6}, script: scripts/gen/nave-floor.js, seed: 197}
+  rotation: {yaw: 161}
+  tags: [abbey, nave, z01-dressing]
+nave-pew-e0:
+  feetPosition: {x: 3.45, y: {terrain: 0}, z: -211}
+  id: nave-pew-e0
+  physics: static
+  primitive: {kind: scripted, params: {len: 3.4, state: row}, script: scripts/gen/nave-pew.js, seed: 120}
+  rotation: {yaw: -2.4}
+  tags: [abbey, nave, z01-dressing]
+nave-pew-e1:
+  feetPosition: {x: 3.6, y: {terrain: 0}, z: -213.3}
+  id: nave-pew-e1
+  physics: static
+  primitive: {kind: scripted, params: {len: 3.4, state: snapped}, script: scripts/gen/nave-pew.js, seed: 121}
+  rotation: {yaw: 3}
+  tags: [abbey, nave, z01-dressing]
+nave-pew-e2:
+  feetPosition: {x: 3.45, y: {terrain: 0}, z: -215.6}
+  id: nave-pew-e2
+  physics: static
+  primitive: {kind: scripted, params: {len: 3.4, state: row}, script: scripts/gen/nave-pew.js, seed: 122}
+  rotation: {yaw: -1.7999999999999998}
+  tags: [abbey, nave, z01-dressing]
+nave-pew-e3:
+  feetPosition: {x: 3.6, y: {terrain: 0}, z: -217.4}
+  id: nave-pew-e3
+  physics: static
+  primitive: {kind: scripted, params: {len: 3.4, state: over}, script: scripts/gen/nave-pew.js, seed: 123}
+  rotation: {yaw: 6}
+  tags: [abbey, nave, z01-dressing]
+nave-pew-e4:
+  feetPosition: {x: 3.45, y: {terrain: 0}, z: -220.2}
+  id: nave-pew-e4
+  physics: static
+  primitive: {kind: scripted, params: {len: 3.4, state: snapped}, script: scripts/gen/nave-pew.js, seed: 124}
+  rotation: {yaw: -6}
+  tags: [abbey, nave, z01-dressing]
+nave-pew-e7:
+  feetPosition: {x: 3.6, y: {terrain: 0}, z: -227.1}
+  id: nave-pew-e7
+  physics: static
+  primitive: {kind: scripted, params: {len: 3.4, state: snapped}, script: scripts/gen/nave-pew.js, seed: 127}
+  rotation: {yaw: 12}
+  tags: [abbey, nave, z01-dressing]
+nave-pew-e8:
+  feetPosition: {x: 3.45, y: {terrain: 0}, z: -229.4}
+  id: nave-pew-e8
+  physics: static
+  primitive: {kind: scripted, params: {len: 3.4, state: row}, script: scripts/gen/nave-pew.js, seed: 128}
+  rotation: {yaw: 0}
+  tags: [abbey, nave, z01-dressing]
+nave-pew-e9:
+  feetPosition: {x: 3.6, y: {terrain: 0}, z: -231.2}
+  id: nave-pew-e9
+  physics: static
+  primitive: {kind: scripted, params: {len: 3.4, state: over}, script: scripts/gen/nave-pew.js, seed: 129}
+  rotation: {yaw: -12}
+  tags: [abbey, nave, z01-dressing]
+nave-pew-ex:
+  feetPosition: {x: 3.8, y: {terrain: 0}, z: -223.6}
+  id: nave-pew-ex
+  physics: static
+  primitive: {kind: scripted, params: {len: 2.8, state: snapped}, script: scripts/gen/nave-pew.js, seed: 141}
+  rotation: {yaw: 31}
+  tags: [abbey, nave, z01-dressing]
+nave-pew-w0:
+  feetPosition: {x: -3.5700000000000003, y: {terrain: 0}, z: -211}
+  id: nave-pew-w0
+  physics: static
+  primitive: {kind: scripted, params: {len: 3.4, state: row}, script: scripts/gen/nave-pew.js, seed: 100}
+  rotation: {yaw: -2.4}
+  tags: [abbey, nave, z01-dressing]
+nave-pew-w1:
+  feetPosition: {x: -3.45, y: {terrain: 0}, z: -213.3}
+  id: nave-pew-w1
+  physics: static
+  primitive: {kind: scripted, params: {len: 3.4, state: row}, script: scripts/gen/nave-pew.js, seed: 101}
+  rotation: {yaw: 1.7999999999999998}
+  tags: [abbey, nave, z01-dressing]
+nave-pew-w2:
+  feetPosition: {x: -3.33, y: {terrain: 0}, z: -215.6}
+  id: nave-pew-w2
+  physics: static
+  primitive: {kind: scripted, params: {len: 3.4, state: snapped}, script: scripts/gen/nave-pew.js, seed: 102}
+  rotation: {yaw: 2.5}
+  tags: [abbey, nave, z01-dressing]
+nave-pew-w3:
+  feetPosition: {x: -3.5700000000000003, y: {terrain: 0}, z: -217.9}
+  id: nave-pew-w3
+  physics: static
+  primitive: {kind: scripted, params: {len: 3.4, state: row}, script: scripts/gen/nave-pew.js, seed: 103}
+  rotation: {yaw: -0.6}
+  tags: [abbey, nave, z01-dressing]
+nave-pew-w5:
+  feetPosition: {x: -3.33, y: {terrain: 0}, z: -222.1}
+  id: nave-pew-w5
+  physics: static
+  primitive: {kind: scripted, params: {len: 3.4, state: over}, script: scripts/gen/nave-pew.js, seed: 105}
+  rotation: {yaw: 10}
+  tags: [abbey, nave, z01-dressing]
+nave-pew-w6:
+  feetPosition: {x: -3.5700000000000003, y: {terrain: 0}, z: -224.8}
+  id: nave-pew-w6
+  physics: static
+  primitive: {kind: scripted, params: {len: 3.4, state: row}, script: scripts/gen/nave-pew.js, seed: 106}
+  rotation: {yaw: 1.2}
+  tags: [abbey, nave, z01-dressing]
+nave-pew-w7:
+  feetPosition: {x: -3.45, y: {terrain: 0}, z: -227.1}
+  id: nave-pew-w7
+  physics: static
+  primitive: {kind: scripted, params: {len: 3.4, state: snapped}, script: scripts/gen/nave-pew.js, seed: 107}
+  rotation: {yaw: 0}
+  tags: [abbey, nave, z01-dressing]
+nave-pew-w9:
+  feetPosition: {x: -3.5700000000000003, y: {terrain: 0}, z: -231.7}
+  id: nave-pew-w9
+  physics: static
+  primitive: {kind: scripted, params: {len: 3.4, state: row}, script: scripts/gen/nave-pew.js, seed: 109}
+  rotation: {yaw: -2.4}
+  tags: [abbey, nave, z01-dressing]
+nave-pew-wx:
+  feetPosition: {x: -3.9, y: {terrain: 0}, z: -209.6}
+  id: nave-pew-wx
+  physics: static
+  primitive: {kind: scripted, params: {len: 2.6, state: over}, script: scripts/gen/nave-pew.js, seed: 140}
+  rotation: {yaw: -24}
+  tags: [abbey, nave, z01-dressing]
 nave-pier-e0:
   feetPosition: {x: 6.6, y: {terrain: 0}, z: -208}
   id: nave-pier-e0
@@ -169,6 +382,34 @@ nave-pier-w5:
   physics: static
   primitive: {kind: scripted, params: {cap: true, h: 4.6}, script: scripts/gen/nave-pier.js, seed: 65}
   rotation: {yaw: 85}
+  tags: [abbey, nave, z01-dressing]
+nave-rafter-e0:
+  feetPosition: {x: 2.3, y: {terrain: 0}, z: -234.2}
+  id: nave-rafter-e0
+  physics: static
+  primitive: {kind: scripted, params: {glow: 0.8, lean: 5, len: 4.4}, script: scripts/gen/nave-rafter.js, seed: 170}
+  rotation: {yaw: 78}
+  tags: [abbey, nave, z01-dressing]
+nave-rafter-w0:
+  feetPosition: {x: -4.9, y: {terrain: 0}, z: -215.4}
+  id: nave-rafter-w0
+  physics: static
+  primitive: {kind: scripted, params: {glow: 0.6, lean: 52, len: 5}, script: scripts/gen/nave-rafter.js, seed: 160}
+  rotation: {yaw: -99}
+  tags: [abbey, nave, z01-dressing]
+nave-rafter-w1:
+  feetPosition: {x: -5.2, y: {terrain: 0}, z: -216.6}
+  id: nave-rafter-w1
+  physics: static
+  primitive: {kind: scripted, params: {glow: 0.3, lean: 58, len: 4.6}, script: scripts/gen/nave-rafter.js, seed: 161}
+  rotation: {yaw: -90}
+  tags: [abbey, nave, z01-dressing]
+nave-rafter-w2:
+  feetPosition: {x: -5, y: {terrain: 0}, z: -225.6}
+  id: nave-rafter-w2
+  physics: static
+  primitive: {kind: scripted, params: {glow: 0.7, lean: 48, len: 5.4}, script: scripts/gen/nave-rafter.js, seed: 162}
+  rotation: {yaw: -81}
   tags: [abbey, nave, z01-dressing]
 nave-wall-e0:
   feetPosition: {x: 8.4, y: {terrain: -0.5}, z: -207.75}
