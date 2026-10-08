@@ -20,7 +20,7 @@ async function call(ctx, listener) {
     const { rows: [o] } = await ctx.sql`SELECT COUNT(*) AS n, COALESCE(SUM(price), 0) AS c FROM trades WHERE seller_char = ${cid} AND sold_at IS NOT NULL AND paid = 0`;
     if (o && o.n > (me.told[cid] ?? 0)) {
       me.told[cid] = o.n; me.n++;
-      const who = listener.state?.name ?? listener.displayName ?? "Bearer";
+      const who = listener.state?.charName ?? listener.displayName ?? "Bearer";
       ctx.emit("playSound", { clip: BELL, position: at, volume: 0.6 }, aud0);
       ctx.emit("playSound", { clip: SOLD[me.n % SOLD.length], position: at, volume: 0.95, maxDistance: EAR + 6 }, aud0);
       ctx.emit("damageNumber", { position: at, text: `${who}, your notice sold · ${fmt(Math.floor(o.c * 0.9))} waits at the board`, color: "#ffd77a", size: 1, lifetime: 5 }, aud0);
