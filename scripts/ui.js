@@ -103,7 +103,7 @@ function menu(ctx, player, s) {
     <div class="ttl" style="font-size:84px;letter-spacing:.22em;color:#e7d9b8;animation:vmglow 4s infinite">VEILFALL</div>
     <div class="sub" style="font-size:20px;letter-spacing:.5em;color:#c49c63;margin-top:4px">ASHES OF THE NINE</div>
     <div style="width:220px;height:2px;margin:16px auto;background:linear-gradient(90deg,transparent,#ac4c42,transparent)"></div>
-    <div class="dv"></div><div class="qt" style="font-size:14px;color:#b9a77f;font-style:italic;max-width:520px;margin:0 auto;padding:0 70px 0 16px">"Every book in this place is a person who no longer knows what they lost."</div>
+    <div class="dv df4"></div><div class="qt" style="font-size:14px;color:#b9a77f;font-style:italic;max-width:520px;margin:0 auto;padding:0 70px 0 16px">"Every book in this place is a person who no longer knows what they lost."</div>
   </div>
   <div class="tb" style="position:absolute;left:0;right:0;bottom:11%;text-align:center;padding-right:60px;animation:vmin 1.1s">
     <button class="btn main" onclick="${act("chars")}">Enter the Veil</button>
@@ -114,9 +114,9 @@ function menu(ctx, player, s) {
 
   if (s.menu === "realms") {
     const per = s.roster?.per ?? {};
-    return `${head(s)}<div class="mid"><div class="lbl">Choose a realm</div><div style="font-size:30px;color:#e7d9b8;letter-spacing:.1em">THE NINE ROADS</div><div class="dv"></div></div>
+    return `${head(s)}<div class="mid"><div class="lbl">Choose a realm</div><div style="font-size:30px;color:#e7d9b8;letter-spacing:.1em">THE NINE ROADS</div><div class="dv df5"></div></div>
     <div class="wrap" style="justify-content:center"><div class="panel side" style="width:min(460px,100%);animation:vmin .4s;margin-top:70px">
-      <div class="lbl">Realms</div>
+      <div class="lbl">Realms</div><div class="dv d1"></div>
       <div style="font-size:13px;color:#b9a77f;margin:4px 0 2px">A Bearer is written into one realm and walks only there.</div>
       ${R.realms.map((r) => `<div class="row ${r.room === here ? "on" : ""}" onclick="${act("realm", r.room)}">
         <div style="flex:1"><div class="t">${r.name}${r.room === here ? ` <span class="lbl" style="color:#6db8c0">· here</span>` : ""}</div><div class="d">${r.kind} · ${r.note}</div></div>
@@ -131,7 +131,7 @@ function menu(ctx, player, s) {
     return `${head(s)}
   <div class="wrap">
     <div class="panel" style="animation:vmin .4s">
-      <div class="lbl">New Bearer · ${realmName(here)}</div>
+      <div class="lbl">New Bearer · ${realmName(here)}</div><div class="dv df3"></div>
       <div style="font-size:22px;color:#f2d38a;margin:2px 0 10px">Ancestry</div>
       <div style="display:flex;gap:14px;justify-content:space-between">${ANC.map((a) => `<div class="anc ${a.id === A.id ? "on" : ""}" style="--c:${a.color};pointer-events:auto" onclick="${act("anc", a.id)}"><img src="${a.img}"><span style="color:${a.id === A.id ? a.color : "#e9dfc8"}">${a.name.toUpperCase()}</span></div>`).join("")}</div>
       <div style="font-size:22px;color:#f2d38a;margin:14px 0 10px">Class</div>
@@ -159,10 +159,10 @@ function menu(ctx, player, s) {
   // character select
   const chars = s.roster?.chars ?? [], sel = chars.find((c) => c.id === s.sel);
   const C = sel && (CLASSES.find((c) => c.id === sel.cls) ?? CLASSES[0]), A = sel && (ANC.find((a) => a.id === sel.ancestry) ?? ANC[0]);
-  return `${head(s)}<div class="mid"><div class="lbl">Realm</div><div style="font-size:28px;color:#e7d9b8;letter-spacing:.12em">${realmName(here).toUpperCase()}</div><div class="dv"></div></div>
+  return `${head(s)}<div class="mid"><div class="lbl">Realm</div><div style="font-size:28px;color:#e7d9b8;letter-spacing:.12em">${realmName(here).toUpperCase()}</div><div class="dv df0"></div></div>
   <div class="wrap">
     <div class="panel side" style="animation:vmin .4s">
-      <div class="lbl">Your Bearers · ${chars.length}/${R.maxChars}</div>
+      <div class="lbl">Your Bearers · ${chars.length}/${R.maxChars}</div><div class="dv df2"></div>
       ${!s.roster ? `<div style="margin-top:10px;color:#b9a77f">Reading the realm's ledger…</div>`
         : chars.length ? chars.map((c) => { const k = CLASSES.find((x) => x.id === c.cls) ?? CLASSES[0], an = ANC.find((x) => x.id === c.ancestry) ?? ANC[0];
           return `<div class="row ${c.id === s.sel ? "on" : ""}" onclick="${act("sel", c.id)}"><img src="${k.img}"><div style="flex:1;min-width:0"><div class="t">${c.name}</div><div class="d"><span style="color:${an.color}">${an.name}</span> ${k.name} · Lv ${c.level}</div><div class="d">${c.zone}</div></div></div>`; }).join("")
@@ -204,23 +204,23 @@ export default function (ctx, player) {
   const touch = typeof matchMedia !== "undefined" && matchMedia("(pointer: coarse)").matches;
   const rail = "calc(var(--spawn-chrome-reservation-right-inset, 50px) + 24px)";
   return `${THEME}${FRAME_CSS}<div id="vf" class="fixed inset-0 pointer-events-none">
-  <div class="absolute plate qp thin" style="left:24px;top:24px;max-width:300px;animation:vfin .4s">
+  <div class="absolute plate qp" style="left:24px;top:24px;max-width:300px;animation:vfin .4s">
     <div class="lbl">${q.stage >= 5 ? "Complete" : "Quest"} · Broken Lantern Road</div>
-    <div style="font-size:19px;color:var(--wax)">${qt}</div><div class="dv"></div>
+    <div style="font-size:19px;color:var(--wax)">${qt}</div><div class="dv df1"></div>
     <div style="font-size:15px">› ${qo}<span style="color:var(--wax)">${prog}</span></div>
   </div>
-  ${boss && boss.engaged && !boss.dead ? `<div class="absolute ornate" style="top:24px;left:50%;transform:translateX(-50%);width:min(520px,calc(100vw - 2*${rail}));text-align:center;animation:vfin .3s">
-    <div style="font-size:20px;color:var(--wax);letter-spacing:.06em">${boss.name.toUpperCase()}</div><div class="dv"></div>
+  ${boss && boss.engaged && !boss.dead ? `<div class="absolute bb" style="top:24px;left:50%;transform:translateX(-50%);width:min(520px,calc(100vw - 2*${rail}));text-align:center;animation:vfin .3s">
+    <div style="font-size:20px;color:var(--wax);letter-spacing:.06em">${boss.name.toUpperCase()}</div><div class="dv d4"></div>
     <div style="height:16px;background:#120e0c;box-shadow:0 0 0 2px #0d0b0a,0 0 0 4px #5a4a33;position:relative">
       <div style="position:absolute;inset:0;width:${(boss.hp / boss.max) * 100}%;background:linear-gradient(#c9402f,#7a1610);transition:width .2s"></div>
       <div style="position:absolute;top:0;bottom:0;left:70%;width:2px;background:#0d0b0a"></div><div style="position:absolute;top:0;bottom:0;left:35%;width:2px;background:#0d0b0a"></div>
     </div><div class="lbl" style="margin-top:4px">${boss.phase === 1 ? "PHASE I · orange wedge: get behind him · marked: move away" : boss.phase === 2 ? `PHASE II · break the ledger pillars (${boss.ledgers} lit)` : "PHASE III · arc, debt, then he falters"}${boss.fray ? ` · FRAY ×${boss.fray} (+${boss.fray * 10}% damage taken)` : ""}</div></div>` : ""}
-  ${dlg ? `<div id="dlg${dlg.at}" class="absolute plate ornate" style="left:50%;transform:translateX(-50%);bottom:${touch ? 210 : 150}px;width:min(560px,calc(100vw - 2*${rail}));animation:vfin .35s;font-size:17px;line-height:1.35">${dlg.text}</div>` : ""}
+  ${dlg ? `<div id="dlg${dlg.at}" class="absolute plate dl" style="left:50%;transform:translateX(-50%);bottom:${touch ? 210 : 150}px;width:min(560px,calc(100vw - 2*${rail}));animation:vfin .35s;font-size:17px;line-height:1.35">${dlg.text}</div>` : ""}
   <div class="absolute dk" style="left:24px;bottom:24px;display:flex;align-items:flex-end;gap:14px">
     <div class="orb"><div class="fill" style="height:${hpPct}%;background:radial-gradient(circle at 50% 30%,#e0473a,#7d1410 70%)${hpPct < 30 ? ";animation:vfpulse 1s infinite" : ""}"></div><div class="shine"></div><div class="val">${hp}</div></div>
-    <div class="plate" style="padding:6px 10px"><div class="lbl">${s.charName ? s.charName + " · " : ""}Lv ${lv} ${s.ancestry ? s.ancestry[0].toUpperCase() + s.ancestry.slice(1) + " " : ""}Bladewraith</div><div style="width:150px;height:6px;background:#120e0c;margin-top:4px"><div style="height:6px;width:${xpPct}%;background:#9d86e0"></div></div><div style="font-size:13px;margin-top:4px;color:var(--wax)">${coinHTML(s.copper ?? 0, 14)}${s.weapon === "ITEM-001" ? " · Rusted Oathblade" : ""}</div></div>
+    <div class="plate pp" style="padding:6px 10px"><div class="lbl">${s.charName ? s.charName + " · " : ""}Lv ${lv} ${s.ancestry ? s.ancestry[0].toUpperCase() + s.ancestry.slice(1) + " " : ""}Bladewraith</div><div style="width:150px;height:6px;background:#120e0c;margin-top:4px"><div style="height:6px;width:${xpPct}%;background:#9d86e0"></div></div><div style="font-size:13px;margin-top:4px;color:var(--wax)">${coinHTML(s.copper ?? 0, 14)}${s.weapon === "ITEM-001" ? " · Rusted Oathblade" : ""}</div></div>
   </div>
-  ${touch ? "" : `<div class="absolute dk" style="left:50%;bottom:24px;transform:translateX(-50%);display:flex;gap:10px">
+  ${touch ? "" : `<div class="absolute dk sk" style="left:50%;bottom:24px;transform:translateX(-50%);display:flex;gap:10px">
     <div class="slot"><span class="k">LMB</span>⚔</div>
     <div class="slot ${edge < 30 ? "dim" : ""}"><span class="k">RMB</span>⚔<span class="n">30</span></div>
     <div class="slot"><span class="k">SPC</span>»<div class="cd" style="height:${dashPct}%"></div></div>
@@ -237,14 +237,14 @@ export default function (ctx, player) {
   </div>
   <div class="absolute ph" style="right:12px;top:12px;pointer-events:auto" onclick="sendAction('bag')"><div class="slot" style="width:48px;height:40px;font-size:11px">PACK</div></div>
   ${q.stage === 0 || q.stage === 4 ? `<div data-world-anchor="maelin" data-anchor-offset="0 2.3 0" style="font-size:30px;color:var(--wax);text-align:center;animation:vfpulse 1.4s infinite">!<div style="font-size:12px">MAELIN</div></div>` : ""}
-  ${s.bagOpen ? `<div class="absolute plate" style="right:${rail};top:50%;transform:translateY(-50%);width:260px;animation:vfin .25s">
-    <div class="lbl">${s.charName ?? "Bearer"} · Pack (I to close)</div><div class="dv"></div>
-    <div style="display:grid;grid-template-columns:repeat(4,52px);gap:8px;margin-top:8px">
-      ${[["⚔", s.weapon === "ITEM-001" ? "Rusted Oathblade" : "Pilgrim's Shortblade", 1], ["♥", "Ash Tonic", s.tonics ?? 0], ["◆", "Wax Shard", s.shards ?? 0], ["✉", "Sealed Petition", s.petitions?.length ?? 0]].filter((i) => i[2]).map(([g, n, c]) => `<div class="slot" title="${n}" style="width:52px;height:52px">${g}<span class="n">${c}</span></div>`).join("")}
+  ${s.bagOpen ? `<div class="absolute plate pk" style="right:${rail};top:50%;transform:translateY(-50%);width:290px;animation:vfin .25s">
+    <div class="lbl">${s.charName ?? "Bearer"} · Pack (I to close)</div><div class="dv d5"></div>
+    <div style="display:grid;grid-template-columns:repeat(4,52px);gap:6px;margin-top:8px">
+      ${[["⚔", s.weapon === "ITEM-001" ? "Rusted Oathblade" : "Pilgrim's Shortblade", 1], ["♥", "Ash Tonic", s.tonics ?? 0], ["◆", "Wax Shard", s.shards ?? 0], ["✉", "Sealed Petition", s.petitions?.length ?? 0]].filter((i) => i[2]).concat(Array(12).fill(null)).slice(0, 12).map((it) => it ? `<div class="slot" title="${it[1]}" style="width:52px;height:52px">${it[0]}<span class="n">${it[2]}</span></div>` : `<div class="slot e" style="width:52px;height:52px"></div>`).join("")}
     </div>
     <div style="font-size:13px;margin-top:8px;line-height:1.4">${s.weapon === "ITEM-001" ? "Rusted Oathblade · +30% damage" : "Pilgrim's Shortblade"}<br>${s.shards ?? 0} wax shards · ${s.petitions?.length ?? 0} petitions</div><div style="font-size:14px;margin-top:6px;display:flex;align-items:center">${coinHTML(s.copper ?? 0, 14)}</div><button style="pointer-events:auto;cursor:pointer;margin-top:10px;width:100%;padding:8px;font-family:inherit;font-size:13px;letter-spacing:.12em;color:#e9dfc8;background:linear-gradient(#2c2825,#171412);border:0;box-shadow:0 0 0 2px #0d0b0a,0 0 0 3px #5a4a33" onclick="sendAction('menu',{a:'logout',n:Date.now()})">REST · CHARACTER SELECT</button></div>` : ""}
   ${s.shop ? shopPanel(ctx, player) : ""}
-  ${s.dead ? `<div class="absolute inset-0" style="display:flex;align-items:center;justify-content:center;background:radial-gradient(transparent 30%,rgba(40,0,0,.6));animation:vfin .4s"><div style="font-size:54px;color:#d8442f;letter-spacing:.1em">THE ROAD TAKES YOU</div></div>` : ""}
+  ${s.dead ? `<div class="absolute inset-0" style="display:flex;align-items:center;justify-content:center;background:radial-gradient(transparent 30%,rgba(40,0,0,.6));animation:vfin .4s"><div class="kd" style="font-size:54px;color:#d8442f;letter-spacing:.1em">THE ROAD TAKES YOU</div></div>` : ""}
   ${now - firstSeen < 9000 && !touch ? `<div class="absolute inset-x-0 text-center dk" style="bottom:150px;font-size:17px;padding:0 ${rail};animation:vffade 1s 8s forwards">Click to walk · click a foe to strike · Right-click Crosswound · Space Griefstep · Q tonic · I pack</div>` : ""}
 </div>`;
 }

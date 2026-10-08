@@ -5,7 +5,7 @@ import { coinHTML } from "./coins.js";
 import { owned } from "./shop.js";
 const NAMES = { oswin: "OSWIN'S CART" };
 const CSS = `<style>
-#vfshop{position:absolute;top:90px;left:max(340px,calc(50% - 340px));width:min(340px,calc(100vw - 2*(var(--spawn-chrome-reservation-right-inset,50px) + 24px)));pointer-events:auto;animation:vfin .25s;padding:10px 12px!important}
+#vfshop{position:absolute;top:90px;left:max(340px,calc(50% - 340px));width:min(340px,calc(100vw - 2*(var(--spawn-chrome-reservation-right-inset,50px) + 24px)));pointer-events:auto;animation:vfin .25s;padding:22px 24px!important}
 @media (pointer:coarse),(max-width:900px){#vfshop{left:50%;transform:translateX(-50%)}}
 #vfshop .row{display:flex;align-items:center;gap:8px;padding:7px 0;border-top:1px solid #3a3129}
 #vfshop .gl{width:34px;height:34px;flex:none;background:#171412;box-shadow:0 0 0 2px #0d0b0a,0 0 0 3px #5a4a33;display:flex;align-items:center;justify-content:center;font-size:18px}
@@ -37,7 +37,7 @@ export function shopPanel(ctx, player) {
   return `${CSS}<div id="vfshop" class="plate">
     <div class="x" onclick="${act("close", "")}">${GLYPH.x}</div>
     <div class="lbl">Wayside Fire · peddler</div>
-    <div style="font-size:20px;color:var(--wax);letter-spacing:.06em">${NAMES[s.shop] ?? "CART"}</div><div class="dv"></div>
+    <div style="font-size:20px;color:var(--wax);letter-spacing:.06em">${NAMES[s.shop] ?? "CART"}</div><div class="dv d3"></div>
     <div style="font-size:14px;margin:4px 0 6px;display:flex;align-items:center;gap:6px"><span class="lbl">Purse</span>${coinHTML(purse, 14)}</div>
-    ${rows}<div class="lbl" style="margin-top:6px">Buyback</div>${sell}</div>`;
+    ${rows}<div class="lbl" style="margin-top:6px">Buyback</div><div class="dv d2"></div>${sell}</div>`;
 }
