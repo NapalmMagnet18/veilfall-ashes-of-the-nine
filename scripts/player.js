@@ -111,7 +111,7 @@ function menuInput(ctx, d) {
       const r = R.realms.find((x) => x.room === d.v); if (!r) break;
       click(ctx, 1.1);
       if (r.room === here) { s.menu = "chars"; refresh(ctx); break; }
-      s.menu = "chars"; s.menuNext = "chars"; s.roster = null; s.busy = "Crossing to " + r.name;
+      s.menu = "chars"; s.menuNext = "chars"; s.roster = null; s.busy = "Crossing to " + r.name; me.crossFrom = here; me.crossBusyAt = ctx.now();
       const out = ctx.cross(ctx.self, "world:" + ctx.world.id + "/room:" + r.room);
       if (!out?.crossed) { s.busy = null; msg(ctx, "That realm would not open. Try again."); ctx.log("realm cross refused", out?.verdict); }
       break;
@@ -379,9 +379,14 @@ export function update(ctx, dt) {
     ctx.self.velocity = { x: 0, y: vy, z: 0 }; me.lastHp = s.hp;
     goVeil(ctx);
     if (s.menuNext === "chars" && ctx.self.place) s.menuNext = null;
-    if (s.roster && s.roster.realm !== CH.realmOf(ctx).room && !s.busy) { s.roster = null; refresh(ctx); } // landed on another realm
-    if (s.busy?.startsWith("Crossing") && s.roster === null && !me.crossBusyAt) me.crossBusyAt = now;
-    if (me.crossBusyAt && now - me.crossBusyAt > 8000) { s.busy = null; me.crossBusyAt = 0; }
+    // landed on another realm (or the ledger never answered): read this realm's Bearers
+    const realmHere = CH.realmOf(ctx).room;
+    if ((!s.roster || s.roster.realm !== realmHere) && now - (me.refAt ?? 0) > 3000) {
+      me.refAt = now; if (s.busy?.startsWith("Crossing") && me.crossFrom !== realmHere) s.busy = null;
+      ctx.log("realm ledger", { realm: realmHere, room: ctx.getRoomId?.() ?? null });
+      if (!s.busy) refresh(ctx);
+    }
+    if (s.busy?.startsWith("Crossing") && now - (me.crossBusyAt ||= now) > 10000) { s.busy = null; me.crossBusyAt = 0; }
     return;
   }
   if (!s.charId) { s.menu = "title"; return; } // never in the world without a Bearer
