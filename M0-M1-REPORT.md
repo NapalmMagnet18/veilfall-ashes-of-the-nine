@@ -51,3 +51,14 @@ Quest counter: Pilgrims in White (talk → kill 8) → Toll of Remembrance (5 pe
 **M1 gate:** NOT PASSED. Movement, attack, kill/reward/counter and talk work. The dungeon run, the boss and blocked-path tests are still open.
 
 **Next:** finish the M1 checks (full run, boss, collision, roof fade, i-frames). Then M2 (reconnect + reward-once).
+
+## Bailiff + Afterimage Guard test pass (Savi's helper client, 2026-10-08)
+Seen working (screenshots + state reads):
+- Engage on entry; boss HUD with phase line; Phase I hint, Taxman's Arc wedge, Unpaid Debt ring with numbered label "2 UNPAID DEBT: MOVE AWAY".
+- Phase II at <70%: two ledger pillars light, walkers spawn, Fray ×1 shows on the bar; destroying pillars clears them.
+- Phase III at <35% reached; kill pays +400 XP / +60 gold once, clears adds and pillars, sets bailiffDownAt.
+- Wipe reset: hero died, arena empty 6 s → boss back to 900 HP, phase I, adds cleared.
+- Guard (key 1): slot + cooldown on the bar; a caught blow wrote riposte state in an earlier Jev run.
+Fixed during the pass: Unpaid Debt could hit one player on every step of its line; now once per cast.
+Not yet proven: a solo win at normal HP with real dodging (face-tanking dies in ~8 s; the kill test used boosted HP), the GUARDED number on screen, co-op scaling with 2+ players, disconnect mid-phase, Guard on touch (no touch button yet), Tollhouse roof, blue grid, nav obstacle test.
+Correction: seq 8 is NOT a safe rollback point (creator data edits at seq 8, blueprint at 9).
