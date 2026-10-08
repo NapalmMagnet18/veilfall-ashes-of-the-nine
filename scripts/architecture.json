@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "basedOnSpecVersion": 640,
-  "updatedAt": "2026-10-08T21:28:39.760Z",
-  "summary": "VEILFALL: Ashes of the Nine is an isometric action RPG following Bearers through the shared Z01 main world and a solo Veil menu stage. The main sim coordinates quests and encounters; player and enemy/boss systems own play state, character.js persists Bearers, and shared loot code serves combat, the Wayside Forge, and the Pilgrims' Board.",
+  "basedOnSpecVersion": 651,
+  "updatedAt": "2026-10-08T21:35:06.922Z",
+  "summary": "VEILFALL: Ashes of the Nine is an isometric action RPG following Bearers through the shared Z01 main world and a solo Veil menu stage. The main-place referee coordinates quests and encounters while player and enemy/boss scripts own live play; character.js persists Bearers, and shared loot and trade systems serve combat, the Wayside Forge and Pilgrims' Board.",
   "scriptPaths": [
     "scripts/arrival.js",
     "scripts/bailiff.js",
@@ -10,6 +10,7 @@
     "scripts/censer-swing.js",
     "scripts/clover.js",
     "scripts/controls.js",
+    "scripts/crier.js",
     "scripts/db.js",
     "scripts/effects/candles.fx.js",
     "scripts/flat-starter-terrain.js",
@@ -104,41 +105,41 @@
   ],
   "places": [
     "places/main/ - shared playable Z01; sim.js owns quest chapters, NPCs, enemy/boss lifecycle, encounter dressing and room soundscape.",
-    "places/main/cells/ - five authored cells span Wayside Fire, Broken Lantern Road, Abbey/Crypt, Fen/Lanternmere and Gallows Orchard; x0z0.scene places Wayside Forge and Pilgrims' Board at the camp.",
+    "places/main/cells/ - five authored cells span Wayside Fire, Broken Lantern Road, Abbey/Crypt, Fen/Lanternmere and Gallows Orchard; x0z0.scene places the Forge and Pilgrims' Board at camp.",
     "places/main/config.yaml - main terrain, atmosphere, vegetation, arrival budget and reverb.",
     "places/veil/ - ephemeral solo Lantern Shrine menu stage; hidden menu body is parked here.",
     "places/veil/cells/ and places/veil/config.yaml - authored shrine ledge, cliffs, far ridge, spawn and menu-stage environment.",
     "places/veil/sim.js - Veil menu ambience, spatial shrine hum and occasional far-ravine bell."
   ],
   "roots": [
-    "world.config.yaml - world entry: main default, player/camera templates, lighting, arrival behavior, nametag, desktop/touch actions including trade, and audio mix.",
+    "world.config.yaml - world entry: main default, player/camera templates, lighting, arrival behavior, nametag, desktop/touch actions and audio mix.",
     "templates/player.js - Bladewraith body with humanoid-locomotion.js and scripts/player.js, plus carried-light child.",
     "templates/camera.js - custom camera template running scripts/camera.js.",
-    "places/main/sim.js - Z01 referee for quests, NPCs, enemy packs, progression, rewards, bosses and soundscape.",
-    "places/main/cells/ - authored playable terrain and dressing from camp through Abbey/Crypt, Fen and Orchard; x0z0.scene places the Forge and trade board at the Wayside Fire.",
+    "places/main/sim.js - Z01 referee for quests, NPCs (including Brother Ledd), enemy packs, progression, rewards, bosses and soundscape.",
+    "places/main/cells/ - authored playable terrain and dressing from camp through Abbey/Crypt, Fen and Orchard; x0z0.scene places the Forge and trade board.",
     "places/veil/cells/ and places/veil/config.yaml - authored menu-stage shrine/ravine and spawn/environment.",
     "places/veil/sim.js - menu ambience and jukebox theme when nobody eligible is on main.",
     "scripts/arrival.js - world doorway behavior; saves an active Bearer leaving main."
   ],
   "shared": [
-    "scripts/lib/character.js - Bearer schema, fresh state, realm roster/create/load/save/delete and packed position; player and arrival reuse it.",
+    "scripts/lib/character.js - Bearer schema, fresh state, realm roster/create/load/save/delete and packed position; player and arrival reuse it, crier uses realmOf.",
     "scripts/db.js and scripts/lib/data/realms.yml - character and realm-bound trades table schemas plus realm room/name registry for menus and UI.",
-    "scripts/lib/data/economy.yml and scripts/lib/coins.js - copper denominations, drops, rewards, sell values and shop stock used by sim, combat, shop and HUD.",
+    "scripts/lib/data/economy.yml and scripts/lib/coins.js - copper denominations, drops, rewards, sell values and shop stock used by sim, combat, shop, HUD and crier.",
     "scripts/lib/data/combat.yml - hero, skill, enemy and boss tuning consumed by player, enemy and boss systems.",
     "scripts/lib/data/loot.yml, loot-icons.yml and scripts/lib/loot.js - tier/drop/base/affix/relic/set and forge rules, icons, item rolls, gear stats and values used by wax-pack, player, pack UI and trade.",
-    "scripts/lib/data/trade.yml and scripts/lib/trade.js - board distance, listing/price/fee/read tuning and listing/buy/unlist/collection logic; player routes trade actions here.",
+    "scripts/lib/data/trade.yml and scripts/lib/trade.js - board distance, listing/price/fee/read tuning and listing/buy/unlist/collection logic; player routes trade actions here and crier reads active realm notices.",
     "scripts/lib/data/veilfall-map.js - shared Z01 floor/area geometry consumed by terrain, player and zone banners.",
     "scripts/lib/frames.js, scripts/lib/data/ui-kit.js, scripts/lib/shop-ui.js, scripts/lib/board-ui.js and scripts/lib/boss-voice.js - shared HUD/shop/board styling and boss voice emitter reused by UI and gameplay."
   ],
   "notableExports": [
     "places/main/sim.js and places/veil/sim.js - cadence, tick.",
     "scripts/player.js - onSpawn, onInput, update; scripts/ui.js - default HUD/menu renderer.",
-    "scripts/wax-pack.js - roll, telegraph, hurtPlayers, payout, update; bailiff.js, ringer.js, warden.js, hangman.js - onSpawn, update.",
+    "scripts/crier.js - onSpawn, quiet, update; scripts/wax-pack.js - roll, telegraph, hurtPlayers, payout, update.",
+    "scripts/bailiff.js, scripts/ringer.js, scripts/warden.js and scripts/hangman.js - onSpawn, update.",
     "scripts/lib/loot.js - SLOTS, TIER, icon, BAG, rollItem, FORGE, forgeCost, forgeCan, forge, rollDrops, gearStats, mitigation; scripts/lib/pack-ui.js - PACK_CSS, packPanel.",
     "scripts/lib/boss-voice.js - BOSS_VOICE, bossVoice; scripts/lib/character.js - CHAR_KEYS, fresh, START, realmOf, pack, zoneOf, rollName, roster, create, load, save, remove.",
     "scripts/lib/shop.js - owned, shopInput; scripts/lib/shop-ui.js - shopPanel; scripts/controls.js - default touch-surface selector.",
-    "scripts/lib/trade.js - TRADE, asks, readBoard, tradeInput; scripts/lib/board-ui.js - boardPanel.",
-    "scripts/gen/hub-board.js - LAMP, geometry, collider; hub-forge.js - COALS, geometry, collider; scripts/lib/data/models.js - MODELS, HEIGHT, body."
+    "scripts/lib/trade.js - TRADE, asks, readBoard, tradeInput; scripts/lib/board-ui.js - boardPanel."
   ],
   "ownership": [
     "scripts/lib/character.js CHAR_KEYS - persistent Bearer fields including quest/reward claims, boss flags, inv/gear/dust/gearLife; packed position is separate.",
@@ -146,15 +147,15 @@
     "places/main/sim.js - per-player quest/dialog/cut progress and reward claims; enemy packs, progression, boss spawning/reset, orchard hanged visibility and room sound/music orchestration.",
     "scripts/wax-pack.js - ordinary enemy AI/hp/death and nearby eligible Bearers' XP/copper/kills/shards plus personal gear-drop inboxes; transient mutterAt cooldowns by enemy id.",
     "scripts/bailiff.js, scripts/ringer.js, scripts/warden.js and scripts/hangman.js - respective boss hp/phases/casts/adds/defeat; publish place.state boss rows and set participant defeat flags.",
+    "scripts/crier.js - Brother Ledd's transient route, pause, call cooldown and seen-notice cursor; reads trades but writes no board or Bearer state.",
     "scripts/lib/shop.js - shop validation and buyer copper, tonics, bag and maxHp mutations; shop-open state is on player.state.",
-    "scripts/lib/trade.js - validates board operations and updates the acting Bearer's copper/inventory; SQL trades rows own listings, sales and unpaid seller proceeds.",
-    "scripts/camera.js - camera behavior; scripts/ui.js, scripts/lib/pack-ui.js and scripts/lib/board-ui.js - menu/HUD, pack and board presentation from player/place state."
+    "scripts/lib/trade.js - validates board operations and updates acting Bearer's copper/inventory; SQL trades rows own listings, sales and unpaid seller proceeds."
   ],
   "flows": [
     "world.config.yaml attaches scripts/player.js through templates/player.js and maps desktop/touch actions; UI menu actions → player.js routes title/realm/character/create/enter/logout/options.",
     "player.js menuInput → character.js roster/create/load/remove using caller-owned character rows; realms.yml maps selected realm to room and Bearer fields hydrate player.state.",
     "While player.state.menu is set, player.js hides the body and moves it to solo place veil → realm/Bearer/options screens remain state-driven, with no characters in that place.",
-    "scripts/controls.js selects menu touch surface when player/charId is absent or menu active and while shop/bag is open; otherwise world.config.yaml supplies fight/trade controls; ui.js sends HUD/menu actions back through player.js and shop-ui.js.",
+    "scripts/controls.js selects menu touch surface when player/charId is absent or menu active and while shop/bag is open; otherwise world.config.yaml supplies fight/trade controls; ui.js sends HUD/menu actions back through player.js and shop/trade handlers.",
     "Options and menu hover/selection rows in ui.js → player.js update opt settings and emit deduplicated private sounds; scripts/camera.js reads menu state and menu-shot.yml for Veil framing.",
     "player.js saves changed CHAR_KEYS plus position periodically/on rest → character.js writes characters; arrival.js saves an active Bearer leaving main.",
     "player.js derives Abbey/Nave/Fen/Orchard floor gates from quest stage or abbeyOpenAll, then uses veilfall-map.js floorDist for goals and movement/dash.",
@@ -162,7 +163,7 @@
     "wax-pack payout (called for ordinary enemies and by boss scripts) rolls personal gear from loot.js → writes per-item player.state.lootIn inbox; that Bearer's local player.js drains it into inv or converts overflow to dust.",
     "Pack UI from pack-ui.js sends item actions → player.js equips/unequips/sells/salvages/sorts; at the Wayside Forge, player.js checks distance and routes forge actions through loot.js → spends dust and replaces the item.",
     "x0z0.scene places trade-board; player.js boardNear checks its range and reads realm listings from trade.js while the pack is open; ui.js renders boardPanel and sends trade actions back through player.js.",
-    "trade.js removes listed items from seller inv into realm-scoped trades rows; buyers' guarded UPDATE claims a listing once and credits the item/debits copper, while sellers collect net proceeds with paid guards; board config sets a 10% fee."
+    "Main sim spawns Brother Ledd with humanoid-locomotion.js + crier.js; crier walks the camp loop, detects nearby non-menu Bearers, and reads active realm trades → emits bell/voice and floating item-price-seller notice (or bare-board call); trade.js alone mutates listings and transactions."
   ],
   "behaviorFamilies": [
     "scripts/gen/hub-*.js, including hub-forge.js and hub-board.js - reusable Wayside Fire camp props varied by instance params, seed and scene transform; share hub-kit.js, with prop-specific geometry/colliders and attached FX/audio at scene placement.",
@@ -184,6 +185,6 @@
     "The Veil is solo and ephemeral, has no characters, and parks the hidden menu body at its origin; menu framing in camera.js is tuned against that stage's shrine/ledge layout, and roster showcase styling follows selected ancestry.",
     "The jukebox is room-shared: main sim chooses mood from live Bearers' area majority and boss/fight overrides; Veil sim plays the menu theme when nobody eligible is on main. Main acoustics reverb is 0.22; world audio mix defines bus gains.",
     "Boss state is separate from ordinary enemy hp: boss scripts publish place.state rows and mark participants; main sim owns encounter spawning and quest progression/reset. Orchard cut IDs and shared hanged visibility are tied to act state.",
-    "Trade items leave inv before listing and live in trades rows; sales are claimed with a guarded UPDATE, and seller proceeds remain unpaid until collection. Keep realm routing and seller ownership guards intact; price buttons multiply vendor value and collection deducts the configured fee."
+    "Trade items leave inv before listing and live in realm-scoped trades rows; guarded updates prevent duplicate sale, seller proceeds remain unpaid until collection, and Brother Ledd only reads unsold listings. Keep realm routing and seller ownership guards intact."
   ]
 }
