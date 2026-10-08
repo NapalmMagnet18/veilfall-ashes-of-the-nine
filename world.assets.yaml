@@ -1,3 +1,11 @@
 assets:
   metadata:
+    "/cdn/value.07679a20297bf5216eac5504765d11ef42348a34973350cac19dbd4ee0198e40.png": {bytes: 451, kind: image, name: vf-panel, uploadedAt: "2026-10-08T15:55:55.360Z"}
+    "/cdn/value.193f20b46037db4dcd9364748d5428843007d8e0cecf0e528e934ced25605c5b.png": {bytes: 482, kind: image, name: vf-btnmain, uploadedAt: "2026-10-08T15:56:06.141Z"}
+    "/cdn/value.3fd974bdd97c1ea22b5ba235accb1fe25780ad93f7003d0addeb07a1840090a8.png": {bytes: 464, kind: image, name: vf-rowon, uploadedAt: "2026-10-08T15:56:19.719Z"}
     "/cdn/value.6333346fa6808b148d9ba468df826a3a49a29b8a0afb51a66a9e78d477c84abc.md": {bytes: 578766, kind: text, name: veilfall-design-package, uploadedAt: "2026-10-08T11:22:35.616Z"}
+    "/cdn/value.cd396819d656f0cac99b4c6b3eda49cccae72af69dcf6c99ba4a9b69b4afab38.png": {bytes: 456, kind: image, name: vf-card, uploadedAt: "2026-10-08T15:56:23.075Z"}
+    "/cdn/value.d502a11179b049d3da0da9e5a9096754b6a72312519548047fe425ffcca9fdbf.png": {bytes: 461, kind: image, name: vf-slot, uploadedAt: "2026-10-08T15:56:11.909Z"}
+    "/cdn/value.e395b42f71101818ed0b0b78153d07acd1f2f99b1b29c415db1c6c877b098c7e.png": {bytes: 453, kind: image, name: vf-cardon, uploadedAt: "2026-10-08T15:56:26.912Z"}
+    "/cdn/value.e7160ea1f290518c9f70bb4444978e619c424d4ea45f4ec59d41f26421ea0043.png": {bytes: 466, kind: image, name: vf-row, uploadedAt: "2026-10-08T15:56:15.581Z"}
+    "/cdn/value.efe39eecfc97d68d46617bd1d458e5911ab198326813fc093bb482ff510fd61e.png": {bytes: 481, kind: image, name: vf-btn, uploadedAt: "2026-10-08T15:55:59.357Z"}
