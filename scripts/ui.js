@@ -1,6 +1,7 @@
 // VEILFALL HUD: life orb, edge orb, skill bar, quest tracker, boss bar, dialogue, death beat.
 import { coinHTML, fmt } from "./lib/coins.js";
 import { shopPanel } from "./lib/shop-ui.js";
+import R from "./lib/data/realms.yml";
 const STAGES = [
   ["Pilgrims in White", "Speak with Maelin at the Wayside Fire"],
   ["Pilgrims in White", "Silence the wax pilgrims on the road"],
@@ -43,7 +44,7 @@ const ANC = [
   { id: "stonebound", name: "Stonebound", home: "Underhollow Steps", color: "#ac9968", img: CDN("d6b87ccf4d5714f8d7067ab43ccee72b850c1c64257d5e290510bde5b8e44d86"), ethos: "Mountain clans carve genealogies into staircases, never statues.", trait: "Carved Stance: heavy blows (15+) land 25% lighter." },
   { id: "skyforged", name: "Skyforged", home: "Gale Spires", color: "#819ec4", img: CDN("8ef7be812171fb7a2dc3ef03c904c365e54475469f2973b75bdffd4170688f96"), ethos: "Cliff dwellers play their histories on funeral wind instruments.", trait: "Gust Return: every Griefstep restores 10 Edge." },
 ];
-const act = (a, v) => `sendAction('menu',{a:'${a}'${v ? `,v:'${v}'` : ""},n:Date.now()})`;
+const act = (a, v) => `sendAction('menu',{a:'${a}'${v !== undefined ? `,v:'${v}'` : ""},n:Date.now()})`;
 const MSTYLE = `<style>
 #vm{position:fixed;inset:0;color:#e9dfc8;text-shadow:2px 2px 0 #0d0b0a;pointer-events:none}
 #vm .veil{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 55%,transparent 25%,rgba(6,7,12,.55) 70%,rgba(4,4,8,.9))}
@@ -74,37 +75,72 @@ const MSTYLE = `<style>
  #vm .tb{bottom:auto!important;top:46%} #vm .qt{padding:0 64px 0 24px!important;font-size:12px!important} #vm .wrap{right:62px} #vm .ttl{font-size:46px!important} #vm .sub{font-size:14px!important}
 }
 </style>`;
+const MX = `<style>
+#vm .row{pointer-events:auto;cursor:pointer;display:flex;align-items:center;gap:10px;padding:8px 10px;margin-top:8px;background:#171412;box-shadow:0 0 0 2px #0d0b0a,0 0 0 3px #3e3326;transition:transform .1s}
+#vm .row:hover{transform:translateX(3px)} #vm .row.on{box-shadow:0 0 0 2px #0d0b0a,0 0 0 4px #f2d38a,0 0 14px rgba(242,211,138,.3)}
+#vm .row img{width:46px;height:46px;object-fit:cover;object-position:50% 15%;box-shadow:0 0 0 2px #0d0b0a}
+#vm .row .t{font-size:17px;color:#f2d38a} #vm .row .d{font-size:12px;color:#b9a77f}
+#vm .msg{position:absolute;left:50%;transform:translateX(-50%);bottom:18px;padding:8px 14px;font-size:14px;max-width:min(520px,calc(100vw - 140px));text-align:center;animation:vmin .3s}
+#vm .side{width:340px;max-height:100%;overflow:auto}
+#vm .mid{position:absolute;left:50%;transform:translateX(-50%);top:18px;text-align:center}
+#vm .namebox{font-size:24px;color:#f2d38a;padding:8px 10px;background:#120e0c;box-shadow:inset 0 0 0 2px #3e3326;display:flex;justify-content:space-between;align-items:center;gap:8px}
+#vm .mini{pointer-events:auto;cursor:pointer;font-size:12px;letter-spacing:.12em;padding:6px 10px;background:#2c2825;color:#e9dfc8;border:0;font-family:inherit;box-shadow:0 0 0 2px #0d0b0a,0 0 0 3px #5a4a33}
+@media (pointer:coarse),(max-width:760px){
+ #vm .side{width:auto;max-height:none} #vm .mid{display:none} #vm .row{padding:6px 8px;margin-top:6px} #vm .row img{width:36px;height:36px} #vm .row .t{font-size:15px}
+ #vm .msg{bottom:auto;top:8px;max-width:calc(100vw - 90px)} #vm .namebox{font-size:18px}
+}
+</style>`;
+const head = (s) => `${MSTYLE}${MX}<div id="vm"><div class="veil" style="background:radial-gradient(ellipse at 50% 50%,transparent 30%,rgba(6,7,12,.45) 65%,rgba(4,4,8,.85))"></div>`;
+const tail = (s, now) => `${s.busy ? `<div class="panel msg" style="color:#f2d38a">${s.busy}…</div>` : s.msg && now - s.msg.at < 5000 ? `<div class="panel msg">${s.msg.text}</div>` : ""}</div>`;
+const realmName = (room) => R.realms.find((r) => r.room === room)?.name ?? room;
+const ago = (now, t) => { const m = Math.floor((now - t) / 60000); return m < 2 ? "just now" : m < 60 ? `${m} min ago` : m < 2880 ? `${Math.floor(m / 60)} h ago` : `${Math.floor(m / 1440)} days ago`; };
+
 function menu(ctx, player, s) {
-  const started = !!(s.started || (s.xp ?? 0) > 0 || (s.quest?.stage ?? 0) > 0);
-  if (s.menu === "title") return `${MSTYLE}<div id="vm"><div class="veil"></div>
-  <div style="position:absolute;left:0;right:0;top:12%;text-align:center;animation:vmin .8s">
+  const now = ctx.now(), here = s.roster?.realm ?? "main";
+  if (s.menu === "title") return `${head(s)}
+  <div style="position:absolute;left:0;right:0;top:9%;text-align:center;animation:vmin .8s">
     <div class="ttl" style="font-size:84px;letter-spacing:.22em;color:#e7d9b8;animation:vmglow 4s infinite">VEILFALL</div>
     <div class="sub" style="font-size:20px;letter-spacing:.5em;color:#c49c63;margin-top:4px">ASHES OF THE NINE</div>
     <div style="width:220px;height:2px;margin:16px auto;background:linear-gradient(90deg,transparent,#ac4c42,transparent)"></div>
-    <div class="qt" style="font-size:14px;color:#b9a77f;font-style:italic;max-width:520px;margin:0 auto;padding:0 16px">"Every book in this place is a person who no longer knows what they lost."</div>
+    <div class="qt" style="font-size:14px;color:#b9a77f;font-style:italic;max-width:520px;margin:0 auto;padding:0 70px 0 16px">"Every book in this place is a person who no longer knows what they lost."</div>
   </div>
-  <div class="tb" style="position:absolute;left:0;right:0;bottom:12%;text-align:center;animation:vmin 1.1s">
-    ${started ? `<button class="btn main" onclick="${act("continue")}">Continue</button>
-      <div class="lbl" style="margin-top:6px">${s.ancestry ? ANC.find((a) => a.id === s.ancestry)?.name + " · " : ""}Bladewraith · Lv ${s.level ?? 1} · ${STAGES[s.quest?.stage ?? 0]?.[0] ?? ""}</div>
-      <button class="btn" onclick="${act("bearer")}">The Bearer</button>`
-      : `<button class="btn main" onclick="${act("bearer")}">Begin</button>`}
+  <div class="tb" style="position:absolute;left:0;right:0;bottom:11%;text-align:center;padding-right:60px;animation:vmin 1.1s">
+    <button class="btn main" onclick="${act("chars")}">Enter the Veil</button>
+    <div class="lbl" style="margin-top:6px">Realm · ${realmName(here)}</div>
+    <button class="btn" onclick="${act("realms")}">Realms</button>
     <div class="lbl" style="margin-top:22px;opacity:.6">Broken Lantern Road · M1</div>
-  </div></div>`;
-  // the Bearer screen
-  const pk = s.pick ?? { anc: s.ancestry ?? "cinderkin", cls: s.cls ?? "bladewraith" };
-  const C = CLASSES.find((c) => c.id === pk.cls) ?? CLASSES[0], A = ANC.find((a) => a.id === pk.anc) ?? ANC[0];
-  return `${MSTYLE}<div id="vm"><div class="veil" style="background:radial-gradient(ellipse at 50% 55%,transparent 20%,rgba(6,7,12,.5) 60%,rgba(4,4,8,.85))"></div>
+  </div>${tail(s, now)}`;
+
+  if (s.menu === "realms") {
+    const per = s.roster?.per ?? {};
+    return `${head(s)}<div class="mid"><div class="lbl">Choose a realm</div><div style="font-size:30px;color:#e7d9b8;letter-spacing:.1em">THE NINE ROADS</div></div>
+    <div class="wrap" style="justify-content:center"><div class="panel side" style="width:min(460px,100%);animation:vmin .4s;margin-top:70px">
+      <div class="lbl">Realms</div>
+      <div style="font-size:13px;color:#b9a77f;margin:4px 0 2px">A Bearer is written into one realm and walks only there.</div>
+      ${R.realms.map((r) => `<div class="row ${r.room === here ? "on" : ""}" onclick="${act("realm", r.room)}">
+        <div style="flex:1"><div class="t">${r.name}${r.room === here ? ` <span class="lbl" style="color:#6db8c0">· here</span>` : ""}</div><div class="d">${r.kind} · ${r.note}</div></div>
+        <div style="text-align:right"><div style="font-size:18px">${per[r.room] ?? 0}<span style="font-size:12px;color:#b9a77f">/${R.maxChars}</span></div><div class="d">yours</div></div></div>`).join("")}
+      <button class="btn" style="min-width:0;font-size:14px;padding:8px;margin-top:14px" onclick="${act("title")}">Back</button>
+    </div></div>${tail(s, now)}`;
+  }
+
+  if (s.menu === "create") {
+    const pk = s.pick ?? { anc: "cinderkin", cls: "bladewraith", name: "" };
+    const C = CLASSES.find((c) => c.id === pk.cls) ?? CLASSES[0], A = ANC.find((a) => a.id === pk.anc) ?? ANC[0];
+    return `${head(s)}
   <div class="wrap">
     <div class="panel" style="animation:vmin .4s">
-      <div class="lbl">Choose your Bearer</div>
+      <div class="lbl">New Bearer · ${realmName(here)}</div>
       <div style="font-size:22px;color:#f2d38a;margin:2px 0 10px">Ancestry</div>
-      <div style="display:flex;gap:14px;justify-content:space-between">${ANC.map((a) => `<div class="anc ${a.id === A.id ? "on" : ""}" style="--c:${a.color}" onclick="${act("anc", a.id)}"><img src="${a.img}"><span style="color:${a.id === A.id ? a.color : "#e9dfc8"}">${a.name.toUpperCase()}</span></div>`).join("")}</div>
+      <div style="display:flex;gap:14px;justify-content:space-between">${ANC.map((a) => `<div class="anc ${a.id === A.id ? "on" : ""}" style="--c:${a.color};pointer-events:auto" onclick="${act("anc", a.id)}"><img src="${a.img}"><span style="color:${a.id === A.id ? a.color : "#e9dfc8"}">${a.name.toUpperCase()}</span></div>`).join("")}</div>
       <div style="font-size:22px;color:#f2d38a;margin:14px 0 10px">Class</div>
       <div class="grid">${CLASSES.map((c) => `<div class="card ${c.id === C.id ? "on" : ""} ${c.open ? "" : "sealed"}" onclick="${act("cls", c.id)}"><img src="${c.img}"><div class="nm">${c.name}</div>${c.open ? "" : `<div class="seal">SEALED</div>`}</div>`).join("")}</div>
     </div>
     <div class="panel det" style="animation:vmin .55s">
       <div class="big"><img src="${C.img}" style="${C.open ? "" : "filter:grayscale(.8) brightness(.5)"}"><div style="position:absolute;left:0;right:0;bottom:0;height:80px;background:linear-gradient(transparent,#1a1715)"></div></div>
-      <div style="font-size:28px;color:#f2d38a;letter-spacing:.06em">${C.name}</div>
+      <div class="lbl">Name</div>
+      <div class="namebox"><span>${pk.name}</span><button class="mini" onclick="${act("reroll")}">⟳ ANOTHER</button></div>
+      <div style="font-size:24px;color:#f2d38a;letter-spacing:.06em;margin-top:8px">${C.name}</div>
       <div class="lbl">${C.role} · ${C.res}</div>
       <div style="font-size:14px;margin:6px 0 8px;line-height:1.35">${C.fantasy}</div>
       <div class="sk" style="display:grid;grid-template-columns:1fr 1fr;gap:4px 10px;font-size:12px;margin-bottom:8px">${C.skills.map(([n, d]) => `<div><span style="color:${C.open ? "#e9dfc8" : "#8a7f70"}">${n}</span>${d ? `<div style="color:#9a8e78;font-size:11px">${d}</div>` : ""}</div>`).join("")}</div>
@@ -112,11 +148,40 @@ function menu(ctx, player, s) {
       <div style="font-size:16px;color:${A.color}">${A.name} <span class="lbl">of ${A.home}</span></div>
       <div style="font-size:12px;color:#b9a77f;margin:2px 0 4px;font-style:italic">${A.ethos}</div>
       <div style="font-size:13px;line-height:1.35">${A.trait}</div>
-      ${C.open ? `<button class="btn main" style="margin-top:12px;min-width:0" onclick="${act("confirm")}">${s.started ? "Return to the road" : "Walk into the fog"}</button>`
+      ${C.open ? `<button class="btn main" style="margin-top:12px;min-width:0" onclick="${act("create")}">Write the name</button>`
         : `<button class="btn" disabled style="margin-top:12px;min-width:0">Sealed · its trial comes later</button>`}
-      <button class="btn" style="min-width:0;font-size:14px;padding:8px" onclick="${act("back")}">Back</button>
+      <button class="btn" style="min-width:0;font-size:14px;padding:8px" onclick="${act("chars")}">Back</button>
     </div>
-  </div></div>`;
+  </div>${tail(s, now)}`;
+  }
+
+  // character select
+  const chars = s.roster?.chars ?? [], sel = chars.find((c) => c.id === s.sel);
+  const C = sel && (CLASSES.find((c) => c.id === sel.cls) ?? CLASSES[0]), A = sel && (ANC.find((a) => a.id === sel.ancestry) ?? ANC[0]);
+  return `${head(s)}<div class="mid"><div class="lbl">Realm</div><div style="font-size:28px;color:#e7d9b8;letter-spacing:.12em">${realmName(here).toUpperCase()}</div></div>
+  <div class="wrap">
+    <div class="panel side" style="animation:vmin .4s">
+      <div class="lbl">Your Bearers · ${chars.length}/${R.maxChars}</div>
+      ${!s.roster ? `<div style="margin-top:10px;color:#b9a77f">Reading the realm's ledger…</div>`
+        : chars.length ? chars.map((c) => { const k = CLASSES.find((x) => x.id === c.cls) ?? CLASSES[0], an = ANC.find((x) => x.id === c.ancestry) ?? ANC[0];
+          return `<div class="row ${c.id === s.sel ? "on" : ""}" onclick="${act("sel", c.id)}"><img src="${k.img}"><div style="flex:1;min-width:0"><div class="t">${c.name}</div><div class="d"><span style="color:${an.color}">${an.name}</span> ${k.name} · Lv ${c.level}</div><div class="d">${c.zone}</div></div></div>`; }).join("")
+        : `<div style="margin-top:10px;font-size:14px;line-height:1.4;color:#b9a77f">No Bearer walks ${realmName(here)} in your name yet.</div>`}
+      ${chars.length < R.maxChars ? `<button class="btn" style="min-width:0;font-size:15px;padding:9px;margin-top:14px" onclick="${act("new")}">+ New Bearer</button>` : ""}
+      <button class="btn" style="min-width:0;font-size:13px;padding:7px;margin-top:8px" onclick="${act("realms")}">Change realm</button>
+      <button class="btn" style="min-width:0;font-size:13px;padding:7px;margin-top:8px" onclick="${act("title")}">Back</button>
+    </div>
+    ${sel ? `<div class="panel det" style="animation:vmin .5s">
+      <div class="big"><img src="${C.img}"><div style="position:absolute;left:0;right:0;bottom:0;height:80px;background:linear-gradient(transparent,#1a1715)"></div></div>
+      <div style="font-size:28px;color:#f2d38a;letter-spacing:.04em">${sel.name}</div>
+      <div class="lbl"><span style="color:${A.color}">${A.name}</span> ${C.name} · Level ${sel.level}</div>
+      <div style="font-size:14px;margin:8px 0 2px">${sel.zone}</div>
+      <div class="d" style="font-size:12px;color:#9a8e78">Last walked ${ago(now, sel.played_at)}</div>
+      <button class="btn main" style="margin-top:14px;min-width:0" onclick="${act("enter")}">Enter the world</button>
+      ${s.confirmDel === sel.id ? `<div style="margin-top:12px;font-size:13px;color:#d8442f;text-align:center">Unwrite ${sel.name} forever?</div>
+        <div style="display:flex;gap:8px"><button class="btn" style="min-width:0;flex:1;font-size:13px;padding:7px;color:#d8442f" onclick="${act("delete-yes")}">Unwrite</button><button class="btn" style="min-width:0;flex:1;font-size:13px;padding:7px" onclick="${act("delete-no")}">Keep</button></div>`
+        : `<button class="btn" style="min-width:0;font-size:12px;padding:6px;margin-top:10px;color:#9a8e78" onclick="${act("delete")}">Delete Bearer</button>`}
+    </div>` : ""}
+  </div>${tail(s, now)}`;
 }
 let firstSeen = null;
 export default function (ctx, player) {
