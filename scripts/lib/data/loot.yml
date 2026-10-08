@@ -1,0 +1,63 @@
+# VEILFALL loot: every number of the gear game. Tiers climb like the old ARPGs, names are ours.
+# chance = weight of that tier on a drop roll; affixes = how many rolled lines it carries.
+tiers:
+  - { id: ashen,    name: "Ashen",    color: "#c9c2b4", affixes: [0, 0], weight: 60, sell: 1 }
+  - { id: hallowed, name: "Hallowed", color: "#6f9cf0", affixes: [1, 2], weight: 28, sell: 3 }
+  - { id: gilded,   name: "Gilded",   color: "#f0cf55", affixes: [3, 4], weight: 10, sell: 8 }
+  - { id: relic,    name: "Relic",    color: "#e8873a", affixes: [4, 4], weight: 1.6, sell: 25 }
+  - { id: vowbound, name: "Vowbound", color: "#5fd28b", affixes: [3, 3], weight: 0.4, sell: 20 }
+# drop chance per kill, per eligible Bearer (personal loot); boss = guaranteed, floor tier
+drops:
+  pilgrim:    { chance: 0.10, ilvl: 2 }
+  chorister:  { chance: 0.16, ilvl: 4 }
+  flagellant: { chance: 0.20, ilvl: 5 }
+  deacon:     { chance: 0.55, ilvl: 6, minTier: hallowed }
+  bailiff:    { chance: 1, count: 2, ilvl: 8,  minTier: gilded, relic: 0.25 }
+  ringer:     { chance: 1, count: 2, ilvl: 11, minTier: gilded, relic: 0.3 }
+  warden:     { chance: 1, count: 3, ilvl: 13, minTier: gilded, relic: 0.35 }
+  hangman:    { chance: 1, count: 3, ilvl: 15, minTier: gilded, relic: 0.45 }
+bag: 24
+# base items: slot, implicit stat at ilvl 1 and its growth per ilvl
+bases:
+  blade:  { slot: weapon, names: ["Pilgrim's Shortblade", "Ash-Kissed Saber", "Penitent's Edge", "Wick-Cutter"], implicit: { dmg: [4, 0.9] } }
+  great:  { slot: weapon, names: ["Bellbreaker", "Toll-Iron Greatsword", "Gallows Cleaver", "Vigil Brand"], implicit: { dmg: [7, 1.4] }, slow: true }
+  helm:   { slot: helm,   names: ["Wax-Crowned Helm", "Hooded Sallet", "Choir Visor", "Tallow Cap"], implicit: { armor: [4, 1.1] } }
+  chest:  { slot: chest,  names: ["Penitent Cuirass", "Scale Vestment", "Tollhouse Coat", "Ashen Hauberk"], implicit: { armor: [8, 1.8] } }
+  gloves: { slot: gloves, names: ["Riveted Gauntlets", "Ringer's Grips", "Candle-Burn Mitts", "Censer Gloves"], implicit: { armor: [3, 0.8] } }
+  boots:  { slot: boots,  names: ["Mudwalker Greaves", "Pilgrim Boots", "Fenstride Boots", "Causeway Treads"], implicit: { armor: [3, 0.8] } }
+  ring:   { slot: ring,   names: ["Ember Band", "Tarnished Signet", "Wick Loop", "Vow Ring"], implicit: { life: [5, 1] } }
+  amulet: { slot: amulet, names: ["Lantern Charm", "Bell-Shard Pendant", "Saint's Locket", "Grief Talisman"], implicit: { edge: [2, 0.2] } }
+# affixes: stat, range at ilvl 1, added per ilvl; slots allowed (any = all)
+affixes:
+  - { id: dmg,    pre: "Cruel",       suf: "of Cutting",   line: "+{v} damage",               base: [2, 4],  per: 0.6,  slots: [weapon, gloves, ring, amulet] }
+  - { id: dmgp,   pre: "Wrathful",    suf: "of Grief",     line: "+{v}% damage",              base: [6, 10], per: 0.8,  slots: [weapon, amulet, ring] }
+  - { id: crit,   pre: "Keen",        suf: "of the Knife", line: "+{v}% critical strike",     base: [2, 4],  per: 0.25, slots: [weapon, gloves, ring, amulet, helm] }
+  - { id: life,   pre: "Stout",       suf: "of the Fire",  line: "+{v} maximum life",         base: [8, 14], per: 1.6,  slots: [any] }
+  - { id: armor,  pre: "Iron",        suf: "of the Wall",  line: "+{v} armor",                base: [5, 9],  per: 1.2,  slots: [helm, chest, gloves, boots] }
+  - { id: speed,  pre: "Fleet",       suf: "of the Road",  line: "+{v}% movement speed",      base: [3, 6],  per: 0.2,  slots: [boots] }
+  - { id: edge,   pre: "Honed",       suf: "of Vigils",    line: "+{v} edge per strike",      base: [1, 3],  per: 0.15, slots: [weapon, amulet, gloves] }
+  - { id: leech,  pre: "Hungering",   suf: "of Tallow",    line: "{v}% of damage returned as life", base: [1, 2], per: 0.1, slots: [weapon, ring, amulet] }
+  - { id: gold,   pre: "Tithing",     suf: "of the Toll",  line: "+{v}% copper found",        base: [8, 15], per: 1,    slots: [helm, ring, amulet] }
+  - { id: regen,  pre: "Mending",     suf: "of Embers",    line: "+{v} life every 5 seconds", base: [2, 4],  per: 0.4,  slots: [chest, helm, amulet] }
+# relics: hand-written uniques, rolled when the tier comes up relic (base matches)
+relics:
+  - { id: R1, base: blade,  name: "Maelin's Last Candle", stats: { dmg: 9, dmgp: 25, leech: 4, edge: 4 }, lore: "It never went out. She only stopped carrying it." }
+  - { id: R2, base: great,  name: "The Ninth Tongue",     stats: { dmg: 16, crit: 10, dmgp: 20 },        lore: "Struck once, every bell in the valley answered." }
+  - { id: R3, base: helm,   name: "Bailiff's Tallow Crown", stats: { armor: 18, gold: 60, life: 30 },   lore: "A tithe of light, paid by every brow it touched." }
+  - { id: R4, base: chest,  name: "Shroud of the Drowned Keeper", stats: { armor: 35, life: 50, regen: 8 }, lore: "Still wet. Always wet." }
+  - { id: R5, base: boots,  name: "Hangman's Last Steps", stats: { speed: 18, armor: 10, crit: 5 },       lore: "Thirteen stairs, and he walked them all lightly." }
+  - { id: R6, base: ring,   name: "Ember of the Nine",    stats: { dmgp: 18, crit: 8, life: 20 },          lore: "Nine flames went out. One was pocketed." }
+  - { id: R7, base: amulet, name: "Lantern of Lanternmere", stats: { edge: 8, regen: 6, life: 25, leech: 3 }, lore: "Cold light that remembers being warm." }
+# Vowbound set: the Penitent's Vow. pieces carry their own lines plus set bonuses by worn count
+sets:
+  penitent:
+    name: "The Penitent's Vow"
+    pieces:
+      - { base: helm,   name: "Penitent's Hood",     stats: { armor: 10, life: 20 } }
+      - { base: chest,  name: "Penitent's Scourge-Coat", stats: { armor: 22, life: 30 } }
+      - { base: gloves, name: "Penitent's Knotted Cords", stats: { dmg: 6, edge: 3 } }
+      - { base: blade,  name: "Penitent's Wick-Knife", stats: { dmg: 10, crit: 6 } }
+    bonus:
+      2: { dmgp: 15, line: "(2) +15% damage" }
+      3: { leech: 5, line: "(3) 5% of damage returned as life" }
+      4: { crit: 15, speed: 10, line: "(4) +15% critical strike, +10% movement speed" }
