@@ -140,6 +140,105 @@ bailiff-arena/wax-floor:
   physics: none
   primitive: {kind: scripted, params: {gap: 45, pools: [154, 193, 231, 309, 347, 26]}, script: scripts/gen/arena-floor.js, seed: 11}
   tags: [z01-dressing, gate]
+candle-road/banner-4:
+  feetPosition: {x: 5.2, y: 0.9173469015006811, z: -40}
+  id: candle-road/banner-4
+  material: {pbr: true}
+  parent: candle-road
+  physics: static
+  primitive: {kind: scripted, params: {drop: 1.3527911123353988, h: 3.3282418842427433, kind: banner, lean: 3, seed: 83, tint: oklch(0.78 0.05 80)}, script: scripts/gen/vf-props.js}
+  rotation: {yaw: 172.79413825366646}
+  tags: [z01-dressing, road]
+candle-road/bones-5:
+  feetPosition: {x: -6.5, y: 0.05468248188336395, z: -35}
+  id: candle-road/bones-5
+  material: {pbr: true}
+  parent: candle-road
+  physics: none
+  primitive: {kind: scripted, params: {kind: bones, n: 5, seed: 94, skulls: 1}, script: scripts/gen/vf-props.js}
+  rotation: {yaw: 213.38307263329625}
+  tags: [z01-dressing, road]
+candle-road/bones-6:
+  feetPosition: {x: 3.2, y: 0.5766786822427837, z: -31}
+  id: candle-road/bones-6
+  material: {pbr: true}
+  parent: candle-road
+  physics: none
+  primitive: {kind: scripted, params: {kind: bones, n: 6, seed: 95, skulls: 0}, script: scripts/gen/vf-props.js}
+  rotation: {yaw: 299.54854253679514}
+  tags: [z01-dressing, road]
+candle-road/boulder-5:
+  feetPosition: {x: 11, y: 1.1902598829394875, z: -26}
+  id: candle-road/boulder-5
+  material: {pbr: true}
+  parent: candle-road
+  physics: static
+  primitive: {kind: scripted, params: {r: 1.6, sx: 1.2385815266519784, sy: 0.6526336085866206, sz: 1}, script: scripts/gen/hub-boulder.js, seed: 64}
+  rotation: {yaw: 122.17841880396008}
+  tags: [z01-dressing, road]
+candle-road/boulder-6:
+  feetPosition: {x: -9.5, y: 0.05655723275562668, z: -33}
+  id: candle-road/boulder-6
+  material: {pbr: true}
+  parent: candle-road
+  physics: static
+  primitive: {kind: scripted, params: {r: 1.3, sx: 1.0258909293450416, sy: 0.7085031282971613, sz: 1}, script: scripts/gen/hub-boulder.js, seed: 65}
+  rotation: {yaw: 305.8952995855361}
+  tags: [z01-dressing, road]
+candle-road/boulder-7:
+  feetPosition: {x: 6.5, y: 1.4907902633917451, z: -43}
+  id: candle-road/boulder-7
+  material: {pbr: true}
+  parent: candle-road
+  physics: static
+  primitive: {kind: scripted, params: {r: 1.1, sx: 1.0777298557572066, sy: 0.8247762266895734, sz: 1}, script: scripts/gen/hub-boulder.js, seed: 66}
+  rotation: {yaw: 298.53163805790246}
+  tags: [z01-dressing, road]
+candle-road/dead-tree-6:
+  feetPosition: {x: 6.5, y: 4.7476125821544874, z: -35}
+  id: candle-road/dead-tree-6
+  material: {pbr: true}
+  parent: candle-road
+  physics: static
+  primitive: {kind: scripted, params: {depth: 4, h: 4.6, kind: tree, seed: 45, snag: false}, script: scripts/gen/vf-props.js, seed: 5}
+  rotation: {yaw: 229.80050328187644}
+  tags: [z01-dressing, road]
+candle-road/dead-tree-7:
+  feetPosition: {x: -9, y: 0.5131162558141223, z: -40}
+  id: candle-road/dead-tree-7
+  material: {pbr: true}
+  parent: candle-road
+  physics: static
+  primitive: {kind: scripted, params: {depth: 4, h: 5.4, kind: tree, seed: 46, snag: true}, script: scripts/gen/vf-props.js, seed: 6}
+  rotation: {yaw: 63.86076020076871}
+  tags: [z01-dressing, road]
+candle-road/fallen-lantern-3:
+  feetPosition: {x: -6.6, y: 0.00503938868823249, z: -25.5}
+  id: candle-road/fallen-lantern-3
+  material: {pbr: true}
+  parent: candle-road
+  physics: none
+  primitive: {kind: scripted, params: {kind: lantern, seed: 102}, script: scripts/gen/vf-props.js}
+  rotation: {yaw: 174.06703663989902}
+  tags: [z01-dressing, road]
+candle-road/milestone-8:
+  feetPosition: {x: 1.9250260829142305, y: -0.04223984001471501, z: -30.25691871163245}
+  fx: {params: {power: 2.4, radius: 7, tips: "0.046,1.948,0.208;-0.022,1.911,-0.210;-0.089,1.879,-0.113;0.101,1.825,-0.019;-0.186,1.805,0.068"}, script: scripts/effects/candles.fx.js}
+  id: candle-road/milestone-8
+  material: {pbr: true}
+  parent: candle-road
+  physics: static
+  primitive: {kind: scripted, params: {candles: [[0, 0, 0.076, 0.04, 1], [-0.191, 0.095, 0.243, 0.044, 1], [0.088, -0.114, 0.174, 0.034, 1], [0.043, 0.093, 0.12, 0.03, 1], [-0.111, -0.164, 0.1, 0.034, 1], [0.198, -0.072, 0.206, 0.031, 1], [-0.129, 0.129, 0.084, 0.042, 1]], h: 1.53, notch: 1, seed: 8, snap: false, w: 0.315, yaw: 76}, script: scripts/gen/vf-milestone.js, seed: 8}
+  tags: [z01-dressing, road]
+candle-road/milestone-9:
+  feetPosition: {x: -7.101715620507495, y: 0.5584717552494333, z: -41.790591795127625}
+  fx: {params: {power: 2.4, radius: 7, tips: "0.078,1.542,0.054;-0.151,1.515,-0.013;0.029,1.488,-0.096;0.000,1.474,0.000"}, script: scripts/effects/candles.fx.js}
+  id: candle-road/milestone-9
+  material: {pbr: true}
+  parent: candle-road
+  physics: static
+  primitive: {kind: scripted, params: {candles: [[0, 0, 0.122, 0.034, 1], [-0.1, -0.005, 0.136, 0.04, 1], [0.033, -0.089, 0.19, 0.041, 1], [0.024, 0.15, 0.163, 0.037, 1]], h: 1.17, notch: 2, seed: 9, snap: false, w: 0.275, yaw: -104}, script: scripts/gen/vf-milestone.js, seed: 9}
+  tags: [z01-dressing, road]
 dripping-gate:
   feetPosition: {x: 0, y: {terrain: 0}, z: -89}
   id: dripping-gate
