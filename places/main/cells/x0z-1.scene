@@ -110,6 +110,123 @@ abbey-cloister/w2:
   primitive: {kind: scripted, params: {h: 4.6, kind: wall, len: 5.5, s: 9, t: 0.9}, script: scripts/gen/vf-ruin.js, seed: 92}
   receiveShadow: true
   rotation: 96
+abbey-litter-0:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0.6, z: 0}, id: glow, light: {color: "#ffa45a", distance: 6, intensity: 2.2, kind: point}}]
+  feetPosition: {x: 16, y: {terrain: 0}, z: -124}
+  id: abbey-litter-0
+  primitive: {kind: scripted, params: {kind: shrine}, script: scripts/gen/abbey-litter.js, seed: 200}
+  receiveShadow: true
+  rotation: 0
+  tags: [abbey, z01-dressing]
+abbey-litter-1:
+  castShadow: true
+  children: []
+  feetPosition: {x: 19, y: {terrain: 0}, z: -133}
+  id: abbey-litter-1
+  primitive: {kind: scripted, params: {kind: bones}, script: scripts/gen/abbey-litter.js, seed: 201}
+  receiveShadow: true
+  rotation: 73
+  tags: [abbey, z01-dressing]
+abbey-litter-10:
+  castShadow: true
+  children: []
+  feetPosition: {x: 13, y: {terrain: 0}, z: -172}
+  id: abbey-litter-10
+  primitive: {kind: scripted, params: {kind: bones}, script: scripts/gen/abbey-litter.js, seed: 210}
+  receiveShadow: true
+  rotation: 10
+  tags: [abbey, z01-dressing]
+abbey-litter-12:
+  castShadow: true
+  children: []
+  feetPosition: {x: -15, y: {terrain: 0}, z: -170}
+  id: abbey-litter-12
+  primitive: {kind: scripted, params: {kind: bones}, script: scripts/gen/abbey-litter.js, seed: 212}
+  receiveShadow: true
+  rotation: 156
+  tags: [abbey, z01-dressing]
+abbey-litter-13:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0.6, z: 0}, id: glow, light: {color: "#ffa45a", distance: 6, intensity: 2.2, kind: point}}]
+  feetPosition: {x: 15, y: {terrain: 0}, z: -188}
+  id: abbey-litter-13
+  primitive: {kind: scripted, params: {kind: shrine}, script: scripts/gen/abbey-litter.js, seed: 213}
+  receiveShadow: true
+  rotation: 229
+  tags: [abbey, z01-dressing]
+abbey-litter-2:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0.6, z: 0}, id: glow, light: {color: "#ffa45a", distance: 6, intensity: 2.2, kind: point}}]
+  feetPosition: {x: 12, y: {terrain: 0}, z: -137}
+  id: abbey-litter-2
+  primitive: {kind: scripted, params: {kind: shrine}, script: scripts/gen/abbey-litter.js, seed: 202}
+  receiveShadow: true
+  rotation: 146
+  tags: [abbey, z01-dressing]
+abbey-litter-3:
+  castShadow: true
+  children: []
+  feetPosition: {x: 13, y: {terrain: 0}, z: -146}
+  id: abbey-litter-3
+  primitive: {kind: scripted, params: {kind: bones}, script: scripts/gen/abbey-litter.js, seed: 203}
+  receiveShadow: true
+  rotation: 219
+  tags: [abbey, z01-dressing]
+abbey-litter-4:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0.6, z: 0}, id: glow, light: {color: "#ffa45a", distance: 6, intensity: 2.2, kind: point}}]
+  feetPosition: {x: 6, y: {terrain: 0}, z: -151}
+  id: abbey-litter-4
+  primitive: {kind: scripted, params: {kind: shrine}, script: scripts/gen/abbey-litter.js, seed: 204}
+  receiveShadow: true
+  rotation: 292
+  tags: [abbey, z01-dressing]
+abbey-litter-5:
+  castShadow: true
+  children: []
+  feetPosition: {x: 2, y: {terrain: 0}, z: -157}
+  id: abbey-litter-5
+  primitive: {kind: scripted, params: {kind: bones}, script: scripts/gen/abbey-litter.js, seed: 205}
+  receiveShadow: true
+  rotation: 5
+  tags: [abbey, z01-dressing]
+abbey-litter-6:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0.6, z: 0}, id: glow, light: {color: "#ffa45a", distance: 6, intensity: 2.2, kind: point}}]
+  feetPosition: {x: -9, y: {terrain: 0}, z: -168}
+  id: abbey-litter-6
+  primitive: {kind: scripted, params: {kind: shrine}, script: scripts/gen/abbey-litter.js, seed: 206}
+  receiveShadow: true
+  rotation: 78
+  tags: [abbey, z01-dressing]
+abbey-litter-7:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0.6, z: 0}, id: glow, light: {color: "#ffa45a", distance: 6, intensity: 2.2, kind: point}}]
+  feetPosition: {x: 8, y: {terrain: 0}, z: -166}
+  id: abbey-litter-7
+  primitive: {kind: scripted, params: {kind: shrine}, script: scripts/gen/abbey-litter.js, seed: 207}
+  receiveShadow: true
+  rotation: 151
+  tags: [abbey, z01-dressing]
+abbey-litter-8:
+  castShadow: true
+  children: []
+  feetPosition: {x: -12, y: {terrain: 0}, z: -180}
+  id: abbey-litter-8
+  primitive: {kind: scripted, params: {kind: bones}, script: scripts/gen/abbey-litter.js, seed: 208}
+  receiveShadow: true
+  rotation: 224
+  tags: [abbey, z01-dressing]
+abbey-litter-9:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0.6, z: 0}, id: glow, light: {color: "#ffa45a", distance: 6, intensity: 2.2, kind: point}}]
+  feetPosition: {x: 5, y: {terrain: 0}, z: -190}
+  id: abbey-litter-9
+  primitive: {kind: scripted, params: {kind: shrine}, script: scripts/gen/abbey-litter.js, seed: 209}
+  receiveShadow: true
+  rotation: 297
+  tags: [abbey, z01-dressing]
 abbey-memory:
   feetPosition: {x: 0, y: 5, z: -184}
   fx: {script: "fx\npop m rate=6 on=sphere(6) life=3..5 v=up(.1..0.3)+sdir()*.1 size=.04..0.08 col=hdr(.6,1.6,1.8) a=0>.7:1>0 r=sprite(mote,add)"}
