@@ -9,11 +9,28 @@ const V = (line) => `/cdn/voice-brother-ledd-hoarse-old-town-crier-saying-${line
 const CALLS = [V("hear-ye-fresh-notice-on-the-pilgrims-board"), V("wares-pinned-by-the-fire-come-and-read"), V("a-bearer-sells-come-look-before-the-road-takes-it"), V("new-on-the-board-coin-for-steel")];
 const BARE = [V("the-board-stands-bare-pin-your-spoils-by-the-fire"), V("nothing-on-the-board-tonight-the-road-was-cruel")];
 const BELL = "/cdn/moodboard-gothic-horror/sfx-small-iron-handbell-two-rings.mp3";
-const me = { leg: 0, pause: 0, callAt: 0, seen: 0, n: 0 };
+const SOLD = [V("bearer-your-notice-sold-your-coin-waits-at-the-board"), V("hear-ye-a-buyer-took-your-wares-collect-your-due")];
+const me = { leg: 0, pause: 0, callAt: 0, seen: 0, n: 0, told: {} }; // told: charId → sold count he already announced
 export function onSpawn(ctx) { ctx.self.state.turnTo = "none"; }
 async function call(ctx, listener) {
   const f = ctx.self.feetPosition, at = { x: f.x, y: f.y + 2.3, z: f.z };
   let row = null;
+  const aud0 = { audience: { nearby: f, radius: EAR + 6 } }, cid = listener.state?.charId;
+  if (cid) try { // a sale of theirs not yet collected and not yet announced: that comes first, by name
+    const { rows: [o] } = await ctx.sql`SELECT COUNT(*) AS n, COALESCE(SUM(price), 0) AS c FROM trades WHERE seller_char = ${cid} AND sold_at IS NOT NULL AND paid = 0`;
+    if (o && o.n > (me.told[cid] ?? 0)) {
+      me.told[cid] = o.n; me.n++;
+      const who = listener.state?.name ?? listener.displayName ?? "Bearer";
+      ctx.emit("playSound", { clip: BELL, position: at, volume: 0.6 }, aud0);
+      ctx.emit("playSound", { clip: SOLD[me.n % SOLD.length], position: at, volume: 0.95, maxDistance: EAR + 6 }, aud0);
+      ctx.emit("damageNumber", { position: at, text: `${who}, your notice sold · ${fmt(Math.floor(o.c * 0.9))} waits at the board`, color: "#ffd77a", size: 1, lifetime: 5 }, aud0);
+      ctx.emit("playSound", { clip: "/cdn/moodboard-gothic-horror/sfx-coin-purse-clink-soft.mp3", volume: 0.7 }, { audience: { player: listener.id } });
+      ctx.self.anim.talk = { clip: "cdn/clip-wave.glb", weight: 4, loop: "once", mask: { from: "Spine" } };
+      ctx.after(2.4, "quiet");
+      return;
+    }
+    if (o && o.n < (me.told[cid] ?? 0)) me.told[cid] = o.n; // collected: the count fell, so the next sale rings again
+  } catch (e) { ctx.log("crier owed read failed", String(e)); }
   try {
     const { rows } = await ctx.sql`SELECT id, seller_name, item, price FROM trades WHERE realm = ${CH.realmOf(ctx).room} AND sold_at IS NULL AND removed = 0 ORDER BY id DESC LIMIT 4`;
     row = rows.find((r) => r.id > me.seen) ?? rows[me.n % Math.max(1, rows.length)] ?? null;
