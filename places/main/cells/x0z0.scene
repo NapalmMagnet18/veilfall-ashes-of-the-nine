@@ -457,6 +457,15 @@ rd-boneheap-3:
   receiveShadow: true
   rotation: {yaw: 19}
   tags: [road-dressing, boneheap]
+rd-gibbet-1:
+  castShadow: true
+  feetPosition: {x: -4.5, y: 0, z: -19}
+  id: rd-gibbet-1
+  model: /cdn/value.406b9c00757d0bbec005d0c122246c4dbdef6515e4f2b8501aad10482f3a510d.glb
+  physics: static
+  receiveShadow: true
+  rotation: {yaw: 217}
+  tags: [road-dressing, gibbet]
 rd-gibbet-2:
   castShadow: true
   children: [{feetPosition: {x: 1.1, y: 1.75, z: 0}, light: {color: oklch(0.78 0.15 55), distance: 7, intensity: 3, kind: point}}]

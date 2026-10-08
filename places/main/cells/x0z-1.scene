@@ -388,6 +388,15 @@ rd-boneheap-4:
   receiveShadow: true
   rotation: {yaw: 91}
   tags: [road-dressing, boneheap]
+rd-gibbet-3:
+  castShadow: true
+  feetPosition: {x: -7.5, y: 0, z: -78}
+  id: rd-gibbet-3
+  model: /cdn/value.406b9c00757d0bbec005d0c122246c4dbdef6515e4f2b8501aad10482f3a510d.glb
+  physics: static
+  receiveShadow: true
+  rotation: {yaw: 48}
+  tags: [road-dressing, gibbet]
 rd-reliquary-4:
   castShadow: true
   feetPosition: {x: -9.3, y: 0, z: -69.4}
