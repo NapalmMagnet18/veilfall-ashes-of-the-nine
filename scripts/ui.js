@@ -3,6 +3,7 @@ import { coinHTML, fmt } from "./lib/coins.js";
 import { shopPanel } from "./lib/shop-ui.js";
 import R from "./lib/data/realms.yml";
 import { FRAME_CSS } from "./lib/frames.js";
+import CB from "./lib/data/combat.yml";
 const STAGES = [
   ["Pilgrims in White", "Speak with Maelin at the Wayside Fire"],
   ["Pilgrims in White", "Silence the wax pilgrims on the road"],
@@ -214,7 +215,7 @@ export default function (ctx, player) {
   const dashLeft = Math.max(0, (s.dashReadyAt ?? 0) - now), dashPct = Math.min(100, (dashLeft / 3000) * 100);
   const IC = {"ash": "/cdn/value.11ea8210258744da6aa7d65226e3fda61337efea5eb71fe047d65096b3dc053b.png", "cross": "/cdn/value.13d726eaf2133c0f3838076422f781f3068d081b31dbcd6d880212c2ddda7de3.png", "step": "/cdn/value.eecac6103d8be9ec4c6e6909f2dbd61c3fc4bda234bc585e389c850c1c74e3f3.png", "guard": "/cdn/value.02dc0fd2d6f126cd0a5fd2f2dbfc43058486b706d34ed8ffd30222d57c3d3490.png", "tonic": "/cdn/value.f4e985f51d72e39ecd4691f462076ba4a14206d864edb85895ea8ef710ceccfc.png", "pack": "/cdn/value.961ecd8b3ded845823729ea6364b6a1eb5e20e03cd1090dbdb1b4cda98a6872d.png"};
   const cdOver = (left, pct) => left > 0 ? `<div class="cd" style="height:${pct}%"></div><div class="cdn">${Math.ceil(left / 1000)}</div>` : "";
-  const cwLeft = Math.max(0, (s.cwReadyAt ?? 0) - now), cwPct = Math.min(100, (cwLeft / (C_CW * 1000)) * 100);
+  const cwLeft = Math.max(0, (s.cwReadyAt ?? 0) - now), cwPct = Math.min(100, (cwLeft / (CB.crosswound.cd * 1000)) * 100);
   const guardLeft = Math.max(0, (s.guardReadyAt ?? 0) - now), guardPct = Math.min(100, guardLeft / 80), guardOn = (s.guardUntil ?? 0) > now;
   const foe = s.foe, foeOn = foe && !s.dead && (foe.gone ? now - foe.at < 1500 : s.target === foe.id || now - foe.at < 4000);
   const FOES = { pilgrim: "Wax Pilgrim", deacon: "Wax Deacon" };

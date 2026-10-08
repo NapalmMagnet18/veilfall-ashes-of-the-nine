@@ -43,6 +43,8 @@ const ROLES = [
   ["#vf .bb", 0, 16, 0, "14px 22px"],
   ["#vf .pk", 4, 16, 0, "18px 20px"],
   ["#vf .kd", 28, 18, 0, "18px 40px"],
+  ["#vf .tf", 5, 14, 0, "10px 16px"],
+  ["#vf .chip", 8, 9, 0, "5px 12px"],
   ["#vf .ph .slot", 14, 9, 0, null],
   ["#vfshop", 6, 16, 0, "22px 24px"],
   ["#vfshop .gl", 22, 8, 0, null],
