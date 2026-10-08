@@ -5,7 +5,7 @@ export const MODELS = {
   walker: "cdn/model-hunched-pilgrim-made-of-melted-candle-wax-hooded-robe-dripping-wax-candle-burning-on-head-dark-fantasy.glb",
   deacon: "cdn/model-tall-wax-deacon-priest-melting-candle-flesh-iron-censer-chain-tattered-vestments-dark-fantasy.glb",
   chorister: "cdn/model-gaunt-hollow-chorister-choir-robe-of-soot-black-and-blood-red-face-melted-smooth-wax-mouth-sealed-crown-of-thin-candles-long-wax-fingers-dark-fantasy.glb",
-  flagellant: "cdn/model-gaunt-hooded-flagellant-penitent-stitched-leather-mask-bare-back-crusted-with-dripping-candle-wax-and-lash-scars-rope-scourge-tipped-with-candle-stubs-dark-fantasy.glb",
+  flagellant: "cdn/model-gaunt-hooded-penitent-monk-stitched-leather-mask-bare-shoulders-crusted-with-dripping-candle-wax-knotted-rope-cords-tipped-with-candle-stubs-dark-fantasy.glb",
   bailiff: "cdn/model-giant-wax-bailiff-tax-collector-crown-of-burning-candles-iron-ledger-chained-to-chest-bell-mace-dark-fantasy-boss.glb",
 };
 // true height in metres before the row's own scale
