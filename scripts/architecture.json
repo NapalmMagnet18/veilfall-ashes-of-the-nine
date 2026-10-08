@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "basedOnSpecVersion": 572,
-  "updatedAt": "2026-10-08T20:31:50.053Z",
-  "summary": "VEILFALL: Ashes of the Nine is an isometric action RPG following Bearers through the shared Z01 main world, with a solo Veil menu stage. The main sim coordinates quests and encounters; player and boss scripts own combat, character.js persists Bearers, and ui.js renders menus and HUD from player/place state.",
+  "basedOnSpecVersion": 597,
+  "updatedAt": "2026-10-08T21:02:26.483Z",
+  "summary": "VEILFALL: Ashes of the Nine is an isometric action RPG following Bearers through the shared Z01 main world and a solo Veil menu stage. The main sim coordinates quests and encounters; player and enemy/boss systems own combat, character.js persists Bearer data, loot.js defines gear, and ui.js renders menus and HUD.",
   "scriptPaths": [
     "scripts/arrival.js",
     "scripts/bailiff.js",
@@ -77,6 +77,8 @@
     "scripts/lib/data/ui-kit.js",
     "scripts/lib/data/veilfall-map.js",
     "scripts/lib/frames.js",
+    "scripts/lib/loot.js",
+    "scripts/lib/pack-ui.js",
     "scripts/lib/shop-ui.js",
     "scripts/lib/shop.js",
     "scripts/lighting.js",
@@ -111,7 +113,7 @@
     "places/main/sim.js - Z01 referee for quests, NPCs, enemy packs, progression, rewards, bosses and soundscape.",
     "places/main/cells/ - authored playable terrain and dressing from camp through Abbey/Crypt, Fen and Orchard.",
     "places/veil/cells/ and places/veil/config.yaml - authored menu-stage shrine/ravine and spawn/environment.",
-    "places/veil/sim.js - menu ambience and jukebox theme when no eligible Bearer is on main.",
+    "places/veil/sim.js - menu ambience and jukebox theme when nobody eligible is on main.",
     "scripts/arrival.js - world doorway behavior; saves an active Bearer leaving main."
   ],
   "shared": [
@@ -119,28 +121,29 @@
     "scripts/db.js and scripts/lib/data/realms.yml - character-table schema and realm room/name registry for menus and UI.",
     "scripts/lib/data/economy.yml and scripts/lib/coins.js - copper denominations, drops, rewards, sell values and shop stock used by sim, combat, shop and HUD.",
     "scripts/lib/data/combat.yml - hero, skill, enemy and boss tuning consumed by player, enemy and boss systems.",
+    "scripts/lib/data/loot.yml, loot-icons.yml and scripts/lib/loot.js - tier/drop/base/affix/relic/set data, icons, item rolls, gear stats and values used by wax-pack, player and pack UI.",
     "scripts/lib/data/veilfall-map.js - shared Z01 floor/area geometry consumed by terrain, player and zone banners.",
     "scripts/lib/data/menu-shot.yml and scripts/lib/data/models.js - Veil framing and actor model IDs/heights/body helper used by camera and spawners.",
-    "scripts/lib/frames.js, scripts/lib/data/ui-kit.js and scripts/lib/shop-ui.js - shared HUD styling and shop-panel presentation used by UI.",
-    "scripts/lib/boss-voice.js - shared wake/phase/death voice clips and playSound emitter used by Bailiff, Ringer, Warden and Hangman."
+    "scripts/lib/frames.js, scripts/lib/data/ui-kit.js, scripts/lib/shop-ui.js and scripts/lib/boss-voice.js - shared HUD/shop styling and boss voice emitter reused by UI, shop and bosses."
   ],
   "notableExports": [
     "places/main/sim.js and places/veil/sim.js - cadence, tick.",
     "scripts/player.js - onSpawn, onInput, update; scripts/ui.js - default HUD/menu renderer.",
     "scripts/wax-pack.js - roll, telegraph, hurtPlayers, payout, update; bailiff.js, ringer.js, warden.js, hangman.js - onSpawn, update.",
+    "scripts/lib/loot.js - SLOTS, TIER, icon, BAG, rollItem, rollDrops, gearStats, mitigation, slotOf, sellValue, dustValue, cardHTML; scripts/lib/pack-ui.js - PACK_CSS, packPanel.",
     "scripts/lib/boss-voice.js - BOSS_VOICE, bossVoice; scripts/lib/character.js - CHAR_KEYS, fresh, START, realmOf, pack, zoneOf, rollName, roster, create, load, save, remove.",
     "scripts/lib/shop.js - owned, shopInput; scripts/lib/shop-ui.js - shopPanel; scripts/controls.js - default touch-surface selector.",
     "scripts/lib/data/models.js - MODELS, HEIGHT, body; scripts/lib/data/veilfall-map.js - HUB, ROAD, ROAD_HALF, COURTS, GATE, ABBEY_ROAD, ABBEY_HALF, ABBEY, ABBEY_SEAL, NAVE_DOOR, NAVE, NAVE_HALF.",
     "scripts/gen/orch-props.js - geometry, collider; orch-gallows.js - TOP, geometry, collider; orch-gibbet.js - H, geometry, collider."
   ],
   "ownership": [
-    "scripts/lib/character.js CHAR_KEYS - persistent Bearer fields including quest/reward claims and boss defeat flags; packed position is separate.",
-    "scripts/player.js - active body's movement, combat, death/i-frame and skill timers, menu/selection scratch, options state, floor gates and selected Bearer hydration/save.",
+    "scripts/lib/character.js CHAR_KEYS - persistent Bearer fields including quest/reward claims, boss flags, inv/gear/dust/gearLife; packed position is separate.",
+    "scripts/player.js - active body's movement, combat, death/i-frame and skill timers, menu/options scratch, floor gates, inventory item actions and derived gear stats gs.",
     "places/main/sim.js - per-player quest/dialog/cut progress and reward claims; enemy packs, progression, boss spawning/reset, orchard hanged visibility and room sound/music orchestration.",
-    "scripts/wax-pack.js - ordinary enemy AI/hp/death and eligible nearby Bearers' XP/copper/kills/shards payouts.",
+    "scripts/wax-pack.js - ordinary enemy AI/hp/death and nearby eligible Bearers' XP/copper/kills/shards plus personal gear-drop inboxes.",
     "scripts/bailiff.js, scripts/ringer.js, scripts/warden.js and scripts/hangman.js - respective boss hp/phases/casts/adds/defeat; publish place.state boss rows and set participant defeat flags.",
     "scripts/lib/shop.js - trade validation and buyer copper, tonics, bag and maxHp mutations; shop-open state is on player.state.",
-    "scripts/camera.js - camera behavior; scripts/ui.js - menu, HUD and boss/quest presentation from player/place state.",
+    "scripts/camera.js - camera behavior; scripts/ui.js and scripts/lib/pack-ui.js - menu/HUD and pack presentation from player/place state.",
     "places/veil/sim.js - Veil-local ambience timing and menu theme selection; world jukebox remains room-shared with main sim."
   ],
   "flows": [
@@ -149,13 +152,13 @@
     "While player.state.menu is set, player.js hides the body and moves it to solo place veil → realm/Bearer/options screens remain state-driven, with no characters in that place.",
     "scripts/controls.js selects menu touch surface when player/charId is absent or menu active and while shop/bag is open; otherwise world.config.yaml supplies fight controls.",
     "scripts/ui.js renders menus/HUD from player/place state → actions return through player.js; shop-ui.js presents shop buttons and shop.js validates trades.",
-    "Options rows in ui.js send opt actions → player.js cycles player.state.opt scale (0.85/1/1.15/1.3), hoverSfx, embers and tracker values; UI applies scale/tracker styling and suppresses embers, while player.js gates hover sounds.",
-    "Menu UI onmouseenter sends hover actions → player.js deduplicates changed option indices and emits private soft whoosh only when opt.hoverSfx is not false; menu selections emit paired page-turn/clunk sounds.",
-    "scripts/camera.js reads target.state.menu and menu-shot.yml for Veil framing; entering play transitions to follow view.",
+    "Options rows in ui.js send opt actions → player.js cycles player.state.opt scale, hoverSfx, embers and tracker values; UI applies styling and player.js gates hover sounds.",
+    "Menu UI hover/selection actions → player.js deduplicates option hovers and emits private whoosh/page-turn/clunk sounds; scripts/camera.js reads menu state and menu-shot.yml for Veil framing.",
     "player.js saves changed CHAR_KEYS plus position periodically/on rest → character.js writes characters; arrival.js saves an active Bearer leaving main.",
-    "player.js derives Abbey/Nave/Fen/Orchard floor gates from quest stage (4/10/13/18) or abbeyOpenAll, then uses veilfall-map.js floorDist for goals and movement/dash.",
-    "Main sim advances Abbey/Nave through 13, Fen through 17 and Orchard through 22; stage 19 records timed rope cuts, stage 20 summons Hangman, stage 21 turn-in claims Z01-MAIN-09 and advances to 22.",
-    "Main sim aggregates active non-menu Bearers' quest cut state → orchard hanged visibility; boss scripts publish place.state boss rows → ui.js bars/hints; boss lifecycles call bossVoice → positional playSound."
+    "player.js derives Abbey/Nave/Fen/Orchard floor gates from quest stage or abbeyOpenAll, then uses veilfall-map.js floorDist for goals and movement/dash.",
+    "Main sim advances Abbey/Nave, Fen and Orchard quest stages; stage 19 records timed rope cuts, stage 20 summons Hangman, stage 21 turn-in claims Z01-MAIN-09 and advances to 22.",
+    "wax-pack payout (called for ordinary enemies and by boss scripts) rolls personal gear from loot.js → writes per-item player.state.lootIn inbox; that Bearer's local player.js drains it into inv or converts overflow to dust.",
+    "Pack UI from pack-ui.js sends item actions → player.js equips/unequips/sells/salvages/sorts and derives gs from gear; boss scripts publish place.state boss rows → ui.js bars/hints, and boss lifecycles call bossVoice → positional playSound."
   ],
   "behaviorFamilies": [
     "scripts/gen/hub-*.js - reusable Wayside Fire camp props varied by instance params, seed and scene transform; share hub-kit.js.",
@@ -172,11 +175,11 @@
     "scripts/gen/wax-figure.js - legacy procedural enemy-figure generator; current wax actors use CDN models."
   ],
   "migrationNotes": [
-    "Persistent character data is exactly scripts/lib/character.js CHAR_KEYS plus packed position; quest/cut progress and boss defeat flags persist, while movement, menu and presentation scratch remain transient.",
+    "Persistent character data is exactly scripts/lib/character.js CHAR_KEYS plus packed position; inv, gear, dust and gearLife are now saved, while derived gs and lootIn are transient.",
     "Character rows are caller-owned and realm-bound; character.js scopes roster/load/save by owner and realm, while live names are unique per realm. realms.yml room IDs are routing identities, not places in this tree.",
     "The Veil is solo and ephemeral, has no characters, and parks the hidden menu body at its origin; menu framing in camera.js is tuned against that stage's shrine/ledge layout.",
     "The jukebox is room-shared: main sim chooses mood from live Bearers' area majority and boss/fight overrides; Veil sim plays the menu theme when nobody eligible is on main. Main acoustics reverb is 0.22; world audio mix defines bus gains.",
-    "Boss state is separate from ordinary enemy hp: boss scripts publish place.state rows and mark participating Bearers; main sim owns encounter spawning and quest progression/reset. Orchard cut IDs and shared hanged visibility are tied to active Bearer cuts.",
-    "Floor/gate and landmark coordinates in veilfall-map.js are world metres; Orchard opens at quest stage 18 (or abbeyOpenAll), and GIBBETS IDs/coordinates must match orchard scene props. Rail lantern unlock stages are 13, 17 and 22."
+    "Boss state is separate from ordinary enemy hp: boss scripts publish place.state rows and mark participants; main sim owns encounter spawning and quest progression/reset. Orchard cut IDs and shared hanged visibility are tied to act state; veilfall-map.js coordinates are world metres, Orchard opens at stage 18 (or abbeyOpenAll), and GIBBETS IDs/positions must match scene props.",
+    "Loot is personal: wax-pack payout writes unique item-keyed lootIn entries, local player.js is the sole inv-array writer/drainer, and loot.yml defines the 24-slot bag and roll/stat data; gearLife tracks its contribution to maxHp to avoid double-counting on reload."
   ]
 }
