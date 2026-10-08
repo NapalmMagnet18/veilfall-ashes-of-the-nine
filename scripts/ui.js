@@ -275,7 +275,7 @@ function menu(ctx, player, s) {
         <div><div class="nm">${r.name}${r.room === here ? `<span class="here">CURRENT</span>` : ""}</div><div class="ds">${r.note}</div></div>
         <div class="col c2"><div class="st">OPEN</div><span>${r.kind.toUpperCase()}</span></div>
         <div class="col"><b>${per[r.room] ?? 0}<span style="font-size:12px;letter-spacing:0">/${R.maxChars}</span></b><span>BEARERS</span></div></div>`).join("")}
-      <div class="rfoot"><span>A Bearer is written into one realm and walks only there.</span><button class="btn" style="margin:0" onclick="${act("title")}">Back</button></div>
+      <div class="rfoot"><span>A Bearer is written into one realm and walks only there.</span><button class="btn" style="margin:0;min-width:0;display:inline-block" onclick="${act("title")}">Back</button></div>
     </div>${tail(s, now)}`;
   }
 
