@@ -41,7 +41,7 @@ export function update(ctx, dt) {
     ctx.emit("playSound", { clip: sfx("great-bronze-bell-final-toll-fading-into-silence"), position: BELL, volume: 1, maxDistance: 140 });
     ctx.emit("fx", { position: { x: f.x, y: f.y + 0.3, z: f.z }, script: TOLL, params: { r: 5 } });
     animate(ctx, self, { "scale.y": 0.1, "scale.x": 2.6, "scale.z": 2.6 }, { duration: 2.6 });
-    for (const p of here) { p.state.ringerKilled = true; ctx.emit("milestone", { step: 11, name: "ringer-defeated" }, { audience: { player: p.id } }); }
+    for (const p of here) { p.state.ringerKilled = true; p.state.heartwax = (p.state.heartwax ?? 0) + 1; p.state.msg = { text: "Heartwax ×1. The boss's last tallow, still warm. The Wayside cauldron can boil it.", at: now + 2500 }; ctx.emit("milestone", { step: 11, name: "ringer-defeated" }, { audience: { player: p.id } }); }
     ctx.place.state.lastFall = { boss: "ringer", by: here.map((p) => p.state?.charName || p.displayName).filter(Boolean).slice(0, 3), at: now }; // Brother Ledd heralds it at the fire
     if (!ctx.world.state.trophies?.["ringer"]?.by) ctx.world.state.trophies = { ...(ctx.world.state.trophies ?? {}), ["ringer"]: { at: now, by: ctx.place.state.lastFall?.by ?? [] } }; // its relic hangs on the Trophy Post
     payout(ctx, f, R.xp, E.drops.ringer, false, "heavy", "ringer");

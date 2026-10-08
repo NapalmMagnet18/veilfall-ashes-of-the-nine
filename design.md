@@ -107,3 +107,4 @@ places/main/sim.js referee: spawns packs, quest stages, XP/levels, death and res
 - 2026-10-08 · Brother Ledd remarks once per Bearer per worn boss mark (crier.js MARKED), after uncollected-sale news, before board notices.
 - 2026-10-08 · Smithing profession: craft a chosen base at the Wayside Forge for dust + 2 shards; smithXp (saved) from every forge job; 5 ranks raise ilvl and tier odds (loot.yml smith).
 - 2026-10-08 · Wax-rendering profession at the wayside-cauldron (6.9, 4.3): three timed brews (brews.yml), one active, saved as brew; renderXp ranks scale potency/duration +25%/rank; HUD chip shows the active brew.
+- 2026-10-08 · Bosses drop heartwax (Bailiff/Ringer 1, Warden/Hangman 2) to every participant; 4th brew Ninefold Draught costs 1 heartwax.

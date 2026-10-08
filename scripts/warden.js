@@ -43,7 +43,7 @@ export function update(ctx, dt) {
     ctx.emit("playSound", { clip: sfx("drowned-giant-sinks-with-long-watery-groan-and-lantern-chime"), position: f, volume: 1, maxDistance: 140 });
     ctx.emit("fx", { position: { x: f.x, y: f.y + 0.2, z: f.z }, script: SPLASH, params: { r: 5 } });
     animate(ctx, self, { "feetPosition.y": f.y - 3, "scale.x": 0.6, "scale.z": 0.6 }, { duration: 2.8 });
-    for (const p of here) { p.state.wardenKilled = true; ctx.emit("milestone", { step: 15, name: "warden-defeated" }, { audience: { player: p.id } }); }
+    for (const p of here) { p.state.wardenKilled = true; p.state.heartwax = (p.state.heartwax ?? 0) + 2; p.state.msg = { text: "Heartwax ×2. The boss's last tallow, still warm. The Wayside cauldron can boil it.", at: now + 2500 }; ctx.emit("milestone", { step: 15, name: "warden-defeated" }, { audience: { player: p.id } }); }
     ctx.place.state.lastFall = { boss: "warden", by: here.map((p) => p.state?.charName || p.displayName).filter(Boolean).slice(0, 3), at: now }; // Brother Ledd heralds it at the fire
     if (!ctx.world.state.trophies?.["warden"]?.by) ctx.world.state.trophies = { ...(ctx.world.state.trophies ?? {}), ["warden"]: { at: now, by: ctx.place.state.lastFall?.by ?? [] } }; // its relic hangs on the Trophy Post
     payout(ctx, f, W.xp, E.drops.warden, false, "heavy", "warden");

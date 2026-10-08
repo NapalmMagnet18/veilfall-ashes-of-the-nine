@@ -95,7 +95,7 @@ export function update(ctx, dt) {
     ctx.emit("playSound", { clip: sfx("great-bronze-bell-cracking-final-toll"), position: f, volume: 1, maxDistance: 120 });
     animate(ctx, self, { "scale.y": 0.1, "scale.x": 3, "scale.z": 3 }, { duration: 2.4 });
     // entitlement: each player present is credited once per life of this boss (sim.js grants the quest reward once ever)
-    for (const p of here) { p.state.bossKilled = true; ctx.emit("milestone", { step: 3, name: "bailiff-defeated" }, { audience: { player: p.id } }); }
+    for (const p of here) { p.state.bossKilled = true; p.state.heartwax = (p.state.heartwax ?? 0) + 1; p.state.msg = { text: "Heartwax ×1. The boss's last tallow, still warm. The Wayside cauldron can boil it.", at: now + 2500 }; ctx.emit("milestone", { step: 3, name: "bailiff-defeated" }, { audience: { player: p.id } }); }
     ctx.place.state.lastFall = { boss: "bailiff", by: here.map((p) => p.state?.charName || p.displayName).filter(Boolean).slice(0, 3), at: now }; // Brother Ledd heralds it at the fire
     if (!ctx.world.state.trophies?.["bailiff"]?.by) ctx.world.state.trophies = { ...(ctx.world.state.trophies ?? {}), ["bailiff"]: { at: now, by: ctx.place.state.lastFall?.by ?? [] } }; // its relic hangs on the Trophy Post
     payout(ctx, f, B.xp, E.drops.bailiff, false, "heavy", "bailiff");

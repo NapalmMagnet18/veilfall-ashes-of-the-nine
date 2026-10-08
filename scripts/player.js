@@ -388,9 +388,9 @@ function itemInput(ctx, a) {
     const rank = { vowbound: 0, relic: 1, gilded: 2, hallowed: 3, ashen: 4 }; inv.sort((x, y) => rank[x.t] - rank[y.t] || y.il - x.il); snd = "drop";
   } else if (a.a === "brew") {
     if (!s.atCauldron) return; const D = BREW.brews[a.id]; if (!D) return;
-    if ((s.dust ?? 0) < D.dust || (s.shards ?? 0) < D.shards) { msg(ctx, `${D.name} wants ${D.dust} ash dust and ${D.shards} wax shard${D.shards > 1 ? "s" : ""}.`); ctx.emit("playSound", { clip: sfx("dull-click-denied"), position: ctx.self.feetPosition, volume: 0.3 }, { audience: { player: ctx.self.id } }); return; }
+    if ((s.dust ?? 0) < D.dust || (s.shards ?? 0) < D.shards || (s.heartwax ?? 0) < (D.heartwax ?? 0)) { msg(ctx, `${D.name} wants ${D.dust} ash dust and ${D.shards} wax shard${D.shards > 1 ? "s" : ""}${D.heartwax ? ` and ${D.heartwax} heartwax, torn from a boss` : ""}.`); ctx.emit("playSound", { clip: sfx("dull-click-denied"), position: ctx.self.feetPosition, volume: 0.3 }, { audience: { player: ctx.self.id } }); return; }
     const before = renderRank(s.renderXp ?? 0).i, b = brewMade(a.id, s.renderXp ?? 0);
-    s.dust -= D.dust; s.shards -= D.shards;
+    s.dust -= D.dust; s.shards -= D.shards; if (D.heartwax) s.heartwax -= D.heartwax;
     s.brew = { id: a.id, stats: b.stats, until: ctx.now() + b.secs * 1000, secs: b.secs };
     s.renderXp = (s.renderXp ?? 0) + BREW.xp;
     const o = ctx.getObject("wayside-cauldron"), at = o ? { x: o.feetPosition.x, y: o.feetPosition.y + 1, z: o.feetPosition.z } : ctx.self.feetPosition;
