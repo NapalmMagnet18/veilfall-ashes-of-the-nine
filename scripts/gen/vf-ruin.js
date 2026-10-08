@@ -10,7 +10,7 @@ function box(ctx, cx, cy, cz, hx, hy, hz, yaw = 0, skipBottom = true) {
 function wall(ctx) {
   const { len = 6, h = 2.6, t = 0.8 } = ctx.params, R = () => ctx.random();
   ctx.flat(); ctx.albedo("cdn/texture-weathered-dark-ashlar-stone-blocks-soot-stained.png"); ctx.color("oklch(0.93 0.01 250)"); ctx.roughness(0.92);
-  const top = (u) => h * (0.3 + 0.7 * Math.abs(Math.sin(u * 0.9 + (ctx.params.s ?? 0) * 1.7) * 0.6 + Math.sin(u * 2.3) * 0.4));
+  const top = (u) => h * (0.5 + 0.5 * Math.abs(Math.sin(u * 0.9 + (ctx.params.s ?? 0) * 1.7) * 0.6 + Math.sin(u * 2.3) * 0.4));
   // rubble core so courses never show sky between blocks
   let y = 0, row = 0;
   while (y < h) {

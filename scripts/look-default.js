@@ -20,9 +20,9 @@ export function look(ctx) {
   let c = ctx.scene;
   // Uncomment to start grading: a touch warmer, a little more contrast:
   // Veilfall: cold ash-blue mids, true blacks, fire left hot
-  c = grade(c, { exposure: 1.06, saturation: 0.82, contrast: 1.1, temperature: -0.06, haze: 0.05 });
+  c = grade(c, { exposure: 1.3, saturation: 0.85, contrast: 1.06, temperature: -0.06, haze: 0.05 });
   // Uncomment to darken the edges of the frame:
-  c = vignette(c, ctx.param('vignette', 0.32), { color: [0.01, 0.015, 0.03] });
+  c = vignette(c, ctx.param('vignette', 0.22), { color: [0.01, 0.015, 0.03] });
   // Uncomment for a faint film grain:
   c = grain(c, 0.035);
   return c;
