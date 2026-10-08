@@ -1,0 +1,7 @@
+# spawn-scene v2 yaml x0z-2
+veil-ridge:
+  feetPosition: {x: 16, y: 8, z: -220}
+  id: veil-ridge
+  material: {pbr: true}
+  primitive: {kind: scripted, params: {gx: -16, h: 45, kind: ridge, len: 900}, script: scripts/gen/veil-land.js, seed: 80}
+  tags: [veil]

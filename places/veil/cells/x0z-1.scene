@@ -1,0 +1,15 @@
+# spawn-scene v2 yaml x0z-1
+veil-cliff-73:
+  feetPosition: {x: -60, y: -50, z: -90}
+  id: veil-cliff-73
+  material: {pbr: true}
+  primitive: {kind: scripted, params: {d: 30, h: 60, kind: cliff, w: 40}, script: scripts/gen/veil-land.js, seed: 73}
+  rotation: {yaw: 1679}
+  tags: [veil]
+veil-cliff-74:
+  feetPosition: {x: 62, y: -50, z: -100}
+  id: veil-cliff-74
+  material: {pbr: true}
+  primitive: {kind: scripted, params: {d: 30, h: 62, kind: cliff, w: 44}, script: scripts/gen/veil-land.js, seed: 74}
+  rotation: {yaw: 1702}
+  tags: [veil]

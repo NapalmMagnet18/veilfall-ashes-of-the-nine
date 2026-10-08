@@ -1,8 +1,115 @@
 # spawn-scene v2 yaml x0z0
+veil-brazier-l:
+  children: [{audio: {clip: /cdn/moodboard-realistic-gritty/sfx-iron-brazier-fire-crackle-loop.mp3, gain: 0.1, loop: true, maxDistance: 14}, feetPosition: {x: 0, y: 1.42, z: 0}, fx: {script: "fx\npop coals n=5 on=disc(.25) size=.05..0.1 tint=<2.4,.9,.25>..<1.1,.3,.08> sz=$size*flick(.5,.12) col=$tint*flick(.8,.3) a=.9 r=sprite(soft-disc,add)\npop flame rate=flick(.45,.2)*40 on=disc(.22) life=.4..0.75 v=up(1.4)+cone(20)*(.3..0.7) size=.18..0.34 acc=curl(.5)*1.2+buoy(2.2)+drag(1.5)\n  sz=$size*(.5>.25:1>.7:.7>.14) col=hdr(4.6,3.4,1.4)>.3:hdr(3.2,1.4,.3)>.65:hdr(1.8,.5,.1)>hdr(.6,.12,.03) a=0>.12:1>.75:.85>0 rot=spin(.2) r=sprite(flame-wisp,add)\npop embers rate=3 on=disc(.2) life=.8..1.6 v=up(2)+cone(30)*(.4..1.2) size=.02..0.04 acc=curl(.8)+grav()*.4+drag(.5) col=hdr(5,2.8,.8)>.6:hdr(2.4,.8,.15)>hdr(1,.22,.04) a=(0>.08:1>.65:.9>0)*flick(11,.35) r=sprite(ember,add,velocity,.02)\npop smoke on=@flame?.15 inh=p;v:$v*.4 life=1.6..2.6 size=.14..0.22 acc=buoy(.9)+curl(.35)*.5+drag(.8) sz=$size*(.7>3) col=<.22,.2,.2> a=0>.22:.3>.7:.15>0 rot=spin(.15) r=sprite(smoke-puff,alpha)\npop glow n=1 at=disc(.2).c(.5) glo=fire()*(#flame/26)~ r=light(<1,.55,.24>,$glo*22,14)"}, id: flame}]
+  feetPosition: {x: -4.5, y: 0, z: -9.6}
+  id: veil-brazier-l
+  material: {pbr: true}
+  physics: static
+  primitive: {kind: scripted, params: {h: 1.5, kind: brazier}, script: scripts/gen/vf-ruin.js, seed: 31}
+  tags: [veil, brazier]
+veil-brazier-r:
+  children: [{audio: {clip: /cdn/moodboard-realistic-gritty/sfx-iron-brazier-fire-crackle-loop.mp3, gain: 0.1, loop: true, maxDistance: 14}, feetPosition: {x: 0, y: 1.42, z: 0}, fx: {script: "fx\npop coals n=5 on=disc(.25) size=.05..0.1 tint=<2.4,.9,.25>..<1.1,.3,.08> sz=$size*flick(.5,.12) col=$tint*flick(.8,.3) a=.9 r=sprite(soft-disc,add)\npop flame rate=flick(.45,.2)*40 on=disc(.22) life=.4..0.75 v=up(1.4)+cone(20)*(.3..0.7) size=.18..0.34 acc=curl(.5)*1.2+buoy(2.2)+drag(1.5)\n  sz=$size*(.5>.25:1>.7:.7>.14) col=hdr(4.6,3.4,1.4)>.3:hdr(3.2,1.4,.3)>.65:hdr(1.8,.5,.1)>hdr(.6,.12,.03) a=0>.12:1>.75:.85>0 rot=spin(.2) r=sprite(flame-wisp,add)\npop embers rate=3 on=disc(.2) life=.8..1.6 v=up(2)+cone(30)*(.4..1.2) size=.02..0.04 acc=curl(.8)+grav()*.4+drag(.5) col=hdr(5,2.8,.8)>.6:hdr(2.4,.8,.15)>hdr(1,.22,.04) a=(0>.08:1>.65:.9>0)*flick(11,.35) r=sprite(ember,add,velocity,.02)\npop smoke on=@flame?.15 inh=p;v:$v*.4 life=1.6..2.6 size=.14..0.22 acc=buoy(.9)+curl(.35)*.5+drag(.8) sz=$size*(.7>3) col=<.22,.2,.2> a=0>.22:.3>.7:.15>0 rot=spin(.15) r=sprite(smoke-puff,alpha)\npop glow n=1 at=disc(.2).c(.5) glo=fire()*(#flame/26)~ r=light(<1,.55,.24>,$glo*22,14)"}, id: flame}]
+  feetPosition: {x: 4.5, y: 0, z: -9.6}
+  id: veil-brazier-r
+  material: {pbr: true}
+  physics: static
+  primitive: {kind: scripted, params: {h: 1.5, kind: brazier}, script: scripts/gen/vf-ruin.js, seed: 32}
+  tags: [veil, brazier]
+veil-cliff-71:
+  feetPosition: {x: -34, y: -48, z: -36}
+  id: veil-cliff-71
+  material: {pbr: true}
+  primitive: {kind: scripted, params: {d: 24, h: 54, kind: cliff, w: 30}, script: scripts/gen/veil-land.js, seed: 71}
+  rotation: {yaw: 1633}
+  tags: [veil]
+veil-cliff-72:
+  feetPosition: {x: 36, y: -48, z: -44}
+  id: veil-cliff-72
+  material: {pbr: true}
+  primitive: {kind: scripted, params: {d: 26, h: 52, kind: cliff, w: 34}, script: scripts/gen/veil-land.js, seed: 72}
+  rotation: {yaw: 1656}
+  tags: [veil]
+veil-ledge:
+  feetPosition: {x: 0, y: 0, z: 0}
+  id: veil-ledge
+  material: {pbr: true}
+  physics: static
+  primitive: {kind: scripted, params: {kind: ledge}, script: scripts/gen/veil-land.js, seed: 7}
+  tags: [veil]
+veil-mist:
+  feetPosition: {x: 0, y: -8, z: -40}
+  fx: {script: "fx\npop sheet n=?mobile:14|26 on=box(40,2.5,30) life=14..22 v=<.25,0,.08>*(.6..1.2) size=8..14 acc=curl(.05)*.1 col=oklch(.62 .03 245) a=0>.25:.22>.75:.22>0 sz=$size*(.8>1.3) rot=spin(.01) r=sprite(smoke-puff,alpha,face,0,2)"}
+  id: veil-mist
+  tags: [veil]
+veil-rock-61:
+  feetPosition: {x: -9.5, y: -0.2, z: -10}
+  id: veil-rock-61
+  material: {pbr: true}
+  physics: static
+  primitive: {kind: scripted, params: {r: 1.3, sx: 1.2, sy: 0.75, sz: 1}, script: scripts/gen/hub-boulder.js, seed: 61}
+  rotation: {yaw: 2257}
+  tags: [veil]
+veil-rock-62:
+  feetPosition: {x: 8.8, y: -0.2, z: -6}
+  id: veil-rock-62
+  material: {pbr: true}
+  physics: static
+  primitive: {kind: scripted, params: {r: 1.1, sx: 1.2, sy: 0.75, sz: 1}, script: scripts/gen/hub-boulder.js, seed: 62}
+  rotation: {yaw: 2294}
+  tags: [veil]
+veil-rock-63:
+  feetPosition: {x: -3.5, y: -0.2, z: -18}
+  id: veil-rock-63
+  material: {pbr: true}
+  physics: static
+  primitive: {kind: scripted, params: {r: 0.9, sx: 1.2, sy: 0.75, sz: 1}, script: scripts/gen/hub-boulder.js, seed: 63}
+  rotation: {yaw: 2331}
+  tags: [veil]
+veil-rock-64:
+  feetPosition: {x: 5.5, y: -0.2, z: -15.5}
+  id: veil-rock-64
+  material: {pbr: true}
+  physics: static
+  primitive: {kind: scripted, params: {r: 0.8, sx: 1.2, sy: 0.75, sz: 1}, script: scripts/gen/hub-boulder.js, seed: 64}
+  rotation: {yaw: 2368}
+  tags: [veil]
+veil-rock-65:
+  feetPosition: {x: -7.5, y: -0.2, z: 1}
+  id: veil-rock-65
+  material: {pbr: true}
+  physics: static
+  primitive: {kind: scripted, params: {r: 1, sx: 1.2, sy: 0.75, sz: 1}, script: scripts/gen/hub-boulder.js, seed: 65}
+  rotation: {yaw: 2405}
+  tags: [veil]
 veil-shrine:
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, fx: {params: {power: 2.2, radius: 6, tips: "-2.300,0.820,-0.950;-2.100,0.740,-0.890;-2.470,0.700,-0.830"}, script: scripts/effects/candles.fx.js}, id: candles-0}, {feetPosition: {x: 0, y: 0, z: 0}, fx: {params: {power: 2.2, radius: 6, tips: "2.350,0.860,-0.900;2.140,0.730,-0.850;2.490,0.680,-0.740"}, script: scripts/effects/candles.fx.js}, id: candles-1}, {feetPosition: {x: 0, y: 0, z: 0}, fx: {params: {power: 2.2, radius: 6, tips: "-0.260,1.330,-1.980;0.050,1.400,-1.900;0.300,1.270,-2.030;-0.040,1.230,-2.100"}, script: scripts/effects/candles.fx.js}, id: candles-2}, {feetPosition: {x: 0, y: 0, z: 0}, fx: {params: {power: 2.2, radius: 6, tips: "1.700,0.340,4.000;1.960,0.220,4.100;1.470,0.260,4.120;1.800,0.160,3.780"}, script: scripts/effects/candles.fx.js}, id: candles-3}, {feetPosition: {x: 0, y: 5.06, z: -1}, fx: {script: "fx\npop core n=1 size=.07 col=hdr(2.2,5.5,6) a=.9*flick(3,.15) sz=$size*flick(5,.1) r=sprite(soft-disc,add)\npop flame rate=flick(.4,.25)*22 on=disc(.02) life=.3..0.55 v=up(.18) size=.05..0.08 acc=curl(.4)*.3\n  sz=$size*(.6>1:.4>.3) col=hdr(3,6,6.5)>.5:hdr(1.2,3.2,3.6)>hdr(.3,.9,1.1) a=0>.2:1>.7:.8>0 r=sprite(flame-wisp,add)\npop motes rate=1.5 on=sphere(.5) life=2..4 v=sdir()*.05 size=.012..0.022 acc=curl(.3)*.15+buoy(.05) col=hdr(1,2.6,2.9) a=0>.2:1>.8:1>0 sz=$size r=sprite(mote,add)"}, id: cold-lantern, light: {color: "#6DB8C0", distance: 14, intensity: 9, kind: point}}, {feetPosition: {x: 0, y: 0, z: 2}, fx: {script: "fx\npop ash n=?mobile:70|160 on=box(9,4,7).c(3) wrap=18;8;14 life=6..10 v=<.12,-.18,.05>*(.5..1.4) size=.012..0.03 spin=-3..3 acc=curl(.25)*.25+wind()*.08 col=oklch(.72 .01 250)>oklch(.55 .01 250) a=0>.15:.7>.85:.6>0 sz=$size rot=$age*$spin r=sprite(chip,alpha)\npop sparks rate=.6 on=box(6,1,4).c(2) life=3..6 v=up(.15)+sdir()*.05 size=.01..0.018 acc=curl(.4)*.2 col=hdr(3,1.2,.3)>hdr(1,.3,.05) a=(0>.2:1>.8:1>0)*flick(6,.4) sz=$size r=sprite(ember,add)"}, id: ash}]
   feetPosition: {x: 0, y: 0, z: -12}
   id: veil-shrine
-  material: {kind: scripted, script: engine/blueprint}
-  physics: none
-  primitive: {depth: 12, height: 9, kind: box, width: 16}
-  tags: [blueprint]
+  material: {pbr: true}
+  physics: static
+  primitive: {kind: scripted, params: {}, script: scripts/gen/veil-shrine.js, seed: 9}
+  tags: [veil]
+veil-wall-l:
+  feetPosition: {x: -6.8, y: 0, z: -13.5}
+  id: veil-wall-l
+  material: {pbr: true}
+  physics: static
+  primitive: {kind: scripted, params: {h: 3.2, kind: wall, len: 4.5, t: 0.8}, script: scripts/gen/vf-ruin.js, seed: 41}
+  rotation: {yaw: 72}
+  tags: [veil]
+veil-wall-lb:
+  feetPosition: {x: -9, y: 0, z: -6}
+  id: veil-wall-lb
+  material: {pbr: true}
+  physics: static
+  primitive: {kind: scripted, params: {h: 1.4, kind: wall, len: 3.2, t: 0.8}, script: scripts/gen/vf-ruin.js, seed: 43}
+  rotation: {yaw: 84}
+  tags: [veil]
+veil-wall-r:
+  feetPosition: {x: 7.2, y: 0, z: -11}
+  id: veil-wall-r
+  material: {pbr: true}
+  physics: static
+  primitive: {kind: scripted, params: {h: 2.4, kind: wall, len: 4, t: 0.8}, script: scripts/gen/vf-ruin.js, seed: 42}
+  rotation: {yaw: -64}
+  tags: [veil]
