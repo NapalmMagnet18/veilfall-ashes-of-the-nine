@@ -203,7 +203,7 @@ def drip(M, top, length, r, out_dir, seed, mat="wax", wall=None):
     prim("sph", M[mat], loc=pts[-1] + Vector((0, 0, -r * .2)), segments=6, ring_count=4, radius=r * 1.2)
     return o
 
-def finish(name):
+def finish(name, post=None):
     objs = [o for o in bpy.context.scene.objects if o.type == "MESH"]
     for o in objs:
         if "UVMap" not in o.data.uv_layers: o.data.uv_layers.new(name="UVMap")
@@ -218,6 +218,7 @@ def finish(name):
             c = me.vertices[me.loops[li].vertex_index].co
             u, v = ((c.y, c.z), (c.x, c.z), (c.x, c.y))[ax]
             uv.data[li].uv = (u / tile, v / tile)
+    if post: post(me)
     bpy.ops.object.select_all(action="DESELECT"); o.select_set(True); bpy.context.view_layer.objects.active = o
     try: bpy.ops.object.shade_smooth_by_angle(angle=math.radians(35))
     except Exception:
