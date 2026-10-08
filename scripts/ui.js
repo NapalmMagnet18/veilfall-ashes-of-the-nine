@@ -252,7 +252,7 @@ export default function (ctx, player) {
     <div class="dv d${ban.fresh ? "f1" : "f0"}" style="width:min(100%,360px)"></div>
     <div style="font-size:14px;font-style:italic;color:#d9c9a6;text-shadow:0 1px 0 #0d0b0a">${ban.sub}</div></div>` : ""}
   ${dlg ? (() => { const m = /^([A-Z][\w' ]{1,22}):\s*(.*)$/s.exec(dlg.text); const who = m ? m[1] : null, line = m ? m[2] : dlg.text, face = who && PORTRAITS[who.split(" ")[0]];
-    return `<div id="dlg${dlg.at}" class="absolute plate dl" style="left:50%;transform:translateX(-50%);bottom:${touch ? 210 : 150}px;width:min(620px,calc(100vw - 2*${rail}));animation:vfin .35s;display:flex;gap:14px;align-items:flex-start">
+    return `<div id="dlg${dlg.at}" class="absolute plate dl" style="left:50%;transform:translateX(-50%);bottom:${touch ? 210 : 178}px;width:min(620px,calc(100vw - 2*${rail}));animation:vfin .35s;display:flex;gap:14px;align-items:flex-start">
     ${face ? `<div style="flex:none;width:${touch ? 56 : 84}px;height:${touch ? 56 : 84}px;background:url(${face}) center/cover;box-shadow:0 0 0 2px #0d0b0a,0 0 0 3px #8a6f45,0 0 0 5px #0d0b0a,0 0 18px rgba(240,154,58,.25)"></div>` : ""}
     <div style="flex:1;min-width:0">${who ? `<div class="lbl" style="color:#C49C63;letter-spacing:.22em;margin-bottom:3px">${who.toUpperCase()}</div>` : ""}<div style="font-size:${touch ? 15 : 17}px;line-height:1.4;${who ? "" : "font-style:italic;"}animation:vftype 1.4s ease-out">${line}</div><div class="dv d0" style="margin:8px 0 0"></div></div></div>`; })() : ""}
   <div class="absolute dk" style="left:24px;bottom:24px;display:flex;align-items:flex-end;gap:14px">
