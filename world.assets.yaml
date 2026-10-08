@@ -20,6 +20,7 @@ assets:
     "/cdn/value.707684534d6dd1f99aff9e4a18a21122d2540867b6751169a315b094b24fc0cf.png": {bytes: 370, kind: image, name: vf-divf, uploadedAt: "2026-10-08T16:12:22.505Z"}
     "/cdn/value.75a658d631981a665ceca8773fec687cb292ed5ca6833b19d6156b214b7e9bc1.png": {bytes: 492, kind: image, name: vf-ornate, uploadedAt: "2026-10-08T16:06:34.469Z"}
     "/cdn/value.7cae4a7da68ba6bd1b43c79775e944262bfbf0d1e034043e806b051ce14fbde6.glb": {bytes: 657176, kind: model, name: grave-lancet, uploadedAt: "2026-10-08T18:13:25.714Z"}
+    "/cdn/value.7f79683fa382b0c4cf247217d7856c58041712eb2c018ae355701c4a01ab107a.glb": {bytes: 886556, kind: model, name: grave-ledger, uploadedAt: "2026-10-08T18:13:37.088Z"}
     "/cdn/value.a2605b2cc3a81b3017dc37e70db702f5d8bc19876c5b91473921a28a733d3467.png": {bytes: 265, kind: image, name: vf-div, uploadedAt: "2026-10-08T16:11:15.123Z"}
     "/cdn/value.a653a5ebfcccb33300582bba7d25b0912ff6b147bc340943eeb0a5a772ab6283.glb": {bytes: 1486772, kind: model, name: wax-saint-c, uploadedAt: "2026-10-08T18:13:21.541Z"}
     "/cdn/value.bba925e4e433e115eeed76c95225f1769bfc11061a2a7d75b358ec2ab422204d.glb": {bytes: 621540, kind: model, name: grave-broken, uploadedAt: "2026-10-08T18:13:33.794Z"}
