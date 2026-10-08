@@ -77,7 +77,7 @@ ${sel("::after")}{border-image-source:var(--b);filter:${F.gold}}
 #vm .btn[disabled]::after,#vfshop .bt.off::after,#vm .card.sealed::after,#vf .slot.dim::after,#vf .pk .slot.e::after{filter:${F.dim}}
 #vm .btn[disabled],#vfshop .bt.off{opacity:.85}
 #vf .pk .slot.e::before{opacity:.55}
-#vm .card img{position:relative;z-index:0}
+#vm .card img{position:relative;z-index:0} #vm .card::after{z-index:2} #vm .card .nm,#vm .card div{z-index:3} #vm .btn{padding-left:18px!important;padding-right:18px!important}
 ${roleCSS}
 @media (pointer:coarse),(max-width:700px){${ROLES.filter(([, , w]) => w > 10).map(([s]) => s).join(",")}{--fw:9px}
  #vf .qp,#vf .pp,#vf .pk,#vf .bb{padding:10px 12px!important} #vf .dl{padding:12px 14px!important} #vfshop{padding:14px 14px!important}}
