@@ -13,6 +13,24 @@ const VOX = {
   flagellant: { aggro: "penitent-cracks-a-chain-scourge-and-screams-in-ecstasy", death: "chains-clatter-onto-stone-as-wax-body-slumps" },
   deacon: { aggro: "huge-wax-priest-bellows-a-low-sermon-word-and-scrapes-censer", death: "giant-wax-body-topples-heavy-thud-and-long-boiling-hiss" },
 };
+// idle throats: what each kind murmurs while it waits, heard within EAR metres, one fragment drifting up
+const MUTTER = {
+  pilgrim: { clip: "wax-pilgrim-whispered-prayer-mumble-wet-and-hollow", lines: ["...light the ninth, light the ninth...", "...forgive the wick...", "...the road remembers...", "...burn slow, burn kind...", "...where did the lanterns go..."] },
+  chorister: { clip: "wax-choirboy-humming-broken-hymn-under-breath", lines: ["...la... la... lament...", "...sing it melted...", "...the high note hurts...", "...one more verse, one more..."] },
+  flagellant: { clip: "penitent-murmured-litany-and-soft-chain-clink", lines: ["...one stroke for the first flame...", "...I was the one who let it go out...", "...again. again.", "...the wax remembers my sin..."] },
+  deacon: { clip: "huge-wax-priest-low-droning-sermon-murmur", lines: ["...AND THE NINE WERE GIVEN TO ASH...", "...kneel, little candle...", "...tithe your light...", "...the Veil keeps what it is owed..."] },
+};
+const EAR = 14, mutterAt = new Map();
+function mutter(ctx, w, s, f, now, players) {
+  const next = mutterAt.get(w.id);
+  if (next === undefined) { mutterAt.set(w.id, now + 3000 + ctx.random() * 9000); return; }
+  if (now < next) return;
+  mutterAt.set(w.id, now + 9000 + ctx.random() * 9000);
+  if (!players.some((p) => flat(p.feetPosition, f) < EAR)) return;
+  const M = MUTTER[s.kind] ?? MUTTER.pilgrim, deep = s.kind === "deacon";
+  ctx.emit("playSound", { clip: sfx(M.clip), position: f, volume: deep ? 0.55 : 0.38, pitch: 0.85 + ctx.random() * 0.3, maxDistance: EAR });
+  ctx.emit("damageNumber", { position: { x: f.x, y: f.y + (deep ? 2.6 : 2.1), z: f.z }, text: M.lines[Math.floor(ctx.random() * M.lines.length)], color: deep ? "#c9a46a" : "#b8ad98", size: deep ? 0.9 : 0.7, lifetime: 2.6 }, { audience: { nearby: f, radius: EAR } });
+}
 const MELT = `fx
 pop wax burst=20..28 on=disc(.35) life=.6..1.1 v=up(1.5..3)+sdir()*(1..2) size=.06..0.12 spin=-6..6 tint=oklch(.93 .04 88)..oklch(.8 .06 75) acc=grav()+drag(.6) col=$tint a=1>.8:1>0 sz=$size rot=$age*$spin floor=stick r=sprite(chip,alpha,velocity,.02)
 pop smoke burst=8 on=disc(.3) life=1.2..2 v=up(.6..1.2) size=.3..0.5 acc=buoy(.4)+drag(1) col=<.3,.28,.27> a=0>.3:.4>0 sz=$size*(.6>2.2) r=sprite(smoke-puff,alpha)
@@ -108,7 +126,7 @@ export function update(ctx, dt) {
   for (const row of ctx.query({ tags: ["enemy"], excludeTags: ["boss"] })) {
     const w = ctx.getObject(row.id); if (!w) continue;
     const s = w.state, K = C[s.kind] ?? C.pilgrim, f = w.feetPosition;
-    if (s.dead) { w.velocity = { x: 0, y: w.velocity.y, z: 0 }; if (now - s.deadAt > 1600) ctx.destroy(w.id); continue; }
+    if (s.dead) { w.velocity = { x: 0, y: w.velocity.y, z: 0 }; mutterAt.delete(w.id); if (now - s.deadAt > 1600) ctx.destroy(w.id); continue; }
     if (s.hp <= 0) {
       s.dead = true; s.deadAt = now; w.physics = "none";
       ctx.emit("fx", { position: { x: f.x, y: f.y + 0.4, z: f.z }, script: MELT });
@@ -123,6 +141,7 @@ export function update(ctx, dt) {
     if (s.lastHit && !prey) { const p = players.find((q) => q.id === s.lastHit); if (p && flat(p.feetPosition, f) < 30) { prey = p; best = flat(p.feetPosition, f); } }
     if (s.home && flat(f, s.home) > 22) { prey = null; s.lastHit = null; }
     if (!!prey !== !!s.hunting) { s.hunting = !!prey; if (prey) ctx.emit("playSound", { clip: sfx((VOX[s.kind] ?? VOX.pilgrim).aggro), position: f, volume: s.kind === "pilgrim" ? 0.5 : 0.7, mode: "restart", pitch: 0.8 + ctx.random() * 0.4 }); }
+    if (!s.hunting) mutter(ctx, w, s, f, now, players);
     let vx = 0, vz = 0;
     // a slam in its windup holds the body still, then lands
     if (s.slam) {
