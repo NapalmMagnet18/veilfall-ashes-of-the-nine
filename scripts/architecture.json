@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "basedOnSpecVersion": 553,
-  "updatedAt": "2026-10-08T20:05:20.183Z",
-  "summary": "VEILFALL: Ashes of the Nine is an isometric action RPG following Bearers from the Wayside Fire through the Broken Lantern Road, Ashen Abbey/Bell Crypt, Lanternmere and Gallows Orchard. The shared main place sim coordinates Z01 quests, encounters, dressing and zone sound; player/boss systems run action and combat, character.js persists Bearers, and the solo Veil place hosts menus.",
+  "basedOnSpecVersion": 564,
+  "updatedAt": "2026-10-08T20:17:20.571Z",
+  "summary": "VEILFALL: Ashes of the Nine is an isometric action RPG following Bearers from the Wayside Fire through the Broken Lantern Road, Ashen Abbey/Bell Crypt, Lanternmere and Gallows Orchard. The shared main place sim coordinates Z01 quests, encounters, dressing and zone sound; player/boss systems run action and combat, character.js persists Bearers, and the solo Veil place hosts the menus.",
   "scriptPaths": [
     "scripts/arrival.js",
     "scripts/bailiff.js",
@@ -70,6 +70,7 @@
     "scripts/grass.js",
     "scripts/hangman.js",
     "scripts/humanoid-locomotion.js",
+    "scripts/lib/boss-voice.js",
     "scripts/lib/character.js",
     "scripts/lib/coins.js",
     "scripts/lib/data/models.js",
@@ -97,11 +98,11 @@
   ],
   "places": [
     "places/main/ - shared playable Z01; sim.js owns quest chapters, NPCs, enemy/boss lifecycle, shared encounter dressing and road ambience/music.",
-    "places/main/cells/ - five authored cells span Wayside Fire, road, Abbey/Crypt, Fen/Lanternmere and Gallows Orchard; orchard gallows/dais, gibbets, hanged pilgrims, trees, path and braziers are placed across x0z0/x1z0.",
-    "places/main/config.yaml - main terrain, atmosphere, vegetation, 560000-byte arrival budget and 0.22 reverb.",
+    "places/main/cells/ - five authored cells span Wayside Fire, road, Abbey/Crypt, Fen/Lanternmere and Gallows Orchard, including orchard gallows, gibbets and hanged pilgrims.",
+    "places/main/config.yaml - main terrain, atmosphere, vegetation, arrival budget and reverb.",
     "places/veil/ - ephemeral solo Lantern Shrine menu stage above the ravine; hidden menu body is parked here.",
     "places/veil/cells/ and places/veil/config.yaml - authored shrine ledge, cliffs, far ridge, spawn and menu-stage environment.",
-    "places/veil/sim.js - menu theme/wind and spatial shrine hum plus occasional far-ravine bell."
+    "places/veil/sim.js - Veil menu ambience and spatial shrine hum plus occasional far-ravine bell."
   ],
   "roots": [
     "world.config.yaml - world entry: main default, player/camera templates, lighting, arrival behavior, nametag, desktop/touch actions and audio bus gains/voice limit.",
@@ -121,17 +122,17 @@
     "scripts/lib/data/veilfall-map.js - shared Z01 floor/area geometry for road, Abbey, Nave, Crypt, Fen and Orchard; consumed by terrain, player and zone banners.",
     "scripts/lib/data/menu-shot.yml and scripts/lib/data/models.js - Veil framing and CDN actor model IDs/heights/body(kind) helper used by camera and spawners.",
     "scripts/lib/frames.js, scripts/lib/data/ui-kit.js and scripts/lib/shop-ui.js - shared HUD styling and shop-panel presentation used by UI.",
-    "art/roadkit/common.py - offline Blender construction/material/render helpers imported by roadkit and Abbey builders."
+    "scripts/lib/boss-voice.js - shared wake/phase/death voice clips and playSound emitter used by Bailiff, Ringer, Warden and Hangman."
   ],
   "notableExports": [
     "places/main/sim.js - cadence, tick; places/veil/sim.js - cadence, tick.",
     "scripts/player.js - onSpawn, onInput, update; scripts/ui.js - default HUD/menu renderer.",
-    "scripts/wax-pack.js - roll, telegraph, hurtPlayers, payout, update; bailiff.js, ringer.js, warden.js, hangman.js - boss lifecycle behaviors.",
+    "scripts/wax-pack.js - roll, telegraph, hurtPlayers, payout, update; bailiff.js, ringer.js, warden.js, hangman.js - onSpawn, update boss behaviors.",
+    "scripts/lib/boss-voice.js - BOSS_VOICE, bossVoice.",
     "scripts/lib/character.js - CHAR_KEYS, fresh, START, realmOf, pack, zoneOf, rollName, roster, create, load, save, remove.",
     "scripts/lib/shop.js - owned, shopInput; scripts/lib/shop-ui.js - shopPanel; scripts/controls.js - default touch-surface selector.",
     "scripts/lib/data/models.js - MODELS, HEIGHT, body; scripts/lib/data/veilfall-map.js - FEN_PATH, WAYSTONES, FEN_HEART, ORCH_PATH, GIBBETS, GALLOWS, floorDist, orchDist, areaAt.",
-    "scripts/gen/orch-props.js - geometry, collider for Orchard path, boundary stone, rope coils and crow; orch-kit.js supplies shared rope/crow materials and forms.",
-    "scripts/gen/orch-gallows.js - TOP, geometry, collider; orch-gibbet.js - H, geometry, collider; orch-hanged.js and orch-tree.js - geometry, collider."
+    "scripts/gen/orch-props.js - geometry, collider; orch-gallows.js - TOP, geometry, collider; orch-gibbet.js - H, geometry, collider."
   ],
   "ownership": [
     "scripts/lib/character.js CHAR_KEYS - persistent Bearer fields including quest/reward claims and boss defeat flags; packed position is separate.",
@@ -153,9 +154,9 @@
     "player.js saves changed CHAR_KEYS plus position periodically/on rest → character.js writes characters; arrival.js saves an active Bearer leaving main.",
     "player.js derives Abbey/Nave/Fen/Orchard floor gates from quest stage (4/10/13/18) or abbeyOpenAll, then uses veilfall-map.js floorDist for goals and movement/dash.",
     "Main sim advances Abbey/Nave through 13, Fen through 17 and Orchard 18–22; stage 19 records timed rope cuts, stage 20 summons Hangman, stage 21 turn-in claims Z01-MAIN-09 and advances to 22.",
-    "Main sim aggregates active non-menu Bearers' quest cut state → orchard hanged children visibility; finished stage 22 Bearers do not keep the hanged hidden for new chapter entrants. Hangman publishes place.state.hangman → ui.js boss bar/hint.",
-    "Main sim selects enemy kind/model → combat.yml tuning and models.js CDN bodies; wax-pack.js owns ordinary enemy AI/deaths/payouts. Main sim selects calm zone music by Bearer majority, with combat/boss tracks overriding; Veil sim supplies menu music when main has no eligible Bearer.",
-    "Main sim emits Maelin voice/distant zone one-shots and toggles rope-creak ambience with hanged visibility; player.js selects surface footsteps; player class/ancestry picks emit hero cues → world.config.yaml mix buses/gains."
+    "Main sim aggregates active non-menu Bearers' quest cut state → orchard hanged children visibility; Hangman publishes place.state.hangman → ui.js boss bar/hints.",
+    "Main sim selects enemy kind/model → combat.yml tuning and models.js CDN bodies; wax-pack.js owns ordinary enemy AI/deaths/payouts. Main sim selects calm zone music by Bearer majority, with combat/boss tracks overriding; Veil sim supplies menu music.",
+    "Boss lifecycle scripts call bossVoice on wake, each phase transition and death → scripts/lib/boss-voice.js maps boss/beat to CDN MP3 and emits positional playSound; UI's title/menu visuals are presentation-only over the existing player menu actions."
   ],
   "behaviorFamilies": [
     "scripts/gen/hub-*.js - reusable Wayside Fire camp props varied by instance params, seed and scene transform; share hub-kit.js; hub-lantern-rail.js and hub-lantern.js make the quest-lit Lantern Rail and variants.",
@@ -165,7 +166,7 @@
     "scripts/gen/arena-floor.js, arena-pillar.js, gibbet.js and toll-throne.js - Bailiff arena dressing generators sharing scripts/gen/shapes.js and its wax palette.",
     "scripts/gen/abbey-litter.js and abbey-court.js - Abbey yard/Crypt litter and court dressing; litter varies by kind/seed/transform, court makes ringed slabs and a clear local -Z door path.",
     "scripts/gen/fen-*.js - Fen causeway, paths, heart, waystones, trees, stumps, props and dressing; share fen-kit.js and vary by params, seed and transform.",
-    "scripts/gen/orch-kit.js with orch-gallows.js, orch-gibbet.js, orch-hanged.js, orch-tree.js and orch-props.js - Orchard gallows, gibbets, hanged, dead apple trees, path, boundary stone, rope coils and crows; forms vary by kind/params, seed and scene transform."
+    "scripts/gen/orch-kit.js with orch-gallows.js, orch-gibbet.js, orch-hanged.js, orch-tree.js and orch-props.js - Orchard gallows, gibbets, hanged, dead apple trees, path, boundary stone, rope coils and crows; forms vary by kind/params, seed and transform."
   ],
   "probableOrphans": [
     "scripts/flat-starter-terrain.js",
@@ -175,8 +176,8 @@
     "Persistent character data is exactly scripts/lib/character.js CHAR_KEYS plus packed position; quest/cut progress and boss defeat flags persist, while movement, menu and presentation scratch remain transient.",
     "Character rows are caller-owned and realm-bound; character.js scopes roster/load/save by owner and realm, while live names are unique per realm. realms.yml room IDs are routing identities, not places in this tree.",
     "The Veil is solo and ephemeral, has no characters, and parks the hidden menu body at its origin; menu framing in camera.js is tuned against that stage's shrine/ledge layout.",
-    "The jukebox is room-shared: main sim chooses mood from live Bearers' area majority and boss/fight overrides; Veil sim plays the menu theme when nobody eligible is on main. Main acoustics reverb is 0.22; world audio mix defines bus gains and maxVoices.",
-    "Boss state is separate from ordinary enemy hp: boss scripts publish place.state rows and mark participating Bearers; main sim owns encounter spawning and quest progression/reset. Orchard cut IDs and shared hanged visibility are tied to active quest stages.",
+    "The jukebox is room-shared: main sim chooses mood from live Bearers' area majority and boss/fight overrides; Veil sim plays the menu theme when nobody eligible is on main. Main acoustics reverb is 0.22; world audio mix defines bus gains and voice limit.",
+    "Boss state is separate from ordinary enemy hp: boss scripts publish place.state rows and mark participating Bearers; main sim owns encounter spawning and quest progression/reset. Orchard cut IDs and shared hanged visibility are tied to active quest progress.",
     "Floor/gate and landmark coordinates in veilfall-map.js are world metres; Orchard opens at quest stage 18 (or abbeyOpenAll), and GIBBETS IDs/coordinates must match orchard scene props. Rail lantern unlock stages are 13, 17 and 22."
   ]
 }
