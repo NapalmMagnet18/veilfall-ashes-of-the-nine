@@ -61,3 +61,11 @@ sets:
       2: { dmgp: 15, line: "(2) +15% damage" }
       3: { leech: 5, line: "(3) 5% of damage returned as life" }
       4: { crit: 15, speed: 10, line: "(4) +15% critical strike, +10% movement speed" }
+
+# the Wayside Forge (by the fire): ash dust buys these. temper = +1 item level (implicit grows), max 3 per item;
+# reforge = reroll a Hallowed/Gilded item's affixes, name kept; ascend = one tier up with fresh affixes.
+forge:
+  temper:  { base: 6, perIlvl: 2, max: 3 }
+  reforge: { base: 4, perIlvl: 1, perTier: 3 }
+  ascend:  { cost: { ashen: 18, hallowed: 45 } }
+  reach: 3.6

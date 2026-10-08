@@ -41,8 +41,12 @@ export function rollItem(ctx, kind) {
     const P = pick(ctx, L.sets.penitent.pieces);
     return { u, b: P.base, t, n: P.name, il, set: "penitent", s: { ...implicit(P.base, il), ...P.stats } };
   }
-  const base = pick(ctx, Object.keys(L.bases)), B = L.bases[base], slot = B.slot;
-  const s = implicit(base, il);
+  const base = pick(ctx, Object.keys(L.bases));
+  return { u, b: base, t, il, ...dress(ctx, base, t, il) };
+}
+// a base's affixes and name for a tier at an item level: the roll and the forge share it
+function dress(ctx, base, t, il, keepName) {
+  const B = L.bases[base], slot = B.slot, s = implicit(base, il);
   const T = TIER[t], count = Math.round(between(ctx, T.affixes[0], T.affixes[1]));
   const allowed = L.affixes.filter((a) => a.slots.includes("any") || a.slots.includes(slot));
   const got = [];
@@ -51,10 +55,40 @@ export function rollItem(ctx, kind) {
     const v = Math.max(1, Math.round(between(ctx, a.base[0], a.base[1]) + a.per * (il - 1)));
     s[a.id] = (s[a.id] ?? 0) + v;
   }
-  let n = pick(ctx, B.names);
-  if (t === "hallowed" && got[0]) n = got.length > 1 ? `${got[0].pre} ${n} ${got[1].suf}` : `${got[0].pre} ${n}`;
-  if (t === "gilded") n = `${pick(ctx, RARE_A)} ${pick(ctx, RARE_B)}`;
-  return { u, b: base, t, n, il, s };
+  let n = keepName ?? pick(ctx, B.names);
+  if (!keepName && t === "hallowed" && got[0]) n = got.length > 1 ? `${got[0].pre} ${n} ${got[1].suf}` : `${got[0].pre} ${n}`;
+  if (!keepName && t === "gilded") n = `${pick(ctx, RARE_A)} ${pick(ctx, RARE_B)}`;
+  return { n, s };
+}
+
+// THE WAYSIDE FORGE: three verbs, paid in ash dust. Returns { item, cost } or { error }.
+export const FORGE = L.forge;
+export function forgeCost(it, op) {
+  const F = L.forge[op]; if (!F) return null;
+  if (op === "ascend") return F.cost[it.t] ?? null;
+  return Math.round(F.base + F.perIlvl * it.il + (op === "reforge" ? F.perTier * (TIER[it.t]?.sell ?? 1) : 0));
+}
+export function forgeCan(it, op) {
+  const special = it.t === "relic" || it.t === "vowbound";
+  if (op === "temper") return (it.tp ?? 0) < L.forge.temper.max ? null : "tempered as far as it goes";
+  if (op === "reforge") return special ? "a named piece will not take new words" : it.t === "ashen" ? "plain iron has nothing to reforge" : null;
+  if (op === "ascend") return special ? "already beyond the forge" : it.t === "gilded" ? "only a relic burns brighter" : null;
+  return "unknown";
+}
+export function forge(ctx, it, op) {
+  const why = forgeCan(it, op); if (why) return { error: why };
+  const cost = forgeCost(it, op), out = JSON.parse(JSON.stringify(it));
+  if (op === "temper") {
+    const before = implicit(it.b, it.il); out.il = it.il + 1; out.tp = (it.tp ?? 0) + 1;
+    const after = implicit(it.b, out.il);
+    for (const k of Object.keys(after)) out.s[k] = (out.s[k] ?? 0) - (before[k] ?? 0) + after[k];
+  } else if (op === "reforge") {
+    out.s = dress(ctx, it.b, it.t, it.il, it.n).s; out.rf = (it.rf ?? 0) + 1;
+  } else if (op === "ascend") {
+    out.t = ORDER[ORDER.indexOf(it.t) + 1];
+    const d = dress(ctx, it.b, out.t, it.il); out.n = d.n; out.s = d.s;
+  }
+  return { item: out, cost };
 }
 const RARE_A = ["Grief", "Tallow", "Ember", "Gallows", "Wick", "Toll", "Hollow", "Bell", "Vigil", "Soot", "Fen", "Candle"];
 const RARE_B = ["Vow", "Thorn", "Mourn", "Brand", "Psalm", "Shroud", "Knell", "Oath", "Tithe", "Ward", "Lament", "Fang"];
