@@ -183,6 +183,8 @@ export function update(ctx, dt) {
     gait.clipSpeed = undefined // the channels were cleared for the seat: the next tick writes them whatever the speed
   }
 
+  // VEILFALL: a click-to-move body names the heading it wants (player.js writes state.faceYaw).
+  if (typeof ctx.self.state.faceYaw === 'number') gait.targetYaw = ctx.self.state.faceYaw
   const mode = turnTo(ctx)
   // turnTo 'none': this script turns nothing: another script (or nobody) owns the yaw.
   if (typeof gait.targetYaw === 'number' && mode !== 'none') {
