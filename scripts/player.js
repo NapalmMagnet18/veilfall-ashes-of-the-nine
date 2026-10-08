@@ -251,12 +251,21 @@ function strike(ctx, foe, dmg, crit) {
   ctx.emit("hitstop", { duration: 0.03 }, { audience: { player: ctx.self.id } });
 }
 
+function markTrail(cols) {
+  const v = (h, k) => { const n = parseInt(h.slice(1), 16); return `hdr(${(((n >> 16) & 255) / 255 * k).toFixed(2)},${(((n >> 8) & 255) / 255 * k).toFixed(2)},${((n & 255) / 255 * k).toFixed(2)})`; };
+  const a = cols[0], b = cols[1] ?? cols[0];
+  return `fx
+pop streak burst=34..44 on=disc(.75).c(.15) life=.25..0.5 v=sdir()*(1.5..3)+up(.4) size=.03..0.06 acc=drag(3) col=${v(a, 4)}>${v(b, 2.5)}>${v(b, .6)} a=1>.5:.8>0 sz=$size r=sprite(ember,add,velocity,.06)
+pop mote burst=10..14 on=disc(.7) life=.5..0.9 v=up(.3..0.8)+sdir()*.4 size=.06..0.12 acc=buoy(.3)+drag(1) col=${v(b, 2)}>${v(a, .8)} a=0>.1:.7>0 sz=$size*(1>.3) r=sprite(soft-disc,add)
+pop glow burst=1 life=.25 at=point() r=light(${v(a, 1).replace("hdr", "<").replace(")", ">")},14*(1>0),4)`;
+}
 function ashcut(ctx, foe) {
   const s = ctx.self.state, now = ctx.now();
   if (now < (me.swingAt ?? 0)) return;
   me.swingAt = now + C.ashcut.cd * 1000;
   swingAnim(ctx, "cdn/clip-attack.glb");
   ctx.emit("playSound", { clip: sfx("sword-swing-whoosh-short"), position: ctx.self.feetPosition, volume: 0.5, pitch: 0.95 + ctx.random() * 0.15 });
+  if (me.markFx) { const f = ctx.self.feetPosition, t = foe?.feetPosition, dx = t ? t.x - f.x : 0, dz = t ? t.z - f.z : 0, d = Math.hypot(dx, dz) || 1; ctx.emit("fx", { position: { x: f.x + (t ? dx / d * 0.8 : 0), y: f.y + 1.1, z: f.z + (t ? dz / d * 0.8 : 0) }, script: me.markFx }); }
   const crit = ctx.random() < 0.12 + (s.gs?.crit ?? 0) / 100;
   const dmg = Math.round(C.ashcut.dmg * weaponMul(s) * (crit ? 1.8 : 1) * (0.9 + ctx.random() * 0.2));
   strike(ctx, foe, dmg, crit);
@@ -283,6 +292,9 @@ function deriveGear(ctx) {
   me.gearKey = key;
   const g = gearStats(s.gear); delete g.setCount;
   s.gs = g;
+  // boss marks worn: two or more marked pieces and the blade carries their colours
+  const worn = Object.values(s.gear ?? {}).filter((it) => it?.mk && MARKS[it.mk]);
+  me.markFx = worn.length >= 2 ? markTrail([...new Set(worn.map((it) => MARKS[it.mk].color))]) : null;
   const d = (g.life ?? 0) - (s.gearLife ?? 0);
   if (d) { s.maxHp = (s.maxHp ?? 100) + d; s.hp = Math.max(1, Math.min(s.maxHp, (s.hp ?? s.maxHp) + Math.max(0, d))); s.gearLife = g.life ?? 0; me.lastHp = s.hp; }
 }
