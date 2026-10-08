@@ -93,7 +93,7 @@ export function update(ctx, dt) {
       }
       s.cast = { ...c, marks: c.marks.map((m) => (now >= m.at ? { ...m, done: true } : m)) };
     }
-    if (s.cast.marks.every((m) => m.done)) { s.cast = null; s.next = now + pause; s.turn = (s.turn ?? 0) + 1; }
+    if (s.cast.marks.every((m) => m.done)) { s.cast = null; s.next = now + pause; s.turn = (s.turn ?? 0) + 1; s.nextSwing = Math.max(s.nextSwing ?? 0, now + 1000); } // the hammer waits a beat after the bell: a toll and a swing never land as one hit
   } else if (prey) {
     const dx = prey.feetPosition.x - f.x, dz = prey.feetPosition.z - f.z, d = Math.hypot(dx, dz) || 1;
     self.rotation = (Math.atan2(-dx, -dz) * 180) / Math.PI;
