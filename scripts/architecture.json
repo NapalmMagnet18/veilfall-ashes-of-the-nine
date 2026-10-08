@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "basedOnSpecVersion": 226,
-  "updatedAt": "2026-10-08T16:12:31.319Z",
-  "summary": "VEILFALL: Ashes of the Nine is an isometric action RPG with a playable Z01, Broken Lantern Road, and a separate solo Veil stage for the title and Bearer screens. World templates, menu/HUD UI and camera connect to a database-backed character/realm flow; place simulation, player/enemy scripts and authored cells with procedural generators build and run the game.",
+  "basedOnSpecVersion": 241,
+  "updatedAt": "2026-10-08T16:22:50.480Z",
+  "summary": "VEILFALL: Ashes of the Nine is an isometric action RPG with Broken Lantern Road (Z01) as its playable place and a separate solo Veil stage for the title and Bearer screens. World templates, player/UI/camera scripts and database-backed character/realm flow connect to place simulation, enemy behaviors and authored cells with procedural generators.",
   "scriptPaths": [
     "scripts/arrival.js",
     "scripts/bailiff.js",
@@ -40,6 +40,7 @@
     "scripts/humanoid-locomotion.js",
     "scripts/lib/character.js",
     "scripts/lib/coins.js",
+    "scripts/lib/data/ui-kit.js",
     "scripts/lib/data/veilfall-map.js",
     "scripts/lib/frames.js",
     "scripts/lib/shop-ui.js",
@@ -59,12 +60,11 @@
     "scripts/wax-pack.js"
   ],
   "places": [
-    "places/main/ - playable Z01: Wayside Fire, candle road, tollhouse court, Dripping Gate and Bailiff arena; sim.js coordinates quests, NPCs, petitions and actors.",
+    "places/main/ - playable Z01: Wayside Fire, candle road, tollhouse court, Dripping Gate and Bailiff arena; sim.js coordinates NPCs, quest stages, petitions and actors.",
     "places/main/cells/x0z0.scene, x0z-1.scene - authored camp, road, tollhouse, gate and arena landmarks/dressing.",
     "places/main/config.yaml - main terrain, environment and procedural vegetation layers.",
     "places/veil/ - ephemeral solo menu stage, with a hidden parked body and no character roster; Lantern Shrine ledge above a misty ravine, cliffs and distant ridge.",
-    "places/veil/cells/x0z0.scene, x0z-1.scene, x0z-2.scene - shrine/ledge props and effects, enclosing cliffs, and far Dripping Gate ridge.",
-    "places/veil/config.yaml - solo Veil atmosphere, spawn at origin, bounds/gravity and night sky/fog/light configuration."
+    "places/veil/cells/x0z0.scene, x0z-1.scene, x0z-2.scene and config.yaml - shrine/ledge, cliffs and far ridge, with Veil spawn and atmosphere."
   ],
   "roots": [
     "world.config.yaml - world entry: default main place, player/camera templates, lighting, UI, arrival behavior, nametag and desktop/touch action bindings.",
@@ -83,8 +83,8 @@
     "scripts/lib/data/economy.yml and scripts/lib/coins.js - shared economy values and copper formatting for sim, drops, shop and HUD.",
     "scripts/lib/data/combat.yml - hero, enemy, skill, guard and Bailiff tuning consumed by combat scripts.",
     "scripts/lib/data/veilfall-map.js - shared Z01 layout coordinates and floorDist used by terrain, player movement and layout.",
-    "scripts/lib/data/menu-shot.yml and scripts/lib/frames.js - Veil camera framing and reusable brass/wax UI frame CSS consumed by camera and UI.",
-    "scripts/gen/hub-kit.js, vf-kit.js and shapes.js - reusable geometry/model helpers for camp, road, shrine and arena generators."
+    "scripts/lib/data/menu-shot.yml - Veil camera framing used by camera.js.",
+    "scripts/lib/data/ui-kit.js and scripts/lib/frames.js - uploaded UI shape/divider atlas and generated reusable frame CSS consumed by UI and shop UI."
   ],
   "notableExports": [
     "places/main/sim.js - cadence, tick",
@@ -93,7 +93,7 @@
     "scripts/lib/character.js - CHAR_KEYS, fresh, START, realmOf, pack, zoneOf, rollName, roster, create, load, save, remove",
     "scripts/lib/shop.js - owned, shopInput; scripts/lib/shop-ui.js - shopPanel",
     "scripts/camera.js - onInput, update; scripts/arrival.js - onArrive, onLeave",
-    "scripts/lib/frames.js - FR, FRAME_CSS; scripts/ui.js - default",
+    "scripts/lib/frames.js - FRAME_CSS; scripts/lib/data/ui-kit.js - default; scripts/ui.js - default",
     "scripts/gen/veil-land.js - tuft, ridgeY, geometry, collider; scripts/gen/veil-shrine.js - AZ, STEPS, STATES, CHAIN, hook, CLUSTERS, geometry, collider"
   ],
   "ownership": [
@@ -110,7 +110,7 @@
     "world.config.yaml attaches scripts/player.js through templates/player.js and maps desktop/touch actions; UI menu buttons send menu action data → player.js routes title/realm/character/create/enter/logout.",
     "player.js menuInput → character.js roster/create/load/remove using caller-owned character rows; realms.yml maps selected realm to room and Bearer fields hydrate player.state.",
     "While player.state.menu is set, player.js hides the body and crosses to solo place veil → realm and Bearer screens remain state-driven, with no characters in that place.",
-    "scripts/ui.js draws title, realm, Bearer screens and HUD from player.state → menu/shop/combat actions are sent back through player.js; UI frames come from frames.js.",
+    "scripts/ui.js draws title, realm, Bearer screens and HUD from player.state → menu/shop/combat actions are sent back through player.js; UI frame CSS comes from frames.js, whose atlas is data/ui-kit.js.",
     "scripts/camera.js reads target.state.menu and menu-shot.yml for the Veil shot; when entering play it cranes into follow view.",
     "player.js saves changed CHAR_KEYS plus position periodically and on rest → character.js writes characters; arrival.js also saves an active character leaving main.",
     "player.js uses veilfall-map.js floorDist for reachable click goals and floor-constrained movement/dash → hero remains on the defined Z01 floor.",
