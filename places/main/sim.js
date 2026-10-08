@@ -163,14 +163,15 @@ export function tick(ctx) {
         break;
       }
     }
-    if (!next && q.stage === 8 && now - (q.silentAt ?? 0) > 6000 && Math.hypot(px - ABBEY_DOOR.x, pz - ABBEY_DOOR.z) < 3.5) {
+    if (!next && q.stage === 8 && now - (q.silentAt ?? 0) > 6000 && Math.hypot(px - ABBEY_DOOR.x, pz - ABBEY_DOOR.z) < 5.5) {
       next = { stage: 9 };
       ctx.emit("screenShake", { intensity: 0.25, duration: 0.6 }, { audience: { player: p.id } });
       ctx.emit("playSound", { clip: "/cdn/moodboard-gothic-horror/sfx-cracked-bell-tolls-once-behind-a-sealed-door.mp3", position: p.feetPosition, volume: 1 }, { audience: { player: p.id } });
     }
     if (next) {
       s.quest = { ...q, ...next, heardAt: talked ? s.talk.at : q.heardAt };
-      if (!talked) s.dialog = { text: AUTO[next.stage], at: now };
+      if (!talked && next.stage !== 8) s.dialog = { text: AUTO[next.stage], at: now };
+      if (next.stage === 8) s.dialog = { text: s.dialog.text + " (The saints fall quiet. The Abbey door waits at the top of the yard.)", at: now };
       if (next.stage !== 1) ctx.emit("playSound", { clip: "/cdn/moodboard-gothic-horror/sfx-objective-complete-soft-bell.mp3", position: p.feetPosition, volume: 0.8 }, { audience: { player: p.id } });
       ctx.emit("milestone", { step: next.stage, name: "z01-stage-" + next.stage }, { audience: { player: p.id } });
     }
