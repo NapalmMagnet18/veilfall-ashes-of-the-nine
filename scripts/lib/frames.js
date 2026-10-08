@@ -79,7 +79,7 @@ ${sel("::after")}{border-image-source:var(--b);filter:${F.gold}}
 #vf .pk .slot.e::before{opacity:.55}
 #vm .card img{position:relative;z-index:0} #vm .card::after{z-index:2} #vm .card .nm,#vm .card div{z-index:3} #vm .btn{padding-left:18px!important;padding-right:18px!important}
 ${roleCSS}
-@media (pointer:coarse),(max-width:700px){${ROLES.filter(([, , w]) => w > 10).map(([s]) => s).join(",")}{--fw:9px}
+@media (pointer:coarse),(max-width:700px),(max-height:520px){${ROLES.filter(([, , w]) => w > 10).map(([s]) => s).join(",")}{--fw:9px}
  #vf .qp,#vf .pp,#vf .pk,#vf .bb{padding:10px 12px!important} #vf .dl{padding:12px 14px!important} #vfshop{padding:14px 14px!important}}
 .dv{display:flex;height:var(--dh,21px);width:min(100%,288px);margin:4px auto 6px;filter:${F.gold};pointer-events:none;--dv:${u(K.divider.f4)}}
 .dv::before,.dv::after{content:"";flex:1;background:var(--dv) right center/100% 100% no-repeat;image-rendering:pixelated}

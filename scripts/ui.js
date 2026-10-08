@@ -24,7 +24,7 @@ const THEME = `<style>
 #vf .slot .cd{position:absolute;left:0;right:0;bottom:0;background:rgba(0,0,0,.65)}
 #vf .slot .n{position:absolute;right:4px;bottom:1px;font-size:13px}
 #vf .dim{opacity:.4}
-#vf .ph{display:none} @media (pointer:coarse),(max-width:700px){#vf .dk{display:none!important} #vf .ph{display:block} #vf .qp{left:10px!important;top:10px!important;max-width:210px!important;padding:6px 9px!important} #vf .qp div{font-size:13px!important} #vf .qp .lbl{font-size:10px!important}}
+#vf .ph{display:none} @media (pointer:coarse),(max-width:700px),(max-height:520px){#vf .dk{display:none!important} #vf .ph{display:block} #vf .qp{left:10px!important;top:10px!important;max-width:210px!important;padding:6px 9px!important} #vf .qp div{font-size:13px!important} #vf .qp .lbl{font-size:10px!important}}
 #vf .bar{height:10px;background:#120e0c;box-shadow:0 0 0 2px #0d0b0a,0 0 0 3px #5a4a33;position:relative;margin-top:5px}
 @keyframes vfin{from{opacity:0;transform:translateY(8px)}} @keyframes vffade{to{opacity:0}} @keyframes vfpulse{50%{opacity:.55}}
 </style>`;
@@ -68,7 +68,7 @@ const MSTYLE = `<style>
 #vm .det{width:380px;display:flex;flex-direction:column;max-height:100%;overflow:auto}
 #vm .det .big{height:min(300px,30vh);margin:-14px -16px 10px;overflow:hidden;position:relative} #vm .det .big img{width:100%;height:100%;object-fit:cover;object-position:50% 20%}
 @keyframes vmin{from{opacity:0;transform:translateY(10px)}} @keyframes vmglow{50%{text-shadow:2px 2px 0 #0d0b0a,0 0 26px rgba(240,140,60,.55)}}
-@media (pointer:coarse),(max-width:760px){
+@media (pointer:coarse),(max-width:760px),(max-height:520px){
  #vm .wrap{left:8px;right:8px;top:8px;bottom:8px;flex-direction:column;gap:8px;overflow:auto}
  #vm .panel{padding:8px 10px} #vm .grid{grid-template-columns:repeat(3,1fr);gap:7px} #vm .grid .card{height:92px}
  #vm .anc img{width:40px;height:40px} #vm .anc span{font-size:9px}
@@ -86,7 +86,7 @@ const MX = `<style>
 #vm .mid{position:absolute;left:50%;transform:translateX(-50%);top:18px;text-align:center}
 #vm .namebox{font-size:24px;color:#f2d38a;padding:8px 10px;background:#120e0c;box-shadow:inset 0 0 0 2px #3e3326;display:flex;justify-content:space-between;align-items:center;gap:8px}
 #vm .mini{pointer-events:auto;cursor:pointer;font-size:12px;letter-spacing:.12em;padding:6px 10px;background:#2c2825;color:#e9dfc8;border:0;font-family:inherit;box-shadow:0 0 0 2px #0d0b0a,0 0 0 3px #5a4a33}
-@media (pointer:coarse),(max-width:760px){
+@media (pointer:coarse),(max-width:760px),(max-height:520px){
  #vm .side{width:auto;max-height:none} #vm .mid{display:none} #vm .row{padding:6px 8px;margin-top:6px} #vm .row img{width:36px;height:36px} #vm .row .t{font-size:15px}
  #vm .msg{bottom:auto;top:8px;max-width:calc(100vw - 90px)} #vm .namebox{font-size:18px}
 }

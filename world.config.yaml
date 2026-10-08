@@ -43,6 +43,28 @@ inputs:
       keys:
         - "1"
       touch: { slot: 3, label: GUARD }
+  touch:
+    active: scripts/controls.js
+    surfaces:
+      default:
+        sticks: [{ x: moveX, y: moveZ }]
+        gestures: { press: move }
+        buttons:
+          - { action: crosswound, label: SLASH, slot: 1, size: primary }
+          - { action: griefstep, label: DASH, slot: 2 }
+          - { action: guard, label: GUARD, slot: 3 }
+          - { action: tonic, label: TONIC, slot: 4 }
+      menu:
+        sticks: []
+        buttons: []
+        look: false
+        pinch: false
+    style: |
+      [data-part="button"] { background: #1b1816; border: 2px solid #8a6a3e; box-shadow: 0 0 0 2px #0d0b0a, 3px 4px 0 rgba(0,0,0,.5); color: #f2d38a; text-shadow: 2px 2px 0 #0d0b0a; letter-spacing: .08em; border-radius: 4px; }
+      [data-part="button"][data-size="primary"] { border-color: #d98c2b; color: #ffe2a8; box-shadow: 0 0 0 2px #0d0b0a, 0 0 14px rgba(240,140,60,.35); }
+      [data-part="button"][data-pressed] { background: #4a2414; border-color: #f2b04a; transform: translateY(2px); }
+      [data-part="stick"] { background: rgba(18,14,12,.45); border: 2px solid #5a4a33; }
+      [data-part="thumb"] { background: #c49c63; border: 2px solid #0d0b0a; }
   axes:
     moveX:
       keys: a/d
