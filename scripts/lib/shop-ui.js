@@ -6,7 +6,9 @@ import { owned } from "./shop.js";
 const NAMES = { oswin: "OSWIN'S CART" };
 const CSS = `<style>
 #vfshop{position:absolute;top:90px;left:max(340px,calc(50% - 340px));width:min(340px,calc(100vw - 2*(var(--spawn-chrome-reservation-right-inset,50px) + 24px)));pointer-events:auto;animation:vfin .25s;padding:22px 24px!important}
+#vfshop{max-height:calc(100vh - 110px);overflow:auto}
 @media (pointer:coarse),(max-width:900px){#vfshop{left:50%;transform:translateX(-50%)}}
+@media (max-height:520px){#vfshop{top:8px;max-height:calc(100vh - 16px);padding:12px 14px!important}}
 #vfshop .row{display:flex;align-items:center;gap:8px;padding:7px 0;border-top:1px solid #3a3129}
 #vfshop .gl{width:34px;height:34px;flex:none;background:#171412;box-shadow:0 0 0 2px #0d0b0a,0 0 0 3px #5a4a33;display:flex;align-items:center;justify-content:center;font-size:18px}
 #vfshop .nm{font-size:14px;color:var(--wax);line-height:1.1}
