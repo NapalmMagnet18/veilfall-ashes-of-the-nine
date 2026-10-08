@@ -907,6 +907,7 @@ tollhouse/toll-bell:
   rotation: {yaw: 90}
   tags: [z01-dressing, road]
 trade-board:
+  behavior: scripts/board-notes.js
   castShadow: true
   children: [{feetPosition: {x: 0.98, y: 2, z: -0.45}, id: lamp, light: {color: oklch(0.8 0.12 70), distance: 7, intensity: 2.2, kind: point}}, {audio: {clip: /cdn/moodboard-gothic-horror/sfx-parchment-notices-fluttering-in-night-wind-loop.mp3, gain: 0.12, loop: true, maxDistance: 9, spatial: true}, feetPosition: {x: 0, y: 1.2, z: 0}, id: hum}]
   feetPosition: {x: 5.4, y: {terrain: -0.03}, z: 6.2}
