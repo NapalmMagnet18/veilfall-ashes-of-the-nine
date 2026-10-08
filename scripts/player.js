@@ -112,7 +112,7 @@ function menuInput(ctx, d) {
       click(ctx, 1.1);
       if (r.room === here) { s.menu = "chars"; refresh(ctx); break; }
       s.menu = "chars"; s.menuNext = "chars"; s.roster = null; s.busy = "Crossing to " + r.name;
-      const out = ctx.cross(ctx.self, `world:${ctx.world.id}/room:${r.room}` + (hasVeil(ctx) ? "+" + MENU_PLACE : ""));
+      const out = ctx.cross(ctx.self, "world:" + ctx.world.id + "/room:" + r.room);
       if (!out?.crossed) { s.busy = null; msg(ctx, "That realm would not open. Try again."); ctx.log("realm cross refused", out?.verdict); }
       break;
     }
