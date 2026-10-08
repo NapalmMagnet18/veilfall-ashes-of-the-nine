@@ -38,11 +38,11 @@ stone_h = n1 * 0.6 + grain * 0.4
 stone_a = mix("#24242b", "#47464d", n1 * 0.75 + grain * 0.25); stone_a[speck > 0.985] *= 1.6
 stone_a *= (0.85 + 0.15 * fnoise(2, cells=(2, 4, 8)))[..., None]
 bas_a = mix("#101116", "#2b2c33", fnoise(3) * 0.5 + grain * 0.5)
-scar_a = mix("#4c4b50", "#77746d", fnoise(4) * 0.6 + grain * 0.4)
+scar_a = mix("#2f2f35", "#55534f", fnoise(4) * 0.6 + grain * 0.4)
 moss_a = mix("#18230f", "#4b5b26", fnoise(6))
 rust = fnoise(7); iron_a = mix("#1a191b", "#3a3433", grain)
 iron_a = iron_a * (1 - np.clip((rust - 0.55) * 3, 0, 1))[..., None] + hexc("#6a3720")[None, None, :] * np.clip((rust - 0.55) * 3, 0, 1)[..., None]
-wax_a = mix("#c9b993", "#ebdfc0", fnoise(8)); waxo_a = mix("#6f6350", "#a69878", fnoise(9))
+wax_a = mix("#b5a47f", "#ddd0ae", fnoise(8)); waxo_a = mix("#6f6350", "#a69878", fnoise(9))
 xx = np.arange(TEX)[None, :]; yy = np.arange(TEX)[:, None]
 weave = 0.82 + 0.09 * np.sin(xx * 2 * np.pi / 6) + 0.09 * np.sin(yy * 2 * np.pi / 6)
 cloth_a = mix("#4e1a17", "#a0463b", fnoise(10)) * weave[..., None]
@@ -67,7 +67,7 @@ def mat(name, albedo=None, rgb=None, rough=0.6, metal=0.0, normal=None, nstr=1.0
     return m
 M = {
     "stone": mat("stone", img("stone_albedo", stone_a), rough=0.62, normal=img("stone_normal", normal_from(stone_h, 6), True), nstr=0.8),
-    "stone_basalt": mat("stone_basalt", img("basalt_albedo", bas_a), rough=0.42, normal=img("basalt_normal", normal_from(grain, 3), True), nstr=0.5),
+    "stone_basalt": mat("stone_basalt", img("basalt_albedo", bas_a), rough=0.42, normal=img("basalt_normal", normal_from(fnoise(13, cells=(8, 16, 32)), 2), True), nstr=0.25),
     "stone_scar": mat("stone_scar", img("scar_albedo", scar_a), rough=0.85),
     "moss": mat("moss", img("moss_albedo", moss_a), rough=0.9),
     "iron": mat("iron", img("iron_albedo", iron_a), rough=0.58, metal=0.75),
@@ -331,7 +331,7 @@ for i in range(6): s_ = spot(0.99, 1.15, 0.23, True); s_ and cand.append(s_)
 flames = []
 for ci, (x, y, z0, r, phi) in enumerate(cand):
     h = R.uniform(0.025, 0.14) if z0 > 0.6 else R.uniform(0.02, 0.09)
-    mi = 0 if R.random() < 0.6 else 1
+    mi = 0 if R.random() < 0.45 else 1
     tilt = Matrix.Rotation(R.uniform(-0.08, 0.08), 4, "X") @ Matrix.Rotation(R.uniform(-0.08, 0.08), 4, "Y")
     base = Matrix.Translation((x, y, z0)) @ tilt
     low = R.uniform(0, 2 * math.pi); depth = R.uniform(0.1, 0.35) * h; n = 10
