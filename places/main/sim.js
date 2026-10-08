@@ -2,6 +2,7 @@
 // packs out of sight, walks each player's quest forward, levels them, and brings the Bailiff back.
 import C from "../../scripts/lib/data/combat.yml";
 import E from "../../scripts/lib/data/economy.yml";
+import { body } from "../../scripts/lib/data/models.js";
 export const cadence = "250ms";
 const MUSIC = "/cdn/moodboard-gothic-horror/music-broken-lantern-road-dusk-candles-and-fog-ambient.mp3";
 const PACKS = [
@@ -26,7 +27,7 @@ const enemySpec = (pk) => ({
   id: "en-" + pk.id, tags: ["enemy", pk.kind], physics: "character",
   feetPosition: { x: pk.x, z: pk.z, y: { terrain: 0 } },
   scale: pk.kind === "deacon" ? 1.35 : 1,
-  primitive: { kind: "scripted", script: "scripts/gen/wax-figure.js", params: { kind: pk.kind }, seed: pk.id.length * 7 + pk.x },
+  ...body(pk.kind), behavior: ["scripts/humanoid-locomotion.js"],
   fx: { script: `fx\npop f rate=flick(.5,.3)*18 on=point() life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)`, params: {} },
   state: { kind: pk.kind, hp: C[pk.kind].hp, maxHp: C[pk.kind].hp, home: { x: pk.x, y: 0, z: pk.z } },
 });
@@ -63,7 +64,7 @@ export function tick(ctx) {
   if (!boss || (boss.state.dead && now - boss.state.deadAt > 90000 && !near(ctx, 0, -105, 25))) {
     if (boss) ctx.destroy("bailiff");
     else ctx.spawn("bailiff", { tags: ["enemy", "boss"], physics: "character", feetPosition: { x: 0, z: -110, y: { terrain: 0 } }, scale: 2.1, rotation: 180,
-      primitive: { kind: "scripted", script: "scripts/gen/wax-figure.js", params: { kind: "bailiff" }, seed: 9 }, behavior: "scripts/bailiff.js",
+      ...body("bailiff"), behavior: ["scripts/humanoid-locomotion.js", "scripts/bailiff.js"],
       fx: { script: `fx\npop f rate=flick(.6,.3)*40 on=disc(.35).c(3.9) life=.25..0.5 v=up(.6..1.1) size=.06..0.12 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 at=point().c(4) glo=fire() r=light(<1,.55,.25>,$glo*4,10)` } });
   }
   // each player's road

@@ -8,6 +8,7 @@ import C from "./lib/data/combat.yml";
 import { animate } from "builtin/tween";
 import { payout } from "./wax-pack.js";
 import E from "./lib/data/economy.yml";
+import { body } from "./lib/data/models.js";
 const B = C.bailiff, HOME = { x: 0, y: 0, z: -110 }, ARENA = { x: 0, z: -105, r: 17 };
 const LEDGERS = [{ id: "ledger-west", x: -9, z: -103 }, { id: "ledger-east", x: 9, z: -103 }];
 const sfx = (n) => `/cdn/moodboard-gothic-horror/sfx-${n}.mp3`;
@@ -134,7 +135,7 @@ export function update(ctx, dt) {
       up++;
       if (s.engaged && now >= (s.walkerAt ?? 0)) {
         ctx.spawn({ tags: ["enemy", "pilgrim", "bailiff-add"], physics: "character", feetPosition: { x: L.x, z: L.z + 1.5, y: { terrain: 0 } },
-          primitive: { kind: "scripted", script: "scripts/gen/wax-figure.js", params: { kind: "pilgrim" }, seed: Math.floor(now) % 97 },
+          ...body("walker"), behavior: ["scripts/humanoid-locomotion.js"],
           state: { kind: "walker", hp: 30, maxHp: 30, hunting: true } });
       }
     }
