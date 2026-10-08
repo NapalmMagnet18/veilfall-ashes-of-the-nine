@@ -32,6 +32,7 @@ async function call(ctx, listener) {
 export function quiet(ctx) { ctx.self.anim.talk = null; }
 export function update(ctx, dt) {
   const now = ctx.now(), f = ctx.self.feetPosition, vy = ctx.self.velocity?.y ?? 0;
+  if (now - (me.dbg ?? 0) > 3000) { me.dbg = now; ctx.self.state.dbg = { at: now, n: ctx.place.players.length, leg: me.leg, pause: me.pause - now }; }
   let near = null, best = EAR;
   for (const p of ctx.place.players) { if (p.state?.menu) continue; const d = Math.hypot(p.feetPosition.x - f.x, p.feetPosition.z - f.z); if (d < best) { best = d; near = p; } }
   if (!near) { ctx.self.velocity = { x: 0, y: vy, z: 0 }; ctx.sleep(2); return; } // nobody to hear him: he stands
