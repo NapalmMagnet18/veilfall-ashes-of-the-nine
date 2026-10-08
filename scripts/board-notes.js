@@ -15,11 +15,15 @@ function ensure(ctx) {
   });
 }
 export function onSpawn(ctx) { ensure(ctx); }
-export async function update(ctx) {
-  ctx.sleep(8);
+export function update(ctx) {
   const f = ctx.self.feetPosition;
+  ctx.sleep(8);
   if (!ctx.place.players.some((p) => Math.hypot(p.feetPosition.x - f.x, p.feetPosition.z - f.z) < 40)) return;
+  refresh(ctx, f);
+}
+async function refresh(ctx, f) {
   ensure(ctx);
+  ctx.self.state.notesAt = ctx.now();
   let n = 0;
   try {
     const { rows: [r] } = await ctx.sql`SELECT COUNT(*) AS n FROM trades WHERE realm = ${CH.realmOf(ctx).room} AND sold_at IS NULL AND removed = 0`;
