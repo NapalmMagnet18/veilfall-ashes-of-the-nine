@@ -18,6 +18,7 @@ assets:
     "/cdn/value.a2605b2cc3a81b3017dc37e70db702f5d8bc19876c5b91473921a28a733d3467.png": {bytes: 265, kind: image, name: vf-div, uploadedAt: "2026-10-08T16:11:15.123Z"}
     "/cdn/value.cd396819d656f0cac99b4c6b3eda49cccae72af69dcf6c99ba4a9b69b4afab38.png": {bytes: 456, kind: image, name: vf-card, uploadedAt: "2026-10-08T15:56:23.075Z"}
     "/cdn/value.d502a11179b049d3da0da9e5a9096754b6a72312519548047fe425ffcca9fdbf.png": {bytes: 461, kind: image, name: vf-slot, uploadedAt: "2026-10-08T15:56:11.909Z"}
+    "/cdn/value.dd5ff981d773f728a783caeecfd8602774b8b949c55b7be9faaef1de1a509637.glb": {bytes: 2737532, kind: model, name: maelin-map-table, uploadedAt: "2026-10-08T18:01:30.377Z"}
     "/cdn/value.e395b42f71101818ed0b0b78153d07acd1f2f99b1b29c415db1c6c877b098c7e.png": {bytes: 453, kind: image, name: vf-cardon, uploadedAt: "2026-10-08T15:56:26.912Z"}
     "/cdn/value.e7160ea1f290518c9f70bb4444978e619c424d4ea45f4ec59d41f26421ea0043.png": {bytes: 466, kind: image, name: vf-row, uploadedAt: "2026-10-08T15:56:15.581Z"}
     "/cdn/value.efe39eecfc97d68d46617bd1d458e5911ab198326813fc093bb482ff510fd61e.png": {bytes: 481, kind: image, name: vf-btn, uploadedAt: "2026-10-08T15:55:59.357Z"}
