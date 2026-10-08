@@ -863,12 +863,13 @@ wayside-fire/exit-lantern-west/flame:
   parent: wayside-fire/exit-lantern-west
   tags: [z01-dressing, hub]
 wayside-fire/handcart:
+  castShadow: true
   feetPosition: {x: -7.6, y: 0, z: 4.4}
   id: wayside-fire/handcart
-  material: {pbr: true}
+  model: {forward: "+z", id: /cdn/value.1f60ee58a6ef0f2f7bdb966e9dfabff94bdcceaff64d510d434c336954701d4d.glb}
   parent: wayside-fire
-  physics: static
-  primitive: {kind: scripted, params: {}, script: scripts/gen/hub-cart.js, seed: 1}
+  physics: {body: static, collider: mesh}
+  receiveShadow: true
   rotation: {yaw: 125}
   tags: [z01-dressing, hub]
 wayside-fire/handcart/cart-lantern-1:
