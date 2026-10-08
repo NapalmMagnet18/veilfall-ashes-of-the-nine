@@ -73,3 +73,10 @@ places/main/sim.js referee: spawns packs, quest stages, XP/levels, death and res
 - 19 → all three cut → 20: the Hangman spawns on the gallows dais (GALLOWS 62,5 r 9). scripts/hangman.js, combat.yml hangman: 2100 hp, +55%/extra Bearer; Noose (mark under each Bearer, P2+ leads a second), Trapdoor ring (9 marks r 6, P3 adds an outer ring offset into the gaps), P2 flagellant adds every 14 s.
 - 20 → hangmanKilled (persistent CHAR_KEY) → 21 → Maelin turn-in Z01-MAIN-09: +1000 xp, +1500 copper, +10 max life, tonics to 5 → 22 "Three Flames".
 - Tested 2026-10-08 with Savi's Bearer: talk, walking the path, area banners, all three cuts by walking, spawn + engage at 2100 hp, a stationary Bearer killed and respawned; defeat branch from hp set to 60 + real swings; turn-in paid once. Not yet tested: a full-health natural fight, several Bearers, reload persistence.
+
+## 2026-10-08 · Sound pass (creator: "heavy focus the music, sound, foley…")
+- Jukebox by zone when calm (ZONE_MOOD in places/main/sim.js): camp guitar+cello at the fire, road dusk ambient, abbey organ+choir (climb/abbey/nave/crypt), fen glass harmonica+harp, orchard detuned fiddle+music box; fight drums and boss organ override. Room-shared: the stretch most Bearers stand in wins.
+- Distant one-shots (DISTANT) every 22–45 s, 14–26 m from a Bearer, per zone.
+- Footsteps per surface: ash (fire), mud (fen), dry leaves (orchard), echoing hall stone (abbey/nave/crypt), wet flagstone elsewhere.
+- Maelin speaks a short voiced line on talk (one throat constant, music ducks).
+- Evade swish, guard clang, armor thud under hurt. Mix gains in world.config.yaml audio:, main reverb 0.22.
