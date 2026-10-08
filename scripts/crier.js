@@ -12,20 +12,18 @@ const BELL = "/cdn/moodboard-gothic-horror/sfx-small-iron-handbell-two-rings.mp3
 const me = { leg: 0, pause: 0, callAt: 0, seen: 0, n: 0 };
 export function onSpawn(ctx) { ctx.self.state.turnTo = "none"; }
 async function call(ctx, listener) {
-  ctx.self.state.calls = (ctx.self.state.calls ?? 0) + 1;
   const f = ctx.self.feetPosition, at = { x: f.x, y: f.y + 2.3, z: f.z };
   let row = null;
   try {
     const { rows } = await ctx.sql`SELECT id, seller_name, item, price FROM trades WHERE realm = ${CH.realmOf(ctx).room} AND sold_at IS NULL AND removed = 0 ORDER BY id DESC LIMIT 4`;
     row = rows.find((r) => r.id > me.seen) ?? rows[me.n % Math.max(1, rows.length)] ?? null;
     if (row) me.seen = Math.max(me.seen, row.id);
-  } catch (e) { ctx.log("crier read failed", String(e)); ctx.self.state.err = String(e).slice(0, 200); }
+  } catch (e) { ctx.log("crier read failed", String(e)); }
   me.n++;
   const aud = { audience: { nearby: f, radius: EAR + 6 } };
   ctx.emit("playSound", { clip: BELL, position: at, volume: 0.55 }, aud);
   ctx.emit("playSound", { clip: row ? CALLS[me.n % CALLS.length] : BARE[me.n % BARE.length], position: at, volume: 0.9, maxDistance: EAR + 6 }, aud);
   const text = row ? (() => { const it = JSON.parse(row.item); return `${it.n} · ${fmt(row.price)} · from ${row.seller_name}`; })() : "The board stands bare";
-  ctx.self.state.said = text;
   ctx.emit("damageNumber", { position: at, text, color: row ? "#f2d38a" : "#b9ae98", size: 0.9, lifetime: 4 }, aud);
   ctx.self.anim.talk = { clip: "cdn/clip-wave.glb", weight: 4, loop: "once", mask: { from: "Spine" } };
   ctx.after(2.4, "quiet");
@@ -33,7 +31,6 @@ async function call(ctx, listener) {
 export function quiet(ctx) { ctx.self.anim.talk = null; }
 export function update(ctx, dt) {
   const now = ctx.now(), f = ctx.self.feetPosition, vy = ctx.self.velocity?.y ?? 0;
-  if (now - (me.dbg ?? 0) > 3000) { me.dbg = now; ctx.self.state.dbg = { at: now, n: ctx.place.players.length, leg: me.leg, pause: me.pause - now }; }
   let near = null, best = EAR;
   for (const p of ctx.place.players) { if (p.state?.menu) continue; const d = Math.hypot(p.feetPosition.x - f.x, p.feetPosition.z - f.z); if (d < best) { best = d; near = p; } }
   if (!near) { ctx.self.velocity = { x: 0, y: vy, z: 0 }; ctx.sleep(2); return; } // nobody to hear him: he stands
