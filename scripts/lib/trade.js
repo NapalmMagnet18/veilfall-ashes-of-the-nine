@@ -12,7 +12,7 @@ export const asks = (it) => T.asks.map((m) => Math.max(T.minPrice, sellValue(it)
 export async function readBoard(ctx) {
   const s = ctx.self.state, realm = CH.realmOf(ctx).room;
   const { rows } = await ctx.sql`SELECT id, seller_char, seller_name, item, price FROM trades WHERE realm = ${realm} AND sold_at IS NULL AND removed = 0 ORDER BY id DESC LIMIT ${T.show}`;
-  const owed = await ctx.sql`SELECT COALESCE(SUM(price), 0) AS c, COUNT(*) AS n FROM trades WHERE seller_char = ${s.charId} AND sold_at IS NOT NULL AND paid = 0`;
+  const owed = await ctx.sql`SELECT COALESCE(SUM(price), 0) AS c, COUNT(*) AS n FROM trades WHERE seller_char = ${s.charId} AND seller_user = @caller AND sold_at IS NOT NULL AND paid = 0`;
   s.board = {
     at: ctx.now(),
     rows: rows.map((r) => ({ id: r.id, seller: r.seller_name, mine: r.seller_char === s.charId, price: r.price, item: JSON.parse(r.item) })),
@@ -46,7 +46,7 @@ export async function tradeInput(ctx, d) {
       const row = s.board?.rows?.find((r) => r.id === d.id); if (!row || row.mine) return;
       if ((s.copper ?? 0) < row.price) { note(ctx, `That notice asks ${row.price} copper. You carry ${s.copper ?? 0}.`); cue(ctx, "dull-click-denied", 0.3); return; }
       if ((s.inv ?? []).length >= 24) { note(ctx, "Your pack is full."); cue(ctx, "dull-click-denied", 0.3); return; }
-      const r = await ctx.sql`UPDATE trades SET sold_at = ${ctx.now()}, buyer_user = @caller, buyer_char = ${s.charId} WHERE id = ${row.id} AND sold_at IS NULL AND removed = 0 AND seller_char != ${s.charId}`;
+      const r = await ctx.sql`UPDATE trades SET sold_at = ${ctx.now()}, buyer_user = @caller, buyer_char = ${s.charId} WHERE id = ${row.id} AND sold_at IS NULL AND removed = 0 AND seller_char != ${s.charId} AND seller_user != @caller`;
       if (r.changes !== 1) { note(ctx, "Someone tore that notice down before you."); cue(ctx, "dull-click-denied", 0.3); }
       else {
         const got = await ctx.sql`SELECT item, price FROM trades WHERE id = ${row.id}`;
@@ -59,15 +59,15 @@ export async function tradeInput(ctx, d) {
         ctx.emit("stat", { name: "board-buys" }, { audience: { player: ctx.self.id } });
       }
     } else if (d.a === "unlist") {
-      const got = await ctx.sql`SELECT item FROM trades WHERE id = ${d.id} AND seller_char = ${s.charId} AND sold_at IS NULL AND removed = 0`;
+      const got = await ctx.sql`SELECT item FROM trades WHERE id = ${d.id} AND seller_char = ${s.charId} AND seller_user = @caller AND sold_at IS NULL AND removed = 0`;
       if (!got.rows[0]) return;
       if ((s.inv ?? []).length >= 24) { note(ctx, "Your pack is full."); return; }
-      const r = await ctx.sql`UPDATE trades SET removed = 1 WHERE id = ${d.id} AND seller_char = ${s.charId} AND sold_at IS NULL AND removed = 0`;
+      const r = await ctx.sql`UPDATE trades SET removed = 1 WHERE id = ${d.id} AND seller_char = ${s.charId} AND seller_user = @caller AND sold_at IS NULL AND removed = 0`;
       if (r.changes === 1) { s.inv = [...(s.inv ?? []), JSON.parse(got.rows[0].item)]; await keep(ctx); cue(ctx, "parchment-torn-from-nail", 0.6); }
     } else if (d.a === "collect") {
-      const { rows } = await ctx.sql`SELECT id, price FROM trades WHERE seller_char = ${s.charId} AND sold_at IS NOT NULL AND paid = 0`;
+      const { rows } = await ctx.sql`SELECT id, price FROM trades WHERE seller_char = ${s.charId} AND seller_user = @caller AND sold_at IS NOT NULL AND paid = 0`;
       let take = 0, n = 0;
-      for (const r of rows) { const u = await ctx.sql`UPDATE trades SET paid = 1 WHERE id = ${r.id} AND paid = 0`; if (u.changes === 1) { take += r.price; n++; } }
+      for (const r of rows) { const u = await ctx.sql`UPDATE trades SET paid = 1 WHERE id = ${r.id} AND seller_user = @caller AND paid = 0`; if (u.changes === 1) { take += r.price; n++; } }
       const net = Math.floor(take * (1 - T.fee));
       if (net > 0) {
         s.copper = (s.copper ?? 0) + net; await keep(ctx);
