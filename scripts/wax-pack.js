@@ -84,11 +84,11 @@ function dropLoot(ctx, p, at, kind) {
 
 export function payout(ctx, at, xp, copper, countsForQuest, spill = "small", kind = "pilgrim") {
   const S = SPILLS[spill] ?? SPILLS.small;
-  let paid = 0;
+  let paid = 0; const copperBase = copper;
   for (const p of ctx.place.players) {
     if (p.state.menu || !p.state.charId || flat(p.feetPosition, at) > 28) continue;
     p.state.xp = (p.state.xp ?? 0) + xp;
-    copper = Math.round(copper * (1 + (p.state.gs?.gold ?? 0) / 100));
+    copper = Math.round(copperBase * (1 + (p.state.gs?.gold ?? 0) / 100));
     p.state.copper = (p.state.copper ?? 0) + copper;
     dropLoot(ctx, p, at, kind);
     if (countsForQuest) p.state.kills = (p.state.kills ?? 0) + 1;
