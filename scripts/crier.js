@@ -16,6 +16,12 @@ const FALL = { // boss → [name he calls, voice line]
   warden: ["The Lantern Warden", V("hear-ye-the-lantern-warden-is-snuffed-the-fen-sees-again")],
   hangman: ["The Hangman of Saint Corvin", V("hear-ye-the-hangman-swings-no-more-cut-the-ropes")],
 };
+const MARKED = { // boss mark worn → [what he sees, voice line]
+  bailiff: ["the Bailiff's Toll on your steel. may it never be paid in blood again", V("thats-the-bailiffs-toll-on-you-may-it-never-be-paid-in-blood-again")],
+  ringer: ["the Ninth Bell's peal rides your blade. I hear it ringing still", V("the-ninth-bells-peal-rides-your-blade-i-hear-it-ringing-still")],
+  warden: ["you carry the Warden's Lantern. cold light, but it is yours now", V("you-carry-the-wardens-lantern-cold-light-but-it-is-yours-now")],
+  hangman: ["the Hangman's Knot on you. mind it does not tighten", V("the-hangmans-knot-on-you-mind-it-does-not-tighten")],
+};
 const TOLL = "/cdn/moodboard-gothic-horror/sfx-iron-handbell-rung-hard-many-times-urgent.mp3";
 function herald(ctx, fall) {
   const f = ctx.self.feetPosition, at = { x: f.x, y: f.y + 2.4, z: f.z }, [name, line] = FALL[fall.boss] ?? ["A great evil", V("hear-ye-a-great-evil-has-fallen")];
@@ -26,7 +32,7 @@ function herald(ctx, fall) {
   ctx.emit("damageNumber", { position: at, text: (ctx.self.state.lastCall = `${name} has fallen · slain by ${who}`), color: "#ff9a6a", size: 2.2, lifetime: 7 }, aud);
   ctx.self.anim.talk = { clip: "cdn/clip-wave.glb", weight: 4, loop: "once", mask: { from: "Spine" } }; ctx.after(5, "quiet");
 }
-const me = { leg: 0, pause: 0, callAt: 0, seen: 0, n: 0, told: {} }; // told: charId → sold count he already announced
+const me = { leg: 0, pause: 0, callAt: 0, seen: 0, n: 0, told: {}, marked: {} }; // told: charId → sold count he already announced
 export function onSpawn(ctx) { ctx.self.state.turnTo = "none"; }
 async function call(ctx, listener) {
   const f = ctx.self.feetPosition, at = { x: f.x, y: f.y + 2.3, z: f.z };
@@ -47,6 +53,17 @@ async function call(ctx, listener) {
     }
     if (o && o.n < (me.told[cid] ?? 0)) me.told[cid] = o.n; // collected: the count fell, so the next sale rings again
   } catch (e) { ctx.log("crier owed read failed", String(e)); }
+  // a boss mark he has not yet remarked on for this Bearer: he names it
+  const mk = cid && Object.values(listener.state?.gear ?? {}).map((it) => it?.mk).find((k) => MARKED[k] && !(me.marked[cid] ?? []).includes(k));
+  if (mk) {
+    (me.marked[cid] ??= []).push(mk); me.n++;
+    const who = listener.state?.charName ?? listener.displayName ?? "Bearer";
+    ctx.emit("playSound", { clip: BELL, position: at, volume: 0.4 }, aud0);
+    ctx.emit("playSound", { clip: MARKED[mk][1], position: at, volume: 0.95, maxDistance: EAR + 6 }, aud0);
+    ctx.emit("damageNumber", { position: at, text: (ctx.self.state.lastCall = `${who}, ${MARKED[mk][0]}`), color: "#e0a26a", size: 1.9, lifetime: 6 }, aud0);
+    ctx.self.anim.talk = { clip: "cdn/clip-wave.glb", weight: 4, loop: "once", mask: { from: "Spine" } }; ctx.after(3, "quiet");
+    return;
+  }
   try {
     const { rows } = await ctx.sql`SELECT id, seller_name, item, price FROM trades WHERE realm = ${CH.realmOf(ctx).room} AND sold_at IS NULL AND removed = 0 ORDER BY id DESC LIMIT 4`;
     row = rows.find((r) => r.id > me.seen) ?? rows[me.n % Math.max(1, rows.length)] ?? null;
