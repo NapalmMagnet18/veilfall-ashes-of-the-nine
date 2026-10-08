@@ -13,6 +13,7 @@ const gate = (ctx) => { const st = ctx.self.state.quest?.stage ?? 0, all = !!ctx
 const floorDist = (x, z) => mapFloor(x, z, GATE.abbey, GATE.nave, GATE.fen, GATE.orch);
 import C from "./lib/data/combat.yml";
 import { shopInput } from "./lib/shop.js";
+import { tradeInput, readBoard, TRADE } from "./lib/trade.js";
 import * as CH from "./lib/character.js";
 import R from "./lib/data/realms.yml";
 
@@ -200,6 +201,7 @@ export function onInput(ctx, input) {
   if (s.menu) return;
   if (input.actionData?.shop) shopInput(ctx, input.actionData.shop);
   if (input.actionData?.item) itemInput(ctx, input.actionData.item);
+  if (input.actionData?.trade) tradeInput(ctx, input.actionData.trade);
   if (s.dead || ctx.self.inputHeld) return;
   const ray = getInputRay(ctx, input);
   const now = ctx.now();
@@ -298,6 +300,16 @@ function forgeNear(ctx) {
   const s = ctx.self.state, o = ctx.getObject("wayside-forge"), f = ctx.self.feetPosition;
   const near = !!o && !s.menu && !s.dead && Math.hypot(o.feetPosition.x - f.x, o.feetPosition.z - f.z) < FORGE.reach;
   if (!!s.atForge !== near) { s.atForge = near; if (near && !s.forgeSeen) { s.forgeSeen = true; msg(ctx, "The forge's coals still breathe. Open your pack (I) to temper, reforge or ascend with ash dust."); } }
+}
+function boardNear(ctx) {
+  const now = ctx.now(); if (now < (me.boardAt ?? 0)) return; me.boardAt = now + 400;
+  const s = ctx.self.state, o = ctx.getObject("trade-board"), f = ctx.self.feetPosition;
+  const near = !!o && !s.menu && !s.dead && Math.hypot(o.feetPosition.x - f.x, o.feetPosition.z - f.z) < TRADE.reach;
+  if (!!s.atBoard !== near) {
+    s.atBoard = near;
+    if (near) { s.board = null; me.boardRead = 0; if (!s.boardSeen) { s.boardSeen = true; msg(ctx, "The Pilgrims' Board. Open your pack (I) to buy what others pinned, or pin your own."); } }
+  }
+  if (near && s.bagOpen && !s.tradeBusy && now - (me.boardRead ?? 0) > TRADE.refresh * 1000) { me.boardRead = now; readBoard(ctx).catch((e) => ctx.log("board read failed", String(e))); }
 }
 const ITEM_SFX = { forge: "anvil-hammer-strikes-three-ringing-blows-and-hiss", forgeBig: "anvil-heavy-blow-ember-burst-choir-swell", equip: "armor-equip-leather-and-chainmail-rustle", sell: "coins-into-leather-purse", salvage: "salvage-item-crumble-to-ash-hiss", drop: "loot-drop-cloth-thud-soft" };
 function itemInput(ctx, a) {
@@ -540,7 +552,7 @@ export function update(ctx, dt) {
   const s = ctx.self.state, now = ctx.now(), f = ctx.self.feetPosition;
   gate(ctx);
   if (ctx.self.isLocal !== false) showcase(ctx);
-  if (!ctx.self.state.menu && ctx.self.state.charId) { drainLoot(ctx); deriveGear(ctx); if (ctx.self.isLocal !== false) forgeNear(ctx); }
+  if (!ctx.self.state.menu && ctx.self.state.charId) { drainLoot(ctx); deriveGear(ctx); if (ctx.self.isLocal !== false) { forgeNear(ctx); boardNear(ctx); } }
   const vy = (ctx.self.velocity?.y ?? 0) + (ctx.self.grounded ? 0 : ctx.place.gravity.y * dt);
   // a fresh visit opens on the title in the Veil; a realm cross lands on that realm's character list
   if (ctx.self.isLocal !== false && !ctx.session.vfDoor) {

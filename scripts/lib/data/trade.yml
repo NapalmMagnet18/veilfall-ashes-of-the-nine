@@ -1,0 +1,8 @@
+# The Pilgrims' Board by the Wayside Fire: Bearers of one realm pin gear for copper, others buy it.
+reach: 3.4          # metres from the board to read and trade
+maxPins: 6          # live pins per Bearer
+fee: 0.1            # the board keeper's cut of every sale, taken when the seller collects
+asks: [2, 4, 8]     # the price buttons, as multiples of the vendor's sell value
+minPrice: 10        # copper
+show: 30            # newest listings shown
+refresh: 8          # seconds between board reads while the pack is open at it
