@@ -5,6 +5,21 @@ import E from "../../scripts/lib/data/economy.yml";
 import { body } from "../../scripts/lib/data/models.js";
 export const cadence = "250ms";
 const MUSIC = "/cdn/moodboard-gothic-horror/music-broken-lantern-road-dusk-candles-and-fog-ambient.mp3";
+// the jukebox follows the room's mood: the road at rest, drums when the wax wakes, the Bailiff's own theme in his court
+const TRACKS = {
+  road: MUSIC,
+  fight: "/cdn/moodboard-gothic-horror/music-dark-fantasy-combat-pounding-low-drums-cello-ostinato-tense-loop.mp3",
+  boss: "/cdn/moodboard-gothic-horror/music-dark-fantasy-boss-battle-choir-pipe-organ-war-drums-bells-loop.mp3",
+};
+// sound beds that live in the place: each a whisper heard only near its source
+const BEDS = [
+  { id: "bed-wind", x: 0, z: -40, clip: "ambience-cold-night-wind-through-ruins-loop", gain: 0.12, spatial: false },
+  { id: "bed-camp", x: 0, z: 2, clip: "ambience-campfire-night-crickets-and-distant-owl-loop", gain: 0.18, max: 22 },
+  { id: "bed-road", x: 3, z: -32, clip: "ambience-distant-church-bell-tolling-slow-with-crows-loop", gain: 0.15, max: 30 },
+  { id: "bed-toll", x: 9, z: -46, clip: "ambience-creaking-wooden-shutters-and-chains-in-wind-loop", gain: 0.18, max: 16 },
+  { id: "bed-gate", x: 0, z: -89, clip: "ambience-dripping-hot-wax-hiss-and-low-murmuring-voices-loop", gain: 0.22, max: 16 },
+  { id: "bed-court", x: 0, z: -105, clip: "ambience-low-ominous-choir-drone-cathedral-loop", gain: 0.14, max: 26 },
+];
 const PACKS = [
   { id: "p1", kind: "pilgrim", x: -1, z: -21 }, { id: "p2", kind: "pilgrim", x: 3, z: -23 },
   { id: "p3", kind: "pilgrim", x: 0, z: -29 }, { id: "p4", kind: "pilgrim", x: 3, z: -31 }, { id: "p5", kind: "pilgrim", x: -2, z: -33 },
@@ -37,7 +52,7 @@ function say(ctx, p, stage) { p.state.dialog = { text: LINES[stage], at: ctx.now
 
 export function tick(ctx) {
   const st = ctx.place.state, now = ctx.now(), objs = ctx.place.objects;
-  if (!st.music) { st.music = true; ctx.music?.play(MUSIC, { fade: 3 }); }
+  musicTick(ctx, st, now, objs);
   if (!("wax-pack" in objs)) ctx.spawn("wax-pack", { tags: ["system"], feetPosition: { x: 0, y: -50, z: 0 }, behavior: "scripts/wax-pack.js" });
   if (!("maelin" in objs)) ctx.spawn("maelin", { tags: ["npc"], physics: "character", feetPosition: { x: MAELIN.x, z: MAELIN.z, y: { terrain: 0 } }, rotation: 120,
     model: "cdn/model-weathered-woman-mapmaker-hooded-cloak-satchel-of-maps.glb", behavior: ["scripts/humanoid-locomotion.js"], state: { name: "Maelin Sore" } });
@@ -114,4 +129,16 @@ export function tick(ctx) {
       ctx.emit("damageNumber", { position: { ...p.feetPosition, y: p.feetPosition.y + 2.4 }, text: `LEVEL ${lvl}`, color: "#ffd27a", size: 1.4 });
     }
   }
+}
+
+function musicTick(ctx, st, now, objs) {
+  if (!st.bedsV2) { st.bedsV2 = true;
+    for (const b of BEDS) if (!(b.id in objs)) ctx.spawn(b.id, { tags: ["ambience"], feetPosition: { x: b.x, y: 1.5, z: b.z },
+      audio: { clip: `/cdn/moodboard-gothic-horror/${b.clip}.mp3`, loop: true, gain: b.gain, spatial: b.spatial ?? true, maxDistance: b.max ?? 40, bus: "Ambience" } }); }
+  const boss = objs["bailiff"]?.state;
+  let fighting = false;
+  for (const e of ctx.query({ tags: ["enemy"], select: "rows" })) if (e.state?.hunting && !e.state?.dead) { fighting = true; break; }
+  if (fighting) st.fightUntil = now + 6000; // a short tail so the drums don't stutter between pulls
+  const mood = boss?.engaged && !boss?.dead ? "boss" : now < (st.fightUntil ?? 0) ? "fight" : "road";
+  if (mood !== st.mood) { st.mood = mood; ctx.music?.play(TRACKS[mood], { fade: mood === "road" ? 4 : 1.2, volume: mood === "road" ? 0.7 : 0.8 }); }
 }
