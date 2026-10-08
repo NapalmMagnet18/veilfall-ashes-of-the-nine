@@ -31,7 +31,7 @@ const THEME = `<style>
 #vf .slot.ready{animation:vfready .5s}
 @keyframes vfready{0%{filter:brightness(2.2)}100%{filter:none}}
 #vf .tf .bar2{height:12px;background:#120e0c;box-shadow:0 0 0 2px #0d0b0a,0 0 0 3px #5a4a33;position:relative;margin-top:4px}
-#vf .chip{display:flex;align-items:center;gap:6px;padding:4px 10px;font-size:12px;letter-spacing:.08em}
+#vf .chip{position:relative;white-space:nowrap;display:flex;align-items:center;gap:6px;padding:4px 10px;font-size:12px;letter-spacing:.08em}
 #vf .ph{display:none} @media (pointer:coarse),(max-width:700px),(max-height:520px){#vf .dk{display:none!important} #vf .ph{display:block} #vf .qp{left:10px!important;top:10px!important;max-width:210px!important;padding:6px 9px!important} #vf .qp div{font-size:13px!important} #vf .qp .lbl{font-size:10px!important} #vf .qp.bossup{display:none!important}}
 #vf .bar{height:10px;background:#120e0c;box-shadow:0 0 0 2px #0d0b0a,0 0 0 3px #5a4a33;position:relative;margin-top:5px}
 @keyframes vfin{from{opacity:0;transform:translateY(8px)}} @keyframes vffade{to{opacity:0}} @keyframes vfpulse{50%{opacity:.55}}
@@ -258,7 +258,7 @@ export default function (ctx, player) {
     <div class="slot ${(s.tonics ?? 0) ? "" : "dim"}" title="Ash Tonic"><img class="ic" src="${IC.tonic}"><span class="k">Q</span><span class="n">${s.tonics ?? 0}</span></div>
     <div class="slot" title="Pack" style="pointer-events:auto;cursor:pointer" onclick="sendAction('bag')"><img class="ic" src="${IC.pack}"><span class="k">I</span></div>
   </div>
-  ${chips.length ? `<div class="absolute dk" style="left:50%;bottom:98px;transform:translateX(-50%);display:flex;gap:8px">${chips.join("")}</div>` : ""}`}
+  ${chips.length ? `<div class="absolute dk" style="left:50%;bottom:112px;transform:translateX(-50%);display:flex;gap:12px">${chips.join("")}</div>` : ""}`}
   ${touch && chips.length ? `<div class="absolute" style="left:10px;top:236px;display:flex;flex-direction:column;gap:6px">${chips.join("")}</div>` : ""}
   ${foeOn ? `<div class="absolute plate tf" style="left:50%;top:${boss && boss.engaged && !boss.dead ? 168 : 24}px;transform:translateX(-50%);width:min(300px,calc(100vw - 2*${rail}));text-align:center;padding:10px 16px;animation:vfin .2s;${foe.gone ? "opacity:.6" : ""}">
     <div style="display:flex;align-items:baseline;justify-content:center;gap:8px"><span style="font-size:16px;color:${foe.kind === "deacon" ? "#f2b04a" : "var(--wax)"};letter-spacing:.06em">${FOES[foe.kind] ?? "Wax Thing"}</span>${foe.kind === "deacon" ? `<span class="lbl" style="color:#f2b04a">ELITE</span>` : ""}</div>
