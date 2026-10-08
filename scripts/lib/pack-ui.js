@@ -62,6 +62,11 @@ export function packPanel(ctx, player, { rail, touch }) {
           <span>♥ ${s.tonics ?? 0}</span><span>◆ ${s.shards ?? 0}</span><span>✉ ${s.petitions?.length ?? 0}</span>
           <span style="display:flex;align-items:center">${coinHTML(s.copper ?? 0, 13)}</span>
         </div>
+        ${s.atForge ? (sel ? `<div style="display:flex;gap:6px;align-items:stretch;margin-top:10px;padding-top:8px;border-top:1px solid #e0a86633">
+        <div style="font-size:10px;letter-spacing:.2em;color:#e0a866;width:56px;line-height:1.3;align-self:center">WAYSIDE FORGE</div>
+        ${[["temper", "TEMPER", "+1 item level"], ["reforge", "REFORGE", "new affixes"], ["ascend", "ASCEND", "one tier up"]].map(([op, label, hint]) => { const no = forgeCan(sel, op), c = no ? null : forgeCost(sel, op), poor = c != null && (s.dust ?? 0) < c;
+          return `<button class="vb" ${no ? "disabled" : ""} style="flex:1;${no ? "opacity:.35;" : poor ? "opacity:.6;" : "border-color:#e0a866aa;"}" title="${no ?? hint}" onclick="${act("forge", `,u:'${sel.u}',op:'${op}'`)}">${label}${no ? "" : ` · <img src="${icon("dust")}" style="width:13px;height:13px;vertical-align:-2px">${c}`}<div style="font-size:9px;letter-spacing:.1em;color:#9a907e">${no ?? hint}</div></button>`; }).join("")}
+      </div>` : `<div style="margin-top:10px;padding-top:8px;border-top:1px solid #e0a86633;font-size:11px;color:#e0a866;letter-spacing:.08em">WAYSIDE FORGE · select an item to temper, reforge or ascend</div>`) : ""}
       </div>
     </div>
     ${sel ? `<div style="display:flex;gap:12px;margin-top:12px;align-items:flex-start">
@@ -74,11 +79,7 @@ export function packPanel(ctx, player, { rail, touch }) {
       </div>
 
       ${worn ? `<div style="opacity:.8"><div style="font-size:10px;letter-spacing:.2em;color:#9a907e;margin-bottom:3px">WORN</div>${cardHTML(worn, gear)}</div>` : ""}
-    </div>${s.atForge ? `<div style="display:flex;gap:6px;align-items:center;margin-top:8px;padding-top:8px;border-top:1px solid #e0a86633">
-        <div style="font-size:10px;letter-spacing:.2em;color:#e0a866;width:74px;line-height:1.3">WAYSIDE FORGE</div>
-        ${[["temper", "TEMPER", "+1 item level"], ["reforge", "REFORGE", "new affixes"], ["ascend", "ASCEND", "one tier up"]].map(([op, label, hint]) => { const no = forgeCan(sel, op), c = no ? null : forgeCost(sel, op), poor = c != null && (s.dust ?? 0) < c;
-          return `<button class="vb" ${no ? "disabled" : ""} style="flex:1;${no ? "opacity:.35;" : poor ? "opacity:.6;" : "border-color:#e0a866aa;"}" title="${no ?? hint}" onclick="${act("forge", `,u:'${sel.u}',op:'${op}'`)}">${label}${no ? "" : ` · <img src="${icon("dust")}" style="width:13px;height:13px;vertical-align:-2px">${c}`}<div style="font-size:9px;letter-spacing:.1em;color:#9a907e">${no ?? hint}</div></button>`; }).join("")}
-      </div>` : ""}` : `<div style="font-size:11px;color:#7d7466;margin-top:10px">${touch ? "tap an item to inspect" : "hover to read · click to inspect · double-click to equip"}</div>`}
+    </div>` : `<div style="font-size:11px;color:#7d7466;margin-top:10px">${touch ? "tap an item to inspect" : "hover to read · click to inspect · double-click to equip"}</div>`}
     <button class="vb" style="margin-top:12px;width:100%" onclick="sendAction('menu',{a:'logout',n:Date.now()})">REST · CHARACTER SELECT</button>
   </div>`;
 }
