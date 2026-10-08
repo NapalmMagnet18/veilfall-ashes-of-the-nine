@@ -469,7 +469,7 @@ rd-gibbet-1:
 rd-gibbet-2:
   castShadow: true
   children: [{feetPosition: {x: 1.1, y: 1.75, z: 0}, light: {color: oklch(0.78 0.15 55), distance: 7, intensity: 3, kind: point}}]
-  feetPosition: {x: 18.87, y: 0, z: -49}
+  feetPosition: {x: -1.23, y: 0, z: -36}
   id: rd-gibbet-2
   model: /cdn/value.406b9c00757d0bbec005d0c122246c4dbdef6515e4f2b8501aad10482f3a510d.glb
   physics: static
