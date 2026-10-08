@@ -409,7 +409,7 @@ export default function (ctx, player) {
   const dlg = s.dialog && now - s.dialog.at < 9000 && !s.shop ? s.dialog : null;
   const rail = "calc(var(--spawn-chrome-reservation-right-inset, 50px) + 24px)";
   const OPT = s.opt ?? {};
-  return `${THEME}${FRAME_CSS}<style>#vf{zoom:${OPT.scale ?? 1}}${OPT.tracker === false ? "#vf .qp{display:none}" : ""}</style><div id="vf" class="fixed inset-0 pointer-events-none">
+  return `${THEME}${FRAME_CSS}<style>${PACK_CSS}#vf{zoom:${OPT.scale ?? 1}}${OPT.tracker === false ? "#vf .qp{display:none}" : ""}</style><div id="vf" class="fixed inset-0 pointer-events-none">
   <div class="absolute plate qp${boss && boss.engaged && !boss.dead ? " bossup" : ""}" style="left:24px;top:24px;max-width:300px;animation:vfin .4s">
     <div class="lbl">${[9, 12, 16, 21, 22].includes(q.stage) ? "Chapter complete" : "Quest"} · ${q.stage >= 18 ? "The Second Lantern" : q.stage >= 13 ? "The Drowned Lantern" : q.stage >= 10 ? "The Ninth Bell" : q.stage >= 5 ? "The Ashen Abbey" : "Broken Lantern Road"}</div>
     <div style="font-size:19px;color:var(--wax)">${qt}</div><div class="dv df1"></div>
