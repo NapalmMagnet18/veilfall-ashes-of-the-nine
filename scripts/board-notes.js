@@ -21,7 +21,7 @@ export function update(ctx) {
   ctx.sleep(2);
   if (!ctx.place.players.some((p) => Math.hypot(p.feetPosition.x - f.x, p.feetPosition.z - f.z) < 40)) return;
   if (now - (ASKED.get(id) ?? 0) > 8000) { ASKED.set(id, now); refresh(ctx); }
-  const n = WANT.get(id); if (n === undefined) return;
+  const n = WANT.get(id); ctx.self.state.dbgN = [n ?? null, SHOWN.get(id) ?? null, now]; if (n === undefined) return;
   const was = SHOWN.get(id) ?? -1;
   if (n === was) return;
   ensure(ctx);
