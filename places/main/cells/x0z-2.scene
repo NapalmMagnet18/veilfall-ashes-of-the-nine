@@ -52,6 +52,232 @@ abbey-wing-wall-w:
   primitive: {depth: 11.6, height: 9, kind: box, width: 9.9}
   tags: [abbey, collider]
   visible: false
+crypt-brazier-0:
+  children: [{feetPosition: {x: 0, y: 1.42, z: 0}, fx: {params: {}, script: "fx\npop coals n=5 on=disc(.25) size=.05..0.1 tint=<2.4,.9,.25>..<1.1,.3,.08> sz=$size*flick(.5,.12) col=$tint*flick(.8,.3) a=.9 r=sprite(soft-disc,add)\npop flame rate=flick(.45,.2)*40 on=disc(.22) life=.4..0.75 v=up(1.4)+cone(20)*(.3..0.7) size=.18..0.34 acc=curl(.5)*1.2+buoy(2.2)+drag(1.5)\n  sz=$size*(.5>.25:1>.7:.7>.14) col=hdr(4.6,3.4,1.4)>.3:hdr(3.2,1.4,.3)>.65:hdr(1.8,.5,.1)>hdr(.6,.12,.03) a=0>.12:1>.75:.85>0 rot=spin(.2) r=sprite(flame-wisp,add)\npop embers rate=3 on=disc(.2) life=.8..1.6 v=up(2)+cone(30)*(.4..1.2) size=.02..0.04 acc=curl(.8)+grav()*.4+drag(.5) col=hdr(5,2.8,.8)>.6:hdr(2.4,.8,.15)>hdr(1,.22,.04) a=(0>.08:1>.65:.9>0)*flick(11,.35) r=sprite(ember,add,velocity,.02)\npop smoke on=@flame?.15 inh=p;v:$v*.4 life=1.6..2.6 size=.14..0.22 acc=buoy(.9)+curl(.35)*.5+drag(.8) sz=$size*(.7>3) col=<.22,.2,.2> a=0>.22:.3>.7:.15>0 rot=spin(.15) r=sprite(smoke-puff,alpha)"}, id: flame, light: {color: "#ff9446", distance: 11, intensity: 6, kind: point}}]
+  feetPosition: {x: 8.84, y: {terrain: 0}, z: -242.16}
+  id: crypt-brazier-0
+  physics: static
+  primitive: {kind: scripted, params: {h: 1.5, kind: brazier}, script: scripts/gen/vf-ruin.js, seed: 220}
+  tags: [abbey, nave, z01-dressing]
+crypt-brazier-1:
+  children: [{feetPosition: {x: 0, y: 1.42, z: 0}, fx: {params: {}, script: "fx\npop coals n=5 on=disc(.25) size=.05..0.1 tint=<2.4,.9,.25>..<1.1,.3,.08> sz=$size*flick(.5,.12) col=$tint*flick(.8,.3) a=.9 r=sprite(soft-disc,add)\npop flame rate=flick(.45,.2)*40 on=disc(.22) life=.4..0.75 v=up(1.4)+cone(20)*(.3..0.7) size=.18..0.34 acc=curl(.5)*1.2+buoy(2.2)+drag(1.5)\n  sz=$size*(.5>.25:1>.7:.7>.14) col=hdr(4.6,3.4,1.4)>.3:hdr(3.2,1.4,.3)>.65:hdr(1.8,.5,.1)>hdr(.6,.12,.03) a=0>.12:1>.75:.85>0 rot=spin(.2) r=sprite(flame-wisp,add)\npop embers rate=3 on=disc(.2) life=.8..1.6 v=up(2)+cone(30)*(.4..1.2) size=.02..0.04 acc=curl(.8)+grav()*.4+drag(.5) col=hdr(5,2.8,.8)>.6:hdr(2.4,.8,.15)>hdr(1,.22,.04) a=(0>.08:1>.65:.9>0)*flick(11,.35) r=sprite(ember,add,velocity,.02)\npop smoke on=@flame?.15 inh=p;v:$v*.4 life=1.6..2.6 size=.14..0.22 acc=buoy(.9)+curl(.35)*.5+drag(.8) sz=$size*(.7>3) col=<.22,.2,.2> a=0>.22:.3>.7:.15>0 rot=spin(.15) r=sprite(smoke-puff,alpha)"}, id: flame, light: {color: "#ff9446", distance: 11, intensity: 6, kind: point}}]
+  feetPosition: {x: 8.84, y: {terrain: 0}, z: -259.84}
+  id: crypt-brazier-1
+  physics: static
+  primitive: {kind: scripted, params: {h: 1.5, kind: brazier}, script: scripts/gen/vf-ruin.js, seed: 221}
+  tags: [abbey, nave, z01-dressing]
+crypt-brazier-2:
+  children: [{feetPosition: {x: 0, y: 1.42, z: 0}, fx: {params: {}, script: "fx\npop coals n=5 on=disc(.25) size=.05..0.1 tint=<2.4,.9,.25>..<1.1,.3,.08> sz=$size*flick(.5,.12) col=$tint*flick(.8,.3) a=.9 r=sprite(soft-disc,add)\npop flame rate=flick(.45,.2)*40 on=disc(.22) life=.4..0.75 v=up(1.4)+cone(20)*(.3..0.7) size=.18..0.34 acc=curl(.5)*1.2+buoy(2.2)+drag(1.5)\n  sz=$size*(.5>.25:1>.7:.7>.14) col=hdr(4.6,3.4,1.4)>.3:hdr(3.2,1.4,.3)>.65:hdr(1.8,.5,.1)>hdr(.6,.12,.03) a=0>.12:1>.75:.85>0 rot=spin(.2) r=sprite(flame-wisp,add)\npop embers rate=3 on=disc(.2) life=.8..1.6 v=up(2)+cone(30)*(.4..1.2) size=.02..0.04 acc=curl(.8)+grav()*.4+drag(.5) col=hdr(5,2.8,.8)>.6:hdr(2.4,.8,.15)>hdr(1,.22,.04) a=(0>.08:1>.65:.9>0)*flick(11,.35) r=sprite(ember,add,velocity,.02)\npop smoke on=@flame?.15 inh=p;v:$v*.4 life=1.6..2.6 size=.14..0.22 acc=buoy(.9)+curl(.35)*.5+drag(.8) sz=$size*(.7>3) col=<.22,.2,.2> a=0>.22:.3>.7:.15>0 rot=spin(.15) r=sprite(smoke-puff,alpha)"}, id: flame, light: {color: "#ff9446", distance: 11, intensity: 6, kind: point}}]
+  feetPosition: {x: -8.84, y: {terrain: 0}, z: -259.84}
+  id: crypt-brazier-2
+  physics: static
+  primitive: {kind: scripted, params: {h: 1.5, kind: brazier}, script: scripts/gen/vf-ruin.js, seed: 222}
+  tags: [abbey, nave, z01-dressing]
+crypt-brazier-3:
+  children: [{feetPosition: {x: 0, y: 1.42, z: 0}, fx: {params: {}, script: "fx\npop coals n=5 on=disc(.25) size=.05..0.1 tint=<2.4,.9,.25>..<1.1,.3,.08> sz=$size*flick(.5,.12) col=$tint*flick(.8,.3) a=.9 r=sprite(soft-disc,add)\npop flame rate=flick(.45,.2)*40 on=disc(.22) life=.4..0.75 v=up(1.4)+cone(20)*(.3..0.7) size=.18..0.34 acc=curl(.5)*1.2+buoy(2.2)+drag(1.5)\n  sz=$size*(.5>.25:1>.7:.7>.14) col=hdr(4.6,3.4,1.4)>.3:hdr(3.2,1.4,.3)>.65:hdr(1.8,.5,.1)>hdr(.6,.12,.03) a=0>.12:1>.75:.85>0 rot=spin(.2) r=sprite(flame-wisp,add)\npop embers rate=3 on=disc(.2) life=.8..1.6 v=up(2)+cone(30)*(.4..1.2) size=.02..0.04 acc=curl(.8)+grav()*.4+drag(.5) col=hdr(5,2.8,.8)>.6:hdr(2.4,.8,.15)>hdr(1,.22,.04) a=(0>.08:1>.65:.9>0)*flick(11,.35) r=sprite(ember,add,velocity,.02)\npop smoke on=@flame?.15 inh=p;v:$v*.4 life=1.6..2.6 size=.14..0.22 acc=buoy(.9)+curl(.35)*.5+drag(.8) sz=$size*(.7>3) col=<.22,.2,.2> a=0>.22:.3>.7:.15>0 rot=spin(.15) r=sprite(smoke-puff,alpha)"}, id: flame, light: {color: "#ff9446", distance: 11, intensity: 6, kind: point}}]
+  feetPosition: {x: -8.84, y: {terrain: 0}, z: -242.16}
+  id: crypt-brazier-3
+  physics: static
+  primitive: {kind: scripted, params: {h: 1.5, kind: brazier}, script: scripts/gen/vf-ruin.js, seed: 223}
+  tags: [abbey, nave, z01-dressing]
+crypt-drift-0:
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, fx: {params: {power: 1.8, radius: 5, tips: "0.08,0.44,0.04;-0.22,0.36,0.18;0.26,0.33,-0.16"}, script: scripts/effects/candles.fx.js}, id: flames}]
+  feetPosition: {x: 11.87, y: {terrain: 0}, z: -245.46}
+  id: crypt-drift-0
+  physics: static
+  primitive: {kind: scripted, params: {H: 0.34, n: 260, rx: 0.8, rz: 0.6, tips: "0.08,0.44,0.04;-0.22,0.36,0.18;0.26,0.33,-0.16"}, script: scripts/gen/nave-candles.js, seed: 230}
+  rotation: {yaw: 65}
+  tags: [abbey, nave, z01-dressing]
+crypt-drift-1:
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, fx: {params: {power: 1.8, radius: 5, tips: "-0.1,0.4,0.1;0.2,0.37,-0.12"}, script: scripts/effects/candles.fx.js}, id: flames}]
+  feetPosition: {x: 11.97, y: {terrain: 0}, z: -256.33}
+  id: crypt-drift-1
+  physics: static
+  primitive: {kind: scripted, params: {H: 0.34, n: 260, rx: 0.8, rz: 0.6, tips: "-0.1,0.4,0.1;0.2,0.37,-0.12"}, script: scripts/gen/nave-candles.js, seed: 231}
+  rotation: {yaw: 114}
+  tags: [abbey, nave, z01-dressing]
+crypt-drift-2:
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, fx: {params: {power: 1.8, radius: 5, tips: "0.0,0.46,-0.05;0.24,0.34,0.15;-0.26,0.31,-0.1"}, script: scripts/effects/candles.fx.js}, id: flames}]
+  feetPosition: {x: -11.97, y: {terrain: 0}, z: -256.33}
+  id: crypt-drift-2
+  physics: static
+  primitive: {kind: scripted, params: {H: 0.34, n: 260, rx: 0.8, rz: 0.6, tips: "0.0,0.46,-0.05;0.24,0.34,0.15;-0.26,0.31,-0.1"}, script: scripts/gen/nave-candles.js, seed: 232}
+  rotation: {yaw: 246}
+  tags: [abbey, nave, z01-dressing]
+crypt-drift-3:
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, fx: {params: {power: 1.8, radius: 5, tips: "0.08,0.44,0.04;-0.22,0.36,0.18;0.26,0.33,-0.16"}, script: scripts/effects/candles.fx.js}, id: flames}]
+  feetPosition: {x: -11.87, y: {terrain: 0}, z: -245.46}
+  id: crypt-drift-3
+  physics: static
+  primitive: {kind: scripted, params: {H: 0.34, n: 260, rx: 0.8, rz: 0.6, tips: "0.08,0.44,0.04;-0.22,0.36,0.18;0.26,0.33,-0.16"}, script: scripts/gen/nave-candles.js, seed: 233}
+  rotation: {yaw: 295}
+  tags: [abbey, nave, z01-dressing]
+crypt-floor-0:
+  feetPosition: {x: 12.6, y: {terrain: 0}, z: -251}
+  id: crypt-floor-0
+  primitive: {kind: scripted, params: {kind: wax, rx: 1.3, rz: 0.8}, script: scripts/gen/nave-floor.js, seed: 260}
+  rotation: {yaw: 90}
+  tags: [abbey, nave, z01-dressing]
+crypt-floor-1:
+  feetPosition: {x: -12.4, y: {terrain: 0}, z: -251}
+  id: crypt-floor-1
+  primitive: {kind: scripted, params: {kind: ash, rx: 1.4, rz: 0.9}, script: scripts/gen/nave-floor.js, seed: 261}
+  rotation: {yaw: 270}
+  tags: [abbey, nave, z01-dressing]
+crypt-floor-2:
+  feetPosition: {x: 8.34, y: {terrain: 0}, z: -242.66}
+  id: crypt-floor-2
+  primitive: {kind: scripted, params: {kind: ash, rx: 1, rz: 0.7}, script: scripts/gen/nave-floor.js, seed: 262}
+  rotation: {yaw: 45}
+  tags: [abbey, nave, z01-dressing]
+crypt-litter-0:
+  feetPosition: {x: 10.89, y: {terrain: 0}, z: -252.53}
+  id: crypt-litter-0
+  physics: static
+  primitive: {kind: scripted, params: {kind: bones}, script: scripts/gen/abbey-litter.js, seed: 250}
+  rotation: {yaw: 166.6}
+  tags: [abbey, nave, z01-dressing]
+crypt-litter-1:
+  feetPosition: {x: -11.09, y: {terrain: 0}, z: -252.56}
+  id: crypt-litter-1
+  physics: static
+  primitive: {kind: scripted, params: {kind: bones}, script: scripts/gen/abbey-litter.js, seed: 251}
+  rotation: {yaw: 445.4}
+  tags: [abbey, nave, z01-dressing]
+crypt-litter-2:
+  feetPosition: {x: 10.11, y: {terrain: 0}, z: -244.18}
+  id: crypt-litter-2
+  physics: static
+  primitive: {kind: scripted, params: {kind: shrine}, script: scripts/gen/abbey-litter.js, seed: 252}
+  rotation: {yaw: 95.2}
+  tags: [abbey, nave, z01-dressing]
+crypt-litter-3:
+  feetPosition: {x: -9.83, y: {terrain: 0}, z: -244.12}
+  id: crypt-litter-3
+  physics: static
+  primitive: {kind: scripted, params: {kind: bones}, script: scripts/gen/abbey-litter.js, seed: 253}
+  rotation: {yaw: 518.5}
+  tags: [abbey, nave, z01-dressing]
+crypt-litter-4:
+  feetPosition: {x: -6.88, y: {terrain: 0}, z: -261.2}
+  id: crypt-litter-4
+  physics: static
+  primitive: {kind: scripted, params: {kind: shrine}, script: scripts/gen/abbey-litter.js, seed: 254}
+  rotation: {yaw: 363.8}
+  tags: [abbey, nave, z01-dressing]
+crypt-litter-5:
+  feetPosition: {x: 5.4, y: {terrain: 0}, z: -260.35}
+  id: crypt-litter-5
+  physics: static
+  primitive: {kind: scripted, params: {kind: bones}, script: scripts/gen/abbey-litter.js, seed: 255}
+  rotation: {yaw: 255}
+  tags: [abbey, nave, z01-dressing]
+crypt-pier-0:
+  feetPosition: {x: 7.84, y: {terrain: 0}, z: -238.45}
+  id: crypt-pier-0
+  physics: static
+  primitive: {kind: scripted, params: {cap: true, h: 5.8}, script: scripts/gen/nave-pier.js, seed: 200}
+  rotation: {yaw: 32}
+  tags: [abbey, nave, z01-dressing]
+crypt-pier-1:
+  feetPosition: {x: 13.4, y: {terrain: 0}, z: -244.72}
+  id: crypt-pier-1
+  physics: static
+  primitive: {kind: scripted, params: {cap: false, h: 3.4}, script: scripts/gen/nave-pier.js, seed: 201}
+  rotation: {yaw: 75.9}
+  tags: [abbey, nave, z01-dressing]
+crypt-pier-2:
+  feetPosition: {x: 14.66, y: {terrain: 0}, z: -253.01}
+  id: crypt-pier-2
+  physics: static
+  primitive: {kind: scripted, params: {cap: true, h: 6.2}, script: scripts/gen/nave-pier.js, seed: 202}
+  rotation: {yaw: 119.8}
+  tags: [abbey, nave, z01-dressing]
+crypt-pier-3:
+  feetPosition: {x: 11.22, y: {terrain: 0}, z: -260.65}
+  id: crypt-pier-3
+  physics: static
+  primitive: {kind: scripted, params: {cap: false, h: 4.4}, script: scripts/gen/nave-pier.js, seed: 203}
+  rotation: {yaw: 163.7}
+  tags: [abbey, nave, z01-dressing]
+crypt-pier-4:
+  feetPosition: {x: 4.18, y: {terrain: 0}, z: -265.2}
+  id: crypt-pier-4
+  physics: static
+  primitive: {kind: scripted, params: {cap: false, h: 2.6}, script: scripts/gen/nave-pier.js, seed: 204}
+  rotation: {yaw: 207.6}
+  tags: [abbey, nave, z01-dressing]
+crypt-pier-5:
+  feetPosition: {x: -4.2, y: {terrain: 0}, z: -265.19}
+  id: crypt-pier-5
+  physics: static
+  primitive: {kind: scripted, params: {cap: false, h: 3}, script: scripts/gen/nave-pier.js, seed: 205}
+  rotation: {yaw: 251.5}
+  tags: [abbey, nave, z01-dressing]
+crypt-pier-6:
+  feetPosition: {x: -11.24, y: {terrain: 0}, z: -260.63}
+  id: crypt-pier-6
+  physics: static
+  primitive: {kind: scripted, params: {cap: true, h: 4.8}, script: scripts/gen/nave-pier.js, seed: 206}
+  rotation: {yaw: 295.4}
+  tags: [abbey, nave, z01-dressing]
+crypt-pier-7:
+  feetPosition: {x: -14.67, y: {terrain: 0}, z: -252.98}
+  id: crypt-pier-7
+  physics: static
+  primitive: {kind: scripted, params: {cap: true, h: 6}, script: scripts/gen/nave-pier.js, seed: 207}
+  rotation: {yaw: 339.29999999999995}
+  tags: [abbey, nave, z01-dressing]
+crypt-pier-8:
+  feetPosition: {x: -13.39, y: {terrain: 0}, z: -244.7}
+  id: crypt-pier-8
+  physics: static
+  primitive: {kind: scripted, params: {cap: false, h: 3.6}, script: scripts/gen/nave-pier.js, seed: 208}
+  rotation: {yaw: 383.2}
+  tags: [abbey, nave, z01-dressing]
+crypt-pier-9:
+  feetPosition: {x: -7.82, y: {terrain: 0}, z: -238.44}
+  id: crypt-pier-9
+  physics: static
+  primitive: {kind: scripted, params: {cap: true, h: 5.2}, script: scripts/gen/nave-pier.js, seed: 209}
+  rotation: {yaw: 427.09999999999997}
+  tags: [abbey, nave, z01-dressing]
+crypt-slabs-0:
+  feetPosition: {x: 11.19, y: {terrain: 0}, z: -249.43}
+  id: crypt-slabs-0
+  primitive: {kind: scripted, params: {d: 2.6, glow: 0.6, kind: slabs, w: 3.2}, script: scripts/gen/nave-floor.js, seed: 240}
+  rotation: {yaw: 82}
+  tags: [abbey, nave, z01-dressing]
+crypt-slabs-1:
+  feetPosition: {x: -11.19, y: {terrain: 0}, z: -249.43}
+  id: crypt-slabs-1
+  primitive: {kind: scripted, params: {d: 2.8, glow: 0.5, kind: slabs, w: 3}, script: scripts/gen/nave-floor.js, seed: 241}
+  rotation: {yaw: 278}
+  tags: [abbey, nave, z01-dressing]
+crypt-slabs-2:
+  feetPosition: {x: 9.14, y: {terrain: 0}, z: -258.14}
+  id: crypt-slabs-2
+  primitive: {kind: scripted, params: {d: 2.4, glow: 0.8, kind: slabs, w: 2.6}, script: scripts/gen/nave-floor.js, seed: 242}
+  rotation: {yaw: 128}
+  tags: [abbey, nave, z01-dressing]
+crypt-slabs-3:
+  feetPosition: {x: -9.14, y: {terrain: 0}, z: -258.14}
+  id: crypt-slabs-3
+  primitive: {kind: scripted, params: {d: 2.2, glow: 0.7, kind: slabs, w: 2.8}, script: scripts/gen/nave-floor.js, seed: 243}
+  rotation: {yaw: 232}
+  tags: [abbey, nave, z01-dressing]
+crypt-slabs-4:
+  feetPosition: {x: 5.7, y: {terrain: 0}, z: -241.13}
+  id: crypt-slabs-4
+  primitive: {kind: scripted, params: {d: 2, glow: 0.3, kind: slabs, w: 2.4}, script: scripts/gen/nave-floor.js, seed: 244}
+  rotation: {yaw: 30}
+  tags: [abbey, nave, z01-dressing]
+crypt-slabs-5:
+  feetPosition: {x: -5.7, y: {terrain: 0}, z: -241.13}
+  id: crypt-slabs-5
+  primitive: {kind: scripted, params: {d: 2, glow: 0.3, kind: slabs, w: 2.6}, script: scripts/gen/nave-floor.js, seed: 245}
+  rotation: {yaw: 330}
+  tags: [abbey, nave, z01-dressing]
 nave-blueprint:
   audio: {clip: /cdn/moodboard-gothic-horror/ambience-burned-cathedral-nave-wind-through-broken-windows-and-distant-bell-hum-loop.mp3, gain: 0.16, loop: true, maxDistance: 30}
   feetPosition: {x: 0, y: 0, z: -220}
