@@ -3,7 +3,7 @@
 import sys; sys.path.insert(0, "art/abbey")
 from kit import *
 reset()
-M = materials(2)
+M = materials(2); M["soot"] = M["sooted"]
 R = random.Random(14)
 
 def frustum(h0, h1, z0, z1, mat, name="fr"):
