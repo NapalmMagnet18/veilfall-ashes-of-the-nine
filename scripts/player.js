@@ -9,9 +9,9 @@ import { findPath } from "builtin/nav";
 import { floorDist as mapFloor, areaAt } from "./lib/data/veilfall-map.js";
 // the Abbey road is floor only once the Bailiff has fallen in this room (place.state.abbeyOpen, set by the sim)
 // which floors this Bearer may walk: derived from their own quest row at the top of every hook that moves them
-const GATE = { abbey: false, nave: false, fen: false, orch: false };
-const gate = (ctx) => { const st = ctx.self.state.quest?.stage ?? 0, all = !!ctx.place.state?.abbeyOpenAll; GATE.abbey = st >= 4 || all; GATE.nave = st >= 10 || all; GATE.fen = st >= 13 || all; GATE.orch = st >= 18 || all; };
-const floorDist = (x, z) => mapFloor(x, z, GATE.abbey, GATE.nave, GATE.fen, GATE.orch);
+const GATE = { abbey: false, nave: false, fen: false, orch: false, oss: false };
+const gate = (ctx) => { const st = ctx.self.state.quest?.stage ?? 0, all = !!ctx.place.state?.abbeyOpenAll; GATE.abbey = st >= 4 || all; GATE.nave = st >= 10 || all; GATE.fen = st >= 13 || all; GATE.orch = st >= 18 || all; GATE.oss = st >= 23 || all; };
+const floorDist = (x, z) => mapFloor(x, z, GATE.abbey, GATE.nave, GATE.fen, GATE.orch, GATE.oss);
 import C from "./lib/data/combat.yml";
 import { shopInput } from "./lib/shop.js";
 import { tradeInput, readBoard, TRADE } from "./lib/trade.js";
@@ -388,9 +388,9 @@ function itemInput(ctx, a) {
     const rank = { vowbound: 0, relic: 1, gilded: 2, hallowed: 3, ashen: 4 }; inv.sort((x, y) => rank[x.t] - rank[y.t] || y.il - x.il); snd = "drop";
   } else if (a.a === "brew") {
     if (!s.atCauldron) return; const D = BREW.brews[a.id]; if (!D) return;
-    if ((s.dust ?? 0) < D.dust || (s.shards ?? 0) < D.shards || (s.heartwax ?? 0) < (D.heartwax ?? 0)) { msg(ctx, `${D.name} wants ${D.dust} ash dust and ${D.shards} wax shard${D.shards > 1 ? "s" : ""}${D.heartwax ? ` and ${D.heartwax} heartwax, torn from a boss` : ""}.`); ctx.emit("playSound", { clip: sfx("dull-click-denied"), position: ctx.self.feetPosition, volume: 0.3 }, { audience: { player: ctx.self.id } }); return; }
+    if ((s.dust ?? 0) < D.dust || (s.shards ?? 0) < D.shards || (s.heartwax ?? 0) < (D.heartwax ?? 0) || (s.abbesswax ?? 0) < (D.abbesswax ?? 0)) { msg(ctx, `${D.name} wants ${D.dust} ash dust and ${D.shards} wax shard${D.shards > 1 ? "s" : ""}${D.heartwax ? ` and ${D.heartwax} heartwax, torn from a boss` : ""}${D.abbesswax ? ` and the Abbess's Candle, from the Ossuary` : ""}.`); ctx.emit("playSound", { clip: sfx("dull-click-denied"), position: ctx.self.feetPosition, volume: 0.3 }, { audience: { player: ctx.self.id } }); return; }
     const before = renderRank(s.renderXp ?? 0).i, b = brewMade(a.id, s.renderXp ?? 0);
-    s.dust -= D.dust; s.shards -= D.shards; if (D.heartwax) s.heartwax -= D.heartwax;
+    s.dust -= D.dust; s.shards -= D.shards; if (D.heartwax) s.heartwax -= D.heartwax; if (D.abbesswax) s.abbesswax -= D.abbesswax;
     s.brew = { id: a.id, stats: b.stats, until: ctx.now() + b.secs * 1000, secs: b.secs };
     s.renderXp = (s.renderXp ?? 0) + BREW.xp;
     const o = ctx.getObject("wayside-cauldron"), at = o ? { x: o.feetPosition.x, y: o.feetPosition.y + 1, z: o.feetPosition.z } : ctx.self.feetPosition;

@@ -7,6 +7,7 @@ drops:
   bailiff: 12000        # 1g 20s, once per kill to each eligible player
   ringer: 18000         # 1g 80s, the Ringer of the Ninth Bell
   hangman: 30000        # 3g, the Hangman of Saint Corvin
+  abbess: 36000         # 3g 60s, the Ossuary Abbess
   warden: 22000         # 2g 20s, the Lantern Warden of the Lanternmere
 quests:
   Z01-MAIN-05: 300      # 3s turn-in
@@ -14,6 +15,7 @@ quests:
   Z01-MAIN-07: 900      # 9s, the Ninth Bell silenced
   Z01-MAIN-08: 1200     # 12s, the first lantern raised from the Lanternmere
   Z01-MAIN-09: 1500     # 15s, the second lantern cut down in Saint Corvin's orchard
+  Z01-MAIN-10: 1800     # 18s, the third lantern carried up out of the Ossuary
 sell:
   heartwax: 150         # 1s 50c a piece: a boss's tallow, sell it or brew the Ninefold Draught
   shard: 6              # Wax Shard buyback, each (Sealed Petitions are quest items: never sold)

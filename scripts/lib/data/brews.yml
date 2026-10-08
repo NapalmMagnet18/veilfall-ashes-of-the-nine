@@ -8,6 +8,7 @@ brews:
   ward:  { name: "Tallow Ward",   color: "#c9c2b4", glyph: "⛨", dust: 6, shards: 1, secs: 180, stats: { armor: 20 }, line: "+{armor} armor", lore: "Smeared thick on the mail; blades skid off it like rain." }
   ember: { name: "Bottled Ember", color: "#e06a3a", glyph: "♨", dust: 8, shards: 2, secs: 150, stats: { regen: 6, leech: 2 }, line: "+{regen} life every 5 s · {leech}% leech", lore: "A coal from the Wayside Fire, drowned in wax and still warm." }
   nine:  { name: "Ninefold Draught", color: "#b48cff", glyph: "✦", dust: 10, shards: 2, heartwax: 1, secs: 240, stats: { dmgp: 18, armor: 15, speed: 10 }, line: "+{dmgp}% dmg · +{armor} armor · +{speed}% speed", lore: "Heartwax from a fallen boss. It tastes of bells and rope." }
+  requiem: { name: "Requiem Tallow", color: "#9fe8e0", glyph: "✟", dust: 12, shards: 3, abbesswax: 1, secs: 300, stats: { dmgp: 22, leech: 4, regen: 8 }, line: "+{dmgp}% dmg · {leech}% leech · +{regen} life / 5 s", lore: "Rendered from the Abbess's own candle. Only she ever burned this cold." }
 ranks:
   - { name: "Wick-Trimmer", xp: 0 }
   - { name: "Tallow-Wife",  xp: 100 }

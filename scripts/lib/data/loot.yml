@@ -16,6 +16,7 @@ drops:
   ringer:     { chance: 1, count: 2, ilvl: 11, minTier: gilded, relic: 0.3 }
   warden:     { chance: 1, count: 3, ilvl: 13, minTier: gilded, relic: 0.35 }
   hangman:    { chance: 1, count: 3, ilvl: 15, minTier: gilded, relic: 0.45 }
+  abbess:     { chance: 1, count: 3, ilvl: 17, minTier: gilded, relic: 0.55 }
 bag: 24
 # base items: slot, implicit stat at ilvl 1 and its growth per ilvl
 bases:

@@ -35,6 +35,12 @@ export const ORCH_HALF = 4.5;
 export const ORCHARD = { x: 62, z: 6, r: 18 };
 export const GIBBETS = [{ id: "g1", x: 52, z: 15 }, { id: "g2", x: 72, z: 14 }, { id: "g3", x: 66, z: -6 }];
 export const GALLOWS = { x: 62, z: 5, r: 9 };
+// under the Bell Crypt, west through a gap in its piers: the Bone Stair drops into the Ossuary of Saint Ysolde,
+// where the Abbess keeps the third lantern among her sleeping sisters. Floor only from quest stage 23.
+export const OSS_PATH = [[-11, -256], [-20, -260], [-30, -264]];
+export const OSS_HALF = 3.6;
+export const OSSUARY = { x: -42, z: -266, r: 14 };
+export const RELIQUARY = { x: -48, z: -268 }; // her dais, west end
 const segDist = (x, z, pts, half) => {
   let d = Infinity;
   for (let i = 0; i < pts.length - 1; i++) {
@@ -56,7 +62,10 @@ export function fenDist(x, z) {
 export function orchDist(x, z) {
   return Math.min(segDist(x, z, ORCH_PATH, ORCH_HALF), Math.hypot(x - ORCHARD.x, z - ORCHARD.z) - ORCHARD.r);
 }
-export function floorDist(x, z, abbeyOpen = true, naveOpen = true, fenOpen = true, orchOpen = true) {
+export function ossDist(x, z) {
+  return Math.min(segDist(x, z, OSS_PATH, OSS_HALF), Math.hypot(x - OSSUARY.x, z - OSSUARY.z) - OSSUARY.r);
+}
+export function floorDist(x, z, abbeyOpen = true, naveOpen = true, fenOpen = true, orchOpen = true, ossOpen = true) {
   let d = Math.hypot(x - HUB.x, z - HUB.z) - HUB.r;
   for (const c of COURTS) d = Math.min(d, Math.hypot(x - c.x, z - c.z) - c.r);
   d = Math.min(d, segDist(x, z, ROAD, ROAD_HALF));
@@ -65,7 +74,8 @@ export function floorDist(x, z, abbeyOpen = true, naveOpen = true, fenOpen = tru
   const n = naveOpen && abbeyOpen ? naveDist(x, z) : Infinity;
   const fd = fenOpen ? fenDist(x, z) : Infinity;
   const od = orchOpen ? orchDist(x, z) : Infinity;
-  return Math.min(d, a, n, fd, od); // < 0 = on the floor
+  const os = ossOpen && naveOpen && abbeyOpen ? ossDist(x, z) : Infinity;
+  return Math.min(d, a, n, fd, od, os); // < 0 = on the floor
 }
 
 // the named stretches of Z01: what the banner says when a Bearer walks into one
@@ -79,6 +89,8 @@ export const AREAS = [
   { id: "abbey", name: "The Ashen Abbey", sub: "the choir sings with no mouths" },
   { id: "nave", name: "The Burned Nave", sub: "the roof came down on the faithful mid-hymn" },
   { id: "crypt", name: "The Bell Crypt", sub: "the Ninth Bell has not stopped ringing" },
+  { id: "bonestair", name: "The Bone Stair", sub: "every step a sister who would not leave" },
+  { id: "ossuary", name: "The Ossuary of Saint Ysolde", sub: "ten thousand skulls, and all of them listening" },
   { id: "fenpath", name: "The Fen Path", sub: "the lanterns went west, once" },
   { id: "fen", name: "The Lanternmere", sub: "the water keeps what it was given" },
   { id: "orchpath", name: "The Gallows Path", sub: "the debtors walked it barefoot" },
@@ -92,6 +104,8 @@ export function areaAt(x, z) {
   if (Math.hypot(x - ORCHARD.x, z - ORCHARD.z) < ORCHARD.r) return by("orchard");
   if (x > 14 && segDist(x, z, ORCH_PATH, ORCH_HALF) < 0.5) return by("orchpath");
   if (Math.hypot(x - COURTS[0].x, z - COURTS[0].z) < COURTS[0].r) return by("toll");
+  if (Math.hypot(x - OSSUARY.x, z - OSSUARY.z) < OSSUARY.r) return by("ossuary");
+  if (x < -12 && z < -250 && segDist(x, z, OSS_PATH, OSS_HALF) < 0.5) return by("bonestair");
   if (Math.hypot(x - CRYPT.x, z - CRYPT.z) < CRYPT.r) return by("crypt");
   if (z < -197 && segDist(x, z, NAVE, NAVE_HALF) < 0.5) return by("nave");
   if (Math.hypot(x - ABBEY.x, z - ABBEY.z) < ABBEY.r) return by("abbey");

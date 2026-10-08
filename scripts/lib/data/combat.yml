@@ -12,6 +12,7 @@ ringer: { hp: 1300, perExtra: 0.55, knellDmg: 28, knellR: 4.5, knellWind: 1.1, p
 # phase II snuffs the waystones and raises drowned pilgrims, phase III is both at once with a breath between
 warden: { hp: 1700, perExtra: 0.55, tideDmg: 26, tideR: 5, tideWind: 1.2, lightDmg: 18, lightR: 1.8, lightWind: 1.0, lightStep: 0.28, lightCount: 5, pauseA: 2.4, pauseB: 1.9, recoverC: 1.3, addEvery: 15, swingDmg: 14, xp: 800, resetAfter: 6 }
 hangman: { hp: 2100, perExtra: 0.55, nooseDmg: 22, nooseR: 1.7, nooseWind: 1.3, trapDmg: 24, trapR: 2.1, trapRing: 6, trapCount: 9, trapWind: 1.4, pauseA: 2.3, pauseB: 1.8, recoverC: 1.2, addEvery: 14, swingDmg: 16, xp: 1000, resetAfter: 6 }
+abbess: { hp: 2600, perExtra: 0.55, waveDmg: 20, waveR: 2.2, waveWind: 1.2, waveStep: 0.45, waves: 4, lineDmg: 26, lineR: 1.6, lineWind: 1.3, lineLen: 7, swingDmg: 18, pauseA: 2.2, pauseB: 1.7, recoverC: 1.2, addEvery: 16, xp: 1300, resetAfter: 6 }
 levels: [0, 60, 150, 280, 450, 680, 960, 1300, 1750, 2300]
 guard: { window: 1.4, cd: 8, riposte: 22, reach: 3 }
 # ancestry traits (the Bearer's origin, picked at the character screen): small, never superior stats
