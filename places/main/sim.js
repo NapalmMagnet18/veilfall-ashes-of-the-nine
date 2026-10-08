@@ -44,8 +44,8 @@ const LINES = {
   6: "Maelin Sore: The yard is crawling? Then quiet it. Nothing that sings without a mouth should be left standing.",
   7: "Maelin Sore: Wax saints in the yard... they poured the faithful over the dead so they'd remember. Listen to them. Wax keeps what stone forgets.",
   8: "Maelin Sore: A door that keeps its own counsel. Lay your hand on it before you come back to me.",
-  9: "Maelin Sore: The Ninth Bell. My mother sang of it: the Nine lit eight lanterns and hid the ninth inside the bell, so no hand could carry it off. Someone is ringing it from the inside, Bearer. Take this, and rest. The Abbey has waited this long.",
-  10: "Maelin Sore: The door won't hold forever. When it opens, I want you standing in front of it.",
+  9: "Maelin Sore: You touched the door? Sit, Bearer. Tell me everything.",
+  10: "Maelin Sore: The Ninth Bell. My mother sang of it: the Nine lit eight lanterns and hid the ninth inside the bell, so no hand could carry it off. Someone is ringing it from the inside. Take this, and rest. When that door opens, I want you standing in front of it.",
 };
 // the Abbey chapter: where it begins, the three saints that speak, the door that won't
 const ABBEY_YARD = { x: 0, z: -176, r: 18 };
