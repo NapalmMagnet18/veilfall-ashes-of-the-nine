@@ -6,6 +6,7 @@ drops:
   deacon: [45, 80]
   bailiff: 12000        # 1g 20s, once per kill to each eligible player
   ringer: 18000         # 1g 80s, the Ringer of the Ninth Bell
+  hangman: 30000        # 3g, the Hangman of Saint Corvin
   warden: 22000         # 2g 20s, the Lantern Warden of the Lanternmere
 quests:
   Z01-MAIN-05: 300      # 3s turn-in
