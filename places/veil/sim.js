@@ -6,7 +6,7 @@ const WIND = "/cdn/moodboard-gothic-horror/ambience-high-mountain-ravine-wind-ho
 export const cadence = "1s";
 export function tick(ctx) {
   if (!ctx.place.players.length) return;
-  const onRoad = ctx.world.players.some((p) => p.place === "main" && !p.state?.menu);
+  const onRoad = ctx.world.players.some((p) => p.place === "main" && p.state?.charId && !p.state?.menu);
   const now = ctx.music.now();
   if (!onRoad && now && now.ref !== THEME) ctx.music.play(THEME, { fade: 2.5, volume: 0.75 });
   else if (!onRoad && !now) ctx.music.play(THEME, { fade: 2.5, volume: 0.75 });
