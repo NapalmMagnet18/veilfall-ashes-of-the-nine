@@ -714,9 +714,12 @@ nave-wall-w4:
   rotation: {yaw: 90}
   tags: [abbey, nave, z01-dressing]
 ninth-bell:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 4.5, z: 0}, id: ninth-bell-glow, light: {color: "#ffb35a", distance: 14, intensity: 6, kind: point}}, {feetPosition: {x: 0, y: 9, z: 3}, id: ninth-bell-moon, light: {color: "#6DB8C0", distance: 22, intensity: 3, kind: point}}]
   feetPosition: {x: 0, y: 0, z: -259}
   id: ninth-bell
-  material: {kind: scripted, script: engine/blueprint}
-  physics: none
-  primitive: {depth: 9, height: 9, kind: box, width: 9}
-  tags: [blueprint]
+  model: {forward: "+z", id: /cdn/value.631a9b6409554b72ded306f638c008a9a9f3bc2dc09be4021cb93b7790b0b329.glb}
+  physics: {body: static, collider: box}
+  receiveShadow: true
+  rotation: {yaw: 0}
+  tags: [abbey, crypt, z01-dressing]
