@@ -430,6 +430,72 @@ en-p7:
   visible: true
   visibleTo: all
   yaw: 8.30410025306481
+rd-boneheap-1:
+  castShadow: true
+  feetPosition: {x: -3.54, y: 0, z: -28.6}
+  id: rd-boneheap-1
+  model: /cdn/value.2349f5b2a205dcdb7fa4d7bfb654295f63819e09024f4d115676bb8f57ea0537.glb
+  physics: static
+  receiveShadow: true
+  rotation: {yaw: 114}
+  tags: [road-dressing, boneheap]
+rd-boneheap-2:
+  castShadow: true
+  feetPosition: {x: -1.16, y: 0, z: -44.2}
+  id: rd-boneheap-2
+  model: /cdn/value.2349f5b2a205dcdb7fa4d7bfb654295f63819e09024f4d115676bb8f57ea0537.glb
+  physics: static
+  receiveShadow: true
+  rotation: {yaw: 351}
+  tags: [road-dressing, boneheap]
+rd-boneheap-3:
+  castShadow: true
+  feetPosition: {x: 8.67, y: 0, z: -60.6}
+  id: rd-boneheap-3
+  model: /cdn/value.2349f5b2a205dcdb7fa4d7bfb654295f63819e09024f4d115676bb8f57ea0537.glb
+  physics: static
+  receiveShadow: true
+  rotation: {yaw: 19}
+  tags: [road-dressing, boneheap]
+rd-gibbet-2:
+  castShadow: true
+  children: [{feetPosition: {x: 1.1, y: 1.75, z: 0}, light: {color: oklch(0.78 0.15 55), distance: 7, intensity: 3, kind: point}}]
+  feetPosition: {x: 18.87, y: 0, z: -49}
+  id: rd-gibbet-2
+  model: /cdn/value.406b9c00757d0bbec005d0c122246c4dbdef6515e4f2b8501aad10482f3a510d.glb
+  physics: static
+  receiveShadow: true
+  rotation: {yaw: 157}
+  tags: [road-dressing, gibbet]
+rd-reliquary-1:
+  castShadow: true
+  children: [{feetPosition: {x: -0.2, y: 1.35, z: -0.02}, light: {color: oklch(0.78 0.15 55), distance: 6, intensity: 2, kind: point}}]
+  feetPosition: {x: 6.48, y: 0, z: -20.8}
+  id: rd-reliquary-1
+  model: /cdn/value.3cb51fb3edc8baa35cda1a3e29fe6f3e2294dbb59c778d668295d99e1e16092a.glb
+  physics: static
+  receiveShadow: true
+  rotation: {yaw: 3}
+  tags: [road-dressing, reliquary]
+rd-reliquary-2:
+  castShadow: true
+  feetPosition: {x: 10.11, y: 0, z: -35.4}
+  id: rd-reliquary-2
+  model: /cdn/value.3cb51fb3edc8baa35cda1a3e29fe6f3e2294dbb59c778d668295d99e1e16092a.glb
+  physics: static
+  receiveShadow: true
+  rotation: {yaw: 150}
+  tags: [road-dressing, reliquary]
+rd-reliquary-3:
+  castShadow: true
+  children: [{feetPosition: {x: -0.2, y: 1.35, z: -0.02}, light: {color: oklch(0.78 0.15 55), distance: 6, intensity: 2, kind: point}}]
+  feetPosition: {x: -0.11, y: 0, z: -52.8}
+  id: rd-reliquary-3
+  model: /cdn/value.3cb51fb3edc8baa35cda1a3e29fe6f3e2294dbb59c778d668295d99e1e16092a.glb
+  physics: static
+  receiveShadow: true
+  rotation: {yaw: 70}
+  tags: [road-dressing, reliquary]
 ruin-road:
   feetPosition: {x: 0, y: 0, z: 0}
   id: ruin-road
