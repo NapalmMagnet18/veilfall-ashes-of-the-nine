@@ -1,6 +1,6 @@
 # Abbey graves. argv after --: lancet | waxcap | broken | ledger. Front faces Blender -Y (glTF +z).
 import sys; sys.path.insert(0, "art/abbey")
-from kit import *
+from saintkit import *
 V = sys.argv[sys.argv.index("--") + 1]
 SEED = {"lancet": 5, "waxcap": 6, "broken": 7, "ledger": 8}[V]
 reset(); M = abbey_mats(); R = random.Random(SEED * 17)

@@ -2,7 +2,7 @@
 #   a: hands clasped low cradling melted candles   b: right arm raised with a stone lantern of memory-light
 #   c: bowed, hands pressed in prayer, a dried-blood sash across the chest
 import sys; sys.path.insert(0, "art/abbey")
-from kit import *
+from saintkit import *
 V = sys.argv[sys.argv.index("--") + 1]
 SEED = {"a": 1, "b": 2, "c": 3}[V]
 reset(); M = abbey_mats(); R = random.Random(SEED * 31)
