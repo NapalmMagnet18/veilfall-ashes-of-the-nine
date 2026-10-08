@@ -12,6 +12,7 @@ export const FR = {
   btnhot: U("11da33d216fa2a9ff50216ec30653b9e9aa047f0606e6bad8de4c4ff767a3de4"),
   slothot: U("152e0e3dca8080958e96297d180738dd46f2ecd43c02f2d1e4a43c5e9f09757a"),
   div: U("13fd9814ade4243077f8fe969333ce0f6ce52f7c79ec82eaaf5d6c8916ed95a3"),
+  thin: U("539265c044e21cd672fcba79cb0e1c8fda1d8035563e1bc9d50719bc71c545bf"),
   ornate: U("75a658d631981a665ceca8773fec687cb292ed5ca6833b19d6156b214b7e9bc1"),
   dull: U("419a89626be7e028858090009f767cdc899e865773ca5891ed2e3a53434aa2ac"),
   cardon: U("e395b42f71101818ed0b0b78153d07acd1f2f99b1b29c415db1c6c877b098c7e"),
@@ -37,4 +38,6 @@ export const FRAME_CSS = `<style>
 #vm .btn[disabled],#vfshop .bt.off{border-image-source:url(${FR.dull})!important;opacity:.8}
 @media (pointer:coarse),(max-width:700px){#vf .ornate{border-width:14px!important;border-image-width:14px!important}}
 .dv{height:14px;margin:5px auto 6px;max-width:100%;width:min(100%,384px);background:url(${FR.div}) center/contain no-repeat;image-rendering:pixelated;opacity:.9;pointer-events:none}
+#vf .plate.thin{border:18px solid transparent!important;border-image:url(${FR.thin}) 24 fill / 18px stretch!important;image-rendering:pixelated;background:none!important;box-shadow:none!important;padding:2px 8px!important}
+@media (pointer:coarse),(max-width:700px){#vf .plate.thin{border-width:12px!important;border-image-width:12px!important}}
 </style>`;

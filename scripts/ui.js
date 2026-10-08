@@ -204,7 +204,7 @@ export default function (ctx, player) {
   const touch = typeof matchMedia !== "undefined" && matchMedia("(pointer: coarse)").matches;
   const rail = "calc(var(--spawn-chrome-reservation-right-inset, 50px) + 24px)";
   return `${THEME}${FRAME_CSS}<div id="vf" class="fixed inset-0 pointer-events-none">
-  <div class="absolute plate qp" style="left:24px;top:24px;max-width:300px;animation:vfin .4s">
+  <div class="absolute plate qp thin" style="left:24px;top:24px;max-width:300px;animation:vfin .4s">
     <div class="lbl">${q.stage >= 5 ? "Complete" : "Quest"} · Broken Lantern Road</div>
     <div style="font-size:19px;color:var(--wax)">${qt}</div><div class="dv"></div>
     <div style="font-size:15px">› ${qo}<span style="color:var(--wax)">${prog}</span></div>
