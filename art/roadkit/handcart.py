@@ -8,7 +8,7 @@ RES = {"wood": 1024, "canvas": 1024, "tar": 1024, "tallow": 512, "slate": 512}
 _tex = common.tex
 common.tex = lambda k, s, n=256: _tex(k, s, RES.get(k, 256))
 KINDS.update({
-    "tar": ("#0b0a09", "#2a221c", .4, 0, 2), "canvas": ("#4f4335", "#9a8b6c", .95, 0, 2),
+    "tar": ("#0b0a09", "#2a221c", .4, 0, 2), "canvas": ("#3a3027", "#7d6d53", .95, 0, 2),
     "patch": ("#3a1c18", "#7a4236", .95, 0, 2), "tallow": KINDS["wax"], "straw": ("#4e3f22", "#a08850", .95, 0, 3),
     "tonic": ("#260505", "#8e2a22", .12, 0, .4), "glass": ("#0e1416", "#2c3a3c", .08, 0, .3),
     "brass": ("#4e3a1c", "#c49c63", .35, 1, 1), "slate": ("#121419", "#2c2e36", .7, 0, 2),
@@ -109,7 +109,7 @@ for x in (-.42, .42):
     jitter(sh, .006, 5, int(x * 10) + 5)
     for y, z in ((-1.1, .59), (-.75, .62)): prim("torus", M["iron"], loc=(x, y, z), rot=(math.pi / 2, 0, 0), major_radius=.052, minor_radius=.01, major_segments=10, minor_segments=4)
 tube([(-.47, -2.1, .33), (.47, -2.1, .33)], .03, 6, M["wood"])
-rk = prim("ico", M["stone"], loc=(0, -2.33, .1), scl=(.62, .26, .14), subdivisions=3)
+rk = prim("ico", M["stone"], loc=(0, -2.33, .1), scl=(.5, .24, .15), subdivisions=3)
 jitter(rk, .03, 4, 2)
 for i, (x, y) in enumerate(((.42, -2.62), (-.55, -2.5))):
     s2 = prim("ico", M["stone"], loc=(x, y, .04), scl=(.12, .09, .06), subdivisions=2); jitter(s2, .015, 6, 9 + i)
@@ -322,5 +322,10 @@ prim("cyl", M["tallow"], loc=(.95, -.3, .016), rot=(math.pi / 2, 0, .5), vertice
 
 zmin = min((o.matrix_world @ v.co).z for o in bpy.context.scene.objects if o.type == "MESH" for v in o.data.vertices)
 print("ZMIN", zmin)
+for ob in bpy.context.scene.objects:
+    if ob.type == "MESH":
+        for v in ob.data.vertices:
+            if v.co.z < 0: v.co.z = 0
+
 o = finish("handcart")
 print("FILES", proof("handcart", (0, -.4, .9), 7.0, [(.82, 1.3, 1.22), (-.365, 1.3, 1.41), (2.5, -2, 1.5)]))
