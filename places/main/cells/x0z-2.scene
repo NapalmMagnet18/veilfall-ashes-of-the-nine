@@ -1,0 +1,9 @@
+# spawn-scene v2 yaml x0z-2
+abbey-facade:
+  feetPosition: {x: 0, y: {terrain: 0}, z: -199}
+  id: abbey-facade
+  material: {kind: scripted, script: engine/blueprint}
+  physics: none
+  primitive: {depth: 8, height: 14, kind: box, width: 24}
+  rotation: 0
+  tags: [abbey, blueprint]

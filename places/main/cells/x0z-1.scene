@@ -1,4 +1,36 @@
 # spawn-scene v2 yaml x0z-1
+abbey-belltower:
+  feetPosition: {x: -14, y: {terrain: 0}, z: -192}
+  id: abbey-belltower
+  material: {kind: scripted, script: engine/blueprint}
+  physics: none
+  primitive: {depth: 7, height: 24, kind: box, width: 7}
+  rotation: 0
+  tags: [abbey, blueprint]
+abbey-cloister:
+  feetPosition: {x: -17, y: {terrain: 0}, z: -172}
+  id: abbey-cloister
+  material: {kind: scripted, script: engine/blueprint}
+  physics: none
+  primitive: {depth: 18, height: 5, kind: box, width: 4}
+  rotation: 0
+  tags: [abbey, blueprint]
+abbey-saints:
+  feetPosition: {x: 11, y: {terrain: 0}, z: -180}
+  id: abbey-saints
+  material: {kind: scripted, script: engine/blueprint}
+  physics: none
+  primitive: {depth: 12, height: 2.5, kind: box, width: 12}
+  rotation: 0
+  tags: [abbey, blueprint]
+abbey-seal:
+  feetPosition: {x: 12.3, y: {terrain: 0}, z: -118.7}
+  id: abbey-seal
+  material: {kind: scripted, script: engine/blueprint}
+  physics: none
+  primitive: {depth: 1.2, height: 4.5, kind: box, width: 13}
+  rotation: 31.6
+  tags: [abbey, blueprint]
 bailiff:
   animated3DCharacter: {modelId: cdn/model-giant-wax-bailiff-tax-collector-crown-of-burning-candles-iron-ledger-chained-to-chest-bell-mace-dark-fantasy-boss.glb}
   behavior: [scripts/humanoid-locomotion.js, scripts/bailiff.js]
