@@ -116,6 +116,14 @@ abbey-court:
   primitive: {kind: scripted, params: {door: 19, r: 19}, script: scripts/gen/abbey-court.js, seed: 31}
   receiveShadow: true
   tags: [abbey, z01-dressing]
+abbey-front-uplight-l:
+  feetPosition: {x: -9, y: 1.0962149207244551, z: -191}
+  id: abbey-front-uplight-l
+  light: {aim: {x: -2, y: 14.096214920724455, z: -199}, angle: 32, color: "#ff9a50", distance: 28, intensity: 60, kind: spot, penumbra: 0.8}
+abbey-front-uplight-r:
+  feetPosition: {x: 9, y: 1.0962149207244551, z: -191}
+  id: abbey-front-uplight-r
+  light: {aim: {x: 2, y: 16.096214920724456, z: -199}, angle: 32, color: "#7fb6c8", distance: 28, intensity: 70, kind: spot, penumbra: 0.8}
 abbey-litter-0:
   castShadow: true
   children: [{feetPosition: {x: 0, y: 0.6, z: 0}, id: glow, light: {color: "#ffa45a", distance: 6, intensity: 2.2, kind: point}}]
@@ -257,6 +265,10 @@ abbey-seal:
   receiveShadow: true
   rotation: 148.4
   tags: [abbey, z01-dressing]
+abbey-tower-bell-glow:
+  feetPosition: {x: -14, y: 15.096214920724455, z: -192}
+  id: abbey-tower-bell-glow
+  light: {color: "#6db8c0", distance: 14, intensity: 25, kind: point}
 abbey-tower-wash:
   feetPosition: {x: -8, y: 3.113860854997341, z: -186}
   id: abbey-tower-wash
