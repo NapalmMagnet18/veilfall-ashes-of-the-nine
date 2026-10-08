@@ -806,6 +806,42 @@ en-p9/head-flame:
   fx: {script: "fx\npop f rate=flick(.5,.3)*18 on=point() life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)"}
   id: en-p9/head-flame
   parent: en-p9
+pen-wheel-1:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 3.6, z: 0}, id: glow, light: {color: oklch(.8 .14 60), distance: 6, intensity: 1.2, kind: point}}]
+  feetPosition: {x: 20.361608216931806, y: {terrain: -0.1}, z: -118.48131802034966}
+  id: pen-wheel-1
+  physics: static
+  primitive: {kind: scripted, params: {h: 4.015022978559136, tilt: 13.0183248934336}, script: scripts/gen/penitent-wheel.js, seed: 501}
+  rotation: 164.31832493282855
+  tags: [abbey, z01-dressing, penitent-wheel]
+pen-wheel-2:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 3.6, z: 0}, id: glow, light: {color: oklch(.8 .14 60), distance: 6, intensity: 1.2, kind: point}}]
+  feetPosition: {x: 9.669332366514237, y: {terrain: -0.1}, z: -131.67695210471834}
+  id: pen-wheel-2
+  physics: static
+  primitive: {kind: scripted, params: {h: 3.0481171955354514, tilt: 6.067543557379395}, script: scripts/gen/penitent-wheel.js, seed: 502}
+  rotation: 96.95108170621097
+  tags: [abbey, z01-dressing, penitent-wheel]
+pen-wheel-3:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 3.6, z: 0}, id: glow, light: {color: oklch(.8 .14 60), distance: 6, intensity: 1.2, kind: point}}]
+  feetPosition: {x: 12.949747468305832, y: {terrain: -0.1}, z: -152.94974746830584}
+  id: pen-wheel-3
+  physics: static
+  primitive: {kind: scripted, params: {h: 4.002909958641976, tilt: 18.73908686172217}, script: scripts/gen/penitent-wheel.js, seed: 503}
+  rotation: 103.68930925615132
+  tags: [abbey, z01-dressing, penitent-wheel]
+pen-wheel-4:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 3.6, z: 0}, id: glow, light: {color: oklch(.8 .14 60), distance: 6, intensity: 1.2, kind: point}}]
+  feetPosition: {x: -4.260990336999411, y: {terrain: -0.1}, z: -152.8695048315003}
+  id: pen-wheel-4
+  physics: static
+  primitive: {kind: scripted, params: {h: 3.783152265753597, tilt: 16.9100638711825}, script: scripts/gen/penitent-wheel.js, seed: 504}
+  rotation: 43.136595636606216
+  tags: [abbey, z01-dressing, penitent-wheel]
 rd-boneheap-4:
   castShadow: true
   feetPosition: {x: 3.3, y: 0, z: -77.2}
