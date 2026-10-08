@@ -111,9 +111,9 @@ export function update(ctx, dt) {
     const due = (c.marks ?? []).filter((m) => !m.done && now >= m.at);
     if (due.length) {
       let loud = false;
-      for (const m of due) {
+      for (const [i, m] of due.entries()) {
         hurtPlayers(ctx, m, m.r, m.dmg, now);
-        ctx.emit("fx", { position: { x: m.x, y: m.y + 0.1, z: m.z }, script: BONES, params: { r: m.r } });
+        if (i % 2 === 0) ctx.emit("fx", { position: { x: m.x, y: m.y + 0.1, z: m.z }, script: BONES, params: { r: m.r } });
         if (!loud) { loud = true; ctx.emit("playSound", { clip: sfx("bone-spikes-erupt-through-stone-floor-crack"), position: m, volume: 0.85, maxDistance: 60 }); }
       }
       s.cast = { ...c, marks: c.marks.map((m) => (now >= m.at ? { ...m, done: true } : m)) };
