@@ -128,7 +128,7 @@ export function tick(ctx) {
   if (!("oswin" in objs)) ctx.spawn("oswin", { tags: ["npc", "vendor"], physics: "character", feetPosition: { x: OSWIN.x, z: OSWIN.z, y: { terrain: 0 } }, rotation: { lookAt: { x: 0, y: 0, z: 4.5 } },
     model: "cdn/model-hunched-old-peddler-man-leather-apron-candle-bundles-on-back.glb", behavior: ["scripts/humanoid-locomotion.js"], state: { name: "Oswin Tallowmonger" } });
   if (!("crier" in objs)) ctx.spawn("crier", { tags: ["npc"], physics: "character", feetPosition: { x: 3.2, z: 7.4, y: { terrain: 0 } },
-    model: "cdn/model-gaunt-old-hooded-town-crier-monk-patched-grey-robes-iron-handbell-on-belt-scroll-case-dark-fantasy.glb", layout: { maxExtents: { y: 1.75 } }, castShadow: true,
+    model: "/cdn/value.fe868b233c1ac6e6cc4bf419d87cbd276ffeffb08bc2f44f23fc3b48057f42f6.glb", layout: { maxExtents: { y: 1.75 } }, castShadow: true,
     behavior: ["scripts/humanoid-locomotion.js", "scripts/crier.js"], state: { name: "Brother Ledd", turnTo: "none" },
     children: [{ id: "lamp", feetPosition: { x: 0.32, y: 1.05, z: -0.15 }, light: { kind: "point", color: "oklch(0.8 0.13 65)", intensity: 1.6, distance: 6 } }] });
   PETITIONS.forEach(([x, z], i) => {
