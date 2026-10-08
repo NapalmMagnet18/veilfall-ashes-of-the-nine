@@ -15,7 +15,7 @@ atmosphere:
   look:
     script: scripts/look-default.js
   moon:
-    intensity: 4.2
+    intensity: 7
     enabled: true
     phase: 0.5
     size: 1.3
@@ -31,10 +31,12 @@ atmosphere:
     direction: 200
     speed: 3
   hemisphere:
-    groundColor: "#15120f"
-    intensity: 0.55
-    skyColor: "#3a4a66"
+    groundColor: "#1c1712"
+    intensity: 2.2
+    skyColor: "#4a6290"
   wet: 0.55
+  ambient:
+    light: {color: "#2a3550", intensity: 0.6}
 defaultSpawnPoint:
   x: 0
   y:
