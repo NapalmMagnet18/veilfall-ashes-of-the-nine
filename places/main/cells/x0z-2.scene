@@ -25,8 +25,8 @@ abbey-facade:
   castShadow: true
   feetPosition: {x: 0, y: -3, z: -199}
   id: abbey-facade
-  model: {id: /cdn/value.7ed95daacf1b4a9d2bba90de827510c3bd227b5dd5b099a9f8c494f3b4e4dfb8.glb, materials: {wax: {color: oklch(.42 .03 75), roughness: 0.45}}}
-  physics: {body: static, collider: box}
+  model: {id: /cdn/value.d630af2d76ab6292d985033cf37473c2b9cf35ae9eb015ad2de90fe6962e36e8.glb, materials: {wax: {color: oklch(.42 .03 75), roughness: 0.45}}}
+  physics: none
   receiveShadow: true
   tags: [abbey, z01-dressing]
 abbey-litter-11:
