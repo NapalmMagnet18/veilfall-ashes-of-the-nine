@@ -250,7 +250,7 @@ function crosswound(ctx) {
     ctx.emit("playSound", { clip: sfx("dull-click-denied"), position: ctx.self.feetPosition, volume: 0.3 });
     return;
   }
-  me.cwAt = now + cw.cd * 1000; s.edge -= cw.cost;
+  me.cwAt = now + cw.cd * 1000; s.cwReadyAt = me.cwAt; s.edge -= cw.cost;
   const f = ctx.self.feetPosition, aim = me.aim ?? f;
   let dx = aim.x - f.x, dz = aim.z - f.z; const d = Math.hypot(dx, dz) || 1; dx /= d; dz /= d;
   s.faceYaw = yawTo(dx, dz); s.goal = null;
@@ -278,7 +278,7 @@ function griefstep(ctx) {
   me.dash = { dx, dz, until: now + g.time * 1000 };
   s.iframesUntil = now + g.iframes * 1000;
   s.faceYaw = yawTo(dx, dz); s.goal = null; s.target = null; me.route = null;
-  if (s.ancestry === "fenborn") me.hasteUntil = now + (g.time + C.traits.fenborn.secs) * 1000;
+  if (s.ancestry === "fenborn") me.hasteUntil = now + (g.time + C.traits.fenborn.secs) * 1000; s.hasteUntil = me.hasteUntil;
   if (s.ancestry === "skyforged") s.edge = Math.min(100, (s.edge ?? 0) + C.traits.skyforged.edge);
   ctx.emit("fx", { position: { x: f.x, y: f.y + 0.9, z: f.z }, script: DASH });
   ctx.emit("playSound", { clip: sfx("ghostly-dash-whoosh-glass-chime"), position: f, volume: 0.7 });
@@ -414,6 +414,11 @@ export function update(ctx, dt) {
   }
   traitTick(ctx, now);
   zoneTick(ctx, s, f, now);
+  // hurt is the hurt player's alone: the screen's edge reddens as life runs out
+  if (!s.dead) {
+    const fr = (s.hp ?? 1) / (s.maxHp ?? 1), vig = fr < 0.35 ? Math.round((0.18 + (0.35 - fr) * 1.1) * 20) / 20 : 0;
+    if (vig !== (me.vig ?? 0)) { me.vig = vig; ctx.self.vignette = vig; }
+  }
   if (me.animOff && now > me.animOff) { ctx.self.anim.attack = null; me.animOff = 0; }
 
   // death: a beat, then back on your feet at the Wayside Fire
@@ -459,8 +464,13 @@ export function update(ctx, dt) {
     const l = Math.hypot(v.x, v.z); if (l > C.hero.speed) { v.x *= C.hero.speed / l; v.z *= C.hero.speed / l; }
   } else if (s.target) {
     const foe = ctx.getObject(s.target);
-    if (!isFoe(foe)) s.target = null;
+    if (!isFoe(foe)) { if (s.foe && s.foe.id === s.target && !s.foe.gone) s.foe = { ...s.foe, hp: 0, gone: true, at: now }; s.target = null; }
     else {
+      // the target plate reads this: written when the foe or its life changes, never per tick
+      if (!foe.tags?.includes("boss")) {
+        const fk = foe.state?.kind ?? "pilgrim", fhp = Math.max(0, Math.round(foe.state?.hp ?? 0));
+        if (!s.foe || s.foe.id !== foe.id || s.foe.hp !== fhp) s.foe = { id: foe.id, kind: fk, hp: fhp, max: Math.max(fhp, C[fk]?.hp ?? fhp), at: now };
+      }
       const d = flat(foe.feetPosition, f);
       if (d > C.ashcut.reach) {
         if (!me.chase || flat(me.chase, foe.feetPosition) > 1) { me.chase = { ...foe.feetPosition }; me.route = null; }

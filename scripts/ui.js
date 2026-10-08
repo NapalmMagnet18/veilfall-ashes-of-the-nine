@@ -24,6 +24,13 @@ const THEME = `<style>
 #vf .slot .cd{position:absolute;left:0;right:0;bottom:0;background:rgba(0,0,0,.65)}
 #vf .slot .n{position:absolute;right:4px;bottom:1px;font-size:13px}
 #vf .dim{opacity:.4}
+#vf .slot img.ic{position:absolute;inset:5px;width:calc(100% - 10px);height:calc(100% - 10px);object-fit:cover;image-rendering:pixelated;filter:drop-shadow(0 1px 0 #000)}
+#vf .slot .cdn{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:20px;color:#f2d38a;text-shadow:0 2px 0 #000,0 0 6px #000}
+#vf .slot .k,#vf .slot .n{z-index:2;text-shadow:0 1px 0 #000,0 0 4px #000}
+#vf .slot.ready{animation:vfready .5s}
+@keyframes vfready{0%{filter:brightness(2.2)}100%{filter:none}}
+#vf .tf .bar2{height:12px;background:#120e0c;box-shadow:0 0 0 2px #0d0b0a,0 0 0 3px #5a4a33;position:relative;margin-top:4px}
+#vf .chip{display:flex;align-items:center;gap:6px;padding:4px 10px;font-size:12px;letter-spacing:.08em}
 #vf .ph{display:none} @media (pointer:coarse),(max-width:700px),(max-height:520px){#vf .dk{display:none!important} #vf .ph{display:block} #vf .qp{left:10px!important;top:10px!important;max-width:210px!important;padding:6px 9px!important} #vf .qp div{font-size:13px!important} #vf .qp .lbl{font-size:10px!important} #vf .qp.bossup{display:none!important}}
 #vf .bar{height:10px;background:#120e0c;box-shadow:0 0 0 2px #0d0b0a,0 0 0 3px #5a4a33;position:relative;margin-top:5px}
 @keyframes vfin{from{opacity:0;transform:translateY(8px)}} @keyframes vffade{to{opacity:0}} @keyframes vfpulse{50%{opacity:.55}}
@@ -205,6 +212,17 @@ export default function (ctx, player) {
   const lo = L[lv - 1] ?? 0, hi = L[lv] ?? lo + 500, xpPct = Math.max(0, Math.min(100, (((s.xp ?? 0) - lo) / (hi - lo)) * 100));
   const boss = ctx.place.state.boss;
   const dashLeft = Math.max(0, (s.dashReadyAt ?? 0) - now), dashPct = Math.min(100, (dashLeft / 3000) * 100);
+  const IC = {"ash": "/cdn/value.11ea8210258744da6aa7d65226e3fda61337efea5eb71fe047d65096b3dc053b.png", "cross": "/cdn/value.13d726eaf2133c0f3838076422f781f3068d081b31dbcd6d880212c2ddda7de3.png", "step": "/cdn/value.eecac6103d8be9ec4c6e6909f2dbd61c3fc4bda234bc585e389c850c1c74e3f3.png", "guard": "/cdn/value.02dc0fd2d6f126cd0a5fd2f2dbfc43058486b706d34ed8ffd30222d57c3d3490.png", "tonic": "/cdn/value.f4e985f51d72e39ecd4691f462076ba4a14206d864edb85895ea8ef710ceccfc.png", "pack": "/cdn/value.961ecd8b3ded845823729ea6364b6a1eb5e20e03cd1090dbdb1b4cda98a6872d.png"};
+  const cdOver = (left, pct) => left > 0 ? `<div class="cd" style="height:${pct}%"></div><div class="cdn">${Math.ceil(left / 1000)}</div>` : "";
+  const cwLeft = Math.max(0, (s.cwReadyAt ?? 0) - now), cwPct = Math.min(100, (cwLeft / (C_CW * 1000)) * 100);
+  const guardLeft = Math.max(0, (s.guardReadyAt ?? 0) - now), guardPct = Math.min(100, guardLeft / 80), guardOn = (s.guardUntil ?? 0) > now;
+  const foe = s.foe, foeOn = foe && !s.dead && (foe.gone ? now - foe.at < 1500 : s.target === foe.id || now - foe.at < 4000);
+  const FOES = { pilgrim: "Wax Pilgrim", deacon: "Wax Deacon" };
+  const chips = [];
+  if (guardOn) chips.push(`<div class="plate chip" style="color:#6DB8C0">◇ GUARDING</div>`);
+  if ((s.hasteUntil ?? 0) > now) chips.push(`<div class="plate chip" style="color:#9fe0c8">» MIST STRIDE ${Math.ceil(((s.hasteUntil ?? 0) - now) / 1000)}s</div>`);
+  if (boss && boss.engaged && !boss.dead && boss.fray) chips.push(`<div class="plate chip" style="color:#e0473a">✕ FRAY ×${boss.fray}</div>`);
+  if (hpPct < 30 && (s.tonics ?? 0) > 0) chips.push(`<div class="plate chip" style="color:#e0473a;animation:vfpulse 1s infinite">♥ DRINK · ${touch ? "TONIC" : "Q"}</div>`);
   const ban = s.banner && now - s.banner.at < 4200 && !s.shop ? s.banner : null;
   const dlg = s.dialog && now - s.dialog.at < 9000 && !s.shop ? s.dialog : null;
   const touch = typeof matchMedia !== "undefined" && matchMedia("(pointer: coarse)").matches;
@@ -232,13 +250,18 @@ export default function (ctx, player) {
     <div class="plate pp" style="padding:6px 10px"><div class="lbl">${s.charName ? s.charName + " · " : ""}Lv ${lv} ${s.ancestry ? s.ancestry[0].toUpperCase() + s.ancestry.slice(1) + " " : ""}Bladewraith</div><div style="width:150px;height:6px;background:#120e0c;margin-top:4px"><div style="height:6px;width:${xpPct}%;background:#9d86e0"></div></div><div style="font-size:13px;margin-top:4px;color:var(--wax)">${coinHTML(s.copper ?? 0, 14)}${s.weapon === "ITEM-001" ? " · Rusted Oathblade" : ""}</div></div>
   </div>
   ${touch ? "" : `<div class="absolute dk sk" style="left:50%;bottom:24px;transform:translateX(-50%);display:flex;gap:10px">
-    <div class="slot"><span class="k">LMB</span>⚔</div>
-    <div class="slot ${edge < 30 ? "dim" : ""}"><span class="k">RMB</span>⚔<span class="n">30</span></div>
-    <div class="slot"><span class="k">SPC</span>»<div class="cd" style="height:${dashPct}%"></div></div>
-    <div class="slot"><span class="k">1</span><span style="color:#9fc4ff;font-size:13px">GUARD</span><div class="cd" style="height:${Math.max(0, Math.min(100, ((s.guardReadyAt ?? 0) - now) / 80))}%"></div></div>
-    <div class="slot ${(s.tonics ?? 0) ? "" : "dim"}"><span class="k">Q</span><span style="color:#e0473a">♥</span><span class="n">${s.tonics ?? 0}</span></div>
-    <div class="slot" style="pointer-events:auto;cursor:pointer" onclick="sendAction('bag')"><span class="k">I</span><span style="font-size:13px">PACK</span></div>
-  </div>`}
+    <div class="slot" title="Ashcut"><img class="ic" src="${IC.ash}"><span class="k">LMB</span></div>
+    <div class="slot ${edge < 30 || cwLeft ? "dim" : ""}" title="Crosswound · 30 Edge"><img class="ic" src="${IC.cross}"><span class="k">RMB</span><span class="n">30</span>${cdOver(cwLeft, cwPct)}</div>
+    <div class="slot" title="Griefstep"><img class="ic" src="${IC.step}"><span class="k">SPC</span>${cdOver(dashLeft, dashPct)}</div>
+    <div class="slot ${guardOn ? "ready" : ""}" title="Guard" style="${guardOn ? "box-shadow:0 0 0 2px #0d0b0a,0 0 14px 3px #6DB8C0" : ""}"><img class="ic" src="${IC.guard}"><span class="k">1</span>${cdOver(guardLeft, guardPct)}</div>
+    <div class="slot ${(s.tonics ?? 0) ? "" : "dim"}" title="Ash Tonic"><img class="ic" src="${IC.tonic}"><span class="k">Q</span><span class="n">${s.tonics ?? 0}</span></div>
+    <div class="slot" title="Pack" style="pointer-events:auto;cursor:pointer" onclick="sendAction('bag')"><img class="ic" src="${IC.pack}"><span class="k">I</span></div>
+  </div>
+  ${chips.length ? `<div class="absolute dk" style="left:50%;bottom:98px;transform:translateX(-50%);display:flex;gap:8px">${chips.join("")}</div>` : ""}`}
+  ${touch && chips.length ? `<div class="absolute" style="left:10px;top:236px;display:flex;flex-direction:column;gap:6px">${chips.join("")}</div>` : ""}
+  ${foeOn ? `<div class="absolute plate tf" style="left:50%;top:${boss && boss.engaged && !boss.dead ? 168 : 24}px;transform:translateX(-50%);width:min(300px,calc(100vw - 2*${rail}));text-align:center;padding:10px 16px;animation:vfin .2s;${foe.gone ? "opacity:.6" : ""}">
+    <div style="display:flex;align-items:baseline;justify-content:center;gap:8px"><span style="font-size:16px;color:${foe.kind === "deacon" ? "#f2b04a" : "var(--wax)"};letter-spacing:.06em">${FOES[foe.kind] ?? "Wax Thing"}</span>${foe.kind === "deacon" ? `<span class="lbl" style="color:#f2b04a">ELITE</span>` : ""}</div>
+    <div class="bar2"><div style="position:absolute;inset:0;width:${(foe.hp / foe.max) * 100}%;background:linear-gradient(#c9402f,#7a1610);transition:width .15s"></div><div style="position:absolute;inset:0;font-size:10px;line-height:12px;color:#e9dfc8;text-shadow:0 1px 0 #000">${foe.gone ? "MELTED" : `${foe.hp} / ${foe.max}`}</div></div></div>` : ""}
   <div class="absolute dk" style="right:24px;bottom:24px"><div class="orb"><div class="fill" style="height:${edge}%;background:radial-gradient(circle at 50% 30%,#f2b04a,#8a4a10 70%)"></div><div class="shine"></div><div class="val">${edge}</div></div><div class="lbl" style="text-align:center;margin-top:8px">Edge</div></div>
   <div class="absolute ph plate" style="left:10px;top:150px;width:170px;padding:2px 6px">
     <div class="lbl" style="font-size:10px">Bladewraith · Lv ${lv} · ${fmt(s.copper ?? 0)}</div>
