@@ -40,7 +40,9 @@ for face, z in ((1, 5.5), (2, 9.0), (3, 12.5), (0, 3.0)):   # stair slits
     c = prism_xz([(-.16, z), (.16, z)] + arch_curve(.16, z + 1.0, 1.0, 4), -4.2, -2.0, M["sooted"]); xform(c, Matrix.Rotation(face * math.pi / 2, 4, "Z")); slits.append(c)
 door = prism_xz([(-.8, 0), (.8, 0)] + arch_curve(.8, 1.9, 1.0, 8), 2.0, 4.2, M["sooted"])  # back door, dark
 boolean(shaft, [inner] + corner_cut() + slits + [door], transfer=True)
-plinth = frustum(3.6, 3.45, -.2, 1.2, M["stone"], "plinth"); boolean(plinth, [frustum(3.0, 3.0, -1, 2, M["sooted"])] + corner_cut()[:1] + [prism_xz([(-.8, -1), (.8, -1)] + arch_curve(.8, 1.9, 1.0, 8), 2.0, 4.2, M["sooted"])], transfer=True)
+plinth = frustum(3.6, 3.45, -.2, 1.2, M["stone"], "plinth"); _cc = corner_cut()
+for _c in _cc[1:]: bpy.data.objects.remove(_c, do_unlink=True)
+boolean(plinth, [frustum(3.0, 3.0, -1, 2, M["sooted"])] + _cc[:1] + [prism_xz([(-.8, -1), (.8, -1)] + arch_curve(.8, 1.9, 1.0, 8), 2.0, 4.2, M["sooted"])], transfer=True)
 for z, hw in ((1.25, 3.42), (8.0, half(8) + .1), (16.0, 3.02)):
     s = frustum(hw, hw - .02, z - .12, z + .12, M["stone"], "course"); boolean(s, [frustum(hw - .5, hw - .5, z - 1, z + 1, M["sooted"])] + corner_cut())
 # corner buttresses on the three standing corners (taper with the shaft)
@@ -185,4 +187,4 @@ for face in range(4):
         if (face == 0 and ox > 0) or (face == 1 and ox < 0): continue
         dd = decal(ox, 20.4, 1.6, 1.4, -2.78, M["sootdecal"]); xform(dd, rot)
 o = finish("abbey-belltower")
-print("FILES", proof("abbey-belltower", (0, 0, 11), 46, [(5, -7, 2, 600), (2, -2, 18, 300), (-6, -5, 4, 400)]))
+print("FILES", proof("abbey-belltower", (0, 0, 11), 46, [(5, -7, 2, 900), (3, -4, 18, 900), (-6, -6, 6, 700), (8, -8, 12, 1500)]))
