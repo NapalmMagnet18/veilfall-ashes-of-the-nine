@@ -853,68 +853,13 @@ wayside-fire/handcart/cart-lantern-2:
   material: {pbr: true}
   parent: wayside-fire/handcart
   tags: [z01-dressing, hub]
-wayside-fire/waystone:
-  feetPosition: {x: 9, y: 0, z: 4}
-  id: wayside-fire/waystone
-  material: {pbr: true}
-  parent: wayside-fire
+waystone:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 1.6, z: -0.75}, id: glyph-light, light: {color: oklch(0.75 0.1 200), distance: 7, intensity: 2, kind: point}}]
+  feetPosition: {x: -9, y: 0, z: 7}
+  id: waystone
+  model: {forward: "+z", id: /cdn/value.f783f422d9a4f9d95b085cec04840cff18609af18ff793d4e0d0d2ff4dfe8f22.glb}
   physics: static
-  primitive: {kind: scripted, params: {candles: [[-0.62, 0.22, -0.38, 0.26], [-0.5, 0.22, -0.46, 0.17], [0.55, 0.22, -0.4, 0.32], [0.67, 0.22, -0.32, 0.15], [-0.4, 0.42, -0.2, 0.22], [0.42, 0.42, -0.22, 0.36], [-0.28, 0, -0.78, 0.12], [0.24, 0, -0.82, 0.2]]}, script: scripts/gen/hub-shrine.js, seed: 1}
-  rotation: {yaw: 66.03751102542182}
-  tags: [z01-dressing, hub]
-wayside-fire/waystone/waystone-candle-1:
-  feetPosition: {x: -0.62, y: 0.515, z: -0.38}
-  fx: {script: "fx\npop f rate=flick(.6,.25)*14 on=point() life=.25..0.4 v=up(.3) size=.05..0.075 acc=buoy(.6)+drag(2) sz=$size*(.6>1:.4>.35) col=hdr(4,2.6,1)>.5:hdr(3,1.2,.3)>hdr(1,.3,.05) a=0>.15:1>.7:.8>0 r=sprite(flame-wisp,add)"}
-  id: wayside-fire/waystone/waystone-candle-1
-  material: {pbr: true}
-  parent: wayside-fire/waystone
-  tags: [z01-dressing, hub]
-wayside-fire/waystone/waystone-candle-2:
-  feetPosition: {x: -0.5, y: 0.42500000000000004, z: -0.46}
-  fx: {script: "fx\npop f rate=flick(.6,.25)*14 on=point() life=.25..0.4 v=up(.3) size=.05..0.075 acc=buoy(.6)+drag(2) sz=$size*(.6>1:.4>.35) col=hdr(4,2.6,1)>.5:hdr(3,1.2,.3)>hdr(1,.3,.05) a=0>.15:1>.7:.8>0 r=sprite(flame-wisp,add)"}
-  id: wayside-fire/waystone/waystone-candle-2
-  material: {pbr: true}
-  parent: wayside-fire/waystone
-  tags: [z01-dressing, hub]
-wayside-fire/waystone/waystone-candle-3:
-  feetPosition: {x: 0.55, y: 0.5750000000000001, z: -0.4}
-  fx: {script: "fx\npop f rate=flick(.6,.25)*14 on=point() life=.25..0.4 v=up(.3) size=.05..0.075 acc=buoy(.6)+drag(2) sz=$size*(.6>1:.4>.35) col=hdr(4,2.6,1)>.5:hdr(3,1.2,.3)>hdr(1,.3,.05) a=0>.15:1>.7:.8>0 r=sprite(flame-wisp,add)"}
-  id: wayside-fire/waystone/waystone-candle-3
-  material: {pbr: true}
-  parent: wayside-fire/waystone
-  tags: [z01-dressing, hub]
-wayside-fire/waystone/waystone-candle-4:
-  feetPosition: {x: 0.67, y: 0.405, z: -0.32}
-  fx: {script: "fx\npop f rate=flick(.6,.25)*14 on=point() life=.25..0.4 v=up(.3) size=.05..0.075 acc=buoy(.6)+drag(2) sz=$size*(.6>1:.4>.35) col=hdr(4,2.6,1)>.5:hdr(3,1.2,.3)>hdr(1,.3,.05) a=0>.15:1>.7:.8>0 r=sprite(flame-wisp,add)"}
-  id: wayside-fire/waystone/waystone-candle-4
-  material: {pbr: true}
-  parent: wayside-fire/waystone
-  tags: [z01-dressing, hub]
-wayside-fire/waystone/waystone-candle-5:
-  feetPosition: {x: -0.4, y: 0.675, z: -0.2}
-  fx: {script: "fx\npop f rate=flick(.6,.25)*14 on=point() life=.25..0.4 v=up(.3) size=.05..0.075 acc=buoy(.6)+drag(2) sz=$size*(.6>1:.4>.35) col=hdr(4,2.6,1)>.5:hdr(3,1.2,.3)>hdr(1,.3,.05) a=0>.15:1>.7:.8>0 r=sprite(flame-wisp,add)"}
-  id: wayside-fire/waystone/waystone-candle-5
-  material: {pbr: true}
-  parent: wayside-fire/waystone
-  tags: [z01-dressing, hub]
-wayside-fire/waystone/waystone-candle-6:
-  feetPosition: {x: 0.42, y: 0.8150000000000001, z: -0.22}
-  fx: {params: {int: 2.6, rad: 7}, script: "fx\npop f rate=flick(.6,.25)*14 on=point() life=.25..0.4 v=up(.3) size=.05..0.075 acc=buoy(.6)+drag(2) sz=$size*(.6>1:.4>.35) col=hdr(4,2.6,1)>.5:hdr(3,1.2,.3)>hdr(1,.3,.05) a=0>.15:1>.7:.8>0 r=sprite(flame-wisp,add)\npop glow n=1 at=point() glo=fire()*(#f/4)~ r=light(<1,.62,.3>,$glo*%int|2.2,%rad|7)"}
-  id: wayside-fire/waystone/waystone-candle-6
-  material: {pbr: true}
-  parent: wayside-fire/waystone
-  tags: [z01-dressing, hub]
-wayside-fire/waystone/waystone-candle-7:
-  feetPosition: {x: -0.28, y: 0.155, z: -0.78}
-  fx: {script: "fx\npop f rate=flick(.6,.25)*14 on=point() life=.25..0.4 v=up(.3) size=.05..0.075 acc=buoy(.6)+drag(2) sz=$size*(.6>1:.4>.35) col=hdr(4,2.6,1)>.5:hdr(3,1.2,.3)>hdr(1,.3,.05) a=0>.15:1>.7:.8>0 r=sprite(flame-wisp,add)"}
-  id: wayside-fire/waystone/waystone-candle-7
-  material: {pbr: true}
-  parent: wayside-fire/waystone
-  tags: [z01-dressing, hub]
-wayside-fire/waystone/waystone-candle-8:
-  feetPosition: {x: 0.24, y: 0.23500000000000001, z: -0.82}
-  fx: {script: "fx\npop f rate=flick(.6,.25)*14 on=point() life=.25..0.4 v=up(.3) size=.05..0.075 acc=buoy(.6)+drag(2) sz=$size*(.6>1:.4>.35) col=hdr(4,2.6,1)>.5:hdr(3,1.2,.3)>hdr(1,.3,.05) a=0>.15:1>.7:.8>0 r=sprite(flame-wisp,add)"}
-  id: wayside-fire/waystone/waystone-candle-8
-  material: {pbr: true}
-  parent: wayside-fire/waystone
-  tags: [z01-dressing, hub]
+  receiveShadow: true
+  rotation: {lookAt: {x: 0, y: 0, z: 0}}
+  tags: [landmark, waystone]
