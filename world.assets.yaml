@@ -26,6 +26,7 @@ assets:
     "/cdn/value.7f79683fa382b0c4cf247217d7856c58041712eb2c018ae355701c4a01ab107a.glb": {bytes: 886556, kind: model, name: grave-ledger, uploadedAt: "2026-10-08T18:13:37.088Z"}
     "/cdn/value.a2605b2cc3a81b3017dc37e70db702f5d8bc19876c5b91473921a28a733d3467.png": {bytes: 265, kind: image, name: vf-div, uploadedAt: "2026-10-08T16:11:15.123Z"}
     "/cdn/value.a653a5ebfcccb33300582bba7d25b0912ff6b147bc340943eeb0a5a772ab6283.glb": {bytes: 1486772, kind: model, name: wax-saint-c, uploadedAt: "2026-10-08T18:13:21.541Z"}
+    "/cdn/value.b20b7d9626dd956b2c5e558692ad328b1f19e3275e2782db4fa07670d83f35e0.ttf": {bytes: 1195560, kind: font, name: corm, uploadedAt: "2026-10-08T20:09:57.724Z"}
     "/cdn/value.bba925e4e433e115eeed76c95225f1769bfc11061a2a7d75b358ec2ab422204d.glb": {bytes: 621540, kind: model, name: grave-broken, uploadedAt: "2026-10-08T18:13:33.794Z"}
     "/cdn/value.cd396819d656f0cac99b4c6b3eda49cccae72af69dcf6c99ba4a9b69b4afab38.png": {bytes: 456, kind: image, name: vf-card, uploadedAt: "2026-10-08T15:56:23.075Z"}
     "/cdn/value.d502a11179b049d3da0da9e5a9096754b6a72312519548047fe425ffcca9fdbf.png": {bytes: 461, kind: image, name: vf-slot, uploadedAt: "2026-10-08T15:56:11.909Z"}
@@ -33,6 +34,8 @@ assets:
     "/cdn/value.dd5ff981d773f728a783caeecfd8602774b8b949c55b7be9faaef1de1a509637.glb": {bytes: 2737532, kind: model, name: maelin-map-table, uploadedAt: "2026-10-08T18:01:30.377Z"}
     "/cdn/value.e395b42f71101818ed0b0b78153d07acd1f2f99b1b29c415db1c6c877b098c7e.png": {bytes: 453, kind: image, name: vf-cardon, uploadedAt: "2026-10-08T15:56:26.912Z"}
     "/cdn/value.e7160ea1f290518c9f70bb4444978e619c424d4ea45f4ec59d41f26421ea0043.png": {bytes: 466, kind: image, name: vf-row, uploadedAt: "2026-10-08T15:56:15.581Z"}
+    "/cdn/value.e854e68a388aa50d742a4415c1ae5c17a617ef7956c95a70021d0a4a44f20518.ttf": {bytes: 62300, kind: font, name: cinzeldec, uploadedAt: "2026-10-08T20:09:57.543Z"}
     "/cdn/value.efe39eecfc97d68d46617bd1d458e5911ab198326813fc093bb482ff510fd61e.png": {bytes: 481, kind: image, name: vf-btn, uploadedAt: "2026-10-08T15:55:59.357Z"}
+    "/cdn/value.f4d83d34d1f6c741193e4acf4b3dff9531e5a67b6aa65228d00a7db72a4e0f34.ttf": {bytes: 125468, kind: font, name: cinzel, uploadedAt: "2026-10-08T20:09:56.047Z"}
     "/cdn/value.f783f422d9a4f9d95b085cec04840cff18609af18ff793d4e0d0d2ff4dfe8f22.glb": {bytes: 3247824, kind: model, name: waystone-of-the-nine, uploadedAt: "2026-10-08T17:24:40.455Z"}
     "/cdn/value.fc4c148debba7a63ae7aece00b8d6da267174c9429d997dddfc43477d97a8a17.glb": {bytes: 9424436, kind: model, name: abbey-belltower, uploadedAt: "2026-10-08T18:20:44.246Z"}
