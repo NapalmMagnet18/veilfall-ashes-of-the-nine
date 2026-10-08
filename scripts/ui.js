@@ -1,4 +1,6 @@
 // VEILFALL HUD: life orb, edge orb, skill bar, quest tracker, boss bar, dialogue, death beat.
+import { coinHTML } from "./lib/coins.js";
+import { shopPanel } from "./lib/shop-ui.js";
 const STAGES = [
   ["Pilgrims in White", "Speak with Maelin at the Wayside Fire"],
   ["Pilgrims in White", "Silence the wax pilgrims on the road"],

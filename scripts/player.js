@@ -5,6 +5,7 @@ import { raycast, getInputRay } from "builtin/physics";
 import { findPath } from "builtin/nav";
 import { floorDist } from "./lib/data/veilfall-map.js";
 import C from "./lib/data/combat.yml";
+import { shopInput } from "./lib/shop.js";
 
 const FIRE = { x: 0, y: 0, z: 4.5 };
 const A = Math.SQRT1_2; // iso basis: screen-up is (-A,-A) on xz
@@ -92,6 +93,7 @@ export function onInput(ctx, input) {
   const s = ctx.self.state;
   if (input.pressed.menu || input.actionData?.menu) menuInput(ctx, input.actionData?.menu);
   if (s.menu) return;
+  if (input.actionData?.shop) shopInput(ctx, input.actionData.shop);
   if (s.dead || ctx.self.inputHeld) return;
   const ray = getInputRay(ctx, input);
   const now = ctx.now();
