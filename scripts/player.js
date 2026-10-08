@@ -3,6 +3,7 @@
 // striker's machine, and written to the enemy's state; the wax-pack manager reads hp and pays XP.
 import { raycast, getInputRay } from "builtin/physics";
 import { findPath } from "builtin/nav";
+import { floorDist } from "./lib/data/veilfall-map.js";
 import C from "./lib/data/combat.yml";
 
 const FIRE = { x: 0, y: 0, z: 4.5 };
@@ -26,6 +27,32 @@ const flat = (a, b) => Math.hypot(a.x - b.x, a.z - b.z);
 
 function groundHit(ctx, ray) {
   return raycast(ctx, ray.origin, ray.direction, { distance: 220, bodies: "static" });
+}
+// the walkable floor is the map's shape (floorDist < 0); the cliffs past its lip are scenery
+const EDGE = 0.4;
+function floorGrad(x, z) {
+  const e = 0.25, gx = floorDist(x + e, z) - floorDist(x - e, z), gz = floorDist(x, z + e) - floorDist(x, z - e), l = Math.hypot(gx, gz) || 1;
+  return { x: gx / l, z: gz / l };
+}
+// a click on a bank or cliff: the nearest floor point on the line back toward the hero
+function reachable(goal, from) {
+  if (floorDist(goal.x, goal.z) < -0.6) return goal;
+  for (let t = 0.05; t <= 1; t += 0.05) {
+    const x = goal.x + (from.x - goal.x) * t, z = goal.z + (from.z - goal.z) * t;
+    if (floorDist(x, z) < -0.6) return { x, y: from.y, z };
+  }
+  return null;
+}
+// a step that would carry the body past the lip loses its outward part; a body already past it is drawn back in
+function keepOnFloor(f, v, dt) {
+  if (!v) return v;
+  const nx = f.x + v.x * dt, nz = f.z + v.z * dt, d = floorDist(nx, nz);
+  if (d < EDGE) return v;
+  const g = floorGrad(nx, nz), out = v.x * g.x + v.z * g.z;
+  let x = v.x, z = v.z;
+  if (out > 0) { x -= g.x * out; z -= g.z * out; }
+  if (floorDist(f.x, f.z) > EDGE) { x -= g.x * 3; z -= g.z * 3; }
+  return { x, z };
 }
 function isFoe(o) { return o && o.tags?.includes("enemy") && !(o.state?.dead) && (o.state?.hp ?? 1) > 0; }
 
@@ -53,8 +80,10 @@ export function onInput(ctx, input) {
       else if (input.pressed.move && o?.tags?.includes("npc")) { me.talk = o.id; s.target = null; s.goal = { ...o.feetPosition }; me.route = null; }
       else if (g && (input.pressed.move || !s.target)) {
         if (input.pressed.move) { s.target = null; me.talk = null; }
-        if (!s.goal || flat(s.goal, g.position) > 1.2) me.route = null;
-        s.goal = g.position;
+        const at = reachable(g.position, ctx.self.feetPosition);
+        if (!at) return;
+        if (!s.goal || flat(s.goal, at) > 1.2) me.route = null;
+        s.goal = at; g.position = at;
         if (input.pressed.move) ctx.emit("fx", { position: { x: g.position.x, y: g.position.y + 0.05, z: g.position.z }, script: `fx\npop ring burst=1 life=.4 size=.9 col=hdr(1.8,1.3,.6) a=.9>0 sz=$size*(.4>1.2) r=sprite(soft-disc,add)` }, { audience: "local" });
       }
     }
@@ -236,7 +265,8 @@ export function update(ctx, dt) {
 
   if (me.dash && now < me.dash.until) {
     const sp = C.griefstep.dist / C.griefstep.time;
-    ctx.self.velocity = { x: me.dash.dx * sp, y: vy, z: me.dash.dz * sp };
+    const dv = keepOnFloor(f, { x: me.dash.dx * sp, z: me.dash.dz * sp }, dt);
+    ctx.self.velocity = { x: dv.x, y: vy, z: dv.z };
     return;
   }
   me.dash = null;
@@ -270,6 +300,8 @@ export function update(ctx, dt) {
       s.faceYaw = yawTo(npc.feetPosition.x - f.x, npc.feetPosition.z - f.z);
     }
   }
-  if (v) s.faceYaw = yawTo(v.x, v.z);
+  if (!v && floorDist(f.x, f.z) > EDGE) v = { x: 0, z: 0 };
+  v = keepOnFloor(f, v, dt);
+  if (v && Math.hypot(v.x, v.z) > 0.3) s.faceYaw = yawTo(v.x, v.z);
   ctx.self.velocity = { x: v?.x ?? 0, y: vy, z: v?.z ?? 0 };
 }
