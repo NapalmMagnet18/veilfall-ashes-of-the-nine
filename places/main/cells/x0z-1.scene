@@ -1,10 +1,145 @@
 # spawn-scene v2 yaml x0z-1
 bailiff-arena:
-  feetPosition: {x: 0, y: {terrain: 0}, z: -100}
+  feetPosition: {x: 0, y: {terrain: 0}, z: -105}
   id: bailiff-arena
-  material: {kind: scripted, script: engine/blueprint}
   physics: none
-  primitive: {depth: 30, height: 2, kind: box, width: 30}
+  tags: [z01-dressing, gate]
+bailiff-arena/gibbet-0:
+  feetPosition: {x: -16.71756926116451, y: 3.120636281358374, z: 8.153703330276839}
+  id: bailiff-arena/gibbet-0
+  parent: bailiff-arena
+  physics: static
+  primitive: {kind: scripted, params: {arm: 2.6, drop: 0.8, h: 5.4, kind: cage}, script: scripts/gen/gibbet.js, seed: 40}
+  rotation: {yaw: -64.00000000000001}
+  tags: [z01-dressing, gate]
+bailiff-arena/gibbet-1:
+  feetPosition: {x: -18.12328320500538, y: 0.6588412212840282, z: -4.184089610795889}
+  id: bailiff-arena/gibbet-1
+  parent: bailiff-arena
+  physics: static
+  primitive: {kind: scripted, params: {arm: 2.6, drop: 0.9500000000000001, h: 6.2, kind: chains}, script: scripts/gen/gibbet.js, seed: 41}
+  rotation: {yaw: -103.00000000000001}
+  tags: [z01-dressing, gate]
+bailiff-arena/gibbet-2:
+  feetPosition: {x: -11.705359273526971, y: -0.25598874049953313, z: -14.454914883099663}
+  id: bailiff-arena/gibbet-2
+  parent: bailiff-arena
+  physics: static
+  primitive: {kind: scripted, params: {arm: 2.6, drop: 1.1, h: 5.4, kind: cage}, script: scripts/gen/gibbet.js, seed: 42}
+  rotation: {yaw: -141.00000000000003}
+  tags: [z01-dressing, gate]
+bailiff-arena/gibbet-3:
+  feetPosition: {x: 11.705359273526978, y: 0.5491893603746054, z: -14.454914883099658}
+  id: bailiff-arena/gibbet-3
+  parent: bailiff-arena
+  physics: static
+  primitive: {kind: scripted, params: {arm: 2.6, drop: 1.25, h: 6.2, kind: chains}, script: scripts/gen/gibbet.js, seed: 43}
+  rotation: {yaw: 141}
+  tags: [z01-dressing, gate]
+bailiff-arena/gibbet-4:
+  feetPosition: {x: 18.123283205005375, y: 2.868375436864146, z: -4.184089610795896}
+  id: bailiff-arena/gibbet-4
+  parent: bailiff-arena
+  physics: static
+  primitive: {kind: scripted, params: {arm: 2.6, drop: 1.4, h: 5.4, kind: cage}, script: scripts/gen/gibbet.js, seed: 44}
+  rotation: {yaw: 103.00000000000003}
+  tags: [z01-dressing, gate]
+bailiff-arena/gibbet-5:
+  feetPosition: {x: 16.71756926116451, y: 2.369420325232062, z: 8.15370333027684}
+  id: bailiff-arena/gibbet-5
+  parent: bailiff-arena
+  physics: static
+  primitive: {kind: scripted, params: {arm: 2.6, drop: 1.55, h: 6.2, kind: chains}, script: scripts/gen/gibbet.js, seed: 45}
+  rotation: {yaw: 64}
+  tags: [z01-dressing, gate]
+bailiff-arena/pillar-0:
+  feetPosition: {x: -10.606601717798211, y: 0.0005440334709436034, z: 10.606601717798213}
+  fx: {params: {power: 2, radius: 7, tips: "0,4.85,0;0.25,4.8,0.15;-0.2,4.819999999999999,-0.2;0.1,4.779999999999999,-0.3"}, script: scripts/effects/candles.fx.js}
+  id: bailiff-arena/pillar-0
+  parent: bailiff-arena
+  physics: static
+  primitive: {kind: scripted, params: {fallen: false, h: 4.6}, script: scripts/gen/arena-pillar.js, seed: 20}
+  rotation: {yaw: -45}
+  tags: [z01-dressing, gate]
+bailiff-arena/pillar-1:
+  feetPosition: {x: -14.905641269149307, y: 0.05997555790776202, z: 1.679838788524974}
+  fx: {params: {power: 2, radius: 7, tips: "0,3.65,0;0.25,3.6,0.15;-0.2,3.62,-0.2;0.1,3.58,-0.3"}, script: scripts/effects/candles.fx.js}
+  id: bailiff-arena/pillar-1
+  parent: bailiff-arena
+  physics: static
+  primitive: {kind: scripted, params: {fallen: true, h: 3.4}, script: scripts/gen/arena-pillar.js, seed: 21}
+  rotation: {yaw: -83.57}
+  tags: [z01-dressing, gate]
+bailiff-arena/pillar-2:
+  feetPosition: {x: -12.701260931695288, y: -0.06049543738226992, z: -7.979847789587905}
+  fx: {params: {power: 2, radius: 7, tips: "0,5.45,0;0.25,5.4,0.15;-0.2,5.42,-0.2;0.1,5.38,-0.3"}, script: scripts/effects/candles.fx.js}
+  id: bailiff-arena/pillar-2
+  parent: bailiff-arena
+  physics: static
+  primitive: {kind: scripted, params: {fallen: false, h: 5.2}, script: scripts/gen/arena-pillar.js, seed: 22}
+  rotation: {yaw: -122.13999999999999}
+  tags: [z01-dressing, gate]
+bailiff-arena/pillar-3:
+  feetPosition: {x: -4.955244950087267, y: 0.012861215531966685, z: -14.157879342777104}
+  fx: {params: {power: 2, radius: 7, tips: "0,4.15,0;0.25,4.1,0.15;-0.2,4.12,-0.2;0.1,4.08,-0.3"}, script: scripts/effects/candles.fx.js}
+  id: bailiff-arena/pillar-3
+  parent: bailiff-arena
+  physics: static
+  primitive: {kind: scripted, params: {fallen: false, h: 3.9}, script: scripts/gen/arena-pillar.js, seed: 23}
+  rotation: {yaw: -160.71000000000004}
+  tags: [z01-dressing, gate]
+bailiff-arena/pillar-4:
+  feetPosition: {x: 4.952773858530795, y: 0.020113037863803626, z: -14.158743980532101}
+  fx: {params: {power: 2, radius: 7, tips: "0,5.05,0;0.25,5,0.15;-0.2,5.02,-0.2;0.1,4.9799999999999995,-0.3"}, script: scripts/effects/candles.fx.js}
+  id: bailiff-arena/pillar-4
+  parent: bailiff-arena
+  physics: static
+  primitive: {kind: scripted, params: {fallen: true, h: 4.8}, script: scripts/gen/arena-pillar.js, seed: 24}
+  rotation: {yaw: 160.72000000000006}
+  tags: [z01-dressing, gate]
+bailiff-arena/pillar-5:
+  feetPosition: {x: 12.699867992073727, y: 0.01143591795973673, z: -7.982064456260752}
+  fx: {params: {power: 2, radius: 7, tips: "0,3.35,0;0.25,3.3000000000000003,0.15;-0.2,3.3200000000000003,-0.2;0.1,3.2800000000000002,-0.3"}, script: scripts/effects/candles.fx.js}
+  id: bailiff-arena/pillar-5
+  parent: bailiff-arena
+  physics: static
+  primitive: {kind: scripted, params: {fallen: false, h: 3.1}, script: scripts/gen/arena-pillar.js, seed: 25}
+  rotation: {yaw: 122.15000000000002}
+  tags: [z01-dressing, gate]
+bailiff-arena/pillar-6:
+  feetPosition: {x: 14.905934229299545, y: 0.011038346532472241, z: 1.6772372377800906}
+  fx: {params: {power: 2, radius: 7, tips: "0,5.65,0;0.25,5.6000000000000005,0.15;-0.2,5.62,-0.2;0.1,5.58,-0.3"}, script: scripts/effects/candles.fx.js}
+  id: bailiff-arena/pillar-6
+  parent: bailiff-arena
+  physics: static
+  primitive: {kind: scripted, params: {fallen: false, h: 5.4}, script: scripts/gen/arena-pillar.js, seed: 26}
+  rotation: {yaw: 83.58000000000001}
+  tags: [z01-dressing, gate]
+bailiff-arena/pillar-7:
+  feetPosition: {x: 10.608452757465269, y: -0.036879784601863135, z: 10.604750355035593}
+  fx: {params: {power: 2, radius: 7, tips: "0,4.25,0;0.25,4.2,0.15;-0.2,4.22,-0.2;0.1,4.18,-0.3"}, script: scripts/effects/candles.fx.js}
+  id: bailiff-arena/pillar-7
+  parent: bailiff-arena
+  physics: static
+  primitive: {kind: scripted, params: {fallen: true, h: 4}, script: scripts/gen/arena-pillar.js, seed: 27}
+  rotation: {yaw: 45.01000000000001}
+  tags: [z01-dressing, gate]
+bailiff-arena/toll-throne:
+  feetPosition: {x: 0, y: 0.04228250902309848, z: -15}
+  fx: {params: {power: 2.6, radius: 8, tips: "-1.6,1.3,-0.3;1.4,1.3,-0.3;0,0.95,-1.0;0.97,2.25,0.75;-0.97,2.25,0.75"}, script: scripts/effects/candles.fx.js}
+  id: bailiff-arena/toll-throne
+  parent: bailiff-arena
+  physics: static
+  primitive: {kind: scripted, script: scripts/gen/toll-throne.js, seed: 5}
+  rotation: {yaw: 180}
+  tags: [z01-dressing, gate]
+bailiff-arena/wax-floor:
+  feetPosition: {x: 0, y: 0, z: 0}
+  id: bailiff-arena/wax-floor
+  parent: bailiff-arena
+  physics: none
+  primitive: {kind: scripted, params: {gap: 45, pools: [154, 193, 231, 309, 347, 26]}, script: scripts/gen/arena-floor.js, seed: 11}
+  tags: [z01-dressing, gate]
 dripping-gate:
   feetPosition: {x: 0, y: {terrain: 0}, z: -89}
   id: dripping-gate
