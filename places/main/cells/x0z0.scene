@@ -650,7 +650,7 @@ lantern-rail:
   physics: static
   primitive: {kind: scripted, params: {}, script: scripts/gen/hub-lantern-rail.js, seed: 9}
   receiveShadow: true
-  rotation: -76.6075022462489
+  rotation: -103.3924977537511
   tags: [hub, z01-dressing]
 orch-gallows:
   feetPosition: {x: 62, y: {terrain: 0}, z: 5}
