@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "basedOnSpecVersion": 75,
-  "updatedAt": "2026-10-08T05:43:35.197Z",
-  "summary": "VEILFALL: ASHES OF THE NINE is an isometric action RPG whose active slice is Z01, Broken Lantern Road, from the Wayside Fire through the Dripping Gate. The main-place referee stages the quest and spawns actors, player and enemy behaviors own combat, shared data tunes combat, and scene cells plus procedural generators build the ravine and arena.",
+  "basedOnSpecVersion": 93,
+  "updatedAt": "2026-10-08T05:47:58.442Z",
+  "summary": "VEILFALL: ASHES OF THE NINE is an isometric action RPG whose active slice is Z01, Broken Lantern Road, from the Wayside Fire through the Dripping Gate. The main-place referee stages quests and actors, player and enemy behaviors own combat state, and authored scene cells plus procedural generators build the playable ravine. Its current presentation is a moonlit, foggy ruin road of wet flagstone, ash, moss, broken masonry and warm braziers.",
   "scriptPaths": [
     "scripts/arrival.js",
     "scripts/bailiff.js",
@@ -29,6 +29,7 @@
     "scripts/gen/vf-kit.js",
     "scripts/gen/vf-milestone.js",
     "scripts/gen/vf-props.js",
+    "scripts/gen/vf-ruin.js",
     "scripts/gen/vf-tollhouse.js",
     "scripts/gen/wax-figure.js",
     "scripts/grass-look.js",
@@ -51,21 +52,22 @@
   ],
   "places": [
     "places/main/ - the active Z01 place: Wayside Fire hub, candle road, tollhouse court, Dripping Gate and Bailiff arena; sim.js coordinates quest and actors.",
-    "places/main/cells/x0z0.scene - camp and candle-road authored landmarks/dressing, including candle-bearing milestones and the generated Tollhouse.",
-    "places/main/cells/x0z-1.scene - Dripping Gate/Bailiff arena and extended candle-road dressing; scene props use shared Veilfall generators.",
-    "places/main/config.yaml - main terrain, materials and procedural grass, clover and mushroom layers."
+    "places/main/cells/x0z0.scene - camp and candle-road landmarks/dressing, including ruin-road walls and fire-lit braziers, candle milestones and the generated Tollhouse.",
+    "places/main/cells/x0z-1.scene - extended candle-road, Dripping Gate and Bailiff arena dressing, including ruin-road walls and braziers.",
+    "places/main/config.yaml - main-place atmosphere, wet-stone/dead-moss terrain material channels and procedural grass, clover and mushroom layers."
   ],
   "roots": [
     "world.config.yaml - world entry: default place main, player and camera templates, lighting, UI, arrival behavior and input actions including I bag and 1 guard.",
     "templates/player.js - player template composing scripts/player.js with scripts/humanoid-locomotion.js on the player character.",
     "templates/camera.js - custom camera template running scripts/camera.js.",
     "places/main/sim.js - place referee: ensures Maelin, petitions, enemy pack and Bailiff exist; advances per-player quest/levels and grants the one-time turn-in reward.",
-    "places/main/cells/x0z0.scene - authored Wayside Fire and candle-road/court content.",
-    "places/main/cells/x0z-1.scene - authored gate, road and Bailiff arena content."
+    "places/main/cells/x0z0.scene - authored Wayside Fire, candle-road/court content and ruin-road props.",
+    "places/main/cells/x0z-1.scene - authored gate, extended road and Bailiff arena content, including ruin-road props."
   ],
   "shared": [
     "scripts/lib/data/combat.yml - combat tuning consumed by player, wax-pack and Bailiff; includes guard, arc/debt and ledger/Fray parameters.",
-    "scripts/lib/data/veilfall-map.js - shared HUB/ROAD/COURTS/GATE coordinates and floor-distance reference.",
+    "scripts/lib/data/veilfall-map.js - shared HUB/ROAD/COURTS/GATE coordinates and floor-distance reference, used by terrain and place layout logic.",
+    "scripts/lib/data/aesthetic.yml - Veilfall Ash art-direction reference: palette, materials, hour, fog and grade for the authored world look.",
     "scripts/gen/hub-kit.js - vector, transform, mesh and composition helpers for hub prop generators.",
     "scripts/gen/vf-kit.js - seeded RNG and modeling helpers for Veilfall generators.",
     "scripts/gen/shapes.js - shared mesh construction helpers for generated wax/arena/landmark geometry.",
@@ -79,10 +81,7 @@
     "scripts/petition.js - onTriggerEnter",
     "scripts/camera.js - onInput, update",
     "scripts/humanoid-locomotion.js - sit, onInput, update",
-    "scripts/gen/vf-milestone.js - topY, geometry, collider",
-    "scripts/gen/vf-props.js - geometry, collider",
-    "scripts/gen/vf-tollhouse.js - geometry, collider",
-    "scripts/lib/data/veilfall-map.js - HUB, ROAD, ROAD_HALF, COURTS, GATE, floorDist"
+    "scripts/gen/vf-ruin.js - geometry, collider (wall or brazier from params.kind)"
   ],
   "ownership": [
     "scripts/player.js - per-player hp/edge/tonics, XP/level/gold/kills, quest/inventory/reward fields, movement and death/i-frame state; guardUntil, guardReadyAt and riposte support Afterimage Guard.",
@@ -104,11 +103,12 @@
     "player.state.talk with Maelin → places/main/sim.js stages the quest; kills since killsAt, petition count and bossKilled drive the road, tollhouse and boss objectives.",
     "Maelin turn-in at quest stage 4 → places/main/sim.js sets claimed['Z01-MAIN-05'], grants ITEM-001/XP/gold and advances to stage 5.",
     "scripts/ui.js reads player quest, combat, inventory and dialogue state plus place.state.boss; it presents the HUD without owning those gameplay values.",
-    "scripts/player.js faceYaw → scripts/humanoid-locomotion.js gait orientation; generated props are instantiated by scene cells with script paths and per-instance params/seeds."
+    "scripts/player.js faceYaw → scripts/humanoid-locomotion.js gait orientation; scene cells instantiate generated props from script paths and per-instance params/seeds."
   ],
   "behaviorFamilies": [
     "scripts/gen/hub-*.js - reusable Wayside Fire camp props, varied by instance params, seed and scene transform; share scripts/gen/hub-kit.js.",
-    "scripts/gen/vf-*.js - Broken Lantern Road landmarks and clutter, including milestone, props and Tollhouse, varied by parameters/seeds and built with scripts/gen/vf-kit.js.",
+    "scripts/gen/vf-*.js other than vf-ruin.js - Broken Lantern Road landmarks and clutter, including milestone, props and Tollhouse, varied by parameters/seeds and built with scripts/gen/vf-kit.js.",
+    "scripts/gen/vf-ruin.js - reused for road and arena broken ashlar walls and iron braziers; params.kind selects wall/brazier, dimensions and seed vary geometry.",
     "scripts/gen/arena-floor.js, arena-pillar.js, gibbet.js and toll-throne.js - Bailiff arena dressing generators sharing scripts/gen/shapes.js.",
     "scripts/gen/wax-figure.js - shared wax character mesh for ordinary pilgrims/deacons and Bailiff, varied by kind and seed.",
     "scripts/grass.js, scripts/clover.js and scripts/mushroom.js - procedural vegetation scatter layers configured in places/main/config.yaml; grass appearance uses scripts/grass-look.js."
@@ -121,7 +121,7 @@
     "Quest stage, killsAt, petition IDs and claimed rewards are per-player state; petition triggers count only at stage 2 and ITEM-001 is guarded by claimed['Z01-MAIN-05'].",
     "Boss attacks and ordinary enemy attacks consume the same player guardUntil and write riposte; scripts/player.js owns the riposte reaction and must retain this state handoff.",
     "The boss HUD consumes place.state.boss projection (including fray and ledgers), not boss internals; retain its published fields when changing boss behavior.",
-    "scripts/lib/data/combat.yml is the runtime tuning source: values are units such as seconds/meters, and Bailiff now uses Taxman's Arc/Unpaid Debt, ledger adds and Fray rather than the earlier slam/pool model.",
-    "Scene-cell generators receive their geometry variation through params and seed; maintain the vf-kit/generator contracts and keep scene placements pointing at the matching script paths."
+    "scripts/lib/data/combat.yml is the runtime tuning source: values are units such as seconds/meters, and Bailiff uses Taxman's Arc/Unpaid Debt, ledger adds and Fray rather than the earlier slam/pool model.",
+    "places/main/config.yaml material IDs must match scripts/terrain.js weights (including stone); scene-cell generators receive params and seeds, so preserve each generator contract and scene script path."
   ]
 }
