@@ -268,11 +268,11 @@ const HERO_SPEED = (s) => C.hero.speed * (1 + Math.min(40, ctx_gs(s).speed ?? 0)
 const ctx_gs = (s) => s?.gs ?? {};
 function drainLoot(ctx) {
   const s = ctx.self.state, box = s.lootIn;
-  if (s.inv && new Set(s.inv.map((x) => x.u)).size !== s.inv.length) { const seen = new Set(); s.inv = s.inv.filter((x) => !seen.has(x.u) && seen.add(x.u)); }
+  if (s.inv && new Set(s.inv.map((x) => x.u)).size !== s.inv.length) { const seen = new Set(); s.inv = JSON.parse(JSON.stringify(s.inv)).filter((x) => !seen.has(x.u) && seen.add(x.u)); }
   if (!box) return;
   const keys = Object.keys(box); if (!keys.length) return;
-  const inv = [...(s.inv ?? [])], have = new Set(inv.map((x) => x.u));
-  for (const k of keys) { const it = box[k]; if (it && !have.has(it.u)) { if (inv.length < 24) inv.push(it); else s.dust = (s.dust ?? 0) + dustValue(it); } delete s.lootIn[k]; }
+  const inv = JSON.parse(JSON.stringify(s.inv ?? [])), have = new Set(inv.map((x) => x.u));
+  for (const k of keys) { const it = box[k] && JSON.parse(JSON.stringify(box[k])); if (it && !have.has(it.u)) { if (inv.length < 24) inv.push(it); else s.dust = (s.dust ?? 0) + dustValue(it); } delete s.lootIn[k]; }
   s.inv = inv;
 }
 function deriveGear(ctx) {
@@ -287,7 +287,7 @@ function deriveGear(ctx) {
 
 const ITEM_SFX = { equip: "armor-equip-leather-and-chainmail-rustle", sell: "coins-into-leather-purse", salvage: "salvage-item-crumble-to-ash-hiss", drop: "loot-drop-cloth-thud-soft" };
 function itemInput(ctx, a) {
-  const s = ctx.self.state, inv = [...(s.inv ?? [])], gear = { ...(s.gear ?? {}) };
+  const s = ctx.self.state, inv = JSON.parse(JSON.stringify(s.inv ?? [])), gear = JSON.parse(JSON.stringify(s.gear ?? {}));
   if (!a || a.n === me.itemN) return; me.itemN = a.n;
   let snd = null;
   if (a.a === "equip") {
