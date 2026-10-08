@@ -1,5 +1,7 @@
-# placeholder until the Veil's shot lands: the eye, what it looks at, a slow sway
-eye: { x: 0, y: 3, z: 12 }
-aim: { x: 0, y: 2, z: -10 }
-fov: 40
-drift: { x: 1.2, y: 0.3, z: 0 }
+# The Veil's painted shot (places/veil): the Lantern Shrine of the Nine framed in the centre third,
+# the title's sky above the crown emblem, the ravine and the Dripping Gate's glow through the arch.
+# The camera reads eye + drift * sin(t * 0.07).
+eye: { x: 0.6, y: 2.4, z: 4.5 }
+aim: { x: 0, y: 2.9, z: -14 }
+fov: 38
+drift: { x: 0.8, y: 0.12, z: 0.3 }

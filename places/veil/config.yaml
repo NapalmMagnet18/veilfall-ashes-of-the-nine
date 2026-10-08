@@ -1,0 +1,29 @@
+# THE VEIL: the stage the title, realm list and Bearer screens are drawn over. A solo copy per player,
+# no characters in it; the body is parked hidden at the origin. The Lantern Shrine of the Nine on a ledge
+# over a misty ravine at night, the Dripping Gate's fire small on the far ridge. Shot: scripts/lib/data/menu-shot.yml
+mode: 3d
+instance: solo
+persistence: ephemeral
+terrain:
+  kind: "off"
+defaultSpawnPoint: {x: 0, y: 0, z: 0}
+worldBounds: {bottom: -40}
+gravity: {x: 0, y: -24, z: 0}
+atmosphere:
+  sky: {kind: realistic, model: hosek}
+  timeOfDay: 21
+  stars: {enabled: true, density: 0.7, milkyWay: 0.35}
+  moon: {enabled: true, intensity: 5, phase: 0.62, size: 1.7}
+  clouds: {enabled: true, density: 0.3, opacity: 0.7, altitude: 420, thickness: 400, color: "#2c3038", speed: 1}
+  fog:
+    kind: linear
+    near: 12
+    far: 160
+    height: {base: -3, falloff: 5}
+  hemisphere: {groundColor: "#1c1712", intensity: 2.0, skyColor: "#4a6290"}
+  ambient:
+    light: {color: "#2a3550", intensity: 0.6}
+  wet: 0.7
+  wind: {direction: 200, speed: 2}
+  look:
+    script: scripts/look-default.js
