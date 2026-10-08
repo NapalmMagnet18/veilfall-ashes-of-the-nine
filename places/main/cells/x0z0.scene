@@ -593,7 +593,7 @@ fen-stump-2:
   rotation: 47
   tags: [fen]
 fen-stump-7:
-  feetPosition: {x: -59.1056000119292, y: {terrain: 0}, z: -17.785088487178857}
+  feetPosition: {x: -58.41616001312212, y: -0.015884162104523297, z: -18.363597335896742}
   id: fen-stump-7
   physics: static
   primitive: {kind: scripted, params: {h: 0.8, seed: 66}, script: scripts/gen/fen-stump.js}
