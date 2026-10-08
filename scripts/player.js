@@ -76,7 +76,7 @@ const ANCESTRIES = ["cinderkin", "fenborn", "stonebound", "skyforged"];
 const PLAYABLE = { bladewraith: true }; // M1: one hero; the other five are sealed until their milestone
 const MENU_PLACE = "veil";
 function msg(ctx, text) { ctx.self.state.msg = { text, at: ctx.now() }; }
-function click(ctx, pitch = 1) { ctx.emit("playSound", { clip: sfx("stone-ledger-page-turn-soft"), position: ctx.self.feetPosition, volume: 0.5, pitch }, { audience: "local" }); }
+function click(ctx, pitch = 1) { ctx.emit("playSound", { clip: sfx("stone-ledger-page-turn-soft"), position: ctx.self.feetPosition, volume: 0.5, pitch }, { audience: { player: ctx.self.id } }); }
 async function refresh(ctx) {
   const s = ctx.self.state, realm = CH.realmOf(ctx).room;
   try {
@@ -137,7 +137,7 @@ function menuInput(ctx, d) {
         for (let i = 0; out.error === "taken" && i < 6; i++) { name = CH.rollName(pick.anc, () => ctx.random()); out = await CH.create(ctx, here, name, pick.anc, pick.cls, data); }
         if (out.error === "full") { msg(ctx, `${max} Bearers is the most one realm will hold.`); return; }
         if (out.error) { msg(ctx, "That name is already walking this realm."); return; }
-        ctx.emit("playSound", { clip: sfx("quill-scratch-and-wax-seal-press"), position: ctx.self.feetPosition, volume: 0.8 }, { audience: "local" });
+        ctx.emit("playSound", { clip: sfx("quill-scratch-and-wax-seal-press"), position: ctx.self.feetPosition, volume: 0.8 }, { audience: { player: ctx.self.id } });
         s.sel = out.id; s.menu = "chars"; s.pick = null; msg(ctx, `${name} is written into ${CH.realmOf(ctx).name}.`);
         await refresh(ctx);
       });
@@ -160,7 +160,7 @@ function menuInput(ctx, d) {
         if (s.hp <= 0) s.hp = s.maxHp;
         s.pendingPos = c.data.pos ?? CH.START; s.enteredAt = ctx.now(); s.menu = null;
         me.lastHp = s.hp; me.saved = JSON.stringify(CH.pack(s)); me.saveAt = ctx.now();
-        ctx.emit("playSound", { clip: sfx("deep-bell-toll-distant-with-embers"), position: ctx.self.feetPosition, volume: 0.8 }, { audience: "local" });
+        ctx.emit("playSound", { clip: sfx("deep-bell-toll-distant-with-embers"), position: ctx.self.feetPosition, volume: 0.8 }, { audience: { player: ctx.self.id } });
         ctx.emit("milestone", { step: 0, name: "entered-world" }, { audience: { player: ctx.self.id } });
         if (ctx.self.place !== "main") { me.crossAt = ctx.now(); ctx.cross(ctx.self, "main"); }
       });
@@ -198,7 +198,7 @@ export function onInput(ctx, input) {
         const at = reachable(g.position, ctx.self.feetPosition);
         if (at && (!s.goal || flat(s.goal, at) > 1.2)) me.route = null;
         if (at) { s.goal = at; g.position = at; }
-        if (at && input.pressed.move) ctx.emit("fx", { position: { x: g.position.x, y: g.position.y + 0.05, z: g.position.z }, script: `fx\npop ring burst=1 life=.4 size=.9 col=hdr(1.8,1.3,.6) a=.9>0 sz=$size*(.4>1.2) r=sprite(soft-disc,add)` }, { audience: "local" });
+        if (at && input.pressed.move) ctx.emit("fx", { position: { x: g.position.x, y: g.position.y + 0.05, z: g.position.z }, script: `fx\npop ring burst=1 life=.4 size=.9 col=hdr(1.8,1.3,.6) a=.9>0 sz=$size*(.4>1.2) r=sprite(soft-disc,add)` }, { audience: { player: ctx.self.id } });
       }
     }
   }
