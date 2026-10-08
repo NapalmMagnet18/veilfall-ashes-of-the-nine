@@ -8,9 +8,9 @@ atmosphere:
     color: "#5a5560"
     speed: 1
   fog:
-    far: 170
+    far: 220
     kind: linear
-    near: 45
+    near: 60
     height: {base: 1, falloff: 6}
   look:
     script: scripts/look-default.js
@@ -24,7 +24,7 @@ atmosphere:
     density: 0.6
     enabled: true
     milkyWay: 0.6
-  timeOfDay: 17.8
+  timeOfDay: 17.45
   wind:
     direction: 200
     speed: 2
