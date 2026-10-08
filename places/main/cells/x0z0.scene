@@ -641,6 +641,17 @@ fen-tree-2:
   primitive: {kind: scripted, params: {girth: 1.2000000000000002, h: 4.4, lean: 0.2, seed: 104}, script: scripts/gen/fen-tree.js}
   rotation: 22.999999999999993
   tags: [fen]
+lantern-rail:
+  castShadow: true
+  children: [{castShadow: false, feetPosition: {x: -1.44, y: 2.2, z: 0}, id: lantern-1, primitive: {kind: scripted, params: {glow: [0.6, 2.4, 2.2], kind: drowned}, script: scripts/gen/hub-lantern.js, seed: 1}, state: {light: "#7fe6dc", lit: false}, visible: false}, {castShadow: false, feetPosition: {x: -1.08, y: 2.2, z: 0}, id: lantern-2, primitive: {kind: scripted, params: {glow: [3.4, 1.6, 0.5], kind: gallows}, script: scripts/gen/hub-lantern.js, seed: 2}, state: {light: "#ffa04a", lit: false}, visible: false}, {castShadow: false, feetPosition: {x: 1.44, y: 2.2, z: 0}, id: lantern-9, primitive: {kind: scripted, params: {glow: [3.6, 2.6, 1], kind: ninth}, script: scripts/gen/hub-lantern.js, seed: 9}, state: {light: "#ffd27a", lit: false}, visible: false}, {feetPosition: {x: 0, y: 0.5, z: -0.3}, fx: {script: "fx\npop f n=10 on=box(1.7,0,.13) life=.3..0.6 v=up(.1..0.2) size=.02..0.04 sz=$size*flick(.5,.2) col=hdr(4,2.4,.8) a=.9 r=sprite(flame-wisp,add)"}, id: rail-candles, light: {color: "#ffb060", distance: 5, intensity: 2.2, kind: point}}]
+  feetPosition: {x: -10.5, y: {terrain: 0}, z: -2.5}
+  id: lantern-rail
+  material: {pbr: true}
+  physics: static
+  primitive: {kind: scripted, params: {}, script: scripts/gen/hub-lantern-rail.js, seed: 9}
+  receiveShadow: true
+  rotation: -76.6075022462489
+  tags: [hub, z01-dressing]
 orch-gallows:
   feetPosition: {x: 62, y: {terrain: 0}, z: 5}
   id: orch-gallows
