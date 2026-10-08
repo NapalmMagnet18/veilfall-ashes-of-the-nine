@@ -897,7 +897,6 @@ oss-wall-0:
   castShadow: true
   feetPosition: {x: -42, y: 0, z: -266}
   id: oss-wall-0
-  physics: static
   primitive: {kind: scripted, params: {a0: 0.55, a1: 1.6, h: 4.6, kind: wall, r: 14.4}, script: scripts/gen/oss-kit.js, seed: 400}
   receiveShadow: true
   tags: [ossuary, z01-dressing]
@@ -905,7 +904,6 @@ oss-wall-1:
   castShadow: true
   feetPosition: {x: -42, y: 0, z: -266}
   id: oss-wall-1
-  physics: static
   primitive: {kind: scripted, params: {a0: 1.6, a1: 2.65, h: 4.6, kind: wall, r: 14.4}, script: scripts/gen/oss-kit.js, seed: 401}
   receiveShadow: true
   tags: [ossuary, z01-dressing]
@@ -913,7 +911,6 @@ oss-wall-2:
   castShadow: true
   feetPosition: {x: -42, y: 0, z: -266}
   id: oss-wall-2
-  physics: static
   primitive: {kind: scripted, params: {a0: 2.65, a1: 3.7, h: 4.6, kind: wall, r: 14.4}, script: scripts/gen/oss-kit.js, seed: 402}
   receiveShadow: true
   tags: [ossuary, z01-dressing]
@@ -921,7 +918,6 @@ oss-wall-3:
   castShadow: true
   feetPosition: {x: -42, y: 0, z: -266}
   id: oss-wall-3
-  physics: static
   primitive: {kind: scripted, params: {a0: 3.7, a1: 4.75, h: 4.6, kind: wall, r: 14.4}, script: scripts/gen/oss-kit.js, seed: 403}
   receiveShadow: true
   tags: [ossuary, z01-dressing]
@@ -929,7 +925,6 @@ oss-wall-4:
   castShadow: true
   feetPosition: {x: -42, y: 0, z: -266}
   id: oss-wall-4
-  physics: static
   primitive: {kind: scripted, params: {a0: 4.75, a1: 5.8, h: 4.6, kind: wall, r: 14.4}, script: scripts/gen/oss-kit.js, seed: 404}
   receiveShadow: true
   tags: [ossuary, z01-dressing]
