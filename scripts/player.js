@@ -1,6 +1,7 @@
 // VEILFALL hero (Bladewraith). Left click: walk / attack what you click. Right click or E: Crosswound.
 // Space: Griefstep dash toward the cursor. Q: tonic. WASD also walks. Hits are judged here, on the
 // striker's machine, and written to the enemy's state; the wax-pack manager reads hp and pays XP.
+import { body as heroBody } from "./lib/data/models.js";
 import { raycast, getInputRay } from "builtin/physics";
 import { findPath } from "builtin/nav";
 import { floorDist as mapFloor, areaAt } from "./lib/data/veilfall-map.js";
@@ -405,10 +406,37 @@ function zoneTick(ctx, s, f, now) {
   s.banner = { name: a.name, sub: a.sub, fresh, at: now };
   ctx.emit("playSound", { clip: sfx(fresh ? "area-discovered-low-choir-swell-and-bell" : "area-enter-soft-wind-and-distant-bell"), position: f, volume: fresh ? 0.75 : 0.4 }, { audience: { player: ctx.self.id } });
 }
+
+// D2-style roster: the selected Bearer stands in the shrine arch (the Veil's solo copy), torch-lit, idling.
+// One actor per machine, rebuilt only when the pick changes; gone the moment the roster closes.
+function showcase(ctx) {
+  const s = ctx.self.state;
+  const want = s.menu === "chars" && ctx.self.place === MENU_PLACE && s.sel ? String(s.sel) : null;
+  if (want === (me.showFor ?? null) && (!want || (me.showId && ctx.getObject(me.showId)))) return;
+  if (me.showId) { try { ctx.destroy(me.showId); } catch {} me.showId = null; }
+  me.showFor = want;
+  if (!want) return;
+  const hit = raycast(ctx, { x: -0.4, y: 6, z: -7.5 }, { x: 0, y: -1, z: 0 }, { distance: 12, bodies: "static", physicsOnly: true });
+  const y = hit ? hit.position.y : 0;
+  me.showId = ctx.spawn({
+    ...heroBody("hero"), scope: "session", audience: "local",
+    feetPosition: { x: -0.4, y, z: -7.5 }, rotation: { yaw: 172 },
+    mixer: { base: { clip: "Idle", loop: "loop", weight: 1 } },
+    tags: ["menu-showcase"],
+    children: [
+      { feetPosition: { x: 1.1, y: 2.3, z: 1.4 }, light: { kind: "point", color: "#ffb070", intensity: 4, distance: 7 } },
+      { feetPosition: { x: -0.9, y: 2.6, z: -1.3 }, light: { kind: "point", color: "#6DB8C0", intensity: 2.5, distance: 6 } },
+      { feetPosition: { x: 0, y: 0.02, z: 0 }, fx: { script: `fx
+pop dust n=?mobile:10|22 on=disc(.7) life=2..4 v=up(.05..0.15)+sdir()*.05 size=.012..0.025 acc=curl(.3)*.12 col=hdr(2.6,1.2,.35)>hdr(.8,.3,.08) a=(0>.2:.8>.8:.6>0)*flick(5,.3) sz=$size r=sprite(ember,add)` } },
+    ],
+  });
+}
+
 export function update(ctx, dt) {
   if (ctx.self.state.hp === undefined) onSpawn(ctx);
   const s = ctx.self.state, now = ctx.now(), f = ctx.self.feetPosition;
   gate(ctx);
+  if (ctx.self.isLocal !== false) showcase(ctx);
   const vy = (ctx.self.velocity?.y ?? 0) + (ctx.self.grounded ? 0 : ctx.place.gravity.y * dt);
   // a fresh visit opens on the title in the Veil; a realm cross lands on that realm's character list
   if (ctx.self.isLocal !== false && !ctx.session.vfDoor) {
