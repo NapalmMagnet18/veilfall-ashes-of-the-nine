@@ -61,7 +61,7 @@ export default function (ctx, player) {
     <div class="slot"><span class="k">LMB</span>⚔</div>
     <div class="slot ${edge < 30 ? "dim" : ""}"><span class="k">RMB</span>⚔<span class="n">30</span></div>
     <div class="slot"><span class="k">SPC</span>»<div class="cd" style="height:${dashPct}%"></div></div>
-    <div class="slot"><span class="k">1</span><span style="color:#9fc4ff">◈</span><div class="cd" style="height:${Math.max(0, Math.min(100, ((s.guardReadyAt ?? 0) - now) / 80))}%"></div></div>
+    <div class="slot"><span class="k">1</span><span style="color:#9fc4ff;font-size:13px">GUARD</span><div class="cd" style="height:${Math.max(0, Math.min(100, ((s.guardReadyAt ?? 0) - now) / 80))}%"></div></div>
     <div class="slot ${(s.tonics ?? 0) ? "" : "dim"}"><span class="k">Q</span><span style="color:#e0473a">♥</span><span class="n">${s.tonics ?? 0}</span></div>
     <div class="slot"><span class="k">I</span><span style="font-size:13px">PACK</span></div>
   </div>`}

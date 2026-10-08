@@ -158,8 +158,9 @@ export function update(ctx, dt) {
         if (!pt) { s.cast = null; s.next = now + (phase === 3 ? B.recoverC * 1000 : (phase === 1 ? B.pauseA : B.pauseB) * 1000); s.turn = (s.turn ?? 0) + 1; }
         else {
           ctx.emit("fx", { position: { ...pt, y: pt.y + 0.1 }, script: SPLASH });
-          for (const p of here) if (flat(p.feetPosition, pt) < B.debtWidth) hurt(ctx, p, B.debtDmg, now);
-          s.cast = { ...c, i: c.i + 1, stepAt: now + 250 };
+          const hit = [...(c.hit ?? [])];
+          for (const p of here) if (!hit.includes(p.id) && flat(p.feetPosition, pt) < B.debtWidth) { hit.push(p.id); hurt(ctx, p, B.debtDmg, now); }
+          s.cast = { ...c, i: c.i + 1, stepAt: now + 250, hit };
         }
       }
       // he keeps walking at a crawl while the debt is called
