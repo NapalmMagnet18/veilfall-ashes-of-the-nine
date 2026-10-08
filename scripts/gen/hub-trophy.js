@@ -71,7 +71,7 @@ function hangman(ctx, T) {
   for (let i = 0; i < 6; i++) tube(ctx, T, Array.from({ length: 11 }, (_, k) => { const a = (k / 10) * Math.PI * 2; return [Math.cos(a) * 0.034, -0.42 - i * 0.034, Math.sin(a) * 0.034]; }), 0.016, 5, false, false);
   const loop = Array.from({ length: 17 }, (_, k) => { const a = (k / 16) * Math.PI * 2; return [Math.sin(a) * 0.14, -0.62 - (1 - Math.cos(a)) * 0.17, Math.sin(a * 2) * 0.02]; });
   tube(ctx, T, loop, 0.02, 6, false, false);
-  tube(ctx, T, [[0.02, -0.62, 0], [0.05, -0.74, 0.02], [0.03, -0.82, 0.04]], [0.016, 0.01], 4);
+  tube(ctx, T, [[0.02, -0.62, 0], [0.05, -0.74, 0.02], [0.03, -0.82, 0.04]], [0.016, 0.013, 0.01], 4);
 }
 const RELIC = { bailiff, ringer, warden, hangman };
 export function geometry(ctx) {
