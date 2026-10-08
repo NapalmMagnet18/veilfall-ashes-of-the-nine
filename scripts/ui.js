@@ -171,7 +171,7 @@ ${FONT("VCinzel", "f4d83d34d1f6c741193e4acf4b3dff9531e5a67b6aa65228d00a7db72a4e0
 @keyframes vtpulse{50%{opacity:.35}}
 @media (pointer:coarse),(max-width:760px),(max-height:520px){
  #vt .logo{width:min(380px,70vw);top:1vh} #vt .menu{left:16px;width:calc(100vw - 110px);top:auto;bottom:12px;transform:none;animation:none}
- #vt .chron,#vt .quote{display:none} #vt .it{padding:7px 0 7px 28px} #vt .it .sub{font-size:12px} #vt .foot{display:none}
+ #vt .chron,#vt .quote,#vt .em{display:none} #vt .it{padding:7px 0 7px 28px} #vt .it .sub{font-size:12px} #vt .foot{display:none}
  #vt .shade{background:linear-gradient(0deg,rgba(5,5,8,.9) 0%,rgba(5,5,8,.4) 45%,transparent 70%)}
 }
 @media (max-height:520px){#vt .logo{width:min(260px,40vw)} #vt .word{font-size:40px} #vt .subt{display:none}}
