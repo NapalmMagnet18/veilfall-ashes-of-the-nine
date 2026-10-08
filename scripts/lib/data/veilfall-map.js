@@ -14,6 +14,13 @@ export const ABBEY_ROAD = [[10, -115], [18, -128], [14, -142], [4, -152], [0, -1
 export const ABBEY_HALF = 6;
 export const ABBEY = { x: 0, z: -176, r: 20 };
 export const ABBEY_SEAL = { x: 12.3, z: -118.7, yaw: 31.6, w: 13 }; // across the road where it leaves the court
+// behind the Abbey door: the roofless Burned Nave runs north to the Bell Crypt, where the Ninth Bell hangs.
+// Floor only for a Bearer whose Abbey chapter is done (quest stage 10+).
+export const NAVE_DOOR = [[0, -193], [0, -205]];
+export const NAVE = [[0, -205], [0, -236]];
+export const NAVE_HALF = 7;
+export const CRYPT = { x: 0, z: -251, r: 14 };
+export const BELL = { x: 0, z: -259 };
 const segDist = (x, z, pts, half) => {
   let d = Infinity;
   for (let i = 0; i < pts.length - 1; i++) {
@@ -26,13 +33,17 @@ const segDist = (x, z, pts, half) => {
 };
 // signed distance past the seal line along the road (> 0 = abbey side)
 export function sealSide(x, z) { return (x - ABBEY_SEAL.x) * 0.524 + (z - ABBEY_SEAL.z) * -0.852; }
-export function floorDist(x, z, abbeyOpen = true) {
+export function naveDist(x, z) {
+  return Math.min(segDist(x, z, NAVE_DOOR, 2.1), segDist(x, z, NAVE, NAVE_HALF), Math.hypot(x - CRYPT.x, z - CRYPT.z) - CRYPT.r);
+}
+export function floorDist(x, z, abbeyOpen = true, naveOpen = true) {
   let d = Math.hypot(x - HUB.x, z - HUB.z) - HUB.r;
   for (const c of COURTS) d = Math.min(d, Math.hypot(x - c.x, z - c.z) - c.r);
   d = Math.min(d, segDist(x, z, ROAD, ROAD_HALF));
   let a = Math.min(segDist(x, z, ABBEY_ROAD, ABBEY_HALF), Math.hypot(x - ABBEY.x, z - ABBEY.z) - ABBEY.r);
   if (!abbeyOpen) a = Math.max(a, 0.6 - sealSide(x, z) * -1); // sealed: only the court side of the seal is floor
-  return Math.min(d, a); // < 0 = on the floor
+  const n = naveOpen && abbeyOpen ? naveDist(x, z) : Infinity;
+  return Math.min(d, a, n); // < 0 = on the floor
 }
 
 // the named stretches of Z01: what the banner says when a Bearer walks into one
@@ -44,11 +55,15 @@ export const AREAS = [
   { id: "court", name: "The Bailiff's Court", sub: "all debts are called here" },
   { id: "climb", name: "The Penitent Climb", sub: "they crawled the last mile on their knees" },
   { id: "abbey", name: "The Ashen Abbey", sub: "the choir sings with no mouths" },
+  { id: "nave", name: "The Burned Nave", sub: "the roof came down on the faithful mid-hymn" },
+  { id: "crypt", name: "The Bell Crypt", sub: "the Ninth Bell has not stopped ringing" },
 ];
 export function areaAt(x, z) {
   const by = (id) => AREAS.find((a) => a.id === id);
   if (Math.hypot(x - HUB.x, z - HUB.z) < HUB.r) return by("fire");
   if (Math.hypot(x - COURTS[0].x, z - COURTS[0].z) < COURTS[0].r) return by("toll");
+  if (Math.hypot(x - CRYPT.x, z - CRYPT.z) < CRYPT.r) return by("crypt");
+  if (z < -197 && segDist(x, z, NAVE, NAVE_HALF) < 0.5) return by("nave");
   if (Math.hypot(x - ABBEY.x, z - ABBEY.z) < ABBEY.r) return by("abbey");
   if (Math.hypot(x - COURTS[1].x, z - COURTS[1].z) >= COURTS[1].r && segDist(x, z, ABBEY_ROAD, ABBEY_HALF) < 0.5 && z < -110) return by("climb");
   if (z < -92 && Math.hypot(x - COURTS[1].x, z - COURTS[1].z) < COURTS[1].r + 2) return by("court");

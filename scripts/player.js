@@ -6,7 +6,7 @@ import { findPath } from "builtin/nav";
 import { floorDist as mapFloor, areaAt } from "./lib/data/veilfall-map.js";
 // the Abbey road is floor only once the Bailiff has fallen in this room (place.state.abbeyOpen, set by the sim)
 let ABBEY_OPEN = false;
-const floorDist = (x, z) => mapFloor(x, z, ABBEY_OPEN);
+const floorDist = (x, z) => mapFloor(x, z, ABBEY_OPEN, NAVE_OPEN);
 import C from "./lib/data/combat.yml";
 import { shopInput } from "./lib/shop.js";
 import * as CH from "./lib/character.js";
@@ -392,6 +392,7 @@ export function update(ctx, dt) {
   if (ctx.self.state.hp === undefined) onSpawn(ctx);
   const s = ctx.self.state, now = ctx.now(), f = ctx.self.feetPosition;
   ABBEY_OPEN = (s.quest?.stage ?? 0) >= 4 || !!ctx.place.state?.abbeyOpenAll;
+  NAVE_OPEN = (s.quest?.stage ?? 0) >= 10 || !!ctx.place.state?.abbeyOpenAll;
   const vy = (ctx.self.velocity?.y ?? 0) + (ctx.self.grounded ? 0 : ctx.place.gravity.y * dt);
   // a fresh visit opens on the title in the Veil; a realm cross lands on that realm's character list
   if (ctx.self.isLocal !== false && !ctx.session.vfDoor) {
