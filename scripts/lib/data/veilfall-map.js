@@ -28,6 +28,13 @@ export const FEN_HALF = 5;
 export const FEN = { x: -64, z: -10, r: 20 };
 export const WAYSTONES = [{ id: "w1", x: -54, z: -2 }, { id: "w2", x: -72, z: -1 }, { id: "w3", x: -62, z: -24 }];
 export const FEN_HEART = { x: -66, z: -12, r: 9 };
+// east of the Wayside Fire: the Gallows Path climbs into Saint Corvin's orchard, where the second lantern hangs.
+// Floor only for a Bearer whose Drowned Lantern chapter is done (quest stage 17+).
+export const ORCH_PATH = [[10, 2], [26, 0], [38, 4], [46, 6]];
+export const ORCH_HALF = 4.5;
+export const ORCHARD = { x: 62, z: 6, r: 18 };
+export const GIBBETS = [{ id: "g1", x: 52, z: 15 }, { id: "g2", x: 72, z: 14 }, { id: "g3", x: 66, z: -6 }];
+export const GALLOWS = { x: 62, z: 5, r: 9 };
 const segDist = (x, z, pts, half) => {
   let d = Infinity;
   for (let i = 0; i < pts.length - 1; i++) {
@@ -46,7 +53,10 @@ export function naveDist(x, z) {
 export function fenDist(x, z) {
   return Math.min(segDist(x, z, FEN_PATH, FEN_HALF), Math.hypot(x - FEN.x, z - FEN.z) - FEN.r);
 }
-export function floorDist(x, z, abbeyOpen = true, naveOpen = true, fenOpen = true) {
+export function orchDist(x, z) {
+  return Math.min(segDist(x, z, ORCH_PATH, ORCH_HALF), Math.hypot(x - ORCHARD.x, z - ORCHARD.z) - ORCHARD.r);
+}
+export function floorDist(x, z, abbeyOpen = true, naveOpen = true, fenOpen = true, orchOpen = true) {
   let d = Math.hypot(x - HUB.x, z - HUB.z) - HUB.r;
   for (const c of COURTS) d = Math.min(d, Math.hypot(x - c.x, z - c.z) - c.r);
   d = Math.min(d, segDist(x, z, ROAD, ROAD_HALF));
@@ -54,7 +64,8 @@ export function floorDist(x, z, abbeyOpen = true, naveOpen = true, fenOpen = tru
   if (!abbeyOpen) a = Math.max(a, 0.6 - sealSide(x, z) * -1); // sealed: only the court side of the seal is floor
   const n = naveOpen && abbeyOpen ? naveDist(x, z) : Infinity;
   const fd = fenOpen ? fenDist(x, z) : Infinity;
-  return Math.min(d, a, n, fd); // < 0 = on the floor
+  const od = orchOpen ? orchDist(x, z) : Infinity;
+  return Math.min(d, a, n, fd, od); // < 0 = on the floor
 }
 
 // the named stretches of Z01: what the banner says when a Bearer walks into one
@@ -70,12 +81,16 @@ export const AREAS = [
   { id: "crypt", name: "The Bell Crypt", sub: "the Ninth Bell has not stopped ringing" },
   { id: "fenpath", name: "The Fen Path", sub: "the lanterns went west, once" },
   { id: "fen", name: "The Lanternmere", sub: "the water keeps what it was given" },
+  { id: "orchpath", name: "The Gallows Path", sub: "the debtors walked it barefoot" },
+  { id: "orchard", name: "Saint Corvin's Orchard", sub: "nothing grows here but rope" },
 ];
 export function areaAt(x, z) {
   const by = (id) => AREAS.find((a) => a.id === id);
   if (Math.hypot(x - HUB.x, z - HUB.z) < HUB.r) return by("fire");
   if (Math.hypot(x - FEN.x, z - FEN.z) < FEN.r) return by("fen");
   if (x < -14 && segDist(x, z, FEN_PATH, FEN_HALF) < 0.5) return by("fenpath");
+  if (Math.hypot(x - ORCHARD.x, z - ORCHARD.z) < ORCHARD.r) return by("orchard");
+  if (x > 14 && segDist(x, z, ORCH_PATH, ORCH_HALF) < 0.5) return by("orchpath");
   if (Math.hypot(x - COURTS[0].x, z - COURTS[0].z) < COURTS[0].r) return by("toll");
   if (Math.hypot(x - CRYPT.x, z - CRYPT.z) < CRYPT.r) return by("crypt");
   if (z < -197 && segDist(x, z, NAVE, NAVE_HALF) < 0.5) return by("nave");
