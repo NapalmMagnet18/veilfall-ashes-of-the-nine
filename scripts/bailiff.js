@@ -57,6 +57,23 @@ function clearAdds(ctx) {
   const s = ctx.self.state; s.ledgersUp = 0; s.fray = 0; s.ledgersLit = false;
 }
 
+
+// a lit ledger reads from across the arena: a burning ring at its foot that breathes, an outline that pulses,
+// and a flare each time it feeds the Fray
+function markLedger(ctx, L, first) {
+  if (first) {
+    const ring = ctx.spawn(`${L.id}-ring`, { parent: L.id, feetPosition: { x: 0, y: 0.06, z: 0 }, rotation: { pitch: 90 },
+      primitive: { kind: "torus", radius: 1.25, tube: 0.07, radialSegments: 6, tubularSegments: 40 },
+      material: { color: "oklch(0.7 0.2 45)", emissive: "oklch(0.7 0.2 45)", emissiveIntensity: 3 } });
+    animate(ctx, ring, { scale: [1, 1.18, 1] }, { duration: 1.2, loop: true, easing: "easeInOutSine" });
+  }
+  ctx.emit("highlightSet", { target: L.id, color: "#ff8a3c", style: "pulse", duration: B.frayEvery + 0.5 });
+  if (!first) {
+    const o = ctx.getObject(L.id);
+    if (o) ctx.emit("fx", { position: { x: L.x, y: o.feetPosition.y + 0.2, z: L.z }, script: `fx\npop fl burst=1 life=.5 size=3 col=hdr(3,1.1,.25) a=.8>0 sz=$size*(.3>1.4) r=sprite(soft-disc,add)\npop sp burst=16 on=disc(.6) life=.5..0.9 v=up(2..4)+sdir() size=.03..0.06 col=hdr(4,1.6,.3) acc=grav()*.5 a=1>0 r=sprite(ember,add,velocity,.02)` });
+  }
+}
+
 export function onSpawn(ctx) {
   const s = ctx.self.state;
   if (s.maxHp === undefined) { s.maxHp = B.hp; s.hp = B.hp; }
@@ -103,6 +120,7 @@ export function update(ctx, dt) {
       for (const L of LEDGERS) ctx.spawn(L.id, { tags: ["enemy", "boss", "ledger"], feetPosition: { x: L.x, z: L.z, y: { terrain: 0 } }, physics: "static",
         primitive: { kind: "cylinder", radiusTop: 0.55, radiusBottom: 0.75, height: 3, radialSegments: 8 }, material: { color: "oklch(0.32 0.03 60)", roughness: 0.9 },
         fx: { script: LEDGER_FIRE }, state: { hp: B.ledgerHp, maxHp: B.ledgerHp, kind: "ledger" } });
+      for (const L of LEDGERS) markLedger(ctx, L, true);
       ctx.emit("playSound", { clip: sfx("ledger-pillars-ignite-whoosh-and-pages"), position: f, volume: 1, maxDistance: 80 });
     }
   }
@@ -121,7 +139,10 @@ export function update(ctx, dt) {
     }
     if (s.engaged && now >= (s.walkerAt ?? 0)) s.walkerAt = now + B.ledgerSpawnEvery * 1000;
     if (up !== s.ledgersUp) { s.ledgersUp = up; if (!up) { s.fray = 0; ctx.emit("playSound", { clip: sfx("objective-complete-soft-bell"), position: f, volume: 0.8 }); } }
-    if (up && s.engaged && now >= s.frayAt) { s.frayAt = now + B.frayEvery * 1000; s.fray = Math.min(B.frayMax, (s.fray ?? 0) + 1); }
+    if (up && s.engaged && now >= s.frayAt) {
+      s.frayAt = now + B.frayEvery * 1000; s.fray = Math.min(B.frayMax, (s.fray ?? 0) + 1);
+      for (const L of LEDGERS) if (ctx.getObject(L.id)) markLedger(ctx, L, false);
+    }
   }
   publish(ctx);
   if (!s.engaged) { const d = flat(f, HOME); self.velocity = d > 1 ? { x: ((HOME.x - f.x) / d) * 3, y: self.velocity.y, z: ((HOME.z - f.z) / d) * 3 } : { x: 0, y: self.velocity.y, z: 0 }; return; }
