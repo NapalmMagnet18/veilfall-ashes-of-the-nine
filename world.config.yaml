@@ -1,0 +1,32 @@
+# name: the game's name: fill it once you know what this is. description: one line for the box art.
+name: ""
+description: ""
+camera: templates/camera.js#camera
+lighting: scripts/lighting.js
+defaultPlace: main
+engine:
+  behaviors:
+    - scripts/arrival.js
+  networking:
+    mode: multiplayer
+  ui:
+    theme:
+      font: Geist Pixel Square
+inputs:
+  actions:
+    jump:
+      keys:
+        - space
+  axes:
+    moveX:
+      keys: a/d
+    moveZ:
+      keys: s/w
+player: templates/player.js#player
+ui:
+  render: scripts/ui.js
+# nametag: the tag over other players' heads: this file, yours to edit: export default function (ctx, tag) { return html }, the shape ui.js has.
+nametag: ui/nametag.js
+authoring:
+  starter:
+    id: 3d
