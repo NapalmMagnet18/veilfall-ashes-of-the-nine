@@ -140,7 +140,7 @@ function menu(ctx, player, s) {
     <div class="panel det" style="animation:vmin .55s">
       <div class="big"><img src="${C.img}" style="${C.open ? "" : "filter:grayscale(.8) brightness(.5)"}"><div style="position:absolute;left:0;right:0;bottom:0;height:80px;background:linear-gradient(transparent,#1a1715)"></div></div>
       <div class="lbl">Name</div>
-      <div class="namebox"><span>${pk.name}</span><button class="mini" onclick="${act("reroll")}">⟳ ANOTHER</button></div>
+      <div class="namebox"><span>${pk.name}</span><button class="mini" onclick="${act("reroll")}">ANOTHER NAME</button></div>
       <div style="font-size:24px;color:#f2d38a;letter-spacing:.06em;margin-top:8px">${C.name}</div>
       <div class="lbl">${C.role} · ${C.res}</div>
       <div style="font-size:14px;margin:6px 0 8px;line-height:1.35">${C.fantasy}</div>
