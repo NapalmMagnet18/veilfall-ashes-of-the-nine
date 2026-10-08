@@ -174,7 +174,14 @@ export function tick(ctx) {
   // the hanged hang until someone has cut them down
   const cutAny = new Set();
   for (const p of ctx.place.players) { const qq = p.state.quest; if (!qq) continue; if (p.state.menu) continue; if (qq.stage === 20) GIBBETS.forEach((g) => cutAny.add(g.id)); else if (qq.stage === 19) (qq.cut ?? []).forEach((id) => cutAny.add(id)); }
-  for (const g of GIBBETS) { const h = objs[`orch-gibbet-${g.id}/hanged`], want = !cutAny.has(g.id); if (h && h.visible !== want) h.visible = want; }
+  for (const g of GIBBETS) { const h = objs[`orch-gibbet-${g.id}/hanged`], want = !cutAny.has(g.id); if (h && h.visible !== want) h.visible = want;
+    // each one creaks on its rope while it hangs; the sound goes with the body
+    const cid = `orch-creak-${g.id}`, c = objs[cid], clip = "/cdn/moodboard-gothic-horror/sfx-thick-hemp-rope-creaking-slowly-under-a-swinging-weight-loop.mp3";
+    if (!c) ctx.spawn(cid, { tags: ["ambience", "orchard"], feetPosition: { x: g.x, y: 3, z: g.z }, audio: want ? { clip, loop: true, gain: 0.22, maxDistance: 12, bus: "Ambience" } : null });
+    else if (!!c.audio !== want) c.audio = want ? { clip, loop: true, gain: 0.22, maxDistance: 12, bus: "Ambience" } : null;
+  }
+  if (!("orch-rookery" in objs)) ctx.spawn("orch-rookery", { tags: ["ambience", "orchard"], feetPosition: { x: 70, y: 5, z: 18 },
+    audio: { clip: "/cdn/moodboard-gothic-horror/ambience-crow-rookery-in-dead-trees-at-night-occasional-caws-and-wingbeats-loop.mp3", loop: true, gain: 0.18, maxDistance: 26, bus: "Ambience" } });
   // the Lantern Rail by the fire: each lantern of the Nine hangs burning once a Bearer here has brought it home
   let top = 0; for (const p of ctx.place.players) if (p.state.charId && !p.state.menu) top = Math.max(top, p.state.quest?.stage ?? 0);
   for (const [n, at] of [[9, 13], [1, 17], [2, 22]]) {
