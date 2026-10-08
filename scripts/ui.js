@@ -251,15 +251,32 @@ function menu(ctx, player, s) {
 
   if (s.menu === "realms") {
     const per = s.roster?.per ?? {};
-    return `${head(s)}<div class="mid"><div class="lbl">Choose a realm</div><div class="h1 gold" style="font-size:40px">THE NINE ROADS</div><div class="dv df5"></div></div>
-    <div class="wrap" style="justify-content:center"><div class="panel side" style="width:min(460px,100%);animation:vmin .4s;margin-top:70px">
-      <div class="lbl">Realms</div><div class="dv d1"></div>
-      <div style="font-size:13px;color:#b9a77f;margin:4px 0 2px">A Bearer is written into one realm and walks only there.</div>
-      ${R.realms.map((r) => `<div class="row ${r.room === here ? "on" : ""}" onclick="${act("realm", r.room)}">
-        <div style="flex:1"><div class="t">${r.name}${r.room === here ? ` <span class="lbl" style="color:#6db8c0">· here</span>` : ""}</div><div class="d">${r.kind} · ${r.note}</div></div>
-        <div style="text-align:right"><div style="font-size:18px">${per[r.room] ?? 0}<span style="font-size:12px;color:#b9a77f">/${R.maxChars}</span></div><div class="d">yours</div></div></div>`).join("")}
-      <button class="btn" style="min-width:0;font-size:14px;padding:8px;margin-top:14px" onclick="${act("title")}">Back</button>
-    </div></div>${tail(s, now)}`;
+    const SIG = { main: "bae54bd7d6e007bbd3ad81038a1fc5c905b44db5f280a40a7f91cfd31fc06d73", "realm-ninth-bell": "62aee8104496614b99e22598ec1729f06c650ea4b05d627eccd3f99675b36f37", "realm-ashwake": "939f5a8a122e31d505a27904cc9c8f486e0eeb5b9519d60d06f38f4ef59bcb39", "realm-gloamfen": "d1828b1d7d2623e35a75aed4d3a3b697f87b055228c5584bb0db62755052870c" };
+    return `${head(s)}<style>
+#vm .rl{position:absolute;left:50%;top:50%;transform:translate(-50%,-46%);width:min(720px,calc(100vw - 140px));animation:vmin .45s}
+#vm .rh{text-align:center;margin-bottom:18px} #vm .rh .h1{font-size:44px}
+#vm .rr{pointer-events:auto;cursor:pointer;display:grid;grid-template-columns:76px 1fr 90px 90px;align-items:center;gap:16px;padding:12px 18px 12px 12px;margin-top:10px;background:linear-gradient(90deg,rgba(28,22,18,.94),rgba(12,10,9,.9));box-shadow:inset 0 0 0 1px rgba(196,156,99,.25),0 6px 18px rgba(0,0,0,.5);transition:all .2s}
+#vm .rr:hover{transform:translateX(5px);box-shadow:inset 0 0 0 1px rgba(242,211,138,.6),0 6px 18px rgba(0,0,0,.5)}
+#vm .rr.on{background:linear-gradient(90deg,rgba(110,34,20,.5),rgba(22,16,13,.92) 55%);box-shadow:inset 0 0 0 1px #f2d38a,inset 3px 0 0 #ff9a4a,0 0 24px rgba(255,140,60,.2)}
+#vm .rr .sg{width:76px;height:76px;border-radius:50%;overflow:hidden;box-shadow:0 0 0 2px #0d0b0a,0 4px 10px rgba(0,0,0,.8);filter:saturate(.85) brightness(.85);transition:filter .2s}
+#vm .rr .sg img{width:112%;height:112%;margin:-6%;object-fit:cover}
+#vm .rr:hover .sg,#vm .rr.on .sg{filter:none;box-shadow:0 0 0 2px #0d0b0a,0 0 18px rgba(255,160,70,.45)}
+#vm .rr .nm{font-family:'VCinzel',serif;font-weight:700;font-size:22px;letter-spacing:.08em;color:#f2d38a}
+#vm .rr .ds{font-size:15px;font-style:italic;color:#a8977a;margin-top:2px}
+#vm .rr .col{text-align:center;font-family:'VCinzel',serif} #vm .rr .col b{display:block;font-size:20px;color:#e7d9b8} #vm .rr .col span{font-size:9px;letter-spacing:.22em;color:#8f7d5c}
+#vm .rr .st{font-size:10px;letter-spacing:.2em;color:#6db8c0} #vm .rr .st::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:#6db8c0;box-shadow:0 0 8px #6db8c0;margin-right:6px;vertical-align:1px}
+#vm .rr .here{font-size:9px;letter-spacing:.25em;color:#ffcf7a;padding:2px 6px;margin-left:10px;box-shadow:inset 0 0 0 1px rgba(255,180,90,.6);vertical-align:4px}
+#vm .rfoot{display:flex;justify-content:space-between;align-items:center;margin-top:18px;font-size:14px;color:#8f7d5c;font-style:italic}
+@media (pointer:coarse),(max-width:760px),(max-height:520px){#vm .rl{top:8px;transform:translateX(-50%);width:calc(100vw - 90px)} #vm .rh{display:none} #vm .rr{grid-template-columns:48px 1fr 54px;gap:10px;padding:8px} #vm .rr .sg{width:48px;height:48px} #vm .rr .nm{font-size:16px} #vm .rr .ds,#vm .rr .c2{display:none}}
+</style>
+    <div class="rl"><div class="rh"><div class="lbl">Choose a realm</div><div class="h1 gold">THE NINE ROADS</div><div class="dv df5"></div></div>
+      ${R.realms.map((r) => `<div class="rr ${r.room === here ? "on" : ""}" onclick="${act("realm", r.room)}">
+        <div class="sg">${SIG[r.room] ? `<img src="/cdn/value.${SIG[r.room]}.png">` : ""}</div>
+        <div><div class="nm">${r.name}${r.room === here ? `<span class="here">CURRENT</span>` : ""}</div><div class="ds">${r.note}</div></div>
+        <div class="col c2"><div class="st">OPEN</div><span>${r.kind.toUpperCase()}</span></div>
+        <div class="col"><b>${per[r.room] ?? 0}<span style="font-size:12px;letter-spacing:0">/${R.maxChars}</span></b><span>BEARERS</span></div></div>`).join("")}
+      <div class="rfoot"><span>A Bearer is written into one realm and walks only there.</span><button class="btn" style="margin:0" onclick="${act("title")}">Back</button></div>
+    </div>${tail(s, now)}`;
   }
 
   if (s.menu === "create") {
