@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "basedOnSpecVersion": 328,
-  "updatedAt": "2026-10-08T17:58:09.278Z",
-  "summary": "VEILFALL: Ashes of the Nine is an isometric action RPG whose playable Z01 Broken Lantern Road shares a world with the separate solo Veil menu stage. Player, UI and camera connect realm/Bearer selection to the main-place referee, enemies and authored terrain; place simulations coordinate quest/combat ambience and a room-shared music jukebox. CDN character models and bespoke road/camp props are dressed by terrain, fog, lighting and shadow passes.",
+  "basedOnSpecVersion": 369,
+  "updatedAt": "2026-10-08T18:10:00.110Z",
+  "summary": "VEILFALL: Ashes of the Nine is an isometric action RPG whose main place now carries Broken Lantern Road past the Bailiff's Court to the sealed Penitent Climb and Ashen Abbey yard; the Abbey interior is not yet part of the place. A separate solo Veil stage hosts realm/Bearer menus, while player, UI, camera and the main-place referee connect character persistence, combat, quests and shared-room music; authored scenes combine procedural terrain props and bespoke CDN models.",
   "scriptPaths": [
     "scripts/arrival.js",
     "scripts/bailiff.js",
@@ -36,6 +36,7 @@
     "scripts/gen/vf-ruin.js",
     "scripts/gen/vf-tollhouse.js",
     "scripts/gen/wax-figure.js",
+    "scripts/gen/wax-seal.js",
     "scripts/grass-look.js",
     "scripts/grass.js",
     "scripts/humanoid-locomotion.js",
@@ -63,8 +64,8 @@
     "scripts/wax-pack.js"
   ],
   "places": [
-    "places/main/ - playable Z01: Wayside Fire, candle road, Tollhouse, Dripping Gate and Bailiff's Court/arena; sim.js coordinates NPCs, enemies, petitions, quest progression and place audio.",
-    "places/main/cells/x0z0.scene and x0z-1.scene - authored camp/road/tollhouse/gate/arena contents, placed enemies and Bailiff, Waystone, gibbets, reliquaries and bone heaps; brazier child lights now cast shadows.",
+    "places/main/ - playable Z01 from Wayside Fire through Tollhouse, Dripping Gate and Bailiff's Court, onward across the Wax Veil to the Penitent Climb and Ashen Abbey yard; sim.js coordinates NPCs, enemy packs, petitions, quest stages, levels, reward and place audio.",
+    "places/main/cells/x0z0.scene, x0z-1.scene and x0z-2.scene - 3 authored cells/176 placements across camp, road, court and new abbey approach/yard; include placed Bailiff, wax seal, braziers, ruined cloister/abbey landmarks and camp Waystone/map table/Oswin cart.",
     "places/main/config.yaml - main terrain, atmosphere and procedural vegetation; terrain materials use stochastic anti-tiling, stronger normals, reduced roughness intensity and macro variation.",
     "places/veil/ - ephemeral solo menu stage: Lantern Shrine ledge above a misty ravine; hidden menu body is parked there.",
     "places/veil/cells/x0z0.scene, x0z-1.scene and x0z-2.scene; places/veil/config.yaml - shrine/ledge, cliffs, far ridge, spawn and menu-stage atmosphere."
@@ -73,8 +74,8 @@
     "world.config.yaml - world entry: main default place, player/camera templates, lighting, arrival behavior, nametag, desktop actions and touch surfaces; touch controller is scripts/controls.js.",
     "templates/player.js - body combines humanoid-locomotion.js and scripts/player.js, assigns the Bladewraith CDN model and 1.85 m layout, and carries warm point-light child lightradius.",
     "templates/camera.js - custom camera template running scripts/camera.js.",
-    "places/main/sim.js - Z01 referee for NPCs, enemy/petition/quest stages, levels, reward turn-in and road ambience/music; dynamically spawned enemies use models.js bodies.",
-    "places/main/cells/x0z0.scene and x0z-1.scene - authored playable-place content, including placed rigged wax enemies, Bailiff, road dressing and Waystone.",
+    "places/main/sim.js - Z01 referee for NPCs, enemy/petition/quest stages, levels, reward turn-in, local ambience and road/fight/boss/abbey audio beds.",
+    "places/main/cells/x0z0.scene, x0z-1.scene and x0z-2.scene - authored playable content: camp and road dressing, Tollhouse/court/Bailiff, and the Wax Veil/abbey approach and yard.",
     "places/veil/cells/x0z0.scene, x0z-1.scene and x0z-2.scene plus places/veil/config.yaml - authored menu-stage shrine/ravine and its spawn/environment.",
     "places/veil/sim.js - menu-stage ravine wind and title theme when no eligible Bearer is on the road.",
     "scripts/arrival.js - world doorway behavior; saves an active Bearer when leaving main."
@@ -85,9 +86,9 @@
     "scripts/lib/data/realms.yml - account character cap and realm room/name registry used by player menus and UI.",
     "scripts/lib/data/economy.yml and scripts/lib/coins.js - economy values and copper formatting shared by sim, drops, shop and HUD.",
     "scripts/lib/data/combat.yml - hero, enemy, skill, guard and Bailiff tuning consumed by combat scripts and HUD.",
-    "scripts/lib/data/veilfall-map.js - shared Z01 layout, floorDist and named AREAS/areaAt used by terrain, player movement and zone banners.",
+    "scripts/lib/data/veilfall-map.js - shared Z01 floor/areas, Abbey road and Wax Veil seal geometry; terrain, player movement and zone banners use its map data/functions.",
     "scripts/lib/data/menu-shot.yml and scripts/lib/data/models.js - Veil camera framing and CDN model IDs/metre heights/body(kind) helper used by camera and main sim/Bailiff.",
-    "art/roadkit/common.py - shared Blender construction/material/render helpers imported by roadkit prop builders; offline art tooling, not a place behavior."
+    "art/roadkit/common.py - shared Blender construction/material/render helpers imported by roadkit and Abbey model builders; offline art tooling, not place behavior."
   ],
   "notableExports": [
     "places/main/sim.js - cadence, tick; places/veil/sim.js - cadence, tick.",
@@ -97,12 +98,12 @@
     "scripts/lib/shop.js - owned, shopInput; scripts/lib/shop-ui.js - shopPanel.",
     "scripts/camera.js - onInput, update; scripts/arrival.js - onArrive, onLeave; scripts/controls.js - default touch-surface selector.",
     "scripts/lib/frames.js - FRAME_CSS; scripts/lib/data/ui-kit.js - default; scripts/ui.js - default.",
-    "scripts/lib/data/veilfall-map.js - AREAS, areaAt, floorDist; scripts/lib/data/models.js - MODELS, HEIGHT, body; scripts/gen/veil-shrine.js - shrine structure/constants and geometry/collider."
+    "scripts/lib/data/veilfall-map.js - ABBEY_ROAD, ABBEY_SEAL, sealSide, floorDist, AREAS, areaAt; scripts/gen/wax-seal.js - geometry, collider; scripts/lib/data/models.js - MODELS, HEIGHT, body."
   ],
   "ownership": [
     "scripts/lib/character.js CHAR_KEYS - persistent Bearer fields including seen area IDs; position is packed separately, transient UI/movement state is not saved.",
     "scripts/player.js - active body's movement, combat, death/i-frame and skill timers, menu/selection scratch, current area/banner/foe HUD projection, footsteps cadence and low-life vignette; hydrates and saves the selected Bearer.",
-    "places/main/sim.js - per-player Z01 quest stage/dialog/kills baseline and claimed turn-in reward; place orchestration, NPC/shop-open distance behavior, ambience spawns and road/fight/boss music mood/tail.",
+    "places/main/sim.js - per-player Z01 quest stage/dialog/kills baseline and claimed turn-in reward; place orchestration, NPC/shop-open distance behavior, enemy packs, ambience spawns and road/fight/boss/abbey music mood/tail.",
     "scripts/wax-pack.js - ordinary enemy AI/hp/death and nearby eligible Bearers' XP/copper/kills/shards payouts.",
     "scripts/bailiff.js - boss hp/phases/casts, arena reset, ledger pillars/walkers and Fray; publishes place.state.boss and bailiffDownAt.",
     "scripts/lib/shop.js - trade validation and buyer copper, tonics, bag and maxHp mutations; shop-open state is on player.state.",
@@ -114,24 +115,24 @@
     "player.js menuInput → character.js roster/create/load/remove using caller-owned character rows; realms.yml maps selected realm to room and Bearer fields hydrate player.state.",
     "While player.state.menu is set, player.js hides the body and crosses to solo place veil → realm and Bearer screens remain state-driven, with no characters in that place.",
     "scripts/controls.js reads ctx.player.state.menu/shop/bagOpen → world.config.yaml chooses empty menu touch surface or default movement/skill buttons; UI panels continue receiving their own button actions.",
-    "scripts/ui.js draws title, realm, Bearer screens and HUD from player/place state → menu/shop/combat actions return through player.js; named Maelin/Oswin dialogue prefixes select portrait/nameplate and animate the spoken line; boss phase/hp and quest state feed the HUD.",
+    "scripts/ui.js draws title, realm, Bearer screens and HUD from player/place state → menu/shop/combat actions return through player.js; named Maelin/Oswin dialogue prefixes select portrait/nameplate and animate the spoken line; boss phase/hp and quest progress are projected from state.",
     "scripts/ui.js calls scripts/lib/shop-ui.js shopPanel when player.state.shop is set → shop buttons send shop action data; shop-ui.js uses economy/UI data and portrait/item icon assets, while scripts/lib/shop.js validates and applies trades.",
     "scripts/camera.js reads target.state.menu and menu-shot.yml for the Veil shot; when entering play it cranes into follow view.",
     "player.js saves changed CHAR_KEYS plus position periodically and on rest → character.js writes characters; arrival.js also saves an active character leaving main.",
-    "player.js uses veilfall-map.js floorDist for reachable click goals and floor-constrained movement/dash → hero remains on the defined Z01 floor.",
+    "player.js uses veilfall-map.js floorDist for reachable click goals and floor-constrained movement/dash → quest stage 4+ (or place.state.abbeyOpenAll) enables ABBEY_OPEN, so the Wax Veil gates floor access until the Bailiff is down.",
     "player.js zoneTick reads areaAt at the Bearer's position → transient player.state.area/banner drives UI banner; first entry adds area ID to persistent seen and emits a player-targeted milestone and discovery sound.",
     "player.js strikes mutate enemy.state.hp/lastHit → wax-pack.js resolves ordinary deaths and eligible payouts; Bailiff reuses wax-pack payout on defeat.",
-    "main sim musicTick selects road/fight/boss track and spawns local ambience beds; Veil sim selects its menu theme and wind only when no eligible Bearer is on main → both coordinate through the room-shared jukebox."
+    "main sim musicTick selects road/fight/boss mood and spawns local ambience beds including the Abbey choir/bell; Veil sim selects menu theme and wind only when no eligible Bearer is on main → both coordinate through the room-shared jukebox."
   ],
   "behaviorFamilies": [
     "scripts/gen/hub-*.js - reusable Wayside Fire camp props varied by instance params, seed and scene transform; share hub-kit.js.",
     "scripts/gen/vf-*.js other than vf-ruin.js - Broken Lantern Road landmarks/clutter varied by parameters and seeds, built with vf-kit.js.",
-    "scripts/gen/vf-ruin.js - road, arena and Veil ashlar walls/braziers; kind and dimensions select forms, seed varies geometry.",
+    "scripts/gen/vf-ruin.js - road, arena, Wax Veil approach and Veil ashlar walls/braziers; kind and dimensions select forms, seed varies geometry.",
     "scripts/gen/veil-land.js - Veil ledge, cliff and distant ridge forms selected by params.kind and dimensions/coordinates.",
     "scripts/gen/veil-shrine.js - unique Lantern Shrine of the Nine; exported structure/constants describe its steps, states, chain, hooks and clusters.",
-    "scripts/gen/arena-floor.js, arena-pillar.js, gibbet.js and toll-throne.js - Bailiff arena dressing generators sharing scripts/gen/shapes.js; shared WAXC palette is now soot-stained dark wax.",
+    "scripts/gen/arena-floor.js, arena-pillar.js, gibbet.js and toll-throne.js - Bailiff arena dressing generators sharing scripts/gen/shapes.js; shared WAXC palette is soot-stained dark wax.",
     "scripts/humanoid-locomotion.js - shared body/input locomotion behavior on player and wax enemy actors; model choice and scale differ by actor.",
-    "art/roadkit/{gibbet,boneheap,reliquary}.py - offline Blender road-prop model builders share common.py/materials; art/waystone/build.py builds the unique Waystone model placed at camp."
+    "art/roadkit/{gibbet,boneheap,reliquary,handcart,maptable,petition}.py plus art/abbey/kit.py - offline Blender prop/model builders; roadkit builders reuse common.py, Abbey kit supplies its own scene/model helpers, with bespoke models placed in camp, Tollhouse and Abbey."
   ],
   "probableOrphans": [
     "scripts/flat-starter-terrain.js",
@@ -141,8 +142,8 @@
     "Persistent character data is exactly scripts/lib/character.js CHAR_KEYS plus packed position; seen is persistent per-Bearer, while area/banner/foe, menu and movement state remain transient. Add persistent fields to CHAR_KEYS.",
     "Character rows are caller-owned and realm-bound; character.js scopes roster/load/save by owner and realm, while live names are unique per realm. realms.yml room IDs are routing identities, not places in this tree.",
     "The Veil is solo and ephemeral, has no characters, and parks the hidden menu body at its origin; menu framing in camera.js is tuned by menu-shot.yml against that stage's shrine/ledge layout.",
-    "The music jukebox is room-shared, not owned independently by each place: main sim changes it for road/fight/boss only when an eligible Bearer is on main; Veil supplies the menu theme when no one is on the road.",
+    "The music jukebox is room-shared, not owned independently by each place: main sim changes it for road/fight/boss/Abbey only when an eligible Bearer is on main; Veil supplies the menu theme when no one is on the road.",
     "Player attacks directly mutate enemy.state.hp; ordinary-enemy death, XP and kill credit are resolved later by wax-pack.js. Preserve that handoff and its menu/charId eligibility check.",
-    "Main braziers' child lights cast shadows; places/main/config.yaml terrain materials carry stochastic anti-tiling and macro variation, and scripts/gen/shapes.js WAXC sets the dark soot-stained arena wax palette."
+    "ABBEY_ROAD/ABBEY coordinates in veilfall-map.js are world metres; player.js gates its floorDist through quest stage 4+ (Bailiff down) or abbeyOpenAll. Preserve the Wax Veil seal-side boundary and keep placed seal at (12.3,-118.7), yaw 31.6."
   ]
 }
