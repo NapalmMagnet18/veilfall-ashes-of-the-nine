@@ -21,6 +21,13 @@ export const NAVE = [[0, -205], [0, -236]];
 export const NAVE_HALF = 7;
 export const CRYPT = { x: 0, z: -251, r: 14 };
 export const BELL = { x: 0, z: -259 };
+// west of the Wayside Fire: the Fen Path drops into the Lanternmere, where the first lantern drowned.
+// Floor only for a Bearer whose Ninth Bell chapter is done (quest stage 13+).
+export const FEN_PATH = [[-14, 4], [-28, 8], [-42, 4], [-50, -4]];
+export const FEN_HALF = 5;
+export const FEN = { x: -64, z: -10, r: 20 };
+export const WAYSTONES = [{ id: "w1", x: -54, z: -2 }, { id: "w2", x: -72, z: -1 }, { id: "w3", x: -62, z: -24 }];
+export const FEN_HEART = { x: -66, z: -12, r: 9 };
 const segDist = (x, z, pts, half) => {
   let d = Infinity;
   for (let i = 0; i < pts.length - 1; i++) {
@@ -36,14 +43,18 @@ export function sealSide(x, z) { return (x - ABBEY_SEAL.x) * 0.524 + (z - ABBEY_
 export function naveDist(x, z) {
   return Math.min(segDist(x, z, NAVE_DOOR, 2.1), segDist(x, z, NAVE, NAVE_HALF), Math.hypot(x - CRYPT.x, z - CRYPT.z) - CRYPT.r);
 }
-export function floorDist(x, z, abbeyOpen = true, naveOpen = true) {
+export function fenDist(x, z) {
+  return Math.min(segDist(x, z, FEN_PATH, FEN_HALF), Math.hypot(x - FEN.x, z - FEN.z) - FEN.r);
+}
+export function floorDist(x, z, abbeyOpen = true, naveOpen = true, fenOpen = true) {
   let d = Math.hypot(x - HUB.x, z - HUB.z) - HUB.r;
   for (const c of COURTS) d = Math.min(d, Math.hypot(x - c.x, z - c.z) - c.r);
   d = Math.min(d, segDist(x, z, ROAD, ROAD_HALF));
   let a = Math.min(segDist(x, z, ABBEY_ROAD, ABBEY_HALF), Math.hypot(x - ABBEY.x, z - ABBEY.z) - ABBEY.r);
   if (!abbeyOpen) a = Math.max(a, 0.6 - sealSide(x, z) * -1); // sealed: only the court side of the seal is floor
   const n = naveOpen && abbeyOpen ? naveDist(x, z) : Infinity;
-  return Math.min(d, a, n); // < 0 = on the floor
+  const fd = fenOpen ? fenDist(x, z) : Infinity;
+  return Math.min(d, a, n, fd); // < 0 = on the floor
 }
 
 // the named stretches of Z01: what the banner says when a Bearer walks into one
@@ -57,10 +68,14 @@ export const AREAS = [
   { id: "abbey", name: "The Ashen Abbey", sub: "the choir sings with no mouths" },
   { id: "nave", name: "The Burned Nave", sub: "the roof came down on the faithful mid-hymn" },
   { id: "crypt", name: "The Bell Crypt", sub: "the Ninth Bell has not stopped ringing" },
+  { id: "fenpath", name: "The Fen Path", sub: "the lanterns went west, once" },
+  { id: "fen", name: "The Lanternmere", sub: "the water keeps what it was given" },
 ];
 export function areaAt(x, z) {
   const by = (id) => AREAS.find((a) => a.id === id);
   if (Math.hypot(x - HUB.x, z - HUB.z) < HUB.r) return by("fire");
+  if (Math.hypot(x - FEN.x, z - FEN.z) < FEN.r) return by("fen");
+  if (x < -14 && segDist(x, z, FEN_PATH, FEN_HALF) < 0.5) return by("fenpath");
   if (Math.hypot(x - COURTS[0].x, z - COURTS[0].z) < COURTS[0].r) return by("toll");
   if (Math.hypot(x - CRYPT.x, z - CRYPT.z) < CRYPT.r) return by("crypt");
   if (z < -197 && segDist(x, z, NAVE, NAVE_HALF) < 0.5) return by("nave");
