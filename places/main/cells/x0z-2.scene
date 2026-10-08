@@ -370,9 +370,9 @@ nave-floor-1:
   rotation: {yaw: 23}
   tags: [abbey, nave, z01-dressing]
 nave-floor-2:
-  feetPosition: {x: -3.7, y: 0.020403899694913217, z: -220.2}
+  feetPosition: {x: -4.1, y: 0.020403899694913217, z: -220.2}
   id: nave-floor-2
-  primitive: {kind: scripted, params: {kind: wax, rx: 0.9, rz: 0.6}, script: scripts/gen/nave-floor.js, seed: 192}
+  primitive: {kind: scripted, params: {kind: wax, rx: 0.7, rz: 0.5}, script: scripts/gen/nave-floor.js, seed: 192}
   rotation: {yaw: 46}
   tags: [abbey, nave, z01-dressing]
 nave-floor-3:
