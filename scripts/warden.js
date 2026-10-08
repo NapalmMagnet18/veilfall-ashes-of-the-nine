@@ -44,6 +44,7 @@ export function update(ctx, dt) {
     ctx.emit("fx", { position: { x: f.x, y: f.y + 0.2, z: f.z }, script: SPLASH, params: { r: 5 } });
     animate(ctx, self, { "feetPosition.y": f.y - 3, "scale.x": 0.6, "scale.z": 0.6 }, { duration: 2.8 });
     for (const p of here) { p.state.wardenKilled = true; ctx.emit("milestone", { step: 15, name: "warden-defeated" }, { audience: { player: p.id } }); }
+    ctx.place.state.lastFall = { boss: "warden", by: here.map((p) => p.state?.charName || p.displayName).filter(Boolean).slice(0, 3), at: now }; // Brother Ledd heralds it at the fire
     payout(ctx, f, W.xp, E.drops.warden, false, "heavy", "warden");
     publish(ctx); return;
   }

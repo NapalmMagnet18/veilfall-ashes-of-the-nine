@@ -10,6 +10,22 @@ const CALLS = [V("hear-ye-fresh-notice-on-the-pilgrims-board"), V("wares-pinned-
 const BARE = [V("the-board-stands-bare-pin-your-spoils-by-the-fire"), V("nothing-on-the-board-tonight-the-road-was-cruel")];
 const BELL = "/cdn/moodboard-gothic-horror/sfx-small-iron-handbell-two-rings.mp3";
 const SOLD = [V("bearer-your-notice-sold-your-coin-waits-at-the-board"), V("hear-ye-a-buyer-took-your-wares-collect-your-due")];
+const FALL = { // boss → [name he calls, voice line]
+  bailiff: ["The Wax Bailiff", V("hear-ye-the-wax-bailiff-is-fallen-the-toll-road-is-free")],
+  ringer: ["The Ringer of the Ninth Bell", V("hear-ye-the-ninth-bell-is-silenced-the-abbey-sleeps")],
+  warden: ["The Lantern Warden", V("hear-ye-the-lantern-warden-is-snuffed-the-fen-sees-again")],
+  hangman: ["The Hangman of Saint Corvin", V("hear-ye-the-hangman-swings-no-more-cut-the-ropes")],
+};
+const TOLL = "/cdn/moodboard-gothic-horror/sfx-iron-handbell-rung-hard-many-times-urgent.mp3";
+function herald(ctx, fall) {
+  const f = ctx.self.feetPosition, at = { x: f.x, y: f.y + 2.4, z: f.z }, [name, line] = FALL[fall.boss] ?? ["A great evil", V("hear-ye-a-great-evil-has-fallen")];
+  const who = fall.by?.length ? fall.by.join(" & ") : "a nameless Bearer";
+  const aud = { audience: { nearby: f, radius: 40 } };
+  ctx.emit("playSound", { clip: TOLL, position: at, volume: 0.9, maxDistance: 40 }, aud);
+  ctx.emit("playSound", { clip: line, position: at, volume: 1, maxDistance: 40 }, aud);
+  ctx.emit("damageNumber", { position: at, text: (ctx.self.state.lastCall = `${name} has fallen · slain by ${who}`), color: "#ff9a6a", size: 2.2, lifetime: 7 }, aud);
+  ctx.self.anim.talk = { clip: "talk", weight: 1 }; ctx.after(5, "quiet");
+}
 const me = { leg: 0, pause: 0, callAt: 0, seen: 0, n: 0, told: {} }; // told: charId → sold count he already announced
 export function onSpawn(ctx) { ctx.self.state.turnTo = "none"; }
 async function call(ctx, listener) {
@@ -52,6 +68,11 @@ export function update(ctx, dt) {
   let near = null, best = EAR;
   for (const p of ctx.place.players) { if (p.state?.menu) continue; const d = Math.hypot(p.feetPosition.x - f.x, p.feetPosition.z - f.z); if (d < best) { best = d; near = p; } }
   if (!near) { ctx.self.velocity = { x: 0, y: vy, z: 0 }; ctx.sleep(2); return; } // nobody to hear him: he stands
+  const fall = ctx.place.state.lastFall; // a boss fell: it outranks every notice, heard while fresh (10 min)
+  if (fall && fall.at > (ctx.self.state.fallSeen ?? 0)) {
+    ctx.self.state.fallSeen = fall.at;
+    if (now - fall.at < 600000) { herald(ctx, fall); me.callAt = now; me.pause = now + 6000; ctx.self.velocity = { x: 0, y: vy, z: 0 }; return; }
+  }
   if (now - me.callAt > GAP && best < 11) {
     me.callAt = now; me.pause = now + 4200; call(ctx, near);
     ctx.self.rotation = { yaw: (Math.atan2(-(near.feetPosition.x - f.x), -(near.feetPosition.z - f.z)) * 180) / Math.PI };
