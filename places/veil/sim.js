@@ -11,7 +11,7 @@ export function tick(ctx) {
   if (!onRoad && now && now.ref !== THEME) ctx.music.play(THEME, { fade: 2.5, volume: 0.75 });
   else if (!onRoad && !now) ctx.music.play(THEME, { fade: 2.5, volume: 0.75 });
   // the shrine's own breath: candles guttering in wax, and now and then a bell far down the ravine
-  if (!("veil-hum" in ctx.place.objects)) ctx.spawn("veil-hum", { tags: ["ambience"], feetPosition: { x: 0, y: 1.2, z: -2 }, audio: { clip: "/cdn/moodboard-gothic-horror/ambience-shrine-candles-guttering-in-wax-faint-whispered-prayer-loop.mp3", loop: true, gain: 0.12, maxDistance: 16, bus: "Ambience" } });
+  if (!("veil-hum" in ctx.place.objects)) ctx.spawn("veil-hum", { tags: ["ambience"], feetPosition: { x: 0, y: 1.2, z: -11 }, audio: { clip: "/cdn/moodboard-gothic-horror/ambience-shrine-candles-guttering-in-wax-faint-whispered-prayer-loop.mp3", loop: true, gain: 0.16, maxDistance: 24, bus: "Ambience" } });
   const s = ctx.place.state;
   if (ctx.now() > (s.bellAt ?? 0)) {
     if (s.bellAt) ctx.emit("playSound", { clip: "/cdn/moodboard-gothic-horror/sfx-huge-cracked-bell-tolling-once-far-across-a-ravine-long-echo.mp3", position: { x: -30 + ctx.random() * 60, y: -20, z: -70 }, volume: 0.45, maxDistance: 400 });
