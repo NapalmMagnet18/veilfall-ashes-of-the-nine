@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "basedOnSpecVersion": 148,
-  "updatedAt": "2026-10-08T11:26:00.349Z",
+  "basedOnSpecVersion": 153,
+  "updatedAt": "2026-10-08T11:34:27.562Z",
   "summary": "VEILFALL: Ashes of the Nine is an isometric action RPG; its active slice is Z01, Broken Lantern Road, from the Wayside Fire through the Dripping Gate. The main-place referee stages quests and actors, player and enemy behaviors own combat, and authored scene cells plus procedural generators build the ravine.",
   "scriptPaths": [
     "scripts/arrival.js",
@@ -51,8 +51,8 @@
     "scripts/wax-pack.js"
   ],
   "places": [
-    "places/main/ - the active Z01 place: Wayside Fire hub, candle road, tollhouse court, Dripping Gate and Bailiff arena; sim.js coordinates quests and actors.",
-    "places/main/cells/x0z0.scene - authored camp and candle-road/court landmarks and dressing, including ruin-road props.",
+    "places/main/ - active Z01 place: Wayside Fire hub, candle road, tollhouse court, Dripping Gate and Bailiff arena; sim.js coordinates quests and actors.",
+    "places/main/cells/x0z0.scene - authored camp, candle-road and court landmarks and dressing, including ruin-road props.",
     "places/main/cells/x0z-1.scene - authored extended road, Dripping Gate and Bailiff arena dressing.",
     "places/main/config.yaml - place look, terrain/material configuration and procedural grass, clover and mushroom layers."
   ],
@@ -91,12 +91,12 @@
     "scripts/bailiff.js - boss hp/phases/casts, arena engagement/reset, ledger pillars, walkers and Fray; publishes place.state.boss and records bailiffDownAt.",
     "scripts/humanoid-locomotion.js - gait/seat animation and foot grounding; consumes player faceYaw.",
     "scripts/camera.js - camera zoom distance and smoothed follow position.",
-    "scripts/ui.js - renders the HUD, dialogue and inventory from player/place state; it does not own gameplay state."
+    "scripts/ui.js - renders HUD, dialogue and inventory from player/place state; it does not own gameplay state."
   ],
   "flows": [
     "templates/player.js attaches scripts/player.js; onSpawn initializes combat state from combat.yml and update owns movement, attacks, healing and death/respawn.",
-    "world.config.yaml maps desktop and touch actions to player inputs; scripts/ui.js provides the phone HUD/chips and PACK action → scripts/player.js handles skills and bagOpen.",
-    "scripts/player.js uses veilfall-map.js floorDist for reachable click goals and keepOnFloor movement/dash → the hero stays on the defined floor and is prevented from climbing banks/cliffs.",
+    "world.config.yaml maps desktop and touch actions to player inputs; scripts/ui.js provides phone HUD/chips and PACK action → scripts/player.js handles skills and bagOpen.",
+    "scripts/player.js uses veilfall-map.js floorDist for reachable click goals and keepOnFloor movement/dash → the hero stays on defined floor and cannot climb banks/cliffs.",
     "scripts/player.js strikes write enemy.state.hp and lastHit → scripts/wax-pack.js resolves ordinary enemy death and pays nearby players XP/gold/kills; eligible kills can award shards.",
     "scripts/wax-pack.js and scripts/bailiff.js check iframesUntil and guardUntil before damaging a player; caught blows consume guardUntil and write riposte → scripts/player.js guardTick ripostes nearby foes.",
     "On a guard catch scripts/player.js emits CATCH FX, shockwave and owner-targeted screenFlash; guard activation emits GUARD FX.",
@@ -121,9 +121,9 @@
   "migrationNotes": [
     "Player attacks directly mutate enemy.state.hp; ordinary-enemy death, XP and kill credit are resolved later by scripts/wax-pack.js, so preserve that handoff.",
     "Quest stage, killsAt, petition IDs and claimed rewards are per-player state; petition triggers count only at stage 2 and ITEM-001 is guarded by claimed['Z01-MAIN-05'].",
-    "Boss and ordinary enemy attacks share player guardUntil/riposte; scripts/player.js owns the riposte reaction and must retain this state handoff.",
+    "Boss and ordinary enemy attacks share player guardUntil/riposte; scripts/player.js owns the riposte reaction and must retain this state handoff. design.md records a held-body catch at t+1.0 s inside the 1.4 s window, consuming guardUntil.",
     "The boss HUD consumes place.state.boss projection (including fray and ledgers), not boss internals; retain its published fields when changing boss behavior.",
-    "scripts/lib/data/combat.yml is runtime tuning (seconds/meters as appropriate); scripts/lib/data/veilfall-map.js floorDist < 0 defines the walkable floor used by player boundary/path logic.",
+    "scripts/lib/data/combat.yml is runtime tuning (seconds/meters as appropriate); scripts/lib/data/veilfall-map.js floorDist < 0 defines walkable floor for player boundary/path logic.",
     "The 35-doc design package was removed from scripts/lib/data and survives as the byte-identical aggregate in world.assets.yaml at /cdn/value.6333346fa6808b148d9ba468df826a3a49a29b8a0afb51a66a9e78d477c84abc.md; runtime tuning YAML remains in scripts/lib/data."
   ]
 }
