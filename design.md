@@ -102,3 +102,4 @@ places/main/sim.js referee: spawns packs, quest stages, XP/levels, death and res
 - 2026-10-08 · Firstblood: a Bearer named on THE FALLEN plaque shows a "Firstblood" line over their nametag (ui/nametag.js reads world.state.trophies by charName).
 - 2026-10-08 · Firstblood gift: one free reforge per boss a Bearer is on THE FALLEN for (loot.js freeReforges; spent count saved as freeUsed).
 - 2026-10-08 · The anvil glows (local fx + light, this Bearer only) within 8 m of the forge while freeReforges > 0.
+- 2026-10-08 · A free Firstblood reforge applies that boss mark (loot.js MARKS): one themed affix at 1.5x a full roll, item.mk names it on the card.

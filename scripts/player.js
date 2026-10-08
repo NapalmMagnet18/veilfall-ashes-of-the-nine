@@ -2,7 +2,7 @@
 // Space: Griefstep dash toward the cursor. Q: tonic. WASD also walks. Hits are judged here, on the
 // striker's machine, and written to the enemy's state; the wax-pack manager reads hp and pays XP.
 import { body as heroBody } from "./lib/data/models.js";
-import { gearStats, mitigation, slotOf, sellValue, dustValue, SLOTS, forge, FORGE, freeReforges } from "./lib/loot.js";
+import { gearStats, mitigation, slotOf, sellValue, dustValue, SLOTS, forge, FORGE, freeReforges, markBoss, applyMark, MARKS } from "./lib/loot.js";
 import { raycast, getInputRay } from "builtin/physics";
 import { findPath } from "builtin/nav";
 import { floorDist as mapFloor, areaAt } from "./lib/data/veilfall-map.js";
@@ -352,7 +352,7 @@ function itemInput(ctx, a) {
     if (r.error) { msg(ctx, r.error); return; }
     const gift = a.op === "reforge" && freeReforges(ctx, s) > 0; if (gift) r.cost = 0;
     if ((s.dust ?? 0) < r.cost) { msg(ctx, `The forge wants ${r.cost} ash dust. You carry ${s.dust ?? 0}.`); ctx.emit("playSound", { clip: sfx("dull-click-denied"), position: ctx.self.feetPosition, volume: 0.3 }, { audience: { player: ctx.self.id } }); return; }
-    if (gift) { s.freeUsed = (s.freeUsed ?? 0) + 1; msg(ctx, "Firstblood's due: the smith asks nothing of you this time."); }
+    if (gift) { const mb = markBoss(ctx, s); if (mb) applyMark(r.item, mb); s.freeUsed = (s.freeUsed ?? 0) + 1; msg(ctx, mb ? `Firstblood's due: the smith works ${MARKS[mb].name} into the steel, and asks nothing.` : "Firstblood's due: the smith asks nothing of you this time."); }
     s.dust -= r.cost; inv[i] = r.item; snd = a.op === "ascend" ? "forgeBig" : "forge";
     const o = ctx.getObject("wayside-forge"), at = o ? { x: o.feetPosition.x, y: o.feetPosition.y + 1, z: o.feetPosition.z } : ctx.self.feetPosition;
     ctx.emit("fx", { position: at, script: a.op === "ascend" ? FORGE_BIG : FORGE_HIT });

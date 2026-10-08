@@ -138,6 +138,7 @@ export function cardHTML(it, gear) {
     <div style="color:#9a907e;font-size:11px;letter-spacing:.14em;text-transform:uppercase">${T.name} ${slotOf(it)} · item level ${it.il}</div>
     <div style="height:1px;background:linear-gradient(90deg,transparent,${T.color}88,transparent);margin:5px 0"></div>
     ${lines}${setHTML}
+    ${it.mk && MARKS[it.mk] ? `<div style="margin-top:4px;color:${MARKS[it.mk].color};font-size:11px;letter-spacing:.14em;text-shadow:0 0 6px ${MARKS[it.mk].color}66">✦ ${MARKS[it.mk].name.toUpperCase()} ✦</div>` : ""}
     ${it.tp ? `<div style="margin-top:4px;color:#e0a866;font-size:11px;letter-spacing:.12em">${Array.from({ length: L.forge.temper.max }, (_, i) => `<span style="display:inline-block;width:6px;height:6px;margin-right:4px;transform:rotate(45deg);border:1px solid #e0a866;background:${i < it.tp ? "#e0a866" : "transparent"}"></span>`).join("")} TEMPERED</div>` : ""}
     ${relic ? `<div style="margin-top:6px;color:#c08850;font-style:italic;font-size:12px">"${relic.lore}"</div>` : ""}
     <div style="margin-top:6px;color:#7d7466;font-size:11px">sells for ${sellValue(it)}c · salvages to ${dustValue(it)} ash dust</div>
@@ -149,4 +150,25 @@ export function freeReforges(ctx, s) {
   const n = s?.charName; if (!n) return 0;
   const won = Object.values(ctx.world?.state?.trophies ?? {}).filter((r) => r?.by?.includes?.(n)).length;
   return Math.max(0, won - (s.freeUsed ?? 0));
+}
+
+// the boss's mark a free reforge carries: the next unspent Firstblood boss lends one of its affixes, 1.5× a full roll
+export const MARKS = {
+  bailiff: { name: "Bailiff's Toll", color: "#d9a85a", prefer: ["gold", "armor", "life"] },
+  ringer: { name: "Ringer's Peal", color: "#c9b7ff", prefer: ["crit", "dmgp", "dmg", "life"] },
+  warden: { name: "Warden's Lantern", color: "#6db8c0", prefer: ["regen", "edge", "life"] },
+  hangman: { name: "Hangman's Knot", color: "#c0574a", prefer: ["leech", "speed", "crit", "life"] },
+};
+export function markBoss(ctx, s) {
+  const n = s?.charName; if (!n) return null;
+  const won = Object.entries(ctx.world?.state?.trophies ?? {}).filter(([, r]) => r?.by?.includes?.(n)).sort((a, b) => (a[1].at ?? 0) - (b[1].at ?? 0));
+  return won[s.freeUsed ?? 0]?.[0] ?? null;
+}
+export function applyMark(item, boss) {
+  const M = MARKS[boss]; if (!M) return item;
+  const slot = L.bases[item.b]?.slot;
+  const a = M.prefer.map((id) => L.affixes.find((x) => x.id === id)).find((x) => x && (x.slots.includes("any") || x.slots.includes(slot)));
+  if (!a) return item;
+  const v = Math.max(1, Math.round((a.base[1] + a.per * ((item.il ?? 1) - 1)) * 1.5));
+  item.s[a.id] = (item.s[a.id] ?? 0) + v; item.mk = boss; return item;
 }
