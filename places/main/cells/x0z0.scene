@@ -510,7 +510,7 @@ fen-mere:
   rotation: {pitch: -90, roll: 0, yaw: 0}
   tags: [fen]
 fen-mouth-lamp:
-  feetPosition: {x: -17.4, y: {terrain: 0}, z: -0.2}
+  feetPosition: {x: -17.4, y: 0.1363718216299806, z: -1.4}
   id: fen-mouth-lamp
   physics: static
   primitive: {kind: scripted, params: {dropped: true, h: 3.1, kind: lamppost, lean: 8, seed: 9}, script: scripts/gen/fen-props.js}
