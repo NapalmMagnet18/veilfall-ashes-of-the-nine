@@ -53,7 +53,7 @@ const ROLES = [
 // the skill bar: each key its own shape
 [2, 11, 15, 17, 19, 20].forEach((n, i) => ROLES.push([`#vf .sk .slot:nth-child(${i + 1})`, n, 10, 0, null]));
 // the pack cabinet: twelve cubbies, twelve shapes, the last two (0, 30) only here
-[0, 30, 28, 9, 14, 29, 2, 11, 15, 17, 19, 20].forEach((n, i) => ROLES.push([`#vf .pk .slot:nth-child(${i + 1})`, n, 9, 0, null]));
+[0, 30, 25, 9, 14, 29, 2, 11, 15, 17, 19, 20].forEach((n, i) => ROLES.push([`#vf .pk .slot:nth-child(${i + 1})`, n, 9, 0, null]));
 
 const sel = (suffix) => ROLES.map(([s]) => s.split(",").map((x) => x + suffix).join(",")).join(",");
 const roleCSS = ROLES.map(([s, n, w, inset, pad]) =>
