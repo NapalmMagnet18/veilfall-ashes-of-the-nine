@@ -229,7 +229,7 @@ export default function (ctx, player) {
     <div class="slot" style="pointer-events:auto;cursor:pointer" onclick="sendAction('bag')"><span class="k">I</span><span style="font-size:13px">PACK</span></div>
   </div>`}
   <div class="absolute dk" style="right:24px;bottom:24px"><div class="orb"><div class="fill" style="height:${edge}%;background:radial-gradient(circle at 50% 30%,#f2b04a,#8a4a10 70%)"></div><div class="shine"></div><div class="val">${edge}</div></div><div class="lbl" style="text-align:center;margin-top:8px">Edge</div></div>
-  <div class="absolute ph plate" style="left:10px;top:118px;width:170px;padding:6px 9px">
+  <div class="absolute ph plate" style="left:10px;top:150px;width:170px;padding:2px 6px">
     <div class="lbl" style="font-size:10px">Bladewraith · Lv ${lv} · ${fmt(s.copper ?? 0)}</div>
     <div class="bar"><div style="position:absolute;inset:0;width:${hpPct}%;background:linear-gradient(#e0473a,#7d1410)${hpPct < 30 ? ";animation:vfpulse 1s infinite" : ""}"></div><div style="position:absolute;inset:0;font-size:9px;line-height:10px;text-align:center">${hp}</div></div>
     <div class="bar" style="height:6px"><div style="position:absolute;inset:0;width:${edge}%;background:linear-gradient(#f2b04a,#8a4a10)"></div></div>

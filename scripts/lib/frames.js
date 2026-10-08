@@ -23,4 +23,5 @@ export const FRAME_CSS = `<style>
 #vm .card{${bi(FR.card, 24, 12)};box-shadow:none!important}
 #vm .card.on{${bi(FR.cardon, 24, 12)};box-shadow:0 0 16px rgba(242,211,138,.3)!important}
 #vm .namebox{${bi(FR.slot, 24, 12)};box-shadow:none!important;padding:2px 6px}
+@media (pointer:coarse),(max-width:700px){#vf .plate,#vfshop .plate{border-width:9px;border-image-width:9px;padding:2px 5px!important}}
 </style>`;
