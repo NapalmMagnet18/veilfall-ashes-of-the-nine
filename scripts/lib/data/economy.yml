@@ -15,6 +15,7 @@ quests:
   Z01-MAIN-08: 1200     # 12s, the first lantern raised from the Lanternmere
   Z01-MAIN-09: 1500     # 15s, the second lantern cut down in Saint Corvin's orchard
 sell:
+  heartwax: 150         # 1s 50c a piece: a boss's tallow, sell it or brew the Ninefold Draught
   shard: 6              # Wax Shard buyback, each (Sealed Petitions are quest items: never sold)
 shops:
   oswin:

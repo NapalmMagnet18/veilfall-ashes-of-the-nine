@@ -39,6 +39,10 @@ export function shopPanel(ctx, player) {
   const sell = `<div class="row"><div class="gl">${pic("shard")}</div>
     <div style="flex:1;min-width:0"><div class="nm">Wax Shard × ${n}</div><div class="ef">Oswin pays ${E.sell.shard}c each. Petitions aren't for sale.</div><div class="pr">${n ? coinHTML(n * E.sell.shard, 12) : "&nbsp;"}</div></div>
     <div class="bt ${n ? "" : "off"}" ${n ? `onclick="${act("sell", "shard")}"` : ""}>SELL</div></div>`;
+  const hw = s.heartwax ?? 0;
+  const sellHw = hw ? `<div class="row"><div class="gl"><span style="color:#b48cff;font-size:22px">✦</span></div>
+    <div style="flex:1;min-width:0"><div class="nm" style="color:#c9a8ff">Heartwax × ${hw}</div><div class="ef">A boss's last tallow. Oswin pays dear, one at a time. Or brew it at the cauldron.</div><div class="pr">${coinHTML(E.sell.heartwax, 12)}</div></div>
+    <div class="bt" onclick="${act("sell", "heartwax")}">SELL 1</div></div>` : "";
   return `${CSS}<div id="vfshop" class="plate">
     <div class="x" onclick="${act("close", "")}">${GLYPH.x}</div>
     <div style="display:flex;gap:12px;align-items:center">${FACE[s.shop] ? `<div style="flex:none;width:64px;height:64px;background:url(${FACE[s.shop]}) center/cover;box-shadow:0 0 0 2px #0d0b0a,0 0 0 3px #8a6f45,0 0 0 5px #0d0b0a,0 0 16px rgba(240,154,58,.25)"></div>` : ""}
@@ -46,5 +50,5 @@ export function shopPanel(ctx, player) {
     <div style="font-size:20px;color:var(--wax);letter-spacing:.06em">${NAMES[s.shop] ?? "CART"}</div></div></div><div class="dv d3"></div>
     ${s.dialog && (ctx.now() - s.dialog.at) < 9000 ? `<div style="font-size:13px;font-style:italic;color:#d9c9a6;line-height:1.3;margin:2px 0 6px">${s.dialog.text.replace(/^Oswin:\s*/, "")}</div>` : ""}
     <div style="font-size:14px;margin:4px 0 6px;display:flex;align-items:center;gap:6px"><span class="lbl">Purse</span>${coinHTML(purse, 14)}</div>
-    ${rows}<div class="lbl" style="margin-top:6px">Buyback</div><div class="dv d2"></div>${sell}</div>`;
+    ${rows}<div class="lbl" style="margin-top:6px">Buyback</div><div class="dv d2"></div>${sellHw}${sell}</div>`;
 }
