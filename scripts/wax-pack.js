@@ -12,6 +12,8 @@ pop dust burst=30 on=disc(%r|3) life=.6..1.2 v=up(1..2.5)+sdir()*.8 size=.3..0.6
 pop wax burst=24 on=disc(.5) life=.5..0.9 v=sdir()*(3..6)+up(2..3) size=.05..0.1 col=oklch(.85 .12 60) acc=grav() a=1>0 floor=stick r=sprite(chip,alpha,velocity,.02)
 pop fl burst=1 life=.25 size=%r|3 col=hdr(3,1.2,.3) a=.8>0 sz=$size*(.5>2) r=sprite(soft-disc,add)`;
 const flat = (a, b) => Math.hypot(a.x - b.x, a.z - b.z);
+const CAMP = { x: 0, z: 0 }, SAFE = 12; // the Wayside Fire: nothing hunts inside its light
+const safe = (p) => flat(p, CAMP) < SAFE;
 
 export function telegraph(ctx, x, y, z, r, secs) {
   const ring = { kind: "cylinder", radiusTop: r, radiusBottom: r, height: 0.03 };
@@ -47,7 +49,7 @@ export function payout(ctx, at, xp, gold, countsForQuest) {
 }
 
 export function update(ctx, dt) {
-  const now = ctx.now(), players = ctx.place.players.filter((p) => !p.state.dead);
+  const now = ctx.now(), players = ctx.place.players.filter((p) => !p.state.dead && !safe(p.feetPosition));
   for (const row of ctx.query({ tags: ["enemy"], excludeTags: ["boss"] })) {
     const w = ctx.getObject(row.id); if (!w) continue;
     const s = w.state, K = C[s.kind] ?? C.pilgrim, f = w.feetPosition;
@@ -64,7 +66,7 @@ export function update(ctx, dt) {
     let prey = null, best = s.hunting ? K.aggro * 1.8 : K.aggro;
     for (const p of players) { const d = flat(p.feetPosition, f); if (d < best) { best = d; prey = p; } }
     if (s.lastHit && !prey) { const p = players.find((q) => q.id === s.lastHit); if (p && flat(p.feetPosition, f) < 30) { prey = p; best = flat(p.feetPosition, f); } }
-    if (s.home && flat(f, s.home) > 26) { prey = null; s.lastHit = null; }
+    if (s.home && flat(f, s.home) > 22) { prey = null; s.lastHit = null; }
     if (!!prey !== !!s.hunting) { s.hunting = !!prey; if (prey) ctx.emit("playSound", { clip: sfx("hollow-wax-moan-short"), position: f, volume: 0.5, pitch: 0.8 + ctx.random() * 0.4 }); }
     let vx = 0, vz = 0;
     // a slam in its windup holds the body still, then lands
@@ -94,6 +96,7 @@ export function update(ctx, dt) {
       const d = flat(s.roam, f);
       if (d > 0.6) { vx = ((s.roam.x - f.x) / d) * 0.7; vz = ((s.roam.z - f.z) / d) * 0.7; const yaw = (Math.atan2(-vx, -vz) * 180) / Math.PI; if (Math.abs(((yaw - (s.yawW ?? 0) + 540) % 360) - 180) > 8) { s.yawW = yaw; w.rotation = yaw; } }
     }
+    if (flat(f, CAMP) < SAFE + 1 && (vx || vz)) { const ox = f.x - CAMP.x, oz = f.z - CAMP.z, ol = Math.hypot(ox, oz) || 1; if ((vx * ox + vz * oz) < 0) { vx = (ox / ol) * 1.5; vz = (oz / ol) * 1.5; } }
     w.velocity = { x: vx, y: w.velocity.y, z: vz };
   }
 }

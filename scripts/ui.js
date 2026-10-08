@@ -62,14 +62,14 @@ export default function (ctx, player) {
     <div class="slot ${edge < 30 ? "dim" : ""}"><span class="k">RMB</span>⚔<span class="n">30</span></div>
     <div class="slot"><span class="k">SPC</span>»<div class="cd" style="height:${dashPct}%"></div></div>
     <div class="slot ${(s.tonics ?? 0) ? "" : "dim"}"><span class="k">Q</span><span style="color:#e0473a">♥</span><span class="n">${s.tonics ?? 0}</span></div>
-    <div class="slot"><span class="k">I</span>▤</div>
+    <div class="slot"><span class="k">I</span><span style="font-size:13px">PACK</span></div>
   </div>`}
   <div class="absolute" style="right:24px;bottom:24px"><div class="orb"><div class="fill" style="height:${edge}%;background:radial-gradient(circle at 50% 30%,#f2b04a,#8a4a10 70%)"></div><div class="shine"></div><div class="val">${edge}</div></div><div class="lbl" style="text-align:center;margin-top:8px">Edge</div></div>
   ${q.stage === 0 || q.stage === 4 ? `<div data-world-anchor="maelin" data-anchor-offset="0 2.3 0" style="font-size:30px;color:var(--wax);text-align:center;animation:vfpulse 1.4s infinite">!<div style="font-size:12px">MAELIN</div></div>` : ""}
   ${s.bagOpen ? `<div class="absolute plate" style="right:${rail};top:50%;transform:translateY(-50%);width:260px;animation:vfin .25s">
     <div class="lbl">Pack (I to close)</div>
     <div style="display:grid;grid-template-columns:repeat(4,52px);gap:8px;margin-top:8px">
-      ${[["⚔", s.weapon === "ITEM-001" ? "Rusted Oathblade" : "Pilgrim's Shortblade", 1], ["♥", "Ash Tonic", s.tonics ?? 0], ["◇", "Wax Shard", s.shards ?? 0], ["▤", "Sealed Petition", s.petitions?.length ?? 0], ["●", "Gold", s.gold ?? 0]].filter((i) => i[2]).map(([g, n, c]) => `<div class="slot" title="${n}" style="width:52px;height:52px">${g}<span class="n">${c}</span></div>`).join("")}
+      ${[["⚔", s.weapon === "ITEM-001" ? "Rusted Oathblade" : "Pilgrim's Shortblade", 1], ["♥", "Ash Tonic", s.tonics ?? 0], ["◆", "Wax Shard", s.shards ?? 0], ["✉", "Sealed Petition", s.petitions?.length ?? 0], ["●", "Gold", s.gold ?? 0]].filter((i) => i[2]).map(([g, n, c]) => `<div class="slot" title="${n}" style="width:52px;height:52px">${g}<span class="n">${c}</span></div>`).join("")}
     </div>
     <div style="font-size:13px;margin-top:8px;line-height:1.4">${s.weapon === "ITEM-001" ? "Rusted Oathblade · +30% damage" : "Pilgrim's Shortblade"}<br>${s.shards ?? 0} wax shards · ${s.petitions?.length ?? 0} petitions</div></div>` : ""}
   ${s.dead ? `<div class="absolute inset-0" style="display:flex;align-items:center;justify-content:center;background:radial-gradient(transparent 30%,rgba(40,0,0,.6));animation:vfin .4s"><div style="font-size:54px;color:#d8442f;letter-spacing:.1em">THE ROAD TAKES YOU</div></div>` : ""}
