@@ -20,6 +20,8 @@ const THEME = `<style>
 #vf .slot .cd{position:absolute;left:0;right:0;bottom:0;background:rgba(0,0,0,.65)}
 #vf .slot .n{position:absolute;right:4px;bottom:1px;font-size:13px}
 #vf .dim{opacity:.4}
+#vf .ph{display:none} @media (pointer:coarse),(max-width:700px){#vf .dk{display:none!important} #vf .ph{display:block} #vf .qp{left:10px!important;top:10px!important;max-width:210px!important;padding:6px 9px!important} #vf .qp div{font-size:13px!important} #vf .qp .lbl{font-size:10px!important}}
+#vf .bar{height:10px;background:#120e0c;box-shadow:0 0 0 2px #0d0b0a,0 0 0 3px #5a4a33;position:relative;margin-top:5px}
 @keyframes vfin{from{opacity:0;transform:translateY(8px)}} @keyframes vffade{to{opacity:0}} @keyframes vfpulse{50%{opacity:.55}}
 </style>`;
 let firstSeen = null;
@@ -41,7 +43,7 @@ export default function (ctx, player) {
   const touch = typeof matchMedia !== "undefined" && matchMedia("(pointer: coarse)").matches;
   const rail = "calc(var(--spawn-chrome-reservation-right-inset, 50px) + 24px)";
   return `${THEME}<div id="vf" class="fixed inset-0 pointer-events-none">
-  <div class="absolute plate" style="left:24px;top:24px;max-width:300px;animation:vfin .4s">
+  <div class="absolute plate qp" style="left:24px;top:24px;max-width:300px;animation:vfin .4s">
     <div class="lbl">${q.stage >= 5 ? "Complete" : "Quest"} · Broken Lantern Road</div>
     <div style="font-size:19px;color:var(--wax)">${qt}</div>
     <div style="font-size:15px">› ${qo}<span style="color:var(--wax)">${prog}</span></div>
@@ -53,11 +55,11 @@ export default function (ctx, player) {
       <div style="position:absolute;top:0;bottom:0;left:70%;width:2px;background:#0d0b0a"></div><div style="position:absolute;top:0;bottom:0;left:35%;width:2px;background:#0d0b0a"></div>
     </div><div class="lbl" style="margin-top:4px">${boss.phase === 1 ? "PHASE I · orange wedge: get behind him · marked: move away" : boss.phase === 2 ? `PHASE II · break the ledger pillars (${boss.ledgers} lit)` : "PHASE III · arc, debt, then he falters"}${boss.fray ? ` · FRAY ×${boss.fray} (+${boss.fray * 10}% damage taken)` : ""}</div></div>` : ""}
   ${dlg ? `<div id="dlg${dlg.at}" class="absolute plate" style="left:50%;transform:translateX(-50%);bottom:${touch ? 210 : 150}px;width:min(560px,calc(100vw - 2*${rail}));animation:vfin .35s;font-size:17px;line-height:1.35">${dlg.text}</div>` : ""}
-  <div class="absolute" style="left:24px;bottom:24px;display:flex;align-items:flex-end;gap:14px">
+  <div class="absolute dk" style="left:24px;bottom:24px;display:flex;align-items:flex-end;gap:14px">
     <div class="orb"><div class="fill" style="height:${hpPct}%;background:radial-gradient(circle at 50% 30%,#e0473a,#7d1410 70%)${hpPct < 30 ? ";animation:vfpulse 1s infinite" : ""}"></div><div class="shine"></div><div class="val">${hp}</div></div>
     <div class="plate" style="padding:6px 10px"><div class="lbl">Bladewraith · Lv ${lv}</div><div style="width:150px;height:6px;background:#120e0c;margin-top:4px"><div style="height:6px;width:${xpPct}%;background:#9d86e0"></div></div><div style="font-size:13px;margin-top:4px;color:var(--wax)">${s.gold ?? 0} gold${s.weapon === "ITEM-001" ? " · Rusted Oathblade" : ""}</div></div>
   </div>
-  ${touch ? "" : `<div class="absolute" style="left:50%;bottom:24px;transform:translateX(-50%);display:flex;gap:10px">
+  ${touch ? "" : `<div class="absolute dk" style="left:50%;bottom:24px;transform:translateX(-50%);display:flex;gap:10px">
     <div class="slot"><span class="k">LMB</span>⚔</div>
     <div class="slot ${edge < 30 ? "dim" : ""}"><span class="k">RMB</span>⚔<span class="n">30</span></div>
     <div class="slot"><span class="k">SPC</span>»<div class="cd" style="height:${dashPct}%"></div></div>
@@ -65,15 +67,22 @@ export default function (ctx, player) {
     <div class="slot ${(s.tonics ?? 0) ? "" : "dim"}"><span class="k">Q</span><span style="color:#e0473a">♥</span><span class="n">${s.tonics ?? 0}</span></div>
     <div class="slot" style="pointer-events:auto;cursor:pointer" onclick="sendAction('bag')"><span class="k">I</span><span style="font-size:13px">PACK</span></div>
   </div>`}
-  <div class="absolute" style="right:24px;bottom:24px"><div class="orb"><div class="fill" style="height:${edge}%;background:radial-gradient(circle at 50% 30%,#f2b04a,#8a4a10 70%)"></div><div class="shine"></div><div class="val">${edge}</div></div><div class="lbl" style="text-align:center;margin-top:8px">Edge</div></div>
+  <div class="absolute dk" style="right:24px;bottom:24px"><div class="orb"><div class="fill" style="height:${edge}%;background:radial-gradient(circle at 50% 30%,#f2b04a,#8a4a10 70%)"></div><div class="shine"></div><div class="val">${edge}</div></div><div class="lbl" style="text-align:center;margin-top:8px">Edge</div></div>
+  <div class="absolute ph plate" style="left:10px;top:118px;width:170px;padding:6px 9px">
+    <div class="lbl" style="font-size:10px">Bladewraith · Lv ${lv} · ${s.gold ?? 0}g</div>
+    <div class="bar"><div style="position:absolute;inset:0;width:${hpPct}%;background:linear-gradient(#e0473a,#7d1410)${hpPct < 30 ? ";animation:vfpulse 1s infinite" : ""}"></div><div style="position:absolute;inset:0;font-size:9px;line-height:10px;text-align:center">${hp}</div></div>
+    <div class="bar" style="height:6px"><div style="position:absolute;inset:0;width:${edge}%;background:linear-gradient(#f2b04a,#8a4a10)"></div></div>
+    <div style="font-size:11px;margin-top:4px;color:#e0473a">♥ ${s.tonics ?? 0}</div>
+  </div>
+  <div class="absolute ph" style="right:12px;top:12px;pointer-events:auto" onclick="sendAction('bag')"><div class="slot" style="width:48px;height:40px;font-size:11px">PACK</div></div>
   ${q.stage === 0 || q.stage === 4 ? `<div data-world-anchor="maelin" data-anchor-offset="0 2.3 0" style="font-size:30px;color:var(--wax);text-align:center;animation:vfpulse 1.4s infinite">!<div style="font-size:12px">MAELIN</div></div>` : ""}
   ${s.bagOpen ? `<div class="absolute plate" style="right:${rail};top:50%;transform:translateY(-50%);width:260px;animation:vfin .25s">
-    <div class="lbl">Pack (I to close)</div>
+    <div class="lbl">Pack (I or PACK to close)</div>
     <div style="display:grid;grid-template-columns:repeat(4,52px);gap:8px;margin-top:8px">
       ${[["⚔", s.weapon === "ITEM-001" ? "Rusted Oathblade" : "Pilgrim's Shortblade", 1], ["♥", "Ash Tonic", s.tonics ?? 0], ["◆", "Wax Shard", s.shards ?? 0], ["✉", "Sealed Petition", s.petitions?.length ?? 0], ["●", "Gold", s.gold ?? 0]].filter((i) => i[2]).map(([g, n, c]) => `<div class="slot" title="${n}" style="width:52px;height:52px">${g}<span class="n">${c}</span></div>`).join("")}
     </div>
     <div style="font-size:13px;margin-top:8px;line-height:1.4">${s.weapon === "ITEM-001" ? "Rusted Oathblade · +30% damage" : "Pilgrim's Shortblade"}<br>${s.shards ?? 0} wax shards · ${s.petitions?.length ?? 0} petitions</div></div>` : ""}
   ${s.dead ? `<div class="absolute inset-0" style="display:flex;align-items:center;justify-content:center;background:radial-gradient(transparent 30%,rgba(40,0,0,.6));animation:vfin .4s"><div style="font-size:54px;color:#d8442f;letter-spacing:.1em">THE ROAD TAKES YOU</div></div>` : ""}
-  ${now - firstSeen < 9000 && !touch ? `<div class="absolute inset-x-0 text-center" style="bottom:150px;font-size:17px;padding:0 ${rail};animation:vffade 1s 8s forwards">Click to walk · click a foe to strike · Right-click Crosswound · Space Griefstep · Q tonic · I pack</div>` : ""}
+  ${now - firstSeen < 9000 && !touch ? `<div class="absolute inset-x-0 text-center dk" style="bottom:150px;font-size:17px;padding:0 ${rail};animation:vffade 1s 8s forwards">Click to walk · click a foe to strike · Right-click Crosswound · Space Griefstep · Q tonic · I pack</div>` : ""}
 </div>`;
 }
