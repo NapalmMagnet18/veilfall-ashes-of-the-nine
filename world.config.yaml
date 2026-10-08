@@ -28,6 +28,9 @@ inputs:
     tonic:
       keys:
         - q
+    bag:
+      keys:
+        - i
   axes:
     moveX:
       keys: a/d

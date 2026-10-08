@@ -65,6 +65,7 @@ export function onInput(ctx, input) {
   if (input.pressed.crosswound) crosswound(ctx);
   if (input.pressed.griefstep) griefstep(ctx);
   if (input.pressed.tonic) tonic(ctx);
+  if (input.pressed.bag) s.bagOpen = !s.bagOpen;
 }
 
 function swingAnim(ctx, clip) {

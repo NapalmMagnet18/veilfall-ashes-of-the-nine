@@ -41,6 +41,7 @@ export function payout(ctx, at, xp, gold, countsForQuest) {
     p.state.xp = (p.state.xp ?? 0) + xp;
     p.state.gold = (p.state.gold ?? 0) + gold;
     if (countsForQuest) p.state.kills = (p.state.kills ?? 0) + 1;
+    if (countsForQuest && ctx.random() < 0.5) p.state.shards = (p.state.shards ?? 0) + 1;
     ctx.emit("damageNumber", { position: { ...at, y: at.y + 2.4 }, text: `+${xp} XP`, color: "#c9b6ff", size: 0.8 }, { audience: { player: p.id } });
   }
 }
