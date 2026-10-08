@@ -7,7 +7,7 @@ import { floorDist as mapFloor, areaAt } from "./lib/data/veilfall-map.js";
 // the Abbey road is floor only once the Bailiff has fallen in this room (place.state.abbeyOpen, set by the sim)
 // which floors this Bearer may walk: derived from their own quest row at the top of every hook that moves them
 const GATE = { abbey: false, nave: false, fen: false, orch: false };
-const gate = (ctx) => { const st = ctx.self.state.quest?.stage ?? 0, all = !!ctx.place.state?.abbeyOpenAll; GATE.abbey = st >= 4 || all; GATE.nave = st >= 10 || all; GATE.fen = st >= 13 || all; GATE.orch = st >= 17 || all; };
+const gate = (ctx) => { const st = ctx.self.state.quest?.stage ?? 0, all = !!ctx.place.state?.abbeyOpenAll; GATE.abbey = st >= 4 || all; GATE.nave = st >= 10 || all; GATE.fen = st >= 13 || all; GATE.orch = st >= 18 || all; };
 const floorDist = (x, z) => mapFloor(x, z, GATE.abbey, GATE.nave, GATE.fen, GATE.orch);
 import C from "./lib/data/combat.yml";
 import { shopInput } from "./lib/shop.js";

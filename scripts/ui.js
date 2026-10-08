@@ -22,7 +22,12 @@ const STAGES = [
   ["The Drowned Lantern", "Relight the three waystones in the mere"],
   ["The Drowned Lantern", "Put the Lantern Warden to rest at the mere's heart"],
   ["The Drowned Lantern", "Return to Maelin at the Wayside Fire"],
-  ["Two Flames", "Two lanterns found, six still out there. The road goes on."],
+  ["Two Flames", "Speak with Maelin about the second lantern"],
+  ["The Gallows Orchard", "Take the Gallows Path east of the fire to Saint Corvin's orchard"],
+  ["The Gallows Orchard", "Cut down the three hanged pilgrims"],
+  ["The Gallows Orchard", "Bring the Hangman down off his gallows"],
+  ["The Gallows Orchard", "Return to Maelin at the Wayside Fire"],
+  ["Three Flames", "Three lanterns found, five still out there. The road goes on."],
 ];
 const THEME = `<style>
 #vf{--ink:#0d0b0a;--bone:#e9dfc8;--wax:#f2d38a;--blood:#b3261e;--edge:#d98c2b;--stone:#2a2724;color:var(--bone);font-size:16px;text-shadow:2px 2px 0 var(--ink)}
@@ -225,9 +230,10 @@ export default function (ctx, player) {
   if (q.stage === 6) prog = ` ${Math.min(6, (s.kills ?? 0) - (q.killsAt ?? 0))}/6`;
   if (q.stage === 7) prog = ` ${(q.saints ?? []).length}/3`;
   if (q.stage === 14) prog = ` ${(q.stones ?? []).length}/3`;
+  if (q.stage === 19) prog = ` ${(q.cut ?? []).length}/3`;
   const L = [0, 60, 150, 280, 450, 680, 960, 1300, 1750, 2300], lv = s.level ?? 1;
   const lo = L[lv - 1] ?? 0, hi = L[lv] ?? lo + 500, xpPct = Math.max(0, Math.min(100, (((s.xp ?? 0) - lo) / (hi - lo)) * 100));
-  const rg = ctx.place.state.ringer, wd = ctx.place.state.warden, boss = rg && rg.engaged && !rg.dead ? rg : wd && wd.engaged && !wd.dead ? wd : ctx.place.state.boss;
+  const rg = ctx.place.state.ringer, wd = ctx.place.state.warden, hg = ctx.place.state.hangman, boss = rg && rg.engaged && !rg.dead ? rg : wd && wd.engaged && !wd.dead ? wd : hg && hg.engaged && !hg.dead ? hg : ctx.place.state.boss;
   const dashLeft = Math.max(0, (s.dashReadyAt ?? 0) - now), dashPct = Math.min(100, (dashLeft / 3000) * 100);
   const touch = typeof matchMedia !== "undefined" && matchMedia("(pointer: coarse)").matches;
   const IC = {"ash": "/cdn/value.11ea8210258744da6aa7d65226e3fda61337efea5eb71fe047d65096b3dc053b.png", "cross": "/cdn/value.13d726eaf2133c0f3838076422f781f3068d081b31dbcd6d880212c2ddda7de3.png", "step": "/cdn/value.eecac6103d8be9ec4c6e6909f2dbd61c3fc4bda234bc585e389c850c1c74e3f3.png", "guard": "/cdn/value.02dc0fd2d6f126cd0a5fd2f2dbfc43058486b706d34ed8ffd30222d57c3d3490.png", "tonic": "/cdn/value.f4e985f51d72e39ecd4691f462076ba4a14206d864edb85895ea8ef710ceccfc.png", "pack": "/cdn/value.961ecd8b3ded845823729ea6364b6a1eb5e20e03cd1090dbdb1b4cda98a6872d.png"};
@@ -246,7 +252,7 @@ export default function (ctx, player) {
   const rail = "calc(var(--spawn-chrome-reservation-right-inset, 50px) + 24px)";
   return `${THEME}${FRAME_CSS}<div id="vf" class="fixed inset-0 pointer-events-none">
   <div class="absolute plate qp${boss && boss.engaged && !boss.dead ? " bossup" : ""}" style="left:24px;top:24px;max-width:300px;animation:vfin .4s">
-    <div class="lbl">${[9, 12, 16, 17].includes(q.stage) ? "Chapter complete" : "Quest"} · ${q.stage >= 13 ? "The Drowned Lantern" : q.stage >= 10 ? "The Ninth Bell" : q.stage >= 5 ? "The Ashen Abbey" : "Broken Lantern Road"}</div>
+    <div class="lbl">${[9, 12, 16, 21, 22].includes(q.stage) ? "Chapter complete" : "Quest"} · ${q.stage >= 18 ? "The Second Lantern" : q.stage >= 13 ? "The Drowned Lantern" : q.stage >= 10 ? "The Ninth Bell" : q.stage >= 5 ? "The Ashen Abbey" : "Broken Lantern Road"}</div>
     <div style="font-size:19px;color:var(--wax)">${qt}</div><div class="dv df1"></div>
     <div style="font-size:15px">› ${qo}<span style="color:var(--wax)">${prog}</span></div>
   </div>
@@ -295,7 +301,7 @@ export default function (ctx, player) {
     <div style="font-size:11px;margin-top:4px;color:#e0473a">♥ ${s.tonics ?? 0}</div>
   </div>
   <div class="absolute ph" style="left:190px;top:150px;pointer-events:auto" onclick="sendAction('bag')"><div class="slot" style="width:48px;height:40px;font-size:11px">PACK</div></div>
-  ${q.stage === 0 || q.stage === 4 || q.stage === 9 || q.stage === 12 || q.stage === 16 ? `<div data-world-anchor="maelin" data-anchor-offset="0 2.3 0" style="font-size:30px;color:var(--wax);text-align:center;animation:vfpulse 1.4s infinite">!<div style="font-size:12px">MAELIN</div></div>` : ""}
+  ${q.stage === 0 || q.stage === 4 || q.stage === 9 || q.stage === 12 || q.stage === 16 || q.stage === 17 || q.stage === 21 ? `<div data-world-anchor="maelin" data-anchor-offset="0 2.3 0" style="font-size:30px;color:var(--wax);text-align:center;animation:vfpulse 1.4s infinite">!<div style="font-size:12px">MAELIN</div></div>` : ""}
   ${s.bagOpen ? `<div class="absolute plate pk" style="right:${rail};top:50%;transform:translateY(-50%);width:290px;max-width:calc(100vw - 2*${rail});max-height:calc(100vh - 16px);overflow:auto;pointer-events:auto;animation:vfin .25s">
     <div class="lbl" style="display:flex;justify-content:space-between">${s.charName ?? "Bearer"} · Pack${touch ? "" : " (I to close)"}${touch ? `<span style="cursor:pointer;color:#f2d38a" onclick="sendAction('bag')">CLOSE</span>` : ""}</div><div class="dv d5"></div>
     <div style="display:grid;grid-template-columns:repeat(4,52px);gap:6px;margin-top:8px">
