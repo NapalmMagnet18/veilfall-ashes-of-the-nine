@@ -83,7 +83,7 @@ export function forge(ctx, it, op) {
     const after = implicit(it.b, out.il);
     for (const k of Object.keys(after)) out.s[k] = (out.s[k] ?? 0) - (before[k] ?? 0) + after[k];
   } else if (op === "reforge") {
-    out.s = dress(ctx, it.b, it.t, it.il, it.n).s; out.rf = (it.rf ?? 0) + 1;
+    out.s = dress(ctx, it.b, it.t, it.il, it.n).s; out.rf = (it.rf ?? 0) + 1; delete out.mk;
   } else if (op === "ascend") {
     out.t = ORDER[ORDER.indexOf(it.t) + 1];
     const d = dress(ctx, it.b, out.t, it.il); out.n = d.n; out.s = d.s;
