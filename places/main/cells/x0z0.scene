@@ -926,6 +926,16 @@ trophy-post:
   primitive: {kind: scripted, params: {kind: post}, script: scripts/gen/hub-trophy.js, seed: 7}
   rotation: {yaw: 8}
   tags: [camp, trophy-post]
+wayside-cauldron:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0.92, z: 0}, fx: {script: "fx\npop bubble rate=5 on=disc(.3) life=.4..0.8 v=up(.05) size=.03..0.07 sz=$size*(.4>1.2) col=hdr(2.2,1.3,.4) a=.9>0 r=sprite(soft-disc,add)\npop steam rate=6 on=disc(.32) life=2..3.5 v=up(.5..0.9) size=.2..0.35 acc=curl(.3)*.5+buoy(.4)+drag(.5) sz=$size*(.5>2.4) col=<.75,.68,.55> a=0>.2:.22>.7:.1>0 r=sprite(smoke-puff,alpha)\npop under rate=10 on=disc(.35).c(-.85) life=.3..0.6 v=up(.4..0.8) size=.06..0.12 acc=buoy(1)+drag(2) sz=$size*(.6>.2) col=hdr(3.4,1.4,.3)>hdr(1,.3,.05) a=0>.2:.9>0 r=sprite(flame-wisp,add)\npop glow n=1 at=point().c(.15) glo=fire()*.35+.65 r=light(<1,.62,.28>,$glo*3.5,7)"}, id: brew}, {audio: {clip: /cdn/moodboard-gothic-horror/sfx-thick-wax-cauldron-slow-bubbling-and-ember-crackle-loop.mp3, gain: 0.16, loop: true, maxDistance: 10, spatial: true}, feetPosition: {x: 0, y: 0.9, z: 0}, id: bubbling}]
+  feetPosition: {x: 6.9, y: -0.02, z: 4.3}
+  id: wayside-cauldron
+  physics: static
+  primitive: {kind: scripted, params: {}, script: scripts/gen/hub-cauldron.js, seed: 5}
+  receiveShadow: true
+  rotation: {yaw: 30}
+  tags: [hub, cauldron, z01-dressing]
 wayside-fire:
   feetPosition: {x: 0, y: {terrain: 0}, z: 0}
   fx: {script: "fx\npop coals n=16 on=disc(.38).c(.08) size=.07..0.16 tint=<2.6,1,.28>..<1.2,.35,.09> sz=$size*flick(.5,.12) col=$tint*flick(.8,.3) a=.9 r=sprite(soft-disc,add)\npop flame rate=flick(.45,.2)*95 on=disc(.3).c(.12) life=.55..1.05 v=up(1.9)+cone(24)*(.35..0.9) size=.3..0.55 acc=curl(.5)*1.3+buoy(2.4)+drag(1.5)\n  sz=$size*(.5>.25:1>.7:.72>.14) col=hdr(4.8,3.6,1.5)>.3:hdr(3.4,1.5,.35)>.65:hdr(1.9,.55,.12)>hdr(.7,.14,.03) a=0>.12:1>.75:.85>0 rot=spin(.2) r=sprite(flame-wisp,add)\npop embers rate=7 on=disc(.3).c(.2) life=.8..1.8 v=up(2.6)+cone(32)*(.4..1.3) size=.02..0.05 acc=curl(.8)*1.1+grav()*.45+drag(.5)\n  sz=$size*(1>.7:.8>.3) col=hdr(5,2.8,.8)>.6:hdr(2.4,.8,.15)>hdr(1,.22,.04) a=(0>.08:1>.65:.9>0)*flick(11,.35) r=sprite(ember,add,velocity,.02)\npop smoke on=@flame?.22 inh=p;v:$v*.4 life=2..3.6 size=.2..0.32 acc=buoy(.9)+curl(.35)*.5+drag(.8) sz=$size*(.7>3.6) col=<.3,.28,.26>><.15,.15,.16> a=0>.25:.3>.7:.21>0 rot=spin(.15) r=sprite(smoke-puff,alpha)\npop hearth n=1 at=disc(.22).c(.7) glo=fire()*(#flame/60)~ r=light(<1,.55,.24>,$glo*25,14)"}
