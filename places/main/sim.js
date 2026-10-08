@@ -48,7 +48,7 @@ const LINES = {
   9: "Maelin Sore: You touched the door? Sit, Bearer. Tell me everything.",
   11: "Maelin Sore: The nave is open? Then the crypt is under it. Go down, Bearer. Whatever rings that bell has been ringing it for a hundred years. Let it rest.",
   13: "Maelin Sore: Silent. I'd forgotten what the road sounds like without it. And this... the ninth lantern, in your hands. The Nine meant it for someone. Keep it lit. Eight were carried out of this valley, and I know where the first one went.",
-  10: "Maelin Sore: The Ninth Bell. My mother sang of it: the Nine lit eight lanterns and hid the ninth inside the bell, so no hand could carry it off. Someone is ringing it from the inside. Take this, and rest. When that door opens, I want you standing in front of it.",
+  10: "Maelin Sore: The Ninth Bell. My mother sang of it: the Nine lit eight lanterns and hid the ninth inside the bell, so no hand could carry it off. Someone is ringing it from the inside. Take this. The door gave way under your hand, Bearer. Walk through it, down the nave, and stop that bell.",
 };
 // the Abbey chapter: where it begins, the three saints that speak, the door that won't
 const ABBEY_YARD = { x: 0, z: -176, r: 18 };
