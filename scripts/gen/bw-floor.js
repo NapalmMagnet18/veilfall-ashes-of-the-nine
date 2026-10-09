@@ -67,38 +67,44 @@ function lathe(E, cx, by, cz, prof, n) {
 const pick = (R, arr) => arr[Math.floor(R() * arr.length) % arr.length];
 
 // ---------- the shapes (one clump or piece each, drawn per record) ----------
-const LEAF = ["oklch(0.42 0.11 40)", "oklch(0.32 0.11 22)", "oklch(0.36 0.05 55)", "oklch(0.46 0.09 62)", "oklch(0.38 0.13 27)", "oklch(0.27 0.07 24)", "oklch(0.44 0.1 48)"]; // damp: no bright leaf stands alone
+const LEAF = ["oklch(0.34 0.09 32)", "oklch(0.28 0.1 22)", "oklch(0.31 0.05 50)", "oklch(0.36 0.07 58)", "oklch(0.3 0.11 26)", "oklch(0.23 0.06 24)", "oklch(0.33 0.08 42)"]; // damp and dark: a drift of one family, no bright chip stands alone
+// one fallen leaf: a stalk, then a blade folded along its vein (the vein rides high, the edges drop), swelling
+// at a third and pinched to a tip that curls up off the ground; 7 small faces, a few centimetres long.
 function leaf(E, x, y, z, yaw, L, W, curl, tx, tz) {
   const f = [Math.cos(yaw), 0, Math.sin(yaw)], s = [-Math.sin(yaw), 0, Math.cos(yaw)];
   const P = (u, v, h) => { const px = x + f[0] * u + s[0] * v, pz = z + f[2] * u + s[2] * v; return [px, y + h + (px - x) * tx + (pz - z) * tz, pz]; };
-  const base = P(-L / 2, 0, curl * 0.7), tip = P(L / 2, 0, curl * 0.9), mid = P(0.02 * L, 0, -curl * 0.15);
-  const l = P(-0.05 * L, W / 2, curl), r = P(-0.05 * L, -W / 2, curl * 0.8);
-  E.tri(base, l, mid); E.tri(l, tip, mid); E.tri(base, mid, r); E.tri(mid, tip, r);
+  const b = -L / 2, st = P(b - L * 0.28, 0, 0.002); // the stalk's end lies on the ground
+  const B = P(b, 0, curl * 0.35), V = P(b + L * 0.42, 0, curl * 0.55), T = P(L / 2, 0, curl * 1.6); // vein: base, fold, curled tip
+  const l1 = P(b + L * 0.3, W / 2, -curl * 0.1), r1 = P(b + L * 0.3, -W / 2, -curl * 0.2);
+  const l2 = P(b + L * 0.68, W * 0.36, curl * 0.3), r2 = P(b + L * 0.68, -W * 0.36, curl * 0.2);
+  const sw = [s[0] * L * 0.035, 0, s[2] * L * 0.035];
+  E.tri(st, addv(B, sw), sub(B, sw)); // stalk
+  E.tri(B, l1, V); E.tri(B, V, r1); E.tri(l1, l2, V); E.tri(V, r2, r1); E.tri(l2, T, V); E.tri(V, T, r2);
 }
 function shapeLitter(E, ctx, lod) {
-  const R = () => ctx.random(), n = lod >= 3 ? 10 : lod === 2 ? 18 : 28;
+  const R = () => ctx.random(), n = lod >= 3 ? 12 : lod === 2 ? 22 : 34;
   ctx.flat(); ctx.roughness(0.88);
-  ctx.color("oklch(0.17 0.03 35)"); // the mulch bed: a low dark disc the leaves lie on, so they read as a drift, not confetti on stone
-  { const m = lod >= 3 ? 7 : 12, c = [0, 0.004, 0]; for (let i = 0; i < m; i++) { const a0 = (i / m) * TAU, a1 = ((i + 1) / m) * TAU, r0 = 0.75 + Math.sin(i * 2.3) * 0.12, r1 = 0.75 + Math.sin((i + 1) * 2.3) * 0.12; E.tri(c, [Math.cos(a1) * r1, -0.01, Math.sin(a1) * r1], [Math.cos(a0) * r0, -0.01, Math.sin(a0) * r0]); } }
+  ctx.color("oklch(0.16 0.03 32)"); // the mulch bed: a low dark disc the leaves lie on, so they read as a drift, not confetti on stone
+  { const m = lod >= 3 ? 7 : 12, c = [0, 0.003, 0]; for (let i = 0; i < m; i++) { const a0 = (i / m) * TAU, a1 = ((i + 1) / m) * TAU, r0 = 0.62 + Math.sin(i * 2.3) * 0.1, r1 = 0.62 + Math.sin((i + 1) * 2.3) * 0.1; E.tri(c, [Math.cos(a1) * r1, -0.012, Math.sin(a1) * r1], [Math.cos(a0) * r0, -0.012, Math.sin(a0) * r0]); } }
   for (let i = 0; i < n; i++) {
-    const a = R() * TAU, d = Math.sqrt(R()) * 0.85, x = Math.cos(a) * d, z = Math.sin(a) * d;
-    const y = 0.01 + (1 - d / 0.85) * 0.045 * R() + i * 0.0004; // a drift: deeper in the middle
-    const L = 0.055 + R() * 0.05;
+    const a = R() * TAU, d = Math.pow(R(), 0.7) * 0.62, x = Math.cos(a) * d, z = Math.sin(a) * d;
+    const y = 0.006 + (1 - d / 0.62) * 0.03 * R() + i * 0.0003; // a drift: deeper in the middle
+    const L = 0.032 + R() * 0.03;
     ctx.color(pick(R, LEAF));
-    leaf(E, x, y, z, R() * TAU, L, L * (0.42 + R() * 0.25), 0.008 + R() * 0.02, (R() - 0.5) * 0.5, (R() - 0.5) * 0.5);
+    leaf(E, x, y, z, R() * TAU, L, L * (0.45 + R() * 0.2), 0.004 + R() * 0.008, (R() - 0.5) * 0.3, (R() - 0.5) * 0.3);
   }
   if (lod >= 3) return;
   ctx.color("oklch(0.2 0.02 45)"); ctx.roughness(0.95);
   for (let i = 0; i < 2; i++) { // twigs, one forked
-    const a = R() * TAU, x0 = Math.cos(a) * 0.4, z0 = Math.sin(a) * 0.4, b = R() * TAU, L = 0.3 + R() * 0.25;
+    const a = R() * TAU, x0 = Math.cos(a) * 0.3, z0 = Math.sin(a) * 0.3, b = R() * TAU, L = 0.25 + R() * 0.2;
     const pts = []; for (let k = 0; k <= 4; k++) pts.push([x0 + Math.cos(b) * L * k / 4 + Math.sin(k * 1.7) * 0.015, 0.012 + Math.sin(k * 0.9) * 0.008, z0 + Math.sin(b) * L * k / 4]);
-    const F = tube(E, pts, (t) => 0.009 * (1 - t * 0.6), 4);
-    const p = F[2].P, bb = b + 0.7; tube(E, [p, [p[0] + Math.cos(bb) * 0.12, 0.016, p[2] + Math.sin(bb) * 0.12]], (t) => 0.005 * (1 - t * 0.6), 3);
+    const F = tube(E, pts, (t) => 0.008 * (1 - t * 0.6), 4);
+    const p = F[2].P, bb = b + 0.7; tube(E, [p, [p[0] + Math.cos(bb) * 0.1, 0.016, p[2] + Math.sin(bb) * 0.1]], (t) => 0.005 * (1 - t * 0.6), 3);
   }
-  for (let i = 0; i < 2; i++) { // broken apple husks: a rotten cup, pale flesh inside
-    const a = R() * TAU, d = 0.2 + R() * 0.5, c = [Math.cos(a) * d, 0.03, Math.sin(a) * d];
-    ctx.color("oklch(0.3 0.08 30)"); blob(E, c, 0.034, 0.03, 0.034, 7, 4, 0.45, 1);
-    ctx.color("oklch(0.5 0.06 60)"); blob(E, [c[0], c[1] + 0.004, c[2]], 0.028, 0.022, 0.028, 6, 2, 0.5, 0.8);
+  if (lod <= 1) { // one broken apple husk: a rotten cup, pale flesh inside
+    const a = R() * TAU, d = 0.15 + R() * 0.35, c = [Math.cos(a) * d, 0.025, Math.sin(a) * d];
+    ctx.color("oklch(0.28 0.08 28)"); blob(E, c, 0.03, 0.026, 0.03, 7, 4, 0.45, 1);
+    ctx.color("oklch(0.42 0.05 60)"); blob(E, [c[0], c[1] + 0.004, c[2]], 0.024, 0.019, 0.024, 6, 2, 0.5, 0.8);
   }
 }
 // a blood fern: arched fronds, each a dark midrib carrying many small paired leaflets (pinnae) that sweep toward
@@ -307,15 +313,22 @@ function shapeStump(E, ctx, lod) {
 const SHAPES = { litter: shapeLitter, fern: shapeFern, thorn: shapeThorn, bones: shapeBones, fungus: shapeFungus, roots: shapeRoots, stump: shapeStump };
 const SMALL = { litter: 1, fern: 1, bones: 1, fungus: 1 };
 // per kind: scale range, sink (m, × scale), the flattest ground it wants (normal y), tint spread
-const SET = {
-  litter: { s: [0.8, 1.4], sink: 0.0, minN: 0.55, tint: 0.25 },
-  fern: { s: [0.8, 1.2], sink: 0.02, minN: 0.45, tint: 0.2 },
-  thorn: { s: [0.75, 1.15], sink: 0.0, minN: 0.45, tint: 0.1 },
-  bones: { s: [0.85, 1.15], sink: 0.02, minN: 0.75, tint: 0.08 },
-  fungus: { s: [0.8, 1.3], sink: 0.0, minN: 0.65, tint: 0.12 },
-  roots: { s: [0.7, 1.15], sink: 0.03, minN: 0.7, tint: 0.1 },
-  stump: { s: [0.4, 1.1], sink: 0.04, minN: 0.6, tint: 0.1 },
+const SET = { // foot = the clump's footprint radius at scale 1 (m); tol = how far its rim may sit off the ground before it shrinks or skips
+  litter: { s: [0.8, 1.3], sink: 0.0, minN: 0.6, tint: 0.2, foot: 0.68, tol: 0.05 },
+  fern: { s: [0.8, 1.2], sink: 0.02, minN: 0.5, tint: 0.2, foot: 0.45, tol: 0.18 },
+  thorn: { s: [0.75, 1.15], sink: 0.0, minN: 0.5, tint: 0.1, foot: 0.9, tol: 0.3 },
+  bones: { s: [0.85, 1.15], sink: 0.02, minN: 0.75, tint: 0.08, foot: 0.5, tol: 0.05 },
+  fungus: { s: [0.8, 1.3], sink: 0.0, minN: 0.65, tint: 0.12, foot: 0.25, tol: 0.06 },
+  roots: { s: [0.7, 1.15], sink: 0.03, minN: 0.7, tint: 0.1, foot: 0.7, tol: 0.1 },
+  stump: { s: [0.4, 1.1], sink: 0.04, minN: 0.6, tint: 0.1, foot: 0.45, tol: 0.15 },
 };
+// the ground under a clump's rim: 6 samples at r; the clump is unrotated by tilt (records carry yaw only), so it
+// sits on the LOWEST rim point (nothing floats) and the spread tells how much of it would bury
+function rim(ctx, x, z, r) {
+  let lo = Infinity, hi = -Infinity;
+  for (let k = 0; k < 6; k++) { const a = k * 1.0472, g = ctx.groundY(x + Math.cos(a) * r, z + Math.sin(a) * r); lo = Math.min(lo, g); hi = Math.max(hi, g); }
+  const c = ctx.groundY(x, z); return { lo: Math.min(lo, c), hi: Math.max(hi, c), c };
+}
 // enemy pack spots (places/main/sim.js PACKS near the Gallows Path / Orchard): tall cover drops to knee height within KNEE_R
 const PACK_SPOTS = [[36, 6], [36, 3], [38, 6], [40, 9], [42, 1], [48, -8], [76, -3], [78, -2], [79, 18], [50, 23], [66, 25], [82, 6]];
 const KNEE_R = 7, KNEE_H = 0.5, TALL = { fern: 0.9, thorn: 1.5, stump: 1.0 }; // TALL = the kind's tallest copy at scale 1 (m)
@@ -362,9 +375,13 @@ export function geometry(ctx) {
     if (roll > want(kind, e) * drift) continue;
     const nrm = ctx.groundNormal(x, z);
     if (nrm.y < cfg.minN) continue;
-    const s = (cfg.s[0] + ctx.random() * (cfg.s[1] - cfg.s[0])) * kneeScale(kind, wx, wz), tv = (ctx.random() - 0.5) * cfg.tint, warm = (ctx.random() - 0.5) * cfg.tint * 0.6;
-    const y = ctx.groundY(x, z) - cfg.sink * s - (1 - nrm.y) * 0.25 * s; // sink deeper on a slope so the downhill edge never floats
-    ctx.instance([x, y, z], ctx.random() * 360, s, [1 + tv + warm, 1 + tv, 1 + tv - warm]);
+    let s = (cfg.s[0] + ctx.random() * (cfg.s[1] - cfg.s[0])) * kneeScale(kind, wx, wz);
+    const tv = (ctx.random() - 0.5) * cfg.tint, warm = (ctx.random() - 0.5) * cfg.tint * 0.6, yaw = ctx.random() * 360;
+    let g = rim(ctx, x, z, cfg.foot * s);
+    if (g.hi - g.lo > cfg.tol) { s *= 0.6; g = rim(ctx, x, z, cfg.foot * s); } // too steep: a smaller copy, or none
+    if (g.hi - g.lo > cfg.tol || s < 0.3) continue;
+    const y = (kind === "litter" || kind === "bones" ? (g.lo + g.c) / 2 : g.lo) - cfg.sink * s; // flat kinds split the slope; standing kinds sit on its low side
+    ctx.instance([x, y, z], yaw, s, [1 + tv + warm, 1 + tv, 1 + tv - warm]);
     placed++;
   }
   if (E.uvs) return { uvs: E.uvs };
