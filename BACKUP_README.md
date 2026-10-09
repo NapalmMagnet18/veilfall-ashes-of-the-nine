@@ -1,3 +1,5 @@
+Current snapshot and complete combined inventory: [BACKUP_CURRENT.md](BACKUP_CURRENT.md).
+
 # VEILFALL: Ashes of the Nine — source and asset backup
 
 Snapshot of `@whispers/veilfall-ashes-of-the-nine`, world `068f1cea-d218-4e01-ae9e-f230532c4885`, captured October 9, 2026.
@@ -45,4 +47,5 @@ See BACKUP_COMPLETENESS.md for the continuation audit. The release now also pres
 ## Refreshed history and restore verification
 
 The updated history bundle preserves main plus Spawn notes at 665e8ac800264fbe137f0ec5b9db35865acc62ae. Use an explicit --branch main when cloning a bundle. A real clone and checkout restored all 354 tracked source files at 6d86bb7ad04bd9862742d017c91ab96fad72198d; git fsck passed. See VEILFALL_Source_Restore_Verification.json.
+
 
