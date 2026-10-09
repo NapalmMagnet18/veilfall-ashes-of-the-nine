@@ -860,6 +860,7 @@ function showcase(ctx) {
 export function update(ctx, dt) {
   if (ctx.self.state.hp === undefined) onSpawn(ctx);
   const s = ctx.self.state, now = ctx.now(), f = ctx.self.feetPosition;
+  if (me.prevHp != null && s.hp < me.prevHp - 0.5) s.hurtAt = now; me.prevHp = s.hp; // the portrait's red flash
   gate(ctx);
   if (ctx.self.isLocal !== false) showcase(ctx);
   if (!ctx.self.state.menu && ctx.self.state.charId) { drainLoot(ctx); deriveGear(ctx); if (ctx.self.isLocal !== false) { forgeNear(ctx); boardNear(ctx); trainerNear(ctx); shrineNear(ctx); vaultNear(ctx); guildVaultNear(ctx); cauldronNear(ctx); candleChill(ctx); } }

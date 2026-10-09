@@ -611,7 +611,7 @@ const FOE_FACE = { pilgrim: CDN("adfc724b011b8bf14290cda3b7bed2ef3ab614753a07c8c
 // WoW-style unit frames: the Bearer's living portrait and the foe they are fighting, side by side, top left
 function unitFrames(s, { hp, max, hpPct, edge, lv, xpPct, foe, foeOn, now, FOES }) {
   const cls = CLASSES.find((c) => c.id === s.cls) ?? CLASSES[0];
-  const low = hpPct < 30, hurt = s.lastHp != null && hp < s.lastHp;
+  const low = hpPct < 30, hurt = now - (s.hurtAt ?? 0) < 450;
   const me = `<div class="vfuf" style="left:24px">
     <div class="vfpt ${low ? "low" : ""}"><div class="vfpt-i" style="background-image:url(${cls.img})"></div><div class="vfpt-e"></div>${hurt ? `<div class="vfpt-h"></div>` : ""}<div class="vflv">${lv}</div></div>
     <div class="vfuf-b"><div class="vfuf-n">${s.charName ?? "Bearer"}<span>${cls.name}</span></div>
