@@ -338,6 +338,12 @@ function kneeScale(kind, wx, wz) {
   if (d >= KNEE_R) return 1;
   return Math.min(1, (KNEE_H + (H - KNEE_H) * clamp01((d - 3) / (KNEE_R - 3))) / (H * 1.2)); // ×1.2: the largest scale roll stays under the cap
 }
+const DAIS = [62, 5, 9];
+function keepClear(wx, wz) {
+  if (Math.hypot(wx - DAIS[0], wz - DAIS[1]) < DAIS[2]) return true;
+  for (const [px, pz] of PACK_SPOTS) if (Math.hypot(wx - px, wz - pz) < 3) return true;
+  return false;
+}
 // how much a kind wants a spot e metres outside the walkable floor (negative = on it)
 function want(kind, e) {
   if (kind === "litter") return e < -2.5 ? 0.35 : e < 0 ? 1 : e < 4 ? 1 : e < 10 ? 0.75 : 0.45; // drifts bank up at the floor's edges
@@ -370,6 +376,8 @@ export function geometry(ctx) {
     const wx = x + ox, wz = z + oz, fd = floorDist(wx, wz);
     if (zone === "out" && fd < margin) continue;
     if (zone === "in" && fd > -0.4) continue;
+    if (TALL[kind] && fd < 0.4) continue; // the walkable floor keeps only cover under 0.3 m: no fern, thorn or stump on it
+    if (kind !== "litter" && keepClear(wx, wz)) continue; // the gallows dais and every pack spot stay bare but for leaf litter
     const e = Math.min(fd, orchDist(wx, wz));
     const drift = 0.35 + 0.65 * clamp01(ctx.noise2d(wx * 0.17, wz * 0.17) * 0.8 + 0.5);
     if (roll > want(kind, e) * drift) continue;
