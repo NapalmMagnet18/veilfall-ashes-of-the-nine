@@ -14,7 +14,7 @@ deep-crystal-11:
   rotation: 223.7559725996107
   tags: [deep-dress]
 deep-crystal-17:
-  feetPosition: {x: -53, y: {terrain: -0.05}, z: -321}
+  feetPosition: {x: -54.8, y: {terrain: -0.05}, z: -322.5}
   id: deep-crystal-17
   physics: static
   primitive: {kind: scripted, params: {h: 3.2, n: 11, r: 0.9}, script: scripts/gen/deep-crystal.js, seed: 317}
@@ -28,7 +28,7 @@ deep-crystal-18:
   rotation: 325.63825216144323
   tags: [deep-dress]
 deep-crystal-9:
-  feetPosition: {x: -52.22553909937933, y: {terrain: -0.05}, z: -322.8296920456433}
+  feetPosition: {x: -52.2, y: {terrain: -0.05}, z: -323.1}
   id: deep-crystal-9
   physics: static
   primitive: {kind: scripted, params: {h: 2.495364326238632, n: 10, r: 0.703881943016313}, script: scripts/gen/deep-crystal.js, seed: 309}

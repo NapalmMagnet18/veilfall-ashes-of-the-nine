@@ -284,35 +284,35 @@ deep-bed:
   id: deep-bed
   tags: [deep-dress]
 deep-crystal-0:
-  feetPosition: {x: -34.030186470553026, y: {terrain: -0.05}, z: -309.625539273425}
+  feetPosition: {x: -33.3, y: {terrain: -0.05}, z: -308.6}
   id: deep-crystal-0
   physics: static
   primitive: {kind: scripted, params: {h: 1.4690418496727944, n: 7, r: 0.7143018265487626}, script: scripts/gen/deep-crystal.js, seed: 300}
   rotation: 1.667702766135335
   tags: [deep-dress]
 deep-crystal-1:
-  feetPosition: {x: -36.51693294005324, y: {terrain: -0.05}, z: -302.77284992378713}
+  feetPosition: {x: -33, y: {terrain: -0.3}, z: -305.3}
   id: deep-crystal-1
   physics: static
   primitive: {kind: scripted, params: {h: 1.555443311482668, n: 6, r: 0.719836762174964}, script: scripts/gen/deep-crystal.js, seed: 301}
   rotation: 154.20943371020257
   tags: [deep-dress]
 deep-crystal-12:
-  feetPosition: {x: -37.32559511485039, y: {terrain: -0.05}, z: -318.62015079233805}
+  feetPosition: {x: -36.6, y: {terrain: -0.3}, z: -320.9}
   id: deep-crystal-12
   physics: static
   primitive: {kind: scripted, params: {h: 2.770066340640187, n: 6, r: 0.6280335120391101}, script: scripts/gen/deep-crystal.js, seed: 312}
   rotation: 341.4741708431393
   tags: [deep-dress]
 deep-crystal-13:
-  feetPosition: {x: -33.58103885111122, y: {terrain: -0.05}, z: -314.1610728730476}
+  feetPosition: {x: -31.6, y: {terrain: -0.05}, z: -311.2}
   id: deep-crystal-13
   physics: static
   primitive: {kind: scripted, params: {h: 2.267198310419917, n: 6, r: 0.5588802436832339}, script: scripts/gen/deep-crystal.js, seed: 313}
   rotation: 249.6451113279909
   tags: [deep-dress]
 deep-crystal-14:
-  feetPosition: {x: -44.5, y: {terrain: -0.05}, z: -283}
+  feetPosition: {x: -46.8, y: {terrain: -0.15}, z: -279.8}
   id: deep-crystal-14
   physics: static
   primitive: {kind: scripted, params: {h: 1, n: 5, r: 0.4}, script: scripts/gen/deep-crystal.js, seed: 314}
@@ -326,49 +326,49 @@ deep-crystal-15:
   rotation: 333.33714161999524
   tags: [deep-dress]
 deep-crystal-16:
-  feetPosition: {x: -48.6, y: {terrain: -0.05}, z: -292}
+  feetPosition: {x: -50.9, y: {terrain: -0.05}, z: -295}
   id: deep-crystal-16
   physics: static
   primitive: {kind: scripted, params: {h: 0.9, n: 5, r: 0.4}, script: scripts/gen/deep-crystal.js, seed: 316}
   rotation: 51.17926457896829
   tags: [deep-dress]
 deep-crystal-19:
-  feetPosition: {x: -35.5, y: {terrain: -0.05}, z: -306}
+  feetPosition: {x: -39.5, y: {terrain: -0.05}, z: -321}
   id: deep-crystal-19
   physics: static
   primitive: {kind: scripted, params: {h: 1.6, n: 7, r: 0.6}, script: scripts/gen/deep-crystal.js, seed: 319}
   rotation: 25.94702297821641
   tags: [deep-dress]
 deep-crystal-2:
-  feetPosition: {x: -41.98596607788397, y: {terrain: -0.05}, z: -297.9172326756537}
+  feetPosition: {x: -38.2, y: {terrain: -0.3}, z: -297.2}
   id: deep-crystal-2
   physics: static
   primitive: {kind: scripted, params: {h: 1.2159659087657928, n: 7, r: 0.714501274516806}, script: scripts/gen/deep-crystal.js, seed: 302}
   rotation: 164.25386373884976
   tags: [deep-dress]
 deep-crystal-3:
-  feetPosition: {x: -47.30371201767902, y: {terrain: -0.05}, z: -296.5781098256294}
+  feetPosition: {x: -49.6, y: {terrain: -0.05}, z: -297.3}
   id: deep-crystal-3
   physics: static
   primitive: {kind: scripted, params: {h: 1.5912115935236215, n: 10, r: 0.6893973784754053}, script: scripts/gen/deep-crystal.js, seed: 303}
   rotation: 192.17485056258738
   tags: [deep-dress]
 deep-crystal-4:
-  feetPosition: {x: -53.74063068171527, y: {terrain: -0.05}, z: -297.4183917385308}
+  feetPosition: {x: -53, y: {terrain: -0.05}, z: -295.7}
   id: deep-crystal-4
   physics: static
   primitive: {kind: scripted, params: {h: 2.7980186194181442, n: 10, r: 0.737346496200189}, script: scripts/gen/deep-crystal.js, seed: 304}
   rotation: 185.7169865258038
   tags: [deep-dress]
 deep-crystal-5:
-  feetPosition: {x: -57.47001843292578, y: {terrain: -0.05}, z: -301.874954666578}
+  feetPosition: {x: -59, y: {terrain: -0.05}, z: -313.5}
   id: deep-crystal-5
   physics: static
   primitive: {kind: scripted, params: {h: 1.4800243515521287, n: 6, r: 0.5640895798569545}, script: scripts/gen/deep-crystal.js, seed: 305}
   rotation: 267.3719635605812
   tags: [deep-dress]
 deep-crystal-6:
-  feetPosition: {x: -60.1339268860911, y: {terrain: -0.05}, z: -306.6313093665691}
+  feetPosition: {x: -60.9, y: {terrain: -0.3}, z: -307.1}
   id: deep-crystal-6
   physics: static
   primitive: {kind: scripted, params: {h: 2.086152998358011, n: 9, r: 0.689096781425178}, script: scripts/gen/deep-crystal.js, seed: 306}
