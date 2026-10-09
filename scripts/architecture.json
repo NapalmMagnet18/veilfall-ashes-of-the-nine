@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "basedOnSpecVersion": 1023,
-  "updatedAt": "2026-10-09T09:58:34.175Z",
+  "basedOnSpecVersion": 1026,
+  "updatedAt": "2026-10-09T10:03:17.966Z",
   "summary": "VEILFALL: Ashes of the Nine is an isometric multiplayer action RPG in a shared main realm, with a solo Veil title/menu place. Place and actor scripts run quests, combat, bosses and ambience; player/character modules handle the Bearer and persistence, while shared data and procedural scene scripts supply combat profiles, models, services and world dressing.",
   "scriptPaths": [
     "mods/aaa-quality-kit/look-cinema.js",
@@ -200,7 +200,7 @@
     "scripts/wax-pack.js"
   ],
   "places": [
-    "places/main/ - shared playable realm: Wayside Fire, Broken Lantern Road and its quest/boss route, plus the Fen/Lanternmere, Ossuary, Orchard, Abbey and Candlehold areas; cells hold the authored settlement, landmarks and encounters.",
+    "places/main/ - shared playable realm: Wayside Fire, Broken Lantern Road, Lanternmere, Hanging Orchard, Ashen Abbey and other chapter areas; cells hold authored landmarks and encounters.",
     "places/veil/ - solo ephemeral title/menu stage and ravine backdrop, configured as the default place; the active Bearer is parked here while menus are open."
   ],
   "roots": [
@@ -215,19 +215,19 @@
   "shared": [
     "scripts/lib/character.js - Bearer schema, fresh state, roster/create/load/save/delete and packed position; player.js and arrival.js reuse it, crier/board-notes use realmOf.",
     "scripts/db.js and scripts/lib/data/realms.yml - realm/character and trade schemas, realm routing/name registry, and guild-vault SQL table/index setup.",
-    "scripts/lib/data/combat.yml - combat/skill/enemy/boss profiles read by player.js, place simulation, wax-pack.js and pack UI; now includes drowned, harpooner, barnacle and ferryman profiles.",
+    "scripts/lib/data/combat.yml - combat/skill/enemy/boss profiles read by player.js, main sim, wax-pack.js and pack UI; now includes Blood Woods and Hollow Spires enemy profiles.",
     "scripts/lib/data/models.js - MODELS, HEIGHT and body map reusable character/enemy kinds to uploaded GLBs and metre heights; main sim and wax-pack reuse it.",
     "scripts/lib/data/economy.yml with scripts/lib/coins.js - copper denominations, enemy drops, rewards, sale values and stock shared by combat, sim, shop, HUD and crier.",
-    "scripts/lib/data/loot.yml and scripts/lib/loot.js - gear/drop/forge rules, rolls, boss marks, crafting and gear stats for combat, pack UI and trade; enemy-kind rows include Lanternmere drops.",
+    "scripts/lib/data/loot.yml and scripts/lib/loot.js - gear/drop/forge rules, rolls, boss marks, crafting and gear stats for combat, pack UI and trade; enemy-kind rows include Orchard and Abbey drops.",
     "scripts/lib/character.js, scripts/lib/pack-ui.js, scripts/lib/shop.js and scripts/lib/trade.js - common Bearer and service logic; guildvault.js owns shared vault mutations and board-ui.js shares trade reads."
   ],
   "notableExports": [
     "places/main/sim.js and places/veil/sim.js - cadence, tick.",
     "scripts/player.js - onSpawn, onInput, boltLand, crosswoundFall, update; delayed projectile impacts and Crosswound cleave route through handlers.",
-    "scripts/lib/data/models.js - MODELS, HEIGHT, body; models.js height is consumed to position enemy soul-light effects.",
+    "scripts/lib/data/models.js - MODELS, HEIGHT, body; HEIGHT values in metres position attached enemy effects.",
     "scripts/wax-pack.js - roll, telegraph, hurtPlayers, payout, update; shared ordinary-enemy AI and combat/payout helpers.",
-    "scripts/ui.js - state-driven HUD/menu/sheets, talent tree, unit frames and enemy portrait/name lookup; scripts/ui/nametag.js - nametag renderer.",
-    "scripts/abbess.js, bailiff.js, ringer.js, warden.js, hangman.js - boss onSpawn/update handlers; crier.js exports onSpawn, quiet, update.",
+    "scripts/ui.js - default state-driven HUD/menu/sheets, talent tree, unit frames and enemy portrait/name lookup; scripts/ui/nametag.js - nametag renderer.",
+    "scripts/abbess.js, bailiff.js, ringer.js, warden.js, hangman.js - boss handlers; crier.js exports onSpawn, quiet, update.",
     "scripts/lib/character.js - CHAR_KEYS, fresh, START, realmOf, pack, zoneOf, roster, create/load/save/remove; scripts/lib/data/talents.js exports talent definitions and stat helpers."
   ],
   "ownership": [
@@ -236,7 +236,7 @@
     "places/main/sim.js - quest/dialog/cut progress and claims; hub NPC/service spawning, packs and boss lifecycle/reset, respawn rows, place mood/track index and ambient audio.",
     "scripts/wax-pack.js - ordinary and mini-boss enemy AI/hp/casts/death, half-health summons and eligible Bearers' XP, copper, kills, shards and gear-drop inboxes.",
     "scripts/bailiff.js, ringer.js, warden.js, hangman.js and abbess.js - respective boss hp/phases/casts/adds/defeat and participant/place boss rows; boss handlers write lastFall and first world trophy records.",
-    "scripts/ui.js - presentation derived from player state and nearby foe state; foe portrait IDs/names include the four Lanternmere enemy kinds.",
+    "scripts/ui.js - presentation derived from player state and nearby foe state; foe labels and portraits cover Wax, Lanternmere, Blood Woods and Hollow Spires kinds.",
     "scripts/lib/guildvault.js and guild_vault SQL rows - shared items keyed by realm and Spawn guild; taken rows are guarded, and character inventory owns the member's copy."
   ],
   "flows": [
@@ -247,11 +247,11 @@
     "player.js periodically/on rest saves changed CHAR_KEYS plus packed position → character.js writes characters; arrival.js saves an active Bearer leaving main.",
     "player.js derives chapter floor gates from quest stage/abbeyOpenAll → veilfall-map.js floorDist governs goals and movement; chapter access depends on stage/open-all.",
     "places/main/sim.js quest state advances from player talk/kills/boss flags; Lanternmere stage lights waystones and boss defeat advances the Drowned Lantern quest.",
-    "places/main/sim.js PACKS + combat.yml kind profiles + models.js body/HEIGHT → enemySpec spawns wax-pack actors; wax-pack runs combat, respawn and eligible payouts/drops using combat/economy/loot data.",
-    "Main sim Lanternmere pack rows → drowned, harpooner, barnacle and ferryman wax-pack actors; ferryman combat profile summons three drowned below half health, once per life.",
+    "places/main/sim.js PACKS + combat.yml profiles + models.js body/HEIGHT → enemySpec spawns wax-pack actors; wax-pack runs combat, respawn and eligible payouts/drops using combat/economy/loot data.",
+    "Main sim's Hanging Orchard rows → reaper, marrowwolf, briarwitch and rootmother; Ashen Abbey rows → gargoyle, harpy, inquisitor and butcher; profiles drive half-health summons for Rootmother and Butcher.",
+    "Enemy kinds in wax-pack state → ui.js foe labels, portraits and elite/mini-boss frames; main sim selects Blood Woods sap FX versus Lanternmere soul FX using kind sets.",
     "Main sim TRACKS/rest-zone mood + fight/elite/boss state → room music playlist; duration (or 150s fallback) advances the track index, and place sim spawns ambience beds/distant sounds.",
-    "Boss defeat → participant flags/place.state.lastFall → crier heralds; boss handlers write world.state.trophies[boss] → trophies.js derives relic/plaque visibility.",
-    "Nearby service state in player.js → pack-ui/shop-ui/trade/vault panels; pack-ui and player actions → loot.js, guildvault.js or trade.js mutations; board-ui/crier/board-notes share listing reads."
+    "Boss defeat → participant flags/place.state.lastFall → crier heralds; boss handlers write world.state.trophies[boss] → trophies.js derives relic/plaque visibility; nearby service state → pack/shop/trade/vault panels and mutations."
   ],
   "behaviorFamilies": [
     "scripts/gen/hub-*.js - reusable Wayside Fire props varied by instance params, seed and scene transform; share hub-kit.js; hub-board.js also serves Candlehold's exchange board.",
@@ -261,7 +261,7 @@
     "scripts/gen/veil-land.js and veil-shrine.js - Veil ledge/cliff/ridge structures vary by kind/dimensions; shrine exports structure/hook constants.",
     "scripts/gen/arena-floor.js, arena-pillar.js, gibbet.js and toll-throne.js - Bailiff arena dressing shares scripts/gen/shapes.js and wax palette; split gibbet cages render separately at a top pivot.",
     "scripts/plants/ashfern.js, bramble.js and mossoak.js - seeded procedural ash-fern, grave-bramble and dead-oak ground cover; geometry thins by LOD and appearance varies by params.",
-    "scripts/wax-pack.js + combat.yml + models.js - shared enemy movement, attack, death and payout vary by kind; Ferryman joins wax mini-boss summon behavior, while main sim configures cold cyan soul-light/drips for the drowned kinds."
+    "scripts/wax-pack.js + combat.yml + models.js - shared enemy movement, attack, death and payout vary by kind; Orchard and Abbey kinds use the same manager, with kind-specific bodies, FX, VO, profiles and loot."
   ],
   "probableOrphans": [
     "scripts/flat-starter-terrain.js",
@@ -272,7 +272,7 @@
     "Talent IDs are branch-tier strings b-t; each earlier tier requires 3 points spent in that branch, capstones have one rank with fourfold stat value, and talent changes must invalidate derived gear stats.",
     "Wayshrine IDs/coordinates in combat.yml must stay aligned with scene IDs/locations; travel costs 10 copper and refuses while an enemy is within 10 m; Abbey destination obeys player gate.",
     "Personal vault is 18 slots plus up to three purchased rows of nine; guild vault is 27 shared slots per Spawn guild per realm in SQL, separate from character inventory.",
-    "Enemy kind must remain consistent across main sim PACKS, combat.yml, models.js MODELS/HEIGHT, loot.yml/economy.yml and ui.js foe labels/portraits; height is metres and sets attached soul-light placement.",
-    "Both place jukeboxes advance playlists from asset duration with a 150-second fallback; calm main-zone mood retains a random start index, while boss/fight moods choose their own list."
+    "Enemy kind must stay aligned across main sim PACKS, combat.yml, models.js MODELS/HEIGHT, loot.yml/economy.yml, wax-pack.js and ui.js labels/portraits; HEIGHT is metres and positions attached FX.",
+    "Boss-like wax-pack kinds use elite tagging and the shared wax enemy handler; half-health adds are profile-driven, while only designated main bosses use their separate boss handlers."
   ]
 }
