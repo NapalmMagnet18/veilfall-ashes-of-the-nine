@@ -5,6 +5,7 @@ import { body as heroBody, BEARER } from "./lib/data/models.js";
 import { BREW, renderRank, brewMade, brewActive } from "./lib/brews.js";
 import { gearStats, mitigation, slotOf, sellValue, dustValue, SLOTS, forge, FORGE, freeReforges, markBoss, applyMark, MARKS, craft, craftCost, smithRank, SMITH } from "./lib/loot.js";
 import { raycast, getInputRay } from "builtin/physics";
+import { animate } from "builtin/tween";
 import { findPath } from "builtin/nav";
 import { floorDist as mapFloor, areaAt } from "./lib/data/veilfall-map.js";
 // the Abbey road is floor only once the Bailiff has fallen in this room (place.state.abbeyOpen, set by the sim)
@@ -309,7 +310,7 @@ pop air on=@shaft.lives(25) life=.3..0.5 v=sdir()*.15 size=.1..0.16 acc=drag(2) 
 const ATK = {
   soulweaver:   { reach: 11, cd: 0.8, mul: 1.25, sp: 18, fx: BOLT("hdr(2.2,3.4,4.2)", "hdr(.4,.9,1.6)", "<.5,.8,1>"), castFx: CAST("hdr(2.2,3.4,4.2)", "<.5,.8,1>"), cast: "cdn/clip-cast.glb", snd: "arcane-bolt-cast-shimmering-whoosh", hit: "arcane-bolt-impact-glass-chime-burst", hitFx: "<.5,.85,1>" },
   shadowmancer: { reach: 10, cd: 0.75, mul: 1.15, sp: 16, fx: BOLT("hdr(2.4,1.2,3.6)", "hdr(.6,.15,.9)", "<.7,.3,1>"), castFx: CAST("hdr(2.4,1.2,3.6)", "<.7,.3,1>"), cast: "cdn/clip-cast.glb", snd: "shadow-bolt-cast-hissing-whisper", hit: "shadow-bolt-impact-dark-thump-and-whispers", hitFx: "<.7,.3,1>" },
-  gloamstalker: { reach: 14, cd: 0.65, mul: 1.05, sp: 32, fx: ARROW, cast: "cdn/clip-throw.glb", snd: "longbow-draw-creak-and-arrow-release-twang", hit: "arrow-thunk-into-flesh", hitFx: "<1,.8,.5>" },
+  gloamstalker: { reach: 14, cd: 0.65, mul: 1.05, sp: 32, fx: ARROW, arrow: true, cast: "cdn/clip-throw.glb", snd: "longbow-draw-creak-and-arrow-release-twang", hit: "arrow-thunk-into-flesh", hitFx: "<1,.8,.5>" },
   hellwarden:   { reach: 2.5, cd: 0.7, mul: 1.15, melee: true, snd: "heavy-mace-swing-whoosh-low" },
   primalist:    { reach: 2.4, cd: 0.6, mul: 1.05, melee: true, snd: "beast-claw-swipe-whoosh" },
 };
@@ -335,7 +336,19 @@ function fireAt(ctx, foe, A, dmg, crit) {
   const time = Math.max(0.08, (d - fwd) / A.sp);
   ctx.emit("fx", { position: st, script: A.fx, params: { dir: { x: dx / d, y: dy / d, z: dz / d }, sp: A.sp, t: time } });
   if (A.castFx) ctx.emit("fx", { position: st, script: A.castFx });
+  if (A.arrow) flyArrow(ctx, st, { x: t.x - dx / d * 0.25, y: t.y + 1.1, z: t.z - dz / d * 0.25 }, time);
   ctx.after(time, "boltLand", { id: foe.id, dmg, crit, hit: A.hit, c: A.hitFx });
+}
+// the arrow itself: dark ash shaft, leaf iron head, three black fletches; it flies the line and is gone on the hit
+const SHAFT = { kind: "cylinder", radiusTop: 0.012, radiusBottom: 0.012, height: 0.8 };
+function flyArrow(ctx, from, to, time) {
+  const id = ctx.spawn({ feetPosition: from, rotation: { lookAt: to, include: ["yaw", "pitch"] }, lifetime: time + 0.03, castShadow: false, interpolation: null,
+    children: [
+      { feetPosition: { x: 0, y: 0, z: 0.4 }, pivot: "center", rotation: { pitch: 90 }, primitive: SHAFT, material: { color: "#3a2c20", roughness: 0.8 } },
+      { feetPosition: { x: 0, y: 0, z: -0.02 }, pivot: "center", rotation: { pitch: -90 }, primitive: { kind: "cone", radius: 0.028, height: 0.11, radialSegments: 4 }, material: { color: "#8c8a86", metalness: 0.9, roughness: 0.35 } },
+      ...[0, 120, 240].map((r) => ({ feetPosition: { x: 0, y: 0, z: 0.72 }, pivot: "center", rotation: { roll: r }, primitive: { kind: "box", width: 0.004, height: 0.05, depth: 0.12 }, material: { color: "#15130f", roughness: 0.9 } })),
+    ] });
+  animate(ctx, id, { "feetPosition.x": to.x, "feetPosition.y": to.y, "feetPosition.z": to.z }, { duration: time, easing: "linear" });
 }
 // a keystone's second hit: chain and pierce fly a fresh bolt on from the struck foe; cleave lands at once on the pack around it
 function keystone(ctx, foe, dmg, crit) {
