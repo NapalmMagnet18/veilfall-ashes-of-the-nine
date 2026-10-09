@@ -6,6 +6,7 @@ assets:
     "/cdn/value.145dfbe1acd4569b808d0e49c0b9f9f458ad18261aca666449f06119dbd44bbd.png": {bytes: 642795, kind: image, name: rotten-weathered-wood-planks, uploadedAt: "2026-10-09T09:35:33.677Z"}
     "/cdn/value.152e0e3dca8080958e96297d180738dd46f2ecd43c02f2d1e4a43c5e9f09757a.png": {bytes: 462, kind: image, name: vf-slothot, uploadedAt: "2026-10-08T16:02:17.991Z"}
     "/cdn/value.193f20b46037db4dcd9364748d5428843007d8e0cecf0e528e934ced25605c5b.png": {bytes: 482, kind: image, name: vf-btnmain, uploadedAt: "2026-10-08T15:56:06.141Z"}
+    "/cdn/value.1960f30d58fb5e5d124c80aae3ba95801577068a547509f43cf547cd77ca8b4b.png": {bytes: 647669, kind: image, name: old-yellowed-bone-surface-cracked, uploadedAt: "2026-10-09T09:36:38.384Z"}
     "/cdn/value.1c2b0cc5fbef785f085a3a71ddf8c46bacae7f1a8026f15bd4f2fa3d54f868bc.glb": {bytes: 1292684, kind: model, name: wax-saint-b, uploadedAt: "2026-10-08T18:13:17.979Z"}
     "/cdn/value.1f60ee58a6ef0f2f7bdb966e9dfabff94bdcceaff64d510d434c336954701d4d.glb": {bytes: 13629956, kind: model, name: handcart, uploadedAt: "2026-10-08T18:03:16.176Z"}
     "/cdn/value.2349f5b2a205dcdb7fa4d7bfb654295f63819e09024f4d115676bb8f57ea0537.glb": {bytes: 1884040, kind: model, name: road-boneheap, uploadedAt: "2026-10-08T17:23:00.180Z"}
@@ -32,8 +33,11 @@ assets:
     "/cdn/value.8ddf2ecea1f411200f84874eeb351983949c814fdd2ba0624f0414325515a456.png": {bytes: 589694, kind: image, name: ash, uploadedAt: "2026-10-09T09:33:47.378Z"}
     "/cdn/value.a2605b2cc3a81b3017dc37e70db702f5d8bc19876c5b91473921a28a733d3467.png": {bytes: 265, kind: image, name: vf-div, uploadedAt: "2026-10-08T16:11:15.123Z"}
     "/cdn/value.a653a5ebfcccb33300582bba7d25b0912ff6b147bc340943eeb0a5a772ab6283.glb": {bytes: 1486772, kind: model, name: wax-saint-c, uploadedAt: "2026-10-08T18:13:21.541Z"}
+    "/cdn/value.a6f5feb00c9cfa4e09735369401be1c83e6853116a115ab3197ba4b6f3771879.png": {bytes: 511220, kind: image, name: worn-cracked-brown-leather, uploadedAt: "2026-10-09T09:36:38.338Z"}
+    "/cdn/value.af43abd1578b88cdcca29ca38b2960f84584acf72b66d7baae3e5e5604108f20.png": {bytes: 645869, kind: image, name: mossy-dark-slate-roof-shingles, uploadedAt: "2026-10-09T09:36:37.858Z"}
     "/cdn/value.b20b7d9626dd956b2c5e558692ad328b1f19e3275e2782db4fa07670d83f35e0.ttf": {bytes: 1195560, kind: font, name: corm, uploadedAt: "2026-10-08T20:09:57.724Z"}
     "/cdn/value.bba925e4e433e115eeed76c95225f1769bfc11061a2a7d75b358ec2ab422204d.glb": {bytes: 621540, kind: model, name: grave-broken, uploadedAt: "2026-10-08T18:13:33.794Z"}
+    "/cdn/value.c6fcf610675854475468574bfe0518a407d5bfefdd82950a0f4132fe65ce35ec.png": {bytes: 597777, kind: image, name: rotten-torn-burgundy-burial-cloth, uploadedAt: "2026-10-09T09:36:37.482Z"}
     "/cdn/value.cd396819d656f0cac99b4c6b3eda49cccae72af69dcf6c99ba4a9b69b4afab38.png": {bytes: 456, kind: image, name: vf-card, uploadedAt: "2026-10-08T15:56:23.075Z"}
     "/cdn/value.d502a11179b049d3da0da9e5a9096754b6a72312519548047fe425ffcca9fdbf.png": {bytes: 461, kind: image, name: vf-slot, uploadedAt: "2026-10-08T15:56:11.909Z"}
     "/cdn/value.d630af2d76ab6292d985033cf37473c2b9cf35ae9eb015ad2de90fe6962e36e8.glb": {bytes: 21875012, kind: model, name: abbey-facade-breached, uploadedAt: "2026-10-08T19:24:19.552Z"}
