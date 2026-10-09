@@ -7,12 +7,16 @@ const YAW = Math.PI / 4, PITCH = 0.92; // ~53° down
 const lerp = (a, b, t) => a + (b - a) * t;
 const ease = (t) => 1 - Math.pow(1 - t, 3);
 let px = null, py = 0, pz = 0, t0 = 0;
+const cineOn = (t) => { const ps = t?.state; return !!(ps && (ps.possessedNodeId || ps.cinemaPlaying || ps.cinemaPlayback?.playing)); };
 export function onInput(ctx, input) {
+  if (cineOn(ctx.self.target)) return; // Absolute Cinema has the wheel
   const s = ctx.self.state, z = input.axes.zoomIn ?? 0;
   if (z && !ctx.self.target?.state?.menu) s.dist = Math.max(16, Math.min(36, (s.dist ?? 26) - z * 2.5));
 }
 export function update(ctx, dt) {
   const t = ctx.self.target; if (!t) return;
+  if (cineOn(t)) { ctx.self.state._cine = true; return; } // a shot is playing: yield
+  if (ctx.self.state._cine) { ctx.self.state._cine = false; px = null; } // shot over: re-seed onto the Bearer
   t0 += dt;
   if (t.state?.menu) {
     const sw = Math.sin(t0 * 0.07 * Math.PI * 2 / 1.5), dr = SHOT.drift ?? { x: 0, y: 0, z: 0 };
