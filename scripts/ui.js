@@ -9,7 +9,9 @@ import { boardPanel } from "./lib/board-ui.js";
 import R from "./lib/data/realms.yml";
 import { FRAME_CSS } from "./lib/frames.js";
 import CB from "./lib/data/combat.yml";
-import cinemaPanel from "../mods/absolute-cinema/lib/ui-cinema.js";
+// the film-editor panel (117 KB) is fetched the first time a Bearer opens it, never before standing
+let cinemaPanel = null, cinemaAsked = false;
+const wantCinema = () => { if (cinemaAsked) return; cinemaAsked = true; import("../mods/absolute-cinema/lib/ui-cinema.js").then((m) => { cinemaPanel = m.default; }).catch(() => { cinemaAsked = false; }); };
 import { renderCinemaOverlays } from "../mods/absolute-cinema/lib/ui-cinema-overlays.js";
 const STAGES = [
   ["Pilgrims in White", "Speak with Maelin at the Wayside Fire"],
@@ -712,6 +714,6 @@ const SHEET_CSS = `<style>${UF_CSS}
 export default function (ctx, player) {
   const base = vfHud(ctx, player) + SHEET_CSS;
   let cine = "";
-  try { cine = renderCinemaOverlays(player) + (player?.state?.cinemaOpen ? cinemaPanel(player, ctx.world) : ""); } catch (e) { cine = ""; }
+  try { cine = renderCinemaOverlays(player) + (player?.state?.cinemaOpen ? (cinemaPanel ? cinemaPanel(player, ctx.world) : (wantCinema(), "")) : ""); } catch (e) { cine = ""; }
   return base + cine;
 }
