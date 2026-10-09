@@ -361,6 +361,64 @@ pop grit rate=?mobile:2|4 on=disc(.3) life=.7..1.2 v=up(.15..0.35)+sdir()*.2 siz
   skyforged: { lamp: "oklch(0.86 0.06 240)", aura: `fx
 pop gust rate=?mobile:2|4 on=disc(.5) life=.8..1.3 v=vortex(1.4)+up(.3..0.6) size=.02..0.035 acc=drag(.6) col=hdr(1.4,1.7,2.2)>hdr(.4,.5,.8) a=0>.15:.8>0 sz=$size r=sprite(ember,add,velocity,.05)` },
 };
+// the ranged callings' signature (RMB, the Crosswound slot, same Edge cost): each its own shape of harm
+const LANCE = `fx
+pop beam burst=1 life=.55 size=1 col=hdr(2.6,3.6,4.4) a=1>.6:.9>0 sz=$size*(1>.3) r=mesh(cylinder,.18,9,.18)
+pop rune burst=1 life=.7 size=3.4 col=hdr(1.2,2.2,3.2) a=.9>0 sz=$size*(.4>1) r=sprite(soft-disc,add)
+pop shard burst=30..40 on=disc(1.4) life=.5..1 v=up(3..7)+sdir()*1.2 size=.04..0.08 acc=grav()*.4+drag(1.2) col=hdr(2.4,3.4,4.2)>hdr(.4,.8,1.4) a=1>0 sz=$size r=sprite(ember,add,velocity,.05)
+pop glow burst=1 life=.6 at=point().c(1) r=light(<.55,.8,1>,40*(1>0),10)`;
+const DARKPOOL = `fx
+pop pool n=1 life=3 size=4.4 col=<.18,.04,.28> a=0>.1:.85>.85:.85>0 sz=$size r=sprite(soft-disc,alpha)
+pop tendril rate=?mobile:14|28 on=disc(2) life=.7..1.2 v=up(.8..1.8)+sdir()*.2 size=.08..0.16 acc=curl(1)+drag(1) col=hdr(1.4,.4,2.2)>hdr(.2,.05,.35) a=0>.15:.9>0 sz=$size*(1>.3) r=sprite(smoke-puff,add)
+pop eye rate=3 on=disc(1.6) life=.6..1 size=.05 col=hdr(3,1,4) a=0>.3:1>0 sz=$size r=sprite(soft-disc,add)
+pop glow n=1 life=3 at=point().c(.6) r=light(<.6,.25,1>,12,7)`;
+function sigLance(ctx, s, f, aim) {
+  const at = { x: aim.x, y: ctx.place.terrain?.heightAt?.(aim.x, aim.z) ?? f.y, z: aim.z };
+  swingAnim(ctx, "cdn/clip-cast.glb");
+  ctx.emit("fx", { position: { x: f.x, y: f.y + 1.4, z: f.z }, script: ATK.soulweaver.castFx });
+  ctx.emit("playSound", { clip: sfx("holy-light-lance-crashes-down-choir-burst"), position: at, volume: 0.85 });
+  ctx.after(0.3, "sigLand", { kind: "lance", at });
+}
+function sigPool(ctx, s, f, aim) {
+  const at = { x: aim.x, y: ctx.place.terrain?.heightAt?.(aim.x, aim.z) ?? f.y, z: aim.z };
+  swingAnim(ctx, "cdn/clip-cast.glb");
+  ctx.emit("fx", { position: { x: at.x, y: at.y + 0.05, z: at.z }, script: DARKPOOL });
+  ctx.emit("playSound", { clip: sfx("shadow-pool-opens-whispering-hands-grasp"), position: at, volume: 0.8 });
+  for (let i = 0; i < 3; i++) ctx.after(0.4 + i * 0.9, "sigLand", { kind: "pool", at, tick: i });
+}
+function sigVolley(ctx, s, f, aim) {
+  const A = ATK.gloamstalker, base = Math.atan2(aim.x - f.x, aim.z - f.z);
+  swingAnim(ctx, A.cast);
+  ctx.emit("playSound", { clip: sfx("several-arrows-loosed-at-once-volley-twang"), position: f, volume: 0.8 });
+  const hit = new Set();
+  for (let i = -2; i <= 2; i++) {
+    const a = base + i * 0.17, dir = { x: Math.sin(a), z: Math.cos(a) }, src = { x: f.x + dir.x * 0.7, y: f.y + 1.35, z: f.z + dir.z * 0.7 };
+    let foe = null, bd = A.reach + 2;
+    for (const r of ctx.query({ tags: ["enemy"], center: f, radius: A.reach + 2 })) {
+      if (hit.has(r.id)) continue; const ex = r.feetPosition.x - f.x, ez = r.feetPosition.z - f.z, ed = Math.hypot(ex, ez) || 1;
+      if ((ex * dir.x + ez * dir.z) / ed > 0.97 && ed < bd) { bd = ed; foe = r; } }
+    const end = foe ? { x: foe.feetPosition.x, y: foe.feetPosition.y + 1.1, z: foe.feetPosition.z } : { x: f.x + dir.x * A.reach, y: f.y + 1.1, z: f.z + dir.z * A.reach };
+    const d = Math.hypot(end.x - src.x, end.z - src.z) || 1, t = Math.max(0.08, d / A.sp);
+    ctx.emit("fx", { position: src, script: A.fx, params: { dir: { x: (end.x - src.x) / d, y: 0, z: (end.z - src.z) / d }, sp: A.sp, t } });
+    flyArrow(ctx, src, end, t);
+    if (foe) { hit.add(foe.id); ctx.after(t, "boltLand", { id: foe.id, dmg: Math.round(C.crosswound.dmg * 0.7 * weaponMul(s) * (0.9 + ctx.random() * 0.2)), crit: false, hit: A.hit, c: A.hitFx, nk: true }); }
+  }
+}
+const SIG = { soulweaver: sigLance, shadowmancer: sigPool, gloamstalker: sigVolley };
+export function sigLand(ctx, p) {
+  const s = ctx.self.state, at = p.at;
+  if (p.kind === "lance") {
+    ctx.emit("fx", { position: at, script: LANCE });
+    ctx.emit("shockwave", { position: { x: at.x, y: at.y + 0.3, z: at.z }, speed: 10, thickness: 0.5, intensity: 0.5 });
+    ctx.emit("screenShake", { intensity: 0.15, duration: 0.2 }, { audience: { player: ctx.self.id } });
+  }
+  const R = p.kind === "lance" ? 2.6 : 2.2, mul = p.kind === "lance" ? 1.5 : 0.55;
+  for (const r of ctx.query({ tags: ["enemy"], center: at, radius: R })) {
+    const o = ctx.getObject(r.id); if (!isFoe(o)) continue;
+    strike(ctx, o, Math.round(C.crosswound.dmg * mul * weaponMul(s) * (0.9 + ctx.random() * 0.2)), false, true);
+    if (p.kind === "pool") { o.state.slowUntil = ctx.now() + 1200; ctx.emit("flash", { target: r.id, color: "#8a3cff", duration: 0.15 }); }
+  }
+}
 // a keystone's second hit: chain and pierce fly a fresh bolt on from the struck foe; cleave lands at once on the pack around it
 function keystone(ctx, foe, dmg, crit) {
   const s = ctx.self.state, k = keystoneOf(s.cls, s.talents); if (!k) return;
@@ -745,6 +803,7 @@ function crosswound(ctx) {
   }
   me.cwAt = now + cw.cd * 1000; s.cwReadyAt = me.cwAt; s.edge -= cw.cost;
   const f = ctx.self.feetPosition, aim = me.aim ?? f;
+  if (SIG[s.cls]) return SIG[s.cls](ctx, s, f, aim);
   let dx = aim.x - f.x, dz = aim.z - f.z; const d = Math.hypot(dx, dz) || 1; dx /= d; dz /= d;
   s.faceYaw = yawTo(dx, dz); s.goal = null; me.route = null;
   // the wind-up: the blade drinks ember light for a breath before it falls
