@@ -822,7 +822,7 @@ function crosswound(ctx) {
 }
 const GATHER = `fx
 pop mote burst=22 on=sphere(1.1) life=.24 v=attract(6) size=.03..0.06 col=hdr(3.2,1.3,.35) a=0>.3:1>0 r=sprite(ember,add,velocity,.02)
-pop glow n=1 at=point() life=.26 r=light(<1,.5,.2>,(0>1)*18,6)`;
+pop glow burst=1 at=point() life=.26 r=light(<1,.5,.2>,(0>1)*18,6)`;
 export function crosswoundFall(ctx, p) {
   const s = ctx.self.state, cw = C.crosswound, f = ctx.self.feetPosition, dx = p.dx, dz = p.dz;
   if ((s.hp ?? 1) <= 0) return;
@@ -846,9 +846,9 @@ export function crosswoundFall(ctx, p) {
 }
 // Furnace Sweep's arc of burning ground and Stormhorn's bolt from the sky
 const FURNACE = `fx
-pop flame rate=?mobile:45|90 on=arc(1.8,140) life=.5..0.9 v=up(1.6..2.8)+sdir()*.3 size=.55..0.95 acc=curl(.5)+buoy(1.6)+drag(1.4) sz=$size*(.5>1:.3>.2) col=hdr(4.4,2.6,.9)>hdr(2,.6,.1)>hdr(.5,.1,.02) a=0>.1:1>.7:.8>0 rot=spin(.3) win=0;1.8 r=sprite(flame-wisp,add)
+pop flame win=0;1.6 rate=?mobile:45|90 on=arc(1.8,140) life=.5..0.9 v=up(1.6..2.8)+sdir()*.3 size=.55..0.95 acc=curl(.5)+buoy(1.6)+drag(1.4) sz=$size*(.5>1:.3>.2) col=hdr(4.4,2.6,.9)>hdr(2,.6,.1)>hdr(.5,.1,.02) a=0>.1:1>.7:.8>0 rot=spin(.3) win=0;1.8 r=sprite(flame-wisp,add)
 pop smoke on=@flame?.15 life=1.2..2 size=.3..0.5 acc=buoy(.8)+drag(.8) sz=$size*(.7>2.4) col=<.2,.17,.15> a=0>.2:.3>0 r=sprite(smoke-puff,alpha)
-pop glow n=1 life=2.2 at=point().c(.5) r=light(<1,.5,.15>,22*(1>.6:.8>0),8)`;
+pop glow burst=1 life=2.2 at=point().c(.5) r=light(<1,.5,.15>,22*(1>.6:.8>0),8)`;
 const BOLTDOWN = `fx
 pop bolt burst=1 life=.18 size=1 col=hdr(3,3.6,5) a=1>0 r=mesh(cylinder,.06,8,.06)
 pop spark burst=20..28 on=sphere(.3).c(1) life=.2..0.5 v=sdir()*(2..5) size=.02..0.04 acc=grav()*.3+drag(2) col=hdr(3,3.4,4.6)>hdr(.6,.8,1.4) a=1>0 r=sprite(ember,add,velocity,.05)
