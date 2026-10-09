@@ -1139,9 +1139,21 @@ tollhouse/toll-bell:
   material: {pbr: true}
   parent: tollhouse
   physics: static
-  primitive: {kind: scripted, params: {kind: bell, seed: 4}, script: scripts/gen/vf-props.js}
+  primitive: {kind: scripted, params: {kind: bell, seed: 4, split: true}, script: scripts/gen/vf-props.js}
   rotation: {yaw: 90}
   tags: [z01-dressing, road]
+tollhouse/toll-bell/bellbody:
+  behavior: scripts/sway.js
+  castShadow: true
+  feetPosition: {x: 0, y: 2.25, z: -0.8}
+  id: tollhouse/toll-bell/bellbody
+  material: {pbr: true}
+  parent: tollhouse/toll-bell
+  physics: none
+  pivot: top
+  primitive: {kind: scripted, params: {body: true, kind: bell, seed: 4}, script: scripts/gen/vf-props.js}
+  state: {ring: /cdn/moodboard-gothic-horror/sfx-small-iron-toll-bell-single-ring-decay.mp3}
+  tags: [z01-dressing, swing]
 trade-board:
   behavior: scripts/board-notes.js
   castShadow: true
