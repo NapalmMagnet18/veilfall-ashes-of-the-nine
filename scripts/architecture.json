@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "basedOnSpecVersion": 1123,
-  "updatedAt": "2026-10-09T10:42:24.427Z",
-  "summary": "VEILFALL: Ashes of the Nine is an isometric multiplayer action RPG with a shared playable realm and a solo Veil title/menu place. Place, actor and player scripts run quests, combat, bosses, services and ambience; shared Bearer/data modules and procedural scene generators provide persistence, class/enemy profiles and world dressing.",
+  "basedOnSpecVersion": 1133,
+  "updatedAt": "2026-10-09T10:49:48.914Z",
+  "summary": "VEILFALL: Ashes of the Nine is an isometric multiplayer action RPG with a shared playable realm and a solo Veil title/menu place. Place and actor scripts run quests, combat, bosses, services and ambience; shared Bearer/data modules and procedural generators provide persistence, profiles and world dressing.",
   "scriptPaths": [
     "mods/aaa-quality-kit/look-cinema.js",
     "mods/absolute-cinema/cinema-camera.js",
@@ -180,6 +180,7 @@
     "scripts/lib/trade.js",
     "scripts/lighting.js",
     "scripts/look-default.js",
+    "scripts/look-veilfall.js",
     "scripts/mushroom.js",
     "scripts/petition.js",
     "scripts/places/main/sim.js",
@@ -206,12 +207,12 @@
   ],
   "places": [
     "places/main/ - shared playable realm spanning Wayside Fire/Broken Lantern Road, Candlehold, Lanternmere, Hanging Orchard, Ashen Abbey, Ossuary, Hollow Deep and Frostbitten Vale; cells place enemies, wildlife, wisps, townsfolk and biome dressing.",
-    "places/veil/ - solo ephemeral title/menu stage and ravine backdrop, configured as default place; the active Bearer is parked here while menus are open."
+    "places/veil/ - solo ephemeral title/menu stage and ravine backdrop, configured as default place; active Bearers are parked here while menus are open."
   ],
   "roots": [
     "world.config.yaml - world entry: defaultPlace veil; attaches player/camera templates, lighting, arrival/nametag behaviors, controls and audio mix.",
     "templates/player.js - player body with humanoid-locomotion.js and scripts/player.js, plus carried-light child; templates/camera.js runs scripts/camera.js.",
-    "places/main/config.yaml and places/main/cells/ - shared-realm atmosphere, terrain and authored biome cells; world.assets.yaml registers shared assets.",
+    "places/main/config.yaml and places/main/cells/ - main-realm atmosphere, terrain and authored biome cells; config attaches scripts/look-veilfall.js as its look.",
     "places/main/sim.js - main-place referee: NPC/services, quest stages, enemy packs, progression, boss lifecycle/reset and place music/ambience.",
     "places/veil/config.yaml, places/veil/cells/ and places/veil/sim.js - solo title/menu scene, ambience and menu soundtrack.",
     "scripts/terrain.js - main realm height/material field; scripts/lib/data/veilfall-map.js defines connected regions and floor gates.",
@@ -228,17 +229,17 @@
   ],
   "notableExports": [
     "places/main/sim.js - cadence, tick; places/veil/sim.js - cadence, tick.",
-    "scripts/player.js - onSpawn, onInput, sigLand, meleeLand, boltLand, crosswoundFall, update; delayed skill/projectile and melee impacts route through handlers.",
-    "scripts/lib/data/models.js - MODELS, HEIGHT, body, BEARER; HEIGHT values are metres and position attached enemy effects; crystalbrute currently uses the gargoyle stone-body stand-in.",
+    "scripts/player.js - onSpawn, onInput, sigLand, meleeLand, boltLand, crosswoundFall, burnTick, update; skill impacts route through handlers and burnTick applies Hellwarden burn damage.",
+    "scripts/lib/data/models.js - MODELS, HEIGHT, body, BEARER; HEIGHT values are metres and position attached enemy effects; crystalbrute uses the gargoyle stone-body stand-in.",
     "scripts/wax-pack.js - roll, telegraph, hurtPlayers, payout, update; shared ordinary-enemy AI, movement, death and payout helpers.",
-    "scripts/ui.js - default state-driven HUD/menu/sheets, talent tree, unit frames and enemy portrait/name lookup; scripts/ui/nametag.js - nametag renderer.",
+    "scripts/ui.js - default state-driven HUD/menu/sheets, talent tree, unit frames and enemy portrait/name lookup; RMB skill slot displays calling-specific name/icon; scripts/ui/nametag.js renders nametags.",
     "scripts/abbess.js, bailiff.js, ringer.js, warden.js, hangman.js - boss handlers; scripts/crier.js - onSpawn, quiet, update.",
     "scripts/lib/character.js - CHAR_KEYS, fresh, START, realmOf, pack, zoneOf, roster, create/load/save/remove; scripts/lib/data/talents.js - talent tree/query helpers.",
-    "scripts/fauna.js, scripts/forest-wisp.js and scripts/greeter.js - update; scripts/gen/deep-crystal.js - geometry, collider for seeded crystal clusters."
+    "scripts/fauna.js, scripts/forest-wisp.js and scripts/greeter.js - update; scripts/gen/deep-crystal.js - geometry, collider for seeded crystal clusters; scripts/look-veilfall.js - look."
   ],
   "ownership": [
     "scripts/lib/character.js CHAR_KEYS - persistent Bearer combat/progression, quest/reward claims, inventory/gear, arts, attuned shrines, personal vault/vaultRows and talents; packed position and zone feed re-entry/menu context.",
-    "scripts/player.js - active-body movement/combat/death, class attacks and skill timers, menu/options scratch, floor gates, inventory/service actions and derived gear stats; ancestry presentation follows the active Bearer.",
+    "scripts/player.js - active-body movement/combat/death, class attacks and skill timers, menu/options scratch, floor gates, inventory/service actions and derived gear stats; Hellwarden burnUntil is written on foes for its delayed burn ticks.",
     "places/main/sim.js - quest/dialog/cut progress and claims; hub NPC/service spawning, packs and boss lifecycle/reset, respawn rows, place mood/track index and ambient audio.",
     "scripts/wax-pack.js - ordinary and mini-boss enemy AI/hp/casts/death, slowUntil movement effect, profile-driven summons and eligible Bearers' XP, copper, kills, shards and gear-drop inboxes.",
     "scripts/bailiff.js, ringer.js, warden.js, hangman.js and abbess.js - respective boss hp/phases/casts/adds/defeat and participant/place boss rows; handlers write lastFall and first world trophy records.",
@@ -257,8 +258,8 @@
     "Main sim PACKS → Ossuary ash-dead/Kiln Warden, Hollow Deep deepghoul/lurker/crystalbrute/Broodmother and Frostbitten Vale frostdead/rimewolf/icewraith/Frost Jarl; profile summon rows drive mini-boss adds.",
     "Scene fauna rows tagged fauna + fauna.js species values → scripts/fauna.js shepherd update moves wildlife; forest-wisp.js reads home/r/seed and nearby Bearers to drift/flee and change burnStyle; scene rows set wisp color/shape/light.",
     "Candlehold town-* scene rows provide name/title/lines and bubble child → greeter.js shows rotating dialogue; flavor only, not service/quest routing.",
-    "Bearer cls → player.js update selects models.js BEARER body; talents.js supplies class keystones; player.js implements delayed meleeLand hits/third-swing finishers and calling-specific ranged RMB signatures, with UI class details in scripts/ui.js.",
-    "Shadowmancer Borrowed Shadow sigLand writes enemy.state.slowUntil (50% for 1.2 s) → wax-pack.js halves that enemy's travel speed; enemy death kind → wax-pack.js wax-melts, frost-shatters, ash-crumbles or leaves a sinking corpse."
+    "Bearer cls → player.js selects models.js BEARER body and implements calling attacks; Hellwarden Furnace Sweep writes foe burnUntil and schedules burnTick damage, while Primalist Stormhorn emits lightning FX per struck foe; ui.js SIG_UI supplies signature labels/icons.",
+    "places/main/config.yaml look attachment → scripts/look-veilfall.js adds Raytraced Lighting traced reflections and temporal denoise over Awakening's film look; reflections are high/ultra desktop only, Awakening alone on lower/mobile tiers."
   ],
   "behaviorFamilies": [
     "scripts/gen/hub-*.js - reusable Wayside Fire props varied by instance params, seed and scene transform; share hub-kit.js; hub-board.js also serves Candlehold's exchange board.",
@@ -266,7 +267,7 @@
     "scripts/gen/fen-*.js - Lanternmere terrain dressing, path, waystones, stump/tree/props and heart structures are parametric seeded scene generators; share fen-kit.js where applicable.",
     "scripts/gen/cap-kit.js with cap-gate.js, cap-house.js and cap-wall.js - Candlehold stone, timber and slate share local-frame helpers; dimensions, lighting and seed vary by instance.",
     "scripts/gen/veil-land.js and veil-shrine.js - Veil ledge/cliff/ridge structures vary by kind/dimensions; shrine exports structure/hook constants.",
-    "scripts/gen/arena-floor.js, arena-pillar.js, gibbet.js and toll-throne.js - Bailiff arena dressing shares scripts/gen/shapes.js and wax palette; split gibbet cages render separately at a top pivot; scripts/gen/deep-crystal.js makes seeded crystal clusters.",
+    "scripts/gen/arena-floor.js, arena-pillar.js, gibbet.js and toll-throne.js - Bailiff arena dressing shares scripts/gen/shapes.js and wax palette; split gibbet cages render separately at a top pivot; scripts/gen/deep-crystal.js makes seeded clusters.",
     "scripts/wax-pack.js + combat.yml + models.js - shared enemy movement, attack, death and payout vary by kind; Wax, drowned, Blood Woods, Spires, Ossuary, Deep and Rime kinds use kind-specific bodies, FX, VO, profiles and loot.",
     "scripts/forest-wisp.js and scripts/greeter.js - scene-attached behaviors reused across Fen/Orchard wisps and Candlehold townsfolk; each instance varies by home/seed/palette or dialogue lines and title."
   ],
@@ -280,6 +281,6 @@
     "Wayshrine IDs/coordinates in combat.yml must stay aligned with scene IDs/locations; travel costs 10 copper and refuses while an enemy is within 10 m; Abbey destination obeys player gate.",
     "Personal vault is 18 slots plus up to three purchased rows of nine; guild vault is 27 shared slots per Spawn guild per realm in SQL, separate from character inventory.",
     "Enemy kinds must stay aligned across main sim PACKS, combat.yml, models.js MODELS/HEIGHT, loot.yml/economy.yml, wax-pack.js and ui.js labels/portraits; HEIGHT is metres and positions attached FX. crystalbrute uses the gargoyle body as a stand-in.",
-    "Melee impact is delayed 0.22 s and whiffs beyond reach+1.2 m; the third swing within 1.6 s is a ×1.6 finisher. Borrowed Shadow's slow is a 1200 ms absolute timestamp; keep it on enemy state for wax-pack to read."
+    "Melee impact is delayed 0.22 s and whiffs beyond reach+1.2 m; third swing within 1.6 s is a ×1.6 finisher. Borrowed Shadow slow is a 1200 ms absolute timestamp on enemy state; Hellwarden burnUntil is also an absolute timestamp and burnTick checks it."
   ]
 }
