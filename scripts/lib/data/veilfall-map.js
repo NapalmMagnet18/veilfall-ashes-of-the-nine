@@ -41,6 +41,16 @@ export const OSS_PATH = [[-11, -256], [-20, -260], [-30, -264]];
 export const OSS_HALF = 3.6;
 export const OSSUARY = { x: -42, z: -266, r: 14 };
 export const RELIQUARY = { x: -46, z: -267 }; // her dais, west end
+// south of the Wayside Fire: the Pilgrims' Way runs down to Candlehold, the last walled city on the road,
+// where the Exchange (the realm's auction house) keeps its ledgers. Always floor: a capital never closes.
+export const CAP_PATH = [[0, 14], [2, 26], [-1, 36], [0, 44]];
+export const CAP_HALF = 5;
+export const CAPITAL = { x: 0, z: 68, r: 26 };
+export const CAP_GATE = { x: 0, z: 43 };
+export const EXCHANGE = { x: 0, z: 84 }; // the auction hall, south side of the square
+export function capDist(x, z) {
+  return Math.min(segDist(x, z, CAP_PATH, CAP_HALF), Math.hypot(x - CAPITAL.x, z - CAPITAL.z) - CAPITAL.r);
+}
 const segDist = (x, z, pts, half) => {
   let d = Infinity;
   for (let i = 0; i < pts.length - 1; i++) {
@@ -75,7 +85,7 @@ export function floorDist(x, z, abbeyOpen = true, naveOpen = true, fenOpen = tru
   const fd = fenOpen ? fenDist(x, z) : Infinity;
   const od = orchOpen ? orchDist(x, z) : Infinity;
   const os = ossOpen && naveOpen && abbeyOpen ? ossDist(x, z) : Infinity;
-  return Math.min(d, a, n, fd, od, os); // < 0 = on the floor
+  return Math.min(d, a, n, fd, od, os, capDist(x, z)); // < 0 = on the floor
 }
 
 // the named stretches of Z01: what the banner says when a Bearer walks into one
@@ -95,10 +105,14 @@ export const AREAS = [
   { id: "fen", name: "The Lanternmere", sub: "the water keeps what it was given" },
   { id: "orchpath", name: "The Gallows Path", sub: "the debtors walked it barefoot" },
   { id: "orchard", name: "Saint Corvin's Orchard", sub: "nothing grows here but rope" },
+  { id: "capway", name: "The Pilgrims' Way", sub: "the city bells carry this far, on still nights" },
+  { id: "capital", name: "Candlehold", sub: "the last walled city · every lamp still lit" },
 ];
 export function areaAt(x, z) {
   const by = (id) => AREAS.find((a) => a.id === id);
   if (Math.hypot(x - HUB.x, z - HUB.z) < HUB.r) return by("fire");
+  if (Math.hypot(x - CAPITAL.x, z - CAPITAL.z) < CAPITAL.r) return by("capital");
+  if (z > 14 && segDist(x, z, CAP_PATH, CAP_HALF) < 0.5) return by("capway");
   if (Math.hypot(x - FEN.x, z - FEN.z) < FEN.r) return by("fen");
   if (x < -14 && segDist(x, z, FEN_PATH, FEN_HALF) < 0.5) return by("fenpath");
   if (Math.hypot(x - ORCHARD.x, z - ORCHARD.z) < ORCHARD.r) return by("orchard");
