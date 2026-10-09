@@ -67,7 +67,7 @@ function lathe(E, cx, by, cz, prof, n) {
 const pick = (R, arr) => arr[Math.floor(R() * arr.length) % arr.length];
 
 // ---------- the shapes (one clump or piece each, drawn per record) ----------
-const LEAF = ["oklch(0.52 0.13 42)", "oklch(0.38 0.13 20)", "oklch(0.42 0.06 58)", "oklch(0.68 0.11 84)", "oklch(0.46 0.16 27)", "oklch(0.32 0.08 24)", "oklch(0.56 0.12 60)"];
+const LEAF = ["oklch(0.42 0.11 40)", "oklch(0.32 0.11 22)", "oklch(0.36 0.05 55)", "oklch(0.46 0.09 62)", "oklch(0.38 0.13 27)", "oklch(0.27 0.07 24)", "oklch(0.44 0.1 48)"]; // damp: no bright leaf stands alone
 function leaf(E, x, y, z, yaw, L, W, curl, tx, tz) {
   const f = [Math.cos(yaw), 0, Math.sin(yaw)], s = [-Math.sin(yaw), 0, Math.cos(yaw)];
   const P = (u, v, h) => { const px = x + f[0] * u + s[0] * v, pz = z + f[2] * u + s[2] * v; return [px, y + h + (px - x) * tx + (pz - z) * tz, pz]; };
@@ -76,12 +76,14 @@ function leaf(E, x, y, z, yaw, L, W, curl, tx, tz) {
   E.tri(base, l, mid); E.tri(l, tip, mid); E.tri(base, mid, r); E.tri(mid, tip, r);
 }
 function shapeLitter(E, ctx, lod) {
-  const R = () => ctx.random(), n = lod >= 3 ? 14 : lod === 2 ? 22 : 34;
+  const R = () => ctx.random(), n = lod >= 3 ? 18 : lod === 2 ? 30 : 48;
   ctx.flat(); ctx.roughness(0.88);
+  ctx.color("oklch(0.17 0.03 35)"); // the mulch bed: a low dark disc the leaves lie on, so they read as a drift, not confetti on stone
+  { const m = lod >= 3 ? 7 : 12, c = [0, 0.004, 0]; for (let i = 0; i < m; i++) { const a0 = (i / m) * TAU, a1 = ((i + 1) / m) * TAU, r0 = 0.75 + Math.sin(i * 2.3) * 0.12, r1 = 0.75 + Math.sin((i + 1) * 2.3) * 0.12; E.tri(c, [Math.cos(a1) * r1, -0.01, Math.sin(a1) * r1], [Math.cos(a0) * r0, -0.01, Math.sin(a0) * r0]); } }
   for (let i = 0; i < n; i++) {
     const a = R() * TAU, d = Math.sqrt(R()) * 0.85, x = Math.cos(a) * d, z = Math.sin(a) * d;
     const y = 0.01 + (1 - d / 0.85) * 0.045 * R() + i * 0.0004; // a drift: deeper in the middle
-    const L = 0.07 + R() * 0.06;
+    const L = 0.055 + R() * 0.05;
     ctx.color(pick(R, LEAF));
     leaf(E, x, y, z, R() * TAU, L, L * (0.42 + R() * 0.25), 0.008 + R() * 0.02, (R() - 0.5) * 0.5, (R() - 0.5) * 0.5);
   }
