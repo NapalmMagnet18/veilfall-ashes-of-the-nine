@@ -219,6 +219,17 @@ bw-tree-11:
   scale: 1.1
   state: {kind: bloodoak}
   tags: [bloodwoods, flora, tree]
+bw-tree-12:
+  castShadow: true
+  feetPosition: {x: 63.77, y: {terrain: -0.25}, z: 33}
+  id: bw-tree-12
+  mixer: {base: {clip: Sway, loop: loop, speed: 0.98, weight: 1}}
+  model: /cdn/value.002c7e261f6964156c867c8886cdd951fc3a7331e0e3a93c1dacbef640ade581.glb
+  receiveShadow: true
+  rotation: 164
+  scale: 1.03
+  state: {kind: weepwillow}
+  tags: [bloodwoods, flora, tree]
 bw-tree-13:
   castShadow: true
   feetPosition: {x: 12.7, y: {terrain: -0.25}, z: 20.2}
@@ -243,7 +254,7 @@ bw-tree-14:
   tags: [bloodwoods, flora, tree]
 bw-tree-15:
   castShadow: true
-  feetPosition: {x: 26.9, y: {terrain: -0.25}, z: 10.2}
+  feetPosition: {x: 33.26, y: {terrain: -0.25}, z: 16.56}
   id: bw-tree-15
   mixer: {base: {clip: Sway, loop: loop, speed: 0.86, weight: 1}}
   model: /cdn/value.002c7e261f6964156c867c8886cdd951fc3a7331e0e3a93c1dacbef640ade581.glb
@@ -265,7 +276,7 @@ bw-tree-18:
   tags: [bloodwoods, flora, tree]
 bw-tree-21:
   castShadow: true
-  feetPosition: {x: 57.6, y: {terrain: -0.25}, z: 26.7}
+  feetPosition: {x: 56.07, y: {terrain: -0.25}, z: 30.4}
   id: bw-tree-21
   mixer: {base: {clip: Sway, loop: loop, speed: 0.92, weight: 1}}
   model: /cdn/value.44b42b31805b980502a2935691aa7f8771007793c69739953758b846d1d2f61f.glb
@@ -374,7 +385,7 @@ bw-tree-29:
 bw-tree-30:
   castShadow: true
   children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
-  feetPosition: {x: 18.9, y: {terrain: -0.2}, z: -4.8}
+  feetPosition: {x: 18.13, y: {terrain: -0.2}, z: -6.65}
   fx: {script: "fx\npop spore rate=?mobile:.6|1.2 on=sphere(2.5) life=4..7 v=up(.15..0.35)+sdir()*.2 size=.04..0.07 acc=curl(.4)*.6+drag(.6) col=hdr(2.6,.35,.18) a=(0>.15:1>.8:1>0)*flick(3,.4) sz=$size r=sprite(soft-disc,add)"}
   id: bw-tree-30
   layout: {maxExtents: {y: 10.22}}
@@ -400,7 +411,7 @@ bw-tree-31:
 bw-tree-32:
   castShadow: true
   children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
-  feetPosition: {x: 23.5, y: {terrain: -0.2}, z: 13}
+  feetPosition: {x: 20.82, y: {terrain: -0.1999999999999993}, z: 19.47}
   fx: {script: "fx\npop spore rate=?mobile:.6|1.2 on=sphere(2.5) life=4..7 v=up(.15..0.35)+sdir()*.2 size=.04..0.07 acc=curl(.4)*.6+drag(.6) col=hdr(2.6,.35,.18) a=(0>.15:1>.8:1>0)*flick(3,.4) sz=$size r=sprite(soft-disc,add)"}
   id: bw-tree-32
   layout: {maxExtents: {y: 8.59}}
@@ -437,7 +448,7 @@ bw-tree-34:
 bw-tree-35:
   castShadow: true
   children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
-  feetPosition: {x: 26, y: {terrain: -0.2}, z: 16.5}
+  feetPosition: {x: 26, y: {terrain: -0.1999999999999993}, z: 18.5}
   id: bw-tree-35
   layout: {maxExtents: {y: 8.95}}
   mixer: {sway: {clip: Sway, loop: loop, speed: 1.05, weight: 1}}
@@ -449,7 +460,7 @@ bw-tree-35:
 bw-tree-36:
   castShadow: true
   children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
-  feetPosition: {x: 39.5, y: {terrain: -0.2}, z: 14.5}
+  feetPosition: {x: 41.8, y: {terrain: -0.1999999999999993}, z: 20.04}
   id: bw-tree-36
   layout: {maxExtents: {y: 6.29}}
   mixer: {sway: {clip: Sway, loop: loop, speed: 1.07, weight: 1}}
@@ -520,7 +531,7 @@ bw-tree-40:
 bw-tree-41:
   castShadow: true
   children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
-  feetPosition: {x: 11.5, y: {terrain: -0.2}, z: 8.9}
+  feetPosition: {x: 10.73, y: {terrain: -0.2}, z: 10.75}
   id: bw-tree-41
   layout: {maxExtents: {y: 6.51}}
   mixer: {sway: {clip: Sway, loop: loop, speed: 1.09, weight: 1}}
@@ -568,7 +579,7 @@ bw-tree-44:
 bw-tree-45:
   castShadow: true
   children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
-  feetPosition: {x: 28, y: {terrain: -0.2}, z: 15.7}
+  feetPosition: {x: 28.92, y: {terrain: -0.1999999999999993}, z: 16.08}
   id: bw-tree-45
   layout: {maxExtents: {y: 7.13}}
   mixer: {sway: {clip: Sway, loop: loop, speed: 1.14, weight: 1}}
@@ -1606,7 +1617,7 @@ orch-apple-1:
 orch-apple-11:
   castShadow: true
   children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
-  feetPosition: {x: 61.8, y: {terrain: -0.1}, z: 27.5}
+  feetPosition: {x: 60.65, y: {terrain: -0.09999999999999964}, z: 30.27}
   id: orch-apple-11
   layout: {maxExtents: {y: 6.4}}
   mixer: {sway: {clip: Sway, loop: loop, speed: 1.05, weight: 1}}
