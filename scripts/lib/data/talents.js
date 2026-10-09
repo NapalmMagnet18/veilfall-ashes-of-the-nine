@@ -32,10 +32,18 @@ const TREES = {
                  ["Hunter", "#7fc46a", [["Fleet", "speed"], ["Focus", "edge"], ["Field Dress", "leech"], ["Gloam Stride", "speed"], ["Bloodtrail", "leech"], ["Night's Quarry", "speed"]]],
                  ["Survivor", "#c49c63", [["Leather Coat", "armor"], ["Bandages", "regen"], ["Hard Lessons", "life"], ["Last Arrow", "life"], ["Scarred Hide", "armor"], ["Will to Endure", "life"]]]],
 };
+// keystones: the first branch's capstone changes how the calling's attack lands, not just how hard (PoE-style)
+export const KEYSTONE = {
+  chain: "Your bolts leap to a second foe within 7 m for 60% damage.",
+  pierce: "Your arrows punch through and strike the next foe behind for 70% damage.",
+  cleave: "Your blows cleave every other foe within 2.5 m of the target for 45% damage.",
+};
+const KEY_OF = { soulweaver: "chain", shadowmancer: "chain", gloamstalker: "pierce", bladewraith: "cleave", hellwarden: "cleave", primalist: "cleave" };
+export const keystoneOf = (cls, tal) => (tal?.["0-5"] ?? 0) > 0 ? KEY_OF[cls] ?? null : null;
 // the whole tree as flat nodes: id "b-t" → { branch, tier, name, stat, max, per }
 export function treeOf(cls) {
   const T = TREES[cls] ?? TREES.bladewraith;
-  return T.map(([name, color, nodes], b) => ({ name, color, nodes: nodes.map(([n, stat], t) => ({ id: `${b}-${t}`, b, t, name: n, stat, max: t === 5 ? 1 : 3, per: PER[stat] * (t === 5 ? 5 : 1) })) }));
+  return T.map(([name, color, nodes], b) => ({ name, color, nodes: nodes.map(([n, stat], t) => ({ id: `${b}-${t}`, b, t, name: n, stat, key: b === 0 && t === 5 ? KEY_OF[cls] ?? null : null, max: t === 5 ? 1 : 3, per: PER[stat] * (t === 5 ? 5 : 1) })) }));
 }
 export const pointsOf = (level) => Math.max(0, (level ?? 1) - 1);
 export const spentIn = (tal, b) => Object.entries(tal ?? {}).reduce((a, [k, v]) => a + (k.startsWith(b + "-") ? v : 0), 0);

@@ -13,7 +13,7 @@ const GATE = { abbey: false, nave: false, fen: false, orch: false, oss: false };
 const gate = (ctx) => { const st = ctx.self.state.quest?.stage ?? 0, all = !!ctx.place.state?.abbeyOpenAll; GATE.abbey = st >= 4 || all; GATE.nave = st >= 10 || all; GATE.fen = st >= 13 || all; GATE.orch = st >= 18 || all; GATE.oss = st >= 23 || all; };
 const floorDist = (x, z) => mapFloor(x, z, GATE.abbey, GATE.nave, GATE.fen, GATE.orch, GATE.oss);
 import C from "./lib/data/combat.yml";
-import { talentStats, canLearn } from "./lib/data/talents.js";
+import { talentStats, canLearn, keystoneOf } from "./lib/data/talents.js";
 import { shopInput } from "./lib/shop.js";
 import { tradeInput, readBoard, TRADE } from "./lib/trade.js";
 import { guildVaultInput, readGuildVault } from "./lib/guildvault.js";
@@ -257,8 +257,9 @@ function swingAnim(ctx, clip) {
   me.animOff = ctx.now() + 380;
 }
 
-function strike(ctx, foe, dmg, crit) {
+function strike(ctx, foe, dmg, crit, nk) {
   foe.state.hp -= dmg;
+  if (!nk) keystone(ctx, foe, dmg, crit);
   { const me_ = ctx.self.state, lc = me_.gs?.leech ?? 0; if (lc > 0 && me_.hp > 0 && me_.hp < me_.maxHp) me_.hp = Math.min(me_.maxHp, me_.hp + Math.max(1, Math.round(dmg * lc / 100))); }
   foe.state.lastHit = ctx.self.id;
   const p = { x: foe.feetPosition.x, y: foe.feetPosition.y + 1.1, z: foe.feetPosition.z };
@@ -334,6 +335,28 @@ function fireAt(ctx, foe, A, dmg, crit) {
   if (A.castFx) ctx.emit("fx", { position: st, script: A.castFx });
   ctx.after(time, "boltLand", { id: foe.id, dmg, crit, hit: A.hit, c: A.hitFx });
 }
+// a keystone's second hit: chain and pierce fly a fresh bolt on from the struck foe; cleave lands at once on the pack around it
+function keystone(ctx, foe, dmg, crit) {
+  const s = ctx.self.state, k = keystoneOf(s.cls, s.talents); if (!k) return;
+  const at = foe.feetPosition, f = ctx.self.feetPosition;
+  if (k === "cleave") {
+    for (const r of ctx.query({ tags: ["enemy"], center: at, radius: 2.5 })) { if (r.id === foe.id) continue; const o = ctx.getObject(r.id); if (isFoe(o)) strike(ctx, o, Math.max(1, Math.round(dmg * 0.45)), false, true); }
+    return;
+  }
+  const A = atkOf(s); if (!A.fx) return;
+  const dir = { x: at.x - f.x, z: at.z - f.z }, dl = Math.hypot(dir.x, dir.z) || 1;
+  let best = null, bd = k === "chain" ? 7 : 4;
+  for (const r of ctx.query({ tags: ["enemy"], center: at, radius: bd })) {
+    if (r.id === foe.id) continue; const o = ctx.getObject(r.id); if (!isFoe(o)) continue;
+    const ox = r.feetPosition.x - at.x, oz = r.feetPosition.z - at.z, od = Math.hypot(ox, oz) || 1;
+    if (k === "pierce" && (ox * dir.x + oz * dir.z) / (od * dl) < 0.6) continue; // pierce only carries on forward
+    if (od < bd) { bd = od; best = o; }
+  }
+  if (!best) return;
+  const src = { x: at.x, y: at.y + 1.1, z: at.z }, t = best.feetPosition, dx = t.x - at.x, dz = t.z - at.z, dy = 0, d = Math.hypot(dx, dz) || 1, time = Math.max(0.06, d / A.sp);
+  ctx.emit("fx", { position: src, script: A.fx, params: { dir: { x: dx / d, y: dy, z: dz / d }, sp: A.sp, t: time } });
+  ctx.after(time, "boltLand", { id: best.id, dmg: Math.max(1, Math.round(dmg * (k === "chain" ? 0.6 : 0.7))), crit: false, hit: A.hit, c: A.hitFx, nk: true });
+}
 export function boltLand(ctx, p) {
   const foe = ctx.getObject(p.id); if (!isFoe(foe)) return;
   const at = { x: foe.feetPosition.x, y: foe.feetPosition.y + 1.1, z: foe.feetPosition.z };
@@ -341,7 +364,7 @@ export function boltLand(ctx, p) {
   ctx.emit("fx", { position: at, script: IMPACT, params: { c: { x: +c[1], y: +c[2], z: +c[3] } } });
   ctx.emit("fx", { position: { x: foe.feetPosition.x, y: foe.feetPosition.y + 0.05, z: foe.feetPosition.z }, script: GROUNDHIT, params: { c: { x: +c[1], y: +c[2], z: +c[3] } } });
   if (p.hit) ctx.emit("playSound", { clip: sfx(p.hit), position: at, volume: 0.7, pitch: 0.92 + ctx.random() * 0.16 });
-  strike(ctx, foe, p.dmg, p.crit);
+  strike(ctx, foe, p.dmg, p.crit, p.nk);
 }
 function ashcut(ctx, foe) {
   const s = ctx.self.state, now = ctx.now();

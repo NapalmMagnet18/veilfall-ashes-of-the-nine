@@ -4,7 +4,7 @@ import { shopPanel } from "./lib/shop-ui.js";
 import { packPanel, PACK_CSS } from "./lib/pack-ui.js";
 import { BREW } from "./lib/brews.js";
 import { icon as itemIcon, TIER } from "./lib/loot.js";
-import { treeOf, TAL_ICON, LABEL, pointsOf, spent, spentIn, canLearn } from "./lib/data/talents.js";
+import { treeOf, TAL_ICON, LABEL, pointsOf, spent, spentIn, canLearn, KEYSTONE } from "./lib/data/talents.js";
 import { boardPanel } from "./lib/board-ui.js";
 import R from "./lib/data/realms.yml";
 import { FRAME_CSS } from "./lib/frames.js";
@@ -665,7 +665,7 @@ function treePanel(s, lv) {
     ${br.nodes.map((n, i) => { const r = tal[n.id] ?? 0, open = spentIn(tal, b) >= n.t * 3, can = canLearn(s.cls, tal, lv, n.id);
       return `${i ? `<div class="vftl" style="background:${open ? br.color : "#2a241c"}"></div>` : ""}<div class="vftn ${r ? "on" : ""} ${open ? "" : "lk"} ${n.max === 1 ? "cap" : ""}" style="--c:${br.color};${can ? "cursor:pointer;" : ""}" ${can ? `onclick="sendAction('learn',{id:'${n.id}'})"` : ""}>
         <img src="${TAL_ICON[n.stat]}"><span class="vftr">${r}/${n.max}</span>
-        <div class="vftt"><b style="color:${br.color}">${n.name}</b><div>+${Math.round(n.per * 10) / 10}${LABEL[n.stat]} per rank</div>${open ? "" : `<div style="color:#a0563f">Needs ${n.t * 3} points in ${br.name}</div>`}${r ? `<div style="color:#8fd18a">Now: +${Math.round(n.per * r * 10) / 10}${LABEL[n.stat]}</div>` : ""}</div></div>`; }).join("")}</div>`;
+        <div class="vftt"><b style="color:${br.color}">${n.name}</b><div>+${Math.round(n.per * 10) / 10}${LABEL[n.stat]} per rank</div>${n.key ? `<div style="color:#f2d38a;margin-top:3px">KEYSTONE · ${KEYSTONE[n.key]}</div>` : ""}${open ? "" : `<div style="color:#a0563f">Needs ${n.t * 3} points in ${br.name}</div>`}${r ? `<div style="color:#8fd18a">Now: +${Math.round(n.per * r * 10) / 10}${LABEL[n.stat]}</div>` : ""}</div></div>`; }).join("")}</div>`;
   return `<div class="absolute vftree" style="left:50%;top:70px;transform:translateX(-50%);animation:vfin .2s">
     <div class="vfsh-h"><div><div style="font-size:20px;color:var(--wax);letter-spacing:.08em">${cls.name} Talents</div><div class="lbl">${left > 0 ? `<span style="color:#f2d38a">${left} point${left > 1 ? "s" : ""} to spend</span>` : "a point each level"} · ${spent(tal)} spent</div></div>
     <div style="display:flex;gap:8px"><div class="vfx" style="pointer-events:auto;cursor:pointer;width:auto;padding:0 8px;font-size:11px;letter-spacing:.12em" onclick="sendAction('learn',{id:'reset'})">RESET</div><div class="vfx" style="pointer-events:auto;cursor:pointer" onclick="sendAction('tree')">✕</div></div></div>
