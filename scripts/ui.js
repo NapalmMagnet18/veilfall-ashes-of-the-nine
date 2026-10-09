@@ -232,7 +232,7 @@ const CHRONICLE = [
   ["V", "The Ossuary of Saint Ysolde", "Down the Bone Stair. Take her candle.", false, "/cdn/value.b6a6c4bee6be2736fec3fd5860ead524d72b84ff480b162a209ffc92c7f0c464.png"],
   ["VI", "Candlehold", "The last walled city. The Exchange keeps its ledgers.", true, "/cdn/value.38ae26e1659a5e6f4ff2b2d4270a529681fc2e1b5af4fb3a7693086f78166e47.png"],
 ];
-const VERSION = "0.10 · CANDLEHOLD";
+const VERSION = "0.11 · BLOSSOM & BLADE";
 // the painting behind the menu: where the chosen Bearer will wake
 const zoneArt = (z = "") => /ossuar|bone|crypt|nave|abbey/i.test(z) ? "/cdn/value.b6a6c4bee6be2736fec3fd5860ead524d72b84ff480b162a209ffc92c7f0c464.png" : /candle|pilgrim|fire|wayside/i.test(z) || !z ? "/cdn/value.38ae26e1659a5e6f4ff2b2d4270a529681fc2e1b5af4fb3a7693086f78166e47.png" : "/cdn/value.8b2fa0e0b93048049083a83e5dde8dd39352ef8c91625b3ef4b6f1989382dac6.png";
 const head = (s) => `${MSTYLE}${MX}${FRAME_CSS}${VT}${VM2}<div id="vm"><div class="veil" style="background:radial-gradient(ellipse at 50% 50%,transparent 30%,rgba(6,7,12,.45) 65%,rgba(4,4,8,.85))"></div>`;
