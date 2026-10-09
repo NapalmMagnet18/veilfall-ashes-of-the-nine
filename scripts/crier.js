@@ -64,7 +64,7 @@ async function call(ctx, listener) {
     const who = listener.state?.charName ?? listener.displayName ?? "Bearer";
     ctx.emit("playSound", { clip: BELL, position: at, volume: 0.25 }, aud0);
     ctx.emit("playSound", { clip: "/cdn/moodboard-gothic-horror/sfx-low-choir-hum-swelling-then-cut-to-silence.mp3", position: at, volume: 0.7, maxDistance: EAR + 6 }, aud0);
-    ctx.emit("playSound", { clip: V("[whispers]-five-marks-on-one-bearer-there-were-nine-lanterns-once-nine-saints-who-kept-them-five-have-gone-dark-under-your-hand-four-still-burn-somewhere-down-the-road"), position: at, volume: 1, maxDistance: EAR + 6 }, aud0);
+    ctx.emit("playSound", { clip: V("five-marks-on-one-bearer-there-were-nine-lanterns-once-nine-saints-who-kept-them-five-have-gone-dark-under-your-hand-four-still-burn-somewhere-down-the-road"), position: at, volume: 1, maxDistance: EAR + 6 }, aud0);
     ctx.emit("damageNumber", { position: at, text: (ctx.self.state.lastCall = `${who}... five marks. there were nine lanterns once, nine saints to keep them. five gone dark under your hand. four still burn, somewhere down the road.`), color: "#9fdfe8", size: 2, lifetime: 9 }, aud0);
     ctx.self.anim.talk = { clip: "cdn/clip-wave.glb", weight: 4, loop: "once", mask: { from: "Spine" } }; ctx.after(6, "quiet");
     return;
