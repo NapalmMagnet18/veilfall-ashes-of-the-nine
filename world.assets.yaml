@@ -11,6 +11,7 @@ assets:
     "/cdn/value.169b3a97601cffc0873e0b302a2670a4d4c12a52d0429342f37cbe2ad4399362.png": {bytes: 461944, kind: image, name: dark-weathered-oak-planks, uploadedAt: "2026-10-09T09:37:39.963Z"}
     "/cdn/value.193f20b46037db4dcd9364748d5428843007d8e0cecf0e528e934ced25605c5b.png": {bytes: 482, kind: image, name: vf-btnmain, uploadedAt: "2026-10-08T15:56:06.141Z"}
     "/cdn/value.1960f30d58fb5e5d124c80aae3ba95801577068a547509f43cf547cd77ca8b4b.png": {bytes: 647669, kind: image, name: old-yellowed-bone-surface-cracked, uploadedAt: "2026-10-09T09:36:38.384Z"}
+    "/cdn/value.1b709cd7096c375acbd05332f69334ba9499d099d79e110aaf7a999e5f7c4818.glb": {bytes: 2735376, kind: model, name: orchard-appleb, uploadedAt: "2026-10-09T13:34:51.346Z"}
     "/cdn/value.1c2b0cc5fbef785f085a3a71ddf8c46bacae7f1a8026f15bd4f2fa3d54f868bc.glb": {bytes: 1292684, kind: model, name: wax-saint-b, uploadedAt: "2026-10-08T18:13:17.979Z"}
     "/cdn/value.1f60ee58a6ef0f2f7bdb966e9dfabff94bdcceaff64d510d434c336954701d4d.glb": {bytes: 13629956, kind: model, name: handcart, uploadedAt: "2026-10-08T18:03:16.176Z"}
     "/cdn/value.2349f5b2a205dcdb7fa4d7bfb654295f63819e09024f4d115676bb8f57ea0537.glb": {bytes: 1884040, kind: model, name: road-boneheap, uploadedAt: "2026-10-08T17:23:00.180Z"}
@@ -49,11 +50,13 @@ assets:
     "/cdn/value.cf0efb09cfae9d48eb81547c0887259ba955c6f321a8dc659b29f63e6db5f10d.png": {bytes: 355253, kind: image, name: vf-icon-blade, uploadedAt: "2026-10-09T10:22:36.998Z"}
     "/cdn/value.d502a11179b049d3da0da9e5a9096754b6a72312519548047fe425ffcca9fdbf.png": {bytes: 461, kind: image, name: vf-slot, uploadedAt: "2026-10-08T15:56:11.909Z"}
     "/cdn/value.d630af2d76ab6292d985033cf37473c2b9cf35ae9eb015ad2de90fe6962e36e8.glb": {bytes: 21875012, kind: model, name: abbey-facade-breached, uploadedAt: "2026-10-08T19:24:19.552Z"}
+    "/cdn/value.d6c1233f14db0eaa7e26010cae90c13ee56be4d378af5ffaf0e6dfb5b31c4571.glb": {bytes: 2798200, kind: model, name: orchard-applea, uploadedAt: "2026-10-09T13:34:47.955Z"}
     "/cdn/value.d7aca191be9efdb2897b7818cfba0699c38793d5c53f4e5907485d0868860f85.glb": {bytes: 3038396, kind: model, name: handcart-slim, uploadedAt: "2026-10-09T06:33:17.770Z"}
     "/cdn/value.d9db2b87d31e5db955c5bca07ea8ed95983fee3db1c9e9479f25cbe40c19056c.png": {bytes: 621362, kind: image, name: road, uploadedAt: "2026-10-09T09:19:31.895Z"}
     "/cdn/value.dd5ff981d773f728a783caeecfd8602774b8b949c55b7be9faaef1de1a509637.glb": {bytes: 2737532, kind: model, name: maelin-map-table, uploadedAt: "2026-10-08T18:01:30.377Z"}
     "/cdn/value.e395b42f71101818ed0b0b78153d07acd1f2f99b1b29c415db1c6c877b098c7e.png": {bytes: 453, kind: image, name: vf-cardon, uploadedAt: "2026-10-08T15:56:26.912Z"}
     "/cdn/value.e7160ea1f290518c9f70bb4444978e619c424d4ea45f4ec59d41f26421ea0043.png": {bytes: 466, kind: image, name: vf-row, uploadedAt: "2026-10-08T15:56:15.581Z"}
+    "/cdn/value.e8237dc6ce5814a52762136a3720ff0581da3ebd9fed643aec43bd65110ec5a0.glb": {bytes: 2932172, kind: model, name: orchard-applec, uploadedAt: "2026-10-09T13:34:55.050Z"}
     "/cdn/value.e854e68a388aa50d742a4415c1ae5c17a617ef7956c95a70021d0a4a44f20518.ttf": {bytes: 62300, kind: font, name: cinzeldec, uploadedAt: "2026-10-08T20:09:57.543Z"}
     "/cdn/value.ea3d4147fb9ce5c18c34aacf1ace48cf60db24427c064f690af3077c2185f898.png": {bytes: 633613, kind: image, name: dark-wet-moss, uploadedAt: "2026-10-09T09:37:40.039Z"}
     "/cdn/value.efe39eecfc97d68d46617bd1d458e5911ab198326813fc093bb482ff510fd61e.png": {bytes: 481, kind: image, name: vf-btn, uploadedAt: "2026-10-08T15:55:59.357Z"}
