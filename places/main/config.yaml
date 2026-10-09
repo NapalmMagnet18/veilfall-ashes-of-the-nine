@@ -13,7 +13,7 @@ atmosphere:
     near: 30
     height: { base: 0.5, falloff: 5 }
   look:
-    script: mods/awakening/look.js
+    script: scripts/look-veilfall.js
     params: { bloomStrength: 0.4, mistBase: 1, mistDensity: 0.01, vignette: 0.24 }
   moon:
     intensity: 7

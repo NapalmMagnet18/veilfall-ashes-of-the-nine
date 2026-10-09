@@ -6,11 +6,11 @@ import { look as awakening } from "../mods/awakening/look.js";
 
 function reflections(ctx) {
   const mobile = ctx.device.class === "mobile";
-  const STEPS = mobile ? 14 : 64;
+  const STEPS = mobile ? 14 : 40;
   const GROWTH = 1.06;
 
-  const rt = ctx.target("rt", { scale: mobile ? 0.4 : 1 });
-  const acc = ctx.target("acc", { scale: mobile ? 0.4 : 1 });
+  const rt = ctx.target("rt", { scale: 0.5 });
+  const acc = ctx.target("acc", { scale: 0.5 });
 
   // ---- pass 1: march a reflection ray per pixel against the depth buffer ----
   const traced = ctx.pass(rt, (uv) => {
