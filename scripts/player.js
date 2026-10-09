@@ -365,8 +365,7 @@ pop fall burst=26..34 on=disc(.4).c(8) life=.25..0.4 v=up(-22..-16) size=.03..0.
 pop shard burst=30..40 on=disc(1.4) life=.5..1 v=up(3..7)+sdir()*1.2 size=.04..0.08 acc=grav()*.4+drag(1.2) col=hdr(2.4,3.4,4.2)>hdr(.4,.8,1.4) a=1>0 sz=$size r=sprite(ember,add,velocity,.05)
 pop mote burst=16..22 on=disc(1.8) life=1.2..2 v=up(.3..0.8) size=.02..0.04 acc=curl(.9)+drag(.6) col=hdr(1.8,2.8,3.6)>hdr(.3,.6,1) a=(0>.15:1>0)*flick(7,.4) r=sprite(mote,add)
 pop dust burst=8..12 on=disc(.8) life=.9..1.5 v=radial(1.2..2.4)+up(.2..0.5) size=.4..0.7 acc=drag(2)+buoy(.15) col=<.42,.46,.52> a=0>.1:.3>0 sz=$size*(.6>2.4) rot=spin(.2) r=sprite(smoke-puff,alpha)
-pop glow burst=1 life=.6 at=point().c(1) r=light(<.55,.8,1>,40*(1>0),10)
-pop after burst=1 life=1.6 at=point().c(.3) r=light(<.45,.7,1>,8*(1>0),5)`;
+pop glow burst=1 life=.9 at=point().c(1) r=light(<.55,.8,1>,40*(1>.25:.3>0),10)`;
 const DARKPOOL = `fx
 pop pool n=1 life=3 size=4.4 col=<.18,.04,.28> a=0>.1:.85>.85:.85>0 sz=$size r=sprite(soft-disc,alpha)
 pop rim n=1 life=3 size=4.6 col=hdr(.9,.25,1.5) a=0>.1:.5>.8:.5>0 sz=$size*(1+flick(3,.04)) r=sprite(soft-disc,add)
