@@ -4,7 +4,8 @@
 // the title's playlist, one score with the road's: cello, choir, bells
 const MENU = ["/cdn/moodboard-gothic-horror/music-dark-fantasy-main-menu-theme-solemn-solo-cello-distant-choir-and-music-box-loop.mp3",
   "/cdn/moodboard-gothic-horror/music-dark-fantasy-main-menu-epic-slow-rising-strings-full-choir-and-great-tolling-bell-loop.mp3",
-  "/cdn/moodboard-gothic-horror/music-dark-fantasy-main-menu-quiet-lament-solo-violin-harp-and-distant-chanting-monks-loop.mp3"];
+  "/cdn/moodboard-gothic-horror/music-dark-fantasy-main-menu-quiet-lament-solo-violin-harp-and-distant-chanting-monks-loop.mp3",
+  "/cdn/moodboard-gothic-horror/music-dark-fantasy-main-menu-ashes-falling-slow-felt-piano-low-cello-and-soft-female-choir-swell-loop.mp3"];
 const WIND = "/cdn/moodboard-gothic-horror/ambience-high-mountain-ravine-wind-howling-softly-loop.mp3";
 export const cadence = "1s";
 export function tick(ctx) {
