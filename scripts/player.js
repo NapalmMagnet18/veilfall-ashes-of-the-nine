@@ -384,8 +384,10 @@ pop haze rate=3 on=box(.2,.01,.07) life=1.2..1.8 v=up(.4..0.7) size=.18..0.3 acc
 pop glow n=1 at=point() g=flick(.7,.35) r=light(<1,.36,.14>,6+$g*5,4)`;
 function boardNear(ctx) {
   const now = ctx.now(); if (now < (me.boardAt ?? 0)) return; me.boardAt = now + 400;
-  const s = ctx.self.state, o = ctx.getObject("trade-board"), f = ctx.self.feetPosition;
-  const near = !!o && !s.menu && !s.dead && Math.hypot(o.feetPosition.x - f.x, o.feetPosition.z - f.z) < TRADE.reach;
+  const s = ctx.self.state, f = ctx.self.feetPosition;
+  const dOf = (b) => (b ? Math.hypot(b.feetPosition.x - f.x, b.feetPosition.z - f.z) : Infinity);
+  const a = ctx.getObject("trade-board"), b = ctx.getObject("exchange-board"), o = dOf(a) <= dOf(b) ? a : b; // the camp board or the Exchange in Candlehold
+  const near = !!o && !s.menu && !s.dead && dOf(o) < TRADE.reach;
   if (!!s.atBoard !== near) {
     s.atBoard = near;
     if (near) { s.board = null; me.boardRead = 0; if (!s.boardSeen) { s.boardSeen = true; msg(ctx, "The Pilgrims' Board. Open your pack (I) to buy what others pinned, or pin your own."); } }
