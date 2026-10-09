@@ -35,6 +35,8 @@ wayshrines:
 # the Candlehold vault: Dame Maudry Quill keeps each Bearer's stash (saved with the Bearer)
 vault:
   reach: 3.2
-  slots: 36
+  slots: 18
+  row: 9
+  rows: [5000, 20000, 50000]   # copper for each extra row of nine, in order
   x: -8
   z: 70

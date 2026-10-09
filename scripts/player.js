@@ -551,11 +551,21 @@ function itemInput(ctx, a) {
     ctx.emit("playSound", { clip: "/cdn/moodboard-gothic-horror/sfx-" + ITEM_SFX[snd] + ".mp3", position: at, volume: 0.75 });
     return;
   } else if (a.a === "sel") { s.invSel = a.u ?? null; return; }
+  else if (a.a === "shelf") {
+    if (!s.atVault) return; const r = s.vaultRows ?? 0, cost = C.vault.rows[r];
+    if (cost == null) return;
+    if ((s.copper ?? 0) < cost) { msg(ctx, "Dame Maudry: \"A shelf costs what a shelf costs. Come back heavier.\""); ctx.emit("playSound", { clip: sfx("dull-click-denied"), position: ctx.self.feetPosition, volume: 0.3 }, { audience: { player: ctx.self.id } }); return; }
+    s.copper -= cost; s.vaultRows = r + 1;
+    msg(ctx, `Dame Maudry: "Shelf ${r + 1} is yours. Wax-sealed and ledgered."`);
+    ctx.emit("playSound", { clip: sfx("coins-poured-onto-oak-counter-ledger-quill-scratch"), position: ctx.self.feetPosition, volume: 0.7 }, { audience: { player: ctx.self.id } });
+    ctx.emit("stat", { name: "vault shelf", value: cost }, { audience: { player: ctx.self.id } });
+    return;
+  }
   else if (a.a === "store" || a.a === "take") {
     if (!s.atVault) return;
     const vault = JSON.parse(JSON.stringify(s.vault ?? []));
     if (a.a === "store") { const i = inv.findIndex((x) => x.u === a.u); if (i < 0) return;
-      if (vault.length >= C.vault.slots) { msg(ctx, "Dame Maudry: \"The shelves are full, child. Take something home first.\""); return; }
+      if (vault.length >= C.vault.slots + (s.vaultRows ?? 0) * C.vault.row) { msg(ctx, "Dame Maudry: \"The shelves are full, child. Take something home first.\""); return; }
       vault.push(inv[i]); inv.splice(i, 1); }
     else { const i = vault.findIndex((x) => x.u === a.u); if (i < 0) return;
       if (inv.length >= 24) { msg(ctx, "Your pack is full."); return; }
