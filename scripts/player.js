@@ -315,9 +315,14 @@ pop streak on=@shaft.lives(90) life=.14..0.26 size=.03..0.05 col=hdr(1.4,1.7,2.2
 pop mote on=@shaft.lives(20) life=.4..0.8 v=sdir()*.3 size=.015..0.03 acc=curl(.8)+drag(1.2) col=hdr(1.6,2,2.6) a=(1>0)*flick(10,.4) r=sprite(mote,add)
 pop air on=@shaft.lives(25) life=.3..0.5 v=sdir()*.15 size=.1..0.16 acc=drag(2) col=<.75,.75,.8> a=0>.1:.12>0 sz=$size*(.6>1.6) r=sprite(smoke-puff,alpha)
 pop glow burst=1 life=%t|.3 v=<%dir|0,0,-1>*%sp|30 r=light(<.6,.75,1>,6,4)`;
+// the caster's circle: a ring of light on the floor that spins out and fades, motes rising off its edge
+const SIGIL = `fx
+pop ring burst=1 at=point() life=.6 size=1.6 col=<%c|1,1,1>*2.2 a=.7>.4:.5>0 sz=$size*(.5>1.1) r=sprite(soft-disc,add,floor)
+pop edge burst=22..28 on=ring(.75,.8) life=.45..0.8 v=up(.6..1.4) size=.02..0.04 acc=drag(1.2)+curl(.6) col=<%c|1,1,1>*3><%c|1,1,1>*.5 a=1>0 r=sprite(mote,add)
+pop lamp burst=1 life=.5 at=point() r=light(<%c|1,1,1>,6*(1>0),3.5)`;
 const ATK = {
   soulweaver:   { reach: 11, cd: 0.8, mul: 1.25, sp: 18, fx: BOLT("hdr(2.2,3.4,4.2)", "hdr(.4,.9,1.6)", "<.5,.8,1>"), castFx: CAST("hdr(2.2,3.4,4.2)", "<.5,.8,1>"), cast: "cdn/clip-cast.glb", snd: "arcane-bolt-cast-shimmering-whoosh", hit: "arcane-bolt-impact-glass-chime-burst", hitFx: "<.5,.85,1>" },
-  shadowmancer: { reach: 10, cd: 0.75, mul: 1.15, sp: 16, fx: BOLT("hdr(2.4,1.2,3.6)", "hdr(.6,.15,.9)", "<.7,.3,1>"), castFx: CAST("hdr(2.4,1.2,3.6)", "<.7,.3,1>"), cast: "cdn/clip-cast.glb", snd: "shadow-bolt-cast-hissing-whisper", hit: "shadow-bolt-impact-dark-thump-and-whispers", hitFx: "<.7,.3,1>" },
+  shadowmancer: { reach: 10, cd: 0.75, mul: 1.15, sp: 16, fx: BOLT("hdr(2.4,1.2,3.6)", "hdr(.6,.15,.9)", "<.7,.3,1>"), castFx: CAST("hdr(2.4,1.2,3.6)", "<.7,.3,1>"), sigil: { x: .7, y: .3, z: 1 }, cast: "cdn/clip-cast.glb", snd: "shadow-bolt-cast-hissing-whisper", hit: "shadow-bolt-impact-dark-thump-and-whispers", hitFx: "<.7,.3,1>" },
   gloamstalker: { reach: 14, cd: 0.65, mul: 1.05, sp: 32, fx: ARROW, arrow: true, cast: "cdn/clip-throw.glb", snd: "longbow-draw-creak-and-arrow-release-twang", hit: "arrow-thunk-into-flesh", hitFx: "<1,.8,.5>" },
   hellwarden:   { reach: 2.5, cd: 0.7, mul: 1.15, melee: true, snd: "heavy-mace-swing-whoosh-low" },
   primalist:    { reach: 2.4, cd: 0.6, mul: 1.05, melee: true, snd: "beast-claw-swipe-whoosh" },
@@ -344,6 +349,7 @@ function fireAt(ctx, foe, A, dmg, crit) {
   const time = Math.max(0.08, (d - fwd) / A.sp);
   ctx.emit("fx", { position: st, script: A.fx, params: { dir: { x: dx / d, y: dy / d, z: dz / d }, sp: A.sp, t: time } });
   if (A.castFx) ctx.emit("fx", { position: st, script: A.castFx });
+  if (A.castFx) ctx.emit("fx", { position: { x: f.x, y: f.y + 0.05, z: f.z }, script: SIGIL, params: { c: A.sigil ?? { x: .5, y: .8, z: 1 } } });
   if (A.arrow) flyArrow(ctx, st, { x: t.x - dx / d * 0.25, y: t.y + 1.1, z: t.z - dz / d * 0.25 }, time);
   ctx.after(time, "boltLand", { id: foe.id, dmg, crit, hit: A.hit, c: A.hitFx });
 }
