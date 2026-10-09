@@ -1255,6 +1255,66 @@ tollhouse/toll-bell/bellbody:
   primitive: {kind: scripted, params: {body: true, kind: bell, seed: 4}, script: scripts/gen/vf-props.js}
   state: {ring: /cdn/moodboard-gothic-horror/sfx-small-iron-toll-bell-single-ring-decay.mp3}
   tags: [z01-dressing, swing]
+town-karsten:
+  behavior: [scripts/humanoid-locomotion.js, scripts/greeter.js]
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 2.3, z: 0}, id: bubble, state: {line: ""}, ui: "<div facing=\"player\" width=\"2.2m\" class=\"text-center\"><div class=\"text-[70px] font-serif text-amber-200\" style=\"text-shadow:0 0 12px #000,0 0 4px #000\">Karsten Valefire</div><div class=\"text-[48px] font-serif text-stone-300 italic\" style=\"text-shadow:0 0 10px #000\">the Blacksmith</div><div class=\"mt-2 text-[56px] font-serif text-stone-100 italic\" style=\"text-shadow:0 0 10px #000,0 0 3px #000\">{{ state.line }}</div></div>"}, {castShadow: true, children: [{feetPosition: {x: 0, y: 0.9, z: 0}, fx: {script: "fx\npop coal n=10 on=disc(.35) size=.05..0.1 tint=hdr(3,1,.25)..hdr(1.4,.35,.08) sz=$size*flick(.6,.15) col=$tint*flick(.9,.3) a=.9 r=sprite(soft-disc,add)\npop spark rate=5 on=disc(.3) life=.6..1.1 v=up(1.4..2.4)+cone(25)*.5 size=.015..0.03 acc=grav()*.5+curl(.6) col=hdr(5,2.4,.6)>hdr(1.4,.3,.05) a=(1>.6:1>0)*flick(10,.4) r=sprite(ember,add,velocity,.02)\npop smoke rate=3 on=disc(.3) life=1.6..2.6 v=up(.6..1) size=.2..0.3 acc=buoy(.6)+curl(.3)+drag(.7) sz=$size*(.6>2.6) col=<.2,.19,.18> a=0>.3:.25>.7:.15>0 r=sprite(smoke-puff,alpha)"}, id: coals, light: {color: "#ff7a2a", distance: 7, intensity: 2.2, kind: point}}], feetPosition: {x: -1.4, y: 0, z: 0.6}, id: forge, material: {texture: cdn/texture-soot-blackened-rough-fieldstone-forge-brick.png}, physics: static, primitive: {depth: 0.9, height: 0.9, kind: box, width: 1.1}}]
+  feetPosition: {x: -14, y: {terrain: 0}, z: 62}
+  id: town-karsten
+  layout: {maxExtents: {y: 1.95}}
+  model: cdn/model-huge-bearded-blacksmith-man-scarred-bare-arms-leather-apron-forging-hammer.glb
+  physics: character
+  rotation: {lookAt: {x: 0, y: 0, z: 68}}
+  state: {lines: [Steel remembers. So should you., Bring me what's broken. Iron forgives more than people do.], name: Karsten Valefire, title: the Blacksmith}
+  tags: [npc, townsfolk]
+town-mara:
+  behavior: [scripts/humanoid-locomotion.js, scripts/greeter.js]
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 2.03, z: 0}, id: bubble, state: {line: ""}, ui: "<div facing=\"player\" width=\"2.2m\" class=\"text-center\"><div class=\"text-[70px] font-serif text-amber-200\" style=\"text-shadow:0 0 12px #000,0 0 4px #000\">Mara Coil</div><div class=\"text-[48px] font-serif text-stone-300 italic\" style=\"text-shadow:0 0 10px #000\">the Innkeeper</div><div class=\"mt-2 text-[56px] font-serif text-stone-100 italic\" style=\"text-shadow:0 0 10px #000,0 0 3px #000\">{{ state.line }}</div></div>"}, {feetPosition: {x: 0, y: 2.2, z: 0.6}, id: lamp, light: {color: "#ffc27a", distance: 6, intensity: 1.2, kind: point}}]
+  feetPosition: {x: 8, y: {terrain: 0}, z: 52}
+  id: town-mara
+  layout: {maxExtents: {y: 1.68}}
+  model: cdn/model-red-haired-woman-innkeeper-white-blouse-leather-corset-apron-holding-ale-mug.glb
+  physics: character
+  rotation: {lookAt: {x: 0, y: 0, z: 68}}
+  state: {lines: ["Food, rest, and honest company. That's enough to keep going.", You look like the road chewed you. Sit by the fire.], name: Mara Coil, title: the Innkeeper}
+  tags: [npc, townsfolk]
+town-orin:
+  behavior: [scripts/humanoid-locomotion.js, scripts/greeter.js]
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 2.15, z: 0}, id: bubble, state: {line: ""}, ui: "<div facing=\"player\" width=\"2.2m\" class=\"text-center\"><div class=\"text-[70px] font-serif text-amber-200\" style=\"text-shadow:0 0 12px #000,0 0 4px #000\">Orin Kess</div><div class=\"text-[48px] font-serif text-stone-300 italic\" style=\"text-shadow:0 0 10px #000\">the Smuggler</div><div class=\"mt-2 text-[56px] font-serif text-stone-100 italic\" style=\"text-shadow:0 0 10px #000,0 0 3px #000\">{{ state.line }}</div></div>"}]
+  feetPosition: {x: -20, y: {terrain: 0}, z: 58}
+  id: town-orin
+  layout: {maxExtents: {y: 1.8}}
+  model: cdn/model-dark-haired-bearded-man-smuggler-hooded-leather-coat-concealed-dagger.glb
+  physics: character
+  rotation: {lookAt: {x: 0, y: 0, z: 68}}
+  state: {lines: [Official routes are for fools., Need something moved past the watch? Ask quieter.], name: Orin Kess, title: the Smuggler}
+  tags: [npc, townsfolk]
+town-sera:
+  behavior: [scripts/humanoid-locomotion.js, scripts/greeter.js]
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 2.07, z: 0}, id: bubble, state: {line: ""}, ui: "<div facing=\"player\" width=\"2.2m\" class=\"text-center\"><div class=\"text-[70px] font-serif text-amber-200\" style=\"text-shadow:0 0 12px #000,0 0 4px #000\">Sera Haldren</div><div class=\"text-[48px] font-serif text-stone-300 italic\" style=\"text-shadow:0 0 10px #000\">the Relic Merchant</div><div class=\"mt-2 text-[56px] font-serif text-stone-100 italic\" style=\"text-shadow:0 0 10px #000,0 0 3px #000\">{{ state.line }}</div></div>"}, {feetPosition: {x: 0.35, y: 1, z: -0.2}, id: lamp, light: {color: "#ff5a4a", distance: 6, intensity: 1.4, kind: point}}]
+  feetPosition: {x: 12, y: {terrain: 0}, z: 60}
+  id: town-sera
+  layout: {maxExtents: {y: 1.72}}
+  model: cdn/model-hooded-woman-relic-merchant-crimson-cloak-hanging-red-lantern-gold-trinkets.glb
+  physics: character
+  rotation: {lookAt: {x: 0, y: 0, z: 68}}
+  state: {lines: [The past is never truly gone. It just waits for the right price., "Forbidden curios, fair coin. Mostly fair."], name: Sera Haldren, title: the Relic Merchant}
+  tags: [npc, townsfolk]
+town-silja:
+  behavior: [scripts/humanoid-locomotion.js, scripts/greeter.js]
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 2.05, z: 0}, id: bubble, state: {line: ""}, ui: "<div facing=\"player\" width=\"2.2m\" class=\"text-center\"><div class=\"text-[70px] font-serif text-amber-200\" style=\"text-shadow:0 0 12px #000,0 0 4px #000\">Silja of the Marrows</div><div class=\"text-[48px] font-serif text-stone-300 italic\" style=\"text-shadow:0 0 10px #000\">the Wandering Healer</div><div class=\"mt-2 text-[56px] font-serif text-stone-100 italic\" style=\"text-shadow:0 0 10px #000,0 0 3px #000\">{{ state.line }}</div></div>"}]
+  feetPosition: {x: -6, y: {terrain: 0}, z: 54}
+  id: town-silja
+  layout: {maxExtents: {y: 1.7}}
+  model: cdn/model-white-haired-woman-healer-pale-robes-bone-staff-herb-satchel-potion-vials.glb
+  physics: character
+  rotation: {lookAt: {x: 0, y: 0, z: 68}}
+  state: {lines: [All wounds leave a story. Some can still be rewritten., Sit. Breathe. The rot hasn't reached your heart yet.], name: Silja of the Marrows, title: the Wandering Healer}
+  tags: [npc, townsfolk]
 trade-board:
   behavior: scripts/board-notes.js
   castShadow: true

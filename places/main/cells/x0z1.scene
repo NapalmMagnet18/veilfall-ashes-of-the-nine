@@ -282,3 +282,63 @@ exchange-board:
   receiveShadow: true
   rotation: {yaw: 195}
   tags: [candlehold, trade-board, z01-dressing]
+town-darius:
+  behavior: [scripts/humanoid-locomotion.js, scripts/greeter.js]
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 2.2, z: 0}, id: bubble, state: {line: ""}, ui: "<div facing=\"player\" width=\"2.2m\" class=\"text-center\"><div class=\"text-[70px] font-serif text-amber-200\" style=\"text-shadow:0 0 12px #000,0 0 4px #000\">Darius Vell</div><div class=\"text-[48px] font-serif text-stone-300 italic\" style=\"text-shadow:0 0 10px #000\">the Bounty Captain</div><div class=\"mt-2 text-[56px] font-serif text-stone-100 italic\" style=\"text-shadow:0 0 10px #000,0 0 3px #000\">{{ state.line }}</div></div>"}, {feetPosition: {x: 0.35, y: 1, z: -0.2}, id: lamp, light: {color: "#ffb066", distance: 6, intensity: 1.4, kind: point}}]
+  feetPosition: {x: 10, y: {terrain: 0}, z: 80}
+  id: town-darius
+  layout: {maxExtents: {y: 1.85}}
+  model: cdn/model-grizzled-man-bounty-captain-red-cloak-steel-armor-holding-wanted-poster.glb
+  physics: character
+  rotation: {lookAt: {x: 0, y: 0, z: 68}}
+  state: {lines: [Someone always collects. I make sure it's me., The Frost Jarl has a price on him. Bring me his crown.], name: Darius Vell, title: the Bounty Captain}
+  tags: [npc, townsfolk]
+town-eldren:
+  behavior: [scripts/humanoid-locomotion.js, scripts/greeter.js]
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 2.1, z: 0}, id: bubble, state: {line: ""}, ui: "<div facing=\"player\" width=\"2.2m\" class=\"text-center\"><div class=\"text-[70px] font-serif text-amber-200\" style=\"text-shadow:0 0 12px #000,0 0 4px #000\">Brother Eldren</div><div class=\"text-[48px] font-serif text-stone-300 italic\" style=\"text-shadow:0 0 10px #000\">the Archivist</div><div class=\"mt-2 text-[56px] font-serif text-stone-100 italic\" style=\"text-shadow:0 0 10px #000,0 0 3px #000\">{{ state.line }}</div></div>"}, {feetPosition: {x: 0, y: 2.2, z: 0.6}, id: lamp, light: {color: "#ffc27a", distance: 6, intensity: 1.2, kind: point}}]
+  feetPosition: {x: -18, y: {terrain: 0}, z: 76}
+  id: town-eldren
+  layout: {maxExtents: {y: 1.75}}
+  model: cdn/model-elderly-hooded-monk-scholar-white-and-brown-robes-holding-open-tome.glb
+  physics: character
+  rotation: {lookAt: {x: 0, y: 0, z: 68}}
+  state: {lines: [Knowledge survives longer than empires., Nine thrones. I have names for seven of them.], name: Brother Eldren, title: the Archivist}
+  tags: [npc, townsfolk]
+town-elyowen:
+  behavior: [scripts/humanoid-locomotion.js, scripts/greeter.js]
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 2.15, z: 0}, id: bubble, state: {line: ""}, ui: "<div facing=\"player\" width=\"2.2m\" class=\"text-center\"><div class=\"text-[70px] font-serif text-amber-200\" style=\"text-shadow:0 0 12px #000,0 0 4px #000\">Sister Elyowen</div><div class=\"text-[48px] font-serif text-stone-300 italic\" style=\"text-shadow:0 0 10px #000\">the Cathedral Priestess</div><div class=\"mt-2 text-[56px] font-serif text-stone-100 italic\" style=\"text-shadow:0 0 10px #000,0 0 3px #000\">{{ state.line }}</div></div>"}, {feetPosition: {x: 0, y: 2.2, z: 0.6}, id: lamp, light: {color: "#ffc27a", distance: 6, intensity: 1.2, kind: point}}]
+  feetPosition: {x: 0, y: {terrain: 0}, z: 88}
+  id: town-elyowen
+  layout: {maxExtents: {y: 1.8}}
+  model: cdn/model-priestess-woman-white-and-gold-vestments-tall-sunburst-crown-golden-staff.glb
+  physics: character
+  rotation: {lookAt: {x: 0, y: 0, z: 68}}
+  state: {lines: ["Even in ashes, light endures.", "The Abbess was one of us, once. Pray you never see what she became."], name: Sister Elyowen, title: the Cathedral Priestess}
+  tags: [npc, townsfolk]
+town-lysen:
+  behavior: [scripts/humanoid-locomotion.js, scripts/greeter.js]
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 2.09, z: 0}, id: bubble, state: {line: ""}, ui: "<div facing=\"player\" width=\"2.2m\" class=\"text-center\"><div class=\"text-[70px] font-serif text-amber-200\" style=\"text-shadow:0 0 12px #000,0 0 4px #000\">Lysen Hale</div><div class=\"text-[48px] font-serif text-stone-300 italic\" style=\"text-shadow:0 0 10px #000\">the Grave Ranger</div><div class=\"mt-2 text-[56px] font-serif text-stone-100 italic\" style=\"text-shadow:0 0 10px #000,0 0 3px #000\">{{ state.line }}</div></div>"}]
+  feetPosition: {x: 20, y: {terrain: 0}, z: 64}
+  id: town-lysen
+  layout: {maxExtents: {y: 1.74}}
+  model: cdn/model-hooded-woman-ranger-dark-red-cloak-longbow-quiver-leather-armor.glb
+  physics: character
+  rotation: {lookAt: {x: 0, y: 0, z: 68}}
+  state: {lines: [The dead have roads too. I make sure they stay on them., Something big walks the Rimefast. The wolves won't go near it.], name: Lysen Hale, title: the Grave Ranger}
+  tags: [npc, townsfolk]
+town-marek:
+  behavior: [scripts/humanoid-locomotion.js, scripts/greeter.js]
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 2.13, z: 0}, id: bubble, state: {line: ""}, ui: "<div facing=\"player\" width=\"2.2m\" class=\"text-center\"><div class=\"text-[70px] font-serif text-amber-200\" style=\"text-shadow:0 0 12px #000,0 0 4px #000\">Old Marek</div><div class=\"text-[48px] font-serif text-stone-300 italic\" style=\"text-shadow:0 0 10px #000\">the Ferryman</div><div class=\"mt-2 text-[56px] font-serif text-stone-100 italic\" style=\"text-shadow:0 0 10px #000,0 0 3px #000\">{{ state.line }}</div></div>"}, {feetPosition: {x: 0.35, y: 1, z: -0.2}, id: lamp, light: {color: "#ffb066", distance: 6, intensity: 1.4, kind: point}}]
+  feetPosition: {x: 18, y: {terrain: 0}, z: 74}
+  id: town-marek
+  layout: {maxExtents: {y: 1.78}}
+  model: cdn/model-old-hooded-bearded-ferryman-long-pole-dark-oilcloth-coat-iron-lantern.glb
+  physics: character
+  rotation: {lookAt: {x: 0, y: 0, z: 68}}
+  state: {lines: [All shores are temporary., The Deep has water in it now. I hear it at night.], name: Old Marek, title: the Ferryman}
+  tags: [npc, townsfolk]
