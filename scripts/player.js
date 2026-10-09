@@ -350,6 +350,17 @@ function flyArrow(ctx, from, to, time) {
     ] });
   animate(ctx, id, { "feetPosition.x": to.x, "feetPosition.y": to.y, "feetPosition.z": to.z }, { duration: time, easing: "linear" });
 }
+// each ancestry's mark on its Bearer: the lantern's colour and a low aura that rides at the feet
+const ANCESTRY = {
+  cinderkin: { lamp: "oklch(0.78 0.13 45)", aura: `fx
+pop ember rate=?mobile:3|6 on=disc(.35) life=.9..1.6 v=up(.5..1.1)+sdir()*.15 size=.02..0.04 acc=curl(.7)+buoy(.3) col=hdr(3,1.1,.3)>hdr(.9,.2,.05) a=(0>.1:1>.7:.8>0)*flick(9,.3) sz=$size r=sprite(ember,add)` },
+  fenborn: { lamp: "oklch(0.80 0.07 190)", aura: `fx
+pop mist rate=?mobile:1.5|3 on=disc(.45) life=1.6..2.6 v=sdir()*.12+up(.05) size=.35..0.6 acc=drag(1)+curl(.3)*.3 col=<.55,.8,.78> a=0>.2:.16>0 sz=$size*(.7>1.5) rot=spin(.15) r=sprite(smoke-puff,add)` },
+  stonebound: { lamp: "oklch(0.82 0.08 80)", aura: `fx
+pop grit rate=?mobile:2|4 on=disc(.3) life=.7..1.2 v=up(.15..0.35)+sdir()*.2 size=.015..0.03 acc=grav()*.3+drag(1) col=<.75,.65,.45> a=.7>0 sz=$size r=sprite(soft-disc,alpha)` },
+  skyforged: { lamp: "oklch(0.86 0.06 240)", aura: `fx
+pop gust rate=?mobile:2|4 on=disc(.5) life=.8..1.3 v=vortex(1.4)+up(.3..0.6) size=.02..0.035 acc=drag(.6) col=hdr(1.4,1.7,2.2)>hdr(.4,.5,.8) a=0>.15:.8>0 sz=$size r=sprite(ember,add,velocity,.05)` },
+};
 // a keystone's second hit: chain and pierce fly a fresh bolt on from the struck foe; cleave lands at once on the pack around it
 function keystone(ctx, foe, dmg, crit) {
   const s = ctx.self.state, k = keystoneOf(s.cls, s.talents); if (!k) return;
@@ -974,6 +985,9 @@ export function update(ctx, dt) {
   if (s.pendingPos) { ctx.self.feetPosition = s.pendingPos; ctx.self.velocity = { x: 0, y: 0, z: 0 }; s.pendingPos = null; s.enteredAt = now; return; }
   if (ctx.self.visible === false) ctx.self.visible = true;
   if (BEARER[s.cls] && me.bodyOf !== s.cls) { me.bodyOf = s.cls; ctx.self.model = BEARER[s.cls]; } // the calling's own body
+  if (s.ancestry && me.ancOf !== s.ancestry && ANCESTRY[s.ancestry]) { me.ancOf = s.ancestry; const A_ = ANCESTRY[s.ancestry]; // the blood shows: lantern colour and a faint aura
+    const lamp = ctx.getObject(ctx.self.id + "/lightradius"); if (lamp) lamp.light = { ...lamp.light, color: A_.lamp };
+    ctx.self.fx = { script: A_.aura }; }
   // the save: every 20 s, when the Bearer changed
   if (now - (me.saveAt ?? 0) > 20000) {
     me.saveAt = now;
