@@ -318,6 +318,13 @@ pop ring burst=1 life=.32 size=1.3 col=<%c|1,1,1>*2.2 a=.8>0 sz=$size*(.2>1.2) r
 pop smoke burst=4..6 on=sphere(.2) life=.8..1.4 v=up(.3..0.7)+sdir()*.4 size=.3..0.5 acc=buoy(.4)+curl(.4)*.4+drag(1.2) col=<.22,.22,.26> a=0>.1:.35>0 sz=$size*(.6>2.2) rot=spin(.2) r=sprite(smoke-puff,alpha)
 pop mote burst=8..12 on=sphere(.3) life=.7..1.2 v=up(.4..1)+sdir()*.3 size=.03..0.06 acc=curl(.8)+drag(.8) col=<%c|1,1,1>*2>.6:<%c|1,1,1>*.5 a=(0>.1:1>0)*flick(9,.3) r=sprite(ember,add)
 pop flare burst=1 life=.4 at=point() r=light(<%c|1,1,1>,28*(1>0),6)`;
+// the ground answers a spell: sparks skid out along the floor, dust rolls off it, a pool of the spell's colour fades where it struck
+const GROUNDHIT = `fx
+pop skid burst=14..20 on=disc(.25) life=.35..0.7 v=radial(2.5..5)+up(.2..0.6) size=.025..0.05 acc=drag(2.6)+grav() floor=stick col=<%c|1,1,1>*3.2><%c|1,1,1>*.3 a=1>.6:1>0 r=sprite(ember,add,velocity,.05)
+pop pool burst=1 at=point() life=1.1 size=1.5 col=<%c|1,1,1>*1.1 a=.45>.3:.3>0 sz=$size*(.35>1) r=sprite(soft-disc,add)
+pop dust burst=5..8 on=disc(.35) life=.8..1.4 v=radial(.5..1.1)+up(.15..0.35) size=.3..0.5 acc=drag(2)+buoy(.15) col=<.3,.28,.27> a=0>.1:.32>0 sz=$size*(.6>2.2) rot=spin(.2) r=sprite(smoke-puff,alpha)
+pop rune burst=10..14 on=disc(.5) life=.9..1.6 v=up(.3..0.8) size=.02..0.04 acc=curl(1)+drag(.6) col=<%c|1,1,1>*2.4><%c|1,1,1>*.4 a=(0>.15:1>0)*flick(8,.4) r=sprite(mote,add)
+pop lit burst=1 life=1.1 at=point() r=light(<%c|1,1,1>,9*(1>0),4.5)`;
 function fireAt(ctx, foe, A, dmg, crit) {
   const f = ctx.self.feetPosition, src = { x: f.x, y: f.y + 1.35, z: f.z }, t = foe.feetPosition;
   const dx = t.x - f.x, dz = t.z - f.z, dy = (t.y + 1.1) - src.y, d = Math.hypot(dx, dy, dz) || 1;
@@ -332,6 +339,7 @@ export function boltLand(ctx, p) {
   const at = { x: foe.feetPosition.x, y: foe.feetPosition.y + 1.1, z: foe.feetPosition.z };
   const c = /<([\d.]+),([\d.]+),([\d.]+)>/.exec(p.c ?? "") ?? [0, 1, 1, 1];
   ctx.emit("fx", { position: at, script: IMPACT, params: { c: { x: +c[1], y: +c[2], z: +c[3] } } });
+  ctx.emit("fx", { position: { x: foe.feetPosition.x, y: foe.feetPosition.y + 0.05, z: foe.feetPosition.z }, script: GROUNDHIT, params: { c: { x: +c[1], y: +c[2], z: +c[3] } } });
   if (p.hit) ctx.emit("playSound", { clip: sfx(p.hit), position: at, volume: 0.7, pitch: 0.92 + ctx.random() * 0.16 });
   strike(ctx, foe, p.dmg, p.crit);
 }
