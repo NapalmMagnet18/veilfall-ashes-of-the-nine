@@ -219,6 +219,28 @@ terrain:
       tint: oklch(0.90 0.01 250)
       textureScale: 2.5
   seed: 1
+  marks:
+    packclear-p1: { center: { x: -1, z: -21 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-p2: { center: { x: 3, z: -23 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-p3: { center: { x: 0, z: -29 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-p4: { center: { x: 3, z: -31 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-p5: { center: { x: -2, z: -33 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-p6: { center: { x: 5, z: -44 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-p7: { center: { x: 10, z: -49 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-d1: { center: { x: 8, z: -46 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-a1: { center: { x: 17, z: -131 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-a2: { center: { x: 15, z: -139 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-a3: { center: { x: 9, z: -149 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-a4: { center: { x: -4, z: -168 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-a5: { center: { x: 6, z: -171 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-a6: { center: { x: -8, z: -181 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-a7: { center: { x: 4, z: -184 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-a8: { center: { x: -6, z: -188 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-a9: { center: { x: 9, z: -186 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-p8: { center: { x: -3, z: -65 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-p9: { center: { x: 0, z: -69 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-p10: { center: { x: -5, z: -71 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-d2: { center: { x: -2, z: -68 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
 
 arrivalBudget: { bytes: 820000 }
 
