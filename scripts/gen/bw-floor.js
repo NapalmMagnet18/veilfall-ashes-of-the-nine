@@ -76,7 +76,7 @@ function leaf(E, x, y, z, yaw, L, W, curl, tx, tz) {
   E.tri(base, l, mid); E.tri(l, tip, mid); E.tri(base, mid, r); E.tri(mid, tip, r);
 }
 function shapeLitter(E, ctx, lod) {
-  const R = () => ctx.random(), n = lod >= 3 ? 18 : lod === 2 ? 30 : 48;
+  const R = () => ctx.random(), n = lod >= 3 ? 10 : lod === 2 ? 18 : 28;
   ctx.flat(); ctx.roughness(0.88);
   ctx.color("oklch(0.17 0.03 35)"); // the mulch bed: a low dark disc the leaves lie on, so they read as a drift, not confetti on stone
   { const m = lod >= 3 ? 7 : 12, c = [0, 0.004, 0]; for (let i = 0; i < m; i++) { const a0 = (i / m) * TAU, a1 = ((i + 1) / m) * TAU, r0 = 0.75 + Math.sin(i * 2.3) * 0.12, r1 = 0.75 + Math.sin((i + 1) * 2.3) * 0.12; E.tri(c, [Math.cos(a1) * r1, -0.01, Math.sin(a1) * r1], [Math.cos(a0) * r0, -0.01, Math.sin(a0) * r0]); } }
