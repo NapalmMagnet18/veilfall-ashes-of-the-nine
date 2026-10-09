@@ -137,3 +137,4 @@ places/main/sim.js referee: spawns packs, quest stages, XP/levels, death and res
 - 2026-10-09: first-branch capstones are keystones: casters' bolts chain (60%, 7 m), gloamstalker arrows pierce (70%, forward 4 m), melee callings cleave (45%, 2.5 m). Keystone hits never chain again.
 - 2026-10-09: branch 2/3 capstones are keystones too: Second Wind (regen every 1.5 s at 2x below 35% hp) and Bloodrush (+35% speed 3 s on a kill). Fixed: the WASD speed clamp was cancelling Fenborn haste.
 - 2026-10-09: each calling has its own Bearer body (models.js BEARER), worn on entering the world; the template's hooded swordsman stays the fallback.
+- 2026-10-09: melee hits land 0.22 s into the swing (whiff if the foe is beyond reach+1.2 m); every 3rd swing within 1.6 s is a finisher at x1.6 with a knockback.

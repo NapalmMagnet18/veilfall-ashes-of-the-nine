@@ -372,6 +372,19 @@ function keystone(ctx, foe, dmg, crit) {
   ctx.emit("fx", { position: src, script: A.fx, params: { dir: { x: dx / d, y: dy, z: dz / d }, sp: A.sp, t: time } });
   ctx.after(time, "boltLand", { id: best.id, dmg: Math.max(1, Math.round(dmg * (k === "chain" ? 0.6 : 0.7))), crit: false, hit: A.hit, c: A.hitFx, nk: true });
 }
+export function meleeLand(ctx, p) {
+  const foe = ctx.getObject(p.id); if (!isFoe(foe) || (ctx.self.state.hp ?? 1) <= 0) return;
+  const f = ctx.self.feetPosition, t = foe.feetPosition, d = Math.hypot(t.x - f.x, t.z - f.z);
+  if (d > p.reach + 1.2) { ctx.emit("damageNumber", { position: { x: t.x, y: t.y + 1.6, z: t.z }, text: "miss", color: "#9b968a", size: 0.6 }, { audience: { player: ctx.self.id } }); return; }
+  strike(ctx, foe, p.dmg, p.crit);
+  if (p.fin) {
+    const dx = (t.x - f.x) / (d || 1), dz = (t.z - f.z) / (d || 1);
+    ctx.emit("slash", { position: { x: t.x, y: t.y + 1.1, z: t.z }, size: 2.8, shape: "crescent", noise: 0.5 });
+    ctx.emit("cameraPunch", { direction: { x: dx, y: 0, z: dz }, intensity: 0.22 }, { audience: { player: ctx.self.id } });
+    ctx.emit("playSound", { clip: sfx("heavy-blade-finisher-crunch-and-ring"), position: t, volume: 0.6, pitch: 0.95 + ctx.random() * 0.1 });
+    ctx.emit("impulse", { target: foe.id, impulse: { x: dx * 120, y: 40, z: dz * 120 } });
+  }
+}
 export function boltLand(ctx, p) {
   const foe = ctx.getObject(p.id); if (!isFoe(foe)) return;
   const at = { x: foe.feetPosition.x, y: foe.feetPosition.y + 1.1, z: foe.feetPosition.z };
@@ -391,7 +404,12 @@ function ashcut(ctx, foe) {
   if (me.markFx) { const f = ctx.self.feetPosition, t = foe?.feetPosition, dx = t ? t.x - f.x : 0, dz = t ? t.z - f.z : 0, d = Math.hypot(dx, dz) || 1; ctx.emit("fx", { position: { x: f.x + (t ? dx / d * 0.8 : 0), y: f.y + 1.1, z: f.z + (t ? dz / d * 0.8 : 0) }, script: me.markFx }); }
   const crit = ctx.random() < 0.12 + (s.gs?.crit ?? 0) / 100;
   const dmg = Math.round(C.ashcut.dmg * A.mul * weaponMul(s) * (crit ? 1.8 : 1) * (0.9 + ctx.random() * 0.2));
-  if (A.melee) strike(ctx, foe, dmg, crit); else fireAt(ctx, foe, A, dmg, crit);
+  if (A.melee) {
+    // a 3-blow chain: the third swing inside 1.6 s is the finisher (x1.6, a heavier crack); the blade meets the foe on the downswing, 0.22 s in
+    me.combo = now - (me.comboAt ?? 0) < 1600 ? ((me.combo ?? 0) + 1) % 3 : 0; me.comboAt = now;
+    const fin = me.combo === 2;
+    ctx.after(0.22, "meleeLand", { id: foe.id, dmg: fin ? Math.round(dmg * 1.6) : dmg, crit, fin, reach: A.reach ?? C.ashcut.reach });
+  } else fireAt(ctx, foe, A, dmg, crit);
   s.edge = Math.min(100, (s.edge ?? 0) + C.ashcut.edge + (s.gs?.edge ?? 0));
 }
 
