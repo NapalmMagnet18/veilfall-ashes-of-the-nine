@@ -53,6 +53,116 @@ bw-floor-35:
   id: bw-floor-35
   state: {patch: far}
   tags: [bloodwoods, flora, floor]
+bw-tree-10:
+  castShadow: true
+  feetPosition: {x: 64.9, y: {terrain: -0.25}, z: -17.3}
+  id: bw-tree-10
+  mixer: {base: {clip: Sway, loop: loop, speed: 1.1, weight: 1}}
+  model: /cdn/value.128f62273fc70ffe70bff8d027973a2009b69bb4ea569ba1befb16dccb75457e.glb
+  receiveShadow: true
+  rotation: 274
+  scale: 1.15
+  state: {kind: antlersnag}
+  tags: [bloodwoods, flora, tree]
+bw-tree-12:
+  castShadow: true
+  feetPosition: {x: 65.3, y: {terrain: -0.25}, z: 29.3}
+  id: bw-tree-12
+  mixer: {base: {clip: Sway, loop: loop, speed: 0.98, weight: 1}}
+  model: /cdn/value.002c7e261f6964156c867c8886cdd951fc3a7331e0e3a93c1dacbef640ade581.glb
+  receiveShadow: true
+  rotation: 164
+  scale: 1.03
+  state: {kind: weepwillow}
+  tags: [bloodwoods, flora, tree]
+bw-tree-16:
+  castShadow: true
+  feetPosition: {x: 97.4, y: {terrain: -0.25}, z: -21.5}
+  id: bw-tree-16
+  mixer: {base: {clip: Sway, loop: loop, speed: 0.99, weight: 1}}
+  model: /cdn/value.44b42b31805b980502a2935691aa7f8771007793c69739953758b846d1d2f61f.glb
+  receiveShadow: true
+  rotation: 175
+  scale: 1.04
+  state: {kind: bloodoak}
+  tags: [bloodwoods, flora, tree]
+bw-tree-17:
+  castShadow: true
+  feetPosition: {x: 78, y: {terrain: -0.25}, z: 19.8}
+  id: bw-tree-17
+  mixer: {base: {clip: Sway, loop: loop, speed: 1.17, weight: 1}}
+  model: /cdn/value.002c7e261f6964156c867c8886cdd951fc3a7331e0e3a93c1dacbef640ade581.glb
+  receiveShadow: true
+  rotation: 331
+  scale: 1.22
+  state: {kind: weepwillow}
+  tags: [bloodwoods, flora, tree]
+bw-tree-19:
+  castShadow: true
+  feetPosition: {x: 75.6, y: {terrain: -0.25}, z: -18.3}
+  id: bw-tree-19
+  mixer: {base: {clip: Sway, loop: loop, speed: 0.89, weight: 1}}
+  model: /cdn/value.44b42b31805b980502a2935691aa7f8771007793c69739953758b846d1d2f61f.glb
+  receiveShadow: true
+  rotation: 83
+  scale: 0.94
+  state: {kind: bloodoak}
+  tags: [bloodwoods, flora, tree]
+bw-tree-2:
+  castShadow: true
+  feetPosition: {x: 81.5, y: {terrain: -0.25}, z: -11.5}
+  id: bw-tree-2
+  mixer: {base: {clip: Sway, loop: loop, speed: 0.92, weight: 1}}
+  model: /cdn/value.128f62273fc70ffe70bff8d027973a2009b69bb4ea569ba1befb16dccb75457e.glb
+  receiveShadow: true
+  rotation: 112
+  scale: 0.97
+  state: {kind: antlersnag}
+  tags: [bloodwoods, flora, tree]
+bw-tree-20:
+  castShadow: true
+  feetPosition: {x: 86, y: {terrain: -0.25}, z: 21.4}
+  id: bw-tree-20
+  mixer: {base: {clip: Sway, loop: loop, speed: 0.95, weight: 1}}
+  model: /cdn/value.002c7e261f6964156c867c8886cdd951fc3a7331e0e3a93c1dacbef640ade581.glb
+  receiveShadow: true
+  rotation: 139
+  scale: 1
+  state: {kind: weepwillow}
+  tags: [bloodwoods, flora, tree]
+bw-tree-3:
+  castShadow: true
+  feetPosition: {x: 91.1, y: {terrain: -0.25}, z: 15.3}
+  id: bw-tree-3
+  mixer: {base: {clip: Sway, loop: loop, speed: 1.08, weight: 1}}
+  model: /cdn/value.44b42b31805b980502a2935691aa7f8771007793c69739953758b846d1d2f61f.glb
+  receiveShadow: true
+  rotation: 254
+  scale: 1.13
+  state: {kind: bloodoak}
+  tags: [bloodwoods, flora, tree]
+bw-tree-6:
+  castShadow: true
+  feetPosition: {x: 73.6, y: {terrain: -0.25}, z: 26.7}
+  id: bw-tree-6
+  mixer: {base: {clip: Sway, loop: loop, speed: 1.06, weight: 1}}
+  model: /cdn/value.128f62273fc70ffe70bff8d027973a2009b69bb4ea569ba1befb16dccb75457e.glb
+  receiveShadow: true
+  rotation: 238
+  scale: 1.11
+  state: {kind: antlersnag}
+  tags: [bloodwoods, flora, tree]
+bw-tree-9:
+  castShadow: true
+  feetPosition: {x: 97.7, y: {terrain: -0.25}, z: -12.8}
+  id: bw-tree-9
+  mixer: {base: {clip: Sway, loop: loop, speed: 0.92, weight: 1}}
+  model: /cdn/value.002c7e261f6964156c867c8886cdd951fc3a7331e0e3a93c1dacbef640ade581.glb
+  receiveShadow: true
+  rotation: 105
+  scale: 0.97
+  state: {kind: weepwillow}
+  tags: [bloodwoods, flora, tree]
 fauna-crow-b2:
   feetPosition: {x: 64, y: {terrain: 0}, z: 8}
   id: fauna-crow-b2
