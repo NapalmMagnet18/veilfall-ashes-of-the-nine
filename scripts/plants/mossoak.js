@@ -36,20 +36,26 @@ export function geometry(ctx) {
   // trunk: corkscrewing up along the lean
   const segs = lod >= 3 ? 3 : 7, trunk = [];
   for (let s = 0; s <= segs; s++) { const t = s / segs; trunk.push([lx * t * H + Math.sin(t * 5 + lean) * 0.08, t * H, lz * t * H + Math.cos(t * 4 + lean) * 0.08]); }
-  tube(ctx, trunk, 0.2, 0.09, lod >= 3 ? 5 : 9);
+  tube(ctx, trunk, 0.26, 0.12, lod >= 3 ? 5 : 9);
   const moss = [];
   const nb = 3 + Math.floor(r() * 3);
   for (let b = 0; b < nb; b++) {
     const t = 0.5 + (b / nb) * 0.5, p = trunk[Math.min(segs, Math.round(t * segs))], a = r() * 6.283;
-    limb(ctx, r, p, [Math.cos(a), 0.45 + r() * 0.4, Math.sin(a)], 0.9 + r() * 0.7, 0.08, lod >= 3 ? 0 : 2, lod, moss);
+    limb(ctx, r, p, [Math.cos(a), 0.45 + r() * 0.4, Math.sin(a)], 0.9 + r() * 0.7, 0.1, lod >= 3 ? 0 : 2, lod, moss);
   }
   // hanging moss: ragged tapering curtains under the boughs
   ctx.albedo(null);
   for (const [x, y, z] of moss) {
-    if (r() > 0.55) continue;
-    const len = 0.3 + r() * 0.7, w = 0.05 + r() * 0.06, a = r() * 3.14, cx = Math.cos(a) * w, cz = Math.sin(a) * w;
-    ctx.color(`oklch(${0.5 + r() * 0.1} 0.04 ${170 + r() * 30})`);
-    ctx.quad(x - cx, y, z - cz, x + cx, y, z + cz, x + cx * 0.3, y - len, z + cz * 0.3, x - cx * 0.3, y - len * 0.85, z - cz * 0.3);
+    if (r() > 0.6) continue;
+    const k = 2 + Math.floor(r() * 3);
+    for (let j = 0; j < k; j++) { // fine stringy strands, each a narrow tapering ribbon that kinks once
+      const ox = (r() - 0.5) * 0.12, oz = (r() - 0.5) * 0.12, len = 0.25 + r() * 0.8, w = 0.012 + r() * 0.02, a = r() * 3.14;
+      const cx = Math.cos(a) * w, cz = Math.sin(a) * w, kx = (r() - 0.5) * 0.06, kz = (r() - 0.5) * 0.06;
+      const X = x + ox, Z = z + oz, m = y - len * 0.5;
+      ctx.color(`oklch(${0.4 + r() * 0.12} ${0.025 + r() * 0.02} ${120 + r() * 50})`);
+      ctx.quad(X - cx, y, Z - cz, X + cx, y, Z + cz, X + kx + cx * 0.7, m, Z + kz + cz * 0.7, X + kx - cx * 0.7, m, Z + kz - cz * 0.7);
+      ctx.tri(X + kx - cx * 0.7, m, Z + kz - cz * 0.7, X + kx + cx * 0.7, m, Z + kz + cz * 0.7, X - kx * 0.5, y - len, Z - kz * 0.5);
+    }
   }
 }
 export function collider() { return { kind: "box", width: 0.4, height: 2, depth: 0.4, center: [0, 1, 0] }; }

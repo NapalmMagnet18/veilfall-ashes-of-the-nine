@@ -180,6 +180,6 @@ terrain:
       textureScale: 2.5
   seed: 1
 
-arrivalBudget: { bytes: 680000 }
+arrivalBudget: { bytes: 700000 }
 
 acoustics: { reverb: 0.22 }
