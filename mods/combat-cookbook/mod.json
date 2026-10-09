@@ -1,0 +1,13 @@
+{
+  "name": "combat-cookbook",
+  "displayName": "Combat Cookbook",
+  "description": "Melee, ranged, hitscan, enemy AI, wave spawners, damage zones, and auto-shooter patterns. Full combat systems with damage juice recipes for maximum game feel.",
+  "tags": [
+    "skill",
+    "combat",
+    "gameplay",
+    "guide"
+  ],
+  "visibility": "public",
+  "version": "1.0.0"
+}
