@@ -57,7 +57,30 @@ const THEME = `<style>
 #vf .ph{display:none} @media (pointer:coarse),(max-width:700px),(max-height:520px){#vf .dk{display:none!important} #vf .ph{display:block} #vf .qp{left:10px!important;top:10px!important;max-width:210px!important;padding:6px 9px!important} #vf .qp div{font-size:13px!important} #vf .qp .lbl{font-size:10px!important} #vf .qp.bossup{display:none!important}}
 #vf .bar{height:10px;background:#120e0c;box-shadow:0 0 0 2px #0d0b0a,0 0 0 3px #5a4a33;position:relative;margin-top:5px}
 @keyframes vfin{from{opacity:0;transform:translateY(8px)}} @keyframes vftype{from{opacity:0;filter:blur(3px);letter-spacing:.04em}} @keyframes vffade{to{opacity:0}} @keyframes vfpulse{50%{opacity:.55}}
-#vf .vfban{animation:vfban 4.2s ease forwards;padding:14px 10px 18px;background:radial-gradient(ellipse at center,rgba(10,9,14,.72) 0%,rgba(10,9,14,.45) 45%,transparent 72%)} @keyframes vfban{0%{opacity:0;filter:blur(3px)}12%{opacity:1;filter:none}78%{opacity:1}100%{opacity:0}}</style>`;
+#vf .vfban{animation:vfban 4.2s ease forwards;padding:14px 10px 18px;background:radial-gradient(ellipse at center,rgba(10,9,14,.72) 0%,rgba(10,9,14,.45) 45%,transparent 72%)} @keyframes vfban{0%{opacity:0;filter:blur(3px)}12%{opacity:1;filter:none}78%{opacity:1}100%{opacity:0}}
+#vf .vfdock{left:50%;bottom:0;transform:translateX(-50%);width:min(1240px,calc(100vw - 140px));aspect-ratio:1240/250;container-type:inline-size;pointer-events:none}
+#vf .vfplate{position:absolute;left:18.2cqw;width:63.6cqw;top:3.4cqw;filter:drop-shadow(0 .4cqw .6cqw #000)}
+#vf .vfsk{position:absolute;left:50%;top:10.9cqw;transform:translateX(-50%);display:flex;gap:.8cqw}
+#vf .vfsk .slot{width:4.9cqw;height:4.9cqw;background:radial-gradient(#221d19,#0c0a09);box-shadow:0 0 0 .16cqw #0d0b0a,0 0 0 .32cqw #6b5638,0 0 0 .45cqw #0d0b0a,inset 0 0 .8cqw #000}
+#vf .vfsk .slot .k{font-size:max(9px,.85cqw)} #vf .vfsk .slot .n{font-size:max(10px,1cqw)}
+#vf .vforb{position:absolute;bottom:0;width:19.4cqw;aspect-ratio:1}
+#vf .vfL{left:0} #vf .vfR{right:0}
+#vf .vffr{position:absolute;inset:0;width:100%;height:100%;filter:drop-shadow(0 .3cqw .5cqw #000)}
+#vf .vfR .vffr{transform:scaleX(-1)}
+#vf .vfglobe{position:absolute;width:58%;aspect-ratio:1;left:57.5%;top:47.3%;transform:translate(-50%,-50%);border-radius:50%;overflow:hidden;background:radial-gradient(circle at 50% 60%,#140f0d,#050404 75%);box-shadow:inset 0 0 2cqw #000}
+#vf .vfR .vfglobe{left:42.5%}
+#vf .vfliq{position:absolute;left:-10%;right:-10%;bottom:0;transition:height .35s ease-out;background:radial-gradient(circle at 45% 25%,var(--a),var(--b) 55%,var(--c) 100%);box-shadow:inset 0 .3cqw .4cqw rgba(255,255,255,.18)}
+#vf .vfliq::before,#vf .vfliq::after{content:"";position:absolute;left:0;width:200%;height:1.6cqw;top:-.8cqw;background:radial-gradient(ellipse 25% 50% at 25% 50%,var(--a) 60%,transparent 62%) 0 0/50% 100% repeat-x;opacity:.75;animation:vfwave 3.4s linear infinite}
+#vf .vfliq::after{opacity:.45;animation-duration:5.1s;animation-direction:reverse;top:-.55cqw}
+@keyframes vfwave{to{transform:translateX(-50%)}}
+#vf .vfgl{position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 34% 26%,rgba(255,255,255,.42),rgba(255,255,255,.06) 22%,transparent 34%),radial-gradient(circle at 60% 85%,rgba(255,255,255,.08),transparent 40%);box-shadow:inset 0 -1.2cqw 2cqw rgba(0,0,0,.6),inset 0 0 .4cqw rgba(0,0,0,.9)}
+#vf .vfv{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:max(14px,1.9cqw);line-height:1;text-shadow:0 .15cqw 0 #000,0 0 .6cqw #000}
+#vf .vfv small{font-size:max(8px,.75cqw);letter-spacing:.2em;color:#d8c69c;margin-top:.3cqw}
+#vf .vfxp{position:absolute;left:27cqw;right:27cqw;top:2.1cqw;height:.75cqw;background:#0b0908;box-shadow:0 0 0 .14cqw #0d0b0a,0 0 0 .28cqw #6b5638}
+#vf .vfxpf{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(#e6cf8a,#a07a2c 60%,#5c4214);box-shadow:0 0 .6cqw rgba(242,211,138,.5);transition:width .4s}
+#vf .vfxpt{position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 calc(10% - 2px),#0d0b0a calc(10% - 2px) 10%)}
+#vf .vfxpl{position:absolute;left:0;right:0;bottom:1.1cqw;font-size:max(10px,.9cqw);letter-spacing:.12em;color:#c9b88f;text-transform:uppercase}
+</style>`;
 
 // ---- title + the Bearer screen (character selection): drawn over the living camp, never a loading wall ----
 const CDN = (h) => `/cdn/value.${h}.png`;
@@ -479,24 +502,24 @@ function vfHud(ctx, player) {
     return `<div id="dlg${dlg.at}" class="absolute plate dl" style="left:50%;transform:translateX(-50%);bottom:${touch ? 210 : 178}px;width:min(620px,calc(100vw - 2*${rail}));animation:vfin .35s;display:flex;gap:14px;align-items:flex-start">
     ${face ? `<div style="flex:none;width:${touch ? 56 : 84}px;height:${touch ? 56 : 84}px;background:url(${face}) center/cover;box-shadow:0 0 0 2px #0d0b0a,0 0 0 3px #8a6f45,0 0 0 5px #0d0b0a,0 0 18px rgba(240,154,58,.25)"></div>` : ""}
     <div style="flex:1;min-width:0">${who ? `<div class="lbl" style="color:#C49C63;letter-spacing:.22em;margin-bottom:3px">${who.toUpperCase()}</div>` : ""}<div style="font-size:${touch ? 15 : 17}px;line-height:1.4;${who ? "" : "font-style:italic;"}animation:vftype 1.4s ease-out">${line}</div><div class="dv d0" style="margin:8px 0 0"></div></div></div>`; })() : ""}
-  <div class="absolute dk" style="left:24px;bottom:24px;display:flex;align-items:flex-end;gap:14px">
-    <div class="orb"><div class="fill" style="height:${hpPct}%;background:radial-gradient(circle at 50% 30%,#e0473a,#7d1410 70%)${hpPct < 30 ? ";animation:vfpulse 1s infinite" : ""}"></div><div class="shine"></div><div class="val">${hp}</div></div>
-    <div class="plate pp" style="padding:6px 10px"><div class="lbl">${s.charName ? s.charName + " · " : ""}Lv ${lv} ${s.ancestry ? s.ancestry[0].toUpperCase() + s.ancestry.slice(1) + " " : ""}Bladewraith</div><div style="width:150px;height:6px;background:#120e0c;margin-top:4px"><div style="height:6px;width:${xpPct}%;background:#9d86e0"></div></div><div style="font-size:13px;margin-top:4px;color:var(--wax)">${coinHTML(s.copper ?? 0, 14)}${s.weapon === "ITEM-001" ? " · Rusted Oathblade" : ""}</div></div>
-  </div>
-  ${touch ? "" : `<div class="absolute dk sk" style="left:50%;bottom:24px;transform:translateX(-50%);display:flex;gap:10px">
+  ${touch ? "" : `<div class="absolute dk vfdock">
+    <div class="vfxp"><div class="vfxpf" style="width:${xpPct}%"></div><div class="vfxpt"></div><div class="vfxpl">${s.charName ? s.charName + " · " : ""}Lv ${lv} ${s.ancestry ? s.ancestry[0].toUpperCase() + s.ancestry.slice(1) + " " : ""}Bladewraith<span style="float:right">${coinHTML(s.copper ?? 0, 13)}</span></div></div>
+    <img class="vfplate" src="/cdn/value.e8bc2f79613acb57c0f363d4e17ea83780597a92f90841f1b5e99719f973d9bc.png">
+    <div class="vforb vfL"><div class="vfglobe"><div class="vfliq" style="height:${hpPct}%;--a:#ff5a44;--b:#8f1710;--c:#3a0605${hpPct < 30 ? ";animation:vfpulse 1s infinite" : ""}"></div><div class="vfgl"></div><div class="vfv">${hp}<small>LIFE</small></div></div><img class="vffr" src="/cdn/value.af729622950e1658a4df89c76bd30887a4735628e38c2319318a050aa463a595.png"></div>
+    <div class="vforb vfR"><div class="vfglobe"><div class="vfliq" style="height:${edge}%;--a:#ffc35a;--b:#a3520e;--c:#3b1a04"></div><div class="vfgl"></div><div class="vfv">${edge}<small>EDGE</small></div></div><img class="vffr" src="/cdn/value.af729622950e1658a4df89c76bd30887a4735628e38c2319318a050aa463a595.png"></div>
+    <div class="sk vfsk">
     <div class="slot" title="Ashcut"><img class="ic" src="${IC.ash}"><span class="k">LMB</span></div>
     <div class="slot ${edge < 30 || cwLeft ? "dim" : ""}" title="Crosswound · 30 Edge"><img class="ic" src="${IC.cross}"><span class="k">RMB</span><span class="n">30</span>${cdOver(cwLeft, cwPct)}</div>
     <div class="slot" title="Griefstep"><img class="ic" src="${IC.step}"><span class="k">SPC</span>${cdOver(dashLeft, dashPct)}</div>
     <div class="slot ${guardOn ? "ready" : ""}" title="Guard" style="${guardOn ? "box-shadow:0 0 0 2px #0d0b0a,0 0 14px 3px #6DB8C0" : ""}"><img class="ic" src="${IC.guard}"><span class="k">1</span>${cdOver(guardLeft, guardPct)}</div>
     <div class="slot ${(s.tonics ?? 0) ? "" : "dim"}" title="Ash Tonic"><img class="ic" src="${IC.tonic}"><span class="k">Q</span><span class="n">${s.tonics ?? 0}</span></div>
     <div class="slot" title="Pack" style="pointer-events:auto;cursor:pointer" onclick="sendAction('bag')"><img class="ic" src="${IC.pack}"><span class="k">I</span></div>
-  </div>
-  ${chips.length ? `<div class="absolute dk chips" style="left:50%;bottom:112px;transform:translateX(-50%);display:flex;gap:12px">${chips.join("")}</div>` : ""}`}
+  </div></div>
+  ${chips.length ? `<div class="absolute dk chips" style="left:50%;bottom:calc(min(1240px,100vw - 140px) * .25);transform:translateX(-50%);display:flex;gap:12px">${chips.join("")}</div>` : ""}`}
   ${touch && chips.length ? `<div class="absolute" style="left:10px;top:236px;display:flex;flex-direction:column;gap:6px">${chips.join("")}</div>` : ""}
   ${foeOn ? `<div class="absolute plate tf" style="left:50%;top:${boss && boss.engaged && !boss.dead ? 168 : 24}px;transform:translateX(-50%);width:min(300px,calc(100vw - 2*${rail}));text-align:center;padding:10px 16px;animation:vfin .2s;${foe.gone ? "opacity:.6" : ""}">
     <div style="display:flex;align-items:baseline;justify-content:center;gap:8px"><span style="font-size:16px;color:${foe.kind === "deacon" ? "#f2b04a" : "var(--wax)"};letter-spacing:.06em">${FOES[foe.kind] ?? "Wax Thing"}</span>${foe.kind === "deacon" ? `<span class="lbl" style="color:#f2b04a">ELITE</span>` : ""}</div>
     <div class="bar2"><div style="position:absolute;inset:0;width:${(foe.hp / foe.max) * 100}%;background:linear-gradient(#c9402f,#7a1610);transition:width .15s"></div><div style="position:absolute;inset:0;font-size:10px;line-height:12px;color:#e9dfc8;text-shadow:0 1px 0 #000">${foe.gone ? "MELTED" : `${foe.hp} / ${foe.max}`}</div></div></div>` : ""}
-  <div class="absolute dk" style="right:24px;bottom:24px"><div class="orb"><div class="fill" style="height:${edge}%;background:radial-gradient(circle at 50% 30%,#f2b04a,#8a4a10 70%)"></div><div class="shine"></div><div class="val">${edge}</div></div><div class="lbl" style="text-align:center;margin-top:8px">Edge</div></div>
   <div class="absolute ph plate" style="left:10px;top:150px;width:170px;padding:2px 6px">
     <div class="lbl" style="font-size:10px">Bladewraith · Lv ${lv} · ${fmt(s.copper ?? 0)}</div>
     <div class="bar"><div style="position:absolute;inset:0;width:${hpPct}%;background:linear-gradient(#e0473a,#7d1410)${hpPct < 30 ? ";animation:vfpulse 1s infinite" : ""}"></div><div style="position:absolute;inset:0;font-size:9px;line-height:10px;text-align:center">${hp}</div></div>
