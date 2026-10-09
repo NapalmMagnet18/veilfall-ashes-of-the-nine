@@ -9,6 +9,7 @@ export const PACK_CSS = `
 .vfpk{font-family:inherit;color:#e9dfc8}
 .vfpk .gs{position:relative;width:56px;height:56px;background:radial-gradient(#1d1916,#0b0908);box-shadow:inset 0 0 0 1px #3b3126,inset 0 0 14px #000;cursor:pointer}
 .vfpk .gs img{position:absolute;inset:4px;width:48px;height:48px;object-fit:contain;filter:drop-shadow(0 2px 2px #000)}
+.vfpk .vfvault .gs{width:42px;height:42px}.vfpk .vfvault .gs img{inset:3px;width:36px;height:36px}
 .vfpk .gs.ghost img{opacity:.13;filter:grayscale(1)}
 .vfpk .gs:hover{box-shadow:inset 0 0 0 1px #c49c63,inset 0 0 18px #000,0 0 8px #c49c6355}
 .vfpk .gs.sel{box-shadow:inset 0 0 0 2px #f2d38a,0 0 12px #f2d38a66}
@@ -69,7 +70,7 @@ export function packPanel(ctx, player, { rail, touch }) {
           return `<div style="margin-top:10px;padding-top:8px;border-top:1px solid #c49c6355">
           <div style="display:flex;justify-content:space-between;align-items:center;font-size:10px;letter-spacing:.18em;color:#d9b77a">⚿ CANDLEHOLD VAULT · DAME MAUDRY QUILL<span style="color:#9a907e">${vault.length}/${VS}</span></div>
           <div style="font-size:10px;color:#9a907e;margin:4px 0 6px">${sel ? "" : "pick an item in your pack to store it · click a vault item to take it"}</div>
-          ${sel ? `<button class="vb" style="width:100%;margin-bottom:6px;border-color:#c49c63aa" onclick="${act("store", `,u:'${sel.u}'`)}">STORE ${String(sel.n ?? "ITEM").toUpperCase()} IN THE VAULT</button>` : ""}
+          ${sel ? `<button class="vb" style="width:100%;margin-bottom:6px;border-color:#c49c63aa" onclick="${act("store", `,u:'${sel.u}'`)}">STORE IN THE VAULT</button>` : ""}
           <div style="display:grid;grid-template-columns:repeat(9,42px);gap:3px" class="vfvault">${vc}</div></div>`; })() : ""}
         ${s.atCauldron ? (() => { const rk = renderRank(s.renderXp ?? 0), pct = rk.next ? Math.round(100 * ((s.renderXp ?? 0) - rk.from) / (rk.next - rk.from)) : 100, on = brewActive(s, ctx.now());
           return `<div style="margin-top:10px;padding-top:8px;border-top:1px solid #e0a86633">
