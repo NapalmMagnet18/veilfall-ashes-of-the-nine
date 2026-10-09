@@ -810,7 +810,8 @@ const STEP = { ash: sfx("footstep-boot-on-ash-and-gravel-soft-crunch"), stone: s
   mud: sfx("footstep-boot-squelching-in-shallow-marsh-water-and-mud"), leaves: sfx("footstep-boot-crunching-dry-dead-leaves-and-twigs"),
   hall: sfx("footstep-boot-on-cracked-cathedral-stone-echoing") };
 STEP.wood = sfx("footstep-boot-on-old-hollow-gallows-planks-thud");
-const STEP_OF = { fire: "ash", fenpath: "mud", fen: "mud", orchpath: "leaves", orchard: "leaves", nave: "hall", crypt: "hall", abbey: "hall" };
+STEP.snow = sfx("footstep-boot-crunching-in-deep-fresh-snow"); STEP.cave = sfx("footstep-boot-on-gritty-cave-rock-with-small-echo");
+const STEP_OF = { rimepass: "snow", rime: "snow", deep: "cave", bonestair: "hall", ossuary: "hall", fire: "ash", fenpath: "mud", fen: "mud", orchpath: "leaves", orchard: "leaves", nave: "hall", crypt: "hall", abbey: "hall" };
 const stepAt = {};
 function stepTick(ctx, s, f, now) {
   const v = ctx.self.velocity ?? { x: 0, z: 0 }, sp = Math.hypot(v.x, v.z);

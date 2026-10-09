@@ -24,10 +24,12 @@ const TRACKS = {
   orchard: ["/cdn/moodboard-gothic-horror/music-dark-fantasy-hanging-orchard-out-of-tune-fiddle-and-creaking-music-box-over-low-strings-loop.mp3", "/cdn/moodboard-gothic-horror/music-dark-fantasy-gallows-orchard-slow-creaking-hurdy-gurdy-and-low-cello-funeral-waltz-loop.mp3", "/cdn/moodboard-gothic-horror/music-dark-fantasy-hanging-orchard-mournful-detuned-music-box-and-whispered-choir-over-strings-loop.mp3"],
   capital: ["/cdn/moodboard-gothic-horror/music-dark-fantasy-walled-candle-city-capital-noble-solemn-strings-church-bells-and-warm-male-choir-loop.mp3", "/cdn/moodboard-gothic-horror/music-dark-fantasy-candle-city-market-night-lute-and-cello-duet-with-distant-cathedral-bells-loop.mp3", "/cdn/moodboard-gothic-horror/music-dark-fantasy-candle-city-sanctuary-hopeful-slow-strings-harp-and-soft-boys-choir-chant-loop.mp3"],
   capway: ["/cdn/moodboard-gothic-horror/music-dark-fantasy-pilgrims-way-to-the-city-wandering-solo-cello-with-far-off-city-bells-and-wind-loop.mp3", "/cdn/moodboard-gothic-horror/music-dark-fantasy-pilgrims-way-lonely-road-low-flute-and-strings-hopeful-but-grim-loop.mp3"],
+  deep: ["/cdn/moodboard-gothic-horror/music-dark-fantasy-hollow-deep-cavern-dripping-water-percussion-low-bowed-bass-and-distant-dissonant-choir-loop.mp3", "/cdn/moodboard-gothic-horror/music-dark-fantasy-crystal-caves-glass-harmonica-shimmer-over-ominous-sub-drone-and-slow-heartbeat-drum-loop.mp3"],
+  rime: ["/cdn/moodboard-gothic-horror/music-dark-fantasy-frozen-vale-howling-wind-lone-hardanger-fiddle-lament-and-icy-bowed-glass-loop.mp3", "/cdn/moodboard-gothic-horror/music-dark-fantasy-frostbitten-mountain-pass-slow-low-male-throat-choir-and-distant-war-horn-over-snow-wind-loop.mp3"],
   elite: ["/cdn/moodboard-gothic-horror/music-dark-fantasy-mini-boss-champion-fight-heavy-war-drums-snarling-low-brass-and-shrieking-choir-loop.mp3", "/cdn/moodboard-gothic-horror/music-dark-fantasy-mini-boss-wax-champion-pounding-timpani-frantic-cello-and-cracked-bell-strikes-loop.mp3"],
 };
 // which track rests over each stretch of the road when nothing is fighting
-const ZONE_MOOD = { deep: "ossuary", rimepass: "orchard", rime: "orchard", fire: "camp", road: "road", toll: "road", gate: "road", court: "road", climb: "abbey", abbey: "abbey", nave: "abbey", crypt: "abbey", bonestair: "ossuary", ossuary: "ossuary", fenpath: "fen", fen: "fen", orchpath: "orchard", orchard: "orchard", capway: "capway", capital: "capital" };
+const ZONE_MOOD = { deep: "deep", rimepass: "rime", rime: "rime", fire: "camp", road: "road", toll: "road", gate: "road", court: "road", climb: "abbey", abbey: "abbey", nave: "abbey", crypt: "abbey", bonestair: "ossuary", ossuary: "ossuary", fenpath: "fen", fen: "fen", orchpath: "orchard", orchard: "orchard", capway: "capway", capital: "capital" };
 // far-off sounds in the dark: one every 22-45 s, somewhere 14-26 m from a Bearer, picked by the stretch they walk
 const DISTANT = {
   road: ["crow-caws-twice-and-flaps-away-in-fog", "distant-woman-sobbing-carried-on-wind", "iron-lantern-swinging-on-rusted-chain-creak", "far-off-wolf-howl-in-cold-night"],
@@ -36,6 +38,9 @@ const DISTANT = {
   orchard: ["heavy-rope-creaking-under-a-swinging-weight", "crows-squabbling-over-something-in-dead-branches", "dry-leaves-skittering-across-wooden-boards", "a-trapdoor-banging-open-on-a-distant-gallows"],
   capital: ["cathedral-bells-ringing-the-hour-far-across-rooftops", "city-watchman-calling-the-hour-echoing-down-a-stone-street", "tavern-door-opens-burst-of-laughter-and-lute-then-closes", "cart-wheels-rattling-over-cobblestones-and-a-horse-snorting"],
   capway: ["far-city-bells-carried-on-still-night-air", "pilgrims-singing-a-hymn-far-down-the-road", "crow-caws-twice-and-flaps-away-in-fog"],
+  ossuary: ["bones-shifting-and-settling-in-a-dark-crypt-niche", "skull-rolling-across-stone-floor-and-stopping", "many-faint-voices-whispering-in-unison-in-a-catacomb", "slow-dripping-water-echoing-in-a-bone-chamber"],
+  deep: ["distant-rockfall-rumbling-deep-in-a-cave", "crystal-cracking-with-a-high-glassy-ring-in-a-cavern", "something-skittering-on-many-legs-across-cave-rock", "low-wet-growl-echoing-from-a-far-tunnel"],
+  rime: ["ice-sheet-cracking-with-a-deep-boom-across-a-frozen-lake", "lone-wolf-howl-answered-by-the-pack-over-snow", "gust-of-wind-whipping-snow-off-a-ridge", "frozen-tree-branch-snapping-under-snow-weight"],
   camp: ["log-collapsing-in-campfire-sparks-crackle", "kettle-lid-rattling-over-coals", "owl-hooting-low-in-the-dark"],
 };
 const VOICE = (line) => `/cdn/voice-weary-hoarse-old-woman-pilgrim-keeper-low-and-kind-saying-${line}.mp3`;
