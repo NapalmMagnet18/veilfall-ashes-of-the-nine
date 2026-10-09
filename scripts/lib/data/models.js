@@ -27,9 +27,13 @@ export const MODELS = {
   ashrevenant: "/cdn/value.511a573da2507de66bcaa211ddbe89bba84a3cfa6045b7b71e63e51473162149.png.glb",
   cinderthrall: "/cdn/value.a0b4bc5f36e15d75c9a6cb80d66b98d53e46eb35387f36d03fd76405da3a185d.png.glb",
   pyrepriest: "/cdn/value.61f61af792f42e03ef76b22c38dcdc1a9a09d81cc03f23cc52d530c0a7ae0e73.png.glb",
+  deepghoul: "/cdn/value.5e784705cec43e47daa8d7415162c23b798d95af4311a476e8ff6b764ab2b20a.png.glb",
+  lurker: "/cdn/value.230e154234ddce5261a9f18deb7a2a1ab405019c7cac64accbe4bf5e8dc3e7ad.png.glb",
+  crystalbrute: "/cdn/value.77c2824676e15f5a32a53dac17c6a760e3d1e225048032eedeff1ec1af179348.png.glb",
+  broodmother: "/cdn/value.084438da9ce5ae7b310433e6f7c6f48af5acb0d6e2028c6603e170b6f470bcaa.png.glb",
   kilnwarden: "/cdn/value.058969f5528af183e60a44a96686146f464df6d1bb8159bde6a58cced53b6ab1.png.glb",
   bailiff: "/cdn/value.0fff9f3b6085fcd9ee851d61b5e8e32b7c7ea83f47e46f7e7a72d18d3e7e3438.png.glb",
 };
 // true height in metres before the row's own scale
-export const HEIGHT = { hero: 1.85, pilgrim: 1.7, walker: 1.7, deacon: 1.8, chorister: 1.95, flagellant: 1.8, bailiff: 2.0, chandler: 2.9, cantor: 3.0, ringer: 2.2, warden: 2.4, hangman: 2.5, abbess: 2.6, drowned: 1.8, harpooner: 1.9, barnacle: 2.3, ferryman: 3.1, reaper: 2.3, marrowwolf: 1.3, briarwitch: 2.0, rootmother: 3.4, gargoyle: 2.4, harpy: 2.1, inquisitor: 2.4, butcher: 3.3, ashrevenant: 2.3, cinderthrall: 2.0, pyrepriest: 2.2, kilnwarden: 3.5 };
+export const HEIGHT = { hero: 1.85, pilgrim: 1.7, walker: 1.7, deacon: 1.8, chorister: 1.95, flagellant: 1.8, bailiff: 2.0, chandler: 2.9, cantor: 3.0, ringer: 2.2, warden: 2.4, hangman: 2.5, abbess: 2.6, drowned: 1.8, harpooner: 1.9, barnacle: 2.3, ferryman: 3.1, reaper: 2.3, marrowwolf: 1.3, briarwitch: 2.0, rootmother: 3.4, gargoyle: 2.4, harpy: 2.1, inquisitor: 2.4, butcher: 3.3, ashrevenant: 2.3, cinderthrall: 2.0, pyrepriest: 2.2, kilnwarden: 3.5, deepghoul: 2.0, lurker: 2.6, crystalbrute: 2.9, broodmother: 2.6 };
 export const body = (k) => ({ model: MODELS[k], layout: { maxExtents: { y: HEIGHT[k] } } });
