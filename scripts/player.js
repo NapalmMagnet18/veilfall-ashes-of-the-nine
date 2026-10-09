@@ -255,7 +255,11 @@ function strike(ctx, foe, dmg, crit) {
   ctx.emit("squash", { target: foe.id, axis: "y", intensity: 0.18, duration: 0.15 });
   ctx.emit("flash", { target: foe.id, color: "#ffffff", duration: 0.08 });
   ctx.emit("playSound", { clip: sfx("blade-cutting-into-soft-wax-thud"), position: p, pitch: 0.9 + ctx.random() * 0.2, volume: 0.8 });
-  ctx.emit("hitstop", { duration: 0.03 }, { audience: { player: ctx.self.id } });
+  ctx.emit("hitstop", { duration: crit ? 0.06 : 0.03 }, { audience: { player: ctx.self.id } });
+  if (crit) {
+    ctx.emit("playSound", { clip: sfx("critical-hit-bright-steel-snap"), position: p, pitch: 0.95 + ctx.random() * 0.1, volume: 0.55 });
+    ctx.emit("cameraPunch", { direction: { x: dx / d, y: 0, z: dz / d }, intensity: 0.18 }, { audience: { player: ctx.self.id } });
+  }
 }
 
 function markTrail(cols) {
@@ -847,6 +851,11 @@ export function update(ctx, dt) {
   if (!s.dead) {
     const fr = (s.hp ?? 1) / (s.maxHp ?? 1), vig = fr < 0.35 ? Math.round((0.18 + (0.35 - fr) * 1.1) * 20) / 20 : 0;
     if (vig !== (me.vig ?? 0)) { me.vig = vig; ctx.self.vignette = vig; }
+    // under a quarter of life the heart is heard, quicker the closer the end
+    if (fr < 0.25 && fr > 0 && now >= (me.beatAt ?? 0)) {
+      me.beatAt = now + 520 + fr * 2400;
+      ctx.emit("playSound", { clip: sfx("low-health-heartbeat-thump-muffled"), position: f, volume: 0.35 + (0.25 - fr) * 1.2 }, { audience: { player: ctx.self.id } });
+    }
   }
   if (me.animOff && now > me.animOff) { ctx.self.anim.attack = null; me.animOff = 0; }
 
@@ -864,11 +873,10 @@ export function update(ctx, dt) {
       ctx.self.anim.death = null;
       ctx.self.feetPosition = { x: FIRE.x + (ctx.random() - 0.5) * 2, y: 0.5, z: FIRE.z };
       s.hp += s.maxHp - s.hp; s.tonics = C.hero.tonics; s.dead = false; s.edge = 0;
-      ctx.self.vignette = 0;
+      ctx.self.vignette = 0; me.vig = 0;
     }
     return;
   }
-  ctx.self.vignette = s.hp < s.maxHp * 0.3 ? 0.22 : 0;
   guardTick(ctx, now);
 
   // the fire mends: tonics refill and life knits back in the camp
