@@ -531,7 +531,7 @@ function vfHud(ctx, player) {
     <div class="vforb vfR"><div class="vfglobe"><div class="vfliq" style="height:${edge}%;--a:#ffc35a;--b:#a3520e;--c:#3b1a04"></div><div class="vfgl"></div><div class="vfv">${edge}<small>${((CLASSES.find((c) => c.id === s.cls) ?? CLASSES[0]).res ?? "Edge").toUpperCase()}</small></div></div><img class="vffr" src="/cdn/value.af729622950e1658a4df89c76bd30887a4735628e38c2319318a050aa463a595.png"></div>
     <div class="sk vfsk">
     <div class="slot" title="Ashcut"><img class="ic" src="${IC.ash}"><span class="k">LMB</span></div>
-    <div class="slot ${edge < 30 || cwLeft ? "dim" : ""}" title="${(SIG_UI[player.state.cls] ?? ["Crosswound"])[0]} · 30 Edge"><img class="ic" src="${(SIG_UI[player.state.cls] ?? [0, IC.cross])[1]}"><span class="k">RMB</span><span class="n">30</span>${cdOver(cwLeft, cwPct)}</div>
+    <div class="slot ${edge < 30 || cwLeft ? "dim" : ""}" title="${(SIG_UI[s.cls] ?? ["Crosswound"])[0]} · 30 Edge"><img class="ic" src="${(SIG_UI[s.cls] ?? [0, IC.cross])[1]}"><span class="k">RMB</span><span class="n">30</span>${cdOver(cwLeft, cwPct)}</div>
     <div class="slot" title="Griefstep"><img class="ic" src="${IC.step}"><span class="k">SPC</span>${cdOver(dashLeft, dashPct)}</div>
     <div class="slot ${guardOn ? "ready" : ""}" title="Guard" style="${guardOn ? "box-shadow:0 0 0 2px #0d0b0a,0 0 14px 3px #6DB8C0" : ""}"><img class="ic" src="${IC.guard}"><span class="k">1</span>${cdOver(guardLeft, guardPct)}</div>
     <div class="slot ${(s.tonics ?? 0) ? "" : "dim"}" title="Ash Tonic"><img class="ic" src="${IC.tonic}"><span class="k">Q</span><span class="n">${s.tonics ?? 0}</span></div>
