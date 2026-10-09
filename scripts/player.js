@@ -266,6 +266,7 @@ function strike(ctx, foe, dmg, crit) {
   ctx.emit("damageNumber", { position: p, value: dmg, crit, color: crit ? "#ffd27a" : "#f2ead8" });
   ctx.emit("fx", { position: p, script: CHIPS, params: { normal: { x: dx / d, y: 0.3, z: dz / d } } });
   ctx.emit("squash", { target: foe.id, axis: "y", intensity: 0.18, duration: 0.15 });
+  if (atkOf(ctx.self.state).melee) ctx.emit("slash", { position: p, size: crit ? 2.2 : 1.6, shape: "crescent", noise: 0.35 });
   // a stagger on the heavier blows: the struck body flinches (bosses shrug off all but crits)
   if (!foe.state.dead && foe.state.hp > 0 && !foe.state.swing && !foe.state.slam && !foe.tags?.includes?.("boss")) { foe.anim.hit = { clip: "cdn/clip-hit-react.glb", weight: 6, loop: "once", speed: 1.3 }; foe.state.hitUntil = ctx.now() + 450; }
   ctx.emit("flash", { target: foe.id, color: "#ffffff", duration: 0.08 });
@@ -287,32 +288,43 @@ pop glow burst=1 life=.25 at=point() r=light(${v(a, 1).replace("hdr", "<").repla
 }
 // each calling's basic attack: the blade-bearers cut in reach, the casters and the archer fire from afar
 const BOLT = (core, glow, lit) => `fx
-pop core burst=1 life=%t|.3 v=<%dir|0,0,-1>*%sp|20 size=.32 col=${core} a=1 sz=$size*(1>.7) r=sprite(soft-disc,add)
-pop halo burst=1 life=%t|.3 v=<%dir|0,0,-1>*%sp|20 size=.75 col=${glow} a=.55 sz=$size*flick(14,.25) r=sprite(soft-disc,add)
-pop trail on=@core.lives(90) life=.25..0.45 v=sdir()*.35 size=.08..0.16 acc=drag(2)+curl(1)*.6 col=${core}>${glow} a=1>0 sz=$size*(1>.2) r=sprite(ember,add)
-pop wisp on=@core.lives(30) life=.4..0.7 v=sdir()*.2 size=.25..0.4 acc=buoy(.3)+drag(1.2) col=${glow} a=0>.1:.35>0 sz=$size*(.6>1.6) rot=spin(.3) r=sprite(smoke-puff,add)
-pop glow burst=1 life=%t|.3 v=<%dir|0,0,-1>*%sp|20 r=light(${lit},14,6)`;
+pop core burst=1 life=%t|.3 v=<%dir|0,0,-1>*%sp|20 size=.34 col=${core} a=1 sz=$size*(1>.75)*flick(20,.15) r=sprite(soft-disc,add)
+pop halo burst=1 life=%t|.3 v=<%dir|0,0,-1>*%sp|20 size=.85 col=${glow} a=.55 sz=$size*flick(14,.25) r=sprite(soft-disc,add)
+pop trail on=@core.lives(120) life=.25..0.5 v=sdir()*.4 size=.06..0.14 acc=drag(2)+curl(1.2)*.8 col=${core}>${glow} a=1>0 sz=$size*(1>.2) r=sprite(ember,add,velocity,.03)
+pop rune on=@core.lives(18) life=.35..0.6 v=sdir()*.6 size=.14..0.22 spin=-5..5 acc=drag(2.5) col=${core} a=0>.15:.9>0 sz=$size*(1>.4) rot=$age*$spin r=sprite(soft-disc,add)
+pop wisp on=@core.lives(40) life=.5..0.9 v=sdir()*.2 size=.25..0.45 acc=buoy(.35)+curl(.6)*.4+drag(1.2) col=${glow} a=0>.1:.35>0 sz=$size*(.6>1.8) rot=spin(.3) r=sprite(smoke-puff,add)
+pop glow burst=1 life=%t|.3 v=<%dir|0,0,-1>*%sp|20 r=light(${lit},18,7)`;
+// the gather at the caster's hand: motes pulled in, one bright breath of light
+const CAST = (core, lit) => `fx
+pop gather burst=18..24 on=sphere(.55) life=.22..0.3 v=attract(9) size=.04..0.08 col=${core} a=0>.3:1>0 sz=$size r=sprite(ember,add,velocity,.04)
+pop flare burst=1 life=.25 size=.6 col=${core} a=.9>0 sz=$size*(.3>1.2) r=sprite(soft-disc,add)
+pop lamp burst=1 life=.3 at=point() r=light(${lit},16*(1>0),5)`;
 const ARROW = `fx
 pop shaft burst=1 life=%t|.3 v=<%dir|0,0,-1>*%sp|30 size=.05 col=<.9,.82,.62> a=1 sz=$size r=sprite(ember,alpha,velocity,.9)
-pop streak on=@shaft.lives(80) life=.12..0.22 size=.03..0.05 col=hdr(1.6,1.5,1.2)>hdr(.5,.5,.45) a=.6>0 sz=$size r=sprite(soft-disc,add)`;
+pop streak on=@shaft.lives(80) life=.12..0.22 size=.03..0.05 col=hdr(1.6,1.5,1.2)>hdr(.5,.5,.45) a=.6>0 sz=$size r=sprite(soft-disc,add)
+pop air on=@shaft.lives(25) life=.3..0.5 v=sdir()*.15 size=.1..0.16 acc=drag(2) col=<.75,.75,.8> a=0>.1:.12>0 sz=$size*(.6>1.6) r=sprite(smoke-puff,alpha)`;
 const ATK = {
-  soulweaver:   { reach: 11, cd: 0.8, mul: 1.25, sp: 18, fx: BOLT("hdr(2.2,3.4,4.2)", "hdr(.4,.9,1.6)", "<.5,.8,1>"), cast: "cdn/clip-cast.glb", snd: "arcane-bolt-cast-shimmering-whoosh", hit: "arcane-bolt-impact-glass-chime-burst", hitFx: "<.5,.85,1>" },
-  shadowmancer: { reach: 10, cd: 0.75, mul: 1.15, sp: 16, fx: BOLT("hdr(2.4,1.2,3.6)", "hdr(.6,.15,.9)", "<.7,.3,1>"), cast: "cdn/clip-cast.glb", snd: "shadow-bolt-cast-hissing-whisper", hit: "shadow-bolt-impact-dark-thump-and-whispers", hitFx: "<.7,.3,1>" },
+  soulweaver:   { reach: 11, cd: 0.8, mul: 1.25, sp: 18, fx: BOLT("hdr(2.2,3.4,4.2)", "hdr(.4,.9,1.6)", "<.5,.8,1>"), castFx: CAST("hdr(2.2,3.4,4.2)", "<.5,.8,1>"), cast: "cdn/clip-cast.glb", snd: "arcane-bolt-cast-shimmering-whoosh", hit: "arcane-bolt-impact-glass-chime-burst", hitFx: "<.5,.85,1>" },
+  shadowmancer: { reach: 10, cd: 0.75, mul: 1.15, sp: 16, fx: BOLT("hdr(2.4,1.2,3.6)", "hdr(.6,.15,.9)", "<.7,.3,1>"), castFx: CAST("hdr(2.4,1.2,3.6)", "<.7,.3,1>"), cast: "cdn/clip-cast.glb", snd: "shadow-bolt-cast-hissing-whisper", hit: "shadow-bolt-impact-dark-thump-and-whispers", hitFx: "<.7,.3,1>" },
   gloamstalker: { reach: 14, cd: 0.65, mul: 1.05, sp: 32, fx: ARROW, cast: "cdn/clip-throw.glb", snd: "longbow-draw-creak-and-arrow-release-twang", hit: "arrow-thunk-into-flesh", hitFx: "<1,.8,.5>" },
   hellwarden:   { reach: 2.5, cd: 0.7, mul: 1.15, melee: true, snd: "heavy-mace-swing-whoosh-low" },
   primalist:    { reach: 2.4, cd: 0.6, mul: 1.05, melee: true, snd: "beast-claw-swipe-whoosh" },
 };
 const atkOf = (s) => ATK[s?.cls] ?? { reach: C.ashcut.reach, cd: C.ashcut.cd, mul: 1, melee: true };
 const IMPACT = `fx
-pop burst burst=26..36 on=sphere(.15) life=.25..0.55 v=sdir()*(2..4.5) size=.04..0.09 acc=drag(3) col=<%c|1,1,1>*4>.5:<%c|1,1,1>*.6 a=1>0 sz=$size*(1>.2) r=sprite(ember,add,velocity,.05)
-pop ring burst=1 life=.3 size=1.1 col=<%c|1,1,1>*2 a=.8>0 sz=$size*(.2>1) r=sprite(soft-disc,add)
-pop flare burst=1 life=.3 at=point() r=light(<%c|1,1,1>,22*(1>0),5)`;
+pop burst burst=30..40 on=sphere(.15) life=.25..0.6 v=sdir()*(2..5) size=.035..0.08 acc=drag(3)+grav()*.4 col=<%c|1,1,1>*4>.5:<%c|1,1,1>*.6 a=1>0 sz=$size*(1>.2) r=sprite(ember,add,velocity,.05)
+pop shard burst=8..12 on=sphere(.1) life=.5..0.9 v=sdir()*(1.5..3)+up(1.5) size=.05..0.09 spin=-8..8 acc=grav() floor=bounce(.3) col=<%c|1,1,1>*2.5><%c|1,1,1>*.4 a=1>.6:1>0 sz=$size rot=$age*$spin r=sprite(soft-disc,add)
+pop ring burst=1 life=.32 size=1.3 col=<%c|1,1,1>*2.2 a=.8>0 sz=$size*(.2>1.2) r=sprite(soft-disc,add)
+pop smoke burst=4..6 on=sphere(.2) life=.8..1.4 v=up(.3..0.7)+sdir()*.4 size=.3..0.5 acc=buoy(.4)+curl(.4)*.4+drag(1.2) col=<.22,.22,.26> a=0>.1:.35>0 sz=$size*(.6>2.2) rot=spin(.2) r=sprite(smoke-puff,alpha)
+pop mote burst=8..12 on=sphere(.3) life=.7..1.2 v=up(.4..1)+sdir()*.3 size=.03..0.06 acc=curl(.8)+drag(.8) col=<%c|1,1,1>*2>.6:<%c|1,1,1>*.5 a=(0>.1:1>0)*flick(9,.3) r=sprite(ember,add)
+pop flare burst=1 life=.4 at=point() r=light(<%c|1,1,1>,28*(1>0),6)`;
 function fireAt(ctx, foe, A, dmg, crit) {
   const f = ctx.self.feetPosition, src = { x: f.x, y: f.y + 1.35, z: f.z }, t = foe.feetPosition;
   const dx = t.x - f.x, dz = t.z - f.z, dy = (t.y + 1.1) - src.y, d = Math.hypot(dx, dy, dz) || 1;
   const fwd = 0.7, st = { x: src.x + dx / d * fwd, y: src.y + dy / d * fwd, z: src.z + dz / d * fwd };
   const time = Math.max(0.08, (d - fwd) / A.sp);
   ctx.emit("fx", { position: st, script: A.fx, params: { dir: { x: dx / d, y: dy / d, z: dz / d }, sp: A.sp, t: time } });
+  if (A.castFx) ctx.emit("fx", { position: st, script: A.castFx });
   ctx.after(time, "boltLand", { id: foe.id, dmg, crit, hit: A.hit, c: A.hitFx });
 }
 export function boltLand(ctx, p) {
