@@ -534,7 +534,7 @@ function vfHud(ctx, player) {
   ${s.atShrine && !s.bagOpen && !s.shop ? shrinePanel(s, touch, rail) : ""}
   ${s.shop ? shopPanel(ctx, player) : ""}
   ${s.dead ? `<div class="absolute inset-0" style="display:flex;align-items:center;justify-content:center;background:radial-gradient(transparent 30%,rgba(40,0,0,.6));animation:vfin .4s"><div class="kd" style="font-size:54px;color:#d8442f;letter-spacing:.1em">THE ROAD TAKES YOU</div></div>` : ""}
-  ${now - firstSeen < 9000 && !touch ? `<div class="absolute inset-x-0 text-center dk" style="bottom:150px;font-size:17px;padding:0 ${rail};animation:vffade 1s 8s forwards">Click to walk · click a foe to strike · Right-click Crosswound · Space Griefstep · Q tonic · I pack</div>` : ""}
+  ${now - firstSeen < 9000 && !touch ? `<div class="absolute inset-x-0 text-center dk" style="bottom:calc(min(1240px,100vw - 140px) * .25 + 24px);font-size:17px;padding:0 ${rail};animation:vffade 1s 8s forwards">Click to walk · click a foe to strike · Right-click Crosswound · Space Griefstep · Q tonic · I pack</div>` : ""}
 </div>`;
 }
 
