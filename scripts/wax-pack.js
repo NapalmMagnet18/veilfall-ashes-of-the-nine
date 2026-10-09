@@ -174,11 +174,15 @@ export function payout(ctx, at, xp, copper, countsForQuest, spill = "small", kin
   if (paid && copper > 0) ctx.emit("fx", { position: { x: at.x, y: at.y + 0.5, z: at.z }, script: S.fx });
 }
 
+const UNRIG = new Set(["rimewolf", "harpy", "rootmother", "broodmother"]); // models.js bodies cooked without a rig
 export function update(ctx, dt) {
   const now = ctx.now(), ears = ctx.place.players.filter((p) => !p.state.menu), players = ears.filter((p) => !p.state.dead && !safe(p.feetPosition));
   for (const row of ctx.query({ tags: ["enemy"], excludeTags: ["boss"] })) {
     const w = ctx.getObject(row.id); if (!w) continue;
     const s = w.state, K = C[s.kind] ?? C.pilgrim, f = w.feetPosition;
+    // bodies with no skeleton have no clips to play: they breathe as one mass and coil before a blow
+    if (UNRIG.has(s.kind) && !s.dead && !s.breathing) { s.breathing = true; const sc = w.scale, b = typeof sc === "number" ? sc : (sc?.y ?? 1), bx = typeof sc === "number" ? sc : (sc?.x ?? 1), bz = typeof sc === "number" ? sc : (sc?.z ?? 1);
+      animate(ctx, w, { "scale.y": [b, b * 1.04, b], "scale.x": [bx, bx * 0.985, bx], "scale.z": [bz, bz * 0.985, bz] }, { duration: 1.6 + ctx.random() * 0.6, loop: true, easing: "easeInOutSine" }); }
     if (s.dead) { w.velocity = { x: 0, y: w.velocity.y, z: 0 }; mutterAt.delete(w.id); if (now - s.deadAt > 2300) ctx.destroy(w.id); continue; }
     if (s.animOff && now > s.animOff) { w.anim.attack = null; s.animOff = 0; }
     if (s.hitUntil && now > s.hitUntil) { w.anim.hit = null; s.hitUntil = 0; }
@@ -236,6 +240,7 @@ export function update(ctx, dt) {
         s.slam = { x: prey.feetPosition.x, y: prey.feetPosition.y, z: prey.feetPosition.z, at: now + K.windup * 1000 };
         telegraph(ctx, s.slam.x, s.slam.y, s.slam.z, K.slamRadius, K.windup);
         w.anim.attack = { clip: "cdn/clip-cast.glb", weight: 10, loop: "once", speed: 1.4 / Math.max(0.6, K.windup) }; s.animOff = now + K.windup * 1000 + 500;
+        if (UNRIG.has(s.kind)) { ctx.emit("squash", { target: w.id, axis: "y", intensity: 0.3, duration: K.windup }); ctx.emit("shake", { target: w.id, intensity: 0.08, duration: K.windup }); }
         ctx.emit("playSound", { clip: sfx("chain-rattle-windup-hiss"), position: f, volume: 0.8 });
       } else if (d > (K.reach ?? 1.6)) { vx = (dx / d) * K.speed; vz = (dz / d) * K.speed; }
       else if (K.swings ? now >= (s.nextSwing ?? 0) : (!K.slamRadius && now >= (s.nextAtk ?? 0))) {
@@ -243,6 +248,7 @@ export function update(ctx, dt) {
         // a readable wind-up: the arm draws back, then the blow falls
         s.swing = { at: now + 420, who: prey.id };
         w.anim.attack = { clip: "cdn/clip-attack.glb", weight: 10, loop: "once", speed: 1.1 }; s.animOff = now + 1000;
+        if (UNRIG.has(s.kind)) { ctx.emit("squash", { target: w.id, axis: "y", intensity: 0.22, duration: 0.42 }); ctx.emit("shake", { target: w.id, intensity: 0.05, duration: 0.35 }); }
         ctx.emit("playSound", { clip: sfx("wax-limb-drawn-back-creak-and-hiss"), position: f, volume: 0.45, pitch: 0.85 + ctx.random() * 0.3 });
       }
     } else if (s.home) {
