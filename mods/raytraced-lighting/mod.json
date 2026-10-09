@@ -1,0 +1,15 @@
+{
+  "name": "raytraced-lighting",
+  "displayName": "Raytraced Lighting",
+  "description": "Real ray-marched lighting for any world: screen-space traced reflections with a temporal denoiser, traced contact shadows, and a separable bloom. Point a place's atmosphere look at it and floors, walls, metal and water start reflecting the room around them.",
+  "tags": [
+    "lighting",
+    "reflections",
+    "shader",
+    "post-processing",
+    "graphics",
+    "raytracing"
+  ],
+  "visibility": "public",
+  "version": "1.0.0"
+}
