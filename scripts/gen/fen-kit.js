@@ -6,7 +6,7 @@ export const TX = {
   stone: "cdn/texture-wet-dark-weathered-stone-blocks.png",
   wood: "/cdn/value.fd7f44461fb4757d95a177f1a9112b573154f57737f844a4558b4b32e21521ae.png",
   iron: "/cdn/value.fc2d6f2f81f6d5fa8b807c3778839023b0680cf71709aafbaf66806426b4a17c.png",
-  moss: "cdn/texture-dark-wet-moss.png",
+  moss: "/cdn/value.c9d43e281a7e42dd9f983ffc7f2c05ae5aed7c52eedbf6c7ce37f14eb0f1ec6a.png",
   bark: "cdn/texture-dead-grey-tree-bark.png",
   mud: "cdn/texture-black-wet-peat-mud.png",
   wax: "/cdn/value.627b7a8789f6aba4b1057abb947848ac429517d5c496ae62d307c93eda8c8f8a.png",

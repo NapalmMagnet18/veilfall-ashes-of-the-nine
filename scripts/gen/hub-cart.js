@@ -43,7 +43,7 @@ export function geometry(ctx) {
   ctx.albedo(IRON); ctx.color("oklch(0.55 0.01 250)");
   tube(ctx, C, [[-0.82, 0.48, 0.2], [0.82, 0.48, 0.2]], 0.035, 6);
   wheel(ctx, compose(C, xf([0.78, 0.48, 0.2], [0, 0, 90])), 0.48, false, fine);
-  ctx.albedo("cdn/texture-weathered-wet-dark-granite.png"); ctx.color("oklch(0.72 0.01 250)");
+  ctx.albedo("/cdn/value.243c4d064e00fadee4358d31215a4c6a8aae8847e4fe90bfca0a813388da8c76.png"); ctx.color("oklch(0.72 0.01 250)");
   rock(ctx, xf([-0.88, 0, 0.2], [30, 0, 0]), 0.24, { sy: 0.85, sub: fine });
   wheel(ctx, xf([-1.75, 0.13, 0.95], [25, 4, 3]), 0.48, true, fine);
   // cargo

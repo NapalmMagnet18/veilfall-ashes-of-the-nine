@@ -15,7 +15,7 @@ function ash(ctx) {
   const L = ctx.lod, R = () => ctx.random(), { rx = 1.6, rz = 1.1 } = ctx.params;
   ctx.smooth(); ctx.albedo("cdn/texture-grey-wood-ash-and-cinders.png"); ctx.roughness(1); ctx.metalness(0); ctx.color("oklch(.82 .005 260)");
   sheet(ctx, rx, rz, 0.12, L <= 2 ? 4 : 2, L <= 2 ? 18 : 9, R() * 9, -0.04);
-  if (L <= 3) { ctx.flat(); ctx.albedo("cdn/texture-charred-burnt-oak-wood-alligator-cracked.png");
+  if (L <= 3) { ctx.flat(); ctx.albedo("/cdn/value.414c2c1b0fe4dbe53debfcc837425ae523180a39b96734c16354eeefe4b1a925.png");
     for (let i = 0; i < (L <= 2 ? 14 : 5); i++) {
       const a = R() * 6.283, t = Math.sqrt(R()) * 0.85, s = 0.04 + R() * 0.09; ctx.color("oklch(.62 .02 45)");
       const lit = R() < 0.15; if (lit) ctx.emissive(1.4, 0.35, 0.05);

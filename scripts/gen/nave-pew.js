@@ -3,7 +3,7 @@
 // (toward the altar); origin at the floor, centred. "snapped": broken mid-length, both halves sagging to the
 // floor with splinters and a smouldering end. "over": tipped back onto its backrest. Low box collider.
 import { WAXC, xf, chainXf, bevelBox, boxC, rough, drip } from "./shapes.js";
-const CHAR = "cdn/texture-charred-burnt-oak-wood-alligator-cracked.png";
+const CHAR = "/cdn/value.414c2c1b0fe4dbe53debfcc837425ae523180a39b96734c16354eeefe4b1a925.png";
 function section(ctx, T, x0, x1, o, R, J, L) {
   const bx = (cx, cy, cz, hx, hy, hz, yaw = 0, pitch = 0, roll = 0, b = 0.012) => bevelBox(ctx, chainXf(T, xf([cx, cy, cz], yaw, pitch, roll)), hx, hy, hz, L <= 2 ? b : 0, J);
   const len = x1 - x0, cx = (x0 + x1) / 2;

@@ -47,7 +47,7 @@ function brazier(ctx) {
   box(ctx, 0, 0.5 + (h - 1.05) / 2, 0, 0.22, (h - 1.05) / 2, 0.22); // shaft
   const top = h - 0.55;
   box(ctx, 0, top + 0.05, 0, 0.32, 0.05, 0.32, 0, false);
-  ctx.albedo("cdn/texture-blackened-wrought-iron-rust-pitted.png"); ctx.color("oklch(0.95 0 0)"); ctx.metalness(0.7); ctx.roughness(0.55);
+  ctx.albedo("/cdn/value.3f33b822ec8cc41950e5fb43a317bef75f5b0cf4e8a1fbb4ea66c83eed678849.png"); ctx.color("oklch(0.95 0 0)"); ctx.metalness(0.7); ctx.roughness(0.55);
   const n = ctx.lod <= 2 ? 12 : 6, r0 = 0.28, r1 = 0.55, bh = 0.42;
   for (let i = 0; i < n; i++) { // splayed iron slats of the basket
     const a = (i / n) * Math.PI * 2, rm = (r0 + r1) / 2;

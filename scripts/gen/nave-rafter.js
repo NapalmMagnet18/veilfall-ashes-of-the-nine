@@ -2,7 +2,7 @@
 // burned in the roof), a dim ember seam in the cracks, an iron strap, a tenon at the foot and a splintered
 // snapped top. Runs along local +Z from the foot, raised by params.lean degrees (0 = lying). params: { len, lean, glow }.
 import { xf, chainXf, bevelBox, boxC, rough } from "./shapes.js";
-const CHAR = "cdn/texture-charred-burnt-oak-wood-alligator-cracked.png";
+const CHAR = "/cdn/value.414c2c1b0fe4dbe53debfcc837425ae523180a39b96734c16354eeefe4b1a925.png";
 export function geometry(ctx) {
   const L = ctx.lod, R = () => ctx.random(), len = ctx.params.len ?? 5, lean = ctx.params.lean ?? 60, glow = ctx.params.glow ?? 0.5;
   const B = xf([0, 0, 0], 0, -lean, 0), J = L <= 2 ? rough(ctx, 0.014, 4) : null;

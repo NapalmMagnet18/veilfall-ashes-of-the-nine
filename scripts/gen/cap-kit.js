@@ -3,7 +3,7 @@ export const ASHLAR = "/cdn/value.6b3fb3d3a7a92182bd467ade93e50cb3b85db20740d25d
 export const PLASTER = "cdn/texture-old-cracked-limewash-plaster-soot-streaked.png";
 export const TIMBER = "cdn/texture-dark-weathered-oak-timber-beam.png";
 export const SLATE = "cdn/texture-dark-wet-slate-roof-tiles-mossy.png";
-export const IRON = "cdn/texture-blackened-wrought-iron-rust-pitted.png";
+export const IRON = "/cdn/value.3f33b822ec8cc41950e5fb43a317bef75f5b0cf4e8a1fbb4ea66c83eed678849.png";
 // axis-aligned box, faces CCW from outside
 export function box(ctx, cx, cy, cz, w, h, d) {
   const x0 = cx - w / 2, x1 = cx + w / 2, y0 = cy, y1 = cy + h, z0 = cz - d / 2, z1 = cz + d / 2;

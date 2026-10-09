@@ -263,7 +263,7 @@ const VERSION = "0.13.1 · FACES OF THE VEIL";
 // what changed, newest first: [version, title, date, [lines]]
 const NOTES = [
   ["0.13.1", "Sharper Stone", "Oct 9", [
-    ["HD Road & Walls", "The pilgrim road's flagstones, the soot-stained ashlar of every ruin and wall, the ash-dirt ground, rusted iron, rotten planks, candle wax, leather, bone, burial cloth and slate roofs are repainted at twice the resolution."],
+    ["HD Road & Walls", "The pilgrim road's flagstones, the soot-stained ashlar of every ruin and wall, the ash-dirt ground, rusted iron, rotten planks, candle wax, leather, bone, burial cloth, slate roofs, charred oak, granite, oak planks, moss and wrought iron are repainted at twice the resolution."],
     ["Dead Oaks", "The road's oaks grow buttress roots, furrowed bark, split crowns, last ember leaves and glowing shelf fungus."],
     ["Ferns & Brambles", "Ferns unfurl serrated fronds and fiddleheads; brambles carry hooked thorns, bronze leaves and black berries."]]],
   ["0.13", "Faces of the Veil", "Oct 9", [

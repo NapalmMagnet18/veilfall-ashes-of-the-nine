@@ -3,7 +3,7 @@ import { xf, rock, box } from "./hub-kit.js";
 export function geometry(ctx) {
   const p = ctx.params || {}, r = p.r || 1.2;
   ctx.flat(); ctx.roughness(0.95);
-  ctx.albedo("cdn/texture-weathered-wet-dark-granite.png");
+  ctx.albedo("/cdn/value.243c4d064e00fadee4358d31215a4c6a8aae8847e4fe90bfca0a813388da8c76.png");
   rock(ctx, xf(), r, { sub: (ctx.lod ?? 1) <= 2, sx: p.sx ?? 1.2, sy: p.sy ?? 0.75, sz: p.sz ?? 1, rough: 0.4, sink: 0.3,
     face: (c, n) => c.color(n[1] > 0.6 && c.random() < 0.7 ? "oklch(0.62 0.07 135)" : "oklch(0.78 0.01 250)") });
 }
