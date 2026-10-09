@@ -35,6 +35,176 @@ orch-gibbet-g3:
   primitive: {kind: scripted, params: {}, script: scripts/gen/orch-gibbet.js, seed: 66}
   rotation: 160.01689347810003
   tags: [orchard, z01-dressing, gibbet]
+rime-bed:
+  audio: {clip: /cdn/moodboard-gothic-horror/sfx-howling-mountain-blizzard-wind-and-distant-wolf.mp3, gain: 0.18, loop: true, maxDistance: 45, spatial: true}
+  feetPosition: {x: 112, y: {terrain: 1}, z: -2}
+  id: rime-bed
+  tags: [rime-dress]
+rime-ice-0:
+  feetPosition: {x: 110, y: {terrain: -0.05}, z: -14}
+  id: rime-ice-0
+  material: {color: oklch(0.88 0.06 230)}
+  physics: static
+  primitive: {kind: scripted, params: {h: 1.6, n: 7, r: 0.6}, script: scripts/gen/deep-crystal.js, seed: 600}
+  rotation: 295.1754911709577
+  tags: [rime-dress]
+rime-ice-1:
+  feetPosition: {x: 134, y: {terrain: -0.05}, z: 10}
+  id: rime-ice-1
+  material: {color: oklch(0.88 0.06 230)}
+  physics: static
+  primitive: {kind: scripted, params: {h: 2.2, n: 8, r: 0.7}, script: scripts/gen/deep-crystal.js, seed: 601}
+  rotation: 116.80922132916749
+  tags: [rime-dress]
+rime-ice-2:
+  feetPosition: {x: 138, y: {terrain: -0.05}, z: -12}
+  id: rime-ice-2
+  material: {color: oklch(0.88 0.06 230)}
+  physics: static
+  primitive: {kind: scripted, params: {h: 2.8, n: 10, r: 0.9}, script: scripts/gen/deep-crystal.js, seed: 602}
+  rotation: 99.11466473713517
+  tags: [rime-dress]
+rime-ice-3:
+  feetPosition: {x: 116, y: {terrain: -0.05}, z: 12}
+  id: rime-ice-3
+  material: {color: oklch(0.88 0.06 230)}
+  physics: static
+  primitive: {kind: scripted, params: {h: 1.3, n: 6, r: 0.5}, script: scripts/gen/deep-crystal.js, seed: 603}
+  rotation: 209.2906406801194
+  tags: [rime-dress]
+rime-ice-4:
+  feetPosition: {x: 92, y: {terrain: -0.05}, z: -6}
+  id: rime-ice-4
+  material: {color: oklch(0.88 0.06 230)}
+  physics: static
+  primitive: {kind: scripted, params: {h: 1, n: 5, r: 0.4}, script: scripts/gen/deep-crystal.js, seed: 604}
+  rotation: 83.03546827286482
+  tags: [rime-dress]
+rime-light-0:
+  feetPosition: {x: 136, y: {terrain: 3}, z: -4}
+  id: rime-light-0
+  light: {color: "#8fc4ff", distance: 16, intensity: 3, kind: point}
+  tags: [rime-dress]
+rime-light-1:
+  feetPosition: {x: 120, y: {terrain: 8}, z: -4}
+  id: rime-light-1
+  light: {color: "#a9c8ff", distance: 26, intensity: 2.5, kind: point}
+  tags: [rime-dress]
+rime-light-2:
+  feetPosition: {x: 84, y: {terrain: 0.6}, z: 3}
+  id: rime-light-2
+  light: {color: "#ffb066", distance: 7, intensity: 1.6, kind: point}
+  tags: [rime-dress]
+rime-rock-0:
+  feetPosition: {x: 82, y: {terrain: 0}, z: 10}
+  id: rime-rock-0
+  material: {color: oklch(0.86 0.02 240)}
+  physics: static
+  primitive: {kind: scripted, params: {r: 1.4, sx: 1.2036732556298375, sy: 0.7475742624141275, sz: 1}, script: scripts/gen/hub-boulder.js, seed: 500}
+  rotation: 188.66717881523073
+  tags: [rime-dress]
+rime-rock-1:
+  feetPosition: {x: 88, y: {terrain: 0}, z: -4}
+  id: rime-rock-1
+  material: {color: oklch(0.86 0.02 240)}
+  physics: static
+  primitive: {kind: scripted, params: {r: 1.1, sx: 1.1248344270512463, sy: 0.8827360146911815, sz: 1}, script: scripts/gen/hub-boulder.js, seed: 501}
+  rotation: 269.39451998099685
+  tags: [rime-dress]
+rime-rock-10:
+  feetPosition: {x: 122.78379008767253, y: {terrain: 0}, z: -22.009336132717827}
+  id: rime-rock-10
+  material: {color: oklch(0.86 0.02 240)}
+  physics: static
+  primitive: {kind: scripted, params: {r: 1.573091851733625, sx: 1.1890629911795259, sy: 0.8167581277666613, sz: 1}, script: scripts/gen/hub-boulder.js, seed: 510}
+  rotation: 222.00185978785157
+  tags: [rime-dress]
+rime-rock-11:
+  feetPosition: {x: 134.27677985063653, y: {terrain: 0}, z: -18.497922514847684}
+  id: rime-rock-11
+  material: {color: oklch(0.86 0.02 240)}
+  physics: static
+  primitive: {kind: scripted, params: {r: 2.467908193636686, sx: 1.3259278792887925, sy: 0.853672786639072, sz: 1}, script: scripts/gen/hub-boulder.js, seed: 511}
+  rotation: 308.0773451831192
+  tags: [rime-dress]
+rime-rock-12:
+  feetPosition: {x: 137.35388047825458, y: {terrain: 0}, z: -12.816258173904053}
+  id: rime-rock-12
+  material: {color: oklch(0.86 0.02 240)}
+  physics: static
+  primitive: {kind: scripted, params: {r: 2.4266970017924905, sx: 1.2636744340881705, sy: 0.7938920064596459, sz: 1}, script: scripts/gen/hub-boulder.js, seed: 512}
+  rotation: 270.32814698293805
+  tags: [rime-dress]
+rime-rock-2:
+  feetPosition: {x: 94, y: {terrain: 0}, z: 7}
+  id: rime-rock-2
+  material: {color: oklch(0.86 0.02 240)}
+  physics: static
+  primitive: {kind: scripted, params: {r: 1.6, sx: 1.1563088131137191, sy: 0.6750782436691224, sz: 1}, script: scripts/gen/hub-boulder.js, seed: 502}
+  rotation: 124.4647741690278
+  tags: [rime-dress]
+rime-rock-3:
+  feetPosition: {x: 101, y: {terrain: 0}, z: -7}
+  id: rime-rock-3
+  material: {color: oklch(0.86 0.02 240)}
+  physics: static
+  primitive: {kind: scripted, params: {r: 1.2, sx: 1.009619715437293, sy: 0.6825669311452657, sz: 1}, script: scripts/gen/hub-boulder.js, seed: 503}
+  rotation: 295.9433612599969
+  tags: [rime-dress]
+rime-rock-4:
+  feetPosition: {x: 104, y: {terrain: 0}, z: 5}
+  id: rime-rock-4
+  material: {color: oklch(0.86 0.02 240)}
+  physics: static
+  primitive: {kind: scripted, params: {r: 1, sx: 1.17213768158108, sy: 0.7132972659543156, sz: 1}, script: scripts/gen/hub-boulder.js, seed: 504}
+  rotation: 356.2463741283864
+  tags: [rime-dress]
+rime-rock-5:
+  feetPosition: {x: 138.34675005914045, y: {terrain: 0}, z: 2.529490749895168}
+  id: rime-rock-5
+  material: {color: oklch(0.86 0.02 240)}
+  physics: static
+  primitive: {kind: scripted, params: {r: 1.7385399599559606, sx: 1.288357336446643, sy: 0.6801262917928398, sz: 1}, script: scripts/gen/hub-boulder.js, seed: 505}
+  rotation: 9.783775806427002
+  tags: [rime-dress]
+rime-rock-6:
+  feetPosition: {x: 134.4921794994516, y: {terrain: 0}, z: 10.82234068661344}
+  id: rime-rock-6
+  material: {color: oklch(0.86 0.02 240)}
+  physics: static
+  primitive: {kind: scripted, params: {r: 1.7834431812167169, sx: 1.2508532136678696, sy: 0.8769446055404841, sz: 1}, script: scripts/gen/hub-boulder.js, seed: 506}
+  rotation: 287.11018974892795
+  tags: [rime-dress]
+rime-rock-7:
+  feetPosition: {x: 128.27809707086024, y: {terrain: 0}, z: 12.203307105635076}
+  id: rime-rock-7
+  material: {color: oklch(0.86 0.02 240)}
+  physics: static
+  primitive: {kind: scripted, params: {r: 1.5126743351109326, sx: 1.3651384067721666, sy: 0.8378797164419666, sz: 1}, script: scripts/gen/hub-boulder.js, seed: 507}
+  rotation: 110.22308341227472
+  tags: [rime-dress]
+rime-rock-8:
+  feetPosition: {x: 119.23595708598417, y: {terrain: 0}, z: 13.062993326875528}
+  id: rime-rock-8
+  material: {color: oklch(0.86 0.02 240)}
+  physics: static
+  primitive: {kind: scripted, params: {r: 1.6337052333168685, sx: 1.132062170188874, sy: 0.6923523247009143, sz: 1}, script: scripts/gen/hub-boulder.js, seed: 508}
+  rotation: 20.127212461084127
+  tags: [rime-dress]
+rime-rock-9:
+  feetPosition: {x: 116.94922650365977, y: {terrain: 0}, z: -21.332796410106678}
+  id: rime-rock-9
+  material: {color: oklch(0.86 0.02 240)}
+  physics: static
+  primitive: {kind: scripted, params: {r: 2.269200073648244, sx: 1.3856025772169231, sy: 0.7241333311423659, sz: 1}, script: scripts/gen/hub-boulder.js, seed: 509}
+  rotation: 102.68390575423837
+  tags: [rime-dress]
+rime-snow:
+  feetPosition: {x: 112, y: {terrain: 0}, z: -2}
+  fx: {script: "fx\npop flake n=?mobile:150|400 on=box(<36,0,22>).c(9) life=5..8 v=up(-.7..-1.2)+sdir()*.2 size=.02..0.045 acc=wind()*.4+curl(.3) floor=die col=<.9,.93,1> a=0>.1:.85>.85:.85>0 r=sprite(soft-disc,alpha)\npop drift n=?mobile:6|12 on=box(<30,0,18>) life=5..8 v=sdir()*.2+wind()*.5 size=2..3.5 acc=curl(.1)+drag(.4) col=<.75,.8,.9> a=0>.12:.12>.8:.1>0 rot=spin(.05) r=sprite(smoke-puff,alpha)"}
+  id: rime-snow
+  tags: [rime-dress]
+  visibleRange: {max: 70, min: 0}
 wisps-orch-2:
   feetPosition: {x: 68, y: {terrain: 1.1}, z: 12}
   fx: {script: "fx\npop mote n=?low:10|22 on=box(<9,2.2,9>) size=.04..0.08 col=hdr(1.8,1.2,2.8)*flick(.6,.5) a=.9 v=curl(.25)*.6 sz=$size*flick(1.3,.4) wrap=4.5;1.6;4.5 r=sprite(ember,add)\npop orb n=3 on=box(<7,1.4,7>) size=.14..0.22 col=hdr(1.8,1.2,2.8)*1.4 a=.75*flick(.4,.35) v=curl(.15)*.5 sz=$size*flick(.8,.3) wrap=3.5;1;3.5 r=sprite(soft-disc,add)\npop haze n=2 on=box(<6,.4,6>) size=2.2..3 col=hdr(1.8,1.2,2.8)*.25 a=.18*flick(.2,.3) sz=$size rot=spin(.05) r=sprite(smoke-puff,add)\npop lamp n=1 at=point() r=light(<.7,.55,1>,2.4*flick(.5,.25),11)"}
