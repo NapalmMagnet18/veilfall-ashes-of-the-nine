@@ -9,6 +9,7 @@ cap-blossom-2:
   rotation: 166
   scale: 1.25
   tags: [candlehold, flora]
+  visibleRange: {max: 80, min: 0}
 cap-blossom-2/trunk:
   feetPosition: {x: 0, y: 0, z: 0}
   id: cap-blossom-2/trunk
@@ -16,6 +17,7 @@ cap-blossom-2/trunk:
   physics: static
   primitive: {height: 2.6, kind: cylinder, radiusBottom: 0.3, radiusTop: 0.25}
   visible: false
+  visibleRange: {max: 80, min: 0}
 cap-blossom-3:
   castShadow: true
   feetPosition: {x: -5.2, y: {terrain: 0}, z: 73}
@@ -26,6 +28,7 @@ cap-blossom-3:
   rotation: 249
   scale: 1.4
   tags: [candlehold, flora]
+  visibleRange: {max: 80, min: 0}
 cap-blossom-3/trunk:
   feetPosition: {x: 0, y: 0, z: 0}
   id: cap-blossom-3/trunk
@@ -33,6 +36,7 @@ cap-blossom-3/trunk:
   physics: static
   primitive: {height: 2.6, kind: cylinder, radiusBottom: 0.3, radiusTop: 0.25}
   visible: false
+  visibleRange: {max: 80, min: 0}
 cap-exchange:
   castShadow: true
   children: [{feetPosition: {x: 0, y: 6.4, z: -5}, id: sign, ui: "<div face=\"front\" width=\"5.2m\" emissive class=\"px-6 py-3 text-center\" style=\"background:linear-gradient(#2a1d14,#160f0b);border:6px solid #6b4a2a;box-shadow:inset 0 0 0 3px #c49c63;font-family:serif;color:#e7d9b8\"><div style=\"font-size:150px;letter-spacing:24px\">THE EXCHANGE</div><div style=\"font-size:70px;color:#c49c63\">ledgers of Candlehold · buy · sell · bid</div></div>"}, {feetPosition: {x: -4, y: 2.8, z: -3.6}, id: lamp-l, light: {color: oklch(0.8 0.13 65), distance: 10, intensity: 2.6, kind: point}}, {feetPosition: {x: 4, y: 2.8, z: -3.6}, id: lamp-r, light: {color: oklch(0.8 0.13 65), distance: 10, intensity: 2.6, kind: point}}]

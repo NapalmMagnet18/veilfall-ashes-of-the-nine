@@ -593,6 +593,7 @@ candle-road/milestone-8:
   physics: static
   primitive: {kind: scripted, params: {candles: [[0, 0, 0.076, 0.04, 1], [-0.191, 0.095, 0.243, 0.044, 1], [0.088, -0.114, 0.174, 0.034, 1], [0.043, 0.093, 0.12, 0.03, 1], [-0.111, -0.164, 0.1, 0.034, 1], [0.198, -0.072, 0.206, 0.031, 1], [-0.129, 0.129, 0.084, 0.042, 1]], h: 1.53, notch: 1, seed: 8, snap: false, w: 0.315, yaw: 76}, script: scripts/gen/vf-milestone.js, seed: 8}
   tags: [z01-dressing, road]
+  visibleRange: {max: 80, min: 0}
 candle-road/milestone-9:
   feetPosition: {x: -7.101715620507495, y: 0.5584717552494333, z: -41.790591795127625}
   fx: {params: {power: 2.4, radius: 7, tips: "0.078,1.542,0.054;-0.151,1.515,-0.013;0.029,1.488,-0.096;0.000,1.474,0.000"}, script: scripts/effects/candles.fx.js}
@@ -602,6 +603,7 @@ candle-road/milestone-9:
   physics: static
   primitive: {kind: scripted, params: {candles: [[0, 0, 0.122, 0.034, 1], [-0.1, -0.005, 0.136, 0.04, 1], [0.033, -0.089, 0.19, 0.041, 1], [0.024, 0.15, 0.163, 0.037, 1]], h: 1.17, notch: 2, seed: 9, snap: false, w: 0.275, yaw: -104}, script: scripts/gen/vf-milestone.js, seed: 9}
   tags: [z01-dressing, road]
+  visibleRange: {max: 80, min: 0}
 climb-dress-0:
   castShadow: true
   feetPosition: {x: 18.15147914213295, y: {terrain: -0.1}, z: -113.56832052791817}
