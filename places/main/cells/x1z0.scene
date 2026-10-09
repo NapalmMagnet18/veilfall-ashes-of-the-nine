@@ -64,6 +64,13 @@ bw-tree-10:
   scale: 1.15
   state: {kind: antlersnag}
   tags: [bloodwoods, flora, tree]
+bw-tree-10/trunk:
+  feetPosition: {x: 0, y: 0, z: 0}
+  id: bw-tree-10/trunk
+  parent: bw-tree-10
+  physics: {body: static, collider: box}
+  primitive: {depth: 0.43, height: 2.61, kind: box, width: 0.43}
+  visible: false
 bw-tree-16:
   castShadow: true
   feetPosition: {x: 97.4, y: {terrain: -0.25}, z: -21.5}
@@ -75,6 +82,13 @@ bw-tree-16:
   scale: 1.04
   state: {kind: bloodoak}
   tags: [bloodwoods, flora, tree]
+bw-tree-16/trunk:
+  feetPosition: {x: 0, y: 0, z: 0}
+  id: bw-tree-16/trunk
+  parent: bw-tree-16
+  physics: {body: static, collider: box}
+  primitive: {depth: 0.87, height: 2.88, kind: box, width: 0.87}
+  visible: false
 bw-tree-17:
   castShadow: true
   feetPosition: {x: 83.2, y: {terrain: -0.25}, z: 24.3}
@@ -86,6 +100,13 @@ bw-tree-17:
   scale: 1.22
   state: {kind: weepwillow}
   tags: [bloodwoods, flora, tree]
+bw-tree-17/trunk:
+  feetPosition: {x: 0, y: 0, z: 0}
+  id: bw-tree-17/trunk
+  parent: bw-tree-17
+  physics: {body: static, collider: box}
+  primitive: {depth: 0.57, height: 2.46, kind: box, width: 0.57}
+  visible: false
 bw-tree-19:
   castShadow: true
   feetPosition: {x: 75.6, y: {terrain: -0.25}, z: -18.3}
@@ -97,6 +118,13 @@ bw-tree-19:
   scale: 0.94
   state: {kind: bloodoak}
   tags: [bloodwoods, flora, tree]
+bw-tree-19/trunk:
+  feetPosition: {x: 0, y: 0, z: 0}
+  id: bw-tree-19/trunk
+  parent: bw-tree-19
+  physics: {body: static, collider: box}
+  primitive: {depth: 0.96, height: 3.19, kind: box, width: 0.96}
+  visible: false
 bw-tree-2:
   castShadow: true
   feetPosition: {x: 81.5, y: {terrain: -0.25}, z: -11.5}
@@ -108,6 +136,13 @@ bw-tree-2:
   scale: 0.97
   state: {kind: antlersnag}
   tags: [bloodwoods, flora, tree]
+bw-tree-2/trunk:
+  feetPosition: {x: 0, y: 0, z: 0}
+  id: bw-tree-2/trunk
+  parent: bw-tree-2
+  physics: {body: static, collider: box}
+  primitive: {depth: 0.52, height: 3.09, kind: box, width: 0.52}
+  visible: false
 bw-tree-20:
   castShadow: true
   feetPosition: {x: 92.47, y: {terrain: -0.25}, z: 24.08}
@@ -119,6 +154,13 @@ bw-tree-20:
   scale: 1
   state: {kind: weepwillow}
   tags: [bloodwoods, flora, tree]
+bw-tree-20/trunk:
+  feetPosition: {x: 0, y: 0, z: 0}
+  id: bw-tree-20/trunk
+  parent: bw-tree-20
+  physics: {body: static, collider: box}
+  primitive: {depth: 0.7, height: 3, kind: box, width: 0.7}
+  visible: false
 bw-tree-3:
   castShadow: true
   feetPosition: {x: 94.1, y: {terrain: -0.25}, z: 15.3}
@@ -130,6 +172,13 @@ bw-tree-3:
   scale: 1.13
   state: {kind: bloodoak}
   tags: [bloodwoods, flora, tree]
+bw-tree-3/trunk:
+  feetPosition: {x: 0, y: 0, z: 0}
+  id: bw-tree-3/trunk
+  parent: bw-tree-3
+  physics: {body: static, collider: box}
+  primitive: {depth: 0.8, height: 2.65, kind: box, width: 0.8}
+  visible: false
 bw-tree-6:
   castShadow: true
   feetPosition: {x: 79.26, y: {terrain: -0.25}, z: 32.36}
@@ -141,6 +190,13 @@ bw-tree-6:
   scale: 1.11
   state: {kind: antlersnag}
   tags: [bloodwoods, flora, tree]
+bw-tree-6/trunk:
+  feetPosition: {x: 0, y: 0, z: 0}
+  id: bw-tree-6/trunk
+  parent: bw-tree-6
+  physics: {body: static, collider: box}
+  primitive: {depth: 0.45, height: 2.7, kind: box, width: 0.45}
+  visible: false
 bw-tree-9:
   castShadow: true
   feetPosition: {x: 97.7, y: {terrain: -0.25}, z: -12.8}
@@ -152,6 +208,13 @@ bw-tree-9:
   scale: 0.97
   state: {kind: weepwillow}
   tags: [bloodwoods, flora, tree]
+bw-tree-9/trunk:
+  feetPosition: {x: 0, y: 0, z: 0}
+  id: bw-tree-9/trunk
+  parent: bw-tree-9
+  physics: {body: static, collider: box}
+  primitive: {depth: 0.72, height: 3.09, kind: box, width: 0.72}
+  visible: false
 fauna-crow-b2:
   feetPosition: {x: 64, y: {terrain: 0}, z: 8}
   id: fauna-crow-b2
@@ -225,6 +288,13 @@ orch-apple-0:
   rotation: 0
   scale: 0.9
   tags: [orchard, flora, tree]
+orch-apple-0/trunk:
+  feetPosition: {x: 0, y: 0, z: 0}
+  id: orch-apple-0/trunk
+  parent: orch-apple-0
+  physics: {body: static, collider: box}
+  primitive: {depth: 0.67, height: 3.33, kind: box, width: 0.67}
+  visible: false
 orch-apple-10:
   castShadow: true
   children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
@@ -307,6 +377,13 @@ orch-apple-2:
   rotation: 352
   scale: 1.19
   tags: [orchard, flora, tree]
+orch-apple-2/trunk:
+  feetPosition: {x: 0, y: 0, z: 0}
+  id: orch-apple-2/trunk
+  parent: orch-apple-2
+  physics: {body: static, collider: box}
+  primitive: {depth: 0.5, height: 2.52, kind: box, width: 0.5}
+  visible: false
 orch-apple-20:
   castShadow: true
   children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
@@ -377,6 +454,13 @@ orch-apple-5:
   rotation: 104
   scale: 0.99
   tags: [orchard, flora, tree]
+orch-apple-5/trunk:
+  feetPosition: {x: 0, y: 0, z: 0}
+  id: orch-apple-5/trunk
+  parent: orch-apple-5
+  physics: {body: static, collider: box}
+  primitive: {depth: 0.61, height: 3.03, kind: box, width: 0.61}
+  visible: false
 orch-apple-6:
   castShadow: true
   feetPosition: {x: 88.51, y: {terrain: -0.15000000000000036}, z: 28.14}
@@ -387,6 +471,13 @@ orch-apple-6:
   rotation: 222
   scale: 1.08
   tags: [orchard, flora, tree]
+orch-apple-6/trunk:
+  feetPosition: {x: 0, y: 0, z: 0}
+  id: orch-apple-6/trunk
+  parent: orch-apple-6
+  physics: {body: static, collider: box}
+  primitive: {depth: 0.56, height: 2.78, kind: box, width: 0.56}
+  visible: false
 orch-apple-lamp-0:
   children: [{material: {color: oklch(0.88 0.12 70), emissive: oklch(0.85 0.15 60), emissiveIntensity: 3}, physics: none, primitive: {kind: sphere, radius: 0.07}}]
   feetPosition: {x: 80.3, y: {terrain: 2.2}, z: -5.1}
