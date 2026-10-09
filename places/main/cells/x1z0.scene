@@ -432,12 +432,6 @@ rime-snow:
   id: rime-snow
   tags: [rime-dress]
   visibleRange: {max: 70, min: 0}
-temp-appleA2:
-  feetPosition: {x: 70, y: {terrain: 0}, z: 22}
-  id: temp-appleA2
-  mixer: {base: {clip: Sway, loop: loop, weight: 1}}
-  model: /cdn/value.d6c1233f14db0eaa7e26010cae90c13ee56be4d378af5ffaf0e6dfb5b31c4571.glb
-  tags: [temp]
 wisps-orch-2:
   feetPosition: {x: 68, y: {terrain: 1.1}, z: 12}
   fx: {script: "fx\npop mote n=?low:10|22 on=box(<9,2.2,9>) size=.04..0.08 col=hdr(1.8,1.2,2.8)*flick(.6,.5) a=.9 v=curl(.25)*.6 sz=$size*flick(1.3,.4) wrap=4.5;1.6;4.5 r=sprite(ember,add)\npop orb n=3 on=box(<7,1.4,7>) size=.14..0.22 col=hdr(1.8,1.2,2.8)*1.4 a=.75*flick(.4,.35) v=curl(.15)*.5 sz=$size*flick(.8,.3) wrap=3.5;1;3.5 r=sprite(soft-disc,add)\npop haze n=2 on=box(<6,.4,6>) size=2.2..3 col=hdr(1.8,1.2,2.8)*.25 a=.18*flick(.2,.3) sz=$size rot=spin(.05) r=sprite(smoke-puff,add)\npop lamp n=1 at=point() r=light(<.7,.55,1>,2.4*flick(.5,.25),11)"}
