@@ -1,28 +1,27 @@
 // A cluster of candle flames: one small flickering wisp stream per lit wick (params.tips =
-// "x,y,z;x,y,z" metres from the anchor, up to 5), a thin smoke thread off the first wick, and ONE
+// "x,y,z;x,y,z" metres from the anchor, up to 5; all wicks share one population), a thin smoke thread off the first wick, and ONE
 // light whose brightness rides the live flame count. Used by every milestone, the toll counter, the wagon lantern.
 import { fx, pop, attr, range, curve, flicker, firelight, count, hdr, vec3, sprite, light } from "builtin/fx";
 export function effect(ctx) {
   const tips = String(ctx.params.tips ?? "0,0.5,0").split(";").map((s) => s.split(",").map(Number)).filter((a) => a.length === 3 && a.every(Number.isFinite)).slice(0, 5);
   if (!tips.length) tips.push([0, 0.5, 0]);
   const power = Number(ctx.params.power ?? 2.4), radius = Number(ctx.params.radius ?? 7);
-  const pops = [];
-  let total = null;
-  tips.forEach(([x, y, z], i) => {
-    const f = pop("f" + i, {
-      spawn: { rate: flicker(0.55 + i * 0.17, 0.35).mul(16) },
-      lifetime: [0.25, 0.45],
-      space: "local",
-      init: { size: range(0.04, 0.065) },
-      pos: vec3(x, y, z).add(vec3(attr("age").mul(9 + i).sin().mul(0.006), attr("age").mul(0.2), 0)),
-      color: curve([0, hdr(5, 3.4, 1.4)], [0.45, hdr(3.2, 1.4, 0.3)], [1, hdr(1.2, 0.3, 0.06)]),
-      alpha: curve([0, 0], [0.15, 1], [1, 0]),
-      size: attr("size").mul(curve([0, 0.75], [0.35, 1], [1, 0.35])),
-      render: sprite({ texture: "textures/flame-wisp", blend: "add" }),
-    });
-    pops.push(f);
-    total = total ? total.add(count(f)) : count(f);
+  // every wick in ONE population (one draw, not one per wick): each particle picks its wick k at birth
+  const n = tips.length, k = attr("k");
+  let at = null;
+  tips.forEach(([x, y, z], i) => { const w = k.sub(i).abs().mul(2).clamp01().neg().add(1); const term = vec3(x, y, z).mul(w); at = at ? at.add(term) : term; });
+  const f = pop("f", {
+    spawn: { rate: flicker(0.62, 0.3).mul(16 * n) },
+    lifetime: [0.25, 0.45],
+    space: "local",
+    init: { size: range(0.04, 0.065), k: range(0, n - 0.001).floor() },
+    pos: at.add(vec3(attr("age").mul(k.add(9)).sin().mul(0.006), attr("age").mul(0.2), 0)),
+    color: curve([0, hdr(5, 3.4, 1.4)], [0.45, hdr(3.2, 1.4, 0.3)], [1, hdr(1.2, 0.3, 0.06)]),
+    alpha: curve([0, 0], [0.15, 1], [1, 0]),
+    size: attr("size").mul(curve([0, 0.75], [0.35, 1], [1, 0.35])),
+    render: sprite({ texture: "textures/flame-wisp", blend: "add" }),
   });
+  const pops = [f], total = count(f);
   const [sx, sy, sz] = tips[0];
   const smoke = pop("smoke", {
     spawn: { rate: flicker(0.3, 0.4).mul(2.5) },
