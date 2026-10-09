@@ -1650,42 +1650,42 @@ fen-stump-7:
   rotation: 282
   tags: [fen]
 fen-tree-1:
-  feetPosition: {x: -56.196993587154424, y: {terrain: -0.05}, z: 5.998534024125174}
+  feetPosition: {x: -56.38, y: {terrain: -0.05}, z: 10.64}
   id: fen-tree-1
   physics: static
   primitive: {kind: scripted, params: {girth: 1.1, h: 5.6, lean: 0.30000000000000004, seed: 103}, script: scripts/gen/fen-tree.js}
   rotation: 12.999999999999993
   tags: [fen]
 fen-tree-13:
-  feetPosition: {x: -59.8384054946385, y: {terrain: -0.05}, z: -28.025846198526853}
+  feetPosition: {x: -51.93, y: {terrain: -0.05}, z: -30.74}
   id: fen-tree-13
   physics: static
   primitive: {kind: scripted, params: {girth: 1.1, h: 6.2, lean: 0.30000000000000004, seed: 115}, script: scripts/gen/fen-tree.js}
   rotation: 182
   tags: [fen]
 fen-tree-14:
-  feetPosition: {x: -54.090509758839076, y: {terrain: -0.05}, z: -25.85849939812517}
+  feetPosition: {x: -47.35, y: {terrain: -0.05}, z: -24.38}
   id: fen-tree-14
   physics: static
   primitive: {kind: scripted, params: {girth: 1.2000000000000002, h: 5, lean: 0.2, seed: 116}, script: scripts/gen/fen-tree.js}
   rotation: 152.00000000000003
   tags: [fen]
 fen-tree-15:
-  feetPosition: {x: -50.633089462940106, y: {terrain: -0.05}, z: -20.82431072605721}
+  feetPosition: {x: -45.03, y: {terrain: -0.05}, z: -21.13}
   id: fen-tree-15
   physics: static
   primitive: {kind: scripted, params: {girth: 1.3, h: 6.300000000000001, lean: 0.5, seed: 117}, script: scripts/gen/fen-tree.js}
   rotation: 122.00000000000003
   tags: [fen]
 fen-tree-16:
-  feetPosition: {x: -48.781617095774514, y: {terrain: -0.05}, z: -18.435687392286262}
+  feetPosition: {x: -42.41, y: {terrain: -0.05}, z: -19.28}
   id: fen-tree-16
   physics: static
   primitive: {kind: scripted, params: {girth: 0.8, h: 5.1000000000000005, lean: 0.4, seed: 118}, script: scripts/gen/fen-tree.js}
   rotation: 101
   tags: [fen]
 fen-tree-2:
-  feetPosition: {x: -61.80635181870735, y: {terrain: -0.05}, z: 7.865830729543795}
+  feetPosition: {x: -61.32, y: {terrain: -0.05}, z: 11.84}
   id: fen-tree-2
   physics: static
   primitive: {kind: scripted, params: {girth: 1.2000000000000002, h: 4.4, lean: 0.2, seed: 104}, script: scripts/gen/fen-tree.js}
