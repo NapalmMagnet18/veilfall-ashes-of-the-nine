@@ -87,6 +87,94 @@ fen-tree-12:
   primitive: {kind: scripted, params: {girth: 1, h: 4.9, lean: 0.4, seed: 114}, script: scripts/gen/fen-tree.js}
   rotation: -188.00000000000003
   tags: [fen]
+fen-tree-17:
+  castShadow: true
+  feetPosition: {x: -86.1, y: {terrain: -0.4}, z: -6.1}
+  id: fen-tree-17
+  mixer: {base: {clip: Sway, loop: loop, speed: 0.76, weight: 1}}
+  model: /cdn/value.2cda20bb2481ef4a33bfd0beb60d2b7fc21612af870cf3a9f991b71e71b7595f.glb
+  receiveShadow: true
+  rotation: 0
+  scale: 1.12
+  state: {kind: c}
+  tags: [fen, flora, tree]
+fen-tree-18:
+  castShadow: true
+  feetPosition: {x: -81.3, y: {terrain: -0.4}, z: 3.7}
+  id: fen-tree-18
+  mixer: {base: {clip: Sway, loop: loop, speed: 0.81, weight: 1}}
+  model: /cdn/value.2cda20bb2481ef4a33bfd0beb60d2b7fc21612af870cf3a9f991b71e71b7595f.glb
+  receiveShadow: true
+  rotation: 75.8
+  scale: 1.06
+  state: {kind: c}
+  tags: [fen, flora, tree]
+fen-tree-19:
+  castShadow: true
+  feetPosition: {x: -67.3, y: {terrain: -0.4}, z: -32.1}
+  id: fen-tree-19
+  mixer: {base: {clip: Sway, loop: loop, speed: 0.85, weight: 1}}
+  model: /cdn/value.2cda20bb2481ef4a33bfd0beb60d2b7fc21612af870cf3a9f991b71e71b7595f.glb
+  receiveShadow: true
+  rotation: 118.6
+  scale: 1.06
+  state: {kind: c}
+  tags: [fen, flora, tree]
+fen-tree-20:
+  castShadow: true
+  feetPosition: {x: -77.2, y: {terrain: -0.4}, z: -27.4}
+  id: fen-tree-20
+  mixer: {base: {clip: Sway, loop: loop, speed: 0.83, weight: 1}}
+  model: /cdn/value.2cda20bb2481ef4a33bfd0beb60d2b7fc21612af870cf3a9f991b71e71b7595f.glb
+  receiveShadow: true
+  rotation: 195.4
+  scale: 1.04
+  state: {kind: c}
+  tags: [fen, flora, tree]
+fen-tree-21:
+  castShadow: true
+  feetPosition: {x: -84.3, y: {terrain: -0.4}, z: -18.3}
+  id: fen-tree-21
+  mixer: {base: {clip: Sway, loop: loop, speed: 0.77, weight: 1}}
+  model: /cdn/value.2cda20bb2481ef4a33bfd0beb60d2b7fc21612af870cf3a9f991b71e71b7595f.glb
+  receiveShadow: true
+  rotation: 294
+  scale: 0.88
+  state: {kind: c}
+  tags: [fen, flora, tree]
+fen-tree-22:
+  castShadow: true
+  feetPosition: {x: -75.4, y: {terrain: -0.4}, z: 8.5}
+  id: fen-tree-22
+  mixer: {base: {clip: Sway, loop: loop, speed: 0.71, weight: 1}}
+  model: /cdn/value.2cda20bb2481ef4a33bfd0beb60d2b7fc21612af870cf3a9f991b71e71b7595f.glb
+  receiveShadow: true
+  rotation: 254.8
+  scale: 1.04
+  state: {kind: c}
+  tags: [fen, flora, tree]
+fen-tree-23:
+  castShadow: true
+  feetPosition: {x: -85.4, y: {terrain: -0.4}, z: -13.4}
+  id: fen-tree-23
+  mixer: {base: {clip: Sway, loop: loop, speed: 0.88, weight: 1}}
+  model: /cdn/value.2cda20bb2481ef4a33bfd0beb60d2b7fc21612af870cf3a9f991b71e71b7595f.glb
+  receiveShadow: true
+  rotation: 246.2
+  scale: 0.96
+  state: {kind: c}
+  tags: [fen, flora, tree]
+fen-tree-24:
+  castShadow: true
+  feetPosition: {x: -70.5, y: {terrain: -0.4}, z: 10.9}
+  id: fen-tree-24
+  mixer: {base: {clip: Sway, loop: loop, speed: 0.8, weight: 1}}
+  model: /cdn/value.2cda20bb2481ef4a33bfd0beb60d2b7fc21612af870cf3a9f991b71e71b7595f.glb
+  receiveShadow: true
+  rotation: 290.7
+  scale: 0.84
+  state: {kind: c}
+  tags: [fen, flora, tree]
 fen-tree-3:
   feetPosition: {x: -67.78399277288321, y: {terrain: -0.05}, z: 7.802286333355262}
   id: fen-tree-3
