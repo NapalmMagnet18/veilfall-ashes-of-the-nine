@@ -171,6 +171,20 @@ terrain:
   generator: scripts/terrain.js
   kind: heightmap
   materials:
+    - albedo: cdn/texture-terrain-packed-old-snow-with-frozen-footprints-and-grey-grit.png
+      id: snow
+      pbr: true
+      antiTiling: stochastic
+      normalStrength: 1.1
+      roughnessIntensity: 0.7
+      tint: oklch(0.92 0.015 240)
+    - albedo: cdn/texture-terrain-cracked-blue-black-ice-with-frost-rime.png
+      id: ice
+      pbr: true
+      antiTiling: stochastic
+      normalStrength: 0.8
+      roughnessIntensity: 0.25
+      tint: oklch(0.8 0.04 230)
     - albedo: cdn/texture-terrain-dead-grass-and-dark-moss-patchy-ash.png
       id: grass
       pbr: true
