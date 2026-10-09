@@ -43,6 +43,7 @@ assets:
     "/cdn/value.c576e59eef47752a9633c8392706d476a31a8d1fbeb4bfde64c5d465b252a607.png": {bytes: 550543, kind: image, name: charred-burnt-oak-wood-alligator-cracked, uploadedAt: "2026-10-09T09:37:40.502Z"}
     "/cdn/value.c6fcf610675854475468574bfe0518a407d5bfefdd82950a0f4132fe65ce35ec.png": {bytes: 597777, kind: image, name: rotten-torn-burgundy-burial-cloth, uploadedAt: "2026-10-09T09:36:37.482Z"}
     "/cdn/value.cd396819d656f0cac99b4c6b3eda49cccae72af69dcf6c99ba4a9b69b4afab38.png": {bytes: 456, kind: image, name: vf-card, uploadedAt: "2026-10-08T15:56:23.075Z"}
+    "/cdn/value.cf0efb09cfae9d48eb81547c0887259ba955c6f321a8dc659b29f63e6db5f10d.png": {bytes: 355253, kind: image, name: vf-icon-blade, uploadedAt: "2026-10-09T10:22:36.998Z"}
     "/cdn/value.d502a11179b049d3da0da9e5a9096754b6a72312519548047fe425ffcca9fdbf.png": {bytes: 461, kind: image, name: vf-slot, uploadedAt: "2026-10-08T15:56:11.909Z"}
     "/cdn/value.d630af2d76ab6292d985033cf37473c2b9cf35ae9eb015ad2de90fe6962e36e8.glb": {bytes: 21875012, kind: model, name: abbey-facade-breached, uploadedAt: "2026-10-08T19:24:19.552Z"}
     "/cdn/value.d7aca191be9efdb2897b7818cfba0699c38793d5c53f4e5907485d0868860f85.glb": {bytes: 3038396, kind: model, name: handcart-slim, uploadedAt: "2026-10-09T06:33:17.770Z"}
