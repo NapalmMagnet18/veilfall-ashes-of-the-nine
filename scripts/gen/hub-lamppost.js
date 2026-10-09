@@ -38,7 +38,7 @@ export function geometry(ctx) {
   // the arm: a main bar out to +X, a scroll curling under it, a brace back to the post
   tube(ctx, T, [[0, 2.55, 0], [0.25, 2.66, 0], [0.55, 2.62, 0], [0.62, 2.55, 0], [0.6, 2.5, 0]], [0.03, 0.027, 0.023, 0.02, 0.018], hi ? 8 : 5);
   const scroll = []; for (let k = 0; k <= (hi ? 18 : 9); k++) { const t = k / (hi ? 18 : 9), a = t * Math.PI * 2.4, rr = 0.13 * (1 - t * 0.75); scroll.push([0.2 + Math.cos(a) * rr * 0.9 + t * 0.12, 2.42 + Math.sin(a) * rr, 0]); }
-  if (fine) tube(ctx, T, scroll, (t) => 0.014 * (1 - t * 0.5), 4, false, true);
+  if (fine) tube(ctx, T, scroll, scroll.map((_, k) => 0.014 * (1 - (k / (scroll.length - 1)) * 0.5)), 4, false, true);
   tube(ctx, T, [[0, 2.15, 0], [0.18, 2.38, 0], [0.34, 2.62, 0]], 0.015, 4);
   // the chain: alternating links from the arm tip down to the lantern ring
   const links = hi ? 5 : fine ? 3 : 0;
