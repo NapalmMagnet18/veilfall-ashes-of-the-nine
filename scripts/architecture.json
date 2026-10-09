@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "basedOnSpecVersion": 815,
-  "updatedAt": "2026-10-09T06:42:50.123Z",
-  "summary": "VEILFALL: Ashes of the Nine is an isometric action RPG with a shared Z01 adventure and a solo Lantern Shrine menu stage. The world attaches a state-driven Bladewraith and HUD; the main-place referee coordinates quests and encounters while player, enemy, boss, persistence, loot and service modules divide live state and progression.",
+  "basedOnSpecVersion": 827,
+  "updatedAt": "2026-10-09T06:45:46.076Z",
+  "summary": "VEILFALL: Ashes of the Nine is an isometric action RPG whose shared main place contains the Z01 road, hub and chapter encounters; a solo Veil place hosts the character/menu flow. World templates attach the Bladewraith and HUD, while the main referee, player, enemy/boss scripts and shared character/data modules divide moment-to-moment state and progression.",
   "scriptPaths": [
     "scripts/abbess.js",
     "scripts/arrival.js",
@@ -78,6 +78,7 @@
     "scripts/gen/vf-tollhouse.js",
     "scripts/gen/wax-figure.js",
     "scripts/gen/wax-seal.js",
+    "scripts/gen/wayshrine.js",
     "scripts/grass-look.js",
     "scripts/grass.js",
     "scripts/hangman.js",
@@ -122,26 +123,25 @@
     "scripts/wax-pack.js"
   ],
   "places": [
-    "places/main/ - shared Z01 adventure; sim.js owns quest chapters, NPCs, pack/boss lifecycle, rewards, progression and room sound/music.",
-    "places/main/cells/ - six authored cells span Wayside Fire, Broken Lantern Road, Candlehold, Abbey/Crypt, Bone Stair/Ossuary, Fen/Lanternmere and Gallows Orchard; x0z0.scene holds camp services and landmarks.",
-    "places/main/cells/x0z1.scene - Candlehold's southern walled square with Exchange, fountain, townhouses, curtain wall and two emberblossom trees; exchange-board is the realm trade interface.",
-    "places/main/config.yaml - main terrain, atmosphere, vegetation distributions, arrival budget and reverb; adds spire/star/lily veilbloom ground layers.",
-    "places/veil/ - ephemeral solo Lantern Shrine menu stage; hidden menu body is parked here; cells/config/sim supply shrine-ravine setting and ambience."
+    "places/main/ - shared Z01 adventure; sim.js owns quest stages, NPCs, pack and boss lifecycle, rewards/progression and room soundscape.",
+    "places/main/cells/ - six authored cells span Wayside Fire, Candlehold, Broken Lantern Road and later chapter terrain; x0z0.scene holds camp and Candlehold landmarks, services and two wayshrines.",
+    "places/main/cells/x0z-1.scene - Abbey/Crypt-side cell, including the Ashen Abbey wayshrine at shrine-abbey.",
+    "places/main/config.yaml - terrain, atmosphere, vegetation distributions, acoustics and 760000-byte arrival budget.",
+    "places/veil/ - ephemeral solo Lantern Shrine menu stage; hidden menu body is parked here and its cells/config/sim provide the shrine-ravine setting and ambience."
   ],
   "roots": [
-    "world.config.yaml - world entry: main default, player/camera templates, lighting, arrival, nametag, desktop/touch actions and audio mix.",
+    "world.config.yaml - world entry: main default, player/camera templates, lighting, arrival and nametag behaviors, desktop/touch actions and audio mix.",
     "templates/player.js - Bladewraith body with humanoid-locomotion.js and scripts/player.js, plus carried-light child.",
     "templates/camera.js - custom camera template running scripts/camera.js.",
     "places/main/sim.js - Z01 referee for quests, NPCs, packs, progression, boss spawning/reset and soundscape.",
-    "places/main/cells/ - authored playable road and chapter terrain; cell scenes place landmarks, props, services and encounter spaces.",
-    "places/main/config.yaml - terrain and vegetation distributions plus main atmosphere and acoustics.",
+    "places/main/cells/ - authored playable road and chapter terrain; scenes place landmarks, props, services and encounters.",
     "places/veil/cells/ and places/veil/config.yaml - solo menu-stage shrine/ravine and environment; scripts/arrival.js saves an active Bearer leaving main."
   ],
   "shared": [
     "scripts/lib/character.js - Bearer schema, fresh state, realm roster/create/load/save/delete and packed position; player and arrival reuse it, crier and board-notes use realmOf.",
     "scripts/db.js and scripts/lib/data/realms.yml - character and realm-bound trade schemas plus realm routing/name registry.",
     "scripts/lib/data/economy.yml and scripts/lib/coins.js - copper denominations, drops, rewards, sell values and stock shared by sim, combat, shop, HUD and crier.",
-    "scripts/lib/data/combat.yml - hero, skill, enemy, boss and trainer-rank tuning consumed by player, wax-pack, boss scripts and trainer UI.",
+    "scripts/lib/data/combat.yml - hero, skill, enemy, boss, trainer and wayshrine tuning consumed by player, wax-pack, boss scripts and UI.",
     "scripts/lib/data/loot.yml, loot-icons.yml and scripts/lib/loot.js - gear/drop/forge rules, rolls, smith ranks, boss marks, crafting and gear stats for combat, pack UI and trade.",
     "scripts/lib/data/brews.yml and scripts/lib/brews.js - brew recipes, costs, rank scaling and active-brew helpers used by player, HUD and pack UI.",
     "scripts/lib/data/trade.yml and scripts/lib/trade.js - realm listing/buy/unlist/collection logic shared by camp and Candlehold boards; crier and board-notes read listings.",
@@ -152,34 +152,32 @@
     "scripts/player.js - onSpawn, onInput, update; scripts/ui.js - default state-driven HUD/menu renderer; ui/nametag.js - nametag renderer.",
     "scripts/abbess.js, bailiff.js, ringer.js, warden.js and hangman.js - boss onSpawn/update handlers.",
     "scripts/crier.js - onSpawn, quiet, update; scripts/board-notes.js and scripts/trophies.js - update; scripts/wax-pack.js - roll, telegraph, hurtPlayers, payout, update.",
-    "scripts/gen/cap-kit.js - Candlehold palette and local-frame geometry helpers; scripts/gen/hub-trophy.js - HOOKS, geometry, collider; scripts/gen/oss-kit.js - skull geometry.",
-    "scripts/lib/loot.js - gear, forge, marks, crafting and smith helpers; scripts/lib/character.js - CHAR_KEYS, fresh, START, realmOf, pack, zoneOf, roster and character persistence.",
-    "scripts/lib/shop.js and shop-ui.js - shop handlers/panel; scripts/lib/trade.js and board-ui.js - trade handlers/panel; scripts/lib/pack-ui.js - packPanel.",
-    "scripts/terrain.js - heightAt, materialAt; scripts/plants/emberblossom.js and scripts/plants/veilbloom.js - procedural plant geometry."
+    "scripts/gen/wayshrine.js - geometry; scripts/gen/cap-kit.js - Candlehold palette/local-frame helpers; scripts/gen/hub-trophy.js - HOOKS, geometry, collider.",
+    "scripts/lib/loot.js - gear, forge, marks, crafting and smith helpers; scripts/lib/character.js - CHAR_KEYS, fresh, START, realmOf, pack, zoneOf, roster and character persistence."
   ],
   "ownership": [
-    "scripts/lib/character.js CHAR_KEYS - persistent Bearer fields including quest/reward claims, boss flags, inventory/gear, smith/render progression, brew/resources and arts trainer ranks; packed position and zone feed re-entry/menu context.",
-    "scripts/player.js - active-body movement, combat, death/i-frame and skill timers, menu/options scratch, floor gates, inventory/service actions and derived gear stats; proximity/chill/trainer tracking is transient.",
+    "scripts/lib/character.js CHAR_KEYS - persistent Bearer fields including quest/reward claims, boss flags, inventory/gear, progression/resources, arts and attuned shrines; packed position and zone feed re-entry/menu context.",
+    "scripts/player.js - active-body movement/combat/death and skill timers, menu/options scratch, floor gates, inventory/service actions and derived gear stats; shrine proximity, current shrine, glow instances and travel request cursors are runtime state.",
     "places/main/sim.js - per-player quest/dialog/cut progression and reward claims; enemy pack/encounter spawning, boss lifecycle, room music and ambience.",
     "scripts/wax-pack.js - ordinary enemy AI/hp/death and eligible Bearers' XP, copper, kills, shards and gear-drop inboxes.",
     "scripts/bailiff.js, ringer.js, warden.js, hangman.js and abbess.js - respective boss hp/phases/casts/adds/defeat, participant flags and place boss rows/lastFall.",
     "Boss scripts - first room-wide world.state.trophies[boss] record {at, by}; scripts/trophies.js derives relic visibility, plaque/stele text and transient ring/flash dedupe.",
     "scripts/crier.js - Brother Ledd route, pause, sale/mark/fall announcement cursors; scripts/lib/shop.js and scripts/lib/trade.js own shop/buyer mutations and realm SQL trade rows.",
-    "scripts/ui.js - renders menu, HUD, trainer ledger and service panels from player state; scripts/player.js handles submitted UI actions."
+    "scripts/ui.js - renders menu, HUD and service panels from player state; scripts/player.js handles submitted UI actions."
   ],
   "flows": [
     "world.config.yaml attaches player through templates/player.js and maps actions; UI menu actions → scripts/player.js routes title/realm/character/create/enter/logout/options.",
     "player.js menuInput → character.js roster/create/load/remove; realms.yml maps selected realm to room and Bearer fields hydrate player.state.",
     "While player.state.menu is set, player.js hides the body and moves it to solo place veil; menu screens remain state-driven and that place has no characters.",
     "scripts/ui.js reads selected roster character's zone to select the painted menu backdrop; zoneArt maps Ossuary/Bone/Crypt/Nave/Abbey names to Ossuary art, Candlehold/Pilgrim/Fire/Wayside or blank to Candlehold art, and other zones to Broken Lantern Road art.",
-    "scripts/ui.js Chronicle entries pair chapter labels/descriptions with optional CDN art; current menu version label is 0.11 · BLOSSOM & BLADE.",
     "controls.js selects menu touch surface when player/charId is absent or menu active and while shop/bag is open; otherwise world.config.yaml supplies world controls; ui.js actions return to player.js and service handlers.",
     "player.js periodically/on rest saves changed CHAR_KEYS plus packed position → character.js writes characters; arrival.js saves an active Bearer leaving main.",
     "player.js derives chapter floor gates from quest stage/abbeyOpenAll → veilfall-map.js floorDist governs goals and movement; Ossuary access depends on stage/open-all and Abbey/Nave access.",
     "Main sim advances quests and spawns/resets bosses; boss defeats mark participants and write place.state.lastFall {boss, by, at} → crier heralds a fresh fall to a nearby camp listener.",
     "Boss scripts write first room-wide world.state.trophies[boss] = {at, by} → trophies.js updates Trophy Post/Stele; ui/nametag.js marks Firstblood; crier announces falls and worn marks.",
     "Near Wayside forge, pack-ui craft/temper/reforge/ascend → player.js + loot.js consume materials and update inventory/gear; cauldron brew actions consume recipe resources, save timed brew/renderXp and derive combat bonuses.",
-    "Near camp trade-board or Candlehold exchange-board → player.js boardNear sets atBoard; UI trade actions → trade.js read/list/buy/unlist/collect realm listings, with board-ui, crier and board-notes sharing market data. Near Hollin in Candlehold, trainerNear sets atTrainer → ui.js trainPanel sends train action → player.js level/copper-gates rank purchase, updates persistent state."
+    "Near trade boards, player.js boardNear sets atBoard; UI trade actions → trade.js read/list/buy/unlist/collect realm listings, with board-ui, crier and board-notes sharing market data; trainer and other service panels similarly submit actions to player.js.",
+    "combat.yml wayshrines list IDs/coordinates, reach, toll and Abbey gate; scenes place matching stones → player.js shrineNear saves attunement in player.state.shrines and sets atShrine; ui.js offers lit destinations → travel action/player.travelInput validates gate, copper and nearby foes, then moves the body and spends the toll."
   ],
   "behaviorFamilies": [
     "scripts/gen/hub-*.js - reusable Wayside Fire props varied by instance params, seed and scene transform; share hub-kit.js; hub-board.js is also Candlehold's exchange-board.",
@@ -189,18 +187,17 @@
     "scripts/gen/veil-land.js and veil-shrine.js - Veil ledge/cliff/ridge structures vary by kind/dimensions; shrine exports structure/hook constants.",
     "scripts/gen/arena-floor.js, arena-pillar.js, gibbet.js and toll-throne.js - Bailiff arena dressing shares scripts/gen/shapes.js and its wax palette.",
     "scripts/gen/abbey-litter.js and abbey-court.js - Abbey yard/Crypt litter and court dressing vary by kind/seed/transform; court preserves a clear local -Z door path; fen-*.js share fen-kit.js.",
-    "scripts/plants/ashfern.js, gravegrass.js, bramble.js, glowcap.js, mossoak.js and veilbloom.js - procedural vegetation used by main terrain distributions, with veilbloom kind selecting bell spires, star cushions or lantern lilies; emberblossom.js makes authored Candlehold fountain trees."
+    "scripts/gen/wayshrine.js - shared stepped octagonal stone/obelisk and memory-light geometry reused by shrine-wayside, shrine-candlehold and shrine-abbey; scene transform/seed vary."
   ],
   "probableOrphans": [
     "scripts/flat-starter-terrain.js",
     "scripts/gen/wax-figure.js - legacy procedural enemy-figure generator; current wax actors use CDN models."
   ],
   "migrationNotes": [
-    "Persistent character data is scripts/lib/character.js CHAR_KEYS plus packed position; arts is now persisted alongside boss kills/resources such as heartwax and abbeywax, while derived gear stats, loot inbox and service proximity/chill/trainer tracking are transient.",
-    "The Veil is solo and ephemeral and parks the hidden menu body at its origin; camera.js menu framing is tuned to its shrine/ledge. Menu backdrop selection depends on the selected roster character's zone string and scripts/ui.js zoneArt matches current zone-name families.",
-    "Boss state is distinct from ordinary enemy hp: each boss publishes a place.state row and marks participants; main sim owns spawning and quest progression/reset. Boss first-fall world.state.trophies is permanent per room, distinct from per-player kill flags.",
-    "Candlehold is mapped south of Wayside Fire along CAP_PATH; keep veilfall-map.js capDist/areaAt consistent with Pilgrims' Way and city floor. Candlehold exchange-board shares trade listings with the camp board.",
-    "Hollin's purchase range and art ranks/cost/level gates are tuned in combat.yml; player.js applies rank effects and saves arts via CHAR_KEYS, while sim.js spawns NPC id hollin at the Candlehold square.",
-    "Candlehold's authored emberblossom canopies are non-colliding; each has a separate invisible static trunk collider. Main config's procedural veilbloom variants are separate ground distributions, not replacements for those scene trees."
+    "Persistent character data is scripts/lib/character.js CHAR_KEYS plus packed position; shrines is now a saved per-Bearer array, while atShrine and shrine presentation/glows are transient.",
+    "Wayshrine IDs and coordinates in scripts/lib/data/combat.yml must stay aligned with scene IDs/locations; Abbey destination also obeys the player gate. Travel costs 10 copper and refuses while an enemy is within 10 m.",
+    "The Veil is solo and ephemeral and parks the hidden menu body at its origin; camera.js menu framing is tuned to its shrine/ledge. Menu backdrop selection depends on the selected roster character's zone string and scripts/ui.js zoneArt matches.",
+    "Boss state is distinct from ordinary enemy hp: each boss publishes a place.state row and marks participants; main sim owns spawning and quest progression/reset. Boss first-fall world.state.trophies is permanent per room, distinct from per-character kill flags.",
+    "Player combat values and wayshrine travel configuration live in scripts/lib/data/combat.yml; avoid duplicating those values in handlers or UI."
   ]
 }
