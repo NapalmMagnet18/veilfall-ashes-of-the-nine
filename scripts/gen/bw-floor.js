@@ -312,8 +312,7 @@ function want(kind, e) {
 }
 export function geometry(ctx) {
   const P = ctx.params ?? {}, kind = SHAPES[P.kind] ? P.kind : "litter", lod = ctx.lod ?? 1;
-  if (lod >= 4 && SMALL[kind]) return; // the far view keeps only stumps, brambles and roots
-  const thin = lod <= 1 ? 1 : lod === 2 ? 0.65 : lod === 3 ? 0.35 : 0.15;
+  const thin = lod <= 1 ? 1 : lod === 2 ? 0.65 : lod === 3 ? 0.35 : SMALL[kind] ? 0.06 : 0.15; // the far view: a thin scatter of the small kinds
   const want_n = Math.max(1, Math.round((P.count ?? 40) * thin));
   const E = emitter(ctx, kind === "fern");
   SHAPES[kind](E, ctx, lod);
