@@ -1480,6 +1480,36 @@ fen-dress:
   id: fen-dress
   primitive: {kind: scripted, params: {avoid: [[10, 8, 2.7], [-8, 9, 2.7], [2, -14, 2.7], [-2, -2, 9.9]], carts: [[-14, -4, 70], [4, 10, -20], [-12, 4, 140]], mouth: 23, r: 19.5, seed: 5, segs: [{pts: [[13.4, 5.6], [11, 5.4], [8, 3.8]], w: 3}, {pts: [[8, 3.8], [4, 5.2], [0, 6.6], [-3.5, 7.8], [-5.6, 8.4]], w: 2}, {pts: [[8, 3.8], [5.4, 1.6]], w: 2.8000000000000003}, {pts: [[8, 3.8], [8.8, -0.5], [8.4, -5.5], [6.4, -10], [3.8, -12.6]], w: 2.8000000000000003}, {pts: [[-0.4, -11.2], [0.6, -12.4]], w: 1.9}], staves: 8}, script: scripts/gen/fen-dress.js}
   tags: [fen]
+fen-floor-10:
+  children: [{castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: reeds, primitive: {kind: scripted, params: {biome: fen, bounds: 9, clear: [], count: 12, kind: reeds, margin: 0.3, origin: [-30, -1], zone: out}, script: scripts/gen/zone-floor.js, seed: 4136}, receiveShadow: true, tags: [fen, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: lily, primitive: {kind: scripted, params: {biome: fen, bounds: 9, clear: [], count: 6, kind: lily, margin: 0.8, origin: [-30, -1], zone: any}, script: scripts/gen/zone-floor.js, seed: 4137}, receiveShadow: true, tags: [fen, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: mossmound, primitive: {kind: scripted, params: {biome: fen, bounds: 9, clear: [], count: 7, kind: mossmound, margin: 0.6, origin: [-30, -1], zone: out}, script: scripts/gen/zone-floor.js, seed: 4138}, receiveShadow: true, tags: [fen, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: driftwood, primitive: {kind: scripted, params: {biome: fen, bounds: 9, clear: [], count: 2, kind: driftwood, margin: 1.2, origin: [-30, -1], zone: out}, script: scripts/gen/zone-floor.js, seed: 4139}, receiveShadow: true, tags: [fen, flora, floor]}]
+  feetPosition: {x: -30, y: 0, z: -1}
+  id: fen-floor-10
+  tags: [fen, flora, floor]
+fen-floor-11:
+  children: [{castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: reeds, primitive: {kind: scripted, params: {biome: fen, bounds: 9, clear: [[-10, 8, 3]], count: 12, kind: reeds, margin: 0.3, origin: [-44, -10], zone: out}, script: scripts/gen/zone-floor.js, seed: 4140}, receiveShadow: true, tags: [fen, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: lily, primitive: {kind: scripted, params: {biome: fen, bounds: 9, clear: [[-10, 8, 3]], count: 6, kind: lily, margin: 0.8, origin: [-44, -10], zone: any}, script: scripts/gen/zone-floor.js, seed: 4141}, receiveShadow: true, tags: [fen, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: mossmound, primitive: {kind: scripted, params: {biome: fen, bounds: 9, clear: [[-10, 8, 3]], count: 7, kind: mossmound, margin: 0.6, origin: [-44, -10], zone: out}, script: scripts/gen/zone-floor.js, seed: 4142}, receiveShadow: true, tags: [fen, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: driftwood, primitive: {kind: scripted, params: {biome: fen, bounds: 9, clear: [[-10, 8, 3]], count: 2, kind: driftwood, margin: 1.2, origin: [-44, -10], zone: out}, script: scripts/gen/zone-floor.js, seed: 4143}, receiveShadow: true, tags: [fen, flora, floor]}]
+  feetPosition: {x: -44, y: 0, z: -10}
+  id: fen-floor-11
+  tags: [fen, flora, floor]
+fen-floor-6:
+  children: [{castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: reeds, primitive: {kind: scripted, params: {biome: fen, bounds: 9, clear: [], count: 12, kind: reeds, margin: 0.3, origin: [-49, -24], zone: out}, script: scripts/gen/zone-floor.js, seed: 4120}, receiveShadow: true, tags: [fen, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: lily, primitive: {kind: scripted, params: {biome: fen, bounds: 9, clear: [], count: 6, kind: lily, margin: 0.8, origin: [-49, -24], zone: any}, script: scripts/gen/zone-floor.js, seed: 4121}, receiveShadow: true, tags: [fen, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: mossmound, primitive: {kind: scripted, params: {biome: fen, bounds: 9, clear: [], count: 7, kind: mossmound, margin: 0.6, origin: [-49, -24], zone: out}, script: scripts/gen/zone-floor.js, seed: 4122}, receiveShadow: true, tags: [fen, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: driftwood, primitive: {kind: scripted, params: {biome: fen, bounds: 9, clear: [], count: 2, kind: driftwood, margin: 1.2, origin: [-49, -24], zone: out}, script: scripts/gen/zone-floor.js, seed: 4123}, receiveShadow: true, tags: [fen, flora, floor]}]
+  feetPosition: {x: -49, y: 0, z: -24}
+  id: fen-floor-6
+  tags: [fen, flora, floor]
+fen-floor-7:
+  children: [{castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: reeds, primitive: {kind: scripted, params: {biome: fen, bounds: 9, clear: [[-4, -10, 3]], count: 12, kind: reeds, margin: 0.3, origin: [-50, 8], zone: out}, script: scripts/gen/zone-floor.js, seed: 4124}, receiveShadow: true, tags: [fen, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: lily, primitive: {kind: scripted, params: {biome: fen, bounds: 9, clear: [[-4, -10, 3]], count: 6, kind: lily, margin: 0.8, origin: [-50, 8], zone: any}, script: scripts/gen/zone-floor.js, seed: 4125}, receiveShadow: true, tags: [fen, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: mossmound, primitive: {kind: scripted, params: {biome: fen, bounds: 9, clear: [[-4, -10, 3]], count: 7, kind: mossmound, margin: 0.6, origin: [-50, 8], zone: out}, script: scripts/gen/zone-floor.js, seed: 4126}, receiveShadow: true, tags: [fen, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: driftwood, primitive: {kind: scripted, params: {biome: fen, bounds: 9, clear: [[-4, -10, 3]], count: 2, kind: driftwood, margin: 1.2, origin: [-50, 8], zone: out}, script: scripts/gen/zone-floor.js, seed: 4127}, receiveShadow: true, tags: [fen, flora, floor]}]
+  feetPosition: {x: -50, y: 0, z: 8}
+  id: fen-floor-7
+  tags: [fen, flora, floor]
+fen-floor-8:
+  children: [{castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: reeds, primitive: {kind: scripted, params: {biome: fen, bounds: 9, clear: [], count: 12, kind: reeds, margin: 0.3, origin: [-36, 12], zone: out}, script: scripts/gen/zone-floor.js, seed: 4128}, receiveShadow: true, tags: [fen, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: lily, primitive: {kind: scripted, params: {biome: fen, bounds: 9, clear: [], count: 6, kind: lily, margin: 0.8, origin: [-36, 12], zone: any}, script: scripts/gen/zone-floor.js, seed: 4129}, receiveShadow: true, tags: [fen, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: mossmound, primitive: {kind: scripted, params: {biome: fen, bounds: 9, clear: [], count: 7, kind: mossmound, margin: 0.6, origin: [-36, 12], zone: out}, script: scripts/gen/zone-floor.js, seed: 4130}, receiveShadow: true, tags: [fen, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: driftwood, primitive: {kind: scripted, params: {biome: fen, bounds: 9, clear: [], count: 2, kind: driftwood, margin: 1.2, origin: [-36, 12], zone: out}, script: scripts/gen/zone-floor.js, seed: 4131}, receiveShadow: true, tags: [fen, flora, floor]}]
+  feetPosition: {x: -36, y: 0, z: 12}
+  id: fen-floor-8
+  tags: [fen, flora, floor]
+fen-floor-9:
+  children: [{castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: reeds, primitive: {kind: scripted, params: {biome: fen, bounds: 9, clear: [], count: 12, kind: reeds, margin: 0.3, origin: [-22, 11], zone: out}, script: scripts/gen/zone-floor.js, seed: 4132}, receiveShadow: true, tags: [fen, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: lily, primitive: {kind: scripted, params: {biome: fen, bounds: 9, clear: [], count: 6, kind: lily, margin: 0.8, origin: [-22, 11], zone: any}, script: scripts/gen/zone-floor.js, seed: 4133}, receiveShadow: true, tags: [fen, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: mossmound, primitive: {kind: scripted, params: {biome: fen, bounds: 9, clear: [], count: 7, kind: mossmound, margin: 0.6, origin: [-22, 11], zone: out}, script: scripts/gen/zone-floor.js, seed: 4134}, receiveShadow: true, tags: [fen, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: driftwood, primitive: {kind: scripted, params: {biome: fen, bounds: 9, clear: [], count: 2, kind: driftwood, margin: 1.2, origin: [-22, 11], zone: out}, script: scripts/gen/zone-floor.js, seed: 4135}, receiveShadow: true, tags: [fen, flora, floor]}]
+  feetPosition: {x: -22, y: 0, z: 11}
+  id: fen-floor-9
+  tags: [fen, flora, floor]
 fen-lamp-1:
   children: [{feetPosition: {x: 0, y: 2.3, z: -0.62}, id: light, light: {color: oklch(0.9 0.09 155), distance: 10, intensity: 3, kind: point}}]
   feetPosition: {x: -57.6, y: {terrain: 0}, z: -3.6}
@@ -1558,6 +1588,30 @@ fen-post-4:
   primitive: {kind: scripted, params: {h: 3, kind: lamppost, lean: 26, seed: 33, snap: true}, script: scripts/gen/fen-props.js}
   rotation: 75.88674612211354
   tags: [fen]
+fen-snaglamp-1:
+  castShadow: false
+  feetPosition: {x: -34.7, y: {terrain: 2.1}, z: 11.9}
+  id: fen-snaglamp-1
+  light: {color: "#C49C63", distance: 10, intensity: 2.2, kind: point}
+  material: {color: "#C49C63", emissive: "#C49C63", emissiveIntensity: 1.6}
+  primitive: {height: 0.24, kind: cylinder, radiusBottom: 0.1, radiusTop: 0.07}
+  tags: [fen, flora, light]
+fen-snaglamp-2:
+  castShadow: false
+  feetPosition: {x: -42, y: {terrain: 2.1}, z: -6}
+  id: fen-snaglamp-2
+  light: {color: "#C49C63", distance: 10, intensity: 2.2, kind: point}
+  material: {color: "#C49C63", emissive: "#C49C63", emissiveIntensity: 1.6}
+  primitive: {height: 0.24, kind: cylinder, radiusBottom: 0.1, radiusTop: 0.07}
+  tags: [fen, flora, light]
+fen-snaglamp-4:
+  castShadow: false
+  feetPosition: {x: -19.8, y: {terrain: 2.1}, z: -0.4}
+  id: fen-snaglamp-4
+  light: {color: "#C49C63", distance: 10, intensity: 2.2, kind: point}
+  material: {color: "#C49C63", emissive: "#C49C63", emissiveIntensity: 1.6}
+  primitive: {height: 0.24, kind: cylinder, radiusBottom: 0.1, radiusTop: 0.07}
+  tags: [fen, flora, light]
 fen-stone-w1:
   children: [{feetPosition: {x: 0, y: 1.58, z: -0.2}, id: flame}]
   feetPosition: {x: -54, y: {terrain: 0}, z: -2}
