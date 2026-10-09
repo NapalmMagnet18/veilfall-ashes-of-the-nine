@@ -5,12 +5,13 @@
 import { xf, tube, add, mul, norm, rnd, rock } from "./hub-kit.js";
 import { TEX, WAXC, puddle, candleBed, boxC } from "./shapes.js";
 import { BARK, rope, fray, noose, waxApple } from "./orch-kit.js";
+const sub3 = (a, b) => [a[0] - b[0], a[1] - b[1], a[2] - b[2]];
 export const hookOf = (h) => [0, +(h * 0.62 + 0.03).toFixed(3), -2.1];
 export function geometry(ctx) {
   const h = ctx.params.h ?? 5, hang = ctx.params.hang ?? 0, lumps = ctx.params.lumps ?? 0, lod = ctx.lod ?? 1, T = xf();
-  const bark = () => { ctx.albedo(BARK); ctx.color("oklch(0.88 0.008 60)"); ctx.roughness(1); ctx.metalness(0); ctx.flat(); };
+  const bark = () => { ctx.albedo(BARK); ctx.color("oklch(0.88 0.008 60)"); ctx.roughness(1); ctx.metalness(0); if (lod <= 2) ctx.smooth(); else ctx.flat(); };
   bark();
-  const sides = lod <= 2 ? 8 : 5;
+  const sides = lod <= 1 ? 10 : lod <= 2 ? 8 : 5, ends = [];
   if (lod <= 3) for (let i = 0; i < 6; i++) {
     const a = (i / 6) * 6.28 + rnd(ctx, -0.3, 0.3), Lr = rnd(ctx, 0.9, 1.5);
     tube(ctx, T, [[Math.cos(a) * 0.14, 0.5, Math.sin(a) * 0.14], [Math.cos(a) * Lr * 0.42, 0.14, Math.sin(a) * Lr * 0.42], [Math.cos(a) * Lr * 0.8, 0.02, Math.sin(a) * Lr * 0.8], [Math.cos(a + 0.2) * Lr, -0.06, Math.sin(a + 0.2) * Lr]], [0.21, 0.12, 0.06, 0.02], 5);
@@ -25,7 +26,7 @@ export function geometry(ctx) {
     const pts = [p], rs = [r]; let dir = d;
     for (let i = 1; i <= 3; i++) { dir = norm(add(dir, [rnd(ctx, -0.45, 0.45), rnd(ctx, -0.3, 0.15), rnd(ctx, -0.45, 0.45)])); pts.push(add(pts[i - 1], mul(dir, len / 3))); rs.push(r * (1 - i * 0.27)); }
     tube(ctx, T, pts, rs, Math.max(4, sides - depth * 2), false, true);
-    if (depth >= depthMax) { tips.push(pts[3], pts[2]); return; }
+    if (depth >= depthMax) { tips.push(pts[3], pts[2]); ends.push([pts[3], dir]); return; }
     const end = pts[3], kids = depth === 0 ? 3 : 2;
     for (let k = 0; k < kids; k++) { const a = rnd(ctx, 0, 6.28); branch(end, norm(add(dir, [Math.cos(a) * 1.0, rnd(ctx, -0.2, 0.4), Math.sin(a) * 1.0])), len * rnd(ctx, 0.55, 0.72), rs[3] * 0.95, depth + 1); }
     if (depth < depthMax - 1) { const a = rnd(ctx, 0, 6.28); branch(pts[1], norm([Math.cos(a), 0.25, Math.sin(a)]), len * 0.5, rs[1] * 0.6, depth + 2); }
@@ -43,6 +44,27 @@ export function geometry(ctx) {
     } else if (hang === 2) noose(ctx, hk, 0.95);
     else { rope(ctx, [hk, [0.02, hk[1] - 0.55, -2.1]], 0.022); fray(ctx, [0.02, hk[1] - 0.55, -2.1], 6, 0.12); }
     bark();
+  }
+  // fine twigs off every branch end, a few rust leaves still clinging: the crown reads as grain, not tubes
+  if (lod <= 2) {
+    const leaves = [], nT = lod <= 1 ? 4 : 2;
+    for (const [p, d] of ends) for (let k = 0; k < nT; k++) {
+      const len = rnd(ctx, 0.35, 0.8), d1 = norm(add(d, [rnd(ctx, -0.7, 0.7), rnd(ctx, -0.25, 0.45), rnd(ctx, -0.7, 0.7)]));
+      const m = add(p, mul(d1, len * 0.5)), d2 = norm(add(d1, [rnd(ctx, -0.5, 0.5), rnd(ctx, -0.35, 0.1), rnd(ctx, -0.5, 0.5)])), e = add(m, mul(d2, len * 0.5));
+      tube(ctx, T, [p, m, e], [0.026, 0.013, 0.004], 4, false, true);
+      if (ctx.random() < 0.45) leaves.push([e, d2]);
+      if (lod <= 1 && ctx.random() < 0.5) { const f = add(m, mul(norm(add(d2, [rnd(ctx, -0.8, 0.8), 0.2, rnd(ctx, -0.8, 0.8)])), len * 0.35)); tube(ctx, T, [m, f], [0.01, 0.003], 3, false, true); if (ctx.random() < 0.4) leaves.push([f, d2]); }
+    }
+    if (leaves.length) {
+      ctx.albedo(null); ctx.flat(); ctx.roughness(0.85);
+      for (const [e, d] of leaves) {
+        ctx.color(["oklch(0.38 0.09 38)", "oklch(0.3 0.07 28)", "oklch(0.44 0.08 60)"][Math.floor(ctx.random() * 3)]);
+        const s = rnd(ctx, 0.05, 0.09), u = norm([rnd(ctx, -1, 1), rnd(ctx, -1, -0.2), rnd(ctx, -1, 1)]), v = norm([u[2], rnd(ctx, -0.3, 0.3), -u[0]]);
+        const c = add(e, mul(u, s * 0.9)), a = add(c, mul(u, s)), b = add(c, mul(v, s * 0.45)), q = sub3(c, mul(u, s)), r = sub3(c, mul(v, s * 0.45));
+        ctx.quad(...a, ...b, ...q, ...r);
+      }
+      bark();
+    }
   }
   if (lod <= 2 && tips.length) for (let k = 0; k < lumps; k++) { const p = tips[Math.floor(ctx.random() * tips.length)]; waxApple(ctx, p, 0.05 + ctx.random() * 0.035, 0.08 + ctx.random() * 0.3); }
 }
