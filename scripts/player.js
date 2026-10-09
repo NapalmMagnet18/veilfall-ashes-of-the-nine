@@ -236,6 +236,7 @@ export function onInput(ctx, input) {
   if (input.pressed.griefstep) griefstep(ctx);
   if (input.pressed.tonic) tonic(ctx);
   if (input.pressed.bag) s.bagOpen = !s.bagOpen;
+  if (input.pressed.sheet) s.sheetOpen = !s.sheetOpen;
   if (input.pressed.guard) guard(ctx);
 }
 
@@ -272,16 +273,55 @@ pop streak burst=34..44 on=disc(.75).c(.15) life=.25..0.5 v=sdir()*(1.5..3)+up(.
 pop mote burst=10..14 on=disc(.7) life=.5..0.9 v=up(.3..0.8)+sdir()*.4 size=.06..0.12 acc=buoy(.3)+drag(1) col=${v(b, 2)}>${v(a, .8)} a=0>.1:.7>0 sz=$size*(1>.3) r=sprite(soft-disc,add)
 pop glow burst=1 life=.25 at=point() r=light(${v(a, 1).replace("hdr", "<").replace(")", ">")},14*(1>0),4)`;
 }
+// each calling's basic attack: the blade-bearers cut in reach, the casters and the archer fire from afar
+const BOLT = (core, glow, lit) => `fx
+pop core burst=1 life=%t|.3 v=<%dir|0,0,-1>*%sp|20 size=.32 col=${core} a=1 sz=$size*(1>.7) r=sprite(soft-disc,add)
+pop halo burst=1 life=%t|.3 v=<%dir|0,0,-1>*%sp|20 size=.75 col=${glow} a=.55 sz=$size*flick(14,.25) r=sprite(soft-disc,add)
+pop trail on=@core.lives(90) life=.25..0.45 v=sdir()*.35 size=.08..0.16 acc=drag(2)+curl(1)*.6 col=${core}>${glow} a=1>0 sz=$size*(1>.2) r=sprite(ember,add)
+pop wisp on=@core.lives(30) life=.4..0.7 v=sdir()*.2 size=.25..0.4 acc=buoy(.3)+drag(1.2) col=${glow} a=0>.1:.35>0 sz=$size*(.6>1.6) rot=spin(.3) r=sprite(smoke-puff,add)
+pop glow burst=1 life=%t|.3 v=<%dir|0,0,-1>*%sp|20 r=light(${lit},14,6)`;
+const ARROW = `fx
+pop shaft burst=1 life=%t|.3 v=<%dir|0,0,-1>*%sp|30 size=.05 col=<.9,.82,.62> a=1 sz=$size r=sprite(ember,alpha,velocity,.9)
+pop streak on=@shaft.lives(80) life=.12..0.22 size=.03..0.05 col=hdr(1.6,1.5,1.2)>hdr(.5,.5,.45) a=.6>0 sz=$size r=sprite(soft-disc,add)`;
+const ATK = {
+  soulweaver:   { reach: 11, cd: 0.8, mul: 1.25, sp: 18, fx: BOLT("hdr(2.2,3.4,4.2)", "hdr(.4,.9,1.6)", "<.5,.8,1>"), cast: "cdn/clip-cast.glb", snd: "arcane-bolt-cast-shimmering-whoosh", hit: "arcane-bolt-impact-glass-chime-burst", hitFx: "<.5,.85,1>" },
+  shadowmancer: { reach: 10, cd: 0.75, mul: 1.15, sp: 16, fx: BOLT("hdr(2.4,1.2,3.6)", "hdr(.6,.15,.9)", "<.7,.3,1>"), cast: "cdn/clip-cast.glb", snd: "shadow-bolt-cast-hissing-whisper", hit: "shadow-bolt-impact-dark-thump-and-whispers", hitFx: "<.7,.3,1>" },
+  gloamstalker: { reach: 14, cd: 0.65, mul: 1.05, sp: 32, fx: ARROW, cast: "cdn/clip-throw.glb", snd: "longbow-draw-creak-and-arrow-release-twang", hit: "arrow-thunk-into-flesh", hitFx: "<1,.8,.5>" },
+  hellwarden:   { reach: 2.5, cd: 0.7, mul: 1.15, melee: true, snd: "heavy-mace-swing-whoosh-low" },
+  primalist:    { reach: 2.4, cd: 0.6, mul: 1.05, melee: true, snd: "beast-claw-swipe-whoosh" },
+};
+const atkOf = (s) => ATK[s?.cls] ?? { reach: C.ashcut.reach, cd: C.ashcut.cd, mul: 1, melee: true };
+const IMPACT = `fx
+pop burst burst=26..36 on=sphere(.15) life=.25..0.55 v=sdir()*(2..4.5) size=.04..0.09 acc=drag(3) col=<%c|1,1,1>*4>.5:<%c|1,1,1>*.6 a=1>0 sz=$size*(1>.2) r=sprite(ember,add,velocity,.05)
+pop ring burst=1 life=.3 size=1.1 col=<%c|1,1,1>*2 a=.8>0 sz=$size*(.2>1) r=sprite(soft-disc,add)
+pop flare burst=1 life=.3 at=point() r=light(<%c|1,1,1>,22*(1>0),5)`;
+function fireAt(ctx, foe, A, dmg, crit) {
+  const f = ctx.self.feetPosition, src = { x: f.x, y: f.y + 1.35, z: f.z }, t = foe.feetPosition;
+  const dx = t.x - f.x, dz = t.z - f.z, dy = (t.y + 1.1) - src.y, d = Math.hypot(dx, dy, dz) || 1;
+  const fwd = 0.7, st = { x: src.x + dx / d * fwd, y: src.y + dy / d * fwd, z: src.z + dz / d * fwd };
+  const time = Math.max(0.08, (d - fwd) / A.sp);
+  ctx.emit("fx", { position: st, script: A.fx, params: { dir: { x: dx / d, y: dy / d, z: dz / d }, sp: A.sp, t: time } });
+  ctx.after(time, "boltLand", { id: foe.id, dmg, crit, hit: A.hit, c: A.hitFx });
+}
+export function boltLand(ctx, p) {
+  const foe = ctx.getObject(p.id); if (!isFoe(foe)) return;
+  const at = { x: foe.feetPosition.x, y: foe.feetPosition.y + 1.1, z: foe.feetPosition.z };
+  const c = /<([\d.]+),([\d.]+),([\d.]+)>/.exec(p.c ?? "") ?? [0, 1, 1, 1];
+  ctx.emit("fx", { position: at, script: IMPACT, params: { c: { x: +c[1], y: +c[2], z: +c[3] } } });
+  if (p.hit) ctx.emit("playSound", { clip: sfx(p.hit), position: at, volume: 0.7, pitch: 0.92 + ctx.random() * 0.16 });
+  strike(ctx, foe, p.dmg, p.crit);
+}
 function ashcut(ctx, foe) {
   const s = ctx.self.state, now = ctx.now();
   if (now < (me.swingAt ?? 0)) return;
-  me.swingAt = now + C.ashcut.cd * 1000;
-  swingAnim(ctx, "cdn/clip-attack.glb");
-  ctx.emit("playSound", { clip: sfx("sword-swing-whoosh-short"), position: ctx.self.feetPosition, volume: 0.5, pitch: 0.95 + ctx.random() * 0.15 });
+  const A = atkOf(s);
+  me.swingAt = now + A.cd * 1000;
+  swingAnim(ctx, A.cast ?? "cdn/clip-attack.glb");
+  ctx.emit("playSound", { clip: sfx(A.snd ?? "sword-swing-whoosh-short"), position: ctx.self.feetPosition, volume: 0.5, pitch: 0.95 + ctx.random() * 0.15 });
   if (me.markFx) { const f = ctx.self.feetPosition, t = foe?.feetPosition, dx = t ? t.x - f.x : 0, dz = t ? t.z - f.z : 0, d = Math.hypot(dx, dz) || 1; ctx.emit("fx", { position: { x: f.x + (t ? dx / d * 0.8 : 0), y: f.y + 1.1, z: f.z + (t ? dz / d * 0.8 : 0) }, script: me.markFx }); }
   const crit = ctx.random() < 0.12 + (s.gs?.crit ?? 0) / 100;
-  const dmg = Math.round(C.ashcut.dmg * weaponMul(s) * (crit ? 1.8 : 1) * (0.9 + ctx.random() * 0.2));
-  strike(ctx, foe, dmg, crit);
+  const dmg = Math.round(C.ashcut.dmg * A.mul * weaponMul(s) * (crit ? 1.8 : 1) * (0.9 + ctx.random() * 0.2));
+  if (A.melee) strike(ctx, foe, dmg, crit); else fireAt(ctx, foe, A, dmg, crit);
   s.edge = Math.min(100, (s.edge ?? 0) + C.ashcut.edge + (s.gs?.edge ?? 0));
 }
 
@@ -911,7 +951,7 @@ export function update(ctx, dt) {
         if (!s.foe || s.foe.id !== foe.id || s.foe.hp !== fhp) s.foe = { id: foe.id, kind: fk, hp: fhp, max: Math.max(fhp, C[fk]?.hp ?? fhp), at: now };
       }
       const d = flat(foe.feetPosition, f);
-      if (d > C.ashcut.reach) {
+      if (d > atkOf(s).reach) {
         if (!me.chase || flat(me.chase, foe.feetPosition) > 1) { me.chase = { ...foe.feetPosition }; me.route = null; }
         v = walkTo(ctx, foe.feetPosition, HERO_SPEED(s), dt);
       } else {

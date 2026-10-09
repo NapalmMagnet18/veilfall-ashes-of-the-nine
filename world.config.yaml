@@ -35,6 +35,10 @@ inputs:
       keys:
         - i
       touch: { button: false }
+    sheet:
+      keys:
+        - c
+      touch: { button: false }
     menu:
       touch: { button: false }
     shop:
