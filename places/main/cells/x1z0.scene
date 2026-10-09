@@ -280,36 +280,36 @@ fwisp-orch-3:
   wisp: {burnStyle: calm, color: "#ffd27a", seed: 16, shape: classic, size: 0.35, state: idle}
 fwisp-vale-1:
   behavior: [scripts/forest-wisp.js]
-  children: [{id: glow, light: {color: oklch(0.85 0.06 230), distance: 7, intensity: 1.2, kind: point}}]
+  children: [{id: glow, light: {color: oklch(0.85 0.06 230), distance: 9, intensity: 2.6, kind: point}}]
   feetPosition: {x: 142.9, y: {terrain: 1.4}, z: 12.9}
   id: fwisp-vale-1
   state: {home: {x: 142.9, y: 11.382419870508036, z: 12.9}, r: 6, seed: 30}
   tags: [ambience, forest-wisp]
-  wisp: {burnStyle: calm, color: "#bfe6ff", seed: 30, shape: classic, size: 0.35, state: idle}
+  wisp: {burnStyle: calm, color: "#bfe6ff", seed: 30, shape: classic, size: 0.48999999999999994, state: idle}
 fwisp-vale-2:
   behavior: [scripts/forest-wisp.js]
-  children: [{id: glow, light: {color: oklch(0.85 0.06 230), distance: 7, intensity: 1.2, kind: point}}]
+  children: [{id: glow, light: {color: oklch(0.85 0.06 230), distance: 9, intensity: 2.6, kind: point}}]
   feetPosition: {x: 83.7, y: {terrain: 1.4}, z: 14}
   id: fwisp-vale-2
   state: {home: {x: 83.7, y: 6.495654677136692, z: 14}, r: 6, seed: 31}
   tags: [ambience, forest-wisp]
-  wisp: {burnStyle: calm, color: "#bfe6ff", seed: 31, shape: classic, size: 0.35, state: idle}
+  wisp: {burnStyle: calm, color: "#bfe6ff", seed: 31, shape: classic, size: 0.48999999999999994, state: idle}
 fwisp-vale-3:
   behavior: [scripts/forest-wisp.js]
-  children: [{id: glow, light: {color: oklch(0.85 0.06 230), distance: 7, intensity: 1.2, kind: point}}]
+  children: [{id: glow, light: {color: oklch(0.85 0.06 230), distance: 9, intensity: 2.6, kind: point}}]
   feetPosition: {x: 131, y: {terrain: 1.4}, z: 21.6}
   id: fwisp-vale-3
   state: {home: {x: 131, y: 10.803268532834165, z: 21.6}, r: 6, seed: 32}
   tags: [ambience, forest-wisp]
-  wisp: {burnStyle: calm, color: "#bfe6ff", seed: 32, shape: classic, size: 0.35, state: idle}
+  wisp: {burnStyle: calm, color: "#bfe6ff", seed: 32, shape: classic, size: 0.48999999999999994, state: idle}
 fwisp-vale-4:
   behavior: [scripts/forest-wisp.js]
-  children: [{id: glow, light: {color: oklch(0.85 0.06 230), distance: 7, intensity: 1.2, kind: point}}]
+  children: [{id: glow, light: {color: oklch(0.85 0.06 230), distance: 9, intensity: 2.6, kind: point}}]
   feetPosition: {x: 114.6, y: {terrain: 1.4}, z: 22}
   id: fwisp-vale-4
   state: {home: {x: 114.6, y: 12.964108330579995, z: 22}, r: 6, seed: 33}
   tags: [ambience, forest-wisp]
-  wisp: {burnStyle: calm, color: "#bfe6ff", seed: 33, shape: classic, size: 0.35, state: idle}
+  wisp: {burnStyle: calm, color: "#bfe6ff", seed: 33, shape: classic, size: 0.48999999999999994, state: idle}
 orch-apple-0:
   castShadow: true
   feetPosition: {x: 79.2, y: {terrain: -0.15}, z: -5.1}
