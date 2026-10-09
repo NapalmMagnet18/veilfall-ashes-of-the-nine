@@ -467,7 +467,7 @@ function vfHud(ctx, player) {
   const cwLeft = Math.max(0, (s.cwReadyAt ?? 0) - now), cwPct = Math.min(100, (cwLeft / (CB.crosswound.cd * 1000)) * 100);
   const guardLeft = Math.max(0, (s.guardReadyAt ?? 0) - now), guardPct = Math.min(100, guardLeft / 80), guardOn = (s.guardUntil ?? 0) > now;
   const foe = s.foe, foeOn = foe && !s.dead && (foe.gone ? now - foe.at < 1500 : s.target === foe.id || now - foe.at < 4000);
-  const FOES = { pilgrim: "Wax Pilgrim", deacon: "Wax Deacon", chorister: "Hollow Chorister", flagellant: "Tallow Flagellant" };
+  const FOES = { walker: "Wax Walker", pilgrim: "Wax Pilgrim", deacon: "Wax Deacon", chorister: "Hollow Chorister", flagellant: "Tallow Flagellant" };
   const chips = [];
   if (guardOn) chips.push(`<div class="plate chip" style="color:#6DB8C0">◇ GUARDING</div>`);
   if ((s.hasteUntil ?? 0) > now) chips.push(`<div class="plate chip" style="color:#9fe0c8">» MIST STRIDE ${Math.ceil(((s.hasteUntil ?? 0) - now) / 1000)}s</div>`);
@@ -479,7 +479,7 @@ function vfHud(ctx, player) {
   const rail = "calc(var(--spawn-chrome-reservation-right-inset, 50px) + 24px)";
   const OPT = s.opt ?? {};
   return `${THEME}${FRAME_CSS}<style>${PACK_CSS}#vf{zoom:${OPT.scale ?? 1}}${OPT.tracker === false ? "#vf .qp{display:none}" : ""}</style><div id="vf" class="fixed inset-0 pointer-events-none">
-  <div class="absolute plate qp${boss && boss.engaged && !boss.dead ? " bossup" : ""}" style="left:24px;top:24px;max-width:300px;animation:vfin .4s">
+  <div class="absolute plate qp${boss && boss.engaged && !boss.dead ? " bossup" : ""}" style="left:24px;top:${touch ? 24 : 132}px;max-width:300px;animation:vfin .4s">
     <div class="lbl">${[9, 12, 16, 21, 22].includes(q.stage) ? "Chapter complete" : "Quest"} · ${q.stage >= 18 ? "The Second Lantern" : q.stage >= 13 ? "The Drowned Lantern" : q.stage >= 10 ? "The Ninth Bell" : q.stage >= 5 ? "The Ashen Abbey" : "Broken Lantern Road"}</div>
     <div style="font-size:19px;color:var(--wax)">${qt}</div><div class="dv df1"></div>
     <div style="font-size:15px">› ${qo}<span style="color:var(--wax)">${prog}</span></div>
@@ -519,7 +519,8 @@ function vfHud(ctx, player) {
   </div></div>
   ${chips.length ? `<div class="absolute dk chips" style="left:50%;bottom:calc(min(1240px,100vw - 140px) * .25);transform:translateX(-50%);display:flex;gap:12px">${chips.join("")}</div>` : ""}`}
   ${touch && chips.length ? `<div class="absolute" style="left:10px;top:236px;display:flex;flex-direction:column;gap:6px">${chips.join("")}</div>` : ""}
-  ${foeOn ? `<div class="absolute plate tf" style="left:50%;top:${boss && boss.engaged && !boss.dead ? 168 : 24}px;transform:translateX(-50%);width:min(300px,calc(100vw - 2*${rail}));text-align:center;padding:10px 16px;animation:vfin .2s;${foe.gone ? "opacity:.6" : ""}">
+  ${!touch ? unitFrames(s, { hp, max, hpPct, edge, lv, xpPct, foe, foeOn, now, FOES }) : ""}
+  ${foeOn && touch ? `<div class="absolute plate tf" style="left:50%;top:${boss && boss.engaged && !boss.dead ? 168 : 24}px;transform:translateX(-50%);width:min(300px,calc(100vw - 2*${rail}));text-align:center;padding:10px 16px;animation:vfin .2s;${foe.gone ? "opacity:.6" : ""}">
     <div style="display:flex;align-items:baseline;justify-content:center;gap:8px"><span style="font-size:16px;color:${foe.kind === "deacon" ? "#f2b04a" : "var(--wax)"};letter-spacing:.06em">${FOES[foe.kind] ?? "Wax Thing"}</span>${foe.kind === "deacon" ? `<span class="lbl" style="color:#f2b04a">ELITE</span>` : ""}</div>
     <div class="bar2"><div style="position:absolute;inset:0;width:${(foe.hp / foe.max) * 100}%;background:linear-gradient(#c9402f,#7a1610);transition:width .15s"></div><div style="position:absolute;inset:0;font-size:10px;line-height:12px;color:#e9dfc8;text-shadow:0 1px 0 #000">${foe.gone ? "MELTED" : `${foe.hp} / ${foe.max}`}</div></div></div>` : ""}
   <div class="absolute ph plate" style="left:10px;top:150px;width:170px;padding:2px 6px">
@@ -606,6 +607,48 @@ function sheetPanel(s, lv, xpPct, L) {
   ${anc ? `<div class="vftrait"><span class="lbl" style="color:${anc.color}">${anc.name} · ${anc.home}</span><div>${anc.trait ?? ""}</div></div>` : ""}
 </div>`;
 }
+const FOE_FACE = { pilgrim: CDN("adfc724b011b8bf14290cda3b7bed2ef3ab614753a07c8c7eb0397c0b613be88"), walker: CDN("de8e265bfd3a2ab34a3bb2ec077d694014ccaeddcdfeb3a06faf956fe3d73235"), deacon: CDN("2cc6844c61725ddb2e16387700e4d3f274d44c116f0287d96c3f06d55cdfe327"), chorister: CDN("3f59d726704fd9304bfeb60f976971949144e2ff40d04f775e87d9ba4a5a54ec"), flagellant: CDN("8832694f0a03ceb71379dcad2dff6ccef80092143945b57cce9ab906597ff96f") };
+// WoW-style unit frames: the Bearer's living portrait and the foe they are fighting, side by side, top left
+function unitFrames(s, { hp, max, hpPct, edge, lv, xpPct, foe, foeOn, now, FOES }) {
+  const cls = CLASSES.find((c) => c.id === s.cls) ?? CLASSES[0];
+  const low = hpPct < 30, hurt = s.lastHp != null && hp < s.lastHp;
+  const me = `<div class="vfuf" style="left:24px">
+    <div class="vfpt ${low ? "low" : ""}"><div class="vfpt-i" style="background-image:url(${cls.img})"></div><div class="vfpt-e"></div>${hurt ? `<div class="vfpt-h"></div>` : ""}<div class="vflv">${lv}</div></div>
+    <div class="vfuf-b"><div class="vfuf-n">${s.charName ?? "Bearer"}<span>${cls.name}</span></div>
+      <div class="vfbar hp"><div style="width:${hpPct}%"></div><b>${hp} / ${max}</b></div>
+      <div class="vfbar rs"><div style="width:${Math.min(100, edge)}%"></div><b>${edge} ${cls.res ?? "Edge"}</b></div>
+      <div class="vfbar xp"><div style="width:${xpPct}%"></div></div></div></div>`;
+  if (!foeOn) return me;
+  const fp = Math.max(0, Math.min(100, (foe.hp / foe.max) * 100)), elite = foe.kind === "deacon";
+  const tg = `<div class="vfuf tg ${foe.gone ? "gone" : ""}" style="left:330px;animation:vfin .18s">
+    <div class="vfuf-b"><div class="vfuf-n" style="color:${elite ? "#f2b04a" : "#e7d9b8"}">${FOES[foe.kind] ?? "Wax Thing"}<span>${elite ? "ELITE" : "wax-touched"}</span></div>
+      <div class="vfbar hp"><div style="width:${fp}%"></div><b>${foe.gone ? "MELTED" : `${foe.hp} / ${foe.max}`}</b></div>
+      <div class="vfbar rs tg2"><div style="width:${foe.gone ? 0 : 100}%"></div></div></div>
+    <div class="vfpt ${elite ? "elite" : ""}"><div class="vfpt-i" style="background-image:url(${FOE_FACE[foe.kind] ?? FOE_FACE.pilgrim});animation-delay:-1.7s"></div><div class="vfpt-e" style="animation-delay:-.9s"></div></div></div>`;
+  return me + tg;
+}
+const UF_CSS = `
+#vf .vfuf{position:absolute;top:22px;display:flex;align-items:center;gap:0;pointer-events:none;filter:drop-shadow(0 4px 8px rgba(0,0,0,.7))}
+#vf .vfpt{position:relative;width:86px;height:86px;border-radius:50%;overflow:hidden;z-index:2;background:#0b0908;box-shadow:0 0 0 2px #0d0b0a,0 0 0 4px #8a6d42,0 0 0 6px #0d0b0a,inset 0 0 18px #000}
+#vf .vfpt.elite{box-shadow:0 0 0 2px #0d0b0a,0 0 0 4px #f2b04a,0 0 0 6px #0d0b0a,0 0 16px #f2b04a88}
+#vf .vfpt.low{box-shadow:0 0 0 2px #0d0b0a,0 0 0 4px #c9402f,0 0 0 6px #0d0b0a;animation:vfpulse 1s infinite}
+#vf .vfpt-i{position:absolute;inset:-8%;background-size:cover;background-position:50% 22%;animation:vfbreath 4.2s ease-in-out infinite}
+#vf .vfpt-e{position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 30% 85%,rgba(255,150,60,.42),transparent 55%),radial-gradient(circle at 50% 50%,transparent 55%,rgba(0,0,0,.65));mix-blend-mode:screen;animation:vfember 2.3s steps(9) infinite}
+#vf .vfpt-h{position:absolute;inset:0;background:radial-gradient(circle,rgba(255,40,20,.0),rgba(255,40,20,.55));animation:vffade .5s forwards}
+#vf .vflv{position:absolute;left:50%;bottom:2px;transform:translateX(-50%);min-width:24px;padding:0 5px;font-size:12px;line-height:17px;text-align:center;color:#f2d38a;background:#120e0b;border-radius:9px;box-shadow:0 0 0 1px #8a6d42}
+#vf .vfuf-b{width:200px;margin-left:-14px;padding:7px 10px 7px 22px;background:linear-gradient(#1c1612,#0f0c0a);box-shadow:0 0 0 1px #0d0b0a,0 0 0 2px #5a4730,0 0 0 3px #0d0b0a}
+#vf .vfuf.tg .vfuf-b{margin-left:0;margin-right:-14px;padding:7px 22px 7px 10px}
+#vf .vfuf.gone{opacity:.55} #vf .vfuf.gone .vfpt-i{filter:grayscale(1) brightness(.6)}
+#vf .vfuf-n{display:flex;justify-content:space-between;align-items:baseline;font-size:14px;color:#e7d9b8;letter-spacing:.05em;margin-bottom:4px;white-space:nowrap;overflow:hidden}
+#vf .vfuf-n span{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#a8946c;margin-left:8px}
+#vf .vfbar{position:relative;height:13px;margin-top:3px;background:#070606;box-shadow:inset 0 0 0 1px #2a231b;overflow:hidden}
+#vf .vfbar>div{position:absolute;left:0;top:0;bottom:0;transition:width .2s}
+#vf .vfbar.hp>div{background:linear-gradient(#e0533e,#8f1710 60%,#5a0c08)}
+#vf .vfbar.rs>div{background:linear-gradient(#ffc35a,#a3520e)} #vf .vfbar.tg2{height:5px} #vf .vfbar.tg2>div{background:linear-gradient(#6db8c0,#2b5a60)}
+#vf .vfbar.xp{height:4px} #vf .vfbar.xp>div{background:linear-gradient(90deg,#8a6d42,#f2d38a)}
+#vf .vfbar b{position:absolute;inset:0;font-weight:400;font-size:10px;line-height:13px;text-align:center;color:#f1e6cc;text-shadow:0 1px 0 #000,0 0 3px #000}
+@keyframes vfbreath{0%,100%{transform:scale(1) translateY(0)}50%{transform:scale(1.045) translateY(-1.5%)}}
+@keyframes vfember{0%{opacity:.75}22%{opacity:1}41%{opacity:.82}63%{opacity:.95}80%{opacity:.7}100%{opacity:.88}}`;
 function treePanel(s, lv) {
   const cls = CLASSES.find((c) => c.id === s.cls) ?? CLASSES[0], tal = s.talents ?? {}, left = pointsOf(lv) - spent(tal);
   const col = (br, b) => `<div class="vftb"><div class="vftb-h" style="color:${br.color}">${br.name}<span>${spentIn(tal, b)}</span></div>
@@ -620,7 +663,7 @@ function treePanel(s, lv) {
     <div style="display:flex;gap:18px;justify-content:center">${treeOf(cls.id).map(col).join("")}</div>
   </div>`;
 }
-const SHEET_CSS = `<style>
+const SHEET_CSS = `<style>${UF_CSS}
 #vf .vftree{width:560px;padding:14px 18px 18px;background:radial-gradient(ellipse at 50% 0%,#2a221b,#110e0c 70%);box-shadow:0 0 0 2px #0d0b0a,0 0 0 4px #6b5638,0 0 0 6px #0d0b0a,0 18px 40px rgba(0,0,0,.7);pointer-events:auto}
 #vf .vftb{flex:1;display:flex;flex-direction:column;align-items:center;padding:8px 0 4px;background:linear-gradient(rgba(0,0,0,.25),rgba(0,0,0,.05));box-shadow:inset 0 0 0 1px #2e271e}
 #vf .vftb-h{font-size:14px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px;display:flex;gap:8px;align-items:baseline} #vf .vftb-h span{font-size:11px;color:#b9a77f}
