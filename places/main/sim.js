@@ -6,30 +6,36 @@ import { body } from "../../scripts/lib/data/models.js";
 import { FEN, FEN_HEART, WAYSTONES, ORCHARD, GIBBETS, GALLOWS, OSSUARY, RELIQUARY } from "../../scripts/lib/data/veilfall-map.js";
 export const cadence = "250ms";
 const MUSIC = "/cdn/moodboard-gothic-horror/music-broken-lantern-road-dusk-candles-and-fog-ambient.mp3";
-// the jukebox follows the room's mood: the road at rest, drums when the wax wakes, the Bailiff's own theme in his court
+// the jukebox follows the room's mood. Every mood is a playlist in one score: low cello, choir, bells, slow and grim.
+// the room walks each list in order, crossing to the next track as the last one ends
 const TRACKS = {
-  road: MUSIC,
-  fight: "/cdn/moodboard-gothic-horror/music-dark-fantasy-combat-pounding-low-drums-cello-ostinato-tense-loop.mp3",
-  boss: "/cdn/moodboard-gothic-horror/music-dark-fantasy-boss-battle-choir-pipe-organ-war-drums-bells-loop.mp3",
-  bailiff: "/cdn/moodboard-gothic-horror/music-dark-fantasy-boss-tribunal-judge-theme-pounding-timpani-brass-stabs-and-low-male-choir-chanting-loop.mp3",
-  ringer: "/cdn/moodboard-gothic-horror/music-dark-fantasy-boss-great-bell-theme-tolling-bronze-bells-pipe-organ-and-frantic-strings-loop.mp3",
-  warden: "/cdn/moodboard-gothic-horror/music-dark-fantasy-boss-drowned-giant-theme-deep-brass-swells-taiko-and-underwater-choir-loop.mp3",
-  abbess: "/cdn/moodboard-gothic-horror/music-dark-fantasy-boss-undead-abbess-theme-dead-nuns-choir-requiem-pipe-organ-and-bone-percussion-loop.mp3",
-  ossuary: "/cdn/moodboard-gothic-horror/music-dark-fantasy-ossuary-catacomb-whispered-plainchant-and-low-bowed-bass-drone-loop.mp3",
-  hangman: "/cdn/moodboard-gothic-horror/music-dark-fantasy-boss-executioner-theme-slow-heavy-war-drums-scraping-fiddle-and-chains-loop.mp3",
-  camp: "/cdn/moodboard-gothic-horror/music-dark-fantasy-safe-haven-campfire-lone-nylon-guitar-slow-arpeggio-and-low-cello-loop.mp3",
-  abbey: "/cdn/moodboard-gothic-horror/music-dark-fantasy-ruined-cathedral-distant-pipe-organ-drone-and-wordless-female-choir-loop.mp3",
-  fen: "/cdn/moodboard-gothic-horror/music-dark-fantasy-drowned-marsh-cold-glass-harmonica-and-detuned-harp-over-deep-drone-loop.mp3",
-  orchard: "/cdn/moodboard-gothic-horror/music-dark-fantasy-hanging-orchard-out-of-tune-fiddle-and-creaking-music-box-over-low-strings-loop.mp3",
+  road: [MUSIC, "/cdn/moodboard-gothic-horror/music-dark-fantasy-broken-pilgrim-road-at-night-slow-solo-cello-lament-distant-tolling-bell-and-wind-loop.mp3", "/cdn/moodboard-gothic-horror/music-dark-fantasy-abandoned-lantern-road-low-string-drone-sparse-harp-and-faint-wordless-choir-loop.mp3"],
+  fight: ["/cdn/moodboard-gothic-horror/music-dark-fantasy-combat-pounding-low-drums-cello-ostinato-tense-loop.mp3", "/cdn/moodboard-gothic-horror/music-dark-fantasy-combat-urgent-staccato-cello-and-viola-ostinato-war-drums-and-low-male-choir-loop.mp3", "/cdn/moodboard-gothic-horror/music-dark-fantasy-combat-relentless-frame-drums-hammered-dulcimer-and-dark-brass-swells-loop.mp3"],
+  boss: ["/cdn/moodboard-gothic-horror/music-dark-fantasy-boss-battle-choir-pipe-organ-war-drums-bells-loop.mp3"],
+  bailiff: ["/cdn/moodboard-gothic-horror/music-dark-fantasy-boss-tribunal-judge-theme-pounding-timpani-brass-stabs-and-low-male-choir-chanting-loop.mp3"],
+  ringer: ["/cdn/moodboard-gothic-horror/music-dark-fantasy-boss-great-bell-theme-tolling-bronze-bells-pipe-organ-and-frantic-strings-loop.mp3"],
+  warden: ["/cdn/moodboard-gothic-horror/music-dark-fantasy-boss-drowned-giant-theme-deep-brass-swells-taiko-and-underwater-choir-loop.mp3"],
+  abbess: ["/cdn/moodboard-gothic-horror/music-dark-fantasy-boss-undead-abbess-theme-dead-nuns-choir-requiem-pipe-organ-and-bone-percussion-loop.mp3"],
+  ossuary: ["/cdn/moodboard-gothic-horror/music-dark-fantasy-ossuary-catacomb-whispered-plainchant-and-low-bowed-bass-drone-loop.mp3", "/cdn/moodboard-gothic-horror/music-dark-fantasy-bone-catacomb-deep-throat-singing-drone-and-rattling-bone-chimes-sparse-cello-loop.mp3", "/cdn/moodboard-gothic-horror/music-dark-fantasy-ossuary-crypt-slow-funeral-strings-whispered-choir-and-distant-dripping-bells-loop.mp3"],
+  hangman: ["/cdn/moodboard-gothic-horror/music-dark-fantasy-boss-executioner-theme-slow-heavy-war-drums-scraping-fiddle-and-chains-loop.mp3"],
+  camp: ["/cdn/moodboard-gothic-horror/music-dark-fantasy-safe-haven-campfire-lone-nylon-guitar-slow-arpeggio-and-low-cello-loop.mp3", "/cdn/moodboard-gothic-horror/music-dark-fantasy-safe-haven-hearth-warm-solo-cello-and-soft-harp-lullaby-crackling-calm-loop.mp3", "/cdn/moodboard-gothic-horror/music-dark-fantasy-safe-haven-wayside-shrine-gentle-music-box-and-hushed-female-choir-over-low-strings-loop.mp3"],
+  abbey: ["/cdn/moodboard-gothic-horror/music-dark-fantasy-ruined-cathedral-distant-pipe-organ-drone-and-wordless-female-choir-loop.mp3", "/cdn/moodboard-gothic-horror/music-dark-fantasy-ruined-abbey-mournful-gregorian-chant-and-slow-bowed-cello-with-cracked-bells-loop.mp3", "/cdn/moodboard-gothic-horror/music-dark-fantasy-burned-cathedral-haunting-solo-soprano-over-dark-organ-pedal-and-strings-loop.mp3"],
+  fen: ["/cdn/moodboard-gothic-horror/music-dark-fantasy-drowned-marsh-cold-glass-harmonica-and-detuned-harp-over-deep-drone-loop.mp3", "/cdn/moodboard-gothic-horror/music-dark-fantasy-drowned-lantern-marsh-sorrowful-solo-violin-and-glass-chimes-over-deep-cello-loop.mp3", "/cdn/moodboard-gothic-horror/music-dark-fantasy-black-water-fen-eerie-bowed-psaltery-and-low-choir-hum-with-soft-bells-loop.mp3"],
+  orchard: ["/cdn/moodboard-gothic-horror/music-dark-fantasy-hanging-orchard-out-of-tune-fiddle-and-creaking-music-box-over-low-strings-loop.mp3", "/cdn/moodboard-gothic-horror/music-dark-fantasy-gallows-orchard-slow-creaking-hurdy-gurdy-and-low-cello-funeral-waltz-loop.mp3", "/cdn/moodboard-gothic-horror/music-dark-fantasy-hanging-orchard-mournful-detuned-music-box-and-whispered-choir-over-strings-loop.mp3"],
+  capital: ["/cdn/moodboard-gothic-horror/music-dark-fantasy-walled-candle-city-capital-noble-solemn-strings-church-bells-and-warm-male-choir-loop.mp3", "/cdn/moodboard-gothic-horror/music-dark-fantasy-candle-city-market-night-lute-and-cello-duet-with-distant-cathedral-bells-loop.mp3", "/cdn/moodboard-gothic-horror/music-dark-fantasy-candle-city-sanctuary-hopeful-slow-strings-harp-and-soft-boys-choir-chant-loop.mp3"],
+  capway: ["/cdn/moodboard-gothic-horror/music-dark-fantasy-pilgrims-way-to-the-city-wandering-solo-cello-with-far-off-city-bells-and-wind-loop.mp3", "/cdn/moodboard-gothic-horror/music-dark-fantasy-pilgrims-way-lonely-road-low-flute-and-strings-hopeful-but-grim-loop.mp3"],
+  elite: ["/cdn/moodboard-gothic-horror/music-dark-fantasy-mini-boss-champion-fight-heavy-war-drums-snarling-low-brass-and-shrieking-choir-loop.mp3", "/cdn/moodboard-gothic-horror/music-dark-fantasy-mini-boss-wax-champion-pounding-timpani-frantic-cello-and-cracked-bell-strikes-loop.mp3"],
 };
 // which track rests over each stretch of the road when nothing is fighting
-const ZONE_MOOD = { fire: "camp", road: "road", toll: "road", gate: "road", court: "road", climb: "abbey", abbey: "abbey", nave: "abbey", crypt: "abbey", bonestair: "ossuary", ossuary: "ossuary", fenpath: "fen", fen: "fen", orchpath: "orchard", orchard: "orchard" };
+const ZONE_MOOD = { fire: "camp", road: "road", toll: "road", gate: "road", court: "road", climb: "abbey", abbey: "abbey", nave: "abbey", crypt: "abbey", bonestair: "ossuary", ossuary: "ossuary", fenpath: "fen", fen: "fen", orchpath: "orchard", orchard: "orchard", capway: "capway", capital: "capital" };
 // far-off sounds in the dark: one every 22-45 s, somewhere 14-26 m from a Bearer, picked by the stretch they walk
 const DISTANT = {
   road: ["crow-caws-twice-and-flaps-away-in-fog", "distant-woman-sobbing-carried-on-wind", "iron-lantern-swinging-on-rusted-chain-creak", "far-off-wolf-howl-in-cold-night"],
   abbey: ["stone-crumbling-and-falling-in-a-vast-empty-hall", "single-cracked-bell-struck-far-below-ground", "wax-dripping-onto-hot-stone-hiss", "whispered-latin-prayer-echoing-in-a-crypt"],
   fen: ["something-large-slipping-into-black-water", "frog-croaks-stop-all-at-once-then-a-splash", "glass-wind-chime-tinkling-far-over-water", "drowned-man-gurgling-moan-under-water"],
   orchard: ["heavy-rope-creaking-under-a-swinging-weight", "crows-squabbling-over-something-in-dead-branches", "dry-leaves-skittering-across-wooden-boards", "a-trapdoor-banging-open-on-a-distant-gallows"],
+  capital: ["cathedral-bells-ringing-the-hour-far-across-rooftops", "city-watchman-calling-the-hour-echoing-down-a-stone-street", "tavern-door-opens-burst-of-laughter-and-lute-then-closes", "cart-wheels-rattling-over-cobblestones-and-a-horse-snorting"],
+  capway: ["far-city-bells-carried-on-still-night-air", "pilgrims-singing-a-hymn-far-down-the-road", "crow-caws-twice-and-flaps-away-in-fog"],
   camp: ["log-collapsing-in-campfire-sparks-crackle", "kettle-lid-rattling-over-coals", "owl-hooting-low-in-the-dark"],
 };
 const VOICE = (line) => `/cdn/voice-weary-hoarse-old-woman-pilgrim-keeper-low-and-kind-saying-${line}.mp3`;
@@ -429,9 +435,14 @@ function musicTick(ctx, st, now, objs) {
   const tally = {}; for (const p of live) { const z = ZONE_MOOD[p.state.area] ?? "road"; tally[z] = (tally[z] ?? 0) + 1; }
   const rest = Object.entries(tally).sort((a, b) => b[1] - a[1])[0][0];
   const up = (b) => b?.engaged && !b?.dead;
-  const mood = up(boss) ? "bailiff" : up(rg) ? "ringer" : up(wd) ? "warden" : up(hg) ? "hangman" : up(ab) ? "abbess" : now < (st.fightUntil ?? 0) ? "fight" : rest;
-  const calm = !["bailiff", "ringer", "warden", "hangman", "abbess", "fight"].includes(mood);
-  if (mood !== st.mood || ctx.music.now()?.ref !== TRACKS[mood]) { st.mood = mood; ctx.music?.play(TRACKS[mood], { fade: calm ? 4 : 1.2, volume: calm ? 0.7 : 0.8 }); }
+  const elite = ["en-mb1", "en-mb2"].some((id) => { const e = objs[id]?.state; return e?.hunting && !e?.dead; });
+  if (elite) st.eliteUntil = now + 6000;
+  const mood = up(boss) ? "bailiff" : up(rg) ? "ringer" : up(wd) ? "warden" : up(hg) ? "hangman" : up(ab) ? "abbess" : now < (st.eliteUntil ?? 0) ? "elite" : now < (st.fightUntil ?? 0) ? "fight" : rest;
+  const calm = !["bailiff", "ringer", "warden", "hangman", "abbess", "elite", "fight"].includes(mood);
+  const list = TRACKS[mood] ?? TRACKS.road, on = ctx.music.now();
+  if (mood !== st.mood) { st.mood = mood; st.trackI = calm ? Math.floor(ctx.random() * list.length) : 0; ctx.music?.play(list[st.trackI % list.length], { fade: calm ? 4 : 1.2, volume: calm ? 0.7 : 0.8 }); }
+  else if (!on || !list.includes(on.ref)) ctx.music?.play(list[(st.trackI ?? 0) % list.length], { fade: calm ? 4 : 1.2, volume: calm ? 0.7 : 0.8 });
+  else { const len = ctx.world.assets?.[on.ref]?.duration; if (list.length > 1 && len && on.since >= len - 3) { st.trackI = ((st.trackI ?? 0) + 1) % list.length; ctx.music?.play(list[st.trackI], { fade: 3, volume: calm ? 0.7 : 0.8 }); } }
   if (now > (st.distantAt ?? 0)) {
     st.distantAt = now + 22000 + ctx.random() * 23000;
     const p = live[Math.floor(ctx.random() * live.length)], list = DISTANT[ZONE_MOOD[p.state.area] ?? "road"] ?? DISTANT.road;
