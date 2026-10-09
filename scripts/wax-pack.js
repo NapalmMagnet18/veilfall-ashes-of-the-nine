@@ -5,6 +5,7 @@ import C from "./lib/data/combat.yml";
 import E from "./lib/data/economy.yml";
 import { fmt } from "./lib/coins.js";
 import { rollDrops, TIER, BAG, dustValue } from "./lib/loot.js";
+import { body } from "./lib/data/models.js";
 const sfx = (n) => `/cdn/moodboard-gothic-horror/sfx-${n}.mp3`;
 // every kind has its own throat: the cry when it wakes to you, the sound it makes coming apart
 const VOX = {
@@ -139,6 +140,19 @@ export function update(ctx, dt) {
       animate(ctx, w, { "scale.y": 0.08, "scale.x": 1.5, "scale.z": 1.5 }, { duration: 1.1, delay: 0.9 });
       payout(ctx, f, K.xp, roll(ctx, E.drops[s.kind] ?? E.drops.pilgrim), true, "small", s.kind);
       continue;
+    }
+    // the Chandler's second breath: at half hp he tears three wax pilgrims up out of the flagstones, once a life
+    if (s.kind === "chandler" && !s.summoned && s.hp < s.maxHp * 0.5) {
+      s.summoned = true;
+      ctx.emit("playSound", { clip: sfx("towering-wax-executioner-roars-and-the-ground-cracks-as-wax-bodies-rise"), position: f, volume: 1 });
+      ctx.emit("shockwave", { position: { x: f.x, y: f.y + 0.2, z: f.z }, speed: 9, thickness: 0.6, intensity: 0.6 });
+      ctx.emit("damageNumber", { position: { x: f.x, y: f.y + 3.4, z: f.z }, text: "RISE, LITTLE CANDLES", color: "#f2b04a", size: 1.2, lifetime: 2.6 });
+      for (let i = 0; i < 3; i++) {
+        const a = (i / 3) * 6.283 + ctx.random(), at = { x: f.x + Math.cos(a) * 2.6, y: f.y, z: f.z + Math.sin(a) * 2.6 };
+        ctx.emit("fx", { position: { x: at.x, y: at.y + 0.3, z: at.z }, script: MELT });
+        ctx.spawn({ id: w.id + "-add" + i, tags: ["enemy", "pilgrim"], physics: "character", feetPosition: { x: at.x, z: at.z, y: { terrain: 0 } }, ...body("pilgrim"), behavior: ["scripts/humanoid-locomotion.js"],
+          state: { kind: "pilgrim", hp: C.pilgrim.hp, maxHp: C.pilgrim.hp, home: s.home ?? { x: f.x, y: f.y, z: f.z }, hunting: false } });
+      }
     }
     // who to hunt
     let prey = null, best = s.hunting ? K.aggro * 1.8 : K.aggro;
