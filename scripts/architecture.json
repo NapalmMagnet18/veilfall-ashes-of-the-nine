@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "basedOnSpecVersion": 883,
-  "updatedAt": "2026-10-09T07:44:05.265Z",
-  "summary": "VEILFALL: Ashes of the Nine is an isometric multiplayer action RPG, with the shared main realm spanning the Wayside Fire, Broken Lantern Road and Candlehold, and chapter locations; a separate solo Veil place now receives every load for the title and character menus. World templates attach the Bladewraith and HUD; player, place referee, enemy/boss handlers and shared character/data modules divide combat, persistence and progression, with Awakening lighting/look and Absolute Cinema overlays integrated into the presentation.",
+  "basedOnSpecVersion": 888,
+  "updatedAt": "2026-10-09T07:46:06.445Z",
+  "summary": "VEILFALL: Ashes of the Nine is an isometric multiplayer action RPG, with the shared main realm spanning the Wayside Fire, Broken Lantern Road, Candlehold and chapter locations, plus a solo Veil title/menu place. World templates attach the Bladewraith and HUD; player, place referee, enemy/boss handlers and shared character/data modules divide combat, persistence and progression, while Awakening and Absolute Cinema modules shape presentation.",
   "scriptPaths": [
     "mods/aaa-quality-kit/look-cinema.js",
     "mods/absolute-cinema/cinema-camera.js",
@@ -13,6 +13,10 @@
     "mods/absolute-cinema/loading-transition.js",
     "mods/absolute-cinema/node-gizmos.js",
     "mods/absolute-cinema/vfx-playback.js",
+    "mods/animacao-viva/lib/avisos.js",
+    "mods/animacao-viva/lib/camadas.js",
+    "mods/animacao-viva/lib/maquina.js",
+    "mods/animacao-viva/lib/mistura.js",
     "mods/awakening/erosion.js",
     "mods/awakening/floor-cover.js",
     "mods/awakening/forest.js",
@@ -198,7 +202,7 @@
   ],
   "places": [
     "places/main/ - shared playable realm: Wayside Fire hub, Broken Lantern Road and Bailiff quest route, plus Candlehold and roads toward later chapter areas; cells hold world dressing, NPCs, services, shrines and encounters.",
-    "places/veil/ - solo ephemeral shrine/ravine title/menu stage, now the world default place; player is parked here while menus are active and Enter transitions into main."
+    "places/veil/ - solo ephemeral shrine/ravine title and menu stage, the world default place; player is parked here while menus are active and Enter transitions into main."
   ],
   "roots": [
     "world.config.yaml - world entry: defaultPlace veil; attaches player/camera templates, Awakening lighting, arrival and nametag behaviors, controls and audio mix.",
@@ -220,7 +224,7 @@
   ],
   "notableExports": [
     "places/main/sim.js and places/veil/sim.js - cadence, tick.",
-    "scripts/player.js - onSpawn, onInput, update; scripts/ui.js - default state-driven HUD/menu renderer with Patch Notes and Absolute Cinema overlay/panel; ui/nametag.js - nametag renderer.",
+    "scripts/player.js - onSpawn, onInput, update; scripts/ui.js - state-driven HUD/menu renderer with Patch Notes and Absolute Cinema overlay/panel; scripts/ui/nametag.js - nametag renderer.",
     "scripts/abbess.js, bailiff.js, ringer.js, warden.js and hangman.js - boss onSpawn/update handlers.",
     "scripts/crier.js - onSpawn, quiet, update; scripts/board-notes.js and scripts/trophies.js - update; scripts/wax-pack.js - roll, telegraph, hurtPlayers, payout, update.",
     "scripts/lib/character.js - CHAR_KEYS, fresh, START, realmOf, pack, zoneOf, roster, create/load/save/remove; vault and vaultRows are persistent Bearer fields.",
@@ -270,7 +274,7 @@
     "Wayshrine IDs and coordinates in scripts/lib/data/combat.yml must stay aligned with scene IDs/locations; travel costs 10 copper and refuses while an enemy is within 10 m; Abbey destination obeys the player gate.",
     "Personal vault is 18 slots plus up to three purchased rows of nine (costs [5000, 20000, 50000] copper) saved per Bearer; guild vault is 27 shared slots per Spawn guild per realm in SQL, separate from character inventory.",
     "Guild-vault store removes the item from player.state.inv before insertion and restores it on SQL failure; take is an atomic guarded UPDATE to prevent duplicate withdrawals. Maintain realm and guild_id filters on all shared-vault queries.",
-    "The Veil is solo and ephemeral and parks the hidden menu body at its origin; camera.js menu framing is tuned to its shrine/ledge. Menu backdrop selection depends on selected roster character's zone string and scripts/ui.js zoneArt matching; world.config.yaml now defaults every load to veil.",
-    "Both places use mods/awakening/look.js with distinct bloom/mist/vignette params; world.config.yaml uses mods/awakening/lighting.js. scripts/ui.js wraps the existing HUD with Absolute Cinema overlays and renders cinemaPanel only when player.state.cinemaOpen is true; keep these imports and wrapper coupling when editing the HUD."
+    "The Veil is solo and ephemeral and parks the hidden menu body at its origin; camera.js menu framing is tuned to its shrine/ledge. Menu backdrop selection depends on selected roster character's zone string and scripts/ui.js zoneArt matching.",
+    "Both places use mods/awakening/look.js with distinct bloom/mist/vignette params; world.config.yaml uses mods/awakening/lighting.js. scripts/ui.js wraps the existing HUD with Absolute Cinema overlays and renders cinemaPanel only when player has the relevant panel state."
   ]
 }
