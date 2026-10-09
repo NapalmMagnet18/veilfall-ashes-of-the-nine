@@ -726,7 +726,7 @@ export function crosswoundFall(ctx, p) {
     const o = ctx.getObject(r.id); if (!isFoe(o)) continue;
     const ex = o.feetPosition.x - f.x, ez = o.feetPosition.z - f.z, ed = Math.hypot(ex, ez) || 1;
     if ((ex * dx + ez * dz) / ed < cos && ed > 1) continue;
-    strike(ctx, o, Math.round(cw.dmg * (1 + 0.2 * art(s, "crosswound")) * weaponMul(s) * (0.9 + ctx.random() * 0.2)), false);
+    strike(ctx, o, Math.round(cw.dmg * (1 + 0.2 * art(s, "crosswound")) * weaponMul(s) * (0.9 + ctx.random() * 0.2)), false, true);
   }
 }
 
