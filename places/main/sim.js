@@ -27,7 +27,7 @@ const TRACKS = {
   elite: ["/cdn/moodboard-gothic-horror/music-dark-fantasy-mini-boss-champion-fight-heavy-war-drums-snarling-low-brass-and-shrieking-choir-loop.mp3", "/cdn/moodboard-gothic-horror/music-dark-fantasy-mini-boss-wax-champion-pounding-timpani-frantic-cello-and-cracked-bell-strikes-loop.mp3"],
 };
 // which track rests over each stretch of the road when nothing is fighting
-const ZONE_MOOD = { fire: "camp", road: "road", toll: "road", gate: "road", court: "road", climb: "abbey", abbey: "abbey", nave: "abbey", crypt: "abbey", bonestair: "ossuary", ossuary: "ossuary", fenpath: "fen", fen: "fen", orchpath: "orchard", orchard: "orchard", capway: "capway", capital: "capital" };
+const ZONE_MOOD = { deep: "ossuary", rimepass: "orchard", rime: "orchard", fire: "camp", road: "road", toll: "road", gate: "road", court: "road", climb: "abbey", abbey: "abbey", nave: "abbey", crypt: "abbey", bonestair: "ossuary", ossuary: "ossuary", fenpath: "fen", fen: "fen", orchpath: "orchard", orchard: "orchard", capway: "capway", capital: "capital" };
 // far-off sounds in the dark: one every 22-45 s, somewhere 14-26 m from a Bearer, picked by the stretch they walk
 const DISTANT = {
   road: ["crow-caws-twice-and-flaps-away-in-fog", "distant-woman-sobbing-carried-on-wind", "iron-lantern-swinging-on-rusted-chain-creak", "far-off-wolf-howl-in-cold-night"],
