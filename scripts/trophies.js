@@ -19,6 +19,16 @@ export function update(ctx) {
   const NAMES = { bailiff: "The Bailiff", ringer: "The Ringer", warden: "The Lantern Warden", hangman: "The Hangman", abbess: "The Ossuary Abbess" };
   const pl = ctx.place.objects[`${id}/plaque`];
   if (pl) for (const k of KINDS) { const r = t[k], line = r ? `${NAMES[k]} · ${(r.by?.length ? r.by.join(" & ") : "unknown hands")}` : `${NAMES[k]} · still walks`; if (pl.state[k] !== line) pl.state[k] = line; }
+  // the Stele of the Nine: each fallen name burns cold teal, and its glow grows with every name
+  const st = ctx.place.objects["stele-of-nine"];
+  if (st) {
+    let lit = 0;
+    for (const k of KINDS) { const on = !!t[k], name = NAMES[k].toUpperCase(); if (on) lit++;
+      const a = on ? `✦ ${name} ✦` : "", b = on ? "" : name;
+      if (st.state[`on_${k}`] !== a) st.state[`on_${k}`] = a; if (st.state[`off_${k}`] !== b) st.state[`off_${k}`] = b; }
+    const m = ctx.place.objects["stele-of-nine/memory"], want = lit * 1.6;
+    if (m?.light && m.light.intensity !== want) m.light = { ...m.light, intensity: want };
+  }
   if (ctx.self.state.rung) for (const k of KINDS) if (!t[k] && ctx.self.state.rung[k]) { const { [k]: _, ...rest } = ctx.self.state.rung; ctx.self.state.rung = rest; }
   ctx.sleep(3);
 }
