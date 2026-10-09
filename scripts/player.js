@@ -1002,7 +1002,7 @@ export function update(ctx, dt) {
   if (me.keys) {
     const sp = HERO_SPEED(s) * (now < (me.rushUntil ?? 0) ? 1.35 : now < (me.hasteUntil ?? 0) ? C.traits.fenborn.haste : 1);
     v = { x: me.keys.x * sp, z: me.keys.z * sp };
-    const l = Math.hypot(v.x, v.z); if (l > HERO_SPEED(s)) { v.x *= HERO_SPEED(s) / l; v.z *= HERO_SPEED(s) / l; }
+    const l = Math.hypot(v.x, v.z); if (l > sp) { v.x *= sp / l; v.z *= sp / l; }
   } else if (s.target) {
     const foe = ctx.getObject(s.target);
     if (!isFoe(foe)) { if (s.foe && s.foe.id === s.target && !s.foe.gone) s.foe = { ...s.foe, hp: 0, gone: true, at: now }; s.target = null; }
@@ -1022,7 +1022,7 @@ export function update(ctx, dt) {
       }
     }
   } else if (s.goal) {
-    v = walkTo(ctx, s.goal, HERO_SPEED(s) * (now < (me.hasteUntil ?? 0) ? C.traits.fenborn.haste : 1), dt);
+    v = walkTo(ctx, s.goal, HERO_SPEED(s) * (now < (me.rushUntil ?? 0) ? 1.35 : now < (me.hasteUntil ?? 0) ? C.traits.fenborn.haste : 1), dt);
     if (!v) { s.goal = null; me.route = null; }
   }
   if (me.talk) {
