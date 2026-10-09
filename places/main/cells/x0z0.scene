@@ -161,6 +161,31 @@ bw-floor-9:
   id: bw-floor-9
   state: {patch: far}
   tags: [bloodwoods, flora, floor]
+bw-glow-0:
+  feetPosition: {x: 18, y: {terrain: 0.6}, z: 12}
+  id: bw-glow-0
+  light: {color: oklch(0.68 0.19 38), distance: 8, intensity: 2.2, kind: point}
+  tags: [bloodwoods, bw-light]
+bw-glow-1:
+  feetPosition: {x: 32, y: {terrain: 0.6}, z: -12}
+  id: bw-glow-1
+  light: {color: oklch(0.68 0.19 38), distance: 8, intensity: 2.55, kind: point}
+  tags: [bloodwoods, bw-light]
+bw-glow-2:
+  feetPosition: {x: 24, y: {terrain: 0.6}, z: -5.2}
+  id: bw-glow-2
+  light: {color: oklch(0.68 0.19 38), distance: 8, intensity: 2.9, kind: point}
+  tags: [bloodwoods, bw-light]
+bw-glow-3:
+  feetPosition: {x: 40, y: {terrain: 0.6}, z: 10.5}
+  id: bw-glow-3
+  light: {color: oklch(0.68 0.19 38), distance: 8, intensity: 3.25, kind: point}
+  tags: [bloodwoods, bw-light]
+bw-glow-4:
+  feetPosition: {x: 47, y: {terrain: 0.6}, z: -3}
+  id: bw-glow-4
+  light: {color: oklch(0.68 0.19 38), distance: 8, intensity: 3.6, kind: point}
+  tags: [bloodwoods, bw-light]
 bw-tree-0:
   castShadow: true
   feetPosition: {x: 34, y: {terrain: -0.25}, z: -13.4}
@@ -249,6 +274,226 @@ bw-tree-21:
   scale: 0.97
   state: {kind: bloodoak}
   tags: [bloodwoods, flora, tree]
+bw-tree-22:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 47, y: {terrain: -0.2}, z: 19.9}
+  id: bw-tree-22
+  layout: {maxExtents: {y: 6.48}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 1.05, weight: 1}}
+  model: /cdn/value.128f62273fc70ffe70bff8d027973a2009b69bb4ea569ba1befb16dccb75457e.glb
+  receiveShadow: true
+  rotation: 210
+  state: {kind: antlersnag}
+  tags: [bloodwoods, flora, tree]
+bw-tree-23:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 15.3, y: {terrain: -0.2}, z: -20.5}
+  id: bw-tree-23
+  layout: {maxExtents: {y: 8.74}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 1.12, weight: 1}}
+  model: /cdn/value.44b42b31805b980502a2935691aa7f8771007793c69739953758b846d1d2f61f.glb
+  receiveShadow: true
+  rotation: 15
+  state: {kind: bloodoak}
+  tags: [bloodwoods, flora, tree]
+bw-tree-24:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 24.5, y: {terrain: -0.2}, z: 21.1}
+  id: bw-tree-24
+  layout: {maxExtents: {y: 8.27}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 1.15, weight: 1}}
+  model: /cdn/value.44b42b31805b980502a2935691aa7f8771007793c69739953758b846d1d2f61f.glb
+  receiveShadow: true
+  rotation: 177
+  state: {kind: bloodoak}
+  tags: [bloodwoods, flora, tree]
+bw-tree-25:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 34.9, y: {terrain: -0.2}, z: -4.7}
+  fx: {script: "fx\npop spore rate=?mobile:.6|1.2 on=sphere(2.5) life=4..7 v=up(.15..0.35)+sdir()*.2 size=.04..0.07 acc=curl(.4)*.6+drag(.6) col=hdr(2.6,.35,.18) a=(0>.15:1>.8:1>0)*flick(3,.4) sz=$size r=sprite(soft-disc,add)"}
+  id: bw-tree-25
+  layout: {maxExtents: {y: 7.24}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 1.02, weight: 1}}
+  model: /cdn/value.002c7e261f6964156c867c8886cdd951fc3a7331e0e3a93c1dacbef640ade581.glb
+  receiveShadow: true
+  rotation: 264
+  state: {kind: weepwillow}
+  tags: [bloodwoods, flora, tree]
+bw-tree-26:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 42.3, y: {terrain: -0.2}, z: 23.2}
+  id: bw-tree-26
+  layout: {maxExtents: {y: 9.13}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 1, weight: 1}}
+  model: /cdn/value.44b42b31805b980502a2935691aa7f8771007793c69739953758b846d1d2f61f.glb
+  receiveShadow: true
+  rotation: 170
+  state: {kind: bloodoak}
+  tags: [bloodwoods, flora, tree]
+bw-tree-27:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 12.1, y: {terrain: -0.2}, z: -11.9}
+  id: bw-tree-27
+  layout: {maxExtents: {y: 6.79}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 0.98, weight: 1}}
+  model: /cdn/value.002c7e261f6964156c867c8886cdd951fc3a7331e0e3a93c1dacbef640ade581.glb
+  receiveShadow: true
+  rotation: 76
+  state: {kind: weepwillow}
+  tags: [bloodwoods, flora, tree]
+bw-tree-28:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 26.1, y: {terrain: -0.2}, z: -17.2}
+  id: bw-tree-28
+  layout: {maxExtents: {y: 7.02}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 0.88, weight: 1}}
+  model: /cdn/value.002c7e261f6964156c867c8886cdd951fc3a7331e0e3a93c1dacbef640ade581.glb
+  receiveShadow: true
+  rotation: 105
+  state: {kind: weepwillow}
+  tags: [bloodwoods, flora, tree]
+bw-tree-29:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 28.7, y: {terrain: -0.2}, z: -21.6}
+  id: bw-tree-29
+  layout: {maxExtents: {y: 9.42}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 1.04, weight: 1}}
+  model: /cdn/value.44b42b31805b980502a2935691aa7f8771007793c69739953758b846d1d2f61f.glb
+  receiveShadow: true
+  rotation: 142
+  state: {kind: bloodoak}
+  tags: [bloodwoods, flora, tree]
+bw-tree-30:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 18.9, y: {terrain: -0.2}, z: -4.8}
+  fx: {script: "fx\npop spore rate=?mobile:.6|1.2 on=sphere(2.5) life=4..7 v=up(.15..0.35)+sdir()*.2 size=.04..0.07 acc=curl(.4)*.6+drag(.6) col=hdr(2.6,.35,.18) a=(0>.15:1>.8:1>0)*flick(3,.4) sz=$size r=sprite(soft-disc,add)"}
+  id: bw-tree-30
+  layout: {maxExtents: {y: 10.22}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 0.96, weight: 1}}
+  model: /cdn/value.44b42b31805b980502a2935691aa7f8771007793c69739953758b846d1d2f61f.glb
+  receiveShadow: true
+  rotation: 38
+  state: {kind: bloodoak}
+  tags: [bloodwoods, flora, tree]
+bw-tree-31:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 30.2, y: {terrain: -0.2}, z: -5}
+  fx: {script: "fx\npop spore rate=?mobile:.6|1.2 on=sphere(2.5) life=4..7 v=up(.15..0.35)+sdir()*.2 size=.04..0.07 acc=curl(.4)*.6+drag(.6) col=hdr(2.6,.35,.18) a=(0>.15:1>.8:1>0)*flick(3,.4) sz=$size r=sprite(soft-disc,add)"}
+  id: bw-tree-31
+  layout: {maxExtents: {y: 9.39}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 0.94, weight: 1}}
+  model: /cdn/value.44b42b31805b980502a2935691aa7f8771007793c69739953758b846d1d2f61f.glb
+  receiveShadow: true
+  rotation: 84
+  state: {kind: bloodoak}
+  tags: [bloodwoods, flora, tree]
+bw-tree-32:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 20.1, y: {terrain: -0.2}, z: 6.7}
+  fx: {script: "fx\npop spore rate=?mobile:.6|1.2 on=sphere(2.5) life=4..7 v=up(.15..0.35)+sdir()*.2 size=.04..0.07 acc=curl(.4)*.6+drag(.6) col=hdr(2.6,.35,.18) a=(0>.15:1>.8:1>0)*flick(3,.4) sz=$size r=sprite(soft-disc,add)"}
+  id: bw-tree-32
+  layout: {maxExtents: {y: 8.59}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 1.02, weight: 1}}
+  model: /cdn/value.44b42b31805b980502a2935691aa7f8771007793c69739953758b846d1d2f61f.glb
+  receiveShadow: true
+  rotation: 357
+  state: {kind: bloodoak}
+  tags: [bloodwoods, flora, tree]
+bw-tree-33:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 20.6, y: {terrain: -0.2}, z: -17.2}
+  id: bw-tree-33
+  layout: {maxExtents: {y: 9.18}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 0.95, weight: 1}}
+  model: /cdn/value.44b42b31805b980502a2935691aa7f8771007793c69739953758b846d1d2f61f.glb
+  receiveShadow: true
+  rotation: 69
+  state: {kind: bloodoak}
+  tags: [bloodwoods, flora, tree]
+bw-tree-34:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 33.8, y: {terrain: -0.2}, z: -19.2}
+  id: bw-tree-34
+  layout: {maxExtents: {y: 7.51}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 0.86, weight: 1}}
+  model: /cdn/value.002c7e261f6964156c867c8886cdd951fc3a7331e0e3a93c1dacbef640ade581.glb
+  receiveShadow: true
+  rotation: 117
+  state: {kind: weepwillow}
+  tags: [bloodwoods, flora, tree]
+bw-tree-35:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 29.7, y: {terrain: -0.2}, z: 7}
+  id: bw-tree-35
+  layout: {maxExtents: {y: 8.95}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 1.05, weight: 1}}
+  model: /cdn/value.44b42b31805b980502a2935691aa7f8771007793c69739953758b846d1d2f61f.glb
+  receiveShadow: true
+  rotation: 74
+  state: {kind: bloodoak}
+  tags: [bloodwoods, flora, tree]
+bw-tree-36:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 36.5, y: {terrain: -0.2}, z: 10.7}
+  id: bw-tree-36
+  layout: {maxExtents: {y: 6.29}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 1.07, weight: 1}}
+  model: /cdn/value.002c7e261f6964156c867c8886cdd951fc3a7331e0e3a93c1dacbef640ade581.glb
+  receiveShadow: true
+  rotation: 72
+  state: {kind: weepwillow}
+  tags: [bloodwoods, flora, tree]
+bw-tree-37:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 26.8, y: {terrain: -0.2}, z: -8.6}
+  id: bw-tree-37
+  layout: {maxExtents: {y: 6.72}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 1.01, weight: 1}}
+  model: /cdn/value.002c7e261f6964156c867c8886cdd951fc3a7331e0e3a93c1dacbef640ade581.glb
+  receiveShadow: true
+  rotation: 67
+  state: {kind: weepwillow}
+  tags: [bloodwoods, flora, tree]
+bw-tree-38:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 9, y: {terrain: -0.2}, z: -6.5}
+  id: bw-tree-38
+  layout: {maxExtents: {y: 8.23}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 0.86, weight: 1}}
+  model: /cdn/value.44b42b31805b980502a2935691aa7f8771007793c69739953758b846d1d2f61f.glb
+  receiveShadow: true
+  rotation: 31
+  state: {kind: bloodoak}
+  tags: [bloodwoods, flora, tree]
+bw-tree-39:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 30, y: {terrain: -0.2}, z: 22.3}
+  id: bw-tree-39
+  layout: {maxExtents: {y: 8.63}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 1.07, weight: 1}}
+  model: /cdn/value.44b42b31805b980502a2935691aa7f8771007793c69739953758b846d1d2f61f.glb
+  receiveShadow: true
+  rotation: 307
+  state: {kind: bloodoak}
+  tags: [bloodwoods, flora, tree]
 bw-tree-4:
   castShadow: true
   feetPosition: {x: 41.5, y: {terrain: -0.25}, z: -5.9}
@@ -258,6 +503,78 @@ bw-tree-4:
   receiveShadow: true
   rotation: 240
   scale: 1.12
+  state: {kind: weepwillow}
+  tags: [bloodwoods, flora, tree]
+bw-tree-40:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 41.2, y: {terrain: -0.2}, z: -17.6}
+  id: bw-tree-40
+  layout: {maxExtents: {y: 9.83}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 0.94, weight: 1}}
+  model: /cdn/value.44b42b31805b980502a2935691aa7f8771007793c69739953758b846d1d2f61f.glb
+  receiveShadow: true
+  rotation: 354
+  state: {kind: bloodoak}
+  tags: [bloodwoods, flora, tree]
+bw-tree-41:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 11.5, y: {terrain: -0.2}, z: 8.9}
+  id: bw-tree-41
+  layout: {maxExtents: {y: 6.51}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 1.09, weight: 1}}
+  model: /cdn/value.002c7e261f6964156c867c8886cdd951fc3a7331e0e3a93c1dacbef640ade581.glb
+  receiveShadow: true
+  rotation: 87
+  state: {kind: weepwillow}
+  tags: [bloodwoods, flora, tree]
+bw-tree-42:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 9.8, y: {terrain: -0.2}, z: -18.8}
+  id: bw-tree-42
+  layout: {maxExtents: {y: 10.05}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 1, weight: 1}}
+  model: /cdn/value.44b42b31805b980502a2935691aa7f8771007793c69739953758b846d1d2f61f.glb
+  receiveShadow: true
+  rotation: 60
+  state: {kind: bloodoak}
+  tags: [bloodwoods, flora, tree]
+bw-tree-43:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 18.5, y: {terrain: -0.2}, z: 22.5}
+  id: bw-tree-43
+  layout: {maxExtents: {y: 9.9}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 0.91, weight: 1}}
+  model: /cdn/value.44b42b31805b980502a2935691aa7f8771007793c69739953758b846d1d2f61f.glb
+  receiveShadow: true
+  rotation: 90
+  state: {kind: bloodoak}
+  tags: [bloodwoods, flora, tree]
+bw-tree-44:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 13.6, y: {terrain: -0.2}, z: 14.6}
+  id: bw-tree-44
+  layout: {maxExtents: {y: 9.88}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 1.11, weight: 1}}
+  model: /cdn/value.44b42b31805b980502a2935691aa7f8771007793c69739953758b846d1d2f61f.glb
+  receiveShadow: true
+  rotation: 262
+  state: {kind: bloodoak}
+  tags: [bloodwoods, flora, tree]
+bw-tree-45:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 28, y: {terrain: -0.2}, z: 15.7}
+  id: bw-tree-45
+  layout: {maxExtents: {y: 7.13}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 1.14, weight: 1}}
+  model: /cdn/value.002c7e261f6964156c867c8886cdd951fc3a7331e0e3a93c1dacbef640ade581.glb
+  receiveShadow: true
+  rotation: 112
   state: {kind: weepwillow}
   tags: [bloodwoods, flora, tree]
 bw-tree-5:
