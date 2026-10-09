@@ -34,3 +34,9 @@ deep-crystal-9:
   primitive: {kind: scripted, params: {h: 2.495364326238632, n: 10, r: 0.703881943016313}, script: scripts/gen/deep-crystal.js, seed: 309}
   rotation: 268.782586986199
   tags: [deep-dress]
+deep-floor-12:
+  children: [{castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: cavegravel, primitive: {kind: scripted, params: {biome: deep, bounds: 8, clear: [[1, 6, 3.5]], count: 14, kind: cavegravel, margin: 0.8, origin: [-49, -323], zone: any}, script: scripts/gen/zone-floor.js, seed: 1063}, receiveShadow: true, tags: [deep, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: cavebones, primitive: {kind: scripted, params: {biome: deep, bounds: 8, clear: [[1, 6, 3.5]], count: 4, kind: cavebones, margin: 0.8, origin: [-49, -323], zone: any}, script: scripts/gen/zone-floor.js, seed: 1070}, receiveShadow: true, tags: [deep, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: glowcap, primitive: {kind: scripted, params: {biome: deep, bounds: 8, clear: [[1, 6, 3.5]], count: 9, kind: glowcap, margin: 0.4, origin: [-49, -323], zone: out}, script: scripts/gen/zone-floor.js, seed: 1077}, receiveShadow: true, tags: [deep, flora, floor]}, {castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: crystal, primitive: {kind: scripted, params: {biome: deep, bounds: 8, clear: [[1, 6, 3.5]], count: 6, kind: crystal, margin: 0.8, origin: [-49, -323], zone: out}, script: scripts/gen/zone-floor.js, seed: 1084}, receiveShadow: true, tags: [deep, flora, floor]}]
+  feetPosition: {x: -49, y: {terrain: 0}, z: -323}
+  id: deep-floor-12
+  state: {patch: deep}
+  tags: [deep, flora, floor]

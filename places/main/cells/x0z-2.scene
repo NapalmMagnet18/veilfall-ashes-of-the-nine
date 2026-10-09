@@ -388,6 +388,99 @@ deep-crystal-8:
   primitive: {kind: scripted, params: {h: 2.5454734433442354, n: 6, r: 0.5750183650525287}, script: scripts/gen/deep-crystal.js, seed: 308}
   rotation: 26.58033418469131
   tags: [deep-dress]
+deep-floor-0:
+  children: [{castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: cavegravel, primitive: {kind: scripted, params: {biome: deep, bounds: 8, clear: [[-4, -1, 4.5]], count: 16, kind: cavegravel, margin: 0.8, origin: [-42, -266], zone: any}, script: scripts/gen/zone-floor.js, seed: 907}, receiveShadow: true, tags: [ossuary, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: cavebones, primitive: {kind: scripted, params: {biome: deep, bounds: 8, clear: [[-4, -1, 4.5]], count: 4, kind: cavebones, margin: 0.8, origin: [-42, -266], zone: any}, script: scripts/gen/zone-floor.js, seed: 914}, receiveShadow: true, tags: [ossuary, flora, floor]}]
+  feetPosition: {x: -42, y: {terrain: 0}, z: -266}
+  id: deep-floor-0
+  state: {patch: ossuary}
+  tags: [ossuary, flora, floor]
+deep-floor-1:
+  children: [{castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: cavegravel, primitive: {kind: scripted, params: {biome: deep, bounds: 8, clear: [], count: 14, kind: cavegravel, margin: 0.8, origin: [-34, -256], zone: any}, script: scripts/gen/zone-floor.js, seed: 920}, receiveShadow: true, tags: [ossuary, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: cavebones, primitive: {kind: scripted, params: {biome: deep, bounds: 8, clear: [], count: 5, kind: cavebones, margin: 0.8, origin: [-34, -256], zone: any}, script: scripts/gen/zone-floor.js, seed: 927}, receiveShadow: true, tags: [ossuary, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: glowcap, primitive: {kind: scripted, params: {biome: deep, bounds: 8, clear: [], count: 7, kind: glowcap, margin: 0.4, origin: [-34, -256], zone: out}, script: scripts/gen/zone-floor.js, seed: 934}, receiveShadow: true, tags: [ossuary, flora, floor]}, {castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: crystal, primitive: {kind: scripted, params: {biome: deep, bounds: 8, clear: [], count: 3, kind: crystal, margin: 0.8, origin: [-34, -256], zone: out}, script: scripts/gen/zone-floor.js, seed: 941}, receiveShadow: true, tags: [ossuary, flora, floor]}]
+  feetPosition: {x: -34, y: {terrain: 0}, z: -256}
+  id: deep-floor-1
+  state: {patch: ossuary}
+  tags: [ossuary, flora, floor]
+deep-floor-10:
+  children: [{castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: cavegravel, primitive: {kind: scripted, params: {biome: deep, bounds: 8, clear: [], count: 12, kind: cavegravel, margin: 0.8, origin: [-59, -307], zone: any}, script: scripts/gen/zone-floor.js, seed: 1037}, receiveShadow: true, tags: [deep, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: cavebones, primitive: {kind: scripted, params: {biome: deep, bounds: 8, clear: [], count: 5, kind: cavebones, margin: 0.8, origin: [-59, -307], zone: any}, script: scripts/gen/zone-floor.js, seed: 1044}, receiveShadow: true, tags: [deep, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: glowcap, primitive: {kind: scripted, params: {biome: deep, bounds: 8, clear: [], count: 10, kind: glowcap, margin: 0.4, origin: [-59, -307], zone: out}, script: scripts/gen/zone-floor.js, seed: 1051}, receiveShadow: true, tags: [deep, flora, floor]}, {castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: crystal, primitive: {kind: scripted, params: {biome: deep, bounds: 8, clear: [], count: 8, kind: crystal, margin: 0.8, origin: [-59, -307], zone: out}, script: scripts/gen/zone-floor.js, seed: 1058}, receiveShadow: true, tags: [deep, flora, floor]}]
+  feetPosition: {x: -59, y: {terrain: 0}, z: -307}
+  id: deep-floor-10
+  state: {patch: deep}
+  tags: [deep, flora, floor]
+deep-floor-11:
+  children: [{castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: cavegravel, primitive: {kind: scripted, params: {biome: deep, bounds: 8, clear: [], count: 12, kind: cavegravel, margin: 0.8, origin: [-35, -308], zone: any}, script: scripts/gen/zone-floor.js, seed: 1050}, receiveShadow: true, tags: [deep, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: cavebones, primitive: {kind: scripted, params: {biome: deep, bounds: 8, clear: [], count: 5, kind: cavebones, margin: 0.8, origin: [-35, -308], zone: any}, script: scripts/gen/zone-floor.js, seed: 1057}, receiveShadow: true, tags: [deep, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: glowcap, primitive: {kind: scripted, params: {biome: deep, bounds: 8, clear: [], count: 10, kind: glowcap, margin: 0.4, origin: [-35, -308], zone: out}, script: scripts/gen/zone-floor.js, seed: 1064}, receiveShadow: true, tags: [deep, flora, floor]}, {castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: crystal, primitive: {kind: scripted, params: {biome: deep, bounds: 8, clear: [], count: 8, kind: crystal, margin: 0.8, origin: [-35, -308], zone: out}, script: scripts/gen/zone-floor.js, seed: 1071}, receiveShadow: true, tags: [deep, flora, floor]}]
+  feetPosition: {x: -35, y: {terrain: 0}, z: -308}
+  id: deep-floor-11
+  state: {patch: deep}
+  tags: [deep, flora, floor]
+deep-floor-13:
+  children: [{castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: cavegravel, primitive: {kind: scripted, params: {biome: deep, bounds: 7, clear: [], count: 10, kind: cavegravel, margin: 0.8, origin: [-59, -319], zone: any}, script: scripts/gen/zone-floor.js, seed: 1076}, receiveShadow: true, tags: [deep, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: cavebones, primitive: {kind: scripted, params: {biome: deep, bounds: 7, clear: [], count: 4, kind: cavebones, margin: 0.8, origin: [-59, -319], zone: any}, script: scripts/gen/zone-floor.js, seed: 1083}, receiveShadow: true, tags: [deep, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: glowcap, primitive: {kind: scripted, params: {biome: deep, bounds: 7, clear: [], count: 8, kind: glowcap, margin: 0.4, origin: [-59, -319], zone: out}, script: scripts/gen/zone-floor.js, seed: 1090}, receiveShadow: true, tags: [deep, flora, floor]}, {castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: crystal, primitive: {kind: scripted, params: {biome: deep, bounds: 7, clear: [], count: 7, kind: crystal, margin: 0.8, origin: [-59, -319], zone: out}, script: scripts/gen/zone-floor.js, seed: 1097}, receiveShadow: true, tags: [deep, flora, floor]}]
+  feetPosition: {x: -59, y: {terrain: 0}, z: -319}
+  id: deep-floor-13
+  state: {patch: deep}
+  tags: [deep, flora, floor]
+deep-floor-2:
+  children: [{castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: cavegravel, primitive: {kind: scripted, params: {biome: deep, bounds: 8, clear: [], count: 14, kind: cavegravel, margin: 0.8, origin: [-50, -256], zone: any}, script: scripts/gen/zone-floor.js, seed: 933}, receiveShadow: true, tags: [ossuary, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: cavebones, primitive: {kind: scripted, params: {biome: deep, bounds: 8, clear: [], count: 5, kind: cavebones, margin: 0.8, origin: [-50, -256], zone: any}, script: scripts/gen/zone-floor.js, seed: 940}, receiveShadow: true, tags: [ossuary, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: glowcap, primitive: {kind: scripted, params: {biome: deep, bounds: 8, clear: [], count: 8, kind: glowcap, margin: 0.4, origin: [-50, -256], zone: out}, script: scripts/gen/zone-floor.js, seed: 947}, receiveShadow: true, tags: [ossuary, flora, floor]}, {castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: crystal, primitive: {kind: scripted, params: {biome: deep, bounds: 8, clear: [], count: 3, kind: crystal, margin: 0.8, origin: [-50, -256], zone: out}, script: scripts/gen/zone-floor.js, seed: 954}, receiveShadow: true, tags: [ossuary, flora, floor]}]
+  feetPosition: {x: -50, y: {terrain: 0}, z: -256}
+  id: deep-floor-2
+  state: {patch: ossuary}
+  tags: [ossuary, flora, floor]
+deep-floor-3:
+  children: [{castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: cavegravel, primitive: {kind: scripted, params: {biome: deep, bounds: 8, clear: [[9, 1, 4.5]], count: 12, kind: cavegravel, margin: 0.8, origin: [-55, -268], zone: any}, script: scripts/gen/zone-floor.js, seed: 946}, receiveShadow: true, tags: [ossuary, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: cavebones, primitive: {kind: scripted, params: {biome: deep, bounds: 8, clear: [[9, 1, 4.5]], count: 5, kind: cavebones, margin: 0.8, origin: [-55, -268], zone: any}, script: scripts/gen/zone-floor.js, seed: 953}, receiveShadow: true, tags: [ossuary, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: glowcap, primitive: {kind: scripted, params: {biome: deep, bounds: 8, clear: [[9, 1, 4.5]], count: 8, kind: glowcap, margin: 0.4, origin: [-55, -268], zone: out}, script: scripts/gen/zone-floor.js, seed: 960}, receiveShadow: true, tags: [ossuary, flora, floor]}, {castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: crystal, primitive: {kind: scripted, params: {biome: deep, bounds: 8, clear: [[9, 1, 4.5]], count: 4, kind: crystal, margin: 0.8, origin: [-55, -268], zone: out}, script: scripts/gen/zone-floor.js, seed: 967}, receiveShadow: true, tags: [ossuary, flora, floor]}]
+  feetPosition: {x: -55, y: {terrain: 0}, z: -268}
+  id: deep-floor-3
+  state: {patch: ossuary}
+  tags: [ossuary, flora, floor]
+deep-floor-4:
+  children: [{castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: cavegravel, primitive: {kind: scripted, params: {biome: deep, bounds: 8, clear: [], count: 12, kind: cavegravel, margin: 0.8, origin: [-47, -279], zone: any}, script: scripts/gen/zone-floor.js, seed: 959}, receiveShadow: true, tags: [ossuary, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: cavebones, primitive: {kind: scripted, params: {biome: deep, bounds: 8, clear: [], count: 5, kind: cavebones, margin: 0.8, origin: [-47, -279], zone: any}, script: scripts/gen/zone-floor.js, seed: 966}, receiveShadow: true, tags: [ossuary, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: glowcap, primitive: {kind: scripted, params: {biome: deep, bounds: 8, clear: [], count: 7, kind: glowcap, margin: 0.4, origin: [-47, -279], zone: out}, script: scripts/gen/zone-floor.js, seed: 973}, receiveShadow: true, tags: [ossuary, flora, floor]}, {castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: crystal, primitive: {kind: scripted, params: {biome: deep, bounds: 8, clear: [], count: 4, kind: crystal, margin: 0.8, origin: [-47, -279], zone: out}, script: scripts/gen/zone-floor.js, seed: 980}, receiveShadow: true, tags: [ossuary, flora, floor]}]
+  feetPosition: {x: -47, y: {terrain: 0}, z: -279}
+  id: deep-floor-4
+  state: {patch: ossuary}
+  tags: [ossuary, flora, floor]
+deep-floor-5:
+  children: [{castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: cavegravel, primitive: {kind: scripted, params: {biome: deep, bounds: 8, clear: [], count: 12, kind: cavegravel, margin: 0.8, origin: [-33, -276], zone: any}, script: scripts/gen/zone-floor.js, seed: 972}, receiveShadow: true, tags: [ossuary, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: cavebones, primitive: {kind: scripted, params: {biome: deep, bounds: 8, clear: [], count: 4, kind: cavebones, margin: 0.8, origin: [-33, -276], zone: any}, script: scripts/gen/zone-floor.js, seed: 979}, receiveShadow: true, tags: [ossuary, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: glowcap, primitive: {kind: scripted, params: {biome: deep, bounds: 8, clear: [], count: 7, kind: glowcap, margin: 0.4, origin: [-33, -276], zone: out}, script: scripts/gen/zone-floor.js, seed: 986}, receiveShadow: true, tags: [ossuary, flora, floor]}, {castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: crystal, primitive: {kind: scripted, params: {biome: deep, bounds: 8, clear: [], count: 3, kind: crystal, margin: 0.8, origin: [-33, -276], zone: out}, script: scripts/gen/zone-floor.js, seed: 993}, receiveShadow: true, tags: [ossuary, flora, floor]}]
+  feetPosition: {x: -33, y: {terrain: 0}, z: -276}
+  id: deep-floor-5
+  state: {patch: ossuary}
+  tags: [ossuary, flora, floor]
+deep-floor-6:
+  children: [{castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: cavegravel, primitive: {kind: scripted, params: {biome: deep, bounds: 8, clear: [], count: 14, kind: cavegravel, margin: 0.8, origin: [-21, -260], zone: any}, script: scripts/gen/zone-floor.js, seed: 985}, receiveShadow: true, tags: [ossuary, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: cavebones, primitive: {kind: scripted, params: {biome: deep, bounds: 8, clear: [], count: 4, kind: cavebones, margin: 0.8, origin: [-21, -260], zone: any}, script: scripts/gen/zone-floor.js, seed: 992}, receiveShadow: true, tags: [ossuary, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: glowcap, primitive: {kind: scripted, params: {biome: deep, bounds: 8, clear: [], count: 6, kind: glowcap, margin: 0.4, origin: [-21, -260], zone: out}, script: scripts/gen/zone-floor.js, seed: 999}, receiveShadow: true, tags: [ossuary, flora, floor]}, {castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: crystal, primitive: {kind: scripted, params: {biome: deep, bounds: 8, clear: [], count: 2, kind: crystal, margin: 0.8, origin: [-21, -260], zone: out}, script: scripts/gen/zone-floor.js, seed: 1006}, receiveShadow: true, tags: [ossuary, flora, floor]}]
+  feetPosition: {x: -21, y: {terrain: 0}, z: -260}
+  id: deep-floor-6
+  state: {patch: ossuary}
+  tags: [ossuary, flora, floor]
+deep-floor-7:
+  children: [{castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: cavegravel, primitive: {kind: scripted, params: {biome: deep, bounds: 7, clear: [], count: 12, kind: cavegravel, margin: 0.8, origin: [-41, -284], zone: any}, script: scripts/gen/zone-floor.js, seed: 998}, receiveShadow: true, tags: [deep, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: cavebones, primitive: {kind: scripted, params: {biome: deep, bounds: 7, clear: [], count: 4, kind: cavebones, margin: 0.8, origin: [-41, -284], zone: any}, script: scripts/gen/zone-floor.js, seed: 1005}, receiveShadow: true, tags: [deep, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: glowcap, primitive: {kind: scripted, params: {biome: deep, bounds: 7, clear: [], count: 9, kind: glowcap, margin: 0.4, origin: [-41, -284], zone: out}, script: scripts/gen/zone-floor.js, seed: 1012}, receiveShadow: true, tags: [deep, flora, floor]}, {castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: crystal, primitive: {kind: scripted, params: {biome: deep, bounds: 7, clear: [], count: 6, kind: crystal, margin: 0.8, origin: [-41, -284], zone: out}, script: scripts/gen/zone-floor.js, seed: 1019}, receiveShadow: true, tags: [deep, flora, floor]}]
+  feetPosition: {x: -41, y: {terrain: 0}, z: -284}
+  id: deep-floor-7
+  state: {patch: deep}
+  tags: [deep, flora, floor]
+deep-floor-8:
+  children: [{castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: cavegravel, primitive: {kind: scripted, params: {biome: deep, bounds: 7, clear: [], count: 12, kind: cavegravel, margin: 0.8, origin: [-44, -295], zone: any}, script: scripts/gen/zone-floor.js, seed: 1011}, receiveShadow: true, tags: [deep, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: cavebones, primitive: {kind: scripted, params: {biome: deep, bounds: 7, clear: [], count: 4, kind: cavebones, margin: 0.8, origin: [-44, -295], zone: any}, script: scripts/gen/zone-floor.js, seed: 1018}, receiveShadow: true, tags: [deep, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: glowcap, primitive: {kind: scripted, params: {biome: deep, bounds: 7, clear: [], count: 9, kind: glowcap, margin: 0.4, origin: [-44, -295], zone: out}, script: scripts/gen/zone-floor.js, seed: 1025}, receiveShadow: true, tags: [deep, flora, floor]}, {castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: crystal, primitive: {kind: scripted, params: {biome: deep, bounds: 7, clear: [], count: 6, kind: crystal, margin: 0.8, origin: [-44, -295], zone: out}, script: scripts/gen/zone-floor.js, seed: 1032}, receiveShadow: true, tags: [deep, flora, floor]}]
+  feetPosition: {x: -44, y: {terrain: 0}, z: -295}
+  id: deep-floor-8
+  state: {patch: deep}
+  tags: [deep, flora, floor]
+deep-floor-9:
+  children: [{castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: cavegravel, primitive: {kind: scripted, params: {biome: deep, bounds: 8, clear: [[-1, -7, 3.5]], count: 18, kind: cavegravel, margin: 0.8, origin: [-47, -310], zone: any}, script: scripts/gen/zone-floor.js, seed: 1024}, receiveShadow: true, tags: [deep, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: cavebones, primitive: {kind: scripted, params: {biome: deep, bounds: 8, clear: [[-1, -7, 3.5]], count: 5, kind: cavebones, margin: 0.8, origin: [-47, -310], zone: any}, script: scripts/gen/zone-floor.js, seed: 1031}, receiveShadow: true, tags: [deep, flora, floor]}]
+  feetPosition: {x: -47, y: {terrain: 0}, z: -310}
+  id: deep-floor-9
+  state: {patch: deep}
+  tags: [deep, flora, floor]
+deep-floor-glow-0:
+  feetPosition: {x: -60, y: {terrain: 1.2}, z: -310}
+  id: deep-floor-glow-0
+  light: {color: "#6DB8C0", distance: 9, intensity: 0.8, kind: point}
+  tags: [deep, flora, light]
+deep-floor-glow-1:
+  feetPosition: {x: -34, y: {terrain: 1.2}, z: -311}
+  id: deep-floor-glow-1
+  light: {color: "#6DB8C0", distance: 9, intensity: 0.8, kind: point}
+  tags: [deep, flora, light]
+deep-floor-glow-2:
+  feetPosition: {x: -38, y: {terrain: 1.2}, z: -292}
+  id: deep-floor-glow-2
+  light: {color: "#6DB8C0", distance: 9, intensity: 0.8, kind: point}
+  tags: [deep, flora, light]
 deep-light-0:
   feetPosition: {x: -47, y: {terrain: 6}, z: -310}
   id: deep-light-0
