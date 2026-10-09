@@ -1,0 +1,14 @@
+{
+  "name": "custom-glb-animations",
+  "displayName": "Custom GLB Animations",
+  "description": "Teaches the Puppet Pattern for using custom uploaded GLB model animations on player characters. Solves the invisible player and frozen animation problems with step-by-step guidance, combat animation state machines, lock-on directional animations, and attack cancel windows.",
+  "tags": [
+    "skill",
+    "animation",
+    "tutorial",
+    "glb",
+    "puppet-pattern"
+  ],
+  "visibility": "public",
+  "version": "1.0.0"
+}
