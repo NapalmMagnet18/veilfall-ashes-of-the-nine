@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "basedOnSpecVersion": 772,
-  "updatedAt": "2026-10-09T06:25:58.912Z",
+  "basedOnSpecVersion": 785,
+  "updatedAt": "2026-10-09T06:33:10.213Z",
   "summary": "VEILFALL: Ashes of the Nine is an isometric action RPG spanning shared Z01 chapters and a solo Veil menu stage. The world config attaches the Bladewraith and HUD; the main-place referee coordinates quests and encounters while player, enemy, boss, persistence, loot and service modules divide live state and progression.",
   "scriptPaths": [
     "scripts/abbess.js",
@@ -20,6 +20,10 @@
     "scripts/gen/abbey-litter.js",
     "scripts/gen/arena-floor.js",
     "scripts/gen/arena-pillar.js",
+    "scripts/gen/cap-gate.js",
+    "scripts/gen/cap-house.js",
+    "scripts/gen/cap-kit.js",
+    "scripts/gen/cap-wall.js",
     "scripts/gen/censer.js",
     "scripts/gen/dripping-gate.js",
     "scripts/gen/fen-causeway.js",
@@ -102,6 +106,7 @@
     "scripts/plants/bramble.js",
     "scripts/plants/glowcap.js",
     "scripts/plants/gravegrass.js",
+    "scripts/plants/mossoak.js",
     "scripts/player.js",
     "scripts/ringer.js",
     "scripts/sim.js",
@@ -116,19 +121,19 @@
   ],
   "places": [
     "places/main/ - shared Z01 adventure; sim.js owns quest chapters, NPCs, pack/boss lifecycle, rewards, progression and room sound/music.",
-    "places/main/cells/ - five authored cells span Wayside Fire, Broken Lantern Road, Abbey/Crypt and Bone Stair/Ossuary, Fen/Lanternmere and Gallows Orchard; x0z0.scene contains camp services, Trophy Post and Stele of the Nine.",
-    "places/main/config.yaml - main terrain, atmosphere, vegetation distributions, arrival budget and reverb.",
-    "places/veil/ - ephemeral solo Lantern Shrine menu stage; hidden menu body is parked here.",
-    "places/veil/cells/, config.yaml and sim.js - authored shrine/ravine environment, spawn, menu ambience, shrine hum and distant bell."
+    "places/main/cells/ - six authored cells cover Wayside Fire, Broken Lantern Road, Candlehold, Abbey/Crypt and Bone Stair/Ossuary, Fen/Lanternmere and Gallows Orchard; x0z0.scene holds camp services, Trophy Post and Stele of the Nine, and adds Candlehold's north gate and Pilgrims' Way.",
+    "places/main/cells/x0z1.scene - Candlehold's walled southern city square: Exchange, fountain, townhouses, lamps and curtain wall; exchange-board is the realm trade interface.",
+    "places/main/config.yaml - main terrain, atmosphere, vegetation distributions (including clustered procedural moss-oaks), arrival budget and reverb.",
+    "places/veil/ - ephemeral solo Lantern Shrine menu stage; hidden menu body is parked here; cells/config.yaml/sim.js provide shrine-ravine setting and ambience."
   ],
   "roots": [
     "world.config.yaml - world entry: main default, player/camera templates, lighting, arrival, nametag, desktop/touch actions and audio mix.",
     "templates/player.js - Bladewraith body with humanoid-locomotion.js and scripts/player.js, plus carried-light child.",
     "templates/camera.js - custom camera template running scripts/camera.js.",
     "places/main/sim.js - Z01 referee for quests, Maelin/Ledd, packs, progression, boss spawning/reset and soundscape.",
-    "places/main/cells/ - authored playable road/chapter terrain; x0z-2.scene holds Bell Crypt/Ossuary landmarks.",
-    "places/veil/cells/ and places/veil/config.yaml - solo menu-stage shrine/ravine and environment.",
-    "scripts/arrival.js - world doorway behavior; saves an active Bearer leaving main."
+    "places/main/cells/ - authored playable road/chapter terrain; x0z-2.scene holds Bell Crypt/Ossuary landmarks and x0z0/x0z1 now form Candlehold and its north approach.",
+    "places/main/config.yaml - terrain and vegetation procedural distributions plus main atmosphere and acoustics.",
+    "places/veil/cells/ and places/veil/config.yaml - solo menu-stage shrine/ravine and environment; scripts/arrival.js saves an active Bearer leaving main."
   ],
   "shared": [
     "scripts/lib/character.js - Bearer schema, fresh state, realm roster/create/load/save/delete and packed position; player and arrival reuse it, crier and board-notes use realmOf.",
@@ -137,8 +142,8 @@
     "scripts/lib/data/combat.yml - hero, skill, enemy and boss tuning consumed by player, wax-pack and boss scripts.",
     "scripts/lib/data/loot.yml, loot-icons.yml and scripts/lib/loot.js - gear/drop/forge rules, rolls, smith ranks, boss marks, crafting and gear stats for combat, pack UI and trade.",
     "scripts/lib/data/brews.yml and scripts/lib/brews.js - brew recipes, costs, rank scaling and active-brew helpers used by player, HUD and pack UI.",
-    "scripts/lib/data/trade.yml and scripts/lib/trade.js - board tuning and realm listing/buy/unlist/collection logic; player routes actions here, crier and board-notes read listings.",
-    "scripts/lib/data/veilfall-map.js - shared floor gates, chapter areas and landmarks consumed by terrain, player and main sim."
+    "scripts/lib/data/trade.yml and scripts/lib/trade.js - realm listing/buy/unlist/collection logic; player routes actions here, crier and board-notes read listings; camp and Candlehold boards share it.",
+    "scripts/lib/data/veilfall-map.js - shared chapter floor gates, areas and landmarks for terrain, player and main sim; now includes Pilgrims' Way, Candlehold and Exchange coordinates."
   ],
   "notableExports": [
     "places/main/sim.js and places/veil/sim.js - cadence, tick.",
@@ -146,19 +151,18 @@
     "scripts/abbess.js, bailiff.js, ringer.js, warden.js and hangman.js - boss onSpawn/update handlers; abbess.js owns Ossuary Abbess combat.",
     "scripts/crier.js - onSpawn, quiet, update; scripts/board-notes.js and trophies.js - update; scripts/wax-pack.js - roll, telegraph, hurtPlayers, payout, update.",
     "scripts/gen/oss-kit.js - skull, geometry; scripts/gen/hub-trophy.js - HOOKS, geometry, collider.",
-    "scripts/lib/loot.js - SLOTS, TIER, icon, BAG, rollItem, FORGE, gearStats, mitigation, freeReforges, MARKS, markBoss, applyMark, craft and smith helpers.",
-    "scripts/lib/character.js - CHAR_KEYS, fresh, START, realmOf, pack, zoneOf, rollName, roster, create, load, save, remove; scripts/lib/brews.js - BREW and brew/rank helpers.",
+    "scripts/gen/cap-kit.js - material palette and local-frame box/ring/gable/beam helpers; cap-gate.js, cap-house.js, cap-wall.js and plants/mossoak.js export geometry, collider.",
+    "scripts/lib/loot.js - SLOTS, TIER, icon, BAG, rollItem, FORGE, gearStats, mitigation, freeReforges, MARKS, markBoss, applyMark, craft and smith helpers; character.js - CHAR_KEYS, fresh, START, realmOf, pack, zoneOf, rollName, roster, create, load, save, remove.",
     "scripts/lib/shop.js and shop-ui.js - owned/shopInput and shopPanel; scripts/lib/trade.js and board-ui.js - TRADE, asks, readBoard, tradeInput and boardPanel; scripts/lib/pack-ui.js - PACK_CSS, packPanel."
   ],
   "ownership": [
     "scripts/lib/character.js CHAR_KEYS - persistent Bearer fields including quest/reward claims, boss flags, inventory/gear/dust/gearLife/freeUsed, smithXp, renderXp, brew, heartwax and abbesswax.",
-    "scripts/player.js - active-body movement, combat, death/i-frame and skill timers, menu/options scratch, per-Bearer floor gates, inventory/service actions and derived gear stats; proximity and chill tracking are transient.",
+    "scripts/player.js - active-body movement, combat, death/i-frame and skill timers, menu/options scratch, per-Bearer floor gates, inventory/service actions and derived gear stats; proximity and chill tracking are transient; boardNear recognizes both trade-board and exchange-board.",
     "places/main/sim.js - per-player quest/dialog/cut progression and reward claims; enemy pack/encounter spawning, boss lifecycle, room music and ambience.",
     "scripts/wax-pack.js - ordinary enemy AI/hp/death and eligible Bearers' XP, copper, kills, shards and gear-drop inboxes.",
     "scripts/bailiff.js, ringer.js, warden.js, hangman.js and abbess.js - respective boss hp/phases/casts/adds/defeat; participant flags, place boss rows and place.state.lastFall.",
     "Boss scripts - first room-wide world.state.trophies[boss] record {at, by}; trophies.js derives relic visibility, plaque/stele text and transient ring/flash dedupe.",
-    "scripts/crier.js - Brother Ledd's route, pause, sale/mark/fall announcement cursors, including per-listener hidden Nine-marks line; scripts/board-notes.js owns transient board refresh and parchment props.",
-    "scripts/lib/shop.js and scripts/lib/trade.js - shop/buyer state mutations and realm SQL trade rows respectively."
+    "scripts/crier.js - Brother Ledd's route, pause, sale/mark/fall announcement cursors; scripts/lib/shop.js and scripts/lib/trade.js own shop/buyer state mutations and realm SQL trade rows."
   ],
   "flows": [
     "world.config.yaml attaches player through templates/player.js and maps actions; UI menu actions → player.js routes title/realm/character/create/enter/logout/options.",
@@ -166,35 +170,34 @@
     "While player.state.menu is set, player.js hides the body and moves it to solo place veil; menu screens remain state-driven and that place has no characters.",
     "controls.js selects menu touch surface when player/charId is absent or menu active and while shop/bag is open; otherwise world.config.yaml supplies world controls; ui.js actions return to player.js and service handlers.",
     "player.js periodically/on rest saves changed CHAR_KEYS plus packed position → character.js writes characters; arrival.js saves an active Bearer leaving main.",
-    "player.js derives chapter floor gates from quest stage/abbeyOpenAll → veilfall-map.js floorDist governs goals and movement; Ossuary floor requires stage 23 or open-all plus Abbey/Nave access.",
+    "player.js derives chapter floor gates from quest stage/abbeyOpenAll → veilfall-map.js floorDist governs goals and movement; Ossuary floor requires stage 23 or open-all plus Abbey/Nave access; capDist includes Pilgrims' Way and always-open Candlehold floor.",
     "Main sim advances quests and spawns/resets bosses; boss defeats mark participants and write place.state.lastFall {boss, by, at} → crier heralds a fresh fall to a nearby camp listener.",
     "Stage 23 + entry into OSSUARY → main sim spawns Abbess at RELIQUARY; abbess.js publishes place.state.abbess for ui.js boss bar, fights with ring/line casts and adds, then sets abbessKilled and awards heartwax/Abbess Candle to present Bearers.",
     "Boss scripts write first room-wide world.state.trophies[boss] = {at, by} → trophies.js updates Trophy Post relic/plaque and Stele of the Nine fallen-name lights; ui/nametag.js marks Firstblood; crier announces falls and worn marks.",
     "Firstblood names in trophies → loot.js freeReforges versus persistent freeUsed; player.js applies earned marks chronologically to items and derives gear stats.",
-    "Near Wayside forge, pack-ui craft/temper/reforge/ascend → player.js + loot.js consume materials, award smithXp and update inventory/gear; near cauldron brew action consumes recipe resources, saves timed brew/renderXp and derives combat bonuses.",
-    "player.js candleChill checks carried abbesswax near brazier objects → swaps their child flame FX/light to cold blue, preserving warm values on flame.state and restoring on departure/no candle; vegetation in main config instantiates scripts/plants geometry by distribution, seed and params.",
-    "Pilgrims' Board UI → player.js/trade.js performs guarded realm listing/buy/unlist/collection; board-notes renders open notices, crier reads sales, and shop-ui/player routes vendor purchases."
+    "Near Wayside forge, pack-ui craft/temper/reforge/ascend → player.js + loot.js consume materials and update inventory/gear; cauldron brew actions consume recipe resources, save timed brew/renderXp and derive combat bonuses.",
+    "Near either camp trade-board or Candlehold exchange-board → player.js boardNear sets atBoard; ui/player trade actions → trade.js read/list/buy/unlist/collect realm listings, with board-ui and crier/board-notes displaying the same market."
   ],
   "behaviorFamilies": [
-    "scripts/gen/hub-*.js - reusable Wayside Fire props varied by instance params, seed and scene transform; share hub-kit.js, including forge, board, trophy and cauldron.",
+    "scripts/gen/hub-*.js - reusable Wayside Fire props varied by instance params, seed and scene transform; share hub-kit.js, including forge, board, trophy and cauldron; hub-board.js is reused as Candlehold's exchange-board.",
     "scripts/gen/vf-*.js other than vf-ruin.js - Broken Lantern Road landmarks/clutter varied by params and seeds, built with vf-kit.js.",
     "scripts/gen/vf-ruin.js - road, arena, Wax Veil approach, ashlar, braziers and Abbey door forms selected by kind/dimensions and seed.",
+    "scripts/gen/cap-kit.js and cap-gate.js, cap-house.js, cap-wall.js - Candlehold stone, timber and slate geometry share local frame/material helpers; house widths/heights/light, wall length/height and gate seed vary by placed instance.",
     "scripts/gen/veil-land.js and veil-shrine.js - Veil ledge/cliff/ridge structures vary by kind/dimensions; shrine exports structure/hook constants.",
     "scripts/gen/arena-floor.js, arena-pillar.js, gibbet.js and toll-throne.js - Bailiff arena dressing sharing scripts/gen/shapes.js and its wax palette.",
-    "scripts/gen/abbey-litter.js and abbey-court.js - Abbey yard/Crypt litter and court dressing; kind/seed/transform vary litter, court keeps a clear local -Z door path.",
-    "scripts/gen/fen-*.js - Fen paths, heart, waystones, trees, stumps and dressing share fen-kit.js and vary by params, seed and transform.",
-    "scripts/plants/ashfern.js, gravegrass.js, bramble.js and glowcap.js - procedural vegetation geometry reused by main terrain distributions; config varies seed, scale, tone, cluster/noise, wind and jitter."
+    "scripts/gen/abbey-litter.js and abbey-court.js - Abbey yard/Crypt litter and court dressing; kind/seed/transform vary litter, court keeps a clear local -Z door path; scripts/gen/fen-*.js similarly share fen-kit.js for Fen paths, heart, waystones, trees and dressing.",
+    "scripts/plants/ashfern.js, gravegrass.js, bramble.js, glowcap.js and mossoak.js - procedural vegetation used by main terrain distributions; config varies density, clustering, seed, scale, tone, wind and jitter."
   ],
   "probableOrphans": [
     "scripts/flat-starter-terrain.js",
     "scripts/gen/wax-figure.js - legacy procedural enemy-figure generator; current wax actors use CDN models."
   ],
   "migrationNotes": [
-    "Persistent character data is scripts/lib/character.js CHAR_KEYS plus packed position; boss kills/resources such as heartwax and abbesswax persist, while derived gear stats, loot inbox and service proximity/chill tracking are transient. Character rows are caller-owned and realm-bound, scoped by owner/realm; live names are unique per realm and realms.yml room IDs are routing identities, not places.",
+    "Persistent character data is scripts/lib/character.js CHAR_KEYS plus packed position; boss kills/resources such as heartwax and abbesswax persist, while derived gear stats, loot inbox and service proximity/chill tracking are transient.",
     "The Veil is solo and ephemeral and parks the hidden menu body at its origin; camera.js menu framing is tuned to its shrine/ledge, while character selection can affect showcase styling.",
     "The jukebox is room-shared: main sim chooses mood from live Bearers' area majority and boss/fight overrides; Veil sim plays menu theme when no eligible Bearer is on main. Main reverb and bus gains are configured separately.",
-    "Boss state is distinct from ordinary enemy hp: each boss publishes a place.state row and marks participants; main sim owns spawning and quest progression/reset. Boss first-fall world.state.trophies is permanent per room, distinct from per-place fight rows.",
+    "Boss state is distinct from ordinary enemy hp: each boss publishes a place.state row and marks participants; main sim owns spawning and quest progression/reset. Boss first-fall world.state.trophies is permanent per room, distinct from per-player claims.",
     "Boss marks/free reforges depend on trophy slayer names and timestamps, while freeUsed is per character; Ossuary floor gating uses Bone Stair/Ossuary coordinates and chapter gates in veilfall-map.js plus player.js.",
-    "Candle chill stores each warm brazier flame's original fx/light in child flame.state.warm before replacing it; retain restoration when editing the candle-carry effect. Stele labels read the five current trophy kinds; later sealed Nine slots are static scene state."
+    "Candlehold is mapped south of Wayside Fire along CAP_PATH; keep veilfall-map.js capDist/areaAt consistent with the Pilgrims' Way and city floor. The Exchange's exchange-board shares trade listings with the camp board; retain both IDs in player.js board proximity handling."
   ]
 }
