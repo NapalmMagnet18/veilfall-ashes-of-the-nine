@@ -1,5 +1,7 @@
 # Current VEILFALL source and asset backup
 
+Latest Spawn notes are preserved in the [notes refresh](BACKUP_NOTES_REFRESH.md). The source and asset snapshot below remains unchanged.
+
 Snapshot: October 9, 2026. Spawn source commit `6ae52da6707192954739657786b4760fc19e7baa`; Spawn notes `b48eb91131f09ffcf7eb90a7be65771eeed123ca`. The GitHub tree preserves the original game history and the subsequent backup documentation commits. The backup does not change the live Spawn world.
 
 [Download the backup release](https://github.com/NapalmMagnet18/veilfall-ashes-of-the-nine/releases/tag/backup-2026-10-09).
@@ -45,3 +47,4 @@ The latest broad scan requested 352 uncovered candidate URLs. It recovered 121 f
 Spawn's documented export interfaces do not expose its hosted engine/server implementation or creator-compute filesystem. These archives preserve authored source and available assets, not a standalone copy of Spawn hosting.
 
 The prepared encrypted private character/world-state snapshot remains local, pending the specific public-data upload approval already requested. Its decryption key and all authentication/session credentials are excluded from Git and releases. No live saves were reset or changed by the backup.
+
