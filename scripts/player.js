@@ -838,7 +838,7 @@ export function crosswoundFall(ctx, p) {
 }
 // Furnace Sweep's arc of burning ground and Stormhorn's bolt from the sky
 const FURNACE = `fx
-pop flame rate=?mobile:30|60 on=arc(1.8,140) life=.4..0.8 v=up(1.2..2.4)+sdir()*.3 size=.25..0.45 acc=curl(.5)+buoy(1.6)+drag(1.4) sz=$size*(.5>1:.3>.2) col=hdr(4.4,2.6,.9)>hdr(2,.6,.1)>hdr(.5,.1,.02) a=0>.1:1>.7:.8>0 rot=spin(.3) win=0;1.8 r=sprite(flame-wisp,add)
+pop flame rate=?mobile:45|90 on=arc(1.8,140) life=.5..0.9 v=up(1.6..2.8)+sdir()*.3 size=.55..0.95 acc=curl(.5)+buoy(1.6)+drag(1.4) sz=$size*(.5>1:.3>.2) col=hdr(4.4,2.6,.9)>hdr(2,.6,.1)>hdr(.5,.1,.02) a=0>.1:1>.7:.8>0 rot=spin(.3) win=0;1.8 r=sprite(flame-wisp,add)
 pop smoke on=@flame?.15 life=1.2..2 size=.3..0.5 acc=buoy(.8)+drag(.8) sz=$size*(.7>2.4) col=<.2,.17,.15> a=0>.2:.3>0 r=sprite(smoke-puff,alpha)
 pop glow n=1 life=2.2 at=point().c(.5) r=light(<1,.5,.15>,22*(1>.6:.8>0),8)`;
 const BOLTDOWN = `fx
