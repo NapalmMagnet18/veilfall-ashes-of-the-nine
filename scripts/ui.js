@@ -271,9 +271,15 @@ const CHRONICLE = [
   ["V", "The Ossuary of Saint Ysolde", "Down the Bone Stair. Take her candle.", false, "/cdn/value.1a38646aae6877aa6c9b7845ba9905c1045dca51f41779fe0f0eede0f5b491d1.png"],
   ["VI", "Candlehold", "The last walled city. The Exchange keeps its ledgers.", true, "/cdn/value.492e4cea5c972b7a5b7b2eb399dbe1b59c4e31165dcabb65024f6575eb5bcf33.png"],
 ];
-const VERSION = "0.15.0 · WET STONE";
+const VERSION = "0.16.0 · CRIMSON BOUGHS";
 // what changed, newest first: [version, title, date, [lines]]
 const NOTES = [
+  ["0.16.0", "Crimson Boughs", "Oct 9", [
+    ["Blood Woods", "Twenty-two new trees root along the woods: blood oaks with sap-split bark, weeping willows trailing red, and bare antler snags. Every bough sways in the night wind."],
+    ["The Hanging Orchard", "Gnarled black-apple trees ring the Orchard, heavy with scarlet-sapped fruit, and pilgrims have left lanterns burning in their low boughs."],
+    ["Forest Floor", "Damp rust and maroon leaf drifts on dark mulch, red ferns, hooked thorns, roots, shelf fungus, stumps and old bones carpet both woods, kept low where the wolves hunt."],
+    ["Gothic Lampposts", "Every wayside and Candlehold lamp is reforged in wrought iron: a clawed plinth, a fluted post with riveted collars, a spiked crown, a curled scroll arm and a chained lantern above melted pilgrim wax."],
+    ["Stone & Smoother Woods", "Boulders are carved with moss, lichen and scattered stones, the woods' ground draws lighter for smoother frames, and the film editor loads only when you open it."]]],
   ["0.13.1", "Sharper Stone", "Oct 9", [
     ["HD Road & Walls", "The pilgrim road's flagstones, the soot-stained ashlar of every ruin and wall, the ash-dirt ground, rusted iron, rotten planks, candle wax, leather, bone, burial cloth, slate roofs, charred oak, granite, oak planks, moss and wrought iron are repainted at twice the resolution."],
     ["Dead Oaks", "The road's oaks grow buttress roots, furrowed bark, split crowns, last ember leaves and glowing shelf fungus."],
