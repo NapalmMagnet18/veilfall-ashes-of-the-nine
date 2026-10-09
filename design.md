@@ -139,3 +139,4 @@ places/main/sim.js referee: spawns packs, quest stages, XP/levels, death and res
 - 2026-10-09: each calling has its own Bearer body (models.js BEARER), worn on entering the world; the template's hooded swordsman stays the fallback.
 - 2026-10-09: melee hits land 0.22 s into the swing (whiff if the foe is beyond reach+1.2 m); every 3rd swing within 1.6 s is a finisher at x1.6 with a knockback.
 - 2026-10-09: deaths by nature: wax melts, frost shatters (instant), ash crumbles, flesh/beasts lie as a corpse 5 s then sink (gone at 7 s).
+- 2026-10-09: RMB signature per ranged calling (30 Edge, Crosswound slot): Soulweaver Wound of Light (2.6 m, x1.5 at 0.3 s), Shadowmancer Borrowed Shadow (2.2 m pool, 3 ticks x0.55, 50% slow 1.2 s), Gloamstalker Glassbolt Volley (5 arrows ±0.34 rad, x0.7 each). Melee callings keep Crosswound.

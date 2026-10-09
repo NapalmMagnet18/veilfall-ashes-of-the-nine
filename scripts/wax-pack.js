@@ -263,7 +263,7 @@ export function update(ctx, dt) {
         w.anim.attack = { clip: "cdn/clip-cast.glb", weight: 10, loop: "once", speed: 1.4 / Math.max(0.6, K.windup) }; s.animOff = now + K.windup * 1000 + 500;
         if (UNRIG.has(s.kind)) { ctx.emit("squash", { target: w.id, axis: "y", intensity: 0.3, duration: K.windup }); ctx.emit("shake", { target: w.id, intensity: 0.08, duration: K.windup }); }
         ctx.emit("playSound", { clip: sfx("chain-rattle-windup-hiss"), position: f, volume: 0.8 });
-      } else if (d > (K.reach ?? 1.6)) { vx = (dx / d) * K.speed; vz = (dz / d) * K.speed; }
+      } else if (d > (K.reach ?? 1.6)) { const sp = K.speed * (now < (s.slowUntil ?? 0) ? 0.5 : 1); vx = (dx / d) * sp; vz = (dz / d) * sp; }
       else if (K.swings ? now >= (s.nextSwing ?? 0) : (!K.slamRadius && now >= (s.nextAtk ?? 0))) {
         if (K.swings) s.nextSwing = now + K.swingEvery * 1000; else s.nextAtk = now + K.every * 1000;
         // a readable wind-up: the arm draws back, then the blow falls
