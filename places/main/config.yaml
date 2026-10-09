@@ -2,7 +2,7 @@ atmosphere:
   clouds:
     altitude: 450
     density: 0.55
-    enabled: true
+    enabled: false
     opacity: 0.85
     thickness: 500
     color: "#2c3038"
@@ -13,8 +13,8 @@ atmosphere:
     near: 30
     height: { base: 0.5, falloff: 5 }
   look:
-    script: mods/raytraced-lighting/look-raytrace.js
-    params: { aoStrength: 0.4, bloom: 0.7, bloomThreshold: 0.6, denoise: 0.35, reflection: 0.95 }
+    script: mods/awakening/look.js
+    params: { bloomStrength: 0.4, mistBase: 1, mistDensity: 0.01, vignette: 0.24 }
   moon:
     intensity: 7
     enabled: true

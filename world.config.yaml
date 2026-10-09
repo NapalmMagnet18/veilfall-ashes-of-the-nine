@@ -2,8 +2,8 @@
 name: "VEILFALL: Ashes of the Nine"
 description: "Walk the candle road at dusk, silence the wax pilgrims, break the Bailiff of the Dripping Gate."
 camera: templates/camera.js#camera
-lighting: scripts/lighting.js
-defaultPlace: veil  # every load lands on the title screen (the Veil); Enter crosses the Bearer to main
+lighting: mods/awakening/lighting.js
+defaultPlace: veil # every load lands on the title screen (the Veil); Enter crosses the Bearer to main
 engine:
   behaviors:
     - scripts/arrival.js
@@ -57,7 +57,7 @@ inputs:
     active: scripts/controls.js
     surfaces:
       default:
-        sticks: [{ x: moveX, y: moveZ }]
+        sticks: [ { x: moveX, y: moveZ } ]
         gestures: { press: move }
         buttons:
           - { action: crosswound, label: SLASH, slot: 1, size: primary }

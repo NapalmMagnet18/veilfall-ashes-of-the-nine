@@ -14,7 +14,7 @@ atmosphere:
   timeOfDay: 20.6
   stars: {enabled: true, density: 0.7, milkyWay: 0.35}
   moon: {enabled: true, intensity: 5, phase: 0.62, size: 1.7}
-  clouds: {enabled: true, density: 0.3, opacity: 0.7, altitude: 420, thickness: 400, color: "#2c3038", speed: 1}
+  clouds: {enabled: false, density: 0.3, opacity: 0.7, altitude: 420, thickness: 400, color: "#2c3038", speed: 1}
   fog:
     kind: linear
     near: 12
@@ -26,5 +26,5 @@ atmosphere:
   wet: 0.7
   wind: {direction: 200, speed: 2}
   look:
-    script: mods/raytraced-lighting/look-raytrace.js
-    params: {aoStrength: 0.4, bloom: 0.7, bloomThreshold: 0.6, denoise: 0.35, reflection: 0.95}
+    script: mods/awakening/look.js
+    params: {bloomStrength: 0.4, mistBase: -2, mistDensity: 0.012, vignette: 0.24}
