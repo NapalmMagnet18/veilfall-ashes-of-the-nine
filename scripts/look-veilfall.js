@@ -129,10 +129,18 @@ function reflections(ctx) {
   return denoised;
 }
 
+// the night's floor: an exposure and a cold toe lift so moonlit shade reads as blue-grey ground, not black,
+// while the brazier highlights keep their headroom (the lift fades out above ~0.25)
+function nightFloor(ctx, c) {
+  const e = c.mul(ctx.param("exposure", 1));
+  const toe = float(1).sub(smoothstep(0, 0.25, e.dot(vec3(0.2126, 0.7152, 0.0722))));
+  return e.add(vec3(0.55, 0.68, 0.95).mul(ctx.param("shadowLift", 0)).mul(toe));
+}
+
 export function look(ctx) {
   const q = ctx.quality;
-  if (ctx.device.class === "mobile" || !(q === "high" || q === "ultra")) return awakening(ctx);
+  if (ctx.device.class === "mobile" || !(q === "high" || q === "ultra")) return nightFloor(ctx, awakening(ctx));
   const denoised = reflections(ctx);
   // Awakening reads ctx.scene directly, so it grades the real scene; the traced reflections land on top of its frame
-  return awakening(ctx).add(denoised.sample(screenUV).rgb.mul(ctx.param("reflection", 0.6)));
+  return nightFloor(ctx, awakening(ctx).add(denoised.sample(screenUV).rgb.mul(ctx.param("reflection", 0.6))));
 }
