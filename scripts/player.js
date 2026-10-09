@@ -340,13 +340,13 @@ function fireAt(ctx, foe, A, dmg, crit) {
   ctx.after(time, "boltLand", { id: foe.id, dmg, crit, hit: A.hit, c: A.hitFx });
 }
 // the arrow itself: dark ash shaft, leaf iron head, three black fletches; it flies the line and is gone on the hit
-const SHAFT = { kind: "cylinder", radiusTop: 0.012, radiusBottom: 0.012, height: 0.8 };
 function flyArrow(ctx, from, to, time) {
   const id = ctx.spawn({ feetPosition: from, rotation: { lookAt: to, include: ["yaw", "pitch"] }, lifetime: time + 0.03, castShadow: false, interpolation: null,
     children: [
-      { feetPosition: { x: 0, y: 0, z: 0.4 }, pivot: "center", rotation: { pitch: 90 }, primitive: SHAFT, material: { color: "#3a2c20", roughness: 0.8 } },
-      { feetPosition: { x: 0, y: 0, z: -0.02 }, pivot: "center", rotation: { pitch: -90 }, primitive: { kind: "cone", radius: 0.028, height: 0.11, radialSegments: 4 }, material: { color: "#8c8a86", metalness: 0.9, roughness: 0.35 } },
-      ...[0, 120, 240].map((r) => ({ feetPosition: { x: 0, y: 0, z: 0.72 }, pivot: "center", rotation: { roll: r }, primitive: { kind: "box", width: 0.004, height: 0.05, depth: 0.12 }, material: { color: "#15130f", roughness: 0.9 } })),
+      { feetPosition: { x: 0, y: -0.012, z: 0.4 }, primitive: { kind: "box", width: 0.024, height: 0.024, depth: 0.8 }, material: { color: "#4a3826", roughness: 0.8 } },
+      { feetPosition: { x: 0, y: -0.022, z: -0.03 }, primitive: { kind: "box", width: 0.05, height: 0.044, depth: 0.1 }, material: { color: "#9a9894", metalness: 0.9, roughness: 0.3 } },
+      { feetPosition: { x: 0, y: -0.04, z: 0.72 }, primitive: { kind: "box", width: 0.006, height: 0.08, depth: 0.14 }, material: { color: "#1a1712" } },
+      { feetPosition: { x: 0, y: -0.003, z: 0.72 }, primitive: { kind: "box", width: 0.08, height: 0.006, depth: 0.14 }, material: { color: "#1a1712" } },
     ] });
   animate(ctx, id, { "feetPosition.x": to.x, "feetPosition.y": to.y, "feetPosition.z": to.z }, { duration: time, easing: "linear" });
 }
