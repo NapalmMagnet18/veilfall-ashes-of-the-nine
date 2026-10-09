@@ -342,12 +342,7 @@ function fireAt(ctx, foe, A, dmg, crit) {
 // the arrow itself: dark ash shaft, leaf iron head, three black fletches; it flies the line and is gone on the hit
 function flyArrow(ctx, from, to, time) {
   const id = ctx.spawn({ feetPosition: from, rotation: { lookAt: to, include: ["yaw", "pitch"] }, lifetime: time + 0.03, castShadow: false, interpolation: null,
-    children: [
-      { feetPosition: { x: 0, y: -0.012, z: 0.4 }, primitive: { kind: "box", width: 0.024, height: 0.024, depth: 0.8 }, material: { color: "#4a3826", roughness: 0.8 } },
-      { feetPosition: { x: 0, y: -0.022, z: -0.03 }, primitive: { kind: "box", width: 0.05, height: 0.044, depth: 0.1 }, material: { color: "#9a9894", metalness: 0.9, roughness: 0.3 } },
-      { feetPosition: { x: 0, y: -0.04, z: 0.72 }, primitive: { kind: "box", width: 0.006, height: 0.08, depth: 0.14 }, material: { color: "#1a1712" } },
-      { feetPosition: { x: 0, y: -0.003, z: 0.72 }, primitive: { kind: "box", width: 0.08, height: 0.006, depth: 0.14 }, material: { color: "#1a1712" } },
-    ] });
+    children: [{ primitive: { kind: "scripted", script: "scripts/gen/arrow.js" } }] });
   animate(ctx, id, { "feetPosition.x": to.x, "feetPosition.y": to.y, "feetPosition.z": to.z }, { duration: time, easing: "linear" });
 }
 // each ancestry's mark on its Bearer: the lantern's colour and a low aura that rides at the feet
