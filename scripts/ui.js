@@ -271,9 +271,10 @@ const CHRONICLE = [
   ["V", "The Ossuary of Saint Ysolde", "Down the Bone Stair. Take her candle.", false, "/cdn/value.1a38646aae6877aa6c9b7845ba9905c1045dca51f41779fe0f0eede0f5b491d1.png"],
   ["VI", "Candlehold", "The last walled city. The Exchange keeps its ledgers.", true, "/cdn/value.492e4cea5c972b7a5b7b2eb399dbe1b59c4e31165dcabb65024f6575eb5bcf33.png"],
 ];
-const VERSION = "0.17.0 · WITCHLIGHT";
+const VERSION = "0.17.1 · RIMEWOOD";
 // what changed, newest first: [version, title, date, [lines]]
 const NOTES = [
+  ["0.17.1", "Rimewood", "Oct 9", ["Woods planted across the realm: ash oaks and lantern snags on the road, drowned cypress in Lanternmere, snow pines, frost birches and ice snags ringing the Vale, cave cover in the Ossuary and the Deep", "Melee swings carve a steel crescent of sparks, wind and dust", "Enemy slams crack the ground: shock ring, flying stone, embers and a flash of heat", "Deaths by kind: wax gutters out in smoke, ash-dead burn to embers, flesh spatters", "Gloamstalker arrows trail a cold moonlit streak", "Fixed: shadow pool and Furnace Sweep now burn out instead of lingering"]],
   ["0.17.0", "Witchlight", "Oct 9", ["Holy lance falls as a sheathed column of light with a shock ring, falling sparks and lingering motes", "Shadow pool grows a breathing rim, grasping hands, motes pulled into the dark and rolling murk", "Zone tree and floor kits for road, fen, vale and caves in the works"]],
   ["0.16.0", "Crimson Boughs", "Oct 9", [
     ["Blood Woods", "Twenty-two new trees root along the woods: blood oaks with sap-split bark, weeping willows trailing red, and bare antler snags. Every bough sways in the night wind."],
