@@ -1901,7 +1901,7 @@ orch-path:
 orch-path/tree-2:
   castShadow: true
   children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
-  feetPosition: {x: 7, y: -0.12, z: 8.399999618530273}
+  feetPosition: {x: 7, y: 2.079, z: 8.4}
   id: orch-path/tree-2
   layout: {maxExtents: {y: 4.87}}
   mixer: {sway: {clip: Sway, loop: loop, speed: 1.09, weight: 1}}
