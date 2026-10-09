@@ -1853,6 +1853,22 @@ fwisp-fen-3:
   state: {home: {x: -56, y: 1.5270483582860348, z: -4}, r: 4, seed: 2}
   tags: [ambience, forest-wisp]
   wisp: {burnStyle: calm, color: "#7fe6e0", seed: 13, shape: classic, size: 0.35, state: idle}
+fwisp-fen-5:
+  behavior: [scripts/forest-wisp.js]
+  children: [{id: glow, light: {color: 8382176, distance: 7, intensity: 1.1, kind: point}}]
+  feetPosition: {x: -62, y: {terrain: 1.4}, z: -30}
+  id: fwisp-fen-5
+  state: {home: {x: -62, y: 1.345910258784201, z: -30}, r: 6, seed: 12}
+  tags: [ambience, forest-wisp]
+  wisp: {burnStyle: calm, color: "#7fe6e0", seed: 12, shape: classic, size: 0.35, state: idle}
+fwisp-fen-6:
+  behavior: [scripts/forest-wisp.js]
+  children: [{id: glow, light: {color: 8382176, distance: 7, intensity: 1.1, kind: point}}]
+  feetPosition: {x: -44, y: {terrain: 1.4}, z: 10}
+  id: fwisp-fen-6
+  state: {home: {x: -44, y: 5.286927793834479, z: 10}, r: 6, seed: 13}
+  tags: [ambience, forest-wisp]
+  wisp: {burnStyle: calm, color: "#7fe6e0", seed: 13, shape: classic, size: 0.35, state: idle}
 fwisp-orch-1:
   behavior: scripts/forest-wisp.js
   children: [{feetPosition: {x: 0, y: 0.2, z: 0}, fx: {script: "fx\npop trail rate=?low:6|12 life=.8..1.4 v=sdir()*.08 size=.025..0.05 acc=curl(.6)+buoy(.15) col=hdr(2.6,1.9,.8) a=(0>.1:.9>0)*flick(7,.4) r=sprite(ember,add)"}, id: glow, light: {color: "#ffd27a", distance: 7, intensity: 1.1, kind: point}}]
