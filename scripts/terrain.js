@@ -1,6 +1,6 @@
 // Broken Lantern Road: a fog-filled ravine. The floor (hub, road, courts) is level at y 0;
 // beyond it the ground climbs into crumbling banks and cliffs the body cannot climb.
-import { floorDist, deepDist } from './lib/data/veilfall-map.js'
+import { floorDist, deepDist, rimeDist } from './lib/data/veilfall-map.js'
 const clamp01 = (v) => Math.min(1, Math.max(0, v))
 export function heightAt(ctx) {
   const { x, z, noise, seedOffset } = ctx
@@ -24,10 +24,16 @@ export function materialAt(ctx) {
     const camp = clamp01(1 - Math.hypot(x, z) / 14) // the Wayside Fire keeps its trodden earth
     // the pilgrim road: old flagstone, broken toward its edges, ash in the cracks
     const cave = z < -277 && deepDist(x, z) < 1 ? 1 : 0 // the Deep is raw cavern floor, never paved
+    const frost = x > 74 && rimeDist(x, z) < 1 ? 1 : 0 // the pass and vale floor: packed snow over ice
+    if (frost) return { snow: clamp01(0.8 + n), ice: clamp01(0.2 - n) * (1 - rock), rock }
     const paved = clamp01((-d - 1.2 + n * 2.2) / 1.6) * (1 - camp) * (1 - cave)
     const moss = clamp01(0.35 + n * 1.6) * (1 - paved) * (0.4 + camp * 0.6)
     const rest = Math.max(0, 1 - paved - moss)
     return { stone: paved * (1 - rock), grass: moss * (1 - rock), gravel: rest * (1 - rock), rock }
+  }
+  if (x > 74 && rimeDist(x, z) < 14) { // the Rimefast: snow lies on everything but the steepest rock
+    const snow = clamp01(1.1 - rock * 1.4 + n * 0.3)
+    return { snow, rock: 1 - snow }
   }
   // the low banks green over: moss and wildflowers climb until the scree turns to cliff
   const lush = clamp01((3.2 - worldHeight) / 2.8) * clamp01(0.6 + n) * (1 - rock)

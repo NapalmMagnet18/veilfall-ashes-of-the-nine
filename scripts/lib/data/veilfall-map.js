@@ -41,6 +41,13 @@ export const OSS_PATH = [[-11, -256], [-20, -260], [-30, -264]];
 export const OSS_HALF = 3.6;
 export const OSSUARY = { x: -42, z: -266, r: 14 };
 export const RELIQUARY = { x: -46, z: -267 }; // her dais, west end
+// the Rimefast: a pass east out of the Orchard, climbing into a frozen vale where the snow never melts
+export const RIME_PATH = [[76, 6], [90, 2], [102, -2]];
+export const RIME_HALF = 4;
+export const RIME = { x: 122, z: -4, r: 20 };
+export function rimeDist(x, z) {
+  return Math.min(segDist(x, z, RIME_PATH, RIME_HALF), Math.hypot(x - RIME.x, z - RIME.z) - RIME.r);
+}
 // the Hollow Deep: a cleft out of the Ossuary's south wall, down into a crystal cavern
 export const DEEP_PATH = [[-40, -278], [-42, -288], [-45, -296]];
 export const DEEP_HALF = 3.4;
@@ -90,7 +97,7 @@ export function floorDist(x, z, abbeyOpen = true, naveOpen = true, fenOpen = tru
   if (!abbeyOpen) a = Math.max(a, 0.6 - sealSide(x, z) * -1); // sealed: only the court side of the seal is floor
   const n = naveOpen && abbeyOpen ? naveDist(x, z) : Infinity;
   const fd = fenOpen ? fenDist(x, z) : Infinity;
-  const od = orchOpen ? orchDist(x, z) : Infinity;
+  const od = orchOpen ? Math.min(orchDist(x, z), rimeDist(x, z)) : Infinity;
   const os = ossOpen && naveOpen && abbeyOpen ? Math.min(ossDist(x, z), deepDist(x, z)) : Infinity;
   return Math.min(d, a, n, fd, od, os, capDist(x, z)); // < 0 = on the floor
 }
@@ -109,6 +116,8 @@ export const AREAS = [
   { id: "bonestair", name: "The Bone Stair", sub: "every step a sister who would not leave" },
   { id: "ossuary", name: "The Ossuary of Saint Ysolde", sub: "ten thousand skulls, and all of them listening" },
   { id: "deep", name: "The Hollow Deep", sub: "the miners dug for saints' bones and found something older" },
+  { id: "rimepass", name: "The Rimefast Pass", sub: "the cold came down the mountain and never went back up" },
+  { id: "rime", name: "The Frostbitten Vale", sub: "they froze mid-prayer, and some of them still pray" },
   { id: "fenpath", name: "The Fen Path", sub: "the lanterns went west, once" },
   { id: "fen", name: "The Lanternmere", sub: "the water keeps what it was given" },
   { id: "orchpath", name: "The Gallows Path", sub: "the debtors walked it barefoot" },
@@ -123,6 +132,8 @@ export function areaAt(x, z) {
   if (z > 14 && segDist(x, z, CAP_PATH, CAP_HALF) < 0.5) return by("capway");
   if (Math.hypot(x - FEN.x, z - FEN.z) < FEN.r) return by("fen");
   if (x < -14 && segDist(x, z, FEN_PATH, FEN_HALF) < 0.5) return by("fenpath");
+  if (Math.hypot(x - RIME.x, z - RIME.z) < RIME.r) return by("rime");
+  if (x > 78 && rimeDist(x, z) < 0.5) return by("rimepass");
   if (Math.hypot(x - ORCHARD.x, z - ORCHARD.z) < ORCHARD.r) return by("orchard");
   if (x > 14 && segDist(x, z, ORCH_PATH, ORCH_HALF) < 0.5) return by("orchpath");
   if (Math.hypot(x - COURTS[0].x, z - COURTS[0].z) < COURTS[0].r) return by("toll");
