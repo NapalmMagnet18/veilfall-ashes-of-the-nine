@@ -26,7 +26,7 @@ function cloud(ctx, r, cx, cy, cz, R, rings, seg) {
 }
 export function geometry(ctx) {
   const r = () => ctx.random(), lod = ctx.lod ?? 1, far = lod >= 3;
-  const H = 2.2 + r() * 0.6, lean = r() * 6.283;
+  const H = 2.4 + r() * 0.6, lean = r() * 6.283;
   ctx.smooth(); ctx.roughness(0.9);
   ctx.albedo("cdn/texture-dead-grey-oak-bark-deep-furrows.png"); ctx.color("oklch(0.3 0.02 30)");
   const trunk = []; const ts = far ? 3 : 6;
@@ -42,18 +42,19 @@ export function geometry(ctx) {
     const end = [top[0] + Math.cos(a) * out, top[1] + up, top[2] + Math.sin(a) * out];
     tube(ctx, [top, mid, end], 0.11, 0.04, far ? 4 : 6); tips.push(end);
   }
-  tips.push([top[0], top[1] + 1.4, top[2]]);
-  // blossom: pale clouds on every tip, warmer hearts
+  // blossom: many small puffs strung along each bough and past its tip, so branches show between them
   ctx.albedo(null); ctx.roughness(0.75);
-  const cols = ["oklch(0.88 0.06 10)", "oklch(0.84 0.09 355)", "oklch(0.92 0.035 60)"];
-  for (const [i, t] of tips.entries()) {
-    const R = 0.85 + r() * 0.45;
-    ctx.color(cols[i % 3]); ctx.emissive(0.16, 0.07, 0.07);
-    cloud(ctx, r, t[0], t[1] + 0.15, t[2], R, far ? 3 : 6, far ? 5 : 10);
-    if (!far) { // two smaller satellite puffs so the canopy reads lumpy, not balls on sticks
-      for (let k = 0; k < 2; k++) { const a = r() * 6.283; ctx.color(cols[(i + k + 1) % 3]);
-        cloud(ctx, r, t[0] + Math.cos(a) * R * 0.75, t[1] - 0.15 + r() * 0.4, t[2] + Math.sin(a) * R * 0.75, R * 0.55, 4, 8); }
-    }
+  const cols = ["oklch(0.9 0.05 10)", "oklch(0.84 0.09 355)", "oklch(0.93 0.03 60)"];
+  let ci = 0;
+  const puff = (x, y, z, R) => { ctx.color(cols[ci++ % 3]); ctx.emissive(0.16, 0.07, 0.07); cloud(ctx, r, x, y, z, R, far ? 3 : 4, far ? 5 : 7); };
+  for (const t of tips) {
+    const dx = t[0] - top[0], dy = t[1] - top[1], dz = t[2] - top[2];
+    const n = far ? 2 : 4 + Math.floor(r() * 2);
+    for (let k = 0; k < n; k++) { const f = 0.45 + (k / n) * 0.9 + r() * 0.1, sp = 0.35;
+      puff(top[0] + dx * f + (r() - 0.5) * sp, top[1] + dy * f + 0.1 + (r() - 0.3) * 0.4, top[2] + dz * f + (r() - 0.5) * sp, 0.38 + r() * 0.3); }
+    if (!far) for (let k = 0; k < 3; k++) { // a few hanging sprays dropping off the bough's end
+      ctx.color(cols[ci++ % 3]); cloud(ctx, r, t[0] + dx * 0.3 + (r() - 0.5) * 0.5, t[1] - 0.45 - r() * 0.3, t[2] + dz * 0.3 + (r() - 0.5) * 0.5, 0.22 + r() * 0.1, 3, 6); }
   }
+  if (!far) puff(top[0], top[1] + 1.3, top[2], 0.55);
   ctx.emissive(null);
 }
