@@ -269,7 +269,7 @@ const NOTES = [
   ["0.13", "Faces of the Veil", "Oct 9", [
     ["Unit Frames", "Your Bearer's portrait now sits top left, breathing in ember light with your level, life, resource and experience, and it flares red when you're struck."],
     ["Target Frame", "Strike a foe and its painted face and life bar appear beside yours. Elites wear a gold ring, and the melted fade to grey."],
-    ["Talent Trees", "Press N. Every calling has three branches and four tiers, with one point per level and a capstone at the end of each path."],
+    ["Talent Trees", "Press N. Every calling has three branches and six tiers, with one point per level and a capstone at the end of each path."],
     ["Character Sheet", "Press C for your Bearer at a glance: gear, damage, armor, crit and the talents that feed them."],
     ["HD Menu Art", "The road, the Abbey and the fen have been repainted at full resolution behind the menu."]]],
   ["0.12", "The Pilgrim Roads", "Oct 9", [
@@ -677,7 +677,7 @@ const SHEET_CSS = `<style>${UF_CSS}
 #vf .vftree{width:560px;padding:14px 18px 18px;background:radial-gradient(ellipse at 50% 0%,#2a221b,#110e0c 70%);box-shadow:0 0 0 2px #0d0b0a,0 0 0 4px #6b5638,0 0 0 6px #0d0b0a,0 18px 40px rgba(0,0,0,.7);pointer-events:auto}
 #vf .vftb{flex:1;display:flex;flex-direction:column;align-items:center;padding:8px 0 4px;background:linear-gradient(rgba(0,0,0,.25),rgba(0,0,0,.05));box-shadow:inset 0 0 0 1px #2e271e}
 #vf .vftb-h{font-size:14px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px;display:flex;gap:8px;align-items:baseline} #vf .vftb-h span{font-size:11px;color:#b9a77f}
-#vf .vftl{width:3px;height:18px;opacity:.8}
+#vf .vftl{width:3px;height:12px;opacity:.8}
 #vf .vftn{position:relative;width:56px;height:56px;box-shadow:0 0 0 2px #0d0b0a,0 0 0 3px #4a3d2a;background:#0b0908}
 #vf .vftn.cap{width:64px;height:64px;border-radius:50%;overflow:visible} #vf .vftn.cap img{border-radius:50%}
 #vf .vftn img{width:100%;height:100%;object-fit:cover;filter:grayscale(.85) brightness(.55)}
