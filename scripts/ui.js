@@ -503,10 +503,10 @@ function vfHud(ctx, player) {
     ${face ? `<div style="flex:none;width:${touch ? 56 : 84}px;height:${touch ? 56 : 84}px;background:url(${face}) center/cover;box-shadow:0 0 0 2px #0d0b0a,0 0 0 3px #8a6f45,0 0 0 5px #0d0b0a,0 0 18px rgba(240,154,58,.25)"></div>` : ""}
     <div style="flex:1;min-width:0">${who ? `<div class="lbl" style="color:#C49C63;letter-spacing:.22em;margin-bottom:3px">${who.toUpperCase()}</div>` : ""}<div style="font-size:${touch ? 15 : 17}px;line-height:1.4;${who ? "" : "font-style:italic;"}animation:vftype 1.4s ease-out">${line}</div><div class="dv d0" style="margin:8px 0 0"></div></div></div>`; })() : ""}
   ${touch ? "" : `<div class="absolute dk vfdock">
-    <div class="vfxp"><div class="vfxpf" style="width:${xpPct}%"></div><div class="vfxpt"></div><div class="vfxpl">${s.charName ? s.charName + " · " : ""}Lv ${lv} ${s.ancestry ? s.ancestry[0].toUpperCase() + s.ancestry.slice(1) + " " : ""}Bladewraith<span style="float:right">${coinHTML(s.copper ?? 0, 13)}</span></div></div>
+    <div class="vfxp"><div class="vfxpf" style="width:${xpPct}%"></div><div class="vfxpt"></div><div class="vfxpl">${s.charName ? s.charName + " · " : ""}Lv ${lv} ${s.ancestry ? s.ancestry[0].toUpperCase() + s.ancestry.slice(1) + " " : ""}${(CLASSES.find((c) => c.id === s.cls) ?? CLASSES[0]).name}<span style="float:right">${coinHTML(s.copper ?? 0, 13)}</span></div></div>
     <img class="vfplate" src="/cdn/value.e8bc2f79613acb57c0f363d4e17ea83780597a92f90841f1b5e99719f973d9bc.png">
     <div class="vforb vfL"><div class="vfglobe"><div class="vfliq" style="height:${hpPct}%;--a:#ff5a44;--b:#8f1710;--c:#3a0605${hpPct < 30 ? ";animation:vfpulse 1s infinite" : ""}"></div><div class="vfgl"></div><div class="vfv">${hp}<small>LIFE</small></div></div><img class="vffr" src="/cdn/value.af729622950e1658a4df89c76bd30887a4735628e38c2319318a050aa463a595.png"></div>
-    <div class="vforb vfR"><div class="vfglobe"><div class="vfliq" style="height:${edge}%;--a:#ffc35a;--b:#a3520e;--c:#3b1a04"></div><div class="vfgl"></div><div class="vfv">${edge}<small>EDGE</small></div></div><img class="vffr" src="/cdn/value.af729622950e1658a4df89c76bd30887a4735628e38c2319318a050aa463a595.png"></div>
+    <div class="vforb vfR"><div class="vfglobe"><div class="vfliq" style="height:${edge}%;--a:#ffc35a;--b:#a3520e;--c:#3b1a04"></div><div class="vfgl"></div><div class="vfv">${edge}<small>${((CLASSES.find((c) => c.id === s.cls) ?? CLASSES[0]).res ?? "Edge").toUpperCase()}</small></div></div><img class="vffr" src="/cdn/value.af729622950e1658a4df89c76bd30887a4735628e38c2319318a050aa463a595.png"></div>
     <div class="sk vfsk">
     <div class="slot" title="Ashcut"><img class="ic" src="${IC.ash}"><span class="k">LMB</span></div>
     <div class="slot ${edge < 30 || cwLeft ? "dim" : ""}" title="Crosswound · 30 Edge"><img class="ic" src="${IC.cross}"><span class="k">RMB</span><span class="n">30</span>${cdOver(cwLeft, cwPct)}</div>
@@ -529,6 +529,7 @@ function vfHud(ctx, player) {
   <div class="absolute ph" style="left:190px;top:150px;pointer-events:auto" onclick="sendAction('bag')"><div class="slot" style="width:48px;height:40px;font-size:11px">PACK</div></div>
   ${q.stage === 0 || q.stage === 4 || q.stage === 9 || q.stage === 12 || q.stage === 16 || q.stage === 17 || q.stage === 21 ? `<div data-world-anchor="maelin" data-anchor-offset="0 2.3 0" style="font-size:30px;color:var(--wax);text-align:center;animation:vfpulse 1.4s infinite">!<div style="font-size:12px">MAELIN</div></div>` : ""}
   ${s.bagOpen ? packPanel(ctx, player, { rail, touch }) : ""}
+  ${s.sheetOpen && !touch ? sheetPanel(s, lv, xpPct, L) : ""}
   ${s.bagOpen && s.atBoard ? boardPanel(ctx, player, { rail: touch ? rail : "24px", touch }) : ""}
   ${s.atTrainer && !s.bagOpen && !s.shop ? trainPanel(s, touch, rail) : ""}
   ${s.atShrine && !s.bagOpen && !s.shop ? shrinePanel(s, touch, rail) : ""}
@@ -572,8 +573,52 @@ function shrinePanel(s, touch, rail) {
 }
 
 // Absolute Cinema rides over everything: its fades/letterbox always, the director panel when open (9)
+// the character sheet (C): a WoW-style paper doll beside the live body, every number derived from state
+const SLOT_NAMES = { weapon: "Weapon", helm: "Helm", chest: "Chest", gloves: "Gloves", boots: "Boots", ring: "Ring", amulet: "Amulet" };
+const TIER_COL = { worn: "#9d9d9d", common: "#e9dfc8", magic: "#6f9cff", rare: "#ffd75a", relic: "#ff8a2a", vowbound: "#3fd9b8", set: "#4fe06a" };
+const ATK_INFO = { soulweaver: ["Arcane Bolt", 11, 1.25, 0.8], shadowmancer: ["Umbral Bolt", 10, 1.15, 0.75], gloamstalker: ["Longbow Shot", 14, 1.05, 0.65], hellwarden: ["Cinder Maul", 2.5, 1.15, 0.7], primalist: ["Rending Claw", 2.4, 1.05, 0.6] };
+function sheetPanel(s, lv, xpPct, L) {
+  const cls = CLASSES.find((c) => c.id === s.cls) ?? CLASSES[0], anc = ANC.find((a) => a.id === s.ancestry);
+  const g = s.gs ?? {}, A = ATK_INFO[cls.id] ?? ["Ashcut", CB.ashcut.reach, 1, CB.ashcut.cd];
+  const wm = ((s.weapon === "ITEM-001" ? 1.3 : 1) * (1 + 0.08 * (lv - 1)) * (1 + (g.dmgp ?? 0) / 100) + (g.dmg ?? 0) / CB.ashcut.dmg) * A[2];
+  const hit = Math.round(CB.ashcut.dmg * wm), crit = Math.round((12 + (g.crit ?? 0)) * 10) / 10, mit = Math.round(((g.armor ?? 0) / ((g.armor ?? 0) + 120)) * 100);
+  const dps = Math.round((hit * (1 + crit / 100 * 0.8)) / A[3]);
+  const row = (k, v, c) => `<div class="vfsr"><span>${k}</span><b style="${c ? "color:" + c : ""}">${v}</b></div>`;
+  const slot = (k) => { const it = s.gear?.[k]; return `<div class="vfgs" style="${it ? "box-shadow:0 0 0 2px #0d0b0a,0 0 0 3px " + (TIER_COL[it.t] ?? "#6b5638") : ""}" title="${it ? (it.n ?? it.name ?? k) : SLOT_NAMES[k]}">${it?.i ? `<img src="${it.i}">` : `<span>${SLOT_NAMES[k]}</span>`}</div>`; };
+  return `<div class="absolute vfsheet" style="left:24px;top:110px;animation:vfin .2s">
+  <div class="vfsh-h"><div><div style="font-size:20px;color:var(--wax);letter-spacing:.06em">${s.charName ?? "Bearer"}</div><div class="lbl">Level ${lv} ${anc ? anc.name + " " : ""}${cls.name}</div></div><div class="vfx" style="pointer-events:auto;cursor:pointer" onclick="sendAction('sheet')">✕</div></div>
+  <div class="dv d0" style="margin:6px 0 10px"></div>
+  <div style="display:flex;gap:12px">
+    <div style="display:flex;flex-direction:column;gap:8px">${["helm", "amulet", "chest", "gloves"].map(slot).join("")}</div>
+    <div class="vfdoll" style="background-image:url(${cls.img})"><div class="vfdoll-v"></div><div class="lbl" style="position:absolute;left:0;right:0;bottom:8px;text-align:center;color:#d8c69c">${cls.role}</div></div>
+    <div style="display:flex;flex-direction:column;gap:8px">${["weapon", "ring", "boots"].map(slot).join("")}</div>
+  </div>
+  <div class="vfxpb"><div style="width:${xpPct}%"></div><span>${s.xp ?? 0} / ${L[lv] ?? "MAX"} XP</span></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px 18px;margin-top:10px">
+    <div><div class="lbl vfsec">Vitals</div>${row("Life", `${Math.round(s.hp ?? 0)} / ${s.maxHp ?? 100}`, "#ff6a55")}${row(cls.res ?? "Edge", `${Math.round(s.edge ?? 0)} / 100`, "#ffc35a")}${row("Life regen", `${g.regen ?? 0}/s`)}${row("Life leech", `${g.leech ?? 0}%`)}${row("Move speed", `+${Math.min(40, g.speed ?? 0)}%`)}</div>
+    <div><div class="lbl vfsec">Offense</div>${row(A[0], `${hit}`, "#f2d38a")}${row("Damage / sec", `${dps}`)}${row("Critical chance", `${crit}%`)}${row("Critical damage", "180%")}${row("Range", `${A[1]} m`)}</div>
+    <div><div class="lbl vfsec">Defense</div>${row("Armor", `${g.armor ?? 0}`)}${row("Damage reduced", `${mit}%`)}${row("Tonics", `${s.tonics ?? 0}`)}</div>
+    <div><div class="lbl vfsec">Record</div>${row("Copper", fmt(s.copper ?? 0))}${row("Wax slain", `${s.kills ?? 0}`)}${row("Find bonus", `+${g.gold ?? 0}%`)}</div>
+  </div>
+  ${anc ? `<div class="vftrait"><span class="lbl" style="color:${anc.color}">${anc.name} · ${anc.home}</span><div>${anc.trait ?? ""}</div></div>` : ""}
+</div>`;
+}
+const SHEET_CSS = `<style>
+#vf .vfsheet{width:430px;padding:14px 16px 16px;background:linear-gradient(#211d1a,#120f0d);box-shadow:0 0 0 2px #0d0b0a,0 0 0 4px #6b5638,0 0 0 6px #0d0b0a,0 18px 40px rgba(0,0,0,.7);pointer-events:auto}
+#vf .vfsh-h{display:flex;justify-content:space-between;align-items:flex-start}
+#vf .vfx{width:26px;height:26px;display:flex;align-items:center;justify-content:center;color:#b9a77f;box-shadow:0 0 0 1px #6b5638}
+#vf .vfgs{width:62px;height:62px;background:radial-gradient(#221d19,#0c0a09);box-shadow:0 0 0 2px #0d0b0a,0 0 0 3px #4a3d2a;display:flex;align-items:center;justify-content:center}
+#vf .vfgs img{width:52px;height:52px;object-fit:contain} #vf .vfgs span{font-size:9px;letter-spacing:.1em;color:#5f5442;text-transform:uppercase}
+#vf .vfdoll{flex:1;height:278px;position:relative;background:#0a0807 center 18%/cover no-repeat;box-shadow:0 0 0 2px #0d0b0a,0 0 0 3px #6b5638,inset 0 0 40px #000}
+#vf .vfdoll-v{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 35%,transparent 40%,rgba(10,8,7,.85) 100%),linear-gradient(transparent 70%,#0a0807)}
+#vf .vfxpb{position:relative;height:14px;margin-top:12px;background:#0b0908;box-shadow:0 0 0 1px #0d0b0a,0 0 0 2px #6b5638}
+#vf .vfxpb div{height:100%;background:linear-gradient(#e6cf8a,#8a6420)} #vf .vfxpb span{position:absolute;inset:0;text-align:center;font-size:10px;line-height:14px;color:#efe3c2}
+#vf .vfsec{color:#c49c63;margin:6px 0 3px;border-bottom:1px solid #3a3024;padding-bottom:2px}
+#vf .vfsr{display:flex;justify-content:space-between;font-size:13px;line-height:19px;color:#cfc2a3} #vf .vfsr b{font-weight:normal;color:#efe3c2}
+#vf .vftrait{margin-top:10px;padding:8px 10px;font-size:12px;color:#cfc2a3;background:rgba(0,0,0,.3);box-shadow:inset 0 0 0 1px #3a3024}
+</style>`;
 export default function (ctx, player) {
-  const base = vfHud(ctx, player);
+  const base = vfHud(ctx, player) + SHEET_CSS;
   let cine = "";
   try { cine = renderCinemaOverlays(player) + (player?.state?.cinemaOpen ? cinemaPanel(player, ctx.world) : ""); } catch (e) { cine = ""; }
   return base + cine;
