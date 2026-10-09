@@ -839,11 +839,11 @@ rime-tree-0:
   feetPosition: {x: 141.3, y: {terrain: -0.25}, z: 11.9}
   id: rime-tree-0
   mixer: {base: {clip: Sway, loop: loop, speed: 0.7000172180123707, weight: 1}}
-  model: /cdn/value.9310f071d07d278b7745c40ef24fc6e310900c62df98f2b681ccda5b9ba2f2a2.glb
+  model: /cdn/value.d48ce7fd08b4f93c388790298a431e57ee0dc353eb689f744f23b250c942a5e9.glb
   receiveShadow: true
   rotation: 112
-  scale: 0.96
-  tags: [frostvale, flora, tree, rimepine]
+  scale: 1.12
+  tags: [frostvale, flora, tree, icesnag]
 rime-tree-1:
   castShadow: true
   feetPosition: {x: 135.8, y: {terrain: -0.25}, z: 15.6}
@@ -869,11 +869,11 @@ rime-tree-11:
   feetPosition: {x: 125.4, y: {terrain: -0.25}, z: -31.1}
   id: rime-tree-11
   mixer: {base: {clip: Sway, loop: loop, speed: 0.8044219301568446, weight: 1}}
-  model: /cdn/value.9310f071d07d278b7745c40ef24fc6e310900c62df98f2b681ccda5b9ba2f2a2.glb
+  model: /cdn/value.d48ce7fd08b4f93c388790298a431e57ee0dc353eb689f744f23b250c942a5e9.glb
   receiveShadow: true
   rotation: 220
-  scale: 0.9
-  tags: [frostvale, flora, tree, rimepine]
+  scale: 1.08
+  tags: [frostvale, flora, tree, icesnag]
 rime-tree-12:
   castShadow: true
   feetPosition: {x: 132.5, y: {terrain: -0.25}, z: -27.7}
@@ -979,31 +979,31 @@ rime-tree-21:
   feetPosition: {x: 147.6, y: {terrain: -0.25}, z: -5.5}
   id: rime-tree-21
   mixer: {base: {clip: Sway, loop: loop, speed: 0.801872470556699, weight: 1}}
-  model: /cdn/value.9310f071d07d278b7745c40ef24fc6e310900c62df98f2b681ccda5b9ba2f2a2.glb
+  model: /cdn/value.e333b4df430e8d4822e64b63ec5cdb10deaf0bdadd3620d26f2fb84049f88fc7.glb
   receiveShadow: true
   rotation: 156
-  scale: 1
-  tags: [frostvale, flora, tree, rimepine]
+  scale: 1.12
+  tags: [frostvale, flora, tree, frostbirch]
 rime-tree-22:
   castShadow: true
   feetPosition: {x: 145.3, y: {terrain: -0.25}, z: 0.8}
   id: rime-tree-22
   mixer: {base: {clip: Sway, loop: loop, speed: 0.8855179158903276, weight: 1}}
-  model: /cdn/value.e333b4df430e8d4822e64b63ec5cdb10deaf0bdadd3620d26f2fb84049f88fc7.glb
+  model: /cdn/value.d48ce7fd08b4f93c388790298a431e57ee0dc353eb689f744f23b250c942a5e9.glb
   receiveShadow: true
   rotation: 153
-  scale: 1
-  tags: [frostvale, flora, tree, frostbirch]
+  scale: 0.95
+  tags: [frostvale, flora, tree, icesnag]
 rime-tree-23:
   castShadow: true
   feetPosition: {x: 142.4, y: {terrain: -0.25}, z: 7}
   id: rime-tree-23
   mixer: {base: {clip: Sway, loop: loop, speed: 0.8622479654672779, weight: 1}}
-  model: /cdn/value.d48ce7fd08b4f93c388790298a431e57ee0dc353eb689f744f23b250c942a5e9.glb
+  model: /cdn/value.e333b4df430e8d4822e64b63ec5cdb10deaf0bdadd3620d26f2fb84049f88fc7.glb
   receiveShadow: true
   rotation: 81
-  scale: 0.98
-  tags: [frostvale, flora, tree, icesnag]
+  scale: 0.92
+  tags: [frostvale, flora, tree, frostbirch]
 rime-tree-3:
   castShadow: true
   feetPosition: {x: 119.4, y: {terrain: -0.25}, z: 21.8}
@@ -1029,11 +1029,11 @@ rime-tree-5:
   feetPosition: {x: 104.5, y: {terrain: -0.25}, z: 15.3}
   id: rime-tree-5
   mixer: {base: {clip: Sway, loop: loop, speed: 0.8653404253373576, weight: 1}}
-  model: /cdn/value.9310f071d07d278b7745c40ef24fc6e310900c62df98f2b681ccda5b9ba2f2a2.glb
+  model: /cdn/value.d48ce7fd08b4f93c388790298a431e57ee0dc353eb689f744f23b250c942a5e9.glb
   receiveShadow: true
   rotation: 30
-  scale: 0.93
-  tags: [frostvale, flora, tree, rimepine]
+  scale: 1
+  tags: [frostvale, flora, tree, icesnag]
 rime-tree-6:
   castShadow: true
   feetPosition: {x: 99, y: {terrain: -0.25}, z: 10.4}
