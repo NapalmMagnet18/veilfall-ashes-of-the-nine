@@ -3,6 +3,7 @@ import { coinHTML, fmt } from "./lib/coins.js";
 import { shopPanel } from "./lib/shop-ui.js";
 import { packPanel, PACK_CSS } from "./lib/pack-ui.js";
 import { BREW } from "./lib/brews.js";
+import { icon as itemIcon, TIER } from "./lib/loot.js";
 import { boardPanel } from "./lib/board-ui.js";
 import R from "./lib/data/realms.yml";
 import { FRAME_CSS } from "./lib/frames.js";
@@ -584,7 +585,7 @@ function sheetPanel(s, lv, xpPct, L) {
   const hit = Math.round(CB.ashcut.dmg * wm), crit = Math.round((12 + (g.crit ?? 0)) * 10) / 10, mit = Math.round(((g.armor ?? 0) / ((g.armor ?? 0) + 120)) * 100);
   const dps = Math.round((hit * (1 + crit / 100 * 0.8)) / A[3]);
   const row = (k, v, c) => `<div class="vfsr"><span>${k}</span><b style="${c ? "color:" + c : ""}">${v}</b></div>`;
-  const slot = (k) => { const it = s.gear?.[k]; return `<div class="vfgs" style="${it ? "box-shadow:0 0 0 2px #0d0b0a,0 0 0 3px " + (TIER_COL[it.t] ?? "#6b5638") : ""}" title="${it ? (it.n ?? it.name ?? k) : SLOT_NAMES[k]}">${it?.i ? `<img src="${it.i}">` : `<span>${SLOT_NAMES[k]}</span>`}</div>`; };
+  const slot = (k) => { const it = s.gear?.[k]; return `<div class="vfgs" style="${it ? "box-shadow:0 0 0 2px #0d0b0a,0 0 0 3px " + (TIER[it.t]?.color ?? "#6b5638") : ""}" title="${it ? (it.n ?? k) : SLOT_NAMES[k]}">${it ? `<img src="${itemIcon(it.b)}">` : `<span>${SLOT_NAMES[k]}</span>`}</div>`; };
   return `<div class="absolute vfsheet" style="left:24px;top:110px;animation:vfin .2s">
   <div class="vfsh-h"><div><div style="font-size:20px;color:var(--wax);letter-spacing:.06em">${s.charName ?? "Bearer"}</div><div class="lbl">Level ${lv} ${anc ? anc.name + " " : ""}${cls.name}</div></div><div class="vfx" style="pointer-events:auto;cursor:pointer" onclick="sendAction('sheet')">✕</div></div>
   <div class="dv d0" style="margin:6px 0 10px"></div>
