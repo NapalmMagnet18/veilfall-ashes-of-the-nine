@@ -236,6 +236,78 @@ orch-apple-0:
   rotation: 0
   scale: 0.9
   tags: [orchard, flora, tree]
+orch-apple-10:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 90.4, y: {terrain: -0.1}, z: 19.8}
+  id: orch-apple-10
+  layout: {maxExtents: {y: 5.76}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 0.95, weight: 1}}
+  model: /cdn/value.e8237dc6ce5814a52762136a3720ff0581da3ebd9fed643aec43bd65110ec5a0.glb
+  receiveShadow: true
+  rotation: 62
+  state: {kind: appleC}
+  tags: [bloodwoods, flora, tree]
+orch-apple-13:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 87.9, y: {terrain: -0.1}, z: 16.2}
+  id: orch-apple-13
+  layout: {maxExtents: {y: 5.22}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 1.02, weight: 1}}
+  model: /cdn/value.d6c1233f14db0eaa7e26010cae90c13ee56be4d378af5ffaf0e6dfb5b31c4571.glb
+  receiveShadow: true
+  rotation: 307
+  state: {kind: appleA}
+  tags: [bloodwoods, flora, tree]
+orch-apple-14:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 71.3, y: {terrain: -0.1}, z: -17.7}
+  id: orch-apple-14
+  layout: {maxExtents: {y: 5.45}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 0.93, weight: 1}}
+  model: /cdn/value.d6c1233f14db0eaa7e26010cae90c13ee56be4d378af5ffaf0e6dfb5b31c4571.glb
+  receiveShadow: true
+  rotation: 351
+  state: {kind: appleA}
+  tags: [bloodwoods, flora, tree]
+orch-apple-17:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 85.6, y: {terrain: -0.1}, z: -1.8}
+  id: orch-apple-17
+  layout: {maxExtents: {y: 4.69}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 1.05, weight: 1}}
+  model: /cdn/value.1b709cd7096c375acbd05332f69334ba9499d099d79e110aaf7a999e5f7c4818.glb
+  receiveShadow: true
+  rotation: 329
+  state: {kind: appleB}
+  tags: [bloodwoods, flora, tree]
+orch-apple-18:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 69.5, y: {terrain: -0.1}, z: -24.3}
+  id: orch-apple-18
+  layout: {maxExtents: {y: 4.24}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 1.13, weight: 1}}
+  model: /cdn/value.1b709cd7096c375acbd05332f69334ba9499d099d79e110aaf7a999e5f7c4818.glb
+  receiveShadow: true
+  rotation: 123
+  state: {kind: appleB}
+  tags: [bloodwoods, flora, tree]
+orch-apple-19:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 69.5, y: {terrain: -0.1}, z: 28.7}
+  id: orch-apple-19
+  layout: {maxExtents: {y: 4.98}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 0.9, weight: 1}}
+  model: /cdn/value.d6c1233f14db0eaa7e26010cae90c13ee56be4d378af5ffaf0e6dfb5b31c4571.glb
+  receiveShadow: true
+  rotation: 235
+  state: {kind: appleA}
+  tags: [bloodwoods, flora, tree]
 orch-apple-2:
   castShadow: true
   feetPosition: {x: 70.5, y: {terrain: -0.15}, z: -12.7}
@@ -246,6 +318,66 @@ orch-apple-2:
   rotation: 352
   scale: 1.19
   tags: [orchard, flora, tree]
+orch-apple-20:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 90.9, y: {terrain: -0.1}, z: 6.9}
+  id: orch-apple-20
+  layout: {maxExtents: {y: 6.28}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 0.94, weight: 1}}
+  model: /cdn/value.d6c1233f14db0eaa7e26010cae90c13ee56be4d378af5ffaf0e6dfb5b31c4571.glb
+  receiveShadow: true
+  rotation: 59
+  state: {kind: appleA}
+  tags: [bloodwoods, flora, tree]
+orch-apple-21:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 68.5, y: {terrain: -0.1}, z: 37.2}
+  id: orch-apple-21
+  layout: {maxExtents: {y: 5.87}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 1.14, weight: 1}}
+  model: /cdn/value.d6c1233f14db0eaa7e26010cae90c13ee56be4d378af5ffaf0e6dfb5b31c4571.glb
+  receiveShadow: true
+  rotation: 297
+  state: {kind: appleA}
+  tags: [bloodwoods, flora, tree]
+orch-apple-22:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 64.6, y: {terrain: -0.1}, z: -23.7}
+  id: orch-apple-22
+  layout: {maxExtents: {y: 5.88}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 0.93, weight: 1}}
+  model: /cdn/value.e8237dc6ce5814a52762136a3720ff0581da3ebd9fed643aec43bd65110ec5a0.glb
+  receiveShadow: true
+  rotation: 87
+  state: {kind: appleC}
+  tags: [bloodwoods, flora, tree]
+orch-apple-24:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 87, y: {terrain: -0.1}, z: 24.7}
+  id: orch-apple-24
+  layout: {maxExtents: {y: 6.43}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 0.98, weight: 1}}
+  model: /cdn/value.e8237dc6ce5814a52762136a3720ff0581da3ebd9fed643aec43bd65110ec5a0.glb
+  receiveShadow: true
+  rotation: 179
+  state: {kind: appleC}
+  tags: [bloodwoods, flora, tree]
+orch-apple-25:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 85.5, y: {terrain: -0.1}, z: 3.8}
+  id: orch-apple-25
+  layout: {maxExtents: {y: 4.64}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 0.87, weight: 1}}
+  model: /cdn/value.1b709cd7096c375acbd05332f69334ba9499d099d79e110aaf7a999e5f7c4818.glb
+  receiveShadow: true
+  rotation: 39
+  state: {kind: appleB}
+  tags: [bloodwoods, flora, tree]
 orch-apple-5:
   castShadow: true
   feetPosition: {x: 84.2, y: {terrain: -0.15}, z: 16.9}
@@ -320,6 +452,19 @@ orch-gibbet-g3:
   primitive: {kind: scripted, params: {}, script: scripts/gen/orch-gibbet.js, seed: 66}
   rotation: 160.01689347810003
   tags: [orchard, z01-dressing, gibbet]
+orch-grove/tree-3:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 2.8651950359344482, y: -0.12, z: 16.24932861328125}
+  id: orch-grove/tree-3
+  layout: {maxExtents: {y: 5.55}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 1.1, weight: 1}}
+  model: /cdn/value.d6c1233f14db0eaa7e26010cae90c13ee56be4d378af5ffaf0e6dfb5b31c4571.glb
+  parent: orch-grove
+  receiveShadow: true
+  rotation: 7
+  state: {kind: appleA}
+  tags: [bloodwoods, flora, tree]
 rime-bed:
   audio: {clip: /cdn/moodboard-gothic-horror/sfx-howling-mountain-blizzard-wind-and-distant-wolf.mp3, gain: 0.18, loop: true, maxDistance: 45, spatial: true}
   feetPosition: {x: 112, y: {terrain: 1}, z: -2}
