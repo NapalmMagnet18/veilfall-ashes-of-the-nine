@@ -458,11 +458,24 @@ function keystone(ctx, foe, dmg, crit) {
   ctx.emit("fx", { position: src, script: A.fx, params: { dir: { x: dx / d, y: dy, z: dz / d }, sp: A.sp, t: time } });
   ctx.after(time, "boltLand", { id: best.id, dmg: Math.max(1, Math.round(dmg * (k === "chain" ? 0.6 : 0.7))), crit: false, hit: A.hit, c: A.hitFx, nk: true });
 }
+// what a melee blow leaves on the foe: the primalist rakes three claw scores across it, the hellwarden's mace bursts embers
+const RAKE = `fx
+pop score burst=3 on=line(<-.25,0,0>,<.25,0,0>) life=.22 v=<0,-1,0>*5 size=.06 col=hdr(2.6,3,1.4) a=1>0 r=sprite(ember,add,velocity,.06)
+pop tear burst=14..20 on=sphere(.25) life=.25..0.5 v=sdir()*(1.5..3)+up(.5) size=.02..0.04 acc=grav()*.5+drag(1.8) col=hdr(2,2.4,1.1)>hdr(.5,.6,.2) a=1>0 r=sprite(ember,add,velocity,.04)
+pop fur burst=8..12 on=sphere(.2) life=.6..1 v=sdir()*(1..2)+up(.8) size=.04..0.07 spin=-8..8 acc=grav()*.4+drag(1.6) col=<.3,.24,.18> a=1>.6:1>0 sz=$size rot=$age*$spin r=sprite(chip,alpha)
+pop lit burst=1 life=.15 at=point() r=light(<.75,.95,.45>,7*(1>0),3)`;
+const CRUSH = `fx
+pop ember burst=20..28 on=sphere(.2) life=.3..0.7 v=sdir()*(2..4)+up(1) size=.02..0.05 acc=grav()*.7+drag(1.4) col=hdr(4,1.8,.4)>hdr(1.2,.3,.05) a=1>0 r=sprite(ember,add,velocity,.05)
+pop flash burst=1 life=.14 size=1.1 col=hdr(3,1.4,.4) a=.9>0 sz=$size*(.4>1.2) r=sprite(soft-disc,add)
+pop ash burst=4..6 on=sphere(.25) life=.7..1.2 v=sdir()*.6+up(.4) size=.25..0.4 acc=buoy(.3)+drag(1.4) col=<.2,.18,.17> a=0>.1:.35>0 sz=$size*(.6>2) rot=spin(.2) r=sprite(smoke-puff,alpha)
+pop lit burst=1 life=.2 at=point() r=light(<1,.5,.2>,12*(1>0),4)`;
 export function meleeLand(ctx, p) {
   const foe = ctx.getObject(p.id); if (!isFoe(foe) || (ctx.self.state.hp ?? 1) <= 0) return;
   const f = ctx.self.feetPosition, t = foe.feetPosition, d = Math.hypot(t.x - f.x, t.z - f.z);
   if (d > p.reach + 1.2) { ctx.emit("damageNumber", { position: { x: t.x, y: t.y + 1.6, z: t.z }, text: "miss", color: "#9b968a", size: 0.6 }, { audience: { player: ctx.self.id } }); return; }
   strike(ctx, foe, p.dmg, p.crit);
+  const hitFx = ctx.self.state.cls === "primalist" ? RAKE : ctx.self.state.cls === "hellwarden" ? CRUSH : null;
+  if (hitFx) ctx.emit("fx", { position: { x: t.x, y: t.y + 1.1, z: t.z }, script: hitFx });
   if (p.fin) {
     const dx = (t.x - f.x) / (d || 1), dz = (t.z - f.z) / (d || 1);
     ctx.emit("slash", { position: { x: t.x, y: t.y + 1.1, z: t.z }, size: 2.8, shape: "crescent", noise: 0.5 });
