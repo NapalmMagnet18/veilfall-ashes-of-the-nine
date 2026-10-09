@@ -55,6 +55,7 @@ assets:
     "/cdn/value.ea3d4147fb9ce5c18c34aacf1ace48cf60db24427c064f690af3077c2185f898.png": {bytes: 633613, kind: image, name: dark-wet-moss, uploadedAt: "2026-10-09T09:37:40.039Z"}
     "/cdn/value.efe39eecfc97d68d46617bd1d458e5911ab198326813fc093bb482ff510fd61e.png": {bytes: 481, kind: image, name: vf-btn, uploadedAt: "2026-10-08T15:55:59.357Z"}
     "/cdn/value.f4d83d34d1f6c741193e4acf4b3dff9531e5a67b6aa65228d00a7db72a4e0f34.ttf": {bytes: 125468, kind: font, name: cinzel, uploadedAt: "2026-10-08T20:09:56.047Z"}
+    "/cdn/value.f4e985f51d72e39ecd4691f462076ba4a14206d864edb85895ea8ef710ceccfc.png": {bytes: 455077, kind: image, name: icon-tonic, uploadedAt: "2026-10-09T10:25:17.752Z"}
     "/cdn/value.f783f422d9a4f9d95b085cec04840cff18609af18ff793d4e0d0d2ff4dfe8f22.glb": {bytes: 3247824, kind: model, name: waystone-of-the-nine, uploadedAt: "2026-10-08T17:24:40.455Z"}
     "/cdn/value.fc4c148debba7a63ae7aece00b8d6da267174c9429d997dddfc43477d97a8a17.glb": {bytes: 9424436, kind: model, name: abbey-belltower, uploadedAt: "2026-10-08T18:20:44.246Z"}
     "/cdn/value.fe868b233c1ac6e6cc4bf419d87cbd276ffeffb08bc2f44f23fc3b48057f42f6.glb": {bytes: 2271304, kind: model, name: crier-slim2, uploadedAt: "2026-10-08T21:59:33.069Z"}
