@@ -77,7 +77,7 @@ bw-tree-16:
   tags: [bloodwoods, flora, tree]
 bw-tree-17:
   castShadow: true
-  feetPosition: {x: 78, y: {terrain: -0.25}, z: 19.8}
+  feetPosition: {x: 83.2, y: {terrain: -0.25}, z: 24.3}
   id: bw-tree-17
   mixer: {base: {clip: Sway, loop: loop, speed: 1.17, weight: 1}}
   model: /cdn/value.002c7e261f6964156c867c8886cdd951fc3a7331e0e3a93c1dacbef640ade581.glb
