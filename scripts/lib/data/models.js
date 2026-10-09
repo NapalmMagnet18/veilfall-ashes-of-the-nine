@@ -29,7 +29,7 @@ export const MODELS = {
   pyrepriest: "/cdn/value.61f61af792f42e03ef76b22c38dcdc1a9a09d81cc03f23cc52d530c0a7ae0e73.png.glb",
   deepghoul: "/cdn/value.5e784705cec43e47daa8d7415162c23b798d95af4311a476e8ff6b764ab2b20a.png.glb",
   lurker: "/cdn/value.230e154234ddce5261a9f18deb7a2a1ab405019c7cac64accbe4bf5e8dc3e7ad.png.glb",
-  crystalbrute: "/cdn/value.9a5f75a73119738cedc6569b560833f0e7a62da13d6cd9c058bd1dbc1c46fc38.png.glb",
+  crystalbrute: "/cdn/value.5e88511bde76bf57954f88531efd254362c569947f00e7d2210c43733f182533.png.glb", // stand-in: the gargoyle's stone body; the brute's own cook (value.9a5f75a7…) did not come out
   broodmother: "/cdn/value.084438da9ce5ae7b310433e6f7c6f48af5acb0d6e2028c6603e170b6f470bcaa.png.glb",
   frostdead: "/cdn/value.56ddf8235448f7f750f79bf7125e157dd82b376beb5c52336ef178aef1397e48.png.glb",
   rimewolf: "/cdn/value.bb40c031cc226c5cac86587110e09500030a395c128ecdb190546ae8224d724b.png.glb",
