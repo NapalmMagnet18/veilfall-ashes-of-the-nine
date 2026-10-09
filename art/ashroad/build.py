@@ -57,12 +57,12 @@ def bark_char(n, seed):
     fiss = np.minimum(fv, fh * 1.6)
     plate = np.clip(fiss / .16, 0, 1) ** .55
     h = plate * (.75 + .25 * det)
-    col = lerp3((5, 4, 4), (26, 24, 25), plate)
+    col = lerp3((3, 3, 3), (20, 19, 20), plate)
     col = lerp3(col, (78, 74, 72), np.clip((det - .55) * 3, 0, 1) * plate)          # ash on the plate tops
     col = lerp3(col, (52, 30, 22), np.clip((fnoise(n, 1.6, seed + 3) - .62) * 4, 0, 1) * plate * .6)  # scorched brown
-    deep = np.clip(1 - fiss / .05, 0, 1) * np.clip((fnoise(n, 1.7, seed + 4, aniso=3) - .48) * 5, 0, 1)
+    deep = np.clip(1 - fiss / .07, 0, 1) * np.clip((fnoise(n, 1.7, seed + 4, aniso=3) - .48) * 5, 0, 1)
     col = lerp3(col, (120, 40, 14), deep * .6)
-    em = lerp3((0, 0, 0), (150, 46, 10), deep ** 1.5)
+    em = lerp3((0, 0, 0), (210, 66, 14), deep ** 1.2)
     return col, h, em
 
 def bark_ember(n, seed):
@@ -79,9 +79,9 @@ def bark_grey(n, seed):
     s = fnoise(n, 1.4, seed, aniso=12); det = fnoise(n, 1.0, seed + 1)
     fiss = np.abs(s - .5) * 2; plate = np.clip(fiss / .12, 0, 1) ** .7
     col = lerp3((10, 10, 12), (44, 43, 46), plate * (.7 + .3 * det))
-    peel = np.clip((fnoise(n, 1.8, seed + 2, aniso=5) - .66) * 9, 0, 1)
+    peel = np.clip((fnoise(n, 1.8, seed + 2, aniso=5) - .72) * 9, 0, 1)
     rim = np.clip(1 - np.abs(fnoise(n, 1.8, seed + 2, aniso=5) - .66) / .012, 0, 1)
-    wood = lerp3((118, 112, 104), (160, 150, 134), fnoise(n, 1.1, seed + 3, aniso=16))
+    wood = lerp3((58, 55, 52), (84, 80, 74), fnoise(n, 1.1, seed + 3, aniso=16))
     col = lerp3(col, wood, peel); col = lerp3(col, (6, 6, 7), rim * .9)
     h = plate * .6 * (1 - peel) + peel * .25 + det * .1 + rim * .3
     return col, h
@@ -97,7 +97,7 @@ def needles_tex(S, seed):
     # tiles in u. image row 0 is v=1 (the clump's crown)
     rnd = random.Random(seed); im = Image.new("RGB", (S, S), (10, 18, 20)); d = ImageDraw.Draw(im)
     hm = Image.new("L", (S, S), 0); dh = ImageDraw.Draw(hm)
-    pal = [(18, 34, 36), (24, 44, 44), (30, 54, 52), (20, 40, 46), (36, 62, 58)]
+    pal = [(20, 40, 44), (26, 52, 54), (34, 64, 62), (22, 46, 56), (42, 74, 72)]
     for k in range(14000):
         x = rnd.uniform(0, S); y = rnd.uniform(-20, S); v = 1 - y / S
         L = rnd.uniform(8, 22); a = -math.pi / 2 + rnd.uniform(-.75, .75)
@@ -198,7 +198,8 @@ def blob(mb, c, rad, w, m, seg=10, rings=7, rough=.25, nseed=0.0):
         for j in range(seg):
             ph = TAU * j / seg; d = Vector((math.sin(th) * math.cos(ph), math.sin(th) * math.sin(ph), math.cos(th)))
             k = 1 + rough * mnoise.noise(d * 1.7 + Vector((nseed, 0, 0)))
-            row.append(mb.v(c + Vector((d.x * rad[0], d.y * rad[1], d.z * rad[2])) * k, w))
+            q = c + Vector((d.x * rad[0], d.y * rad[1], d.z * rad[2])) * k; q.z = max(q.z, -.04)
+            row.append(mb.v(q, w))
         ids.append(row)
     for i in range(rings):
         for j in range(seg):
@@ -253,17 +254,17 @@ def build_ashoak(mb, M):
     A0 = -math.pi / 2
     def scar(a, z):
         da = (a - A0 + math.pi) % TAU - math.pi
-        return math.exp(-(da / .5) ** 4) * ss(.12, .55, z)
+        return math.exp(-(da / .62) ** 4) * ss(.05, .4, z)
     def rf(i, a, c):
         z = c.z; ridge = .06 * math.cos(11 * a + 2.0 * mnoise.noise(Vector((math.cos(a), math.sin(a), z * .7))))
-        return (1 - .62 * scar(a, z)) * (1 + ridge + .07 * mnoise.noise(Vector((math.cos(a) * 1.5, math.sin(a) * 1.5, z * 1.4))))
+        return (1 - .82 * scar(a, z)) * (1 + ridge + .07 * mnoise.noise(Vector((math.cos(a) * 1.5, math.sin(a) * 1.5, z * 1.4))))
     sides = 32
     def mf(i, j):
         a = TAU * (j + .5) / sides; return M["ember"] if scar(a, tp[i].z) > .45 else M["bark"]
     rings = tube(mb, tp, radii, sides, M["bark"], lambda t: {"Trunk": 1}, U=2, rfun=rf, mfun=mf, world_rings=True)
     hollow = mb.v(tp[-1] - UP * .55, {"Trunk": 1})                    # the smouldering bowl where the trunk tore
     for j in range(sides): mb.f((rings[-1][j], rings[-1][(j + 1) % sides], hollow), [(0, 0), (.15, 0), (.07, .2)], M["ember"])
-    roots(mb, M, 7, (.9, 1.5), (2.4, 3.4), .36, (2.2, .75), aim=[ROCKS[0][0].to_2d().angle_signed(Vector((1, 0))) * -1 if False else math.atan2(c.y, c.x) for c, r in ROCKS])
+    roots(mb, M, 7, (.9, 1.5), (2.4, 3.4), .36, (2.2, .75), aim=[math.atan2(c.y, c.x) for c, r in ROCKS] + [A0 + 1.3, A0 - 1.35, A0 + 2.6, A0 - 2.7])
     B = [("Trunk", Vector((0, 0, 0)), Vector((0, 0, 2.2)), None)]
     stems = [(Vector((.24, .06, 1.75)), Vector((.8, .2, 3.6)), Vector((1.15, .5, 5.0)), Vector((1.25, .35, 6.5)), .42, "StemA"),
              (Vector((-.24, .12, 1.75)), Vector((-.7, .25, 3.3)), Vector((-.95, -.2, 4.6)), Vector((-1.05, -.55, 5.7)), .38, "StemB")]
@@ -343,16 +344,16 @@ def build_lanternsnag(mb, M):
     return B
 
 # ---------------------------------------------------------------- gravecypress
-def flame_clump(mb, M, base, h, r, lean, w, seed, seg=18, rings=13):
+def flame_clump(mb, M, base, h, r, lean, w, seed, seg=22, rings=14):
     # one solid needle mass shaped like a licking flame: fat low, drawn to a leaning point, ridged with tufts
     ids = []; tipc = base + UP * h + lean
     for i in range(rings + 1):
         t = i / rings; c = base.lerp(tipc, t) + lean * (t * t - t) * .6
-        prof = r * math.sin(math.pi * min(1, .12 + t * .95)) ** .75 * (1 - .45 * t)
+        prof = r * math.sin(math.pi * min(1, .1 + t * .93)) ** .6 * (1 - .4 * t)
         row = []
         for j in range(seg):
             a = TAU * j / seg
-            lob = .18 * max(0, math.cos(6 * a + 2.4 * t + seed)) + .14 * mnoise.noise(Vector((math.cos(a) * 2 + seed, math.sin(a) * 2, t * 3)))
+            lob = .07 * max(0, math.cos(4 * a + 1.5 * t + seed)) + .2 * mnoise.noise(Vector((math.cos(a) * 1.6 + seed, math.sin(a) * 1.6, t * 2.2))) + .07 * mnoise.noise(Vector((math.cos(a) * 5 + seed, math.sin(a) * 5, t * 6)))
             rr_ = prof * (1 + lob)
             p = c + Vector((math.cos(a) * rr_, math.sin(a) * rr_, lob * .25 * h * (t > .5)))
             row.append((mb.v(p, w), (j / seg * 2, t)))
@@ -372,7 +373,7 @@ def build_gravecypress(mb, M):
     tube(mb, tp, [.2 - .11 * (k / 12) + .2 * math.exp(-tp[k].z / .25) for k in range(13)], 10, M["bark"], lambda t: {"Trunk": 1}, U=2, rfun=gnarl_r(.15, 3.0))
     roots(mb, M, 5, (.35, .6), (.9, 1.5), .14, (1.7, .8), segs=9, sides=7)
     B = [("Trunk", Vector((0, 0, 0)), Vector((0, 0, 1.0)), None)]
-    spec = [(.75, 2.2, .95), (1.75, 2.0, .9), (2.7, 1.9, .78), (3.6, 1.75, .62), (4.4, 1.6, .48), (5.1, 1.35, .34), (5.75, 1.25, .2)]
+    spec = [(.7, 2.4, 1.0), (1.6, 2.3, .98), (2.5, 2.2, .86), (3.4, 2.0, .72), (4.2, 1.8, .56), (4.95, 1.55, .4), (5.6, 1.4, .24)]
     prev = "Trunk"
     for k, (z, h, r) in enumerate(spec):
         off = hvec(k * 2.2 + .7) * (.12 if 0 < k < 6 else 0); lean = hvec(k * 1.9 + 2) * (.15 + .05 * k)
@@ -466,8 +467,8 @@ g = bpy.data.objects.new("ground", gm); scene.collection.objects.link(g)
 gmat = bpy.data.materials.new("gm"); gmat.use_nodes = True; gmat.node_tree.nodes["Principled BSDF"].inputs["Base Color"].default_value = (.04, .04, .045, 1); gm.materials.append(gmat)
 sun = bpy.data.objects.new("sun", bpy.data.lights.new("sun", "SUN")); sun.data.energy = 1.8; sun.data.color = (.55, .68, 1.0)
 sun.rotation_euler = (math.radians(50), 0, math.radians(35)); scene.collection.objects.link(sun)
-fire = bpy.data.objects.new("fire", bpy.data.lights.new("fire", "POINT")); fire.data.energy = 700; fire.data.color = (1, .45, .15)
-fire.location = (3.5, -4.0, 1.2); scene.collection.objects.link(fire)
+fire = bpy.data.objects.new("fire", bpy.data.lights.new("fire", "POINT")); fire.data.energy = 450; fire.data.color = (1, .45, .15)
+fire.location = (4.5, -2.0, 1.0); scene.collection.objects.link(fire)
 def cam(name, eye, aim, fov):
     c = bpy.data.objects.new(name, bpy.data.cameras.new(name)); scene.collection.objects.link(c)
     c.data.sensor_fit = "VERTICAL"; c.data.angle = math.radians(fov); c.location = eye
