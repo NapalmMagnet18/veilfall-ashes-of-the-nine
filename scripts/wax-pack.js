@@ -126,12 +126,14 @@ export function update(ctx, dt) {
   for (const row of ctx.query({ tags: ["enemy"], excludeTags: ["boss"] })) {
     const w = ctx.getObject(row.id); if (!w) continue;
     const s = w.state, K = C[s.kind] ?? C.pilgrim, f = w.feetPosition;
-    if (s.dead) { w.velocity = { x: 0, y: w.velocity.y, z: 0 }; mutterAt.delete(w.id); if (now - s.deadAt > 1600) ctx.destroy(w.id); continue; }
+    if (s.dead) { w.velocity = { x: 0, y: w.velocity.y, z: 0 }; mutterAt.delete(w.id); if (now - s.deadAt > 2300) ctx.destroy(w.id); continue; }
+    if (s.animOff && now > s.animOff) { w.anim.attack = null; s.animOff = 0; }
     if (s.hp <= 0) {
       s.dead = true; s.deadAt = now; w.physics = "none";
       ctx.emit("fx", { position: { x: f.x, y: f.y + 0.4, z: f.z }, script: MELT });
       ctx.emit("playSound", { clip: sfx((VOX[s.kind] ?? VOX.pilgrim).death), position: f, volume: s.kind === "deacon" ? 1 : 0.8, pitch: 0.9 + ctx.random() * 0.2 });
-      animate(ctx, w, { "scale.y": 0.08, "scale.x": 1.5, "scale.z": 1.5 }, { duration: 1.2 });
+      w.anim.attack = null; w.anim.death = { clip: "cdn/clip-die.glb", weight: 20, loop: "once" }; // it falls first, then the wax gives way
+      animate(ctx, w, { "scale.y": 0.08, "scale.x": 1.5, "scale.z": 1.5 }, { duration: 1.1, delay: 0.9 });
       payout(ctx, f, K.xp, roll(ctx, E.drops[s.kind] ?? E.drops.pilgrim), true, "small", s.kind);
       continue;
     }
@@ -144,7 +146,15 @@ export function update(ctx, dt) {
     if (!s.hunting) mutter(ctx, w, s, f, now, ears);
     let vx = 0, vz = 0;
     // a slam in its windup holds the body still, then lands
-    if (s.slam) {
+    if (s.swing) {
+      // the blow lands at the end of the swing; a Bearer who stepped out of reach is missed
+      if (now >= s.swing.at) {
+        const tgt = players.find((q) => q.id === s.swing.who);
+        if (tgt && flat(tgt.feetPosition, f) < (K.reach ?? 1.6) + 0.7) hurtPlayers(ctx, tgt.feetPosition, 0.9, K.dmg, now);
+        else ctx.emit("playSound", { clip: sfx("blade-whiffs-past-cloak-close-swish"), position: f, volume: 0.4, pitch: 0.8 });
+        s.swing = null;
+      }
+    } else if (s.slam) {
       if (now >= s.slam.at) {
         ctx.emit("fx", { position: { x: s.slam.x, y: f.y + 0.1, z: s.slam.z }, script: SLAM, params: { r: K.slamRadius } });
         ctx.emit("playSound", { clip: sfx("heavy-censer-slam-stone-crack"), position: f, volume: 1 });
@@ -158,12 +168,15 @@ export function update(ctx, dt) {
       if (s.kind === "deacon" && d < 6 && now >= (s.nextAtk ?? 0)) {
         s.slam = { x: prey.feetPosition.x, y: prey.feetPosition.y, z: prey.feetPosition.z, at: now + K.windup * 1000 };
         telegraph(ctx, s.slam.x, s.slam.y, s.slam.z, K.slamRadius, K.windup);
+        w.anim.attack = { clip: "cdn/clip-cast.glb", weight: 10, loop: "once", speed: 1.4 / Math.max(0.6, K.windup) }; s.animOff = now + K.windup * 1000 + 500;
         ctx.emit("playSound", { clip: sfx("chain-rattle-windup-hiss"), position: f, volume: 0.8 });
       } else if (d > (K.reach ?? 1.6)) { vx = (dx / d) * K.speed; vz = (dz / d) * K.speed; }
       else if (s.kind !== "deacon" && now >= (s.nextAtk ?? 0)) {
         s.nextAtk = now + K.every * 1000;
-        ctx.emit("squash", { target: w.id, axis: "z", intensity: 0.2, duration: 0.25 });
-        hurtPlayers(ctx, prey.feetPosition, 0.9, K.dmg, now);
+        // a readable wind-up: the arm draws back, then the blow falls
+        s.swing = { at: now + 420, who: prey.id };
+        w.anim.attack = { clip: "cdn/clip-attack.glb", weight: 10, loop: "once", speed: 1.1 }; s.animOff = now + 1000;
+        ctx.emit("playSound", { clip: sfx("wax-limb-drawn-back-creak-and-hiss"), position: f, volume: 0.45, pitch: 0.85 + ctx.random() * 0.3 });
       }
     } else if (s.home) {
       if (!s.roam || now > s.roamUntil) { const a = ctx.random() * 6.283; s.roam = { x: s.home.x + Math.cos(a) * 4, z: s.home.z + Math.sin(a) * 4 }; s.roamUntil = now + 4000 + ctx.random() * 4000; }
