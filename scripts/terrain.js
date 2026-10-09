@@ -28,5 +28,8 @@ export function materialAt(ctx) {
     const rest = Math.max(0, 1 - paved - moss)
     return { stone: paved * (1 - rock), grass: moss * (1 - rock), gravel: rest * (1 - rock), rock }
   }
-  return { rock: Math.max(rock, 0.55), gravel: 1 - Math.max(rock, 0.55) }
+  // the low banks green over: moss and wildflowers climb until the scree turns to cliff
+  const lush = clamp01((3.2 - worldHeight) / 2.8) * clamp01(0.6 + n) * (1 - rock)
+  const rk = Math.max(rock, 0.55 * (1 - lush))
+  return { rock: rk, grass: lush * (1 - rk), gravel: Math.max(0, 1 - rk - lush * (1 - rk)) }
 }
