@@ -43,6 +43,8 @@ inputs:
       touch: { button: false }
     trade:
       touch: { button: false }
+    gvault:
+      touch: { button: false }
     train:
       touch: { button: false }
     travel:
