@@ -15,7 +15,23 @@ export function geometry(ctx) {
   const hook = [0, H - 0.3, -arm + 0.2];
   if (kind === "cage" && ctx.params.split) { /* the cage hangs as its own swinging child */ }
   else if (kind === "cage") cageBody(ctx, hook, L, R);
-  else { = ctx.params.drop ?? 1.1, top = hook[1] - drop, ch = 1.8;
+  else {
+    const n = 4;
+    for (let i = 0; i < n; i++) {
+      const z = -0.4 - (i / (n - 1)) * (arm - 0.5), len = 1.5 + R() * 2.4, x = (R() - 0.5) * 0.1;
+      const pts = [[x, H - 0.3, z], [x + (R() - 0.5) * 0.15, H - 0.3 - len, z + (R() - 0.5) * 0.15]];
+      chain(ctx, pts, L);
+      ctx.albedo(TEX.iron); ctx.color("oklch(.72 .05 45)");
+      const e = pts[1];
+      tube(ctx, [[e[0], e[1] + 0.02, e[2]], [e[0], e[1] - 0.22, e[2]], [e[0], e[1] - 0.3, e[2] - 0.08], [e[0], e[1] - 0.24, e[2] - 0.16], [e[0], e[1] - 0.16, e[2] - 0.15]], 0.016);
+    }
+    chain(ctx, catenary([0, H - 0.3, -arm + 0.25], [0.05, H - 1.6, -0.15], 0.9, 12), L);
+  }
+}
+export function collider(ctx) { boxC(ctx, -0.2, 0.2, -0.8, (ctx.params.h ?? 5.6), -0.2, 0.2); }
+
+function cageBody(ctx, hook, L, R) {
+  const drop= ctx.params.drop ?? 1.1, top = hook[1] - drop, ch = 1.8;
     chain(ctx, [hook, [hook[0], top + 0.05, hook[2]]], L);
     const T = xf([hook[0], top - ch, hook[2]], R() * 40, 4, 7);
     ctx.albedo(TEX.iron); ctx.color("oklch(.72 .05 45)"); ctx.metalness(0.55); ctx.roughness(0.75); ctx.flat();
@@ -36,17 +52,4 @@ export function geometry(ctx) {
       const tp = T([0, ch * 0.97, 0]);
       candleBed(ctx, tp[0], tp[1], tp[2], 0.08, 0.08, 2, { lit: 1, hMax: 0.12, puddle: false });
     }
-  } else {
-    const n = 4;
-    for (let i = 0; i < n; i++) {
-      const z = -0.4 - (i / (n - 1)) * (arm - 0.5), len = 1.5 + R() * 2.4, x = (R() - 0.5) * 0.1;
-      const pts = [[x, H - 0.3, z], [x + (R() - 0.5) * 0.15, H - 0.3 - len, z + (R() - 0.5) * 0.15]];
-      chain(ctx, pts, L);
-      ctx.albedo(TEX.iron); ctx.color("oklch(.72 .05 45)");
-      const e = pts[1];
-      tube(ctx, [[e[0], e[1] + 0.02, e[2]], [e[0], e[1] - 0.22, e[2]], [e[0], e[1] - 0.3, e[2] - 0.08], [e[0], e[1] - 0.24, e[2] - 0.16], [e[0], e[1] - 0.16, e[2] - 0.15]], 0.016);
-    }
-    chain(ctx, catenary([0, H - 0.3, -arm + 0.25], [0.05, H - 1.6, -0.15], 0.9, 12), L);
-  }
 }
-export function collider(ctx) { boxC(ctx, -0.2, 0.2, -0.8, (ctx.params.h ?? 5.6), -0.2, 0.2); }
