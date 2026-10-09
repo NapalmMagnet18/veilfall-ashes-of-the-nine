@@ -180,7 +180,7 @@ export function look(ctx) {
       const dir = T.mul(cos(angle))
         .add(B.mul(sin(angle)))
         .add(N.mul(0.75));
-      const S = P.add(N.mul(0.02)).add(normalize(dir).mul(radius * reach));
+      const S = P.add(N.mul(0.02)).add(normalize(dir).mul(radius.mul(reach)));
 
       const view4 = cameraViewMatrix.mul(vec4(S, 1));
       const clip = cameraProjectionMatrix.mul(view4);
@@ -190,7 +190,7 @@ export function look(ctx) {
 
       // the sample sits behind real geometry, and close enough that it's a neighbour
       // rather than a distant wall — that's an occluder
-      const blocked = gap.greaterThan(0.03).and(gap.lessThan(radius * 2.2)).and(clip.w.greaterThan(0));
+      const blocked = gap.greaterThan(0.03).and(gap.lessThan(radius.mul(2.2))).and(clip.w.greaterThan(0));
       occ.assign(occ.add(blocked.select(float(1 / AO_TAPS), float(0))));
     }
 
