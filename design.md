@@ -111,3 +111,5 @@ places/main/sim.js referee: spawns packs, quest stages, XP/levels, death and res
 - 2026-10-08 · Heartwax economy: Oswin buys at 150c each; Pilgrims Board pins it at 120/200/320c (trade.yml hwAsks), buyer gets it straight into heartwax, no pack slot.
 
 - 2026-10-09: Candlehold, the first capital, south of the Wayside Fire along the Pilgrims' Way (always open). The Exchange in its square is the realm auction board (exchange-board, same listings as the camp board).
+
+- 2026-10-09: menu → VEILFALL 0.10 · CANDLEHOLD. The Chronicle gains V (Ossuary) and VI (Candlehold) with painted chapter plates; behind the title menu hangs a painting of the zone your Bearer last stood in. Asked for a loading screen: not built (Spawn streams; a gate screen plays worse). The menu shrine is the load cover instead. Perf: wayside handcart re-packed 13.6 MB → 3.0 MB (same mesh, its 36 textures re-encoded), nothing removed.
