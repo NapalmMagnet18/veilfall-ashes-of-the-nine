@@ -17,18 +17,18 @@ function cane(ctx, pts, r0, r1, sides) {
 }
 export function geometry(ctx) {
   const r = () => ctx.random(), lod = ctx.lod ?? 1;
-  const n = lod >= 3 ? 3 : 4 + Math.floor(r() * 3), segs = lod >= 3 ? 4 : 8, sides = lod >= 3 ? 3 : 5;
+  const n = lod >= 3 ? 5 : 9 + Math.floor(r() * 4), segs = lod >= 3 ? 4 : 8, sides = lod >= 3 ? 3 : 5;
   ctx.smooth(); ctx.roughness(0.7);
   for (let c = 0; c < n; c++) {
-    const yaw = r() * Math.PI * 2, cy = Math.cos(yaw), sy = Math.sin(yaw), reach = 0.5 + r() * 0.6, hgt = 0.35 + r() * 0.35;
+    const yaw = r() * Math.PI * 2, cy = Math.cos(yaw), sy = Math.sin(yaw), reach = 0.25 + r() * 0.45, hgt = 0.12 + r() * 0.3;
     const pts = []; for (let s = 0; s <= segs; s++) { const t = s / segs; pts.push([cy * reach * t + Math.sin(t * 7 + c) * 0.03, Math.sin(t * Math.PI) * hgt - (t > 0.85 ? (t - 0.85) * 0.6 : 0), sy * reach * t + Math.cos(t * 6 + c) * 0.03]); }
     ctx.color("oklch(0.26 0.06 25)");
-    cane(ctx, pts, 0.014, 0.006, sides);
+    cane(ctx, pts, 0.018, 0.008, sides);
     if (lod <= 2) {
       ctx.color("oklch(0.55 0.05 70)");
       for (let s = 1; s < segs; s++) { const [x, y, z] = pts[s]; const a = r() * Math.PI * 2; const tx = Math.cos(a) * 0.035, tz = Math.sin(a) * 0.035; ctx.tri(x - 0.006, y, z, x + 0.006, y, z, x + tx, y + 0.012, z + tz); ctx.tri(x, y - 0.006, z, x, y + 0.006, z, x + tx, y + 0.012, z + tz); }
-      ctx.color("oklch(0.32 0.05 95)");
-      for (let k = 0; k < 3; k++) { const [x, y, z] = pts[1 + Math.floor(r() * (segs - 2))]; const a = r() * 6.28, l = 0.06; ctx.quad(x, y, z, x + Math.cos(a + 0.4) * l * 0.5, y + 0.01, z + Math.sin(a + 0.4) * l * 0.5, x + Math.cos(a) * l, y - 0.01, z + Math.sin(a) * l, x + Math.cos(a - 0.4) * l * 0.5, y + 0.01, z + Math.sin(a - 0.4) * l * 0.5); }
+      ctx.color(r() < 0.5 ? "oklch(0.36 0.07 120)" : "oklch(0.4 0.08 60)");
+      for (let k = 0; k < 7; k++) { const [x, y, z] = pts[1 + Math.floor(r() * (segs - 2))]; const a = r() * 6.28, l = 0.07 + r() * 0.04; ctx.quad(x, y, z, x + Math.cos(a + 0.4) * l * 0.5, y + 0.01, z + Math.sin(a + 0.4) * l * 0.5, x + Math.cos(a) * l, y - 0.01, z + Math.sin(a) * l, x + Math.cos(a - 0.4) * l * 0.5, y + 0.01, z + Math.sin(a - 0.4) * l * 0.5); }
       if (r() < 0.6) { ctx.color("oklch(0.3 0.14 20)"); ctx.roughness(0.3); const [x, y, z] = pts[Math.floor(segs / 2)]; const b = 0.016; ctx.quad(x - b, y, z, x, y, z - b, x + b, y, z, x, y, z + b); ctx.tri(x - b, y, z, x, y + b, z, x, y, z - b); ctx.tri(x, y, z - b, x, y + b, z, x + b, y, z); ctx.tri(x + b, y, z, x, y + b, z, x, y, z + b); ctx.tri(x, y, z + b, x, y + b, z, x - b, y, z); ctx.roughness(0.7); }
     }
   }

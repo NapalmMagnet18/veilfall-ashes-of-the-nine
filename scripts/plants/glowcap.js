@@ -13,7 +13,7 @@ export function geometry(ctx) {
       ctx.quad(x + Math.cos(t0) * sr * 1.4, 0, z + Math.sin(t0) * sr * 1.4, x + Math.cos(t1) * sr * 1.4, 0, z + Math.sin(t1) * sr * 1.4, x + tilt + Math.cos(t1) * sr, h, z + Math.sin(t1) * sr, x + tilt + Math.cos(t0) * sr, h, z + Math.sin(t0) * sr); }
     // cap: a domed top, glowing; underside gills darker teal
     const cx = x + tilt, cy = h;
-    ctx.color("oklch(0.8 0.08 195)"); ctx.emissive(0.25, 1.6, 1.8); ctx.roughness(0.3);
+    ctx.color("oklch(0.62 0.1 200)"); ctx.emissive(0.12, 1.1, 1.35); ctx.roughness(0.3);
     for (let s = 0; s < sides; s++) { const t0 = (s / sides) * 6.283, t1 = ((s + 1) / sides) * 6.283;
       ctx.quad(cx + Math.cos(t0) * cr, cy - cr * 0.15, z + Math.sin(t0) * cr, cx + Math.cos(t1) * cr, cy - cr * 0.15, z + Math.sin(t1) * cr, cx + Math.cos(t1) * cr * 0.6, cy + cr * 0.4, z + Math.sin(t1) * cr * 0.6, cx + Math.cos(t0) * cr * 0.6, cy + cr * 0.4, z + Math.sin(t0) * cr * 0.6);
       ctx.tri(cx + Math.cos(t0) * cr * 0.6, cy + cr * 0.4, z + Math.sin(t0) * cr * 0.6, cx + Math.cos(t1) * cr * 0.6, cy + cr * 0.4, z + Math.sin(t1) * cr * 0.6, cx, cy + cr * 0.55, z); }
