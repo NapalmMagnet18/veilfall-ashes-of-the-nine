@@ -1,0 +1,33 @@
+{
+  "name": "aaa-quality-kit",
+  "displayName": "AAA Quality Kit",
+  "description": "Make any game read AAA — a ready-to-wire cinematic day/dusk/night grade script (look-cinema.js) plus fifteen skill playbooks: cinematic light, contact juice, living sound, UI chrome, code-built 3D character animation, detailed scripted 3D models, 2D sprite production, the debug/training curriculum, wisp-fleet dispatch doctrine for model-builder lanes, and six 'mode' brains — Claude Fable (director: shot grammar, staging, pacing), Ultra Stronger (engineer: game math, discipline, style fluency, perf habits), Playtest (clean-script doctrine plus the live playtest loop, with evidence and receipts on every finding), Animadora Pro (professional animator: anticipation, follow-through and weight across GLB clips, code-driven part rigs, sprite sheets, pixel art and 1D motion), Mods Famosos (research a legendary mod and rebuild it as an ORIGINAL homage — shapeshift, watcher-entity and night-watch archetypes), and Shaders (the Minecraft SEUS/BSL look mapped to this engine's real levers, with perf discipline first-class). Field-tested recipes with real measured numbers. Honest scope: scripts + skills only — the skills ARE the training; no model, brain, or engine is changed, and the 'mode' brain skills alter zero appearance by themselves.",
+  "tags": [
+    "aaa",
+    "quality",
+    "look",
+    "postfx",
+    "juice",
+    "sound",
+    "ui",
+    "animation",
+    "sprites",
+    "polish",
+    "training",
+    "wisps",
+    "fleet",
+    "cinematic",
+    "direction",
+    "math",
+    "performance",
+    "playtest",
+    "qa",
+    "clean-code",
+    "shaders",
+    "voxel",
+    "homage",
+    "horror"
+  ],
+  "visibility": "public",
+  "version": "2.2.0"
+}
