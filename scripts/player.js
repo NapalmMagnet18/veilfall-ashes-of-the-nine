@@ -361,7 +361,6 @@ const LANCE = `fx
 pop beam burst=1 life=.55 size=1 col=hdr(2.6,3.6,4.4) a=1>.6:.9>0 sz=$size*(1>.3) r=mesh(cylinder,.18,9,.18)
 pop sheath burst=1 life=.7 size=1 col=hdr(.5,1.1,1.9) a=.55>.3:.4>0 sz=$size*(.6>1.4) r=mesh(cylinder,.55,9,.55)
 pop rune burst=1 life=.7 size=3.4 col=hdr(1.2,2.2,3.2) a=.9>0 sz=$size*(.4>1) r=sprite(soft-disc,add)
-pop ring burst=1 life=.5 size=5.2 col=hdr(1.6,2.6,3.6) a=.8>0 sz=$size*(.1>1) r=sprite(soft-disc,add)
 pop fall burst=26..34 on=disc(.4).c(8) life=.25..0.4 v=up(-22..-16) size=.03..0.06 col=hdr(3,3.8,4.6) a=1>0 sz=$size r=sprite(ember,add,velocity,.08)
 pop shard burst=30..40 on=disc(1.4) life=.5..1 v=up(3..7)+sdir()*1.2 size=.04..0.08 acc=grav()*.4+drag(1.2) col=hdr(2.4,3.4,4.2)>hdr(.4,.8,1.4) a=1>0 sz=$size r=sprite(ember,add,velocity,.05)
 pop mote burst=16..22 on=disc(1.8) life=1.2..2 v=up(.3..0.8) size=.02..0.04 acc=curl(.9)+drag(.6) col=hdr(1.8,2.8,3.6)>hdr(.3,.6,1) a=(0>.15:1>0)*flick(7,.4) r=sprite(mote,add)
