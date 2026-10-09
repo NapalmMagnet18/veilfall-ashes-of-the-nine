@@ -45,6 +45,8 @@ inputs:
       touch: { button: false }
     train:
       touch: { button: false }
+    travel:
+      touch: { button: false }
     guard:
       keys:
         - "1"

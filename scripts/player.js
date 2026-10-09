@@ -204,6 +204,7 @@ export function onInput(ctx, input) {
   if (input.actionData?.item) itemInput(ctx, input.actionData.item);
   if (input.actionData?.trade) tradeInput(ctx, input.actionData.trade);
   if (input.actionData?.train) trainInput(ctx, input.actionData.train);
+  if (input.actionData?.travel) travelInput(ctx, input.actionData.travel);
   if (s.dead || ctx.self.inputHeld) return;
   const ray = getInputRay(ctx, input);
   const now = ctx.now();
@@ -410,6 +411,54 @@ function trainInput(ctx, a) {
   ctx.emit("stat", { name: "copper spent training", value: next.cost }, { audience: { player: ctx.self.id } });
   msg(ctx, `${A.name} rank ${r + 2}. ${A.per.split(" per")[0]}.`);
   me.saveSoon = true;
+}
+// Wayshrines: the first touch attunes this Bearer; standing at any lit shrine opens the road to the others
+const SHRINE_FX = `fx
+pop rise rate=?mobile:8|16 on=disc(.9).c(.65) life=1.4..2.4 v=up(.5..0.9) size=.03..0.06 acc=curl(.4)*.4+drag(.3) col=hdr(.8,1.9,2.2)>hdr(.2,.6,.8) a=0>.15:1>.7:.8>0 r=sprite(mote,add)
+pop crown rate=6 on=sphere(.15).c(3.35) life=.8..1.4 v=sdir()*.25 size=.04..0.08 col=hdr(1.2,2.6,3) a=1>0 r=sprite(soft-disc,add)`;
+const BLINK = `fx
+pop col burst=40 on=disc(.6) life=.6..1 v=up(3..6) size=.05..0.1 acc=drag(1.5) col=hdr(1,2.4,2.8)>hdr(.2,.6,.9) a=1>0 r=sprite(ember,add,velocity,.05)
+pop ring burst=1 life=.5 at=point().c(.1) size=.5 sz=$size*(1>7) col=hdr(.6,1.4,1.8) a=.8>0 r=sprite(soft-disc,add)
+pop flare burst=1 life=.5 at=point().c(1) b=1>0 r=light(<.45,.9,1.1>,$b*50,10)`;
+function shrineNear(ctx) {
+  const now = ctx.now(); if (now < (me.shrineAt ?? 0)) return; me.shrineAt = now + 400;
+  const s = ctx.self.state, f = ctx.self.feetPosition, W = C.wayshrines;
+  let at = null;
+  for (const w of W.list) if (Math.hypot(w.x - f.x, w.z - f.z) < W.reach) { at = w; break; }
+  const id = at && !s.menu && !s.dead ? at.id : null;
+  if ((s.atShrine ?? null) !== id) s.atShrine = id;
+  if (id && !(s.shrines ?? []).includes(id)) {
+    s.shrines = [...(s.shrines ?? []), id];
+    ctx.emit("fx", { position: { x: at.x, y: f.y, z: at.z }, script: BLINK });
+    ctx.emit("playSound", { clip: sfx("ancient-stone-shrine-awakens-glass-chime-and-low-hum"), position: f, volume: 0.8 });
+    ctx.emit("damageNumber", { position: { ...f, y: f.y + 2.4 }, text: `WAYSHRINE · ${at.name.toUpperCase()}`, color: "#9fe3ea", size: 1.6, lifetime: 3 }, { audience: { player: ctx.self.id } });
+    ctx.emit("milestone", { step: 50 + W.list.indexOf(at), name: `attuned ${at.id}` }, { audience: { player: ctx.self.id } });
+    msg(ctx, (s.shrines.length > 1) ? `The ${at.name} wayshrine wakes. Its light knows the others now.` : `The ${at.name} wayshrine wakes to your hand. Touch others on the road and they'll carry you between them.`);
+  }
+  // each lit shrine wears its glow on this Bearer's screen alone
+  me.shrineGlow ??= {};
+  for (const w of W.list) { const lit = (s.shrines ?? []).includes(w.id);
+    if (lit && !me.shrineGlow[w.id]) me.shrineGlow[w.id] = ctx.spawn({ audience: "local", scope: "session", feetPosition: { x: w.x, y: { terrain: 0 }, z: w.z }, fx: { script: SHRINE_FX },
+      children: [{ id: "light", feetPosition: { x: 0, y: 3.4, z: 0 }, light: { kind: "point", color: "#7fd8e6", intensity: 3, distance: 10 } }] }); }
+}
+function travelInput(ctx, a) {
+  const s = ctx.self.state, W = C.wayshrines;
+  if (!a || a.n === me.travelN || !s.atShrine) return; me.travelN = a.n;
+  const to = W.list.find((w) => w.id === a.to); if (!to || to.id === s.atShrine || !(s.shrines ?? []).includes(to.id)) return;
+  if (to.gate === "abbey" && !GATE.abbey) { msg(ctx, "The Abbey road is sealed. The shrine's light gutters and refuses."); return; }
+  if ((s.copper ?? 0) < W.cost) { msg(ctx, `The shrine asks ${W.cost} copper for the road. You carry ${s.copper ?? 0}.`); ctx.emit("playSound", { clip: sfx("dull-click-denied"), position: ctx.self.feetPosition, volume: 0.3 }, { audience: { player: ctx.self.id } }); return; }
+  if (s.fighting || (ctx.now() - (s.hurtAt ?? 0)) < 4000) { msg(ctx, "Not with blood still up. Breathe first."); return; }
+  s.copper -= W.cost;
+  const f = ctx.self.feetPosition;
+  ctx.emit("fx", { position: f, script: BLINK });
+  ctx.emit("playSound", { clip: sfx("ghostly-dash-whoosh-glass-chime"), position: f, volume: 0.8, pitch: 0.7 });
+  const dest = { x: to.x + 1.6, y: (ctx.place.terrain?.heightAt?.(to.x + 1.6, to.z + 1.6) ?? 0) + 0.3, z: to.z + 1.6 };
+  s.goal = null; s.target = null; me.route = null;
+  ctx.self.feetPosition = dest; ctx.self.velocity = { x: 0, y: 0, z: 0 };
+  ctx.emit("fx", { position: dest, script: BLINK });
+  ctx.emit("playSound", { clip: sfx("ancient-stone-shrine-awakens-glass-chime-and-low-hum"), position: dest, volume: 0.7 });
+  ctx.emit("screenFlash", { color: "#9fe3ea", duration: 0.35, intensity: 0.35 }, { audience: { player: ctx.self.id } });
+  ctx.emit("stat", { name: "shrine travel" }, { audience: { player: ctx.self.id } });
 }
 function boardNear(ctx) {
   const now = ctx.now(); if (now < (me.boardAt ?? 0)) return; me.boardAt = now + 400;
@@ -698,7 +747,7 @@ export function update(ctx, dt) {
   const s = ctx.self.state, now = ctx.now(), f = ctx.self.feetPosition;
   gate(ctx);
   if (ctx.self.isLocal !== false) showcase(ctx);
-  if (!ctx.self.state.menu && ctx.self.state.charId) { drainLoot(ctx); deriveGear(ctx); if (ctx.self.isLocal !== false) { forgeNear(ctx); boardNear(ctx); trainerNear(ctx); cauldronNear(ctx); candleChill(ctx); } }
+  if (!ctx.self.state.menu && ctx.self.state.charId) { drainLoot(ctx); deriveGear(ctx); if (ctx.self.isLocal !== false) { forgeNear(ctx); boardNear(ctx); trainerNear(ctx); shrineNear(ctx); cauldronNear(ctx); candleChill(ctx); } }
   const vy = (ctx.self.velocity?.y ?? 0) + (ctx.self.grounded ? 0 : ctx.place.gravity.y * dt);
   // a fresh visit opens on the title in the Veil; a realm cross lands on that realm's character list
   if (ctx.self.isLocal !== false && !ctx.session.vfDoor) {

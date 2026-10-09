@@ -472,6 +472,7 @@ export default function (ctx, player) {
   ${s.bagOpen ? packPanel(ctx, player, { rail, touch }) : ""}
   ${s.bagOpen && s.atBoard ? boardPanel(ctx, player, { rail: touch ? rail : "24px", touch }) : ""}
   ${s.atTrainer && !s.bagOpen && !s.shop ? trainPanel(s, touch, rail) : ""}
+  ${s.atShrine && !s.bagOpen && !s.shop ? shrinePanel(s, touch, rail) : ""}
   ${s.shop ? shopPanel(ctx, player) : ""}
   ${s.dead ? `<div class="absolute inset-0" style="display:flex;align-items:center;justify-content:center;background:radial-gradient(transparent 30%,rgba(40,0,0,.6));animation:vfin .4s"><div class="kd" style="font-size:54px;color:#d8442f;letter-spacing:.1em">THE ROAD TAKES YOU</div></div>` : ""}
   ${now - firstSeen < 9000 && !touch ? `<div class="absolute inset-x-0 text-center dk" style="bottom:150px;font-size:17px;padding:0 ${rail};animation:vffade 1s 8s forwards">Click to walk · click a foe to strike · Right-click Crosswound · Space Griefstep · Q tonic · I pack</div>` : ""}
@@ -495,4 +496,18 @@ function trainPanel(s, touch, rail) {
     <div style="font-size:11px;letter-spacing:.2em;color:#c49c63">THE BLADEWRAITH'S ARTS</div>
     <div style="font-size:18px;color:#e7d9b8;margin:2px 0 6px">Ser Hollin Vey</div>${rows}
     <div style="font-size:10px;color:#9a917f;margin-top:6px">Purse: ${fmt(cu)} · Lv ${lv}</div></div>`;
+}
+
+// the wayshrine's road: every attuned shrine but this one, a copper toll each
+function shrinePanel(s, touch, rail) {
+  const W = CB.wayshrines, lit = s.shrines ?? [], here = W.list.find((w) => w.id === s.atShrine);
+  const rows = W.list.filter((w) => w.id !== s.atShrine).map((w) => {
+    const ok = lit.includes(w.id), afford = (s.copper ?? 0) >= W.cost;
+    return `<div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-top:1px solid rgba(109,184,192,.25)">
+      <div style="flex:1"><div style="font-size:14px;color:${ok ? "#e7d9b8" : "#6a6670"}">${ok ? w.name : "Unlit shrine"}</div><div style="font-size:10px;color:#8a919a">${ok ? fmt(W.cost) : "touch it on the road to attune"}</div></div>
+      ${ok ? `<button style="pointer-events:auto;cursor:pointer;padding:4px 10px;font-size:11px;letter-spacing:.08em;border:1px solid ${afford ? "#6db8c0" : "#555"};color:${afford ? "#dff4f6" : "#777"};background:linear-gradient(#1b3438,#0e1a1d)" onclick="sendAction('travel',{to:'${w.id}',n:Date.now()+Math.random()})">TRAVEL</button>` : ""}</div>`;
+  }).join("");
+  return `<div class="absolute plate tf" style="${touch ? `left:${rail};right:${rail};top:60px` : "left:24px;top:50%;transform:translateY(-50%);width:300px"};padding:12px 16px;animation:vfin .2s;pointer-events:auto">
+    <div style="font-size:11px;letter-spacing:.2em;color:#6db8c0">WAYSHRINE</div>
+    <div style="font-size:18px;color:#e7d9b8;margin:2px 0 6px">${here?.name ?? ""}</div>${rows}</div>`;
 }

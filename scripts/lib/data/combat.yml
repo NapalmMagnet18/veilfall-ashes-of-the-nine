@@ -24,3 +24,11 @@ trainer:
     crosswound: { name: "Crosswound", per: "+20% damage per rank", ranks: [{ lvl: 3, cost: 150 }, { lvl: 6, cost: 900 }] }
     griefstep: { name: "Griefstep", per: "-0.6s cooldown, +0.1s untouchable per rank", ranks: [{ lvl: 2, cost: 100 }, { lvl: 5, cost: 600 }] }
     guard: { name: "Afterimage Guard", per: "+0.3s window, +35% riposte per rank", ranks: [{ lvl: 4, cost: 300 }, { lvl: 7, cost: 1400 }] }
+# wayshrines: touch one to attune (per Bearer, saved), then travel between attuned shrines for copper
+wayshrines:
+  reach: 3
+  cost: 10
+  list:
+    - { id: shrine-wayside, name: "Wayside Fire", x: 6.5, z: 0.5, gate: none }
+    - { id: shrine-candlehold, name: "Candlehold", x: 0, z: 58.5, gate: none }
+    - { id: shrine-abbey, name: "The Ashen Abbey", x: 6, z: -170, gate: abbey }
