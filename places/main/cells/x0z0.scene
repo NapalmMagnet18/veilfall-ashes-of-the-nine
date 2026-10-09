@@ -1173,6 +1173,35 @@ way-blossom-0:
   rotation: 0
   scale: 1.05
   tags: [pilgrims-way, flora]
+way-blossom-0/bloom-0:
+  feetPosition: {x: 0.9649210851563778, y: 0, z: 0.40796209142158485}
+  id: way-blossom-0/bloom-0
+  parent: way-blossom-0
+  primitive: {kind: scripted, params: {kind: spire}, script: scripts/plants/veilbloom.js, seed: 60}
+  scale: 0.9
+way-blossom-0/bloom-1:
+  feetPosition: {x: -0.5737727572142696, y: 0, z: 1.3601188709068426}
+  id: way-blossom-0/bloom-1
+  parent: way-blossom-0
+  primitive: {kind: scripted, params: {kind: lily}, script: scripts/plants/veilbloom.js, seed: 61}
+  scale: 1.25
+way-blossom-0/bloom-2:
+  feetPosition: {x: -1.755581097069559, y: 0, z: -0.7389541629709914}
+  id: way-blossom-0/bloom-2
+  parent: way-blossom-0
+  primitive: {kind: scripted, params: {kind: spire}, script: scripts/plants/veilbloom.js, seed: 62}
+  scale: 0.9
+way-blossom-0/bloom-3:
+  feetPosition: {x: 0.40565575190343295, y: 0, z: -0.9658929441527645}
+  id: way-blossom-0/bloom-3
+  parent: way-blossom-0
+  primitive: {kind: scripted, params: {kind: lily}, script: scripts/plants/veilbloom.js, seed: 63}
+  scale: 1.25
+way-blossom-0/glow:
+  feetPosition: {x: 0, y: 0.6, z: 0}
+  id: way-blossom-0/glow
+  light: {color: "#f0a8c8", distance: 6, intensity: 0.9, kind: point}
+  parent: way-blossom-0
 way-blossom-1:
   castShadow: true
   children: [{id: trunk, physics: static, primitive: {height: 2.6, kind: cylinder, radiusBottom: 0.3, radiusTop: 0.25}, visible: false}]
@@ -1184,6 +1213,35 @@ way-blossom-1:
   rotation: 71
   scale: 1.3681818181818182
   tags: [pilgrims-way, flora]
+way-blossom-1/bloom-0:
+  feetPosition: {x: -0.5719352852172473, y: 0, z: 0.9779215701938136}
+  id: way-blossom-1/bloom-0
+  parent: way-blossom-1
+  primitive: {kind: scripted, params: {kind: spire}, script: scripts/plants/veilbloom.js, seed: 64}
+  scale: 0.9
+way-blossom-1/bloom-1:
+  feetPosition: {x: -1.2624215580263807, y: 0, z: -0.736975946848294}
+  id: way-blossom-1/bloom-1
+  parent: way-blossom-1
+  primitive: {kind: scripted, params: {kind: lily}, script: scripts/plants/veilbloom.js, seed: 65}
+  scale: 1.25
+way-blossom-1/bloom-2:
+  feetPosition: {x: 0.40478372724340156, y: 0, z: -0.6946544172613851}
+  id: way-blossom-1/bloom-2
+  parent: way-blossom-1
+  primitive: {kind: scripted, params: {kind: spire}, script: scripts/plants/veilbloom.js, seed: 66}
+  scale: 0.9
+way-blossom-1/bloom-3:
+  feetPosition: {x: 0.9792851204628353, y: 0, z: 0.5695974199089723}
+  id: way-blossom-1/bloom-3
+  parent: way-blossom-1
+  primitive: {kind: scripted, params: {kind: lily}, script: scripts/plants/veilbloom.js, seed: 67}
+  scale: 1.25
+way-blossom-1/glow:
+  feetPosition: {x: 0, y: 0.6, z: 0}
+  id: way-blossom-1/glow
+  light: {color: "#f0a8c8", distance: 6, intensity: 0.9, kind: point}
+  parent: way-blossom-1
 way-blossom-3:
   castShadow: true
   children: [{id: trunk, physics: static, primitive: {height: 2.6, kind: cylinder, radiusBottom: 0.3, radiusTop: 0.25}, visible: false}]
@@ -1195,6 +1253,35 @@ way-blossom-3:
   rotation: 213
   scale: 1.0954545454545455
   tags: [pilgrims-way, flora]
+way-blossom-3/bloom-0:
+  feetPosition: {x: 0.7116102944701076, y: 0, z: -0.7084678605656658}
+  id: way-blossom-3/bloom-0
+  parent: way-blossom-3
+  primitive: {kind: scripted, params: {kind: spire}, script: scripts/plants/veilbloom.js, seed: 72}
+  scale: 0.9
+way-blossom-3/bloom-1:
+  feetPosition: {x: 0.9990938007619811, y: 0, z: 1.0019283093528297}
+  id: way-blossom-3/bloom-1
+  parent: way-blossom-3
+  primitive: {kind: scripted, params: {kind: lily}, script: scripts/plants/veilbloom.js, seed: 73}
+  scale: 1.25
+way-blossom-3/bloom-2:
+  feetPosition: {x: -1.2917837246363668, y: 0, z: 1.290182382265961}
+  id: way-blossom-3/bloom-2
+  parent: way-blossom-3
+  primitive: {kind: scripted, params: {kind: spire}, script: scripts/plants/veilbloom.js, seed: 74}
+  scale: 0.9
+way-blossom-3/bloom-3:
+  feetPosition: {x: -0.7101658602910413, y: 0, z: -0.7099157495980843}
+  id: way-blossom-3/bloom-3
+  parent: way-blossom-3
+  primitive: {kind: scripted, params: {kind: lily}, script: scripts/plants/veilbloom.js, seed: 75}
+  scale: 1.25
+way-blossom-3/glow:
+  feetPosition: {x: 0, y: 0.6, z: 0}
+  id: way-blossom-3/glow
+  light: {color: "#f0a8c8", distance: 6, intensity: 0.9, kind: point}
+  parent: way-blossom-3
 way-blossom-4:
   castShadow: true
   children: [{id: trunk, physics: static, primitive: {height: 2.6, kind: cylinder, radiusBottom: 0.3, radiusTop: 0.25}, visible: false}]
@@ -1206,6 +1293,35 @@ way-blossom-4:
   rotation: 284
   scale: 1.4136363636363636
   tags: [pilgrims-way, flora]
+way-blossom-4/bloom-0:
+  feetPosition: {x: 0.6670347384650706, y: 0, z: 0.8702274875460672}
+  id: way-blossom-4/bloom-0
+  parent: way-blossom-4
+  primitive: {kind: scripted, params: {kind: spire}, script: scripts/plants/veilbloom.js, seed: 76}
+  scale: 0.9
+way-blossom-4/bloom-1:
+  feetPosition: {x: -1.1221884310263317, y: 0, z: 0.8615838869191452}
+  id: way-blossom-4/bloom-1
+  parent: way-blossom-4
+  primitive: {kind: scripted, params: {kind: lily}, script: scripts/plants/veilbloom.js, seed: 77}
+  scale: 1.25
+way-blossom-4/bloom-2:
+  feetPosition: {x: -0.4743624832982336, y: 0, z: -0.6168260851243776}
+  id: way-blossom-4/bloom-2
+  parent: way-blossom-4
+  primitive: {kind: scripted, params: {kind: spire}, script: scripts/plants/veilbloom.js, seed: 78}
+  scale: 0.9
+way-blossom-4/bloom-3:
+  feetPosition: {x: 0.868631472863896, y: 0, z: -0.6691117894270017}
+  id: way-blossom-4/bloom-3
+  parent: way-blossom-4
+  primitive: {kind: scripted, params: {kind: lily}, script: scripts/plants/veilbloom.js, seed: 79}
+  scale: 1.25
+way-blossom-4/glow:
+  feetPosition: {x: 0, y: 0.6, z: 0}
+  id: way-blossom-4/glow
+  light: {color: "#f0a8c8", distance: 6, intensity: 0.9, kind: point}
+  parent: way-blossom-4
 way-blossom-5:
   castShadow: true
   children: [{id: trunk, physics: static, primitive: {height: 2.6, kind: cylinder, radiusBottom: 0.3, radiusTop: 0.25}, visible: false}]
@@ -1217,6 +1333,35 @@ way-blossom-5:
   rotation: 355
   scale: 1.2772727272727273
   tags: [pilgrims-way, flora]
+way-blossom-5/bloom-0:
+  feetPosition: {x: -1.3551298925985937, y: 0, z: 0.7845166595391799}
+  id: way-blossom-5/bloom-0
+  parent: way-blossom-5
+  primitive: {kind: scripted, params: {kind: spire}, script: scripts/plants/veilbloom.js, seed: 80}
+  scale: 0.9
+way-blossom-5/bloom-1:
+  feetPosition: {x: -0.4320775453081512, y: 0, z: -0.7449776022474713}
+  id: way-blossom-5/bloom-1
+  parent: way-blossom-5
+  primitive: {kind: scripted, params: {kind: lily}, script: scripts/plants/veilbloom.js, seed: 81}
+  scale: 1.25
+way-blossom-5/bloom-2:
+  feetPosition: {x: 1.049256001163588, y: 0, z: -0.6096722850038275}
+  id: way-blossom-5/bloom-2
+  parent: way-blossom-5
+  primitive: {kind: scripted, params: {kind: spire}, script: scripts/plants/veilbloom.js, seed: 82}
+  scale: 0.9
+way-blossom-5/bloom-3:
+  feetPosition: {x: 0.7877517964855202, y: 0, z: 1.3532518324549299}
+  id: way-blossom-5/bloom-3
+  parent: way-blossom-5
+  primitive: {kind: scripted, params: {kind: lily}, script: scripts/plants/veilbloom.js, seed: 83}
+  scale: 1.25
+way-blossom-5/glow:
+  feetPosition: {x: 0, y: 0.6, z: 0}
+  id: way-blossom-5/glow
+  light: {color: "#f0a8c8", distance: 6, intensity: 0.9, kind: point}
+  parent: way-blossom-5
 way-blossom-6:
   castShadow: true
   children: [{id: trunk, physics: static, primitive: {height: 2.6, kind: cylinder, radiusBottom: 0.3, radiusTop: 0.25}, visible: false}]
@@ -1228,6 +1373,35 @@ way-blossom-6:
   rotation: 66
   scale: 1.1409090909090909
   tags: [pilgrims-way, flora]
+way-blossom-6/bloom-0:
+  feetPosition: {x: -0.3715212884735811, y: 0, z: -0.8896878685257086}
+  id: way-blossom-6/bloom-0
+  parent: way-blossom-6
+  primitive: {kind: scripted, params: {kind: spire}, script: scripts/plants/veilbloom.js, seed: 84}
+  scale: 0.9
+way-blossom-6/bloom-1:
+  feetPosition: {x: 1.2532338071527327, y: 0, z: -0.5245054199812649}
+  id: way-blossom-6/bloom-1
+  parent: way-blossom-6
+  primitive: {kind: scripted, params: {kind: lily}, script: scripts/plants/veilbloom.js, seed: 85}
+  scale: 1.25
+way-blossom-6/bloom-2:
+  feetPosition: {x: 0.6780686932035136, y: 0, z: 1.6165364285372041}
+  id: way-blossom-6/bloom-2
+  parent: way-blossom-6
+  primitive: {kind: scripted, params: {kind: spire}, script: scripts/plants/veilbloom.js, seed: 86}
+  scale: 0.9
+way-blossom-6/bloom-3:
+  feetPosition: {x: -0.8887977734750703, y: 0, z: 0.3736456731405389}
+  id: way-blossom-6/bloom-3
+  parent: way-blossom-6
+  primitive: {kind: scripted, params: {kind: lily}, script: scripts/plants/veilbloom.js, seed: 87}
+  scale: 1.25
+way-blossom-6/glow:
+  feetPosition: {x: 0, y: 0.6, z: 0}
+  id: way-blossom-6/glow
+  light: {color: "#f0a8c8", distance: 6, intensity: 0.9, kind: point}
+  parent: way-blossom-6
 way-blossom-7:
   castShadow: true
   children: [{id: trunk, physics: static, primitive: {height: 2.6, kind: cylinder, radiusBottom: 0.3, radiusTop: 0.25}, visible: false}]
@@ -1239,6 +1413,35 @@ way-blossom-7:
   rotation: 137
   scale: 1.4590909090909092
   tags: [pilgrims-way, flora]
+way-blossom-7/bloom-0:
+  feetPosition: {x: 1.0248405417540718, y: 0, z: -0.27963251855337373}
+  id: way-blossom-7/bloom-0
+  parent: way-blossom-7
+  primitive: {kind: scripted, params: {kind: spire}, script: scripts/plants/veilbloom.js, seed: 88}
+  scale: 0.9
+way-blossom-7/bloom-1:
+  feetPosition: {x: 0.3618690810173484, y: 0, z: 1.3220871457626422}
+  id: way-blossom-7/bloom-1
+  parent: way-blossom-7
+  primitive: {kind: scripted, params: {kind: lily}, script: scripts/plants/veilbloom.js, seed: 89}
+  scale: 1.25
+way-blossom-7/bloom-2:
+  feetPosition: {x: -0.7269892083057417, y: 0, z: 0.19960697877354872}
+  id: way-blossom-7/bloom-2
+  parent: way-blossom-7
+  primitive: {kind: scripted, params: {kind: spire}, script: scripts/plants/veilbloom.js, seed: 90}
+  scale: 0.9
+way-blossom-7/bloom-3:
+  feetPosition: {x: -0.28208004221341637, y: 0, z: -1.0241695812902076}
+  id: way-blossom-7/bloom-3
+  parent: way-blossom-7
+  primitive: {kind: scripted, params: {kind: lily}, script: scripts/plants/veilbloom.js, seed: 91}
+  scale: 1.25
+way-blossom-7/glow:
+  feetPosition: {x: 0, y: 0.6, z: 0}
+  id: way-blossom-7/glow
+  light: {color: "#f0a8c8", distance: 6, intensity: 0.9, kind: point}
+  parent: way-blossom-7
 way-blossom-8:
   castShadow: true
   children: [{id: trunk, physics: static, primitive: {height: 2.6, kind: cylinder, radiusBottom: 0.3, radiusTop: 0.25}, visible: false}]
@@ -1250,6 +1453,35 @@ way-blossom-8:
   rotation: 208
   scale: 1.3227272727272728
   tags: [pilgrims-way, flora]
+way-blossom-8/bloom-0:
+  feetPosition: {x: 0.2067504252369836, y: 0, z: 1.4978254985522657}
+  id: way-blossom-8/bloom-0
+  parent: way-blossom-8
+  primitive: {kind: scripted, params: {kind: spire}, script: scripts/plants/veilbloom.js, seed: 92}
+  scale: 0.9
+way-blossom-8/bloom-1:
+  feetPosition: {x: -0.8237132105143762, y: 0, z: 0.11436871497453588}
+  id: way-blossom-8/bloom-1
+  parent: way-blossom-8
+  primitive: {kind: scripted, params: {kind: lily}, script: scripts/plants/veilbloom.js, seed: 93}
+  scale: 1.25
+way-blossom-8/bloom-2:
+  feetPosition: {x: -0.16208015135657586, y: 0, z: -1.1605580958561144}
+  id: way-blossom-8/bloom-2
+  parent: way-blossom-8
+  primitive: {kind: scripted, params: {kind: spire}, script: scripts/plants/veilbloom.js, seed: 94}
+  scale: 0.9
+way-blossom-8/bloom-3:
+  feetPosition: {x: 1.4973273020984301, y: 0, z: -0.21032810758349332}
+  id: way-blossom-8/bloom-3
+  parent: way-blossom-8
+  primitive: {kind: scripted, params: {kind: lily}, script: scripts/plants/veilbloom.js, seed: 95}
+  scale: 1.25
+way-blossom-8/glow:
+  feetPosition: {x: 0, y: 0.6, z: 0}
+  id: way-blossom-8/glow
+  light: {color: "#f0a8c8", distance: 6, intensity: 0.9, kind: point}
+  parent: way-blossom-8
 way-blossom-9:
   castShadow: true
   children: [{id: trunk, physics: static, primitive: {height: 2.6, kind: cylinder, radiusBottom: 0.3, radiusTop: 0.25}, visible: false}]
@@ -1261,6 +1493,35 @@ way-blossom-9:
   rotation: 279
   scale: 1.1863636363636365
   tags: [pilgrims-way, flora]
+way-blossom-9/bloom-0:
+  feetPosition: {x: -0.9271737123660305, y: 0, z: 0.00738348877875987}
+  id: way-blossom-9/bloom-0
+  parent: way-blossom-9
+  primitive: {kind: scripted, params: {kind: spire}, script: scripts/plants/veilbloom.js, seed: 96}
+  scale: 0.9
+way-blossom-9/bloom-1:
+  feetPosition: {x: -0.011444382206388895, y: 0, z: -1.3064633500137417}
+  id: way-blossom-9/bloom-1
+  parent: way-blossom-9
+  primitive: {kind: scripted, params: {kind: lily}, script: scripts/plants/veilbloom.js, seed: 97}
+  scale: 1.25
+way-blossom-9/bloom-2:
+  feetPosition: {x: 1.6857468674949232, y: 0, z: -0.016109355148321725}
+  id: way-blossom-9/bloom-2
+  parent: way-blossom-9
+  primitive: {kind: scripted, params: {kind: spire}, script: scripts/plants/veilbloom.js, seed: 98}
+  scale: 0.9
+way-blossom-9/bloom-3:
+  feetPosition: {x: 0.009598465414273344, y: 0, z: 0.9271534275786526}
+  id: way-blossom-9/bloom-3
+  parent: way-blossom-9
+  primitive: {kind: scripted, params: {kind: lily}, script: scripts/plants/veilbloom.js, seed: 99}
+  scale: 1.25
+way-blossom-9/glow:
+  feetPosition: {x: 0, y: 0.6, z: 0}
+  id: way-blossom-9/glow
+  light: {color: "#f0a8c8", distance: 6, intensity: 0.9, kind: point}
+  parent: way-blossom-9
 wayside-cauldron:
   castShadow: true
   children: [{feetPosition: {x: 0, y: 0.92, z: 0}, fx: {script: "fx\npop bubble rate=5 on=disc(.3) life=.4..0.8 v=up(.05) size=.03..0.07 sz=$size*(.4>1.2) col=hdr(2.2,1.3,.4) a=.9>0 r=sprite(soft-disc,add)\npop steam rate=6 on=disc(.32) life=2..3.5 v=up(.5..0.9) size=.2..0.35 acc=curl(.3)*.5+buoy(.4)+drag(.5) sz=$size*(.5>2.4) col=<.75,.68,.55> a=0>.2:.22>.7:.1>0 r=sprite(smoke-puff,alpha)\npop under rate=10 on=disc(.35).c(-.85) life=.3..0.6 v=up(.4..0.8) size=.06..0.12 acc=buoy(1)+drag(2) sz=$size*(.6>.2) col=hdr(3.4,1.4,.3)>hdr(1,.3,.05) a=0>.2:.9>0 r=sprite(flame-wisp,add)\npop glow n=1 at=point().c(.15) glo=fire()*.35+.65 r=light(<1,.62,.28>,$glo*3.5,7)"}, id: brew}, {audio: {clip: /cdn/moodboard-gothic-horror/sfx-thick-wax-cauldron-slow-bubbling-and-ember-crackle-loop.mp3, gain: 0.16, loop: true, maxDistance: 10, spatial: true}, feetPosition: {x: 0, y: 0.9, z: 0}, id: bubbling}]
