@@ -252,16 +252,22 @@ const VM2 = `<style>
 const EMBERS = Array.from({ length: 22 }, (_, i) => { const r = (k) => ((Math.sin(i * 12.9898 + k * 78.233) * 43758.5453) % 1 + 1) % 1;
   return `<i class="em" style="left:${(r(1) * 100).toFixed(1)}%;--dx:${((r(2) - .5) * 160).toFixed(0)}px;animation-duration:${(7 + r(3) * 9).toFixed(1)}s;animation-delay:-${(r(4) * 14).toFixed(1)}s;width:${(2 + r(5) * 3).toFixed(1)}px;height:${(2 + r(5) * 3).toFixed(1)}px"></i>`; }).join("");
 const CHRONICLE = [
-  ["I", "The Broken Lantern Road", "The Wayside Fire, the Wax Veil and the Bailiff's toll.", false, "/cdn/value.8b2fa0e0b93048049083a83e5dde8dd39352ef8c91625b3ef4b6f1989382dac6.png"],
+  ["I", "The Broken Lantern Road", "The Wayside Fire, the Wax Veil and the Bailiff's toll.", false, "/cdn/value.35895355142d7398daefa28f370f525c2e818836dbced03d4bc40a23eefc154e.png"],
   ["II", "Ashen Abbey · the Bell Crypt", "Down the nave to the great cracked bell."],
   ["III", "Lanternmere", "The drowned fen and its Warden."],
   ["IV", "Saint Corvin's Orchard", "Cut down the hanged. Face the Hangman."],
-  ["V", "The Ossuary of Saint Ysolde", "Down the Bone Stair. Take her candle.", false, "/cdn/value.b6a6c4bee6be2736fec3fd5860ead524d72b84ff480b162a209ffc92c7f0c464.png"],
-  ["VI", "Candlehold", "The last walled city. The Exchange keeps its ledgers.", true, "/cdn/value.38ae26e1659a5e6f4ff2b2d4270a529681fc2e1b5af4fb3a7693086f78166e47.png"],
+  ["V", "The Ossuary of Saint Ysolde", "Down the Bone Stair. Take her candle.", false, "/cdn/value.1a38646aae6877aa6c9b7845ba9905c1045dca51f41779fe0f0eede0f5b491d1.png"],
+  ["VI", "Candlehold", "The last walled city. The Exchange keeps its ledgers.", true, "/cdn/value.492e4cea5c972b7a5b7b2eb399dbe1b59c4e31165dcabb65024f6575eb5bcf33.png"],
 ];
-const VERSION = "0.12 · THE PILGRIM ROADS";
+const VERSION = "0.13 · FACES OF THE VEIL";
 // what changed, newest first: [version, title, date, [lines]]
 const NOTES = [
+  ["0.13", "Faces of the Veil", "Oct 9", [
+    ["Unit Frames", "Your Bearer's portrait now sits top left, breathing in ember light with your level, life, resource and experience, and it flares red when you're struck."],
+    ["Target Frame", "Strike a foe and its painted face and life bar appear beside yours. Elites wear a gold ring, and the melted fade to grey."],
+    ["Talent Trees", "Press N. Every calling has three branches and four tiers, with one point per level and a capstone at the end of each path."],
+    ["Character Sheet", "Press C for your Bearer at a glance: gear, damage, armor, crit and the talents that feed them."],
+    ["HD Menu Art", "The road, the Abbey and the fen have been repainted at full resolution behind the menu."]]],
   ["0.12", "The Pilgrim Roads", "Oct 9", [
     ["Wayshrines", "Three travel stones wake at your touch: the Wayside Fire, Candlehold's gate and the Abbey yard. Blink between any you've lit for 10 copper."],
     ["The Candlehold Vault", "Dame Maudry Quill keeps a stash for every Bearer. 18 slots, with more shelves to rent for 50s, 2g and 5g."],
@@ -287,7 +293,7 @@ function menu(ctx, player, s) {
   if (s.menu === "title") {
     const last = (s.roster?.chars ?? []).find((c) => c.id === s.sel);
     const lk = last && (CLASSES.find((c) => c.id === last.cls) ?? CLASSES[0]);
-    return `${head(s)}<style>#vt .zart{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.34;filter:saturate(.8) contrast(1.05);mask-image:radial-gradient(ellipse at 62% 45%,#000 25%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse at 62% 45%,#000 25%,transparent 75%);animation:zdrift 40s ease-in-out infinite alternate;pointer-events:none}@keyframes zdrift{from{transform:scale(1.04) translate(0,0)}to{transform:scale(1.1) translate(-1.5%,-1%)}}#vt .ch .art{width:64px;height:36px;border:1px solid #6b4a2a;background-size:cover;background-position:center;margin-left:auto;flex:none;box-shadow:0 0 8px #000}</style><div id="vt"><div class="zart" style="background-image:url(${zoneArt(last?.zone)})"></div><div class="shade"></div>${s.opt?.embers === false ? "" : EMBERS}
+    return `${head(s)}<style>#vt .zart{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.5;filter:saturate(.9) contrast(1.08);image-rendering:high-quality;mask-image:radial-gradient(ellipse at 62% 45%,#000 25%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse at 62% 45%,#000 25%,transparent 75%);animation:zdrift 40s ease-in-out infinite alternate;pointer-events:none}@keyframes zdrift{from{transform:scale(1.04) translate(0,0)}to{transform:scale(1.1) translate(-1.5%,-1%)}}#vt .ch .art{width:64px;height:36px;border:1px solid #6b4a2a;background-size:cover;background-position:center;margin-left:auto;flex:none;box-shadow:0 0 8px #000}</style><div id="vt"><div class="zart" style="background-image:url(${zoneArt(last?.zone)})"></div><div class="shade"></div>${s.opt?.embers === false ? "" : EMBERS}
     <div class="logo"><img class="crest" src="${CREST}"><div class="word gold">VEILFALL</div><div class="subt"><i></i><b></b>ASHES OF THE NINE<b></b><i></i></div></div>
     <div class="menu"><div class="cap">THE LANTERN SHRINE</div>
       ${last ? `<button class="it main" onmouseenter="${HOV}" onclick="${act("enter")}">Continue<span class="sub">${last.name} · Level ${last.level} ${lk.name} · ${last.zone}</span></button><div class="rule"></div>` : ""}
