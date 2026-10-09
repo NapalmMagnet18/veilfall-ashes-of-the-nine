@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "basedOnSpecVersion": 888,
-  "updatedAt": "2026-10-09T07:46:06.445Z",
-  "summary": "VEILFALL: Ashes of the Nine is an isometric multiplayer action RPG, with the shared main realm spanning the Wayside Fire, Broken Lantern Road, Candlehold and chapter locations, plus a solo Veil title/menu place. World templates attach the Bladewraith and HUD; player, place referee, enemy/boss handlers and shared character/data modules divide combat, persistence and progression, while Awakening and Absolute Cinema modules shape presentation.",
+  "basedOnSpecVersion": 906,
+  "updatedAt": "2026-10-09T07:53:35.613Z",
+  "summary": "VEILFALL: Ashes of the Nine is an isometric multiplayer action RPG with the shared main realm of Wayside Fire, Broken Lantern Road, Candlehold and chapter areas, plus the solo Veil title/menu place. World templates attach the Bladewraith, camera and HUD; player and place/boss handlers own combat and progression, with shared character/data modules for persistence and services. Procedural scene props and presentation modules supply the authored world, while hanging props now use a shared sway behavior and Absolute Cinema can take camera control.",
   "scriptPaths": [
     "mods/aaa-quality-kit/look-cinema.js",
     "mods/absolute-cinema/cinema-camera.js",
@@ -77,9 +77,6 @@
     "mods/codex/panel.js",
     "mods/gavi/equipe.js",
     "mods/gavi/painel-equipe.js",
-    "mods/misc-lightweight-cinema-cam/cinema-camera.js",
-    "mods/misc-lightweight-cinema-cam/cinema-playback.js",
-    "mods/misc-lightweight-cinema-cam/lib/cinema-sampler.js",
     "mods/raytraced-lighting/look-raytrace.js",
     "scripts/abbess.js",
     "scripts/arrival.js",
@@ -191,6 +188,7 @@
     "scripts/player.js",
     "scripts/ringer.js",
     "scripts/sim.js",
+    "scripts/sway.js",
     "scripts/templates/camera.js",
     "scripts/templates/player.js",
     "scripts/terrain.js",
@@ -201,59 +199,60 @@
     "scripts/wax-pack.js"
   ],
   "places": [
-    "places/main/ - shared playable realm: Wayside Fire hub, Broken Lantern Road and Bailiff quest route, plus Candlehold and roads toward later chapter areas; cells hold world dressing, NPCs, services, shrines and encounters.",
-    "places/veil/ - solo ephemeral shrine/ravine title and menu stage, the world default place; player is parked here while menus are active and Enter transitions into main."
+    "places/main/ - shared playable realm: Wayside Fire hub, Broken Lantern Road and Bailiff quest route, Candlehold and roads toward later chapter areas; cells hold terrain, NPCs, services, shrines and encounters.",
+    "places/veil/ - solo ephemeral title/menu stage and shrine/ravine backdrop, the world default place; the player is parked here while menus are active and Enter transitions to main."
   ],
   "roots": [
-    "world.config.yaml - world entry: defaultPlace veil; attaches player/camera templates, Awakening lighting, arrival and nametag behaviors, controls and audio mix.",
+    "world.config.yaml - world entry: defaultPlace veil; attaches player/camera templates, Awakening lighting, arrival/nametag behaviors, controls and audio mix.",
     "templates/player.js - Bladewraith body with humanoid-locomotion.js and scripts/player.js, plus carried-light child.",
     "templates/camera.js - custom camera template running scripts/camera.js.",
-    "places/main/sim.js - main-place referee: hub NPCs and service counters, quests, enemy packs, progression, boss lifecycle and soundscape.",
-    "places/main/cells/ - authored shared realm terrain and settlements; scenes place Candlehold's Maudry and guild counter area, roads, landmarks, services and encounters.",
-    "places/veil/config.yaml and places/veil/cells/ - solo title/menu scene, ambience and shrine/ravine backdrop; scripts/arrival.js saves an active Bearer leaving main."
+    "places/main/sim.js - main-place referee for hub NPCs/services, quests, enemy packs, progression, boss lifecycle and soundscape.",
+    "places/main/cells/ - shared realm terrain and authored settlements, services, landmarks and encounters; x0z0, x0z-1 and x1z0 contain the newly animated toll bell, arena cages and orchard hangings.",
+    "places/veil/config.yaml and places/veil/cells/ - solo title/menu scene and ambience; scripts/arrival.js saves an active Bearer leaving main."
   ],
   "shared": [
-    "scripts/lib/character.js - Bearer schema, fresh state, realm roster/create/load/save/delete and packed position; player and arrival reuse it, crier and board-notes use realmOf.",
+    "scripts/lib/character.js - Bearer schema, fresh state, roster/create/load/save/delete and packed position; player and arrival reuse it, crier and board-notes use realmOf.",
     "scripts/db.js and scripts/lib/data/realms.yml - realm/character and trade schemas plus realm routing/name registry; db.js also creates guild_vault rows/index.",
-    "scripts/lib/data/economy.yml and scripts/lib/coins.js - copper denominations, drops, rewards, sale values and stock shared by sim, combat, shop, HUD and crier.",
     "scripts/lib/data/combat.yml - hero, skills, enemies, bosses, trainer, wayshrines and personal/guild vault configuration consumed by player, combat handlers and pack UI.",
+    "scripts/lib/data/economy.yml with scripts/lib/coins.js - copper denominations, drops, rewards, sale values and stock shared by sim, combat, shop, HUD and crier.",
     "scripts/lib/data/loot.yml, loot-icons.yml and scripts/lib/loot.js - gear/drop/forge rules, rolls, smith ranks, boss marks, crafting and gear stats for combat, pack UI and trade.",
     "scripts/lib/data/brews.yml and scripts/lib/brews.js - brew recipes, costs, rank scaling and active-brew helpers used by player, HUD and pack UI.",
-    "scripts/lib/data/trade.yml and scripts/lib/trade.js - realm listing/buy/unlist/collection logic shared by camp and Candlehold boards; crier and board-notes read listings.",
+    "scripts/lib/data/trade.yml and scripts/lib/trade.js - realm listing/buy/unlist/collection logic shared by Wayside and Candlehold boards; crier and board-notes read market data.",
     "scripts/lib/data/veilfall-map.js - chapter floor gates, areas and landmarks shared by terrain, player and main sim; includes Pilgrims' Way, Candlehold and Exchange coordinates."
   ],
   "notableExports": [
     "places/main/sim.js and places/veil/sim.js - cadence, tick.",
-    "scripts/player.js - onSpawn, onInput, update; scripts/ui.js - state-driven HUD/menu renderer with Patch Notes and Absolute Cinema overlay/panel; scripts/ui/nametag.js - nametag renderer.",
+    "scripts/player.js - onSpawn, onInput, crosswoundFall, update; Crosswound's delayed cleave is dispatched to crosswoundFall.",
+    "scripts/camera.js - onInput, update; scripts/sway.js - updateSchedule, onSpawn, update.",
+    "scripts/ui.js - state-driven HUD/menu renderer with Patch Notes and Absolute Cinema overlay/panel; scripts/ui/nametag.js - nametag renderer.",
     "scripts/abbess.js, bailiff.js, ringer.js, warden.js and hangman.js - boss onSpawn/update handlers.",
     "scripts/crier.js - onSpawn, quiet, update; scripts/board-notes.js and scripts/trophies.js - update; scripts/wax-pack.js - roll, telegraph, hurtPlayers, payout, update.",
     "scripts/lib/character.js - CHAR_KEYS, fresh, START, realmOf, pack, zoneOf, roster, create/load/save/remove; vault and vaultRows are persistent Bearer fields.",
-    "scripts/lib/guildvault.js - readGuildVault, guildVaultInput; scripts/lib/pack-ui.js - PACK_CSS, packPanel; scripts/db.js - migrate.",
-    "scripts/effects/candles.fx.js - effect; mods/awakening/look.js and mods/awakening/lighting.js - place/world presentation modules."
+    "scripts/gen/gibbet.js and scripts/gen/vf-props.js - geometry, collider; gibbet also renders cagebody for split swinging cages."
   ],
   "ownership": [
-    "scripts/lib/character.js CHAR_KEYS - persistent per-Bearer fields: combat/progression, quest and reward claims, inventory/gear, arts, attuned shrines and personal vault/vaultRows; packed position and zone feed re-entry/menu context.",
-    "scripts/player.js - active-body movement/combat/death and skill timers, menu/options scratch, floor gates, inventory/service actions and derived gear; proximity flags/current service reads (including vaults) are body state.",
-    "places/main/sim.js - quest/dialog/cut progress and reward claims; hub NPC and service counter spawning; enemy packs, boss lifecycle/reset, room music and ambience.",
+    "scripts/lib/character.js CHAR_KEYS - persistent per-Bearer combat/progression, quest and reward claims, inventory/gear, arts, attuned shrines and personal vault/vaultRows; packed position and zone feed re-entry/menu context.",
+    "scripts/player.js - active-body movement/combat/death, skill timers and combat feedback, menu/options scratch, floor gates, inventory/service actions and derived gear; proximity flags and service reads are transient body state.",
+    "places/main/sim.js - quest/dialog/cut progress and reward claims; hub NPC/service spawning; enemy packs, boss lifecycle/reset and room music/ambience.",
     "scripts/wax-pack.js - ordinary enemy AI/hp/death and eligible Bearers' XP, copper, kills, shards and gear-drop inboxes.",
     "scripts/bailiff.js, ringer.js, warden.js, hangman.js and abbess.js - respective boss hp/phases/casts/adds/defeat, participant flags and place boss rows/lastFall.",
     "Boss scripts - first room-wide world.state.trophies[boss] record {at, by}; scripts/trophies.js derives relic visibility, plaque/stele text and transient ring/flash dedupe.",
-    "scripts/lib/guildvault.js and guild_vault SQL rows - shared stored items keyed by realm and Spawn guild; guarded take marks taken_at/taken_by, while pack state owns the member's inventory copy.",
-    "scripts/crier.js - Brother Ledd route, pause, sale/mark/fall announcement cursors; scripts/lib/shop.js and scripts/lib/trade.js own shop/buyer mutations and realm SQL trade rows; scripts/ui.js renders state, player.js handles UI actions."
+    "scripts/lib/guildvault.js and guild_vault SQL rows - shared stored items keyed by realm and Spawn guild; guarded take marks taken_at/taken_by, while character inventory owns the member's copy.",
+    "scripts/sway.js - hanging prop phase, pendulum angle/velocity and ring cooldown in entity state; writes entity rotation, not Bearer or place progression state."
   ],
   "flows": [
     "world.config.yaml attaches player through templates/player.js and maps actions; UI menu actions → scripts/player.js routes title/realm/character/create/enter/logout/options/notes.",
     "world.config.yaml defaultPlace veil → player loads into the Veil title screen; player.js menuInput → character.js roster/create/load/remove; realms.yml maps selected realm to room and Bearer fields hydrate player.state.",
     "While player.state.menu is set, player.js hides the body and moves it to solo place veil; menu screens remain state-driven and that place has no characters.",
-    "scripts/ui.js reads selected roster character's zone to choose the painted menu backdrop; zoneArt maps Ossuary/Bone/Crypt/Nave/Abbey names to Ossuary art, Candlehold/Pilgrim/Fire/Wayside or blank to Candlehold art, and other zones to Broken Lantern Road art.",
+    "scripts/ui.js reads the selected roster character's zone to choose the painted menu backdrop; zoneArt maps zone names to menu artwork.",
     "controls.js selects menu touch surface when player/charId is absent or menu active and while shop/bag is open; otherwise world.config.yaml supplies world controls; ui.js actions return to player.js and service handlers.",
     "player.js periodically/on rest saves changed CHAR_KEYS plus packed position → character.js writes characters; arrival.js saves an active Bearer leaving main.",
     "player.js derives chapter floor gates from quest stage/abbeyOpenAll → veilfall-map.js floorDist governs goals and movement; Ossuary access depends on stage/open-all and Abbey/Nave access.",
     "Main sim advances quests and spawns/resets bosses; boss defeats mark participants and write place.state.lastFall {boss, by, at} → crier heralds a fresh fall to a nearby camp listener.",
     "Boss scripts write first room-wide world.state.trophies[boss] = {at, by} → trophies.js updates Trophy Post/Stele; ui/nametag.js marks Firstblood; crier announces falls and worn marks.",
     "Near Wayside forge, pack-ui craft/temper/reforge/ascend → player.js + loot.js consume materials and update inventory/gear; cauldron brew actions consume recipe resources, save timed brew/renderXp and derive combat bonuses.",
-    "player.js vaultNear opens personal pack vault at Maudry's counter; store/take and shelf actions mutate persistent CHAR_KEYS vault/vaultRows; guildVaultNear opens shared chest → pack-ui gvault actions → guildvault.js SQL insert/guarded update.",
-    "Near trade boards, player.js boardNear sets atBoard; UI trade actions → trade.js read/list/buy/unlist/collect realm listings; board-ui, crier and board-notes share market data; trainer and shrine UI actions route through player.js."
+    "Near vaults/boards, player.js proximity state opens personal/guild vault or trade UI; pack-ui → guildvault.js SQL mutations, while trade actions → trade.js realm listings; board-ui, crier and board-notes read market data.",
+    "Scene children in main cells attach scripts/sway.js to pivoted cages, orchard hanged figures and toll bell → sway reads nearby Bearers, applies wind/proximity impulses and writes rotation; ringing bell emits playSound."
   ],
   "behaviorFamilies": [
     "scripts/gen/hub-*.js - reusable Wayside Fire props varied by instance params, seed and scene transform; share hub-kit.js; hub-board.js is also Candlehold's exchange-board.",
@@ -261,20 +260,20 @@
     "scripts/effects/candles.fx.js - milestone, toll-counter and wagon-lantern clusters; up to five wicks share one flame particle population/draw, with smoke from the first wick and one light driven by live flame count.",
     "scripts/gen/cap-kit.js with cap-gate.js, cap-house.js and cap-wall.js - Candlehold stone, timber and slate share local-frame helpers; instance dimensions, lighting and seed vary.",
     "scripts/gen/veil-land.js and veil-shrine.js - Veil ledge/cliff/ridge structures vary by kind/dimensions; shrine exports structure/hook constants.",
-    "scripts/gen/arena-floor.js, arena-pillar.js, gibbet.js and toll-throne.js - Bailiff arena dressing shares scripts/gen/shapes.js and its wax palette.",
+    "scripts/gen/arena-floor.js, arena-pillar.js, gibbet.js and toll-throne.js - Bailiff arena dressing shares scripts/gen/shapes.js and its wax palette; split gibbet cages render separately at a top pivot.",
     "scripts/gen/abbey-litter.js and abbey-court.js - Abbey yard/Crypt litter and court dressing vary by kind/seed/transform; court preserves a clear local -Z door path; fen-*.js share fen-kit.js.",
-    "scripts/gen/wayshrine.js - shared stepped octagonal stone/obelisk and memory-light geometry reused by shrine-wayside, shrine-candlehold and shrine-abbey; scene transform/seed vary."
+    "scripts/sway.js - shared wind-and-nearby-player pendulum behavior on selected orchard hangings, split Bailiff arena cages and toll bell; instance phase/ring clip vary, smoothed with Animação Viva."
   ],
   "probableOrphans": [
     "scripts/flat-starter-terrain.js",
-    "scripts/gen/wax-figure.js - legacy procedural enemy-figure generator; current wax actors use CDN models."
+    "scripts/gen/wax-figure.js - legacy procedural wax-figure generator; live wax actors use CDN models and no current script or scene calls this generator."
   ],
   "migrationNotes": [
     "Persistent character data is scripts/lib/character.js CHAR_KEYS plus packed position; shrines, vault and vaultRows persist per Bearer, while atShrine/atVault/atGuildVault and vault UI reads are transient.",
     "Wayshrine IDs and coordinates in scripts/lib/data/combat.yml must stay aligned with scene IDs/locations; travel costs 10 copper and refuses while an enemy is within 10 m; Abbey destination obeys the player gate.",
     "Personal vault is 18 slots plus up to three purchased rows of nine (costs [5000, 20000, 50000] copper) saved per Bearer; guild vault is 27 shared slots per Spawn guild per realm in SQL, separate from character inventory.",
     "Guild-vault store removes the item from player.state.inv before insertion and restores it on SQL failure; take is an atomic guarded UPDATE to prevent duplicate withdrawals. Maintain realm and guild_id filters on all shared-vault queries.",
-    "The Veil is solo and ephemeral and parks the hidden menu body at its origin; camera.js menu framing is tuned to its shrine/ledge. Menu backdrop selection depends on selected roster character's zone string and scripts/ui.js zoneArt matching.",
-    "Both places use mods/awakening/look.js with distinct bloom/mist/vignette params; world.config.yaml uses mods/awakening/lighting.js. scripts/ui.js wraps the existing HUD with Absolute Cinema overlays and renders cinemaPanel only when player has the relevant panel state."
+    "The Veil is solo and ephemeral and parks the hidden menu body at its origin; camera.js menu framing is tuned to its shrine/ledge and yields while Absolute Cinema possession/playback state is active, then reseeds its follow target.",
+    "Crosswound now resolves its hit after a 240 ms wind-up via scripts/player.js crosswoundFall; keep delayed direction payload aligned with that handler. Hanging children need pivot: top and separate geometry (gibbet kind cagebody or vf-props bell body) for sway rotation."
   ]
 }
