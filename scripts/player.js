@@ -830,7 +830,24 @@ export function crosswoundFall(ctx, p) {
     const ex = o.feetPosition.x - f.x, ez = o.feetPosition.z - f.z, ed = Math.hypot(ex, ez) || 1;
     if ((ex * dx + ez * dz) / ed < cos && ed > 1) continue;
     strike(ctx, o, Math.round(cw.dmg * (1 + 0.2 * art(s, "crosswound")) * weaponMul(s) * (0.9 + ctx.random() * 0.2)), false, true);
+    if (s.cls === "primalist") { const t = o.feetPosition; ctx.emit("fx", { position: { x: t.x, y: t.y, z: t.z }, script: BOLTDOWN }); }
+    if (s.cls === "hellwarden") { o.state.burnUntil = ctx.now() + 3000; for (let i = 1; i <= 3; i++) ctx.after(i, "burnTick", { id: o.id }); }
   }
+  if (s.cls === "hellwarden") { ctx.emit("fx", { position: { x: f.x + dx * 1.8, y: f.y + 0.05, z: f.z + dz * 1.8 }, script: FURNACE }); ctx.emit("playSound", { clip: sfx("furnace-door-roar-fire-sweep"), position: f, volume: 0.7 }); }
+  if (s.cls === "primalist") ctx.emit("playSound", { clip: sfx("war-horn-blast-and-thunder-crack"), position: f, volume: 0.8 });
+}
+// Furnace Sweep's arc of burning ground and Stormhorn's bolt from the sky
+const FURNACE = `fx
+pop flame rate=?mobile:30|60 on=arc(1.8,140) life=.4..0.8 v=up(1.2..2.4)+sdir()*.3 size=.25..0.45 acc=curl(.5)+buoy(1.6)+drag(1.4) sz=$size*(.5>1:.3>.2) col=hdr(4.4,2.6,.9)>hdr(2,.6,.1)>hdr(.5,.1,.02) a=0>.1:1>.7:.8>0 rot=spin(.3) win=0;1.8 r=sprite(flame-wisp,add)
+pop smoke on=@flame?.15 life=1.2..2 size=.3..0.5 acc=buoy(.8)+drag(.8) sz=$size*(.7>2.4) col=<.2,.17,.15> a=0>.2:.3>0 r=sprite(smoke-puff,alpha)
+pop glow n=1 life=2.2 at=point().c(.5) r=light(<1,.5,.15>,22*(1>.6:.8>0),8)`;
+const BOLTDOWN = `fx
+pop bolt burst=1 life=.18 size=1 col=hdr(3,3.6,5) a=1>0 r=mesh(cylinder,.06,8,.06)
+pop spark burst=20..28 on=sphere(.3).c(1) life=.2..0.5 v=sdir()*(2..5) size=.02..0.04 acc=grav()*.3+drag(2) col=hdr(3,3.4,4.6)>hdr(.6,.8,1.4) a=1>0 r=sprite(ember,add,velocity,.05)
+pop flash burst=1 life=.2 at=point().c(2) r=light(<.7,.8,1>,50*(1>0),10)`;
+export function burnTick(ctx, p) {
+  const o = ctx.getObject(p.id); if (!isFoe(o) || ctx.now() > (o.state.burnUntil ?? 0) + 50) return;
+  strike(ctx, o, Math.max(1, Math.round(C.crosswound.dmg * 0.15 * weaponMul(ctx.self.state))), false, true);
 }
 
 function griefstep(ctx) {
