@@ -41,3 +41,13 @@ export const MODELS = {
 // true height in metres before the row's own scale
 export const HEIGHT = { hero: 1.85, pilgrim: 1.7, walker: 1.7, deacon: 1.8, chorister: 1.95, flagellant: 1.8, bailiff: 2.0, chandler: 2.9, cantor: 3.0, ringer: 2.2, warden: 2.4, hangman: 2.5, abbess: 2.6, drowned: 1.8, harpooner: 1.9, barnacle: 2.3, ferryman: 3.1, reaper: 2.3, marrowwolf: 1.3, briarwitch: 2.0, rootmother: 3.4, gargoyle: 2.4, harpy: 2.1, inquisitor: 2.4, butcher: 3.3, ashrevenant: 2.3, cinderthrall: 2.0, pyrepriest: 2.2, kilnwarden: 3.5, deepghoul: 2.0, lurker: 2.6, crystalbrute: 2.9, broodmother: 2.6, frostdead: 1.9, rimewolf: 1.5, icewraith: 2.4, frostjarl: 3.6 };
 export const body = (k) => ({ model: MODELS[k], layout: { maxExtents: { y: HEIGHT[k] } } });
+
+// each calling's own Bearer body (painted sheet → rigged model), worn the moment the Bearer enters
+export const BEARER = {
+  bladewraith: "/cdn/value.18b58770866abb641cdc00de31e7a08c84217961e77000e1880ba854a17f10ec.png.glb",
+  soulweaver: "/cdn/value.a2abbbb9acf7ecf4ab45c404616514bc8e3770d4846a46b5f907991ebbbfdb25.png.glb",
+  hellwarden: "/cdn/value.77c094c98dccf6d8e033d4a8cb683adac90f93fdf4b9b71c288124ed4039d2a8.png.glb",
+  shadowmancer: "/cdn/value.4782411627882b1eedb7e66f846cbc809699119a2355f0b53cafbadc35775f30.png.glb",
+  primalist: "/cdn/value.2a3c8fcdb18436d1da3dada8f6fb217a721d923768eb52886bb70c9ee46f695b.png.glb",
+  gloamstalker: "/cdn/value.658bb910c32faf3d021982db84426e24264a039da8c51b2bcbfb7093cb05ea90.png.glb",
+};

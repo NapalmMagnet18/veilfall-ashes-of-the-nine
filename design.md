@@ -136,3 +136,4 @@ places/main/sim.js referee: spawns packs, quest stages, XP/levels, death and res
 - 2026-10-09: talent trees grow from 4 tiers to 6 per branch (whispers asked for deeper WoW/PoE-style trees). Old tier-3 capstones become 3-rank nodes; tier 5 is the 1-rank capstone at 5× value. 48 points fill a calling.
 - 2026-10-09: first-branch capstones are keystones: casters' bolts chain (60%, 7 m), gloamstalker arrows pierce (70%, forward 4 m), melee callings cleave (45%, 2.5 m). Keystone hits never chain again.
 - 2026-10-09: branch 2/3 capstones are keystones too: Second Wind (regen every 1.5 s at 2x below 35% hp) and Bloodrush (+35% speed 3 s on a kill). Fixed: the WASD speed clamp was cancelling Fenborn haste.
+- 2026-10-09: each calling has its own Bearer body (models.js BEARER), worn on entering the world; the template's hooded swordsman stays the fallback.

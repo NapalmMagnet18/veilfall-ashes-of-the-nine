@@ -1,7 +1,7 @@
 // VEILFALL hero (Bladewraith). Left click: walk / attack what you click. Right click or E: Crosswound.
 // Space: Griefstep dash toward the cursor. Q: tonic. WASD also walks. Hits are judged here, on the
 // striker's machine, and written to the enemy's state; the wax-pack manager reads hp and pays XP.
-import { body as heroBody } from "./lib/data/models.js";
+import { body as heroBody, BEARER } from "./lib/data/models.js";
 import { BREW, renderRank, brewMade, brewActive } from "./lib/brews.js";
 import { gearStats, mitigation, slotOf, sellValue, dustValue, SLOTS, forge, FORGE, freeReforges, markBoss, applyMark, MARKS, craft, craftCost, smithRank, SMITH } from "./lib/loot.js";
 import { raycast, getInputRay } from "builtin/physics";
@@ -942,6 +942,7 @@ export function update(ctx, dt) {
   if (ctx.self.place && ctx.self.place !== "main") { if (!me.crossAt || now - me.crossAt > 4000) { me.crossAt = now; ctx.cross(ctx.self, "main"); } ctx.self.velocity = { x: 0, y: vy, z: 0 }; return; }
   if (s.pendingPos) { ctx.self.feetPosition = s.pendingPos; ctx.self.velocity = { x: 0, y: 0, z: 0 }; s.pendingPos = null; s.enteredAt = now; return; }
   if (ctx.self.visible === false) ctx.self.visible = true;
+  if (BEARER[s.cls] && me.bodyOf !== s.cls) { me.bodyOf = s.cls; ctx.self.model = BEARER[s.cls]; } // the calling's own body
   // the save: every 20 s, when the Bearer changed
   if (now - (me.saveAt ?? 0) > 20000) {
     me.saveAt = now;
