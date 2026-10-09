@@ -1306,7 +1306,7 @@ wayside-fire/handcart:
   castShadow: true
   feetPosition: {x: -7.6, y: 0, z: 4.4}
   id: wayside-fire/handcart
-  model: {forward: "+z", id: /cdn/value.1f60ee58a6ef0f2f7bdb966e9dfabff94bdcceaff64d510d434c336954701d4d.glb}
+  model: {forward: "+z", id: /cdn/value.d7aca191be9efdb2897b7818cfba0699c38793d5c53f4e5907485d0868860f85.glb}
   parent: wayside-fire
   physics: {body: static, collider: mesh}
   receiveShadow: true
