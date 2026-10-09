@@ -551,7 +551,7 @@ def build_willow(mb, M):
         col = cols[3] if R.random() < .22 else cols[R.randrange(3)]
         cross = sidx >= int(WIL_STRANDS * .72)
         wsc = rr(.85, 1.15)
-        ribbon(mb, pts, [(.48 - .16 * s / (NS - 1)) * wsc for s in range(NS)], (h if cross else tg), (tg if cross else h),
+        ribbon(mb, pts, [(.38 - .12 * s / (NS - 1)) * wsc for s in range(NS)], (h if cross else tg), (tg if cross else h),
                lambda t, w0=w0, wc=wc: blend((w0, 1 - ss(.05, .6, t)), (wc, ss(.05, .6, t))), col, M["leaves"], (h * .55 + UP).normalized())
     return B
 
