@@ -57,6 +57,18 @@ async function call(ctx, listener) {
   } catch (e) { ctx.log("crier owed read failed", String(e)); }
   // a boss mark he has not yet remarked on for this Bearer: he names it
   const mk = cid && Object.values(listener.state?.gear ?? {}).map((it) => it?.mk).find((k) => MARKED[k] && !(me.marked[cid] ?? []).includes(k));
+  // every mark of the road worn at once, each already named: the old man drops his voice and tells what the Nine were
+  const wornAll = cid && Object.keys(MARKED).every((k) => Object.values(listener.state?.gear ?? {}).some((it) => it?.mk === k));
+  if (!mk && wornAll && !(me.marked[cid] ?? []).includes("nine")) {
+    (me.marked[cid] ??= []).push("nine"); me.n++;
+    const who = listener.state?.charName ?? listener.displayName ?? "Bearer";
+    ctx.emit("playSound", { clip: BELL, position: at, volume: 0.25 }, aud0);
+    ctx.emit("playSound", { clip: "/cdn/moodboard-gothic-horror/sfx-low-choir-hum-swelling-then-cut-to-silence.mp3", position: at, volume: 0.7, maxDistance: EAR + 6 }, aud0);
+    ctx.emit("playSound", { clip: V("[whispers]-five-marks-on-one-bearer-there-were-nine-lanterns-once-nine-saints-who-kept-them-five-have-gone-dark-under-your-hand-four-still-burn-somewhere-down-the-road"), position: at, volume: 1, maxDistance: EAR + 6 }, aud0);
+    ctx.emit("damageNumber", { position: at, text: (ctx.self.state.lastCall = `${who}... five marks. there were nine lanterns once, nine saints to keep them. five gone dark under your hand. four still burn, somewhere down the road.`), color: "#9fdfe8", size: 2, lifetime: 9 }, aud0);
+    ctx.self.anim.talk = { clip: "cdn/clip-wave.glb", weight: 4, loop: "once", mask: { from: "Spine" } }; ctx.after(6, "quiet");
+    return;
+  }
   if (mk) {
     (me.marked[cid] ??= []).push(mk); me.n++;
     const who = listener.state?.charName ?? listener.displayName ?? "Bearer";
