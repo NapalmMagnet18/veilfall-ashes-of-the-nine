@@ -14,7 +14,7 @@ export function tick(ctx) {
   if (!onRoad) {
     const st = ctx.place.state;
     if (!now || !MENU.includes(now.ref)) ctx.music.play(MENU[(st.menuI ?? 0) % MENU.length], { fade: 2.5, volume: 0.75 });
-    else { const len = ctx.world.assets?.[now.ref]?.duration; if (len && now.since >= len - 3) { st.menuI = ((st.menuI ?? 0) + 1) % MENU.length; ctx.music.play(MENU[st.menuI], { fade: 3, volume: 0.75 }); } }
+    else { const len = ctx.world.assets?.[now.ref]?.duration ?? 150; if ( now.since >= len - 3) { st.menuI = ((st.menuI ?? 0) + 1) % MENU.length; ctx.music.play(MENU[st.menuI], { fade: 3, volume: 0.75 }); } }
   }
   // the shrine's own breath: candles guttering in wax, and now and then a bell far down the ravine
   if (!("veil-hum" in ctx.place.objects)) ctx.spawn("veil-hum", { tags: ["ambience"], feetPosition: { x: 0, y: 1.2, z: -11 }, audio: { clip: "/cdn/moodboard-gothic-horror/ambience-shrine-candles-guttering-in-wax-faint-whispered-prayer-loop.mp3", loop: true, gain: 0.16, maxDistance: 24, bus: "Ambience" } });

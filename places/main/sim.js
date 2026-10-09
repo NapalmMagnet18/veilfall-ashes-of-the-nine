@@ -445,7 +445,7 @@ function musicTick(ctx, st, now, objs) {
   const list = TRACKS[mood] ?? TRACKS.road, on = ctx.music.now();
   if (mood !== st.mood) { st.mood = mood; st.trackI = calm ? Math.floor(ctx.random() * list.length) : 0; ctx.music?.play(list[st.trackI % list.length], { fade: calm ? 4 : 1.2, volume: calm ? 0.7 : 0.8 }); }
   else if (!on || !list.includes(on.ref)) ctx.music?.play(list[(st.trackI ?? 0) % list.length], { fade: calm ? 4 : 1.2, volume: calm ? 0.7 : 0.8 });
-  else { const len = ctx.world.assets?.[on.ref]?.duration; if (list.length > 1 && len && on.since >= len - 3) { st.trackI = ((st.trackI ?? 0) + 1) % list.length; ctx.music?.play(list[st.trackI], { fade: 3, volume: calm ? 0.7 : 0.8 }); } }
+  else { const len = ctx.world.assets?.[on.ref]?.duration ?? 150; if (list.length > 1 && on.since >= len - 3) { st.trackI = ((st.trackI ?? 0) + 1) % list.length; ctx.music?.play(list[st.trackI], { fade: 3, volume: calm ? 0.7 : 0.8 }); } }
   if (now > (st.distantAt ?? 0)) {
     st.distantAt = now + 22000 + ctx.random() * 23000;
     const p = live[Math.floor(ctx.random() * live.length)], list = DISTANT[ZONE_MOOD[p.state.area] ?? "road"] ?? DISTANT.road;
