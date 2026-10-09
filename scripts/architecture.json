@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "basedOnSpecVersion": 1378,
-  "updatedAt": "2026-10-09T15:03:03.782Z",
-  "summary": "VEILFALL: Ashes of the Nine is an isometric multiplayer action RPG in a shared playable realm, with a solo Veil title/menu place. Place and actor scripts run quests, combat, bosses, services and ambience; shared Bearer/data modules support persistence and progression, while authored cells and seeded generators build the regions. Main cells now add substantial biome planting and floor dressing across Lanternmere, Broken Lantern Road, the Abbey climb and Frostbitten Vale.",
+  "basedOnSpecVersion": 1406,
+  "updatedAt": "2026-10-09T15:10:03.777Z",
+  "summary": "VEILFALL: Ashes of the Nine is an isometric multiplayer action RPG in a shared playable realm, with a solo Veil title/menu place. Place and actor scripts run quests, combat, bosses, services and ambience; shared Bearer/data modules support persistence and progression, while authored cells and seeded generators build the regions. Main cells now include wandering wisps in Lanternmere and the Vale, mixed and repositioned tree cover, and clearer walk/fight spaces through the road, Abbey approach, Orchard, Vale and Hollow Deep.",
   "scriptPaths": [
     "mods/aaa-quality-kit/look-cinema.js",
     "mods/absolute-cinema/cinema-camera.js",
@@ -214,71 +214,64 @@
     "scripts/wax-pack.js"
   ],
   "places": [
-    "places/main/ - shared playable realm spanning Wayside Fire/Broken Lantern Road, Candlehold, Lanternmere, Hanging Orchard, Ashen Abbey, Ossuary, Hollow Deep and Frostbitten Vale; cells hold terrain, landmarks, actors and biome dressing.",
-    "places/veil/ - solo title/menu stage and ravine backdrop, configured as default place; active Bearers are parked here while menus are open."
+    "places/main/ - shared realm: seven cells hold Lanternmere, Broken Lantern Road, Abbey, Hanging Orchard, Frostbitten Vale, Ossuary and Hollow Deep; sim.js runs quests, packs and bosses.",
+    "places/veil/ - solo title/menu realm; its sim rotates menu music while menu-open Bearers are routed here."
   ],
   "roots": [
-    "world.config.yaml - world entry: defaultPlace veil; attaches player/camera templates, lighting, arrival/nametag behaviors, controls and audio mix.",
-    "templates/player.js - player body with humanoid-locomotion.js and scripts/player.js, plus carried-light child; templates/camera.js runs scripts/camera.js.",
-    "places/main/config.yaml and places/main/cells/ - main-realm atmosphere, terrain and authored biome cells; main cells now include planted fen/road/Abbey/Vale details.",
-    "places/main/sim.js - main-place referee for NPC/services, quest stages, enemy packs, progression, boss lifecycle/reset and place music/ambience.",
-    "places/veil/config.yaml, places/veil/cells/ and places/veil/sim.js - solo title/menu scene, ambience and menu soundtrack.",
-    "scripts/terrain.js - main realm height/material field; scripts/lib/data/veilfall-map.js defines connected regions and floor gates.",
-    "sim.js - world-level simulation entry; place-specific cadence/tick handlers live in places/*/sim.js."
+    "world.config.yaml, templates/player.js, templates/camera.js - world entry/config attaches the player and camera and maps actions.",
+    "places/main/cells/ - authored realm terrain, static dressing, flora, lights and actor placements; scene transforms/parameters seed generated props.",
+    "places/veil/cells/ - authored menu-place scenery.",
+    "scripts/places/main/sim.js, scripts/places/veil/sim.js - place-level spawn/quest/combat orchestration and menu ambience."
   ],
   "shared": [
-    "scripts/lib/character.js - Bearer schema, fresh state, roster/create/load/save/delete and packed position; player.js and arrival.js reuse it, crier/board-notes use realmOf.",
-    "scripts/db.js and scripts/lib/data/realms.yml - realm/character and trade schemas, realm routing/name registry, and guild-vault SQL table/index setup.",
-    "scripts/lib/data/combat.yml, economy.yml and loot.yml - shared enemy/boss profiles, drops/rewards and gear rules consumed by main sim, wax-pack and combat/UI services.",
-    "scripts/lib/data/models.js - MODELS, HEIGHT, body and BEARER map enemy kinds and player callings to uploaded GLBs; main sim/wax-pack reuse enemy bodies and player.js selects calling body.",
-    "scripts/lib/data/veilfall-map.js - chapter paths, region geometry, floor distances and zone naming used by terrain, player movement/gates, main sim and floor-cover placements.",
-    "scripts/lib/data/fauna.js and scripts/fauna.js - FAUNA species/model/gait rows and shared shepherd that moves scene-tagged fauna.",
-    "scripts/lib/data/flora.js plus flora-ash.js, flora-fen.js and flora-frost.js - tree model metadata and biome rosters; flora.js supplies forest/orchard placements.",
-    "scripts/gen/hub-kit.js, scripts/lib/pack-ui.js, shop.js, trade.js, guildvault.js and board-ui.js - shared Wayside Fire prop helpers and Bearer/service logic."
+    "scripts/lib/character.js - Bearer schema and character roster/create/load/save/remove; persistent state shared by menu and player flows.",
+    "scripts/lib/data/models.js - registered bodies and height metadata used by player, enemy spawning and effects.",
+    "scripts/lib/data/veilfall-map.js - chapter/floor distance rules used by player movement and progression gates.",
+    "scripts/lib/data/flora*.js, scripts/lib/data/fauna.js - biome flora and species data reused by scene dressing and wildlife behavior.",
+    "scripts/gen/vf-kit.js, fen-kit.js, hub-kit.js, orch-kit.js - shared construction helpers used by their corresponding regional generators.",
+    "scripts/gen/zone-floor.js, scripts/gen/bw-floor.js - seeded non-colliding ground cover generators reused by authored cell rows."
   ],
   "notableExports": [
-    "places/main/sim.js - cadence, tick; places/veil/sim.js - cadence, tick.",
-    "scripts/player.js - onSpawn, onInput, sigLand, meleeLand, boltLand, crosswoundFall, burnTick, update; skill impacts route through handlers.",
-    "scripts/lib/data/models.js - MODELS, HEIGHT, body, BEARER; HEIGHT values are metres and position attached enemy effects.",
-    "scripts/wax-pack.js - roll, telegraph, hurtPlayers, payout, update; shared ordinary-enemy AI, movement, death and payout helpers.",
-    "scripts/ui.js - default state-driven HUD/menu/sheets, talent tree, unit frames and enemy portrait/name lookup; scripts/ui/nametag.js renders nametags.",
-    "scripts/abbess.js, bailiff.js, ringer.js, warden.js, hangman.js - boss handlers; scripts/crier.js - onSpawn, quiet, update.",
-    "scripts/lib/character.js - CHAR_KEYS, fresh, START, realmOf, pack, zoneOf, roster, create/load/save/remove; scripts/lib/data/talents.js - talent tree/query helpers.",
-    "scripts/gen/bw-floor.js and scripts/gen/zone-floor.js - geometry, collider; flora data files export their biome rosters and tree tags."
+    "scripts/player.js - onSpawn, onInput, sigLand, meleeLand, boltLand, crosswoundFall, burnTick, update.",
+    "scripts/ui.js - default state-driven HUD, menu and sheets, talent tree, unit frames, enemy labels/portraits and version notes.",
+    "scripts/places/main/sim.js - cadence, tick; quest/pack/boss orchestration.",
+    "scripts/places/veil/sim.js - cadence, tick; menu music rotation.",
+    "scripts/wax-pack.js - roll, telegraph, hurtPlayers, payout, update; ordinary/mini-boss enemy runtime helpers.",
+    "scripts/lib/character.js - CHAR_KEYS, fresh, START, realmOf, pack, zoneOf, roster, create/load/save/remove.",
+    "scripts/lib/data/models.js - MODELS, HEIGHT, body, BEARER.",
+    "scripts/gen/zone-floor.js and scripts/gen/bw-floor.js - generated geometry and collider interfaces."
   ],
   "ownership": [
-    "scripts/lib/character.js CHAR_KEYS - persistent Bearer combat/progression, quest/reward claims, inventory/gear, arts, attuned shrines, personal vault/vaultRows and talents; packed position and zone feed re-entry/menu context.",
-    "scripts/player.js - active-body movement/combat/death, class attacks and skill timers, menu/options scratch, floor gates, inventory/service actions and derived gear stats; Hellwarden burnUntil is written on foes for delayed burn ticks.",
-    "places/main/sim.js - quest/dialog/cut progress and claims; hub NPC/service spawning, packs and boss lifecycle/reset, respawn rows, place mood/track index and ambient audio.",
-    "scripts/wax-pack.js - ordinary and mini-boss enemy AI/hp/casts/death, slowUntil movement effect, profile-driven summons and eligible Bearers' XP, copper, kills, shards and gear-drop inboxes.",
-    "scripts/bailiff.js, ringer.js, warden.js, hangman.js and abbess.js - respective boss hp/phases/casts/adds/defeat and participant/place boss rows.",
-    "scripts/fauna.js, forest-wisp.js and greeter.js - per-actor wildlife movement, wisp motion/startled presentation, and townsfolk bubble line/cooldown state; data modules own species configuration, not live state.",
-    "scripts/lib/guildvault.js and guild_vault SQL rows - shared items keyed by realm and Spawn guild; taken rows are guarded, and character inventory owns the member's copy.",
-    "places/main/config.yaml and places/main/cells/ - authored terrain/grass clear marks, planted flora and floor cover, transforms, seeds and parameters; child trunk colliders are scene-authored static boxes."
+    "scripts/lib/character.js CHAR_KEYS - persistent Bearer combat/progression, quest/reward claims, inventory/gear, arts, shrines, vault and talents; packed position/zone inform re-entry.",
+    "scripts/player.js - active-body movement, combat, death, class skills/timers, menu/options scratch, floor gates, inventory/service actions and derived gear stats.",
+    "places/main/sim.js - quest/dialog/cut progress and claims, NPC/service and enemy spawning, boss lifecycle/reset, respawn rows and place mood/music state.",
+    "scripts/wax-pack.js - ordinary/mini-boss enemy AI, hp/casts/death, movement effects, summons and eligible Bearer payouts/drops.",
+    "scripts/bailiff.js, ringer.js, warden.js, hangman.js, abbess.js - respective boss health, phases, casts/adds, defeat and participant/place boss rows.",
+    "scripts/fauna.js, forest-wisp.js, greeter.js - per-actor wildlife/wisp motion and townsfolk dialogue bubble/cooldown state.",
+    "places/main/cells/ - authored environmental placement owns transforms, seeds, species/model choices, light settings and scene-static colliders."
   ],
   "flows": [
-    "world.config.yaml attaches player through templates/player.js and maps actions; UI menu actions → scripts/player.js routes title/realm/character/create/enter/logout/options/notes.",
-    "defaultPlace veil → player menu; player.js menuInput → character.js roster/create/load/remove; realms.yml routes selection and Bearer fields hydrate player.state; menu-open Bearers move to veil and places/veil/sim.js rotates menu music.",
-    "world controls and controls.js select world/menu touch surfaces; ui.js actions → player.js and its service handlers.",
-    "player.js periodically/on rest saves changed CHAR_KEYS plus packed position → character.js writes characters; arrival.js saves an active Bearer leaving main.",
-    "player.js derives chapter floor gates from quest stage/abbeyOpenAll → veilfall-map.js floorDist governs goals and movement; Ossuary access gates Hollow Deep via deepDist, Orchard access includes Rimefast/Vale via rimeDist.",
-    "places/main/sim.js quest state advances from player talk/kills/boss flags; chapter stages, boss defeat and service interactions drive shared realm progression.",
-    "places/main/sim.js PACKS + combat.yml profiles + models.js body/HEIGHT → enemySpec spawns wax-pack actors; wax-pack runs combat, respawn and eligible payouts/drops using combat/economy/loot data.",
-    "Main sim PACKS → Ossuary ash-dead/Kiln Warden, Hollow Deep deepghoul/lurker/crystalbrute/Broodmother and Frostbitten Vale frostdead/rimewolf/icewraith/Frost Jarl; profile summon rows drive mini-boss adds.",
-    "Scene fauna rows tagged fauna + fauna.js species values → scripts/fauna.js shepherd update moves wildlife; forest-wisp.js reads home/r/seed and nearby Bearers to drift/flee and change burnStyle.",
-    "Candlehold town-* scene rows provide name/title/lines and bubble child → greeter.js shows rotating dialogue; flavor only, not service/quest routing.",
-    "Bearer cls → player.js selects models.js BEARER body and implements calling attacks; Gloamstalker ranged attacks and sigVolley → flyArrow spawns scripts/gen/arrow.js geometry and animate sends the arrow to its hit point.",
-    "Scene floor rows pass world origin, local bounds/clear circles, biome/zone, count and seed → scripts/gen/bw-floor.js or zone-floor.js builds non-colliding cover; new Lanternmere, road/Abbey and Vale plantings are authored per-cell instances."
+    "world.config.yaml → templates/player.js attaches player and maps actions; ui.js menu actions → player.js title/realm/character/create/enter/logout/options/notes routing.",
+    "defaultPlace veil → player menu; player.js menuInput → character.js roster/create/load/remove; realm configuration hydrates Bearer fields and menu-open Bearers move to veil.",
+    "world controls and controls.js select world/menu touch surfaces; ui.js actions → player.js and service handlers.",
+    "player.js periodically/on rest saves changed CHAR_KEYS and packed position → character.js writes characters; arrival.js saves an active Bearer leaving main.",
+    "player quest/cut/boss flags and service interactions → places/main/sim.js quest progression, realm progression and claim state.",
+    "main sim PACKS + combat profiles + models.js body/HEIGHT → enemySpec spawns wax-pack actors; wax-pack runs combat, respawn and eligible payouts/drops.",
+    "main sim PACKS → region enemy families and bosses; profile summon rows → wax-pack mini-boss adds.",
+    "Bearer cls → player.js selects models.js body and class attacks; cast/impact handlers emit FX, including rune rings, primalist claw scores and Hellwarden ember-crush effects.",
+    "Scene fauna rows tagged fauna + fauna data → scripts/fauna.js wildlife; scene forest-wisp rows + home/r/seed → scripts/forest-wisp.js motion and startled presentation.",
+    "Candlehold town-* scene rows name/title/lines and bubble child → greeter.js rotating flavor dialogue; not service or quest routing.",
+    "Cell floor rows pass origin, bounds/clear circles, biome/zone, count and seed → bw-floor.js or zone-floor.js non-colliding cover; scene flora/tree rows carry the authored clear-space placement."
   ],
   "behaviorFamilies": [
-    "scripts/gen/hub-*.js - reusable Wayside Fire props varied by instance params, seed and scene transform; share hub-kit.js; hub-lamppost.js builds detailed gothic ironwork.",
-    "scripts/gen/vf-*.js and vf-ruin.js - Broken Lantern Road landmarks/clutter and road, arena, Wax Veil approach and Abbey forms vary by params, dimensions and seed; most share vf-kit.js.",
-    "scripts/gen/fen-*.js - Lanternmere terrain dressing, path, waystones, stump/tree/props and heart structures are parametric seeded scene generators; share fen-kit.js where applicable.",
-    "scripts/gen/cap-kit.js with cap-gate.js, cap-house.js and cap-wall.js - Candlehold stone, timber and slate share local-frame helpers; dimensions, lighting and seed vary by instance.",
+    "scripts/gen/hub-*.js - reusable Wayside Fire props varied by instance params, seed and transform; share hub-kit.js.",
+    "scripts/gen/vf-*.js and vf-ruin.js - Broken Lantern Road landmarks, clutter, road/arena/approach and Abbey forms vary by params/dimensions/seed; most share vf-kit.js.",
+    "scripts/gen/fen-*.js - Lanternmere terrain dressing, path, waystones, trees/props and heart structures are seeded regional generators; share fen-kit.js where applicable.",
+    "scripts/gen/cap-kit.js with cap-gate.js, cap-house.js and cap-wall.js - Candlehold stone, timber and slate share local-frame helpers; dimensions, light and seed vary by instance.",
     "scripts/gen/veil-land.js and veil-shrine.js - Veil ledge/cliff/ridge structures vary by kind/dimensions; shrine exports structure/hook constants.",
-    "scripts/gen/arena-floor.js, arena-pillar.js, gibbet.js and toll-throne.js - Bailiff arena dressing shares scripts/gen/shapes.js and wax palette; split gibbet cages render separately at a top pivot.",
-    "scripts/gen/orch-*.js - seeded Hanging Orchard gallows, gibbets and props share orch-kit.js; scene cells also place swaying apple GLBs and seeded floor cover.",
-    "scripts/gen/zone-floor.js - biome-aware seeded floor plants and debris vary by kind, zone, terrain height, bounds and clearings; now used by fen reeds/lilies/moss/driftwood and ash road/Abbey dressing."
+    "scripts/gen/arena-floor.js, arena-pillar.js, gibbet.js and toll-throne.js - Bailiff arena dressing shares shapes.js and wax palette.",
+    "scripts/gen/orch-*.js - seeded Hanging Orchard gallows, gibbets and props share orch-kit.js; cells also place swaying apple GLBs and floor cover.",
+    "scripts/gen/zone-floor.js - biome-aware seeded plants/debris vary by kind, zone, terrain height, bounds and clearings; supports fen, ash-road/Abbey and other regional floor dressing."
   ],
   "probableOrphans": [
     "scripts/flat-starter-terrain.js",
@@ -287,9 +280,9 @@
   "migrationNotes": [
     "Persistent character data is scripts/lib/character.js CHAR_KEYS plus packed position; talents, shrines, vault and vaultRows persist per Bearer, while proximity flags and vault UI reads are transient.",
     "Talent IDs are branch-tier strings b-t across six tiers; each earlier tier requires 3 points per tier in that branch, and t=5 is a single-rank capstone worth five times its stat; class keystones drive calling-specific behavior.",
-    "Wayshrine IDs/coordinates in combat.yml must stay aligned with scene IDs/locations; travel costs 10 copper and refuses while an enemy is within 10 m; Abbey destination obeys player gate.",
+    "Wayshrine IDs/coordinates in combat.yml must stay aligned with scene IDs/locations; travel costs 10 copper, refuses with an enemy within 10 m, and Abbey obeys the player gate.",
     "Personal vault is 18 slots plus up to three purchased rows of nine; guild vault is 27 shared slots per Spawn guild per realm in SQL, separate from character inventory.",
-    "Enemy kinds must stay aligned across main sim PACKS, combat.yml, models.js MODELS/HEIGHT, loot.yml/economy.yml, wax-pack.js and ui.js labels/portraits; HEIGHT is metres. Scripted walkers and bosses apply downward velocity when ungrounded.",
-    "Floor scene rows supply generator world origin plus local bounds/clear circles and zone filters; generated floor cover has no collider. Fern sway depends on geometry uv().y (heart-to-tip) and uv().x (leaflet shade); flora tree heights are metres."
+    "Enemy kinds must stay aligned across main sim PACKS, combat.yml, models.js MODELS/HEIGHT, loot/economy data, wax-pack.js and ui.js labels/portraits; HEIGHT is metres.",
+    "Scene floor rows pass generator world origin plus local bounds/clear circles and zone filters; generated floor cover has no collider. Fern sway depends on geometry uv().y (heart-to-tip) and uv().x (leaflet shade)."
   ]
 }
