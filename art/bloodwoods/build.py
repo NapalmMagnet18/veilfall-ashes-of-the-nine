@@ -15,6 +15,7 @@ OUT = "/workspace/bloodwoods"; TMP = f"/tmp/bw/{NAME}"
 os.makedirs(OUT, exist_ok=True); os.makedirs(TMP, exist_ok=True)
 UP = Vector((0, 0, 1)); FRONT = Vector((0, 1, 0))  # Blender +Y exports as glTF -Z (the engine's facing)
 TAU = 2 * math.pi
+OAK_CARDS, WIL_CARDS, WIL_STRANDS = [int(x) for x in os.environ.get("BW_LEAF", "330,170,400").split(",")]
 
 def rr(a, b): return a + (b - a) * R.random()
 def ss(a, b, x):
@@ -302,6 +303,159 @@ def roots(mb, M, n, z0r, Lr, rw, flat, center=Vector((0, 0, 0)), sides=9, segs=1
         tube(mb, pts, taper(rw * rr(.85, 1.15), .03, segs + 1, .8), sides, M["bark"], lambda t: w, U=1,
              rfun=gnarl_r(.12, 3.0, k), up_frame=True, flat=flat)
 
+
+# ---- leaf clusters (bloodoak / weepwillow): painted sprigs of stemmed, serrated leaves on bent cards
+CRIM = (122, 20, 20); OXB = (61, 10, 12); RUST = (138, 58, 26); STEM = (38, 9, 10)
+def mixc(a, b, t): return tuple(a[i] * (1 - t) + b[i] * t for i in range(3))
+def c8(c, f=1.0): return tuple(int(max(0, min(255, v * f))) for v in c) + (255,)
+
+def leaf_outline(bx, by, L, W, ang, teeth=9):
+    ca, sa = math.cos(ang), math.sin(ang); N = teeth * 2; side = []
+    P = lambda x, y: (bx + x * ca - y * sa, by + x * sa + y * ca)
+    for k in range(N + 1):
+        t = k / N; hw = W * math.sin(math.pi * min(1.0, t * 1.03)) ** .7 * (1 - .28 * t)
+        tooth = .2 if (k % 2 and .1 < t < .93) else 0.0
+        side.append((t * L + tooth * W * .45, hw * (1 + tooth)))
+    full = [P(x, y) for x, y in side] + [P(x, -y) for x, y in reversed(side)]
+    half = [P(x, y) for x, y in side] + [P(x, 0) for x, y in reversed(side)]
+    tipS = [(x, y) for x, y in side if x >= .66 * L]
+    tip = [P(x, y) for x, y in tipS] + [P(x, -y) for x, y in reversed(tipS)]
+    tiph = [P(x, y) for x, y in tipS] + [P(x, 0) for x, y in reversed(tipS)]
+    return full, half, tip, tiph, P
+
+def draw_leaf(d, bx, by, L, W, ang, base, f, rust, lw):
+    full, half, tip, tiph, P = leaf_outline(bx, by, L, W, ang)
+    d.polygon(full, fill=c8(base, f * .78), outline=c8(OXB, .55))
+    d.polygon(half, fill=c8(base, f * 1.06))
+    if rust:
+        rc = mixc(base, RUST, .8); d.polygon(tip, fill=c8(rc, f * .85)); d.polygon(tiph, fill=c8(rc, f * 1.1))
+    d.line([P(0, 0), P(L * .92, 0)], fill=c8(base, f * .45), width=lw)
+    for t in (.22, .38, .54, .7):
+        for sg in (-1, 1):
+            hw = W * math.sin(math.pi * t) ** .7 * (1 - .28 * t) * .8
+            d.line([P(t * L, 0), P(t * L + hw * .9, sg * hw)], fill=c8(base, f * .58), width=max(1, lw // 2))
+
+def leaf_fit(x, y, ang, L, S, m):
+    for _ in range(8):
+        tx, ty = x + math.cos(ang) * L, y + math.sin(ang) * L
+        if m < tx < S - m and m < ty < S - m: return L
+        L *= .85
+    return L
+
+def draw_sprig(S, seed, under=False):
+    # one card's picture: a forked twig rising from the bottom edge carrying 10-15 stemmed serrated leaves
+    rnd = random.Random(seed); im = Image.new("RGBA", (S, S), OXB + (0,)); d = ImageDraw.Draw(im)
+    ph = rnd.uniform(0, TAU)
+    main = [(S * (.5 + .05 * math.sin(t * 2.4 + ph)), S * (.99 - .78 * t)) for t in np.linspace(0, 1, 14)]
+    stems = [main]
+    for sg in (-1, 1):
+        i = rnd.randint(3, 5); x, y = main[i]; a0 = -math.pi / 2 + sg * rnd.uniform(.75, 1.0); L = S * rnd.uniform(.28, .36); pts = [(x, y)]
+        for k in range(8):
+            a = a0 - sg * .5 * (k / 7); x += math.cos(a) * L / 8; y += math.sin(a) * L / 8; pts.append((x, y))
+        stems.append(pts)
+    for j, st in enumerate(stems):
+        d.line(st, fill=c8(STEM), width=int(S * (.014 if j == 0 else .009)))
+    nleaf = rnd.randint(11, 15); leaves = []
+    for j, st in enumerate(stems):  # a terminal leaf on every stem
+        (x0, y0), (x1, y1) = st[-2], st[-1]; leaves.append((x1, y1, math.atan2(y1 - y0, x1 - x0), 1.0, 0))
+    side = 1
+    while len(leaves) < nleaf:
+        st = stems[0] if rnd.random() < .5 else stems[rnd.randint(1, 2)]
+        t = rnd.uniform(.25, .9); i = min(len(st) - 2, int(t * (len(st) - 1)))
+        (x0, y0), (x1, y1) = st[i], st[i + 1]; a = math.atan2(y1 - y0, x1 - x0)
+        leaves.append((x0, y0, a + side * rnd.uniform(.6, 1.05), t, side)); side = -side
+    rnd.shuffle(leaves); lw = max(2, S // 360)
+    for n, (x, y, ang, t, sd) in enumerate(leaves):
+        pet = S * rnd.uniform(.03, .06); bx, by = x + math.cos(ang) * pet, y + math.sin(ang) * pet
+        d.line([(x, y), (bx, by)], fill=c8(STEM, 1.2), width=max(2, S // 300))
+        L = leaf_fit(bx, by, ang, S * rnd.uniform(.22, .32), S, S * .02); W = L * rnd.uniform(.17, .22)
+        depth = n / len(leaves)
+        base = mixc(CRIM, OXB, rnd.uniform(.35, 1.0) if under else rnd.uniform(0, .55))
+        f = (.72 + .38 * depth) * rnd.uniform(.9, 1.08) * (.62 if under else 1.0)
+        rust = rnd.random() < (.05 if under else .2) and t > .45
+        draw_leaf(d, bx, by, L, W, ang, base, f, rust, lw)
+    return im
+
+def draw_leaf_strand(cw, Hh, seed, under=False):
+    # one hanging willow strand: a wavering stem from the top edge, the same leaves hung in pairs down it
+    rnd = random.Random(seed); im = Image.new("RGBA", (cw, Hh), OXB + (0,)); d = ImageDraw.Draw(im)
+    x0 = cw * .5; amp = rnd.uniform(10, 26); ph = rnd.uniform(0, TAU); ye = Hh * rnd.uniform(.94, .985)
+    xf = lambda y: x0 + amp * math.sin(y / Hh * TAU * 1.3 + ph)
+    d.line([(xf(y), y) for y in np.arange(0, ye, 16)], fill=c8(STEM), width=7)
+    y = 14.0; side = 1; lw = 3; n = 0
+    while y < ye - 40:
+        f0 = y / ye; ang = math.pi / 2 - side * rnd.uniform(.5, .95)
+        pet = rnd.uniform(14, 26); bx, by = xf(y) + math.cos(ang) * pet, y + math.sin(ang) * pet
+        d.line([(xf(y), y), (bx, by)], fill=c8(STEM, 1.2), width=4)
+        L = rnd.uniform(170, 240) * (1 - .3 * f0); mx = (cw * .5 - 10) / max(.2, abs(math.cos(ang)))
+        L = min(L, mx * .95); W = L * rnd.uniform(.17, .21)
+        base = mixc(CRIM, OXB, rnd.uniform(.35, 1.0) if under else rnd.uniform(0, .55))
+        f = rnd.uniform(.8, 1.1) * (.62 if under else 1.0) * (.85 + .2 * f0)
+        draw_leaf(d, bx, by, L, W, ang, base, f, rnd.random() < (.04 if under else .16), lw)
+        y += rnd.uniform(30, 48) * (1 + .4 * f0); side = -side; n += 1
+    tx = xf(ye); draw_leaf(d, tx, ye - 30, 140, 30, math.pi / 2, CRIM, .95, False, lw)
+    return im
+
+def leaf_atlas(seed, strands=False):
+    # 2x2 sprig cells (top row lit crimson, bottom row darker undersides); willow adds 4 strand columns on the right
+    AW = 2048 if strands else 1024; atl = Image.new("RGBA", (AW, 1024), OXB + (0,))
+    for i in range(4):
+        im = draw_sprig(1024, seed * 31 + i, under=i >= 2).resize((512, 512), Image.LANCZOS)
+        atl.paste(im, ((i % 2) * 512, (i // 2) * 512))
+    if strands:
+        for c in range(4):
+            im = draw_leaf_strand(512, 2048, seed * 17 + c, under=c == 3).resize((256, 1024), Image.LANCZOS)
+            atl.paste(im, (1024 + c * 256, 0))
+    sx = 1024 / AW
+    cells = [((i % 2) * .5 * sx, .5 - (i // 2) * .5, ((i % 2) * .5 + .5) * sx, 1 - (i // 2) * .5) for i in range(4)]
+    cols = [(.5 + c * .125 + .004, 0, .5 + c * .125 + .121, 1) for c in range(4)] if strands else []
+    return atl, cells, cols
+
+def bent_card(mb, c, size, n, up, w, uvr, m, center, segs=3, bend=.16, cnup=.55, squash=(1, 1, 1)):
+    n = n.normalized(); y = up - n * up.dot(n)
+    if y.length < 1e-3: y = rvec().cross(n)
+    y = y.normalized(); x = y.cross(n).normalized()
+    roll = rr(-.6, .6); y, x = (y * math.cos(roll) + x * math.sin(roll)).normalized(), (x * math.cos(roll) - y * math.sin(roll)).normalized()
+    u0, v0, u1, v1 = uvr; wd = size * rr(.82, 1.0); rows = []
+    for r in range(segs + 1):
+        yy = -.5 + r / segs; row = []
+        for xx in (-.5, .5):
+            p = c + x * (xx * wd) + y * (yy * size) + n * (bend * size * (1 - (2 * yy) ** 2) - .06 * size * (2 * yy) ** 3)
+            cn = p - center; cn = Vector((cn.x / squash[0], cn.y / squash[1], cn.z / squash[2])).normalized()
+            cn = (cn + UP * cnup).normalized()
+            row.append((mb.v(p, w, cn), (u0 + (xx + .5) * (u1 - u0), v0 + (yy + .5) * (v1 - v0))))
+        rows.append(row)
+    for r in range(segs):
+        a, b, cc, d = rows[r][0], rows[r][1], rows[r + 1][1], rows[r + 1][0]
+        mb.f((a[0], b[0], cc[0], d[0]), [a[1], b[1], cc[1], d[1]], m)
+
+def foliage_mass(mb, M, mc, Rm, nlobes, ncards, wfun, cells, twig_src=None, size=(.5, .9), seed_dirs=None):
+    # one rounded mass: nlobes overlapping sub-blobs, cards on their shells, hollow interior skipped, lower/inner cards darker
+    lobes = [(mc + Vector((0, 0, Rm.z * .25)), Vector((Rm.x * .62, Rm.y * .62, Rm.z * .66)))]
+    for i in range(nlobes - 1):
+        a = TAU * i / (nlobes - 1) + rr(-.35, .35); el = rr(-.25, .45)
+        dv = Vector((math.cos(a) * math.cos(el), math.sin(a) * math.cos(el), math.sin(el)))
+        lobes.append((mc + Vector((dv.x * Rm.x, dv.y * Rm.y, dv.z * Rm.z)) * rr(.42, .55), Rm * rr(.48, .6)))
+    if twig_src:
+        for lc, lr in lobes:
+            st, w0, cb = twig_src(lc)
+            tube(mb, connect(st, lc, 4, .1, .2), taper(.07, .018, 5), 5, M["bark"], lambda t, w0=w0, cb=cb: blend((w0, 1 - ss(0, .7, t)), (cb, ss(0, .7, t))))
+    def inside(p, skip):
+        return min(((p - lc).x / lr.x) ** 2 + ((p - lc).y / lr.y) ** 2 + ((p - lc).z / lr.z) ** 2 for j, (lc, lr) in enumerate(lobes) if j != skip)
+    made = 0; guard = 0
+    while made < ncards and guard < ncards * 6:
+        guard += 1; j = R.randrange(len(lobes)); lc, lr = lobes[j]; dv = rvec(); r = rr(.62, 1.04) ** .7
+        pos = lc + Vector((dv.x * lr.x, dv.y * lr.y, dv.z * lr.z)) * r
+        deep = inside(pos, j) < .6
+        if deep and R.random() < .8: continue
+        out = pos - mc; out = Vector((out.x / Rm.x ** 2, out.y / Rm.y ** 2, out.z / Rm.z ** 2)).normalized()
+        dark = deep or dv.z < -.3 or R.random() < .12
+        cell = cells[2 + R.randrange(2)] if dark else cells[R.randrange(2)]
+        nrm = out + rvec() * .5 + UP * .3
+        bent_card(mb, pos, rr(*size), nrm, UP + out * .7, wfun(pos), cell, M["leaves"], mc, squash=(Rm.x, Rm.y, Rm.z))
+        made += 1
+    return lobes
+
 # ---------------------------------------------------------------- trees
 def build_oak(mb, M):
     cz = 3.5; tp = [Vector((.13 * math.sin(z * 1.1 + .5), -.10 * math.sin(z * .8 + 2.0), z)) for z in [cz * k / 24 for k in range(25)]]
@@ -320,39 +474,24 @@ def build_oak(mb, M):
         B += [(f"Limb{k}", pts[0], pts[6], "Trunk2"), (f"Crown{k}", pts[6], pts[12], f"Limb{k}")]
     leader = wander(tp[-1], UP + rvec() * .2, 2.9, 9, .12)
     tube(mb, leader, taper(.26, .05, 10), 10, M["bark"], lambda t: {"Trunk2": 1}, rfun=gnarl_r(.1, 2.3, 9))
-    C = Vector((0, 0, 6.1)); RX, RZ = 3.9, 2.7
+    C = Vector((0, 0, 6.1))
     def near_crown(p):
         a = math.atan2(p.y, p.x); return min(range(4), key=lambda k: abs((a - azs[k] + math.pi) % TAU - math.pi))
-    majors = []
-    for tries in range(4000):
-        if len(majors) >= 42: break
-        d = rvec()
-        if d.z < -.35: continue
-        f = rr(.7, .9) * (1 + .15 * mnoise.noise(d * 2.0))
-        p = C + Vector((d.x * RX, d.y * RX, d.z * RZ)) * f
-        if all((p - q).length > 1.15 for q in majors): majors.append(p)
-    cands = [(k, i, pt) for k, pts in enumerate(limbs) for i, pt in enumerate(pts) if i >= 4] + [("L", i, pt) for i, pt in enumerate(leader) if i >= 3]
-    clumps = []
-    for p in majors:
-        k, i, st = min(cands, key=lambda c: (c[2] - p).length)
-        kc = k if k != "L" else near_crown(p); cb = {f"Crown{kc}": 1}
-        w0 = LW(k, i / 12) if k != "L" else {"Trunk2": 1}
-        out = (p - C).normalized()
-        tube(mb, connect(st, p - out * .15, 7), taper(.085, .02, 8), 5, M["bark"], lambda t, w0=w0, cb=cb: blend((w0, 1 - ss(0, .6, t)), (cb, ss(0, .6, t))))
-        clumps.append((p, 10, cb))
-        for m in range(3):
-            off = rvec(); off = (off - out * off.dot(out) * .6).normalized()
-            q = p + off * rr(.75, 1.25) + out * rr(-.2, .2)
-            tube(mb, connect(p - out * .1, q, 3, .08, .1), taper(.028, .006, 4), 4, M["bark"], lambda t, cb=cb: cb)
-            clumps.append((q, 7, cb))
-    for p, n, cb in clumps:
-        for c in range(n):
-            pos = p + rvec() * rr(0, .55); out = pos - C; out = Vector((out.x / RX, out.y / RX, out.z / RZ)).normalized()
-            v = 0 if R.random() < .58 else .5
-            card(mb, pos, rr(1.05, 1.55), out + rvec() * .55 + UP * .25, cb, (v, 0, v + .5, 1), M["leaves"], C)
-    for c in range(70):
-        d = rvec(); pos = C + Vector((d.x * RX, d.y * RX, d.z * RZ)) * rr(.35, .6)
-        card(mb, pos, rr(1.2, 1.6), d + UP * .3, {f"Crown{near_crown(pos)}": 1}, (.5, 0, 1, 1), M["leaves"], C)
+    cells = M["cells"]
+    # five rounded masses: one over each limb's end, one higher over the leader; gaps between them stay as hollows
+    for k in range(5):
+        if k < 4:
+            pts = limbs[k]; d = pts[-1] - pts[-4]; hd = Vector((d.x, d.y, 0)).normalized()
+            mc = pts[-1] + hd * .35 + UP * rr(.75, 1.0); Rm = Vector((rr(1.85, 2.1), rr(1.85, 2.1), rr(1.3, 1.5)))
+            cand = [(i, pts[i]) for i in range(7, 13)]; cb = {f"Crown{k}": 1}
+            src = lambda lc, cand=cand, k=k, cb=cb: (lambda i, p: (p, LW(k, i / 12), cb))(*min(cand, key=lambda c: (c[1] - lc).length))
+            wf = lambda p, cb=cb: cb
+        else:
+            mc = leader[-1] + UP * .55; Rm = Vector((1.75, 1.75, 1.4))
+            cand = [(i, leader[i]) for i in range(4, 10)]
+            src = lambda lc, cand=cand: (lambda i, p: (p, {"Trunk2": 1}, blend(({"Trunk2": 1}, .55), ({f"Crown{near_crown(lc)}": 1}, .45))))(*min(cand, key=lambda c: (c[1] - lc).length))
+            wf = lambda p: blend(({"Trunk2": 1}, .55), ({f"Crown{near_crown(p)}": 1}, .45))
+        foliage_mass(mb, M, mc, Rm, 7, OAK_CARDS if k < 4 else int(OAK_CARDS * .8), wf, cells, twig_src=src)
     return B
 
 def build_willow(mb, M):
@@ -389,27 +528,31 @@ def build_willow(mb, M):
             k, pts, ta, _ = R.choices(arches, weights=lens)[0]; i = R.randint(int(len(pts) * .4), len(pts) - 1)
             A = pts[i]
             if A.z > 4.0: return k, A, (i / (len(pts) - 1)) if ta == 0 else ta
-    for sidx in range(440):
+    cells, cols = M["cells"], M["cols"]
+    # a rounded canopy mass sitting on each arch's crest
+    for k in range(4):
+        pts = arches[k][1]; mc = pts[7] + UP * .4; Rm = Vector((rr(1.55, 1.75), rr(1.55, 1.75), rr(.9, 1.05)))
+        w = LW(k, .5)
+        foliage_mass(mb, M, mc, Rm, 5, WIL_CARDS, lambda p, w=w: w, cells)
+    # long drooping strands of the same leaves, hung from the arches and their side branches
+    for sidx in range(WIL_STRANDS):
         k, A, ta = anchor(); hv = A - Ch; hv.z = 0
         h = hv.normalized() if hv.length > .2 else hvec(rr(0, TAU)); tg = UP.cross(h).normalized()
         endZ = rr(.3, 1.3) if R.random() < .72 else rr(1.4, 3.2); ph = rr(0, TAU); pts = []
-        for s in range(10):
-            t = s / 9
+        NS = 8
+        for s in range(NS):
+            t = s / (NS - 1)
             if t <= .15: p = A + h * (.5 * t / .15) + UP * (.12 * math.sin(t / .15 * math.pi))
             else:
                 u = (t - .15) / .85; p = A + h * (.5 + .35 * u) - UP * ((A.z - endZ) * u ** 1.15) + tg * .15 * math.sin(u * 3 + ph)
             pts.append(p)
         az = math.atan2(h.y, h.x); c = min(range(6), key=lambda c: abs((az - curt[c] + math.pi) % TAU - math.pi))
         w0 = LW(k, ta); wc = {f"Curtain{c}": 1}
-        col = R.randrange(4); u0 = .5 + col * .125 + .004
-        cross = sidx >= 320
+        col = cols[3] if R.random() < .22 else cols[R.randrange(3)]
+        cross = sidx >= int(WIL_STRANDS * .72)
         wsc = rr(.85, 1.15)
-        ribbon(mb, pts, [(.42 - .18 * s / 9) * wsc for s in range(10)], (h if cross else tg), (tg if cross else h),
-               lambda t, w0=w0, wc=wc: blend((w0, 1 - ss(.05, .6, t)), (wc, ss(.05, .6, t))), (u0, 0, u0 + .117, 1), M["leaves"], (h * .55 + UP).normalized())
-    for c in range(260):
-        k, A, ta = anchor(); hv = A - Ch; hv.z = 0; h = hv.normalized() if hv.length > .2 else UP
-        pos = A + UP * rr(.05, .3) + rvec() * .3
-        card(mb, pos, rr(.9, 1.3), UP + h * .6 + rvec() * .4, LW(k, ta), (0, 0, .5, 1), M["leaves"], Cc)
+        ribbon(mb, pts, [(.48 - .16 * s / (NS - 1)) * wsc for s in range(NS)], (h if cross else tg), (tg if cross else h),
+               lambda t, w0=w0, wc=wc: blend((w0, 1 - ss(.05, .6, t)), (wc, ss(.05, .6, t))), col, M["leaves"], (h * .55 + UP).normalized())
     return B
 
 def build_snag(mb, M, dark_uv, pale_uv):
@@ -476,18 +619,11 @@ if NAME in ("bloodoak", "weepwillow"):
     M["bark"] = addmat(material("bark", save_img(col, "bark.jpg"), save_img(normal_map(h, 10), "bark_n.jpg", "Non-Color"), rough=.82, nstr=1.2))
 if NAME == "bloodoak":
     M["sap"] = addmat(material("sap", color=(.22, .008, .01), rough=.12, emit=((.5, .025, .02), .5)))
-    crim = [(150, 18, 26), (118, 12, 22), (176, 30, 32), (196, 44, 40), (134, 16, 24)]
-    maro = [(98, 10, 22), (76, 6, 18), (120, 16, 30), (140, 22, 34)]
-    atl = Image.new("RGBA", (2048, 1024))
-    atl.paste(draw_clump(2048, SEED, crim).resize((1024, 1024), Image.LANCZOS), (0, 0))
-    atl.paste(draw_clump(2048, SEED + 5, maro).resize((1024, 1024), Image.LANCZOS), (1024, 0))
-    M["leaves"] = addmat(material("leaves", save_img(atl, "leaves.png"), rough=.6, alpha=True))
+    atl, M["cells"], M["cols"] = leaf_atlas(SEED)
+    M["leaves"] = addmat(material("leaves", save_img(atl, "leaves.png"), rough=.62, alpha=True))
 if NAME == "weepwillow":
-    pal = [(176, 22, 32), (138, 14, 26), (204, 38, 40), (112, 10, 22), (222, 56, 48)]
-    atl = Image.new("RGBA", (2048, 1024))
-    atl.paste(draw_clump(2048, SEED, pal, lobes=0, Lr=(.09, .14), Wr=(.16, .22), n=420).resize((1024, 1024), Image.LANCZOS), (0, 0))
-    atl.paste(draw_strands(512, 2048, SEED + 3, pal).resize((1024, 1024), Image.LANCZOS), (1024, 0))
-    M["leaves"] = addmat(material("leaves", save_img(atl, "leaves.png"), rough=.6, alpha=True))
+    atl, M["cells"], M["cols"] = leaf_atlas(SEED, strands=True)
+    M["leaves"] = addmat(material("leaves", save_img(atl, "leaves.png"), rough=.62, alpha=True))
 dark_uv = pale_uv = (0, 0)
 if NAME == "antlersnag":
     col, h, dark_uv, pale_uv = bark_pale(1024, SEED)
