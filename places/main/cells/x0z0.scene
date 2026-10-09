@@ -1093,7 +1093,7 @@ shrine-candlehold:
 shrine-wayside:
   castShadow: true
   children: [{feetPosition: {x: 0, y: 3.35, z: 0}, id: shard-light, light: {color: "#6db8c0", distance: 7, intensity: 1.2, kind: point}}, {audio: {clip: /cdn/moodboard-gothic-horror/sfx-ancient-shrine-low-resonant-hum-loop.mp3, gain: 0.12, loop: true, maxDistance: 10, spatial: true}, feetPosition: {x: 0, y: 1, z: 0}, id: hum}]
-  feetPosition: {x: 5.5, y: {terrain: 0}, z: -6.5}
+  feetPosition: {x: -7.5, y: 0.05, z: 0.5}
   id: shrine-wayside
   physics: {body: static, collider: box}
   primitive: {kind: scripted, script: scripts/gen/wayshrine.js, seed: 32}
