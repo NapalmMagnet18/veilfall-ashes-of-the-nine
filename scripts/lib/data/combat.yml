@@ -32,3 +32,9 @@ wayshrines:
     - { id: shrine-wayside, name: "Wayside Fire", x: -7.5, z: 0.5, gate: none }
     - { id: shrine-candlehold, name: "Candlehold", x: 0, z: 58.5, gate: none }
     - { id: shrine-abbey, name: "The Ashen Abbey", x: 6, z: -170, gate: abbey }
+# the Candlehold vault: Dame Maudry Quill keeps each Bearer's stash (saved with the Bearer)
+vault:
+  reach: 3.2
+  slots: 36
+  x: -4.2
+  z: 76.5

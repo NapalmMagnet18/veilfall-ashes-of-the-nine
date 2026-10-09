@@ -386,6 +386,16 @@ pop haze rate=3 on=box(.2,.01,.07) life=1.2..1.8 v=up(.4..0.7) size=.18..0.3 acc
 pop glow n=1 at=point() g=flick(.7,.35) r=light(<1,.36,.14>,6+$g*5,4)`;
 // Ser Hollin Vey, the Bladewraith trainer: copper buys a deeper rank of an art once the Bearer is seasoned enough
 const art = (s, k) => s.arts?.[k] ?? 0;
+function vaultNear(ctx) {
+  const now = ctx.now(); if (now < (me.vaultAt ?? 0)) return; me.vaultAt = now + 400;
+  const s = ctx.self.state, f = ctx.self.feetPosition, V = C.vault;
+  const near = !s.menu && !s.dead && Math.hypot(V.x - f.x, V.z - f.z) < V.reach;
+  if (!!s.atVault === near) return;
+  s.atVault = near;
+  if (near) { s.bagOpen = true; s.shop = null;
+    ctx.emit("playSound", { clip: sfx("iron-strongbox-creak-open-coins-shift"), position: f, volume: 0.5 }, { audience: { player: ctx.self.id } });
+    if (!s.vaultSeen) { s.vaultSeen = true; msg(ctx, "Dame Maudry Quill: \"Wax-sealed, ledgered, and kept from the Veil. Whatever you leave here waits for you.\""); } }
+}
 function trainerNear(ctx) {
   const now = ctx.now(); if (now < (me.trainAt ?? 0)) return; me.trainAt = now + 400;
   const s = ctx.self.state, o = ctx.getObject("hollin"), f = ctx.self.feetPosition;
@@ -541,6 +551,19 @@ function itemInput(ctx, a) {
     ctx.emit("playSound", { clip: "/cdn/moodboard-gothic-horror/sfx-" + ITEM_SFX[snd] + ".mp3", position: at, volume: 0.75 });
     return;
   } else if (a.a === "sel") { s.invSel = a.u ?? null; return; }
+  else if (a.a === "store" || a.a === "take") {
+    if (!s.atVault) return;
+    const vault = JSON.parse(JSON.stringify(s.vault ?? []));
+    if (a.a === "store") { const i = inv.findIndex((x) => x.u === a.u); if (i < 0) return;
+      if (vault.length >= C.vault.slots) { msg(ctx, "Dame Maudry: \"The shelves are full, child. Take something home first.\""); return; }
+      vault.push(inv[i]); inv.splice(i, 1); }
+    else { const i = vault.findIndex((x) => x.u === a.u); if (i < 0) return;
+      if (inv.length >= 24) { msg(ctx, "Your pack is full."); return; }
+      inv.push(vault[i]); vault.splice(i, 1); }
+    s.vault = vault; s.inv = inv; s.invSel = null;
+    ctx.emit("playSound", { clip: sfx(a.a === "store" ? "heavy-iron-strongbox-lid-thud-and-latch" : "iron-strongbox-creak-open-coins-shift"), position: ctx.self.feetPosition, volume: 0.55 }, { audience: { player: ctx.self.id } });
+    return;
+  }
   s.inv = inv; s.gear = gear; s.invSel = null;
   if (snd) ctx.emit("playSound", { clip: "/cdn/moodboard-gothic-horror/sfx-" + ITEM_SFX[snd] + ".mp3", position: ctx.self.feetPosition, volume: 0.6 }, { audience: { player: ctx.self.id } });
   deriveGear(ctx);
@@ -747,7 +770,7 @@ export function update(ctx, dt) {
   const s = ctx.self.state, now = ctx.now(), f = ctx.self.feetPosition;
   gate(ctx);
   if (ctx.self.isLocal !== false) showcase(ctx);
-  if (!ctx.self.state.menu && ctx.self.state.charId) { drainLoot(ctx); deriveGear(ctx); if (ctx.self.isLocal !== false) { forgeNear(ctx); boardNear(ctx); trainerNear(ctx); shrineNear(ctx); cauldronNear(ctx); candleChill(ctx); } }
+  if (!ctx.self.state.menu && ctx.self.state.charId) { drainLoot(ctx); deriveGear(ctx); if (ctx.self.isLocal !== false) { forgeNear(ctx); boardNear(ctx); trainerNear(ctx); shrineNear(ctx); vaultNear(ctx); cauldronNear(ctx); candleChill(ctx); } }
   const vy = (ctx.self.velocity?.y ?? 0) + (ctx.self.grounded ? 0 : ctx.place.gravity.y * dt);
   // a fresh visit opens on the title in the Veil; a realm cross lands on that realm's character list
   if (ctx.self.isLocal !== false && !ctx.session.vfDoor) {

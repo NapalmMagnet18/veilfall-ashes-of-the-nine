@@ -63,6 +63,14 @@ export function packPanel(ctx, player, { rail, touch }) {
           <span>♥ ${s.tonics ?? 0}</span><span>◆ ${s.shards ?? 0}</span>${s.heartwax ? `<span style="color:#b48cff" title="Heartwax: a boss's last tallow">✦ ${s.heartwax}</span>` : ""}${s.abbesswax ? `<span style="color:#9fe8e0" title="The Abbess's Candle: only the Ossuary gives it">✟ ${s.abbesswax}</span>` : ""}<span>✉ ${s.petitions?.length ?? 0}</span>
           <span style="display:flex;align-items:center">${coinHTML(s.copper ?? 0, 13)}</span>
         </div>
+        ${s.atVault ? (() => { const vault = s.vault ?? [], VS = 36;
+          const vc = Array.from({ length: VS }, (_, i) => { const it = vault[i];
+            return it ? `<div class="gs" style="${frame(it)}" onclick="${act("take", `,u:'${it.u}'`)}"><img src="${icon(it.b)}">${touch ? "" : `<div class="tip">${cardHTML(it, gear)}<div style="font-size:11px;color:#9a907e;margin-top:3px">click to take</div></div>`}</div>` : `<div class="gs" style="cursor:default;opacity:.55"></div>`; }).join("");
+          return `<div style="margin-top:10px;padding-top:8px;border-top:1px solid #c49c6355">
+          <div style="display:flex;justify-content:space-between;align-items:center;font-size:10px;letter-spacing:.18em;color:#d9b77a">⚿ CANDLEHOLD VAULT · DAME MAUDRY QUILL<span style="color:#9a907e">${vault.length}/${VS}</span></div>
+          <div style="font-size:10px;color:#9a907e;margin:4px 0 6px">${sel ? "" : "pick an item in your pack to store it · click a vault item to take it"}</div>
+          ${sel ? `<button class="vb" style="width:100%;margin-bottom:6px;border-color:#c49c63aa" onclick="${act("store", `,u:'${sel.u}'`)}">STORE ${String(sel.n ?? "ITEM").toUpperCase()} IN THE VAULT</button>` : ""}
+          <div style="display:grid;grid-template-columns:repeat(9,42px);gap:3px" class="vfvault">${vc}</div></div>`; })() : ""}
         ${s.atCauldron ? (() => { const rk = renderRank(s.renderXp ?? 0), pct = rk.next ? Math.round(100 * ((s.renderXp ?? 0) - rk.from) / (rk.next - rk.from)) : 100, on = brewActive(s, ctx.now());
           return `<div style="margin-top:10px;padding-top:8px;border-top:1px solid #e0a86633">
           <div style="display:flex;align-items:center;gap:8px;font-size:10px;letter-spacing:.18em;color:#d9b77a">♨ WAX-RENDERING · RANK ${rk.i + 1} · ${rk.name.toUpperCase()}
