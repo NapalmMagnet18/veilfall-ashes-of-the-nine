@@ -47,9 +47,9 @@ export function look(ctx) {
       const aspect = aoT.size.x.div(aoT.size.y);
       const rUv = R.mul(0.72).div(z.max(0.6));
       const pix = uv.mul(aoT.size);
-      const rot = pix.dot(vec2(0.0671, 0.0058)).fract().mul(52.98).fract().mul(6.2832);
+      const rot = pix.dot(vec2(0.06711056, 0.00583715)).fract().mul(52.9829189).fract().mul(6.2832); // interleaved gradient noise: no grid alias
       const occ = float(0).toVar();
-      const SAMPLES = high ? 8 : 5;
+      const SAMPLES = high ? 12 : 8;
       for (let i = 0; i < SAMPLES; i++) {
         const a = rot.add(i * 2.39996);
         const r = Math.sqrt((i + 0.5) / SAMPLES);
@@ -60,12 +60,23 @@ export function look(ctx) {
         occ.addAssign(max(N.dot(v).div(d.add(0.001)).sub(0.08), 0).mul(fall));
       }
       const sky = z.greaterThan(600).select(float(0), float(1));
-      const a0 = clamp(float(1).sub(occ.div(SAMPLES).mul(ctx.param("aoIntensity", 1.6)).mul(sky)), 0, 1);
+      const a0 = clamp(float(1).sub(occ.div(SAMPLES).mul(ctx.param("aoIntensity", 1.25)).mul(sky)), 0, 1);
       return vec4(vec3(a0), 1);
     });
-    const h = vec2(0.75).div(aoT.size);
-    const aoV = ao.sample(screenUV.add(h)).r.add(ao.sample(screenUV.sub(h)).r)
-      .add(ao.sample(screenUV.add(vec2(h.x, h.y.negate()))).r).add(ao.sample(screenUV.add(vec2(h.x.negate(), h.y))).r).mul(0.25);
+    // a real blur at the AO's own resolution: 5x5 taps, edge-aware on depth, so the noise melts into soft contact shadow
+    const aoB = ctx.target("fid-ao-blur", { scale: 0.5, format: "rgba8unorm" });
+    const blurred = ctx.pass(aoB, (uv) => {
+      const t = vec2(1).div(aoB.size), z0 = ctx.viewZAt(uv).negate();
+      const sum = float(0).toVar(), wsum = float(0).toVar();
+      for (let y = -2; y <= 2; y++) for (let x = -2; x <= 2; x++) {
+        const q = uv.add(t.mul(vec2(x, y)).mul(1.5));
+        const dz = ctx.viewZAt(q).negate().sub(z0).abs().div(z0.max(1)).mul(18);
+        const w = float(1 / (1 + x * x + y * y)).mul(clamp(float(1).sub(dz), 0, 1));
+        sum.addAssign(ao.sample(q).r.mul(w)); wsum.addAssign(w);
+      }
+      return vec4(vec3(sum.div(wsum.max(0.0001))), 1);
+    });
+    const aoV = blurred.sample(screenUV).r;
     c = c.mul(float(1).sub(float(1).sub(aoV).mul(ctx.param("aoStrength", 0.7))));
   }
 
