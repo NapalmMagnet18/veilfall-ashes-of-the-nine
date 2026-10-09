@@ -336,13 +336,13 @@ def curtain(d, x0, w, h, rnd, pal, core):
     # one hanging curtain: a solid tapered core (the mass that reads from 14 m) with strands over it
     Lp, Rp = [], []
     for k in range(17):
-        t = k / 16; y = t * h * .84; hw = w * (.36 - .1 * t) + rnd.uniform(-5, 5); sw = 9 * math.sin(t * 5 + rnd.random())
+        t = k / 16; y = t * h * .78; hw = w * (.38 - .22 * t ** 1.3) + rnd.uniform(-6, 6); sw = 9 * math.sin(t * 5 + rnd.random())
         Lp.append((max(x0 + 4, x0 + w / 2 - hw + sw), y)); Rp.append((min(x0 + w - 4, x0 + w / 2 + hw + sw), y))
-    bot = [(Lp[-1][0] + (Rp[-1][0] - Lp[-1][0]) * k / 8, h * rnd.uniform(.84, .97)) for k in range(9)]
+    bot = [(Lp[-1][0] + (Rp[-1][0] - Lp[-1][0]) * k / 10, h * (rnd.uniform(.86, .98) if k % 2 else rnd.uniform(.78, .84))) for k in range(11)]
     d.polygon(Lp + bot + list(reversed(Rp)), fill=c8(core))
     for k in range(260):
         t0 = rnd.random(); x = x0 + w * (.1 + .8 * rnd.random()); y = rnd.uniform(0, .08) * h
-        L = h * rnd.uniform(.35, .99) * (1 - .45 * abs(x - x0 - w / 2) / w); ph = rnd.uniform(0, TAU); amp = rnd.uniform(2, 9)
+        L = h * rnd.uniform(.3, .99) * (1 - 1.1 * abs(x - x0 - w / 2) / w); ph = rnd.uniform(0, TAU); amp = rnd.uniform(2, 9)
         pts = [(min(x0 + w - 3, max(x0 + 3, x + amp * math.sin(s * .8 + ph))), min(h - 2, y + L * s / 10)) for s in range(11)]
         base = rnd.choice(pal); f = rnd.uniform(.6, .9) if k < 150 else rnd.uniform(.95, 1.3)
         d.line(pts, fill=c8(base, f), width=rnd.randint(2, 5))
@@ -444,20 +444,20 @@ def build_cypress(mb, M):
             tube(mb, sp, taper(r0 * .4, .015, 5), 5, M["bark"], lambda t, w=w: w)
             anchors += [(sp[j], w, UP.cross(h2)) for j in (2, 4)]
         # flat layered needle sprays: the bald-cypress crown read from above
-        for c in range(9):
+        for c in range(14):
             P, w, _ = R.choice(anchors[2:]); nrm = (UP + rvec() * .35).normalized()
-            card(mb, P + UP * rr(.05, .25) + rvec() * .2, rr(.9, 1.35), nrm, w, SQ[R.choice((0, 1, 2, 3, 0, 1, 2))], M["curtain"], ctr, bend=.1, cnup=1.2)
+            card(mb, P + UP * rr(.05, .3) + rvec() * .25, rr(1.1, 1.6), nrm, w, SQ[R.choice((0, 1, 2, 3, 0, 1, 2))], M["curtain"], ctr, bend=.1, cnup=1.2)
         # moss curtains hung along the limb
         mid = pts[5]
         B.append((f"Limb{k}", pts[0], pts[-1], "Trunk2")); B.append((f"Curtain{k}", mid, mid - UP * 2.2, f"Limb{k}"))
         for c in range(10 if k < 7 else 6):
             A, w0, along = R.choice(anchors); A = A.copy()
-            Lc = rr(1.6, min(3.6, A.z - .6)); ph = rr(0, TAU); wsc = rr(.8, 1.2)
+            Lc = rr(1.2, min(3.6, A.z - .6)); ph = rr(0, TAU); wsc = rr(.6, 1.15)
             side = along.normalized() if R.random() < .72 else h.copy()
             out = side.cross(UP).normalized()
             ptsc = [A + out * .08 * u - UP * Lc * u + side * .06 * math.sin(u * 3 + ph) for u in [s / 6 for s in range(7)]]
             wc = {f"Curtain{k}": 1}
-            ribbon(mb, ptsc, [(.95 - .35 * s / 6) * wsc for s in range(7)], side, out,
+            ribbon(mb, ptsc, [(.85 - .3 * s / 6) * wsc for s in range(7)], side, out,
                    lambda t, w0=w0, wc=wc: blend((w0, 1 - ss(.0, .45, t)), (wc, ss(.0, .45, t))), R.choice(COL), M["curtain"], (out * .6 + UP).normalized())
     for c in range(6):   # crown top tuft
         card(mb, tp[-1] + rvec() * .35 + UP * .1, rr(.9, 1.2), (UP + rvec() * .4).normalized(), {"Trunk2": 1}, SQ[c % 4], M["curtain"], ctr, bend=.12, cnup=1.2)
@@ -501,6 +501,20 @@ def build_willow(mb, M):
     return B
 
 # ================================================================ rot log
+def lump(mb, c, rad, w, m, seg=16, rings=10, amt=.25, off=0.0):
+    ids = []
+    for i in range(rings + 1):
+        th = math.pi * i / rings; row = []
+        for j in range(seg + 1):
+            ph = TAU * j / seg; d = Vector((math.sin(th) * math.cos(ph), math.sin(th) * math.sin(ph), math.cos(th)))
+            f = 1 + amt * mnoise.noise(d * 1.9 + Vector((off, 0, 0))) + amt * .5 * mnoise.noise(d * 5.0 + Vector((0, off, 0)))
+            row.append(mb.v(c + Vector((d.x * rad[0], d.y * rad[1] * f, d.z * rad[2] * f)), w))
+        ids.append(row)
+    for i in range(rings):
+        for j in range(seg):
+            mb.f((ids[i][j], ids[i + 1][j], ids[i + 1][j + 1], ids[i][j + 1]),
+                 [(j / seg * 3, i / rings * 2), (j / seg * 3, (i + 1) / rings * 2), ((j + 1) / seg * 3, (i + 1) / rings * 2), ((j + 1) / seg * 3, i / rings * 2)], m)
+
 def build_log(mb, M):
     N = 16; NS = 18
     pts = [Vector((-3 + 6 * i / (N - 1), .08 * math.sin(i * .5), .36 + .05 * math.sin(i * .4))) for i in range(N)]
@@ -520,7 +534,12 @@ def build_log(mb, M):
         mb.f((spk[j], spk[j2], hc), [(.3, .3), (.35, .3), (.32, .4)], M["heart"])
     # the torn root plate: a soil disc standing on end, roots snapping out of it
     P0 = Vector((-3.15, 0, 1.0))
-    blob(mb, P0, (.3, 1.35, 1.0), {"Log": 1}, (.5, .5), M["soil"], seg=14, rings=8)
+    lump(mb, P0, (.32, 1.3, 1.0), {"Log": 1}, M["soil"], amt=.28, off=3.1)
+    for k in range(9):   # roots knotted across the torn face
+        th = rr(0, TAU); S = P0 + Vector((-.3, 0, 0)) + Vector((0, math.cos(th), math.sin(th))) * rr(0, .3)
+        E = P0 + Vector((-.25, math.cos(th + rr(-.4, .4)) * 1.2, math.sin(th + rr(-.4, .4)) * .95))
+        rp = [S.lerp(E, s / 5) + Vector((-.12 * math.sin(s / 5 * math.pi), 0, 0)) + rvec() * .04 * (0 < s < 5) for s in range(6)]
+        tube(mb, rp, taper(rr(.06, .1), .04, 6), 6, M["bark"], lambda t: {"Log": 1}, U=1)
     for k in range(16):
         th = TAU * k / 16 + rr(-.15, .15); d = Vector((-rr(.15, .5), math.cos(th), math.sin(th))).normalized()
         S = P0 + Vector((-.12, math.cos(th) * 1.05, math.sin(th) * .8)); L = rr(.5, 1.5)
