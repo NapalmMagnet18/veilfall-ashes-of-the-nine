@@ -617,7 +617,7 @@ function sheetPanel(s, lv, xpPct, L) {
   ${anc ? `<div class="vftrait"><span class="lbl" style="color:${anc.color}">${anc.name} · ${anc.home}</span><div>${anc.trait ?? ""}</div></div>` : ""}
 </div>`;
 }
-const FOE_FACE = { pilgrim: CDN("54d0e5c971ad2511ba09bcd13f971704cc7a94516744528041483beb588e6d2f"), walker: CDN("de8e265bfd3a2ab34a3bb2ec077d694014ccaeddcdfeb3a06faf956fe3d73235"), deacon: CDN("00cc1d1cf61d2e3ebdb64a3501ea50b4ff0a01d10b0326ac4a1316245571da04"), chandler: CDN("3e780bf14bf48b2f8a792979cec143936455a73fd0fd198d2f914bf4cbfd2029"), cantor: CDN("15de9f9f81879032a5382e233d9ee45113d11894bb8437168da045b6c0d5e7a1"), chorister: CDN("9c17473ab3f014b009dab681e58544953739b98485bb0b618bacdf06c33c3823"), flagellant: CDN("778c42a874cb3428629ff1fe29cbcde5b130b0c20a022c1329120ac05533c77d") };
+const FOE_FACE = { pilgrim: CDN("54d0e5c971ad2511ba09bcd13f971704cc7a94516744528041483beb588e6d2f"), walker: CDN("a53d19bf172b6b1ae6cba062d9699cd85070e2169a694495718e4524d8b90ed0"), deacon: CDN("00cc1d1cf61d2e3ebdb64a3501ea50b4ff0a01d10b0326ac4a1316245571da04"), chandler: CDN("3e780bf14bf48b2f8a792979cec143936455a73fd0fd198d2f914bf4cbfd2029"), cantor: CDN("15de9f9f81879032a5382e233d9ee45113d11894bb8437168da045b6c0d5e7a1"), chorister: CDN("9c17473ab3f014b009dab681e58544953739b98485bb0b618bacdf06c33c3823"), flagellant: CDN("778c42a874cb3428629ff1fe29cbcde5b130b0c20a022c1329120ac05533c77d") };
 // WoW-style unit frames: the Bearer's living portrait and the foe they are fighting, side by side, top left
 function unitFrames(s, { hp, max, hpPct, edge, lv, xpPct, foe, foeOn, now, FOES }) {
   const cls = CLASSES.find((c) => c.id === s.cls) ?? CLASSES[0];

@@ -2,7 +2,7 @@
 export const MODELS = {
   hero: "cdn/model-gaunt-hooded-swordsman-in-tattered-ash-grey-cloak-blackened-iron-pauldrons-red-sash-twin-curved-blades-dark-fantasy.glb",
   pilgrim: "/cdn/value.c0a2d4eb8ff7a5107fdf362f5d353167795e59e88326e20439351d5e823cbd10.png.glb",
-  walker: "/cdn/value.1a7bf3f29aae0fdd0b144c475133debcf06fd5a235173096c7ea0902f354fda0.png.glb",
+  walker: "/cdn/value.0a9881061be83a3f90825993b1cc858c04602d5ac29f69dd0ddca13cac37bdaf.png.glb",
   deacon: "/cdn/value.b596bf364ccb2be48c3db553727af88e454c09792d40d6a5031ac646c9361831.png.glb",
   chorister: "/cdn/value.6d8aad45a2d507267ea3819375aac11f89513f3b07ac80ab72a9cd88016866f2.png.glb",
   flagellant: "/cdn/value.a361fb6343d97995caa46fa46e036f15b0e5586ba5d8789a16ae3651271c5f50.png.glb",
