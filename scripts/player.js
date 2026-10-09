@@ -317,8 +317,8 @@ pop air on=@shaft.lives(25) life=.3..0.5 v=sdir()*.15 size=.1..0.16 acc=drag(2) 
 pop glow burst=1 life=%t|.3 v=<%dir|0,0,-1>*%sp|30 r=light(<.6,.75,1>,6,4)`;
 // the caster's circle: a ring of light on the floor that spins out and fades, motes rising off its edge
 const SIGIL = `fx
-pop ring burst=1 at=point() life=.6 size=1.6 col=<%c|1,1,1>*2.2 a=.7>.4:.5>0 sz=$size*(.5>1.1) r=sprite(soft-disc,add,floor)
-pop edge burst=22..28 on=ring(.75,.8) life=.45..0.8 v=up(.6..1.4) size=.02..0.04 acc=drag(1.2)+curl(.6) col=<%c|1,1,1>*3><%c|1,1,1>*.5 a=1>0 r=sprite(mote,add)
+pop ring burst=1 at=point() life=.6 size=1.6 col=<%c|1,1,1>*2.2 a=.7>.4:.5>0 sz=$size*(.5>1.1) r=sprite(soft-disc,add,ground)
+pop edge burst=22..28 on=arc(.78,6.283,.05) life=.45..0.8 v=up(.6..1.4) size=.02..0.04 acc=drag(1.2)+curl(.6) col=<%c|1,1,1>*3><%c|1,1,1>*.5 a=1>0 r=sprite(mote,add)
 pop lamp burst=1 life=.5 at=point() r=light(<%c|1,1,1>,6*(1>0),3.5)`;
 const ATK = {
   soulweaver:   { reach: 11, cd: 0.8, mul: 1.25, sp: 18, fx: BOLT("hdr(2.2,3.4,4.2)", "hdr(.4,.9,1.6)", "<.5,.8,1>"), castFx: CAST("hdr(2.2,3.4,4.2)", "<.5,.8,1>"), cast: "cdn/clip-cast.glb", snd: "arcane-bolt-cast-shimmering-whoosh", hit: "arcane-bolt-impact-glass-chime-burst", hitFx: "<.5,.85,1>" },
