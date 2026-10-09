@@ -4,6 +4,7 @@ import { shopPanel } from "./lib/shop-ui.js";
 import { packPanel, PACK_CSS } from "./lib/pack-ui.js";
 import { BREW } from "./lib/brews.js";
 import { icon as itemIcon, TIER } from "./lib/loot.js";
+import { treeOf, TAL_ICON, LABEL, pointsOf, spent, spentIn, canLearn } from "./lib/data/talents.js";
 import { boardPanel } from "./lib/board-ui.js";
 import R from "./lib/data/realms.yml";
 import { FRAME_CSS } from "./lib/frames.js";
@@ -531,6 +532,7 @@ function vfHud(ctx, player) {
   ${q.stage === 0 || q.stage === 4 || q.stage === 9 || q.stage === 12 || q.stage === 16 || q.stage === 17 || q.stage === 21 ? `<div data-world-anchor="maelin" data-anchor-offset="0 2.3 0" style="font-size:30px;color:var(--wax);text-align:center;animation:vfpulse 1.4s infinite">!<div style="font-size:12px">MAELIN</div></div>` : ""}
   ${s.bagOpen ? packPanel(ctx, player, { rail, touch }) : ""}
   ${s.sheetOpen && !touch ? sheetPanel(s, lv, xpPct, L) : ""}
+  ${s.treeOpen && !touch ? treePanel(s, lv) : ""}
   ${s.bagOpen && s.atBoard ? boardPanel(ctx, player, { rail: touch ? rail : "24px", touch }) : ""}
   ${s.atTrainer && !s.bagOpen && !s.shop ? trainPanel(s, touch, rail) : ""}
   ${s.atShrine && !s.bagOpen && !s.shop ? shrinePanel(s, touch, rail) : ""}
@@ -604,7 +606,33 @@ function sheetPanel(s, lv, xpPct, L) {
   ${anc ? `<div class="vftrait"><span class="lbl" style="color:${anc.color}">${anc.name} · ${anc.home}</span><div>${anc.trait ?? ""}</div></div>` : ""}
 </div>`;
 }
+function treePanel(s, lv) {
+  const cls = CLASSES.find((c) => c.id === s.cls) ?? CLASSES[0], tal = s.talents ?? {}, left = pointsOf(lv) - spent(tal);
+  const col = (br, b) => `<div class="vftb"><div class="vftb-h" style="color:${br.color}">${br.name}<span>${spentIn(tal, b)}</span></div>
+    ${br.nodes.map((n, i) => { const r = tal[n.id] ?? 0, open = spentIn(tal, b) >= n.t * 3, can = canLearn(s.cls, tal, lv, n.id);
+      return `${i ? `<div class="vftl" style="background:${open ? br.color : "#2a241c"}"></div>` : ""}<div class="vftn ${r ? "on" : ""} ${open ? "" : "lk"} ${n.max === 1 ? "cap" : ""}" style="--c:${br.color};${can ? "cursor:pointer;" : ""}" ${can ? `onclick="sendAction('learn',{id:'${n.id}'})"` : ""}>
+        <img src="${TAL_ICON[n.stat]}"><span class="vftr">${r}/${n.max}</span>
+        <div class="vftt"><b style="color:${br.color}">${n.name}</b><div>+${Math.round(n.per * 10) / 10}${LABEL[n.stat]} per rank</div>${open ? "" : `<div style="color:#a0563f">Needs ${n.t * 3} points in ${br.name}</div>`}${r ? `<div style="color:#8fd18a">Now: +${Math.round(n.per * r * 10) / 10}${LABEL[n.stat]}</div>` : ""}</div></div>`; }).join("")}</div>`;
+  return `<div class="absolute vftree" style="left:50%;top:70px;transform:translateX(-50%);animation:vfin .2s">
+    <div class="vfsh-h"><div><div style="font-size:20px;color:var(--wax);letter-spacing:.08em">${cls.name} Talents</div><div class="lbl">${left > 0 ? `<span style="color:#f2d38a">${left} point${left > 1 ? "s" : ""} to spend</span>` : "a point each level"} · ${spent(tal)} spent</div></div>
+    <div style="display:flex;gap:8px"><div class="vfx" style="pointer-events:auto;cursor:pointer;width:auto;padding:0 8px;font-size:11px;letter-spacing:.12em" onclick="sendAction('learn',{id:'reset'})">RESET</div><div class="vfx" style="pointer-events:auto;cursor:pointer" onclick="sendAction('tree')">✕</div></div></div>
+    <div class="dv d0" style="margin:6px 0 12px"></div>
+    <div style="display:flex;gap:18px;justify-content:center">${treeOf(cls.id).map(col).join("")}</div>
+  </div>`;
+}
 const SHEET_CSS = `<style>
+#vf .vftree{width:560px;padding:14px 18px 18px;background:radial-gradient(ellipse at 50% 0%,#2a221b,#110e0c 70%);box-shadow:0 0 0 2px #0d0b0a,0 0 0 4px #6b5638,0 0 0 6px #0d0b0a,0 18px 40px rgba(0,0,0,.7);pointer-events:auto}
+#vf .vftb{flex:1;display:flex;flex-direction:column;align-items:center;padding:8px 0 4px;background:linear-gradient(rgba(0,0,0,.25),rgba(0,0,0,.05));box-shadow:inset 0 0 0 1px #2e271e}
+#vf .vftb-h{font-size:14px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px;display:flex;gap:8px;align-items:baseline} #vf .vftb-h span{font-size:11px;color:#b9a77f}
+#vf .vftl{width:3px;height:18px;opacity:.8}
+#vf .vftn{position:relative;width:56px;height:56px;box-shadow:0 0 0 2px #0d0b0a,0 0 0 3px #4a3d2a;background:#0b0908}
+#vf .vftn.cap{width:64px;height:64px;border-radius:50%;overflow:visible} #vf .vftn.cap img{border-radius:50%}
+#vf .vftn img{width:100%;height:100%;object-fit:cover;filter:grayscale(.85) brightness(.55)}
+#vf .vftn.on{box-shadow:0 0 0 2px #0d0b0a,0 0 0 3px var(--c),0 0 14px var(--c)} #vf .vftn.on img{filter:none}
+#vf .vftn.lk img{filter:grayscale(1) brightness(.25)}
+#vf .vftr{position:absolute;right:-6px;bottom:-6px;font-size:11px;padding:0 4px;background:#0d0b0a;color:#f2d38a;box-shadow:0 0 0 1px #6b5638}
+#vf .vftt{display:none;position:absolute;left:66px;top:0;width:180px;z-index:5;padding:8px 10px;font-size:12px;line-height:1.4;color:#cfc2a3;background:#120f0d;box-shadow:0 0 0 1px #0d0b0a,0 0 0 2px #6b5638}
+#vf .vftn:hover .vftt{display:block}
 #vf .vfsheet{width:430px;padding:14px 16px 16px;background:linear-gradient(#211d1a,#120f0d);box-shadow:0 0 0 2px #0d0b0a,0 0 0 4px #6b5638,0 0 0 6px #0d0b0a,0 18px 40px rgba(0,0,0,.7);pointer-events:auto}
 #vf .vfsh-h{display:flex;justify-content:space-between;align-items:flex-start}
 #vf .vfx{width:26px;height:26px;display:flex;align-items:center;justify-content:center;color:#b9a77f;box-shadow:0 0 0 1px #6b5638}
