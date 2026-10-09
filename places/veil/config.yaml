@@ -26,4 +26,5 @@ atmosphere:
   wet: 0.7
   wind: {direction: 200, speed: 2}
   look:
-    script: scripts/look-default.js
+    script: mods/raytraced-lighting/look-raytrace.js
+    params: {aoStrength: 0.4, bloom: 0.7, bloomThreshold: 0.6, denoise: 0.35, reflection: 0.95}
