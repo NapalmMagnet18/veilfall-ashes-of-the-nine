@@ -96,6 +96,14 @@ const CLASSES = [
 ];
 // each calling standing full-body (cut-out of its model sheet), shown on the create screen
 const FIG = {bladewraith: CDN("7c2b494c6665889a4f5b8c3336fab44612721a3c3bbd87820a0963165ad4d41f"), soulweaver: CDN("d8d5fac14ebdede7be5d55127282e9ba110fdee44f5cb563bf00cdcd0ccf5078"), hellwarden: CDN("b1bd2270be0fb1bbce2e4e3c74c45f66aa86f86da86bd25411c162028690e9f7"), shadowmancer: CDN("805eb1cf05de44786bec782cf205cb63d9a4e02b8bfdc5127aeed97dc09008ce"), primalist: CDN("0edd79eac9ede04d84fe96950b0a47b2c7ceddee3eaddec92c2c9738720c0c7d"), gloamstalker: CDN("7cc9007341f26fd5137a398e78b0aa6affcf335505ed251b25ce31089e162b8b")};
+// the RMB signature per calling: its name and painted icon (Bladewraith keeps Crosswound)
+const SIG_UI = {
+  soulweaver: ["Wound of Light", "/cdn/value.9e967583ee96c778c369d2ef504b8fd4aeffa9867790e6eb67c9274217cb1399.png"],
+  shadowmancer: ["Borrowed Shadow", "/cdn/value.314cbdeade8461844a36e0eb9b36df8d43090b8e7333bb38941e850769ebeb42.png"],
+  gloamstalker: ["Glassbolt Volley", "/cdn/value.f978eecf96a06973bedf6297c1c4cdcd855751c475936c03b7290bada9d08f2e.png"],
+  hellwarden: ["Furnace Sweep", "/cdn/value.e58d935877461b8db8f3a20fe809b2ec7485f6f4856732af0e5bb3f756348b38.png"],
+  primalist: ["Stormhorn", "/cdn/value.bd31ee8c8c0cc282fb1dfb12eafaa93d2a1ca2bb0038b95c6178e4596100361b.png"],
+};
 const ANC = [
   { id: "cinderkin", name: "Cinderkin", home: "Ashwake Moor", color: "#aa4e3c", img: CDN("9c69f92c34a4b961e1acfac921f118e1871b170c627327df1c7094082d2216ea"), ethos: "Families inscribe the names of their lost into coal-fired clay.", trait: "Ember Ward: once a minute, the first blow you take is softened by up to 12." },
   { id: "fenborn", name: "Fenborn", home: "Gloamfen Reach", color: "#368783", img: CDN("657d460456caf2572c15e722fe7460d7b3ebc7e26991e41e7159cff6542564e4"), ethos: "Fenspeople keep reed tablets that hold a memory until the rain.", trait: "Mist Stride: move 30% faster for 1.5 s after every Griefstep." },
@@ -523,7 +531,7 @@ function vfHud(ctx, player) {
     <div class="vforb vfR"><div class="vfglobe"><div class="vfliq" style="height:${edge}%;--a:#ffc35a;--b:#a3520e;--c:#3b1a04"></div><div class="vfgl"></div><div class="vfv">${edge}<small>${((CLASSES.find((c) => c.id === s.cls) ?? CLASSES[0]).res ?? "Edge").toUpperCase()}</small></div></div><img class="vffr" src="/cdn/value.af729622950e1658a4df89c76bd30887a4735628e38c2319318a050aa463a595.png"></div>
     <div class="sk vfsk">
     <div class="slot" title="Ashcut"><img class="ic" src="${IC.ash}"><span class="k">LMB</span></div>
-    <div class="slot ${edge < 30 || cwLeft ? "dim" : ""}" title="Crosswound · 30 Edge"><img class="ic" src="${IC.cross}"><span class="k">RMB</span><span class="n">30</span>${cdOver(cwLeft, cwPct)}</div>
+    <div class="slot ${edge < 30 || cwLeft ? "dim" : ""}" title="${(SIG_UI[player.state.cls] ?? ["Crosswound"])[0]} · 30 Edge"><img class="ic" src="${(SIG_UI[player.state.cls] ?? [0, IC.cross])[1]}"><span class="k">RMB</span><span class="n">30</span>${cdOver(cwLeft, cwPct)}</div>
     <div class="slot" title="Griefstep"><img class="ic" src="${IC.step}"><span class="k">SPC</span>${cdOver(dashLeft, dashPct)}</div>
     <div class="slot ${guardOn ? "ready" : ""}" title="Guard" style="${guardOn ? "box-shadow:0 0 0 2px #0d0b0a,0 0 14px 3px #6DB8C0" : ""}"><img class="ic" src="${IC.guard}"><span class="k">1</span>${cdOver(guardLeft, guardPct)}</div>
     <div class="slot ${(s.tonics ?? 0) ? "" : "dim"}" title="Ash Tonic"><img class="ic" src="${IC.tonic}"><span class="k">Q</span><span class="n">${s.tonics ?? 0}</span></div>
