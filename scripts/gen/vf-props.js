@@ -1,9 +1,9 @@
 // Broken Lantern Road clutter, one file, one `kind` per prop (params.kind):
 // wagon · tree · banner · bones · lantern · bell. Origin at the foot, front −Z.
 import { kit, rng, lantern } from "./vf-kit.js";
-const WOOD = "cdn/texture-rotten-weathered-wood-planks.png";
+const WOOD = "/cdn/value.fd7f44461fb4757d95a177f1a9112b573154f57737f844a4558b4b32e21521ae.png";
 const BARK = "cdn/texture-dead-grey-tree-bark.png";
-const IRON = "cdn/texture-rusted-dark-iron.png";
+const IRON = "/cdn/value.fc2d6f2f81f6d5fa8b807c3778839023b0680cf71709aafbaf66806426b4a17c.png";
 const CLOTH = "cdn/texture-faded-tattered-linen.png";
 export function geometry(ctx) {
   const p = ctx.params, K = kit(ctx), r = rng(p.seed ?? 1);

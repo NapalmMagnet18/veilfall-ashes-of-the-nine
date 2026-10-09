@@ -21,7 +21,7 @@ export function geometry(ctx) {
     ctx.color(i % 2 ? "oklch(.6 .02 45)" : "oklch(.78 .03 55)"); const l = 0.1 + R() * 0.35;
     bx(xf([(R() - 0.5) * 0.18, 0.04 + R() * 0.26, len + l / 2 - 0.02], (R() - 0.5) * 20, (R() - 0.5) * 16), 0.008 + R() * 0.02, 0.008 + R() * 0.02, l / 2, 0);
   }
-  ctx.albedo("cdn/texture-rusted-dark-iron.png"); ctx.metalness(0.55); ctx.roughness(0.7); ctx.color("oklch(.7 .04 45)");
+  ctx.albedo("/cdn/value.fc2d6f2f81f6d5fa8b807c3778839023b0680cf71709aafbaf66806426b4a17c.png"); ctx.metalness(0.55); ctx.roughness(0.7); ctx.color("oklch(.7 .04 45)");
   const zs = len * (0.3 + R() * 0.1);
   bx(xf([0, 0.17, zs]), 0.145, 0.185, 0.04, 0.005);
   if (L <= 2) for (const s of [-1, 1]) bx(xf([s * 0.15, 0.17, zs]), 0.012, 0.025, 0.025, 0);

@@ -46,7 +46,7 @@ export function geometry(ctx) {
     section(ctx, xf([0, 0.3, 0], (R() - 0.5) * 6, 84 + R() * 8, 0), x0, x1, o(), R, J, L);
   } else section(ctx, xf([0, 0, 0], (R() - 0.5) * 3), x0, x1, o(), R, J, L);
   if (L <= 2 && st !== "over") { // wax run off the back plank where pilgrims left candles
-    ctx.smooth(); ctx.albedo("cdn/texture-old-yellowed-candle-wax.png"); ctx.roughness(0.5);
+    ctx.smooth(); ctx.albedo("/cdn/value.627b7a8789f6aba4b1057abb947848ac429517d5c496ae62d307c93eda8c8f8a.png"); ctx.roughness(0.5);
     for (let i = 0; i < 3; i++) { ctx.color(WAXC[i + 1]); drip(ctx, x0 + 0.3 + R() * (len - 0.6), 0.93, 0.25, 0.1 + R() * 0.25, 0.02 + R() * 0.015, 5); }
   }
 }

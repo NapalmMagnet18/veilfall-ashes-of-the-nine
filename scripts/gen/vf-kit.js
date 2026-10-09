@@ -76,7 +76,7 @@ export function kit(ctx) {
 }
 // an iron candle lantern standing on its base at the local origin; `broken` drops a pane
 export function lantern(K, ctx, broken, candleH = 0.08) {
-  ctx.albedo("cdn/texture-rusted-dark-iron.png"); ctx.color("oklch(0.9 0.01 250)"); ctx.metalness(0.6); ctx.roughness(0.6);
+  ctx.albedo("/cdn/value.fc2d6f2f81f6d5fa8b807c3778839023b0680cf71709aafbaf66806426b4a17c.png"); ctx.color("oklch(0.9 0.01 250)"); ctx.metalness(0.6); ctx.roughness(0.6);
   K.bb(-0.1, 0, -0.1, 0.1, 0.03, 0.1); K.bb(-0.1, 0.27, -0.1, 0.1, 0.3, 0.1);
   for (const [x, z] of [[-1, -1], [1, -1], [1, 1], [-1, 1]]) K.bb(x * 0.09 - 0.008, 0.03, z * 0.09 - 0.008, x * 0.09 + 0.008, 0.27, z * 0.09 + 0.008);
   K.loft([K.rect(0, 0.3, 0, 0.1, 0.1), K.rect(0, 0.4, 0, 0.02, 0.02)], false, true);

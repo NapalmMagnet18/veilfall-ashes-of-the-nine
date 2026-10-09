@@ -2,10 +2,10 @@
 // chamfered blocks, lathes, wax drips, candle beds, chains and tubes. Pure geometry, no state.
 export const TEX = {
   stone: "cdn/texture-wet-dark-weathered-stone-blocks.png",
-  wax: "cdn/texture-old-yellowed-candle-wax.png",
+  wax: "/cdn/value.627b7a8789f6aba4b1057abb947848ac429517d5c496ae62d307c93eda8c8f8a.png",
   bronze: "cdn/texture-corroded-bronze-verdigris.png",
-  iron: "cdn/texture-rusted-dark-iron.png",
-  wood: "cdn/texture-rotten-weathered-wood-planks.png",
+  iron: "/cdn/value.fc2d6f2f81f6d5fa8b807c3778839023b0680cf71709aafbaf66806426b4a17c.png",
+  wood: "/cdn/value.fd7f44461fb4757d95a177f1a9112b573154f57737f844a4558b4b32e21521ae.png",
   moss: "cdn/texture-dark-wet-moss.png",
 };
 export const WAXC = ["oklch(.74 .035 85)", "oklch(.68 .045 82)", "oklch(.62 .055 78)", "oklch(.54 .06 70)", "oklch(.66 .04 72)"];

@@ -4,12 +4,12 @@ import { V } from "./vf-kit.js";
 export const D = Math.PI / 180;
 export const TX = {
   stone: "cdn/texture-wet-dark-weathered-stone-blocks.png",
-  wood: "cdn/texture-rotten-weathered-wood-planks.png",
-  iron: "cdn/texture-rusted-dark-iron.png",
+  wood: "/cdn/value.fd7f44461fb4757d95a177f1a9112b573154f57737f844a4558b4b32e21521ae.png",
+  iron: "/cdn/value.fc2d6f2f81f6d5fa8b807c3778839023b0680cf71709aafbaf66806426b4a17c.png",
   moss: "cdn/texture-dark-wet-moss.png",
   bark: "cdn/texture-dead-grey-tree-bark.png",
   mud: "cdn/texture-black-wet-peat-mud.png",
-  wax: "cdn/texture-old-yellowed-candle-wax.png",
+  wax: "/cdn/value.627b7a8789f6aba4b1057abb947848ac429517d5c496ae62d307c93eda8c8f8a.png",
 };
 export const STONE = ["oklch(.8 .01 240)", "oklch(.74 .012 230)", "oklch(.84 .01 80)", "oklch(.7 .015 220)"];
 export const PLANK = ["oklch(.72 .04 65)", "oklch(.64 .035 60)", "oklch(.78 .03 75)"];

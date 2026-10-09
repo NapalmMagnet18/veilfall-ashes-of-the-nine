@@ -4,7 +4,7 @@
 // A toll counter stands inside; melted wax-figure stubs huddle on the door step.
 import { kit, rng } from "./vf-kit.js";
 const STONE = "cdn/texture-weathered-grey-fieldstone-masonry.png";
-const WOOD = "cdn/texture-rotten-weathered-wood-planks.png";
+const WOOD = "/cdn/value.fd7f44461fb4757d95a177f1a9112b573154f57737f844a4558b4b32e21521ae.png";
 const SLATE = "cdn/texture-mossy-dark-slate-roof-shingles.png";
 const X = 3.4, Z = 3.9, T = 0.4, H = 3.2, RIDGE = 5.0;
 const DOOR = { a0: -0.6, a1: 0.6, y0: 0, y1: 2.3 };
@@ -120,7 +120,7 @@ export function geometry(ctx) {
   ctx.color("oklch(0.85 0.03 85)"); ctx.roughness(0.9);
   K.push().t(0.95, 1.07, -0.3).ry(8); K.bb(-0.16, 0, -0.22, 0, 0.03, 0.22); K.bb(0, 0, -0.22, 0.16, 0.035, 0.22); K.pop();
   ctx.color("oklch(0.3 0.06 30)"); K.push().t(0.95, 1.07, -0.3).ry(8); K.bb(-0.17, -0.005, -0.23, 0.17, 0.008, 0.23); K.pop();
-  ctx.albedo("cdn/texture-rusted-dark-iron.png"); ctx.color("oklch(0.85 0.01 250)"); ctx.metalness(0.6);
+  ctx.albedo("/cdn/value.fc2d6f2f81f6d5fa8b807c3778839023b0680cf71709aafbaf66806426b4a17c.png"); ctx.color("oklch(0.85 0.01 250)"); ctx.metalness(0.6);
   K.cbox(0.95, 1.07, -1.4, 0.3, 0.16, 0.22, 0.02); ctx.metalness(0); ctx.albedo(null);
   ctx.smooth(); ctx.roughness(0.55);
   for (const [x, z, h, rr] of [[0.9, -2.0, 0.16, 0.04], [1.02, -1.88, 0.28, 0.035], [0.84, -1.84, 0.09, 0.045]]) {

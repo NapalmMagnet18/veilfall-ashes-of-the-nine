@@ -99,9 +99,9 @@ export function rock(ctx, T, r, o = {}) {
     tri(ctx, T, A, B, Cc);
   }
 }
-export const IRON = "cdn/texture-rusted-dark-iron.png";
+export const IRON = "/cdn/value.fc2d6f2f81f6d5fa8b807c3778839023b0680cf71709aafbaf66806426b4a17c.png";
 export const STONE = "cdn/texture-weathered-wet-dark-granite.png";
-export const WOOD = "cdn/texture-rotten-weathered-wood-planks.png";
+export const WOOD = "/cdn/value.fd7f44461fb4757d95a177f1a9112b573154f57737f844a4558b4b32e21521ae.png";
 // a hanging iron lantern; origin = the hanging point, the glass centre sits 0.265 below it
 export function lantern(ctx, T) {
   ctx.albedo(IRON); ctx.color("oklch(0.62 0.01 250)"); ctx.metalness(0.6); ctx.roughness(0.6);
