@@ -67,7 +67,7 @@ function lathe(E, cx, by, cz, prof, n) {
 const pick = (R, arr) => arr[Math.floor(R() * arr.length) % arr.length];
 
 // ---------- the shapes (one clump or piece each, drawn per record) ----------
-const LEAF = ["oklch(0.42 0.11 40)", "oklch(0.30 0.10 18)", "oklch(0.31 0.045 55)", "oklch(0.56 0.09 82)", "oklch(0.36 0.14 26)", "oklch(0.24 0.06 22)"];
+const LEAF = ["oklch(0.52 0.13 42)", "oklch(0.38 0.13 20)", "oklch(0.42 0.06 58)", "oklch(0.68 0.11 84)", "oklch(0.46 0.16 27)", "oklch(0.32 0.08 24)", "oklch(0.56 0.12 60)"];
 function leaf(E, x, y, z, yaw, L, W, curl, tx, tz) {
   const f = [Math.cos(yaw), 0, Math.sin(yaw)], s = [-Math.sin(yaw), 0, Math.cos(yaw)];
   const P = (u, v, h) => { const px = x + f[0] * u + s[0] * v, pz = z + f[2] * u + s[2] * v; return [px, y + h + (px - x) * tx + (pz - z) * tz, pz]; };
@@ -81,7 +81,7 @@ function shapeLitter(E, ctx, lod) {
   for (let i = 0; i < n; i++) {
     const a = R() * TAU, d = Math.sqrt(R()) * 0.85, x = Math.cos(a) * d, z = Math.sin(a) * d;
     const y = 0.01 + (1 - d / 0.85) * 0.045 * R() + i * 0.0004; // a drift: deeper in the middle
-    const L = 0.06 + R() * 0.06;
+    const L = 0.07 + R() * 0.06;
     ctx.color(pick(R, LEAF));
     leaf(E, x, y, z, R() * TAU, L, L * (0.42 + R() * 0.25), 0.008 + R() * 0.02, (R() - 0.5) * 0.5, (R() - 0.5) * 0.5);
   }
