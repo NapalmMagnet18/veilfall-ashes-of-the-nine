@@ -777,7 +777,7 @@ function guardTick(ctx, now) {
     ctx.emit("screenFlash", { color: "#9cc8ff", duration: 0.12, intensity: 0.12 }, { audience: { player: ctx.self.id } });
     ctx.emit("playSound", { clip: sfx("sword-parry-ring-and-counter-slash"), position: f, volume: 0.9 });
     ctx.emit("hitstop", { duration: 0.06 }, { audience: { player: ctx.self.id } });
-    for (const r of ctx.query({ tags: ["enemy"], radius: C.guard.reach, center: f })) { const o = ctx.getObject(r.id); if (isFoe(o)) strike(ctx, o, Math.round(C.guard.riposte * (1 + 0.35 * art(s, "guard")) * weaponMul(s)), true); }
+    for (const r of ctx.query({ tags: ["enemy"], radius: C.guard.reach, center: f })) { const o = ctx.getObject(r.id); if (isFoe(o)) strike(ctx, o, Math.round(C.guard.riposte * (1 + 0.35 * art(s, "guard")) * weaponMul(s)), true, true); }
     s.edge = Math.min(100, (s.edge ?? 0) + 20);
   } else if (ctx.self.fx && now > (s.guardUntil ?? 0)) ctx.self.fx = null;
 }
