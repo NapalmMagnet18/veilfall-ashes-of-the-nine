@@ -133,6 +133,6 @@ export function look(ctx) {
   const q = ctx.quality;
   if (ctx.device.class === "mobile" || !(q === "high" || q === "ultra")) return awakening(ctx);
   const denoised = reflections(ctx);
-  const wet = convertToTexture(ctx.scene.add(denoised.sample(screenUV).rgb.mul(ctx.param("reflection", 0.75))));
-  return awakening(new Proxy(ctx, { get: (t, k) => (k === "scene" ? wet : typeof t[k] === "function" ? t[k].bind(t) : t[k]) }));
+  // Awakening reads ctx.scene directly, so it grades the real scene; the traced reflections land on top of its frame
+  return awakening(ctx).add(denoised.sample(screenUV).rgb.mul(ctx.param("reflection", 0.6)));
 }
