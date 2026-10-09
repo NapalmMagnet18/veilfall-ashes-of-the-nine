@@ -1,4 +1,13 @@
 # spawn-scene v2 yaml x-1z0
+fauna-miretoad-1:
+  feetPosition: {x: -70, y: {terrain: 0}, z: -14}
+  id: fauna-miretoad-1
+  layout: {maxExtents: {y: 0.8}}
+  model: /cdn/value.12c0d8ff5b2d20098ef277ca72c0987f757797aa51ad8b5268bcf06a566b2335.png.glb
+  physics: character
+  rotation: 134.87215493805707
+  state: {home: {x: -70, z: -14}, kind: miretoad, roam: 7, run: 2.4, shy: 4, walk: 0.7}
+  tags: [fauna, miretoad]
 fen-heart:
   feetPosition: {x: -66, y: 0, z: -12}
   id: fen-heart
