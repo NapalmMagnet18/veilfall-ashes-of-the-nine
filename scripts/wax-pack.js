@@ -128,6 +128,7 @@ export function update(ctx, dt) {
     const s = w.state, K = C[s.kind] ?? C.pilgrim, f = w.feetPosition;
     if (s.dead) { w.velocity = { x: 0, y: w.velocity.y, z: 0 }; mutterAt.delete(w.id); if (now - s.deadAt > 2300) ctx.destroy(w.id); continue; }
     if (s.animOff && now > s.animOff) { w.anim.attack = null; s.animOff = 0; }
+    if (s.hitUntil && now > s.hitUntil) { w.anim.hit = null; s.hitUntil = 0; }
     if (s.hp <= 0) {
       s.dead = true; s.deadAt = now; w.physics = "none";
       ctx.emit("fx", { position: { x: f.x, y: f.y + 0.4, z: f.z }, script: MELT });

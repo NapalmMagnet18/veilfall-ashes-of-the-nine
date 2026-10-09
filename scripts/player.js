@@ -254,7 +254,7 @@ function strike(ctx, foe, dmg, crit) {
   ctx.emit("fx", { position: p, script: CHIPS, params: { normal: { x: dx / d, y: 0.3, z: dz / d } } });
   ctx.emit("squash", { target: foe.id, axis: "y", intensity: 0.18, duration: 0.15 });
   // a stagger on the heavier blows: the struck body flinches (bosses shrug off all but crits)
-  if (!foe.state.dead && foe.state.hp > 0 && !foe.state.swing && !foe.state.slam && (crit || !foe.tags?.includes?.("boss"))) foe.anim.hit = { clip: "cdn/clip-hit-react.glb", weight: 6, loop: "once", speed: 1.3 };
+  if (!foe.state.dead && foe.state.hp > 0 && !foe.state.swing && !foe.state.slam && !foe.tags?.includes?.("boss")) { foe.anim.hit = { clip: "cdn/clip-hit-react.glb", weight: 6, loop: "once", speed: 1.3 }; foe.state.hitUntil = ctx.now() + 450; }
   ctx.emit("flash", { target: foe.id, color: "#ffffff", duration: 0.08 });
   ctx.emit("playSound", { clip: sfx("blade-cutting-into-soft-wax-thud"), position: p, pitch: 0.9 + ctx.random() * 0.2, volume: 0.8 });
   ctx.emit("hitstop", { duration: crit ? 0.06 : 0.03 }, { audience: { player: ctx.self.id } });
