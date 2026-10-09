@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "basedOnSpecVersion": 906,
-  "updatedAt": "2026-10-09T07:53:35.613Z",
-  "summary": "VEILFALL: Ashes of the Nine is an isometric multiplayer action RPG with the shared main realm of Wayside Fire, Broken Lantern Road, Candlehold and chapter areas, plus the solo Veil title/menu place. World templates attach the Bladewraith, camera and HUD; player and place/boss handlers own combat and progression, with shared character/data modules for persistence and services. Procedural scene props and presentation modules supply the authored world, while hanging props now use a shared sway behavior and Absolute Cinema can take camera control.",
+  "basedOnSpecVersion": 931,
+  "updatedAt": "2026-10-09T08:16:20.292Z",
+  "summary": "VEILFALL: Ashes of the Nine is an isometric multiplayer action RPG with the shared main realm of Wayside Fire, Broken Lantern Road, Candlehold and later chapter areas, plus the solo Veil title/menu place. Templates attach the Bladewraith, camera and HUD; player, place and boss handlers own active combat and progression, while shared character/data modules cover persistence and services. Authored procedural scenes and CDN-rigged character models supply the world; the desktop HUD is a carved Diablo-style dock and Awakening postprocessing supplies the filmic look and softened contact AO.",
   "scriptPaths": [
     "mods/aaa-quality-kit/look-cinema.js",
     "mods/absolute-cinema/cinema-camera.js",
@@ -207,7 +207,7 @@
     "templates/player.js - Bladewraith body with humanoid-locomotion.js and scripts/player.js, plus carried-light child.",
     "templates/camera.js - custom camera template running scripts/camera.js.",
     "places/main/sim.js - main-place referee for hub NPCs/services, quests, enemy packs, progression, boss lifecycle and soundscape.",
-    "places/main/cells/ - shared realm terrain and authored settlements, services, landmarks and encounters; x0z0, x0z-1 and x1z0 contain the newly animated toll bell, arena cages and orchard hangings.",
+    "places/main/cells/ - shared realm terrain and authored settlements, services, landmarks and encounters; scene instances apply view-distance limits to selected props, lights, flames and enemies.",
     "places/veil/config.yaml and places/veil/cells/ - solo title/menu scene and ambience; scripts/arrival.js saves an active Bearer leaving main."
   ],
   "shared": [
@@ -224,11 +224,11 @@
     "places/main/sim.js and places/veil/sim.js - cadence, tick.",
     "scripts/player.js - onSpawn, onInput, crosswoundFall, update; Crosswound's delayed cleave is dispatched to crosswoundFall.",
     "scripts/camera.js - onInput, update; scripts/sway.js - updateSchedule, onSpawn, update.",
-    "scripts/ui.js - state-driven HUD/menu renderer with Patch Notes and Absolute Cinema overlay/panel; scripts/ui/nametag.js - nametag renderer.",
+    "scripts/ui.js - default state-driven HUD/menu renderer; scripts/ui/nametag.js - nametag renderer.",
     "scripts/abbess.js, bailiff.js, ringer.js, warden.js and hangman.js - boss onSpawn/update handlers.",
     "scripts/crier.js - onSpawn, quiet, update; scripts/board-notes.js and scripts/trophies.js - update; scripts/wax-pack.js - roll, telegraph, hurtPlayers, payout, update.",
     "scripts/lib/character.js - CHAR_KEYS, fresh, START, realmOf, pack, zoneOf, roster, create/load/save/remove; vault and vaultRows are persistent Bearer fields.",
-    "scripts/gen/gibbet.js and scripts/gen/vf-props.js - geometry, collider; gibbet also renders cagebody for split swinging cages."
+    "scripts/lib/data/models.js - MODELS, HEIGHT, body; maps hero, wax enemy and boss forms to CDN-rigged models."
   ],
   "ownership": [
     "scripts/lib/character.js CHAR_KEYS - persistent per-Bearer combat/progression, quest and reward claims, inventory/gear, arts, attuned shrines and personal vault/vaultRows; packed position and zone feed re-entry/menu context.",
@@ -274,6 +274,6 @@
     "Personal vault is 18 slots plus up to three purchased rows of nine (costs [5000, 20000, 50000] copper) saved per Bearer; guild vault is 27 shared slots per Spawn guild per realm in SQL, separate from character inventory.",
     "Guild-vault store removes the item from player.state.inv before insertion and restores it on SQL failure; take is an atomic guarded UPDATE to prevent duplicate withdrawals. Maintain realm and guild_id filters on all shared-vault queries.",
     "The Veil is solo and ephemeral and parks the hidden menu body at its origin; camera.js menu framing is tuned to its shrine/ledge and yields while Absolute Cinema possession/playback state is active, then reseeds its follow target.",
-    "Crosswound now resolves its hit after a 240 ms wind-up via scripts/player.js crosswoundFall; keep delayed direction payload aligned with that handler. Hanging children need pivot: top and separate geometry (gibbet kind cagebody or vf-props bell body) for sway rotation."
+    "Crosswound resolves its hit after a 240 ms wind-up via scripts/player.js crosswoundFall; keep delayed direction payload aligned with that handler. Wax enemy hits now drive hit-react/stagger and their attacks use a wind-up animation; keep wax-pack animation state in step with player hit reactions."
   ]
 }
