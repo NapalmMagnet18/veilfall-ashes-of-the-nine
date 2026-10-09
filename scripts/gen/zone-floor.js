@@ -365,8 +365,8 @@ function shapeCrystal(E, ctx, lod) {
   for (let i = 0; i < n; i++) {
     const a = R() * TAU, d = i === 0 ? 0 : 0.05 + R() * 0.14, lean = i === 0 ? 0.1 : 0.35 + R() * 0.5, len = i === 0 ? 0.42 + R() * 0.12 : 0.14 + R() * 0.26;
     const v = R() < 0.8 ? violet : !violet;
-    if (v) { ctx.color(pick(R, ["oklch(0.45 0.14 300)", "oklch(0.55 0.13 305)", "oklch(0.38 0.12 295)"])); ctx.emissive(0.07, 0.02, 0.12); }
-    else { ctx.color(pick(R, ["oklch(0.68 0.09 200)", "oklch(0.6 0.1 205)"])); ctx.emissive(0.02, 0.08, 0.1); }
+    if (v) { ctx.color(pick(R, ["oklch(0.45 0.14 300)", "oklch(0.55 0.13 305)", "oklch(0.38 0.12 295)"])); ctx.emissive(0.03, 0.008, 0.055); }
+    else { ctx.color(pick(R, ["oklch(0.68 0.09 200)", "oklch(0.6 0.1 205)"])); ctx.emissive(0.01, 0.04, 0.05); }
     spike(E, [Math.cos(a) * d, 0.05, Math.sin(a) * d], [Math.cos(a) * lean, 1, Math.sin(a) * lean], len, 0.025 + len * 0.09, lod >= 3 ? 4 : 6);
   }
   ctx.emissive(null); ctx.metalness(0);
