@@ -225,7 +225,7 @@ const VM2 = `<style>
 const EMBERS = Array.from({ length: 22 }, (_, i) => { const r = (k) => ((Math.sin(i * 12.9898 + k * 78.233) * 43758.5453) % 1 + 1) % 1;
   return `<i class="em" style="left:${(r(1) * 100).toFixed(1)}%;--dx:${((r(2) - .5) * 160).toFixed(0)}px;animation-duration:${(7 + r(3) * 9).toFixed(1)}s;animation-delay:-${(r(4) * 14).toFixed(1)}s;width:${(2 + r(5) * 3).toFixed(1)}px;height:${(2 + r(5) * 3).toFixed(1)}px"></i>`; }).join("");
 const CHRONICLE = [
-  ["I", "The Broken Lantern Road", "The Wayside Fire, the Wax Veil and the Bailiff's toll."],
+  ["I", "The Broken Lantern Road", "The Wayside Fire, the Wax Veil and the Bailiff's toll.", false, "/cdn/value.8b2fa0e0b93048049083a83e5dde8dd39352ef8c91625b3ef4b6f1989382dac6.png"],
   ["II", "Ashen Abbey · the Bell Crypt", "Down the nave to the great cracked bell."],
   ["III", "Lanternmere", "The drowned fen and its Warden."],
   ["IV", "Saint Corvin's Orchard", "Cut down the hanged. Face the Hangman."],
@@ -234,7 +234,7 @@ const CHRONICLE = [
 ];
 const VERSION = "0.10 · CANDLEHOLD";
 // the painting behind the menu: where the chosen Bearer will wake
-const zoneArt = (z = "") => /ossuar|bone|crypt|nave|abbey/i.test(z) ? "/cdn/value.b6a6c4bee6be2736fec3fd5860ead524d72b84ff480b162a209ffc92c7f0c464.png" : /candle|pilgrim|fire|wayside/i.test(z) || !z ? "/cdn/value.38ae26e1659a5e6f4ff2b2d4270a529681fc2e1b5af4fb3a7693086f78166e47.png" : "/cdn/veilfall-ashes-of-the-nine-1-u4dycn4wa.webp";
+const zoneArt = (z = "") => /ossuar|bone|crypt|nave|abbey/i.test(z) ? "/cdn/value.b6a6c4bee6be2736fec3fd5860ead524d72b84ff480b162a209ffc92c7f0c464.png" : /candle|pilgrim|fire|wayside/i.test(z) || !z ? "/cdn/value.38ae26e1659a5e6f4ff2b2d4270a529681fc2e1b5af4fb3a7693086f78166e47.png" : "/cdn/value.8b2fa0e0b93048049083a83e5dde8dd39352ef8c91625b3ef4b6f1989382dac6.png";
 const head = (s) => `${MSTYLE}${MX}${FRAME_CSS}${VT}${VM2}<div id="vm"><div class="veil" style="background:radial-gradient(ellipse at 50% 50%,transparent 30%,rgba(6,7,12,.45) 65%,rgba(4,4,8,.85))"></div>`;
 const tail = (s, now) => `${s.busy ? `<div class="panel msg" style="color:#f2d38a">${s.busy}…</div>` : s.msg && now - s.msg.at < 5000 ? `<div class="panel msg">${s.msg.text}</div>` : ""}</div>`;
 const realmName = (room) => R.realms.find((r) => r.room === room)?.name ?? room;
