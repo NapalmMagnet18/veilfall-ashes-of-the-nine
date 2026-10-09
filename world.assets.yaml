@@ -1,8 +1,10 @@
 assets:
   metadata:
+    "/cdn/value.002c7e261f6964156c867c8886cdd951fc3a7331e0e3a93c1dacbef640ade581.glb": {bytes: 3194620, kind: model, name: bloodwoods-weepwillow, uploadedAt: "2026-10-09T13:29:53.746Z"}
     "/cdn/value.07679a20297bf5216eac5504765d11ef42348a34973350cac19dbd4ee0198e40.png": {bytes: 451, kind: image, name: vf-panel, uploadedAt: "2026-10-08T15:55:55.360Z"}
     "/cdn/value.11da33d216fa2a9ff50216ec30653b9e9aa047f0606e6bad8de4c4ff767a3de4.png": {bytes: 483, kind: image, name: vf-btnhot, uploadedAt: "2026-10-08T16:02:12.150Z"}
     "/cdn/value.1269cf61fae81e3ff30315a71d080d3824f653104fbb9c852fe406242e6e0058.png": {bytes: 626755, kind: image, name: weathered-wet-dark-granite, uploadedAt: "2026-10-09T09:37:40.389Z"}
+    "/cdn/value.128f62273fc70ffe70bff8d027973a2009b69bb4ea569ba1befb16dccb75457e.glb": {bytes: 1166168, kind: model, name: bloodwoods-antlersnag, uploadedAt: "2026-10-09T13:29:56.850Z"}
     "/cdn/value.13fd9814ade4243077f8fe969333ce0f6ce52f7c79ec82eaaf5d6c8916ed95a3.png": {bytes: 372, kind: image, name: vf-divf2, uploadedAt: "2026-10-08T16:12:53.748Z"}
     "/cdn/value.145dfbe1acd4569b808d0e49c0b9f9f458ad18261aca666449f06119dbd44bbd.png": {bytes: 642795, kind: image, name: rotten-weathered-wood-planks, uploadedAt: "2026-10-09T09:35:33.677Z"}
     "/cdn/value.152e0e3dca8080958e96297d180738dd46f2ecd43c02f2d1e4a43c5e9f09757a.png": {bytes: 462, kind: image, name: vf-slothot, uploadedAt: "2026-10-08T16:02:17.991Z"}

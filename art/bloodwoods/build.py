@@ -289,7 +289,7 @@ def trunk(mb, M, tp, radii, sides, ngroove, depth, tw, wT, streaks=0):
         for g, top, bot in st:
             if bot <= z <= top:
                 ga = (G[g] + tw * z) % TAU; j0 = int(round(ga / TAU * sides)) % sides
-                if j in ((j0 - 1) % sides, j0, (j0 + 1) % sides): return M["sap"]
+                if j in ((j0 - 1) % sides, j0): return M["sap"]
         return M["bark"]
     tube(mb, tp, radii, sides, M["bark"], wT, U=2, rfun=rf, mfun=mf if streaks else None)
 
@@ -404,7 +404,7 @@ def build_willow(mb, M):
         col = R.randrange(4); u0 = .5 + col * .125 + .004
         cross = sidx >= 320
         wsc = rr(.85, 1.15)
-        ribbon(mb, pts, [(.55 - .25 * s / 9) * wsc for s in range(10)], (h if cross else tg), (tg if cross else h),
+        ribbon(mb, pts, [(.42 - .18 * s / 9) * wsc for s in range(10)], (h if cross else tg), (tg if cross else h),
                lambda t, w0=w0, wc=wc: blend((w0, 1 - ss(.05, .6, t)), (wc, ss(.05, .6, t))), (u0, 0, u0 + .117, 1), M["leaves"], (h * .55 + UP).normalized())
     for c in range(260):
         k, A, ta = anchor(); hv = A - Ch; hv.z = 0; h = hv.normalized() if hv.length > .2 else UP
@@ -475,7 +475,7 @@ if NAME in ("bloodoak", "weepwillow"):
     col, h = bark_dark(1024, SEED, warm=(4, 0, 0) if NAME == "bloodoak" else (8, 2, 0))
     M["bark"] = addmat(material("bark", save_img(col, "bark.jpg"), save_img(normal_map(h, 10), "bark_n.jpg", "Non-Color"), rough=.82, nstr=1.2))
 if NAME == "bloodoak":
-    M["sap"] = addmat(material("sap", color=(.22, .008, .01), rough=.12, emit=((.5, .025, .02), .7)))
+    M["sap"] = addmat(material("sap", color=(.22, .008, .01), rough=.12, emit=((.5, .025, .02), .5)))
     crim = [(150, 18, 26), (118, 12, 22), (176, 30, 32), (196, 44, 40), (134, 16, 24)]
     maro = [(98, 10, 22), (76, 6, 18), (120, 16, 30), (140, 22, 34)]
     atl = Image.new("RGBA", (2048, 1024))
