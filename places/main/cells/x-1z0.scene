@@ -1,4 +1,13 @@
 # spawn-scene v2 yaml x-1z0
+fauna-crane-b6:
+  feetPosition: {x: -72, y: {terrain: 0}, z: -4}
+  id: fauna-crane-b6
+  layout: {maxExtents: {y: 1.7}}
+  model: /cdn/value.37f5f0eb12d895614931be3411a2fab8ac9ee01d2b2723db70560cddd8447de1.png.glb
+  physics: character
+  rotation: 208.16913390532136
+  state: {home: {x: -72, z: -4}, kind: crane, roam: 6, run: 3.5, shy: 9, walk: 0.5}
+  tags: [fauna, crane]
 fauna-miretoad-1:
   feetPosition: {x: -70, y: {terrain: 0}, z: -14}
   id: fauna-miretoad-1

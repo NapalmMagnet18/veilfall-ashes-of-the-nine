@@ -867,6 +867,33 @@ en-p9/head-flame:
   id: en-p9/head-flame
   parent: en-p9
   visibleRange: {max: 72, min: 0}
+fauna-crow-b1:
+  feetPosition: {x: -3, y: {terrain: 0}, z: -66}
+  id: fauna-crow-b1
+  layout: {maxExtents: {y: 0.55}}
+  model: /cdn/value.22108941d95cc31c7b7e6b4b67c3fc840f373a74ecf1b5c05fbff79a7ae649d8.png.glb
+  physics: character
+  rotation: 172.40731621161103
+  state: {home: {x: -3, z: -66}, kind: crow, roam: 5, run: 5, shy: 6, walk: 0.6}
+  tags: [fauna, crow]
+fauna-goat-b4:
+  feetPosition: {x: 16, y: {terrain: 0}, z: -132}
+  id: fauna-goat-b4
+  layout: {maxExtents: {y: 1.4}}
+  model: /cdn/value.c92ce2dd9cb1617447af575eadd1bf0528be8f1c3ef4356c1598b2eec0d60ba5.png.glb
+  physics: character
+  rotation: 66.51318923570216
+  state: {home: {x: 16, z: -132}, kind: goat, roam: 8, run: 4.5, shy: 7, walk: 0.8}
+  tags: [fauna, goat]
+fauna-goat-b5:
+  feetPosition: {x: 10, y: {terrain: 0}, z: -146}
+  id: fauna-goat-b5
+  layout: {maxExtents: {y: 1.4}}
+  model: /cdn/value.c92ce2dd9cb1617447af575eadd1bf0528be8f1c3ef4356c1598b2eec0d60ba5.png.glb
+  physics: character
+  rotation: 298.0688073858619
+  state: {home: {x: 10, z: -146}, kind: goat, roam: 8, run: 4.5, shy: 7, walk: 0.8}
+  tags: [fauna, goat]
 ossuary-cart:
   castShadow: true
   children: [{feetPosition: {x: 0.9, y: 1.8, z: -0.9}, id: lamp, light: {color: "#ffa45a", distance: 7, intensity: 3, kind: point}}]

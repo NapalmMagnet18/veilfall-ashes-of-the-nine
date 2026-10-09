@@ -1,4 +1,13 @@
 # spawn-scene v2 yaml x1z0
+fauna-crow-b2:
+  feetPosition: {x: 64, y: {terrain: 0}, z: 8}
+  id: fauna-crow-b2
+  layout: {maxExtents: {y: 0.55}}
+  model: /cdn/value.22108941d95cc31c7b7e6b4b67c3fc840f373a74ecf1b5c05fbff79a7ae649d8.png.glb
+  physics: character
+  rotation: 304.11443752236664
+  state: {home: {x: 64, z: 8}, kind: crow, roam: 5, run: 5, shy: 6, walk: 0.6}
+  tags: [fauna, crow]
 fauna-fox-8:
   children: [{feetPosition: {x: 0, y: 0.5, z: 0}, fx: {script: "fx\npop wisp rate=10 on=sphere(.35) life=.8..1.4 v=up(.2..0.5)+sdir()*.2 size=.03..0.06 acc=curl(.8)+drag(.8) col=hdr(1.2,2.4,3.4)>hdr(.3,.6,1) a=(0>.15:1>.6:.8>0)*flick(4,.4) r=sprite(ember,add)\npop l n=1 glo=flick(.4,.3) r=light(<.55,.8,1>,$glo*1.6,6)"}, id: glow}]
   feetPosition: {x: 124, y: {terrain: 0}, z: 4}

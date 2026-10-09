@@ -676,6 +676,33 @@ en-p7/head-flame:
   id: en-p7/head-flame
   parent: en-p7
   visibleRange: {max: 72, min: 0}
+fauna-crane-b7:
+  feetPosition: {x: -58, y: {terrain: 0}, z: -20}
+  id: fauna-crane-b7
+  layout: {maxExtents: {y: 1.7}}
+  model: /cdn/value.37f5f0eb12d895614931be3411a2fab8ac9ee01d2b2723db70560cddd8447de1.png.glb
+  physics: character
+  rotation: 300.6816018372774
+  state: {home: {x: -58, z: -20}, kind: crane, roam: 6, run: 3.5, shy: 9, walk: 0.5}
+  tags: [fauna, crane]
+fauna-crow-b0:
+  feetPosition: {x: 4, y: {terrain: 0}, z: -50}
+  id: fauna-crow-b0
+  layout: {maxExtents: {y: 0.55}}
+  model: /cdn/value.22108941d95cc31c7b7e6b4b67c3fc840f373a74ecf1b5c05fbff79a7ae649d8.png.glb
+  physics: character
+  rotation: 81.42005709931254
+  state: {home: {x: 4, z: -50}, kind: crow, roam: 5, run: 5, shy: 6, walk: 0.6}
+  tags: [fauna, crow]
+fauna-crow-b3:
+  feetPosition: {x: 59, y: {terrain: 0}, z: 2}
+  id: fauna-crow-b3
+  layout: {maxExtents: {y: 0.55}}
+  model: /cdn/value.22108941d95cc31c7b7e6b4b67c3fc840f373a74ecf1b5c05fbff79a7ae649d8.png.glb
+  physics: character
+  rotation: 126.95556356571615
+  state: {home: {x: 59, z: 2}, kind: crow, roam: 5, run: 5, shy: 6, walk: 0.6}
+  tags: [fauna, crow]
 fauna-miretoad-0:
   feetPosition: {x: -60, y: {terrain: 0}, z: -6}
   id: fauna-miretoad-0

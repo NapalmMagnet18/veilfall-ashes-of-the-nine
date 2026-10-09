@@ -424,6 +424,33 @@ deep-mist:
   id: deep-mist
   tags: [deep-dress]
   visibleRange: {max: 60, min: 0}
+fauna-beetle-b11:
+  feetPosition: {x: -38, y: {terrain: 0}, z: -262}
+  id: fauna-beetle-b11
+  layout: {maxExtents: {y: 0.5}}
+  model: /cdn/value.4b8f978b2d39a04f18f9524f16bc52e4ff111612f3d3ba98455b53ed54953f99.png.glb
+  physics: character
+  rotation: 328.546702824533
+  state: {home: {x: -38, z: -262}, kind: beetle, roam: 4, run: 0, shy: 0, walk: 0.5}
+  tags: [fauna, beetle]
+fauna-beetle-b12:
+  feetPosition: {x: -46, y: {terrain: 0}, z: -272}
+  id: fauna-beetle-b12
+  layout: {maxExtents: {y: 0.5}}
+  model: /cdn/value.4b8f978b2d39a04f18f9524f16bc52e4ff111612f3d3ba98455b53ed54953f99.png.glb
+  physics: character
+  rotation: 258.05590314790606
+  state: {home: {x: -46, z: -272}, kind: beetle, roam: 4, run: 0, shy: 0, walk: 0.5}
+  tags: [fauna, beetle]
+fauna-beetle-b13:
+  feetPosition: {x: -50, y: {terrain: 0}, z: -262}
+  id: fauna-beetle-b13
+  layout: {maxExtents: {y: 0.5}}
+  model: /cdn/value.4b8f978b2d39a04f18f9524f16bc52e4ff111612f3d3ba98455b53ed54953f99.png.glb
+  physics: character
+  rotation: 97.94616708531976
+  state: {home: {x: -50, z: -262}, kind: beetle, roam: 4, run: 0, shy: 0, walk: 0.5}
+  tags: [fauna, beetle]
 fauna-lizard-10:
   feetPosition: {x: -42, y: {terrain: 0}, z: -316}
   id: fauna-lizard-10
@@ -451,6 +478,33 @@ fauna-lizard-9:
   rotation: 323.5206214059144
   state: {home: {x: -50, z: -304}, kind: lizard, roam: 6, run: 4, shy: 5, walk: 0.9}
   tags: [fauna, lizard]
+fauna-rat-b10:
+  feetPosition: {x: 4, y: {terrain: 0}, z: -248}
+  id: fauna-rat-b10
+  layout: {maxExtents: {y: 0.35}}
+  model: /cdn/value.7d94edc78132bffd446b569934ef652f73cff390cd99135cfaf0471323abd815.png.glb
+  physics: character
+  rotation: 245.08669895119965
+  state: {home: {x: 4, z: -248}, kind: rat, roam: 5, run: 4.5, shy: 4, walk: 1}
+  tags: [fauna, rat]
+fauna-rat-b8:
+  feetPosition: {x: 3, y: {terrain: 0}, z: -215}
+  id: fauna-rat-b8
+  layout: {maxExtents: {y: 0.35}}
+  model: /cdn/value.7d94edc78132bffd446b569934ef652f73cff390cd99135cfaf0471323abd815.png.glb
+  physics: character
+  rotation: 22.244148440659046
+  state: {home: {x: 3, z: -215}, kind: rat, roam: 5, run: 4.5, shy: 4, walk: 1}
+  tags: [fauna, rat]
+fauna-rat-b9:
+  feetPosition: {x: -3, y: {terrain: 0}, z: -228}
+  id: fauna-rat-b9
+  layout: {maxExtents: {y: 0.35}}
+  model: /cdn/value.7d94edc78132bffd446b569934ef652f73cff390cd99135cfaf0471323abd815.png.glb
+  physics: character
+  rotation: 79.21775126829743
+  state: {home: {x: -3, z: -228}, kind: rat, roam: 5, run: 4.5, shy: 4, walk: 1}
+  tags: [fauna, rat]
 nave-blueprint:
   audio: {clip: /cdn/moodboard-gothic-horror/ambience-burned-cathedral-nave-wind-through-broken-windows-and-distant-bell-hum-loop.mp3, gain: 0.16, loop: true, maxDistance: 30}
   feetPosition: {x: 0, y: 0, z: -220}
