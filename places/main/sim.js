@@ -138,6 +138,11 @@ export function tick(ctx) {
     model: "cdn/model-weathered-woman-mapmaker-hooded-cloak-satchel-of-maps.glb", behavior: ["scripts/humanoid-locomotion.js"], state: { name: "Maelin Sore" } });
   if (!("oswin" in objs)) ctx.spawn("oswin", { tags: ["npc", "vendor"], physics: "character", feetPosition: { x: OSWIN.x, z: OSWIN.z, y: { terrain: 0 } }, rotation: { lookAt: { x: 0, y: 0, z: 4.5 } },
     model: "cdn/model-hunched-old-peddler-man-leather-apron-candle-bundles-on-back.glb", behavior: ["scripts/humanoid-locomotion.js"], state: { name: "Oswin Tallowmonger" } });
+  if (!("hollin" in objs)) ctx.spawn("hollin", { tags: ["npc", "trainer"], physics: "character", feetPosition: { x: 4.2, z: 76.5, y: { terrain: 0 } }, rotation: { lookAt: { x: 0, y: 0, z: 68 } },
+    model: "cdn/model-scarred-grey-haired-swordmaster-long-dark-coat-greatsword-on-back.glb", layout: { maxExtents: { y: 1.85 } }, castShadow: true,
+    behavior: ["scripts/humanoid-locomotion.js"], state: { name: "Ser Hollin Vey" },
+    children: [{ id: "rack", feetPosition: { x: -1.1, y: 0, z: 0.4 }, rotation: 20, primitive: { kind: "box", width: 1.2, height: 1.1, depth: 0.25 }, material: { texture: "cdn/texture-dark-weathered-oak-planks.png" }, physics: "static" },
+      { id: "lamp", feetPosition: { x: -1.1, y: 1.6, z: 0.4 }, light: { kind: "point", color: "oklch(0.8 0.13 65)", intensity: 1.4, distance: 6 } }] });
   if (!("crier" in objs)) ctx.spawn("crier", { tags: ["npc"], physics: "character", feetPosition: { x: 3.2, z: 7.4, y: { terrain: 0 } },
     model: "/cdn/value.fe868b233c1ac6e6cc4bf419d87cbd276ffeffb08bc2f44f23fc3b48057f42f6.glb", layout: { maxExtents: { y: 1.75 } }, castShadow: true,
     behavior: ["scripts/humanoid-locomotion.js", "scripts/crier.js"], state: { name: "Brother Ledd", turnTo: "none" },

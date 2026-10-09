@@ -203,6 +203,7 @@ export function onInput(ctx, input) {
   if (input.actionData?.shop) shopInput(ctx, input.actionData.shop);
   if (input.actionData?.item) itemInput(ctx, input.actionData.item);
   if (input.actionData?.trade) tradeInput(ctx, input.actionData.trade);
+  if (input.actionData?.train) trainInput(ctx, input.actionData.train);
   if (s.dead || ctx.self.inputHeld) return;
   const ray = getInputRay(ctx, input);
   const now = ctx.now();
@@ -382,6 +383,34 @@ pop heat n=10 on=box(.2,.01,.07) size=.05..0.09 tint=<2.8,.7,.18>..<1.6,.3,.06> 
 pop sparks rate=flick(.5,.3)*7 on=box(.2,.01,.07) life=.5..1 v=up(.8..1.6)+sdir()*.3 size=.015..0.03 acc=grav()*.3+drag(.6) col=hdr(5,2.4,.6)>hdr(1.5,.35,.05) a=(1>.6:.9>0)*flick(9,.4) r=sprite(ember,add,velocity,.02)
 pop haze rate=3 on=box(.2,.01,.07) life=1.2..1.8 v=up(.4..0.7) size=.18..0.3 acc=buoy(.4)+curl(.3) col=<.9,.3,.12> a=0>.12:.18>0 sz=$size*(.6>1.8) r=sprite(smoke-puff,add)
 pop glow n=1 at=point() g=flick(.7,.35) r=light(<1,.36,.14>,6+$g*5,4)`;
+// Ser Hollin Vey, the Bladewraith trainer: copper buys a deeper rank of an art once the Bearer is seasoned enough
+const art = (s, k) => s.arts?.[k] ?? 0;
+function trainerNear(ctx) {
+  const now = ctx.now(); if (now < (me.trainAt ?? 0)) return; me.trainAt = now + 400;
+  const s = ctx.self.state, o = ctx.getObject("hollin"), f = ctx.self.feetPosition;
+  const near = !!o && !s.menu && !s.dead && Math.hypot(o.feetPosition.x - f.x, o.feetPosition.z - f.z) < C.trainer.reach;
+  if (!!s.atTrainer !== near) { s.atTrainer = near; if (near && !s.trainerSeen) { s.trainerSeen = true; msg(ctx, "Ser Hollin Vey: \"You swing like a pilgrim. Copper, and I'll fix that.\""); } }
+}
+function trainInput(ctx, a) {
+  const s = ctx.self.state, T = C.trainer;
+  if (!a || a.n === me.trainN || !s.atTrainer) return; me.trainN = a.n;
+  const A = T.arts[a.k]; if (!A) return;
+  const r = art(s, a.k), next = A.ranks[r];
+  const deny = (t) => { msg(ctx, t); ctx.emit("playSound", { clip: sfx("dull-click-denied"), position: ctx.self.feetPosition, volume: 0.3 }, { audience: { player: ctx.self.id } }); };
+  if (!next) return deny(`${A.name} is mastered. Hollin has nothing left to show you there.`);
+  if ((s.level ?? 1) < next.lvl) return deny(`"Come back at level ${next.lvl}. Your arm isn't ready for it."`);
+  if ((s.copper ?? 0) < next.cost) return deny(`"${next.cost} copper. I don't teach on credit."`);
+  s.copper -= next.cost; s.arts = { ...(s.arts ?? {}), [a.k]: r + 1 };
+  const f = ctx.self.feetPosition;
+  ctx.emit("fx", { position: { x: f.x, y: f.y + 1, z: f.z }, script: SLASH });
+  ctx.emit("shockwave", { position: { x: f.x, y: f.y + 0.2, z: f.z }, speed: 10, thickness: 0.3, intensity: 0.35 });
+  ctx.emit("playSound", { clip: sfx("anvil-rank-up-triple-ring-and-low-choir"), position: f, volume: 0.8, pitch: 0.9 });
+  ctx.emit("damageNumber", { position: { ...f, y: f.y + 2.4 }, text: `${A.name.toUpperCase()} ${["I", "II", "III"][r + 1]}`, color: "#9cc8ff", size: 2, lifetime: 3 }, { audience: { player: ctx.self.id } });
+  ctx.emit("milestone", { step: 40 + r, name: `trained ${a.k} ${r + 1}` }, { audience: { player: ctx.self.id } });
+  ctx.emit("stat", { name: "copper spent training", value: next.cost }, { audience: { player: ctx.self.id } });
+  msg(ctx, `${A.name} rank ${r + 2}. ${A.per.split(" per")[0]}.`);
+  me.saveSoon = true;
+}
 function boardNear(ctx) {
   const now = ctx.now(); if (now < (me.boardAt ?? 0)) return; me.boardAt = now + 400;
   const s = ctx.self.state, f = ctx.self.feetPosition;
@@ -488,7 +517,7 @@ function crosswound(ctx) {
     const o = ctx.getObject(r.id); if (!isFoe(o)) continue;
     const ex = o.feetPosition.x - f.x, ez = o.feetPosition.z - f.z, ed = Math.hypot(ex, ez) || 1;
     if ((ex * dx + ez * dz) / ed < cos && ed > 1) continue;
-    strike(ctx, o, Math.round(cw.dmg * weaponMul(s) * (0.9 + ctx.random() * 0.2)), false);
+    strike(ctx, o, Math.round(cw.dmg * (1 + 0.2 * art(s, "crosswound")) * weaponMul(s) * (0.9 + ctx.random() * 0.2)), false);
   }
 }
 
@@ -498,9 +527,9 @@ function griefstep(ctx) {
   const f = ctx.self.feetPosition, aim = me.aim ?? { x: f.x, z: f.z - 1 };
   let dx = aim.x - f.x, dz = aim.z - f.z; const d = Math.hypot(dx, dz);
   if (d < 0.2) { dx = -Math.sin(((s.faceYaw ?? 0) * Math.PI) / 180); dz = -Math.cos(((s.faceYaw ?? 0) * Math.PI) / 180); } else { dx /= d; dz /= d; }
-  me.dashReady = now + g.cd * 1000; s.dashReadyAt = me.dashReady;
+  me.dashReady = now + (g.cd - 0.6 * art(s, "griefstep")) * 1000; s.dashReadyAt = me.dashReady;
   me.dash = { dx, dz, until: now + g.time * 1000 };
-  s.iframesUntil = now + g.iframes * 1000;
+  s.iframesUntil = now + (g.iframes + 0.1 * art(s, "griefstep")) * 1000;
   s.faceYaw = yawTo(dx, dz); s.goal = null; s.target = null; me.route = null;
   if (s.ancestry === "fenborn") me.hasteUntil = now + (g.time + C.traits.fenborn.secs) * 1000; s.hasteUntil = me.hasteUntil;
   if (s.ancestry === "skyforged") s.edge = Math.min(100, (s.edge ?? 0) + C.traits.skyforged.edge);
@@ -523,7 +552,7 @@ pop flare burst=1 life=.4 at=point().c(1.1) b=1>0 r=light(<.5,.75,1.3>,$b*60,12)
 function guard(ctx) {
   const s = ctx.self.state, now = ctx.now(), g = C.guard;
   if (now < (s.guardReadyAt ?? 0)) { ctx.emit("playSound", { clip: sfx("dull-click-denied"), position: ctx.self.feetPosition, volume: 0.3 }); return; }
-  s.guardReadyAt = now + g.cd * 1000; s.guardUntil = now + g.window * 1000; me.guardSeen = s.riposte ?? 0;
+  s.guardReadyAt = now + g.cd * 1000; s.guardUntil = now + (g.window + 0.3 * art(s, "guard")) * 1000; me.guardSeen = s.riposte ?? 0;
   s.goal = null; me.route = null;
   ctx.self.fx = { script: GUARD };
   ctx.emit("playSound", { clip: sfx("ghostly-glass-shimmer-guard-up"), position: ctx.self.feetPosition, volume: 0.7 });
@@ -539,7 +568,7 @@ function guardTick(ctx, now) {
     ctx.emit("screenFlash", { color: "#9cc8ff", duration: 0.12, intensity: 0.12 }, { audience: { player: ctx.self.id } });
     ctx.emit("playSound", { clip: sfx("sword-parry-ring-and-counter-slash"), position: f, volume: 0.9 });
     ctx.emit("hitstop", { duration: 0.06 }, { audience: { player: ctx.self.id } });
-    for (const r of ctx.query({ tags: ["enemy"], radius: C.guard.reach, center: f })) { const o = ctx.getObject(r.id); if (isFoe(o)) strike(ctx, o, Math.round(C.guard.riposte * weaponMul(s)), true); }
+    for (const r of ctx.query({ tags: ["enemy"], radius: C.guard.reach, center: f })) { const o = ctx.getObject(r.id); if (isFoe(o)) strike(ctx, o, Math.round(C.guard.riposte * (1 + 0.35 * art(s, "guard")) * weaponMul(s)), true); }
     s.edge = Math.min(100, (s.edge ?? 0) + 20);
   } else if (ctx.self.fx && now > (s.guardUntil ?? 0)) ctx.self.fx = null;
 }
@@ -669,7 +698,7 @@ export function update(ctx, dt) {
   const s = ctx.self.state, now = ctx.now(), f = ctx.self.feetPosition;
   gate(ctx);
   if (ctx.self.isLocal !== false) showcase(ctx);
-  if (!ctx.self.state.menu && ctx.self.state.charId) { drainLoot(ctx); deriveGear(ctx); if (ctx.self.isLocal !== false) { forgeNear(ctx); boardNear(ctx); cauldronNear(ctx); candleChill(ctx); } }
+  if (!ctx.self.state.menu && ctx.self.state.charId) { drainLoot(ctx); deriveGear(ctx); if (ctx.self.isLocal !== false) { forgeNear(ctx); boardNear(ctx); trainerNear(ctx); cauldronNear(ctx); candleChill(ctx); } }
   const vy = (ctx.self.velocity?.y ?? 0) + (ctx.self.grounded ? 0 : ctx.place.gravity.y * dt);
   // a fresh visit opens on the title in the Veil; a realm cross lands on that realm's character list
   if (ctx.self.isLocal !== false && !ctx.session.vfDoor) {

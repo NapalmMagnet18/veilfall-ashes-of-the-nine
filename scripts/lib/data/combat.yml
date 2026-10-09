@@ -17,3 +17,10 @@ levels: [0, 60, 150, 280, 450, 680, 960, 1300, 1750, 2300]
 guard: { window: 1.4, cd: 8, riposte: 22, reach: 3 }
 # ancestry traits (the Bearer's origin, picked at the character screen): small, never superior stats
 traits: { cinderkin: { ward: 12, every: 60 }, fenborn: { haste: 1.3, secs: 1.5 }, stonebound: { heavy: 15, cut: 0.25 }, skyforged: { edge: 10 } }
+# the Bladewraith trainer in Candlehold (Ser Hollin Vey): two ranks per art, gated by level, paid in copper
+trainer:
+  reach: 3.5
+  arts:
+    crosswound: { name: "Crosswound", per: "+20% damage per rank", ranks: [{ lvl: 3, cost: 150 }, { lvl: 6, cost: 900 }] }
+    griefstep: { name: "Griefstep", per: "-0.6s cooldown, +0.1s untouchable per rank", ranks: [{ lvl: 2, cost: 100 }, { lvl: 5, cost: 600 }] }
+    guard: { name: "Afterimage Guard", per: "+0.3s window, +35% riposte per rank", ranks: [{ lvl: 4, cost: 300 }, { lvl: 7, cost: 1400 }] }

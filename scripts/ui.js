@@ -471,8 +471,28 @@ export default function (ctx, player) {
   ${q.stage === 0 || q.stage === 4 || q.stage === 9 || q.stage === 12 || q.stage === 16 || q.stage === 17 || q.stage === 21 ? `<div data-world-anchor="maelin" data-anchor-offset="0 2.3 0" style="font-size:30px;color:var(--wax);text-align:center;animation:vfpulse 1.4s infinite">!<div style="font-size:12px">MAELIN</div></div>` : ""}
   ${s.bagOpen ? packPanel(ctx, player, { rail, touch }) : ""}
   ${s.bagOpen && s.atBoard ? boardPanel(ctx, player, { rail: touch ? rail : "24px", touch }) : ""}
+  ${s.atTrainer && !s.bagOpen && !s.shop ? trainPanel(s, touch, rail) : ""}
   ${s.shop ? shopPanel(ctx, player) : ""}
   ${s.dead ? `<div class="absolute inset-0" style="display:flex;align-items:center;justify-content:center;background:radial-gradient(transparent 30%,rgba(40,0,0,.6));animation:vfin .4s"><div class="kd" style="font-size:54px;color:#d8442f;letter-spacing:.1em">THE ROAD TAKES YOU</div></div>` : ""}
   ${now - firstSeen < 9000 && !touch ? `<div class="absolute inset-x-0 text-center dk" style="bottom:150px;font-size:17px;padding:0 ${rail};animation:vffade 1s 8s forwards">Click to walk · click a foe to strike · Right-click Crosswound · Space Griefstep · Q tonic · I pack</div>` : ""}
 </div>`;
+}
+
+// Ser Hollin Vey's ledger of arts: one row per skill, two ranks each, level-gated, paid in copper
+function trainPanel(s, touch, rail) {
+  const T = CB.trainer, lv = s.level ?? 1, cu = s.copper ?? 0;
+  const rows = Object.entries(T.arts).map(([k, A]) => {
+    const r = s.arts?.[k] ?? 0, next = A.ranks[r];
+    const pips = A.ranks.map((_, i) => `<span style="display:inline-block;width:9px;height:9px;margin-right:3px;transform:rotate(45deg);border:1px solid #c49c63;background:${i < r ? "#c49c63" : "transparent"}"></span>`).join("");
+    const ok = next && lv >= next.lvl && cu >= next.cost;
+    const btn = !next ? `<span style="color:#6db8c0;font-size:11px">MASTERED</span>`
+      : `<button style="pointer-events:auto;cursor:${ok ? "pointer" : "default"};padding:4px 10px;font-size:11px;letter-spacing:.08em;border:1px solid ${ok ? "#c49c63" : "#555"};color:${ok ? "#e7d9b8" : "#777"};background:${ok ? "linear-gradient(#3a2618,#1a120c)" : "#151519"}" ${ok ? `onclick="sendAction('train',{k:'${k}',n:Date.now()+Math.random()})"` : ""}>TRAIN</button>`;
+    const need = next ? `<div style="font-size:10px;color:${lv >= next.lvl ? "#a99" : "#c96a5a"}">Lv ${next.lvl} · ${fmt(next.cost)}</div>` : "";
+    return `<div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-top:1px solid rgba(196,156,99,.2)">
+      <div style="flex:1"><div style="font-size:14px;color:#e7d9b8">${A.name} <span style="margin-left:6px">${pips}</span></div><div style="font-size:10px;color:#9a917f">${A.per}</div>${need}</div>${btn}</div>`;
+  }).join("");
+  return `<div class="absolute plate tf" style="${touch ? `left:${rail};right:${rail};top:60px` : "right:24px;top:50%;transform:translateY(-50%);width:320px"};padding:12px 16px;animation:vfin .2s;pointer-events:auto">
+    <div style="font-size:11px;letter-spacing:.2em;color:#c49c63">THE BLADEWRAITH'S ARTS</div>
+    <div style="font-size:18px;color:#e7d9b8;margin:2px 0 6px">Ser Hollin Vey</div>${rows}
+    <div style="font-size:10px;color:#9a917f;margin-top:6px">Purse: ${fmt(cu)} · Lv ${lv}</div></div>`;
 }
