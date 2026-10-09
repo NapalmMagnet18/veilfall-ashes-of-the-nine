@@ -1,0 +1,21 @@
+{
+  "name": "codex",
+  "displayName": "Codex",
+  "description": "Stop re-explaining your game every session. The Codex is a living design document Savi keeps for you, in a god-mode tab: thirteen pages-and-tabs across Overview, Features, Lore, Characters, NPCs, Level Design, UI, SFX, VFX, Open Questions, Invariants, Build Order and Notes — plus a left rail of build phases, each with its own checklist, bug list and alteration notes, tracked First Draft → Second Draft → Bug Pass → Polish → Final. It comes with a standing directive: Savi defines the game top-tab by top-tab, ends with the questions she needs answered, then builds the phase rail top-down — and anything you say mid-phase gets filed into the right phase instead of derailing the one she's on. The panel is read-only on purpose. Savi is the only author; you read it to catch mistakes early, and Copy visible / All pages hand you the whole document as markdown for keeping outside the game. Anything Savi writes or changes since your last look glows until you've read it — a count in the title bar, dots on the tabs and phases, a marker on the page itself. Drag it, resize it, scale the type — it remembers where you left it. Install it, then say \"/codex\".",
+  "tags": [
+    "design-doc",
+    "creator-tools",
+    "planning",
+    "god-mode",
+    "workflow",
+    "documentation"
+  ],
+  "visibility": "public",
+  "version": "1.2.0",
+  "tab": {
+    "id": "codex",
+    "label": "Codex",
+    "icon": "📖",
+    "render": "panel.js"
+  }
+}
