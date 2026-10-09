@@ -987,7 +987,7 @@ export function update(ctx, dt) {
   if (BEARER[s.cls] && me.bodyOf !== s.cls) { me.bodyOf = s.cls; ctx.self.model = BEARER[s.cls]; } // the calling's own body
   if (s.ancestry && me.ancOf !== s.ancestry && ANCESTRY[s.ancestry]) { me.ancOf = s.ancestry; const A_ = ANCESTRY[s.ancestry]; // the blood shows: lantern colour and a faint aura
     const lamp = ctx.getObject(ctx.self.id + "/lightradius"); if (lamp) lamp.light = { ...lamp.light, color: A_.lamp };
-    ctx.self.fx = { script: A_.aura }; }
+    const au = ctx.getObject(ctx.self.id + "/aura"); if (au) au.fx = { script: A_.aura }; else ctx.spawn("aura", { parent: ctx.self.id, feetPosition: { x: 0, y: 0, z: 0 }, fx: { script: A_.aura }, scope: "session" }); }
   // the save: every 20 s, when the Bearer changed
   if (now - (me.saveAt ?? 0) > 20000) {
     me.saveAt = now;
