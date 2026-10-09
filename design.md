@@ -122,3 +122,5 @@ places/main/sim.js referee: spawns packs, quest stages, XP/levels, death and res
 - 2026-10-09: menu version 0.12 · THE PILGRIM ROADS; title gains Patch Notes (scripts/ui.js NOTES, newest first; bump VERSION and prepend a NOTES row each update).
 
 - 2026-10-09: arrival: defaultPlace main -> veil. Every load lands directly on the main menu, never loading the road first (whispers: "make sure everyone every time when loading into this game loads directly into the main menu").
+
+- 2026-10-09: Crosswound gains a 0.24 s ember wind-up before the cleave (was instant), so heavy hits read heavy. Under 25% life a heartbeat plays; crits get a longer hitstop and a steel snap. (whispers: "add all your suggestions")
