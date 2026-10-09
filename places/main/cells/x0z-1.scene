@@ -1011,3 +1011,12 @@ ruin-road/wall-7:
   primitive: {kind: scripted, params: {h: 3.4000000000000004, kind: wall, len: 6, s: 7, t: 0.8}, script: scripts/gen/vf-ruin.js, seed: 7}
   rotation: 255.96375653207352
   tags: [z01-dressing, ruin]
+shrine-abbey:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 3.35, z: 0}, id: shard-light, light: {color: "#6db8c0", distance: 7, intensity: 1.2, kind: point}}, {audio: {clip: /cdn/moodboard-gothic-horror/sfx-ancient-shrine-low-resonant-hum-loop.mp3, gain: 0.12, loop: true, maxDistance: 10, spatial: true}, feetPosition: {x: 0, y: 1, z: 0}, id: hum}]
+  feetPosition: {x: 6, y: {terrain: 0}, z: -170}
+  id: shrine-abbey
+  physics: {body: static, collider: box}
+  primitive: {kind: scripted, script: scripts/gen/wayshrine.js, seed: -128}
+  rotation: 40
+  tags: [wayshrine, z01-dressing]
