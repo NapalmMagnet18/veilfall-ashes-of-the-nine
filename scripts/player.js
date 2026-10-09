@@ -13,6 +13,7 @@ const GATE = { abbey: false, nave: false, fen: false, orch: false, oss: false };
 const gate = (ctx) => { const st = ctx.self.state.quest?.stage ?? 0, all = !!ctx.place.state?.abbeyOpenAll; GATE.abbey = st >= 4 || all; GATE.nave = st >= 10 || all; GATE.fen = st >= 13 || all; GATE.orch = st >= 18 || all; GATE.oss = st >= 23 || all; };
 const floorDist = (x, z) => mapFloor(x, z, GATE.abbey, GATE.nave, GATE.fen, GATE.orch, GATE.oss);
 import C from "./lib/data/combat.yml";
+import { talentStats, canLearn } from "./lib/data/talents.js";
 import { shopInput } from "./lib/shop.js";
 import { tradeInput, readBoard, TRADE } from "./lib/trade.js";
 import { guildVaultInput, readGuildVault } from "./lib/guildvault.js";
@@ -236,7 +237,16 @@ export function onInput(ctx, input) {
   if (input.pressed.griefstep) griefstep(ctx);
   if (input.pressed.tonic) tonic(ctx);
   if (input.pressed.bag) s.bagOpen = !s.bagOpen;
-  if (input.pressed.sheet) s.sheetOpen = !s.sheetOpen;
+  if (input.pressed.sheet) { s.sheetOpen = !s.sheetOpen; if (s.sheetOpen) s.treeOpen = false; }
+  if (input.pressed.tree) { s.treeOpen = !s.treeOpen; if (s.treeOpen) s.sheetOpen = false; }
+  if (input.pressed.learn) {
+    const id = input.actionData?.learn?.id;
+    if (id === "reset") { s.talents = {}; ctx.emit("playSound", { clip: sfx("pages-turn-and-ash-blown-away"), position: ctx.self.feetPosition, volume: 0.5 }, { audience: { player: ctx.self.id } }); }
+    else if (id && canLearn(s.cls, s.talents, s.level, id)) {
+      s.talents = { ...(s.talents ?? {}), [id]: (s.talents?.[id] ?? 0) + 1 };
+      ctx.emit("playSound", { clip: sfx("talent-learned-deep-rune-ignite-and-chime"), position: ctx.self.feetPosition, volume: 0.6 }, { audience: { player: ctx.self.id } });
+    }
+  }
   if (input.pressed.guard) guard(ctx);
 }
 
@@ -342,11 +352,12 @@ function drainLoot(ctx) {
 function deriveGear(ctx) {
   const s = ctx.self.state, bw = brewActive(s, ctx.now());
   if (s.brew && !bw) { s.brew = null; msg(ctx, "The brew's warmth fades from your blood."); }
-  const key = JSON.stringify(s.gear ?? {}) + (bw ? bw.id + bw.until : "");
+  const key = JSON.stringify(s.gear ?? {}) + JSON.stringify(s.talents ?? {}) + (bw ? bw.id + bw.until : "");
   if (key === me.gearKey && s.gs) return;
   me.gearKey = key;
   const g = gearStats(s.gear); delete g.setCount;
   if (bw) for (const [k, v] of Object.entries(bw.stats ?? {})) g[k] = (g[k] ?? 0) + v;
+  for (const [k, v] of Object.entries(talentStats(s.cls, s.talents))) g[k] = Math.round(((g[k] ?? 0) + v) * 10) / 10;
   s.gs = g;
   // boss marks worn: two or more marked pieces and the blade carries their colours
   const worn = Object.values(s.gear ?? {}).filter((it) => it?.mk && MARKS[it.mk]);

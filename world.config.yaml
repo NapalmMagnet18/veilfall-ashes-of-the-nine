@@ -39,6 +39,12 @@ inputs:
       keys:
         - c
       touch: { button: false }
+    tree:
+      keys:
+        - n
+      touch: { button: false }
+    learn:
+      touch: { button: false }
     menu:
       touch: { button: false }
     shop:
