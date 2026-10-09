@@ -76,7 +76,7 @@ bw-tree-16:
   feetPosition: {x: 97.4, y: {terrain: -0.25}, z: -21.5}
   id: bw-tree-16
   mixer: {base: {clip: Sway, loop: loop, speed: 0.99, weight: 1}}
-  model: /cdn/value.44b42b31805b980502a2935691aa7f8771007793c69739953758b846d1d2f61f.glb
+  model: /cdn/value.2ad5479715b24bc81b0ee2646c8df5df01b07808cc73dfdf62864d332580fa98.glb
   receiveShadow: true
   rotation: 175
   scale: 1.04
@@ -94,7 +94,7 @@ bw-tree-17:
   feetPosition: {x: 83.2, y: {terrain: -0.25}, z: 24.3}
   id: bw-tree-17
   mixer: {base: {clip: Sway, loop: loop, speed: 1.17, weight: 1}}
-  model: /cdn/value.002c7e261f6964156c867c8886cdd951fc3a7331e0e3a93c1dacbef640ade581.glb
+  model: /cdn/value.aa2f0b395dadb3c6353cba8828aec488e2ed2d4541e04ae6e8132d0d73024f26.glb
   receiveShadow: true
   rotation: 331
   scale: 1.22
@@ -112,7 +112,7 @@ bw-tree-19:
   feetPosition: {x: 75.6, y: {terrain: -0.25}, z: -18.3}
   id: bw-tree-19
   mixer: {base: {clip: Sway, loop: loop, speed: 0.89, weight: 1}}
-  model: /cdn/value.44b42b31805b980502a2935691aa7f8771007793c69739953758b846d1d2f61f.glb
+  model: /cdn/value.2ad5479715b24bc81b0ee2646c8df5df01b07808cc73dfdf62864d332580fa98.glb
   receiveShadow: true
   rotation: 83
   scale: 0.94
@@ -148,7 +148,7 @@ bw-tree-20:
   feetPosition: {x: 92.47, y: {terrain: -0.25}, z: 24.08}
   id: bw-tree-20
   mixer: {base: {clip: Sway, loop: loop, speed: 0.95, weight: 1}}
-  model: /cdn/value.002c7e261f6964156c867c8886cdd951fc3a7331e0e3a93c1dacbef640ade581.glb
+  model: /cdn/value.aa2f0b395dadb3c6353cba8828aec488e2ed2d4541e04ae6e8132d0d73024f26.glb
   receiveShadow: true
   rotation: 139
   scale: 1
@@ -166,7 +166,7 @@ bw-tree-3:
   feetPosition: {x: 94.1, y: {terrain: -0.25}, z: 15.3}
   id: bw-tree-3
   mixer: {base: {clip: Sway, loop: loop, speed: 1.08, weight: 1}}
-  model: /cdn/value.44b42b31805b980502a2935691aa7f8771007793c69739953758b846d1d2f61f.glb
+  model: /cdn/value.2ad5479715b24bc81b0ee2646c8df5df01b07808cc73dfdf62864d332580fa98.glb
   receiveShadow: true
   rotation: 254
   scale: 1.13
@@ -202,7 +202,7 @@ bw-tree-9:
   feetPosition: {x: 97.7, y: {terrain: -0.25}, z: -12.8}
   id: bw-tree-9
   mixer: {base: {clip: Sway, loop: loop, speed: 0.92, weight: 1}}
-  model: /cdn/value.002c7e261f6964156c867c8886cdd951fc3a7331e0e3a93c1dacbef640ade581.glb
+  model: /cdn/value.aa2f0b395dadb3c6353cba8828aec488e2ed2d4541e04ae6e8132d0d73024f26.glb
   receiveShadow: true
   rotation: 105
   scale: 0.97

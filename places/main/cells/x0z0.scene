@@ -191,7 +191,7 @@ bw-tree-0:
   feetPosition: {x: 34, y: {terrain: -0.25}, z: -13.4}
   id: bw-tree-0
   mixer: {base: {clip: Sway, loop: loop, speed: 0.8, weight: 1}}
-  model: /cdn/value.44b42b31805b980502a2935691aa7f8771007793c69739953758b846d1d2f61f.glb
+  model: /cdn/value.2ad5479715b24bc81b0ee2646c8df5df01b07808cc73dfdf62864d332580fa98.glb
   receiveShadow: true
   rotation: 0
   scale: 0.85
@@ -209,7 +209,7 @@ bw-tree-1:
   feetPosition: {x: 37.6, y: {terrain: -0.25}, z: 19.1}
   id: bw-tree-1
   mixer: {base: {clip: Sway, loop: loop, speed: 0.8, weight: 1}}
-  model: /cdn/value.002c7e261f6964156c867c8886cdd951fc3a7331e0e3a93c1dacbef640ade581.glb
+  model: /cdn/value.aa2f0b395dadb3c6353cba8828aec488e2ed2d4541e04ae6e8132d0d73024f26.glb
   receiveShadow: true
   rotation: 3
   scale: 0.85
@@ -227,7 +227,7 @@ bw-tree-11:
   feetPosition: {x: 14.8, y: {terrain: -0.25}, z: -25.9}
   id: bw-tree-11
   mixer: {base: {clip: Sway, loop: loop, speed: 1.05, weight: 1}}
-  model: /cdn/value.44b42b31805b980502a2935691aa7f8771007793c69739953758b846d1d2f61f.glb
+  model: /cdn/value.2ad5479715b24bc81b0ee2646c8df5df01b07808cc73dfdf62864d332580fa98.glb
   receiveShadow: true
   rotation: 228
   scale: 1.1
@@ -245,7 +245,7 @@ bw-tree-12:
   feetPosition: {x: 63.77, y: {terrain: -0.25}, z: 33}
   id: bw-tree-12
   mixer: {base: {clip: Sway, loop: loop, speed: 0.98, weight: 1}}
-  model: /cdn/value.002c7e261f6964156c867c8886cdd951fc3a7331e0e3a93c1dacbef640ade581.glb
+  model: /cdn/value.aa2f0b395dadb3c6353cba8828aec488e2ed2d4541e04ae6e8132d0d73024f26.glb
   receiveShadow: true
   rotation: 164
   scale: 1.03
@@ -263,7 +263,7 @@ bw-tree-13:
   feetPosition: {x: 12.7, y: {terrain: -0.25}, z: 20.2}
   id: bw-tree-13
   mixer: {base: {clip: Sway, loop: loop, speed: 0.88, weight: 1}}
-  model: /cdn/value.44b42b31805b980502a2935691aa7f8771007793c69739953758b846d1d2f61f.glb
+  model: /cdn/value.2ad5479715b24bc81b0ee2646c8df5df01b07808cc73dfdf62864d332580fa98.glb
   receiveShadow: true
   rotation: 68
   scale: 0.93
@@ -299,7 +299,7 @@ bw-tree-15:
   feetPosition: {x: 33.26, y: {terrain: -0.25}, z: 16.56}
   id: bw-tree-15
   mixer: {base: {clip: Sway, loop: loop, speed: 0.86, weight: 1}}
-  model: /cdn/value.002c7e261f6964156c867c8886cdd951fc3a7331e0e3a93c1dacbef640ade581.glb
+  model: /cdn/value.aa2f0b395dadb3c6353cba8828aec488e2ed2d4541e04ae6e8132d0d73024f26.glb
   receiveShadow: true
   rotation: 53
   scale: 0.91
@@ -335,7 +335,7 @@ bw-tree-21:
   feetPosition: {x: 56.07, y: {terrain: -0.25}, z: 30.4}
   id: bw-tree-21
   mixer: {base: {clip: Sway, loop: loop, speed: 0.92, weight: 1}}
-  model: /cdn/value.44b42b31805b980502a2935691aa7f8771007793c69739953758b846d1d2f61f.glb
+  model: /cdn/value.2ad5479715b24bc81b0ee2646c8df5df01b07808cc73dfdf62864d332580fa98.glb
   receiveShadow: true
   rotation: 104
   scale: 0.97
@@ -367,7 +367,7 @@ bw-tree-23:
   id: bw-tree-23
   layout: {maxExtents: {y: 8.74}}
   mixer: {sway: {clip: Sway, loop: loop, speed: 1.12, weight: 1}}
-  model: /cdn/value.44b42b31805b980502a2935691aa7f8771007793c69739953758b846d1d2f61f.glb
+  model: /cdn/value.2ad5479715b24bc81b0ee2646c8df5df01b07808cc73dfdf62864d332580fa98.glb
   receiveShadow: true
   rotation: 15
   state: {kind: bloodoak}
@@ -379,7 +379,7 @@ bw-tree-24:
   id: bw-tree-24
   layout: {maxExtents: {y: 8.27}}
   mixer: {sway: {clip: Sway, loop: loop, speed: 1.15, weight: 1}}
-  model: /cdn/value.44b42b31805b980502a2935691aa7f8771007793c69739953758b846d1d2f61f.glb
+  model: /cdn/value.2ad5479715b24bc81b0ee2646c8df5df01b07808cc73dfdf62864d332580fa98.glb
   receiveShadow: true
   rotation: 177
   state: {kind: bloodoak}
@@ -392,7 +392,7 @@ bw-tree-25:
   id: bw-tree-25
   layout: {maxExtents: {y: 7.24}}
   mixer: {sway: {clip: Sway, loop: loop, speed: 1.02, weight: 1}}
-  model: /cdn/value.002c7e261f6964156c867c8886cdd951fc3a7331e0e3a93c1dacbef640ade581.glb
+  model: /cdn/value.aa2f0b395dadb3c6353cba8828aec488e2ed2d4541e04ae6e8132d0d73024f26.glb
   receiveShadow: true
   rotation: 264
   state: {kind: weepwillow}
@@ -404,7 +404,7 @@ bw-tree-26:
   id: bw-tree-26
   layout: {maxExtents: {y: 9.13}}
   mixer: {sway: {clip: Sway, loop: loop, speed: 1, weight: 1}}
-  model: /cdn/value.44b42b31805b980502a2935691aa7f8771007793c69739953758b846d1d2f61f.glb
+  model: /cdn/value.2ad5479715b24bc81b0ee2646c8df5df01b07808cc73dfdf62864d332580fa98.glb
   receiveShadow: true
   rotation: 170
   state: {kind: bloodoak}
@@ -416,7 +416,7 @@ bw-tree-27:
   id: bw-tree-27
   layout: {maxExtents: {y: 6.79}}
   mixer: {sway: {clip: Sway, loop: loop, speed: 0.98, weight: 1}}
-  model: /cdn/value.002c7e261f6964156c867c8886cdd951fc3a7331e0e3a93c1dacbef640ade581.glb
+  model: /cdn/value.aa2f0b395dadb3c6353cba8828aec488e2ed2d4541e04ae6e8132d0d73024f26.glb
   receiveShadow: true
   rotation: 76
   state: {kind: weepwillow}
@@ -428,7 +428,7 @@ bw-tree-28:
   id: bw-tree-28
   layout: {maxExtents: {y: 7.02}}
   mixer: {sway: {clip: Sway, loop: loop, speed: 0.88, weight: 1}}
-  model: /cdn/value.002c7e261f6964156c867c8886cdd951fc3a7331e0e3a93c1dacbef640ade581.glb
+  model: /cdn/value.aa2f0b395dadb3c6353cba8828aec488e2ed2d4541e04ae6e8132d0d73024f26.glb
   receiveShadow: true
   rotation: 105
   state: {kind: weepwillow}
@@ -440,7 +440,7 @@ bw-tree-29:
   id: bw-tree-29
   layout: {maxExtents: {y: 9.42}}
   mixer: {sway: {clip: Sway, loop: loop, speed: 1.04, weight: 1}}
-  model: /cdn/value.44b42b31805b980502a2935691aa7f8771007793c69739953758b846d1d2f61f.glb
+  model: /cdn/value.2ad5479715b24bc81b0ee2646c8df5df01b07808cc73dfdf62864d332580fa98.glb
   receiveShadow: true
   rotation: 142
   state: {kind: bloodoak}
@@ -453,7 +453,7 @@ bw-tree-30:
   id: bw-tree-30
   layout: {maxExtents: {y: 10.22}}
   mixer: {sway: {clip: Sway, loop: loop, speed: 0.96, weight: 1}}
-  model: /cdn/value.44b42b31805b980502a2935691aa7f8771007793c69739953758b846d1d2f61f.glb
+  model: /cdn/value.2ad5479715b24bc81b0ee2646c8df5df01b07808cc73dfdf62864d332580fa98.glb
   receiveShadow: true
   rotation: 38
   state: {kind: bloodoak}
@@ -466,7 +466,7 @@ bw-tree-31:
   id: bw-tree-31
   layout: {maxExtents: {y: 9.39}}
   mixer: {sway: {clip: Sway, loop: loop, speed: 0.94, weight: 1}}
-  model: /cdn/value.44b42b31805b980502a2935691aa7f8771007793c69739953758b846d1d2f61f.glb
+  model: /cdn/value.2ad5479715b24bc81b0ee2646c8df5df01b07808cc73dfdf62864d332580fa98.glb
   receiveShadow: true
   rotation: 84
   state: {kind: bloodoak}
@@ -479,7 +479,7 @@ bw-tree-32:
   id: bw-tree-32
   layout: {maxExtents: {y: 8.59}}
   mixer: {sway: {clip: Sway, loop: loop, speed: 1.02, weight: 1}}
-  model: /cdn/value.44b42b31805b980502a2935691aa7f8771007793c69739953758b846d1d2f61f.glb
+  model: /cdn/value.2ad5479715b24bc81b0ee2646c8df5df01b07808cc73dfdf62864d332580fa98.glb
   receiveShadow: true
   rotation: 357
   state: {kind: bloodoak}
@@ -491,7 +491,7 @@ bw-tree-33:
   id: bw-tree-33
   layout: {maxExtents: {y: 9.18}}
   mixer: {sway: {clip: Sway, loop: loop, speed: 0.95, weight: 1}}
-  model: /cdn/value.44b42b31805b980502a2935691aa7f8771007793c69739953758b846d1d2f61f.glb
+  model: /cdn/value.2ad5479715b24bc81b0ee2646c8df5df01b07808cc73dfdf62864d332580fa98.glb
   receiveShadow: true
   rotation: 69
   state: {kind: bloodoak}
@@ -503,7 +503,7 @@ bw-tree-34:
   id: bw-tree-34
   layout: {maxExtents: {y: 7.51}}
   mixer: {sway: {clip: Sway, loop: loop, speed: 0.86, weight: 1}}
-  model: /cdn/value.002c7e261f6964156c867c8886cdd951fc3a7331e0e3a93c1dacbef640ade581.glb
+  model: /cdn/value.aa2f0b395dadb3c6353cba8828aec488e2ed2d4541e04ae6e8132d0d73024f26.glb
   receiveShadow: true
   rotation: 117
   state: {kind: weepwillow}
@@ -515,7 +515,7 @@ bw-tree-35:
   id: bw-tree-35
   layout: {maxExtents: {y: 8.95}}
   mixer: {sway: {clip: Sway, loop: loop, speed: 1.05, weight: 1}}
-  model: /cdn/value.44b42b31805b980502a2935691aa7f8771007793c69739953758b846d1d2f61f.glb
+  model: /cdn/value.2ad5479715b24bc81b0ee2646c8df5df01b07808cc73dfdf62864d332580fa98.glb
   receiveShadow: true
   rotation: 74
   state: {kind: bloodoak}
@@ -527,7 +527,7 @@ bw-tree-36:
   id: bw-tree-36
   layout: {maxExtents: {y: 6.29}}
   mixer: {sway: {clip: Sway, loop: loop, speed: 1.07, weight: 1}}
-  model: /cdn/value.002c7e261f6964156c867c8886cdd951fc3a7331e0e3a93c1dacbef640ade581.glb
+  model: /cdn/value.aa2f0b395dadb3c6353cba8828aec488e2ed2d4541e04ae6e8132d0d73024f26.glb
   receiveShadow: true
   rotation: 72
   state: {kind: weepwillow}
@@ -539,7 +539,7 @@ bw-tree-37:
   id: bw-tree-37
   layout: {maxExtents: {y: 6.72}}
   mixer: {sway: {clip: Sway, loop: loop, speed: 1.01, weight: 1}}
-  model: /cdn/value.002c7e261f6964156c867c8886cdd951fc3a7331e0e3a93c1dacbef640ade581.glb
+  model: /cdn/value.aa2f0b395dadb3c6353cba8828aec488e2ed2d4541e04ae6e8132d0d73024f26.glb
   receiveShadow: true
   rotation: 67
   state: {kind: weepwillow}
@@ -551,7 +551,7 @@ bw-tree-38:
   id: bw-tree-38
   layout: {maxExtents: {y: 8.23}}
   mixer: {sway: {clip: Sway, loop: loop, speed: 0.86, weight: 1}}
-  model: /cdn/value.44b42b31805b980502a2935691aa7f8771007793c69739953758b846d1d2f61f.glb
+  model: /cdn/value.2ad5479715b24bc81b0ee2646c8df5df01b07808cc73dfdf62864d332580fa98.glb
   receiveShadow: true
   rotation: 31
   state: {kind: bloodoak}
@@ -563,7 +563,7 @@ bw-tree-39:
   id: bw-tree-39
   layout: {maxExtents: {y: 8.63}}
   mixer: {sway: {clip: Sway, loop: loop, speed: 1.07, weight: 1}}
-  model: /cdn/value.44b42b31805b980502a2935691aa7f8771007793c69739953758b846d1d2f61f.glb
+  model: /cdn/value.2ad5479715b24bc81b0ee2646c8df5df01b07808cc73dfdf62864d332580fa98.glb
   receiveShadow: true
   rotation: 307
   state: {kind: bloodoak}
@@ -573,7 +573,7 @@ bw-tree-4:
   feetPosition: {x: 41.5, y: {terrain: -0.25}, z: -5.9}
   id: bw-tree-4
   mixer: {base: {clip: Sway, loop: loop, speed: 1.07, weight: 1}}
-  model: /cdn/value.002c7e261f6964156c867c8886cdd951fc3a7331e0e3a93c1dacbef640ade581.glb
+  model: /cdn/value.aa2f0b395dadb3c6353cba8828aec488e2ed2d4541e04ae6e8132d0d73024f26.glb
   receiveShadow: true
   rotation: 240
   scale: 1.12
@@ -593,7 +593,7 @@ bw-tree-40:
   id: bw-tree-40
   layout: {maxExtents: {y: 9.83}}
   mixer: {sway: {clip: Sway, loop: loop, speed: 0.94, weight: 1}}
-  model: /cdn/value.44b42b31805b980502a2935691aa7f8771007793c69739953758b846d1d2f61f.glb
+  model: /cdn/value.2ad5479715b24bc81b0ee2646c8df5df01b07808cc73dfdf62864d332580fa98.glb
   receiveShadow: true
   rotation: 354
   state: {kind: bloodoak}
@@ -605,7 +605,7 @@ bw-tree-41:
   id: bw-tree-41
   layout: {maxExtents: {y: 6.51}}
   mixer: {sway: {clip: Sway, loop: loop, speed: 1.09, weight: 1}}
-  model: /cdn/value.002c7e261f6964156c867c8886cdd951fc3a7331e0e3a93c1dacbef640ade581.glb
+  model: /cdn/value.aa2f0b395dadb3c6353cba8828aec488e2ed2d4541e04ae6e8132d0d73024f26.glb
   receiveShadow: true
   rotation: 87
   state: {kind: weepwillow}
@@ -617,7 +617,7 @@ bw-tree-42:
   id: bw-tree-42
   layout: {maxExtents: {y: 10.05}}
   mixer: {sway: {clip: Sway, loop: loop, speed: 1, weight: 1}}
-  model: /cdn/value.44b42b31805b980502a2935691aa7f8771007793c69739953758b846d1d2f61f.glb
+  model: /cdn/value.2ad5479715b24bc81b0ee2646c8df5df01b07808cc73dfdf62864d332580fa98.glb
   receiveShadow: true
   rotation: 60
   state: {kind: bloodoak}
@@ -629,7 +629,7 @@ bw-tree-43:
   id: bw-tree-43
   layout: {maxExtents: {y: 9.9}}
   mixer: {sway: {clip: Sway, loop: loop, speed: 0.91, weight: 1}}
-  model: /cdn/value.44b42b31805b980502a2935691aa7f8771007793c69739953758b846d1d2f61f.glb
+  model: /cdn/value.2ad5479715b24bc81b0ee2646c8df5df01b07808cc73dfdf62864d332580fa98.glb
   receiveShadow: true
   rotation: 90
   state: {kind: bloodoak}
@@ -641,7 +641,7 @@ bw-tree-44:
   id: bw-tree-44
   layout: {maxExtents: {y: 9.88}}
   mixer: {sway: {clip: Sway, loop: loop, speed: 1.11, weight: 1}}
-  model: /cdn/value.44b42b31805b980502a2935691aa7f8771007793c69739953758b846d1d2f61f.glb
+  model: /cdn/value.2ad5479715b24bc81b0ee2646c8df5df01b07808cc73dfdf62864d332580fa98.glb
   receiveShadow: true
   rotation: 262
   state: {kind: bloodoak}
@@ -653,7 +653,7 @@ bw-tree-45:
   id: bw-tree-45
   layout: {maxExtents: {y: 7.13}}
   mixer: {sway: {clip: Sway, loop: loop, speed: 1.14, weight: 1}}
-  model: /cdn/value.002c7e261f6964156c867c8886cdd951fc3a7331e0e3a93c1dacbef640ade581.glb
+  model: /cdn/value.aa2f0b395dadb3c6353cba8828aec488e2ed2d4541e04ae6e8132d0d73024f26.glb
   receiveShadow: true
   rotation: 112
   state: {kind: weepwillow}
@@ -663,7 +663,7 @@ bw-tree-5:
   feetPosition: {x: 21.7, y: {terrain: -0.25}, z: -8.1}
   id: bw-tree-5
   mixer: {base: {clip: Sway, loop: loop, speed: 1.14, weight: 1}}
-  model: /cdn/value.44b42b31805b980502a2935691aa7f8771007793c69739953758b846d1d2f61f.glb
+  model: /cdn/value.2ad5479715b24bc81b0ee2646c8df5df01b07808cc73dfdf62864d332580fa98.glb
   receiveShadow: true
   rotation: 308
   scale: 1.19
@@ -681,7 +681,7 @@ bw-tree-7:
   feetPosition: {x: 45.9, y: {terrain: -0.25}, z: -14.4}
   id: bw-tree-7
   mixer: {base: {clip: Sway, loop: loop, speed: 0.91, weight: 1}}
-  model: /cdn/value.002c7e261f6964156c867c8886cdd951fc3a7331e0e3a93c1dacbef640ade581.glb
+  model: /cdn/value.aa2f0b395dadb3c6353cba8828aec488e2ed2d4541e04ae6e8132d0d73024f26.glb
   receiveShadow: true
   rotation: 98
   scale: 0.96
@@ -699,7 +699,7 @@ bw-tree-8:
   feetPosition: {x: 54.3, y: {terrain: -0.25}, z: -16.1}
   id: bw-tree-8
   mixer: {base: {clip: Sway, loop: loop, speed: 0.91, weight: 1}}
-  model: /cdn/value.44b42b31805b980502a2935691aa7f8771007793c69739953758b846d1d2f61f.glb
+  model: /cdn/value.2ad5479715b24bc81b0ee2646c8df5df01b07808cc73dfdf62864d332580fa98.glb
   receiveShadow: true
   rotation: 102
   scale: 0.96
