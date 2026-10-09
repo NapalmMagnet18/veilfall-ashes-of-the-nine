@@ -65,6 +65,15 @@ export function packPanel(ctx, player, { rail, touch }) {
           <span>♥ ${s.tonics ?? 0}</span><span>◆ ${s.shards ?? 0}</span>${s.heartwax ? `<span style="color:#b48cff" title="Heartwax: a boss's last tallow">✦ ${s.heartwax}</span>` : ""}${s.abbesswax ? `<span style="color:#9fe8e0" title="The Abbess's Candle: only the Ossuary gives it">✟ ${s.abbesswax}</span>` : ""}<span>✉ ${s.petitions?.length ?? 0}</span>
           <span style="display:flex;align-items:center">${coinHTML(s.copper ?? 0, 13)}</span>
         </div>
+        ${s.atGuildVault ? (() => { const G = s.gvault, VS = CB.guildVault.slots;
+          if (!G || G.none) return `<div style="margin-top:10px;padding-top:8px;border-top:1px solid #6db8c055;font-size:11px;color:#9a907e">⚑ GUILD CHEST · ${G ? "you carry no guild's mark. join or found a guild on Spawn and it opens to you." : "unsealing…"}</div>`;
+          const rows = G.rows ?? [];
+          const vc = Array.from({ length: VS }, (_, i) => { const r = rows[i];
+            return r ? `<div class="gs" style="${frame(r.item)}" onclick="sendAction('gvault',{a:'take',id:${r.id},n:Date.now()+Math.random()})"><img src="${icon(r.item.b)}">${touch ? "" : `<div class="tip">${cardHTML(r.item, gear)}<div style="font-size:11px;color:#9a907e;margin-top:3px">left by ${r.by} · click to take</div></div>`}</div>` : `<div class="gs" style="cursor:default;opacity:.55"></div>`; }).join("");
+          return `<div style="margin-top:10px;padding-top:8px;border-top:1px solid #6db8c055">
+          <div style="display:flex;justify-content:space-between;align-items:center;font-size:10px;letter-spacing:.18em;color:#9fe3ea">⚑ GUILD CHEST · ${String(G.name ?? "").toUpperCase()}<span style="color:#9a907e">${rows.length}/${VS}</span></div>
+          ${sel ? `<button class="vb" style="width:100%;margin:6px 0;border-color:#6db8c0aa" onclick="sendAction('gvault',{a:'store',u:'${sel.u}',n:Date.now()+Math.random()})">PUT IN THE GUILD CHEST</button>` : `<div style="font-size:10px;color:#9a907e;margin:4px 0 6px">pick an item in your pack to share it · click one here to take it</div>`}
+          <div style="display:grid;grid-template-columns:repeat(9,42px);gap:3px" class="vfvault">${vc}</div></div>`; })() : ""}
         ${s.atVault ? (() => { const vault = s.vault ?? [], V = CB.vault, VS = V.slots + (s.vaultRows ?? 0) * V.row, nextRow = V.rows[s.vaultRows ?? 0];
           const vc = Array.from({ length: VS }, (_, i) => { const it = vault[i];
             return it ? `<div class="gs" style="${frame(it)}" onclick="${act("take", `,u:'${it.u}'`)}"><img src="${icon(it.b)}">${touch ? "" : `<div class="tip">${cardHTML(it, gear)}<div style="font-size:11px;color:#9a907e;margin-top:3px">click to take</div></div>`}</div>` : `<div class="gs" style="cursor:default;opacity:.55"></div>`; }).join("");

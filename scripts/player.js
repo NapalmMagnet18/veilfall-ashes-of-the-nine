@@ -15,6 +15,7 @@ const floorDist = (x, z) => mapFloor(x, z, GATE.abbey, GATE.nave, GATE.fen, GATE
 import C from "./lib/data/combat.yml";
 import { shopInput } from "./lib/shop.js";
 import { tradeInput, readBoard, TRADE } from "./lib/trade.js";
+import { guildVaultInput, readGuildVault } from "./lib/guildvault.js";
 import * as CH from "./lib/character.js";
 import R from "./lib/data/realms.yml";
 
@@ -203,6 +204,7 @@ export function onInput(ctx, input) {
   if (input.actionData?.shop) shopInput(ctx, input.actionData.shop);
   if (input.actionData?.item) itemInput(ctx, input.actionData.item);
   if (input.actionData?.trade) tradeInput(ctx, input.actionData.trade);
+  if (input.actionData?.gvault) guildVaultInput(ctx, input.actionData.gvault);
   if (input.actionData?.train) trainInput(ctx, input.actionData.train);
   if (input.actionData?.travel) travelInput(ctx, input.actionData.travel);
   if (s.dead || ctx.self.inputHeld) return;
@@ -386,6 +388,15 @@ pop haze rate=3 on=box(.2,.01,.07) life=1.2..1.8 v=up(.4..0.7) size=.18..0.3 acc
 pop glow n=1 at=point() g=flick(.7,.35) r=light(<1,.36,.14>,6+$g*5,4)`;
 // Ser Hollin Vey, the Bladewraith trainer: copper buys a deeper rank of an art once the Bearer is seasoned enough
 const art = (s, k) => s.arts?.[k] ?? 0;
+function guildVaultNear(ctx) {
+  const now = ctx.now(); if (now < (me.gvAt ?? 0)) return; me.gvAt = now + 400;
+  const s = ctx.self.state, f = ctx.self.feetPosition, V = C.guildVault;
+  const near = !s.menu && !s.dead && Math.hypot(V.x - f.x, V.z - f.z) < V.reach;
+  if (!!s.atGuildVault === near) return;
+  s.atGuildVault = near;
+  if (near) { s.bagOpen = true; s.shop = null; readGuildVault(ctx).catch((e) => ctx.log("gvault read failed", String(e)));
+    if (!ctx.self.guild) msg(ctx, "A guild chest, sealed with a guild's mark. Join or found a guild on Spawn and it opens to you."); }
+}
 function vaultNear(ctx) {
   const now = ctx.now(); if (now < (me.vaultAt ?? 0)) return; me.vaultAt = now + 400;
   const s = ctx.self.state, f = ctx.self.feetPosition, V = C.vault;
@@ -780,7 +791,7 @@ export function update(ctx, dt) {
   const s = ctx.self.state, now = ctx.now(), f = ctx.self.feetPosition;
   gate(ctx);
   if (ctx.self.isLocal !== false) showcase(ctx);
-  if (!ctx.self.state.menu && ctx.self.state.charId) { drainLoot(ctx); deriveGear(ctx); if (ctx.self.isLocal !== false) { forgeNear(ctx); boardNear(ctx); trainerNear(ctx); shrineNear(ctx); vaultNear(ctx); cauldronNear(ctx); candleChill(ctx); } }
+  if (!ctx.self.state.menu && ctx.self.state.charId) { drainLoot(ctx); deriveGear(ctx); if (ctx.self.isLocal !== false) { forgeNear(ctx); boardNear(ctx); trainerNear(ctx); shrineNear(ctx); vaultNear(ctx); guildVaultNear(ctx); cauldronNear(ctx); candleChill(ctx); } }
   const vy = (ctx.self.velocity?.y ?? 0) + (ctx.self.grounded ? 0 : ctx.place.gravity.y * dt);
   // a fresh visit opens on the title in the Veil; a realm cross lands on that realm's character list
   if (ctx.self.isLocal !== false && !ctx.session.vfDoor) {

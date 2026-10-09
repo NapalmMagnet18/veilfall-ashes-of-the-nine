@@ -34,5 +34,17 @@ export async function migrate(sql) {
     removed INTEGER NOT NULL DEFAULT 0
   )`;
   await sql`CREATE INDEX IF NOT EXISTS trades_open ON trades (realm, sold_at, removed)`;
+  // the guild vault at Candlehold: one row per stored item, shared by every member of a Spawn guild on this realm
+  await sql`CREATE TABLE IF NOT EXISTS guild_vault (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    realm TEXT NOT NULL,
+    guild_id TEXT NOT NULL,
+    item TEXT NOT NULL,
+    by_name TEXT NOT NULL,
+    stored_at INTEGER NOT NULL,
+    taken_at INTEGER,
+    taken_by TEXT
+  )`;
+  await sql`CREATE INDEX IF NOT EXISTS guild_vault_open ON guild_vault (realm, guild_id, taken_at)`;
   await sql`CREATE INDEX IF NOT EXISTS trades_seller ON trades (seller_char, sold_at, paid)`;
 }

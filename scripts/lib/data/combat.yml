@@ -40,3 +40,9 @@ vault:
   rows: [5000, 20000, 50000]   # copper for each extra row of nine, in order
   x: -8
   z: 70
+# the guild vault: one shared chest per Spawn guild per realm, beside Maudry's counter
+guildVault:
+  reach: 2.6
+  slots: 27
+  x: -11
+  z: 66
