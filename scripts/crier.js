@@ -3,6 +3,7 @@
 // He reads the trades table himself; nothing writes to him. One voice per call, never more than every 18 s.
 import { fmt } from "./lib/coins.js";
 import * as CH from "./lib/character.js";
+import { owedSales, latestNotices } from "./lib/trade.js";
 const LOOP = [{ x: 3.2, z: 7.4 }, { x: -2.5, z: 8.6 }, { x: -6.8, z: 3.2 }, { x: -3.2, z: -1.8 }, { x: 3.5, z: -2.6 }, { x: 6.6, z: 2.2 }];
 const WALK = 0.95, EAR = 16, GAP = 18000;
 const V = (line) => `/cdn/voice-brother-ledd-hoarse-old-town-crier-saying-${line}.mp3`;
@@ -41,7 +42,7 @@ async function call(ctx, listener) {
   let row = null;
   const aud0 = { audience: { nearby: f, radius: EAR + 6 } }, cid = listener.state?.charId;
   if (cid) try { // a sale of theirs not yet collected and not yet announced: that comes first, by name
-    const { rows: [o] } = await ctx.sql`SELECT COUNT(*) AS n, COALESCE(SUM(price), 0) AS c FROM trades WHERE seller_char = ${cid} AND sold_at IS NOT NULL AND paid = 0`;
+    const o = await owedSales(ctx, cid);
     if (o && o.n > (me.told[cid] ?? 0)) {
       me.told[cid] = o.n; me.n++;
       const who = listener.state?.charName ?? listener.displayName ?? "Bearer";
@@ -79,7 +80,7 @@ async function call(ctx, listener) {
     return;
   }
   try {
-    const { rows } = await ctx.sql`SELECT id, seller_name, item, price FROM trades WHERE realm = ${CH.realmOf(ctx).room} AND sold_at IS NULL AND removed = 0 ORDER BY id DESC LIMIT 4`;
+    const rows = await latestNotices(ctx, CH.realmOf(ctx).room);
     row = rows.find((r) => r.id > me.seen) ?? rows[me.n % Math.max(1, rows.length)] ?? null;
     if (row) me.seen = Math.max(me.seen, row.id);
   } catch (e) { ctx.log("crier read failed", String(e)); }

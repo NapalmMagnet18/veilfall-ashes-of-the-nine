@@ -2,6 +2,7 @@
 // (up to 8), pinned over the old weathered ones. The table is asked every 8 s while anyone is within 40 m;
 // each update pins what is missing and takes down what sold, so the board always matches the table.
 import * as CH from "./lib/character.js";
+import { openCount } from "./lib/trade.js";
 const SLOTS = [[-0.72, 1.28, 6], [0.7, 1.32, -5], [-0.18, 1.4, 3], [0.32, 1.86, -7], [-0.74, 1.88, 8], [0.02, 0.9, -3], [0.74, 1.76, 4], [-0.3, 0.86, 9]];
 const WANT = new Map(), ASKED = new Map(); // board id → open listings in the table; when it was last asked
 const note = (x, y, rz) => ({ feetPosition: { x, y, z: -0.075 }, rotation: { yaw: 0, pitch: 0, roll: rz }, castShadow: false, tags: ["board-note"],
@@ -27,7 +28,7 @@ export function update(ctx) {
 async function refresh(ctx) {
   const id = ctx.self.id;
   try {
-    const { rows: [r] } = await ctx.sql`SELECT COUNT(*) AS n FROM trades WHERE realm = ${CH.realmOf(ctx).room} AND sold_at IS NULL AND removed = 0`;
+    const r = { n: await openCount(ctx, CH.realmOf(ctx).room) };
     WANT.set(id, Math.min(SLOTS.length, r?.n ?? 0));
   } catch (e) { ctx.log("board notes read failed", String(e)); }
 }

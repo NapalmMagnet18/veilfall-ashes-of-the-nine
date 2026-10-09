@@ -82,3 +82,17 @@ export async function tradeInput(ctx, d) {
   } catch (e) { ctx.log("trade failed", String(e)); note(ctx, "The board's ledger smeared. Try again."); }
   finally { s.tradeBusy = false; await readBoard(ctx).catch(() => {}); }
 }
+
+// the crier's reads, kept here beside the board so every seat that runs a player's code can make them
+export async function owedSales(ctx, cid) {
+  const { rows: [o] } = await ctx.sql`SELECT COUNT(*) AS n, COALESCE(SUM(price), 0) AS c FROM trades WHERE seller_char = ${cid} AND sold_at IS NOT NULL AND paid = 0`;
+  return o ?? null;
+}
+export async function latestNotices(ctx, realm) {
+  const { rows } = await ctx.sql`SELECT id, seller_name, item, price FROM trades WHERE realm = ${realm} AND sold_at IS NULL AND removed = 0 ORDER BY id DESC LIMIT 4`;
+  return rows;
+}
+export async function openCount(ctx, realm) {
+  const { rows: [r] } = await ctx.sql`SELECT COUNT(*) AS n FROM trades WHERE realm = ${realm} AND sold_at IS NULL AND removed = 0`;
+  return r?.n ?? 0;
+}
