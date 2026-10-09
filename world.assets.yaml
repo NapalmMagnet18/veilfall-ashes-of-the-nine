@@ -11,6 +11,7 @@ assets:
     "/cdn/value.169b3a97601cffc0873e0b302a2670a4d4c12a52d0429342f37cbe2ad4399362.png": {bytes: 461944, kind: image, name: dark-weathered-oak-planks, uploadedAt: "2026-10-09T09:37:39.963Z"}
     "/cdn/value.193f20b46037db4dcd9364748d5428843007d8e0cecf0e528e934ced25605c5b.png": {bytes: 482, kind: image, name: vf-btnmain, uploadedAt: "2026-10-08T15:56:06.141Z"}
     "/cdn/value.1960f30d58fb5e5d124c80aae3ba95801577068a547509f43cf547cd77ca8b4b.png": {bytes: 647669, kind: image, name: old-yellowed-bone-surface-cracked, uploadedAt: "2026-10-09T09:36:38.384Z"}
+    "/cdn/value.1af93ab3470956b9216c943ab4fb5d0ced0e760840565125bf10a97ea2baa9be.glb": {bytes: 1520880, kind: model, name: fen-rotlog, uploadedAt: "2026-10-09T14:52:47.815Z"}
     "/cdn/value.1b709cd7096c375acbd05332f69334ba9499d099d79e110aaf7a999e5f7c4818.glb": {bytes: 2735376, kind: model, name: orchard-appleb, uploadedAt: "2026-10-09T13:34:51.346Z"}
     "/cdn/value.1c2b0cc5fbef785f085a3a71ddf8c46bacae7f1a8026f15bd4f2fa3d54f868bc.glb": {bytes: 1292684, kind: model, name: wax-saint-b, uploadedAt: "2026-10-08T18:13:17.979Z"}
     "/cdn/value.1f60ee58a6ef0f2f7bdb966e9dfabff94bdcceaff64d510d434c336954701d4d.glb": {bytes: 13629956, kind: model, name: handcart, uploadedAt: "2026-10-08T18:03:16.176Z"}
