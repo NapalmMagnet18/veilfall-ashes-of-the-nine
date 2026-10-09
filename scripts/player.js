@@ -600,9 +600,22 @@ function crosswound(ctx) {
   me.cwAt = now + cw.cd * 1000; s.cwReadyAt = me.cwAt; s.edge -= cw.cost;
   const f = ctx.self.feetPosition, aim = me.aim ?? f;
   let dx = aim.x - f.x, dz = aim.z - f.z; const d = Math.hypot(dx, dz) || 1; dx /= d; dz /= d;
-  s.faceYaw = yawTo(dx, dz); s.goal = null;
+  s.faceYaw = yawTo(dx, dz); s.goal = null; me.route = null;
+  // the wind-up: the blade drinks ember light for a breath before it falls
+  me.cwHoldUntil = now + 240;
+  ctx.emit("fx", { position: { x: f.x - dx * 0.4, y: f.y + 1.7, z: f.z - dz * 0.4 }, script: GATHER });
+  ctx.emit("playSound", { clip: sfx("blade-draw-back-ember-hiss-rising"), position: f, volume: 0.6 });
+  ctx.after(0.24, "crosswoundFall", { dx, dz });
+}
+const GATHER = `fx
+pop mote burst=22 on=sphere(1.1) life=.24 v=attract(6) size=.03..0.06 col=hdr(3.2,1.3,.35) a=0>.3:1>0 r=sprite(ember,add,velocity,.02)
+pop glow n=1 at=point() life=.26 r=light(<1,.5,.2>,(0>1)*18,6)`;
+export function crosswoundFall(ctx, p) {
+  const s = ctx.self.state, cw = C.crosswound, f = ctx.self.feetPosition, dx = p.dx, dz = p.dz;
+  if ((s.hp ?? 1) <= 0) return;
   swingAnim(ctx, "cdn/clip-kick.glb");
   ctx.self.anim.attack.clip = "cdn/clip-attack.glb";
+  ctx.emit("screenShake", { intensity: 0.18, duration: 0.18 }, { audience: { player: ctx.self.id } });
   ctx.emit("fx", { position: { x: f.x + dx * 1.6, y: f.y + 1, z: f.z + dz * 1.6 }, script: SLASH });
   ctx.emit("playSound", { clip: sfx("heavy-sword-cleave-whoosh-ringing"), position: f, volume: 0.8 });
   ctx.emit("cameraPunch", { direction: { x: dx, y: 0, z: dz }, intensity: 0.25 }, { audience: { player: ctx.self.id } });
