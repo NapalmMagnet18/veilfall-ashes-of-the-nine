@@ -226,6 +226,64 @@ fwisp-orch-3:
   state: {home: {x: 70, y: 1.5152422379979629, z: 0}, r: 4, seed: 5}
   tags: [ambience, forest-wisp]
   wisp: {burnStyle: calm, color: "#ffd27a", seed: 16, shape: classic, size: 0.35, state: idle}
+orch-apple-0:
+  castShadow: true
+  feetPosition: {x: 79.2, y: {terrain: -0.15}, z: -5.1}
+  id: orch-apple-0
+  mixer: {sway: {clip: Sway, loop: loop, speed: 0.75, weight: 1}}
+  model: /cdn/value.d6c1233f14db0eaa7e26010cae90c13ee56be4d378af5ffaf0e6dfb5b31c4571.glb
+  receiveShadow: true
+  rotation: 0
+  scale: 0.9
+  tags: [orchard, flora, tree]
+orch-apple-2:
+  castShadow: true
+  feetPosition: {x: 70.5, y: {terrain: -0.15}, z: -12.7}
+  id: orch-apple-2
+  mixer: {sway: {clip: Sway, loop: loop, speed: 1.14, weight: 1}}
+  model: /cdn/value.e8237dc6ce5814a52762136a3720ff0581da3ebd9fed643aec43bd65110ec5a0.glb
+  receiveShadow: true
+  rotation: 352
+  scale: 1.19
+  tags: [orchard, flora, tree]
+orch-apple-5:
+  castShadow: true
+  feetPosition: {x: 84.2, y: {terrain: -0.15}, z: 16.9}
+  id: orch-apple-5
+  mixer: {sway: {clip: Sway, loop: loop, speed: 0.87, weight: 1}}
+  model: /cdn/value.e8237dc6ce5814a52762136a3720ff0581da3ebd9fed643aec43bd65110ec5a0.glb
+  receiveShadow: true
+  rotation: 104
+  scale: 0.99
+  tags: [orchard, flora, tree]
+orch-apple-6:
+  castShadow: true
+  feetPosition: {x: 80.2, y: {terrain: -0.15}, z: 24.7}
+  id: orch-apple-6
+  mixer: {sway: {clip: Sway, loop: loop, speed: 1, weight: 1}}
+  model: /cdn/value.d6c1233f14db0eaa7e26010cae90c13ee56be4d378af5ffaf0e6dfb5b31c4571.glb
+  receiveShadow: true
+  rotation: 222
+  scale: 1.08
+  tags: [orchard, flora, tree]
+orch-apple-lamp-0:
+  children: [{material: {color: oklch(0.88 0.12 70), emissive: oklch(0.85 0.15 60), emissiveIntensity: 3}, physics: none, primitive: {kind: sphere, radius: 0.07}}]
+  feetPosition: {x: 80.3, y: {terrain: 2.2}, z: -5.1}
+  id: orch-apple-lamp-0
+  light: {color: oklch(0.8 0.14 60), distance: 9, intensity: 2.2, kind: point}
+  tags: [orchard, light]
+orch-apple-lamp-2:
+  children: [{material: {color: oklch(0.88 0.12 70), emissive: oklch(0.85 0.15 60), emissiveIntensity: 3}, physics: none, primitive: {kind: sphere, radius: 0.07}}]
+  feetPosition: {x: 71.58793459341281, y: {terrain: 2.2}, z: -12.862475599570256}
+  id: orch-apple-lamp-2
+  light: {color: oklch(0.8 0.14 60), distance: 9, intensity: 2.2, kind: point}
+  tags: [orchard, light]
+orch-apple-lamp-6:
+  children: [{material: {color: oklch(0.88 0.12 70), emissive: oklch(0.85 0.15 60), emissiveIntensity: 3}, physics: none, primitive: {kind: sphere, radius: 0.07}}]
+  feetPosition: {x: 79.37995778350113, y: {terrain: 2.2}, z: 23.966835105068704}
+  id: orch-apple-lamp-6
+  light: {color: oklch(0.8 0.14 60), distance: 9, intensity: 2.2, kind: point}
+  tags: [orchard, light]
 orch-brazier-0:
   castShadow: true
   children: [{audio: {clip: /cdn/moodboard-realistic-gritty/sfx-iron-brazier-fire-crackle-loop.mp3, gain: 0.12, loop: true, maxDistance: 12}, feetPosition: {x: 0, y: 1.42, z: 0}, fx: {params: {}, script: "fx\npop coals n=5 on=disc(.25) size=.05..0.1 tint=<2.4,.9,.25>..<1.1,.3,.08> sz=$size*flick(.5,.12) col=$tint*flick(.8,.3) a=.9 r=sprite(soft-disc,add)\npop flame rate=flick(.45,.2)*40 on=disc(.22) life=.4..0.75 v=up(1.4)+cone(20)*(.3..0.7) size=.18..0.34 acc=curl(.5)*1.2+buoy(2.2)+drag(1.5)\n  sz=$size*(.5>.25:1>.7:.7>.14) col=hdr(4.6,3.4,1.4)>.3:hdr(3.2,1.4,.3)>.65:hdr(1.8,.5,.1)>hdr(.6,.12,.03) a=0>.12:1>.75:.85>0 rot=spin(.2) r=sprite(flame-wisp,add)\npop embers rate=3 on=disc(.2) life=.8..1.6 v=up(2)+cone(30)*(.4..1.2) size=.02..0.04 acc=curl(.8)+grav()*.4+drag(.5) col=hdr(5,2.8,.8)>.6:hdr(2.4,.8,.15)>hdr(1,.22,.04) a=(0>.08:1>.65:.9>0)*flick(11,.35) r=sprite(ember,add,velocity,.02)\npop smoke on=@flame?.15 inh=p;v:$v*.4 life=1.6..2.6 size=.14..0.22 acc=buoy(.9)+curl(.35)*.5+drag(.8) sz=$size*(.7>3) col=<.22,.2,.2> a=0>.22:.3>.7:.15>0 rot=spin(.15) r=sprite(smoke-puff,alpha)", seed: 886647702}, id: flame, light: {color: "#ff9446", distance: 15, intensity: 16, kind: point, shadow: {enabled: true}}, visibleRange: {max: 72, min: 0}}]
