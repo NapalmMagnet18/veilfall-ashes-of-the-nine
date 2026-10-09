@@ -359,14 +359,24 @@ pop gust rate=?mobile:2|4 on=disc(.5) life=.8..1.3 v=vortex(1.4)+up(.3..0.6) siz
 // the ranged callings' signature (RMB, the Crosswound slot, same Edge cost): each its own shape of harm
 const LANCE = `fx
 pop beam burst=1 life=.55 size=1 col=hdr(2.6,3.6,4.4) a=1>.6:.9>0 sz=$size*(1>.3) r=mesh(cylinder,.18,9,.18)
+pop sheath burst=1 life=.7 size=1 col=hdr(.5,1.1,1.9) a=.55>.3:.4>0 sz=$size*(.6>1.4) r=mesh(cylinder,.55,9,.55)
 pop rune burst=1 life=.7 size=3.4 col=hdr(1.2,2.2,3.2) a=.9>0 sz=$size*(.4>1) r=sprite(soft-disc,add)
+pop ring burst=1 life=.5 size=5.2 col=hdr(1.6,2.6,3.6) a=.8>0 sz=$size*(.1>1) r=sprite(soft-disc,add)
+pop fall burst=26..34 on=disc(.4).c(8) life=.25..0.4 v=up(-22..-16) size=.03..0.06 col=hdr(3,3.8,4.6) a=1>0 sz=$size r=sprite(ember,add,velocity,.08)
 pop shard burst=30..40 on=disc(1.4) life=.5..1 v=up(3..7)+sdir()*1.2 size=.04..0.08 acc=grav()*.4+drag(1.2) col=hdr(2.4,3.4,4.2)>hdr(.4,.8,1.4) a=1>0 sz=$size r=sprite(ember,add,velocity,.05)
-pop glow burst=1 life=.6 at=point().c(1) r=light(<.55,.8,1>,40*(1>0),10)`;
+pop mote burst=16..22 on=disc(1.8) life=1.2..2 v=up(.3..0.8) size=.02..0.04 acc=curl(.9)+drag(.6) col=hdr(1.8,2.8,3.6)>hdr(.3,.6,1) a=(0>.15:1>0)*flick(7,.4) r=sprite(mote,add)
+pop dust burst=8..12 on=disc(.8) life=.9..1.5 v=radial(1.2..2.4)+up(.2..0.5) size=.4..0.7 acc=drag(2)+buoy(.15) col=<.42,.46,.52> a=0>.1:.3>0 sz=$size*(.6>2.4) rot=spin(.2) r=sprite(smoke-puff,alpha)
+pop glow burst=1 life=.6 at=point().c(1) r=light(<.55,.8,1>,40*(1>0),10)
+pop after burst=1 life=1.6 at=point().c(.3) r=light(<.45,.7,1>,8*(1>0),5)`;
 const DARKPOOL = `fx
 pop pool n=1 life=3 size=4.4 col=<.18,.04,.28> a=0>.1:.85>.85:.85>0 sz=$size r=sprite(soft-disc,alpha)
+pop rim n=1 life=3 size=4.6 col=hdr(.9,.25,1.5) a=0>.1:.5>.8:.5>0 sz=$size*(1+flick(3,.04)) r=sprite(soft-disc,add)
 pop tendril rate=?mobile:14|28 on=disc(2) life=.7..1.2 v=up(.8..1.8)+sdir()*.2 size=.08..0.16 acc=curl(1)+drag(1) col=hdr(1.4,.4,2.2)>hdr(.2,.05,.35) a=0>.15:.9>0 sz=$size*(1>.3) r=sprite(smoke-puff,add)
+pop hand rate=?mobile:3|6 on=disc(1.7) life=.8..1.3 v=up(1.2..2.2) size=.05..0.09 acc=curl(2.2)*1.4+drag(1.5) col=hdr(2,.6,3)>hdr(.3,.05,.5) a=0>.1:1>0 sz=$size r=sprite(ember,add,velocity,.12)
+pop pull rate=?mobile:10|20 on=disc(2.4).c(.2) life=.5..0.8 v=attract(4) size=.02..0.04 col=hdr(2.4,1,3.2) a=0>.2:1>0 sz=$size r=sprite(ember,add,velocity,.04)
+pop murk rate=?mobile:3|6 on=disc(1.8) life=1.4..2.2 v=up(.15..0.35) size=.6..1 acc=buoy(.2)+curl(.3)*.3+drag(1) col=<.08,.02,.12> a=0>.2:.45>0 sz=$size*(.6>1.8) rot=spin(.15) r=sprite(smoke-puff,alpha)
 pop eye rate=3 on=disc(1.6) life=.6..1 size=.05 col=hdr(3,1,4) a=0>.3:1>0 sz=$size r=sprite(soft-disc,add)
-pop glow n=1 life=3 at=point().c(.6) r=light(<.6,.25,1>,12,7)`;
+pop glow n=1 life=3 at=point().c(.6) r=light(<.6,.25,1>,12*flick(4,.25),7)`;
 function sigLance(ctx, s, f, aim) {
   const at = { x: aim.x, y: ctx.place.terrain?.heightAt?.(aim.x, aim.z) ?? f.y, z: aim.z };
   swingAnim(ctx, "cdn/clip-cast.glb");

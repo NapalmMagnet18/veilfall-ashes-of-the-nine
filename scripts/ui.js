@@ -271,9 +271,10 @@ const CHRONICLE = [
   ["V", "The Ossuary of Saint Ysolde", "Down the Bone Stair. Take her candle.", false, "/cdn/value.1a38646aae6877aa6c9b7845ba9905c1045dca51f41779fe0f0eede0f5b491d1.png"],
   ["VI", "Candlehold", "The last walled city. The Exchange keeps its ledgers.", true, "/cdn/value.492e4cea5c972b7a5b7b2eb399dbe1b59c4e31165dcabb65024f6575eb5bcf33.png"],
 ];
-const VERSION = "0.16.0 · CRIMSON BOUGHS";
+const VERSION = "0.17.0 · WITCHLIGHT";
 // what changed, newest first: [version, title, date, [lines]]
 const NOTES = [
+  ["0.17.0", "Witchlight", "Oct 9", ["Holy lance falls as a sheathed column of light with a shock ring, falling sparks and lingering motes", "Shadow pool grows a breathing rim, grasping hands, motes pulled into the dark and rolling murk", "Zone tree and floor kits for road, fen, vale and caves in the works"]],
   ["0.16.0", "Crimson Boughs", "Oct 9", [
     ["Blood Woods", "Twenty-two new trees root along the woods: blood oaks with sap-split bark, weeping willows trailing red, and bare antler snags. Every bough sways in the night wind."],
     ["The Hanging Orchard", "Gnarled black-apple trees ring the Orchard, heavy with scarlet-sapped fruit, and pilgrims have left lanterns burning in their low boughs."],
