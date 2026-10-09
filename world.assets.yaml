@@ -15,6 +15,7 @@ assets:
     "/cdn/value.1c2b0cc5fbef785f085a3a71ddf8c46bacae7f1a8026f15bd4f2fa3d54f868bc.glb": {bytes: 1292684, kind: model, name: wax-saint-b, uploadedAt: "2026-10-08T18:13:17.979Z"}
     "/cdn/value.1f60ee58a6ef0f2f7bdb966e9dfabff94bdcceaff64d510d434c336954701d4d.glb": {bytes: 13629956, kind: model, name: handcart, uploadedAt: "2026-10-08T18:03:16.176Z"}
     "/cdn/value.2349f5b2a205dcdb7fa4d7bfb654295f63819e09024f4d115676bb8f57ea0537.glb": {bytes: 1884040, kind: model, name: road-boneheap, uploadedAt: "2026-10-08T17:23:00.180Z"}
+    "/cdn/value.2ad5479715b24bc81b0ee2646c8df5df01b07808cc73dfdf62864d332580fa98.glb": {bytes: 2187968, kind: model, name: bloodoak, uploadedAt: "2026-10-09T13:51:05.150Z"}
     "/cdn/value.301d8763c5f404df5407853f56d03bb5b262ca7bbba0a43e9822415a46367a07.glb": {bytes: 893904, kind: model, name: grave-waxcap, uploadedAt: "2026-10-08T18:13:29.229Z"}
     "/cdn/value.3c60cb6d850afbc2c860e26a7eb36a99277bd2ba780f319efaa32e5aaa99622d.glb": {bytes: 606460, kind: model, name: wax-sealed-petition, uploadedAt: "2026-10-08T18:00:39.063Z"}
     "/cdn/value.3cb51fb3edc8baa35cda1a3e29fe6f3e2294dbb59c778d668295d99e1e16092a.glb": {bytes: 1416228, kind: model, name: road-reliquary, uploadedAt: "2026-10-08T17:22:56.992Z"}
@@ -41,6 +42,7 @@ assets:
     "/cdn/value.a2605b2cc3a81b3017dc37e70db702f5d8bc19876c5b91473921a28a733d3467.png": {bytes: 265, kind: image, name: vf-div, uploadedAt: "2026-10-08T16:11:15.123Z"}
     "/cdn/value.a653a5ebfcccb33300582bba7d25b0912ff6b147bc340943eeb0a5a772ab6283.glb": {bytes: 1486772, kind: model, name: wax-saint-c, uploadedAt: "2026-10-08T18:13:21.541Z"}
     "/cdn/value.a6f5feb00c9cfa4e09735369401be1c83e6853116a115ab3197ba4b6f3771879.png": {bytes: 511220, kind: image, name: worn-cracked-brown-leather, uploadedAt: "2026-10-09T09:36:38.338Z"}
+    "/cdn/value.aa2f0b395dadb3c6353cba8828aec488e2ed2d4541e04ae6e8132d0d73024f26.glb": {bytes: 2666168, kind: model, name: weepwillow, uploadedAt: "2026-10-09T13:51:10.541Z"}
     "/cdn/value.af43abd1578b88cdcca29ca38b2960f84584acf72b66d7baae3e5e5604108f20.png": {bytes: 645869, kind: image, name: mossy-dark-slate-roof-shingles, uploadedAt: "2026-10-09T09:36:37.858Z"}
     "/cdn/value.b20b7d9626dd956b2c5e558692ad328b1f19e3275e2782db4fa07670d83f35e0.ttf": {bytes: 1195560, kind: font, name: corm, uploadedAt: "2026-10-08T20:09:57.724Z"}
     "/cdn/value.bba925e4e433e115eeed76c95225f1769bfc11061a2a7d75b358ec2ab422204d.glb": {bytes: 621540, kind: model, name: grave-broken, uploadedAt: "2026-10-08T18:13:33.794Z"}
