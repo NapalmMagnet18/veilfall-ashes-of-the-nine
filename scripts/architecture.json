@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "basedOnSpecVersion": 958,
-  "updatedAt": "2026-10-09T09:19:54.450Z",
+  "basedOnSpecVersion": 963,
+  "updatedAt": "2026-10-09T09:21:44.616Z",
   "summary": "VEILFALL: Ashes of the Nine is an isometric multiplayer action RPG, with a shared main realm for the Wayside Fire, Broken Lantern Road, Candlehold and later areas, plus a solo Veil title/menu place. Templates attach the player, camera and state-driven HUD; player and place/boss handlers own combat and progression, while character/data modules provide persistence and shared services. Procedural scenes and rigged models build the world; class attacks and saved talent trees feed derived combat stats.",
   "scriptPaths": [
     "mods/aaa-quality-kit/look-cinema.js",
@@ -208,6 +208,7 @@
     "templates/player.js - player body with humanoid-locomotion.js and scripts/player.js, plus carried-light child.",
     "templates/camera.js - custom camera template running scripts/camera.js.",
     "places/main/sim.js - main-place referee for hub NPCs/services, quests, enemy packs, progression, boss lifecycle and soundscape.",
+    "places/main/config.yaml - main realm atmosphere, terrain and material configuration; pilgrim-road stone albedo resolves to the uploaded road image in world.assets.yaml.",
     "places/main/cells/ - shared realm terrain and authored settlements, services, landmarks and encounters.",
     "places/veil/config.yaml and places/veil/cells/ - solo title/menu scene and ambience; scripts/arrival.js saves an active Bearer leaving main."
   ],
@@ -227,7 +228,7 @@
     "scripts/camera.js - onInput, update; scripts/sway.js - updateSchedule, onSpawn, update.",
     "scripts/ui.js - default state-driven HUD/menu/sheet/talent-tree renderer, including unit frames; scripts/ui/nametag.js - nametag renderer.",
     "scripts/abbess.js, bailiff.js, ringer.js, warden.js and hangman.js - boss onSpawn/update handlers.",
-    "scripts/crier.js - onSpawn, quiet, update; scripts/board-notes.js and scripts/trophies.js - update; scripts/wax-pack.js - roll, telegraph, hurtPlayers, payout, update; scripts/plants/ashfern.js and bramble.js - geometry; mossoak.js - geometry, collider.",
+    "scripts/crier.js - onSpawn, quiet, update; scripts/board-notes.js and scripts/trophies.js - update; scripts/wax-pack.js - roll, telegraph, hurtPlayers, payout, update.",
     "scripts/lib/character.js - CHAR_KEYS, fresh, START, realmOf, pack, zoneOf, roster, create/load/save/remove; persistent vault, vaultRows and talents are Bearer fields.",
     "scripts/lib/data/talents.js - TAL_ICON, PER, LABEL, treeOf, pointsOf, spentIn, spent, canLearn, talentStats; scripts/lib/trade.js - TRADE, asks, readBoard, tradeInput, owedSales, latestNotices, openCount."
   ],
@@ -262,7 +263,7 @@
     "scripts/gen/cap-kit.js with cap-gate.js, cap-house.js and cap-wall.js - Candlehold stone, timber and slate share local-frame helpers; instance dimensions, lighting and seed vary.",
     "scripts/gen/veil-land.js and veil-shrine.js - Veil ledge/cliff/ridge structures vary by kind/dimensions; shrine exports structure/hook constants.",
     "scripts/gen/arena-floor.js, arena-pillar.js, gibbet.js and toll-throne.js - Bailiff arena dressing shares scripts/gen/shapes.js and its wax palette; split gibbet cages render separately at a top pivot.",
-    "scripts/plants/ashfern.js, bramble.js and mossoak.js - seeded procedural ash-fern, grave-bramble and dead-oak ground cover configured in places/main/config.yaml; geometry detail thins by LOD, fern tone varies by params, and moss-oak also exports a collider. scripts/gen/abbey-litter.js and abbey-court.js - Abbey yard/Crypt litter and court dressing vary by kind/seed/transform; court preserves a clear local -Z door path; fen-*.js share fen-kit.js.",
+    "scripts/plants/ashfern.js, bramble.js and mossoak.js - seeded procedural ash-fern, grave-bramble and dead-oak ground cover configured in places/main/config.yaml; geometry detail thins by LOD, fern tone varies by params, and moss-oak also exports sway.",
     "scripts/sway.js - shared wind-and-nearby-player pendulum behavior on selected orchard hangings, split Bailiff arena cages and toll bell; instance phase/ring clip vary, smoothed with Animação Viva."
   ],
   "probableOrphans": [
@@ -275,6 +276,6 @@
     "Talents add to gearStats-compatible keys during scripts/player.js gear derivation; talent changes must invalidate the derived-stat cache alongside gear and active brew changes.",
     "Wayshrine IDs and coordinates in scripts/lib/data/combat.yml must stay aligned with scene IDs/locations; travel costs 10 copper and refuses while an enemy is within 10 m; Abbey destination obeys the player gate.",
     "Personal vault is 18 slots plus up to three purchased rows of nine (costs [5000, 20000, 50000] copper) saved per Bearer; guild vault is 27 shared slots per Spawn guild per realm in SQL, separate from character inventory.",
-    "Crosswound resolves its hit after a 240 ms wind-up via scripts/player.js crosswoundFall; class projectile attacks schedule boltLand with target ID, damage and impact data. Market notices/counts/owed-sale queries are centralized in scripts/lib/trade.js."
+    "places/main/config.yaml pilgrim-road stone material uses /cdn/value.0061e3151987bd6d9b2a3331d58d9a83b0b6c0b2adaebbfda07cf0d902fa2224.png, registered as the uploaded road image in world.assets.yaml; preserve this asset reference when changing the material."
   ]
 }
