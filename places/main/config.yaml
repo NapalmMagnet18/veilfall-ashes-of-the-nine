@@ -195,7 +195,7 @@ terrain:
       roughnessIntensity: 0.85
       macro: { scale: 25, hue: 0.02, value: 0.2 }
       tint: oklch(0.80 0.01 260)
-    - albedo: cdn/texture-terrain-wet-dark-flagstone-cobbles-old-pilgrim-road.png
+    - albedo: /cdn/value.0061e3151987bd6d9b2a3331d58d9a83b0b6c0b2adaebbfda07cf0d902fa2224.png
       id: stone
       pbr: true
       antiTiling: stochastic
