@@ -318,6 +318,33 @@ pop gout burst=26..34 on=disc(.3) life=.5..1 v=up(2..3.4)+sdir()*.8 size=.04..0.
 pop steam burst=8 on=disc(.3) life=1.2..2 v=up(1..1.6) size=.3..0.5 acc=buoy(.4)+drag(.8)+curl(.3)*.4 sz=$size*(.6>2.2) col=<.85,.78,.62> a=0>.1:.35>0 r=sprite(smoke-puff,alpha)
 pop flare burst=1 life=.5 at=point().c(.2) r=light(<%c|1,.6,.3>,10*(1>0),6)`;
 // the Wayside cauldron: within reach the pack grows the brew row
+// the Abbess's Candle carried: every warm fire within reach of its bearer gutters cold blue, and takes its own flame back once they pass
+const COLD_FIRE = `fx
+pop flame rate=flick(.45,.2)*36 on=disc(.22) life=.4..0.75 v=up(1.3)+cone(20)*(.3..0.7) size=.16..0.32 acc=curl(.5)*1.2+buoy(2)+drag(1.5)
+  sz=$size*(.5>.25:1>.7:.7>.14) col=hdr(1.4,3.6,3.8)>.4:hdr(.5,1.8,2.2)>hdr(.1,.4,.6) a=0>.12:1>.75:.85>0 rot=spin(.2) r=sprite(flame-wisp,add)
+pop motes rate=4 on=disc(.25) life=1..1.8 v=up(.8)+sdir()*.3 size=.02..0.04 acc=curl(.6)+drag(.6) col=hdr(1.2,3,3.4) a=(0>.1:1>.7:.8>0)*flick(7,.4) r=sprite(ember,add)
+pop smoke on=@flame?.15 inh=p;v:$v*.4 life=1.6..2.6 size=.14..0.22 acc=buoy(.9)+drag(.8) sz=$size*(.7>3) col=<.2,.22,.24> a=0>.22:.3>.7:.15>0 r=sprite(smoke-puff,alpha)`;
+const CHILL_R = 9, CHILL_OFF = 12;
+function candleChill(ctx) {
+  const now = ctx.now(); if (now < (me.chillAt ?? 0)) return; me.chillAt = now + 400;
+  const carry = (ctx.self.state.abbesswax ?? 0) > 0, f = ctx.self.feetPosition;
+  me.chilled ??= {};
+  if (carry) for (const r of ctx.query({ radius: CHILL_R, center: f })) {
+    if (!/brazier/.test(r.id) || r.id.startsWith("oss-") || me.chilled[r.id]) continue;
+    const fl = ctx.place.objects[`${r.id}/flame`]; if (!fl || !fl.fx) continue;
+    if (!fl.state?.warm) fl.state.warm = { fx: fl.fx, light: fl.light ?? null };
+    if (fl.state.cold) { me.chilled[r.id] = true; continue; }
+    fl.state.cold = true; fl.fx = { script: COLD_FIRE };
+    if (fl.light) fl.light = { ...fl.light, color: "#7fd8e6" };
+    me.chilled[r.id] = true;
+    ctx.emit("playSound", { clip: "/cdn/moodboard-gothic-horror/sfx-fire-guttering-out-into-cold-whispering-breath.mp3", position: r.feetPosition, volume: 0.45, maxDistance: 18 });
+  }
+  for (const id of Object.keys(me.chilled)) {
+    const b = ctx.place.objects[id], fl = ctx.place.objects[`${id}/flame`];
+    const far = !b || Math.hypot(b.feetPosition.x - f.x, b.feetPosition.z - f.z) > CHILL_OFF;
+    if (!carry || far) { if (fl?.state?.warm) { fl.fx = fl.state.warm.fx; if (fl.state.warm.light) fl.light = fl.state.warm.light; fl.state.cold = false; } delete me.chilled[id]; }
+  }
+}
 function cauldronNear(ctx) {
   const now = ctx.now(); if (now < (me.cauldAt ?? 0)) return; me.cauldAt = now + 400;
   const s = ctx.self.state, o = ctx.getObject("wayside-cauldron"), f = ctx.self.feetPosition;
@@ -639,7 +666,7 @@ export function update(ctx, dt) {
   const s = ctx.self.state, now = ctx.now(), f = ctx.self.feetPosition;
   gate(ctx);
   if (ctx.self.isLocal !== false) showcase(ctx);
-  if (!ctx.self.state.menu && ctx.self.state.charId) { drainLoot(ctx); deriveGear(ctx); if (ctx.self.isLocal !== false) { forgeNear(ctx); boardNear(ctx); cauldronNear(ctx); } }
+  if (!ctx.self.state.menu && ctx.self.state.charId) { drainLoot(ctx); deriveGear(ctx); if (ctx.self.isLocal !== false) { forgeNear(ctx); boardNear(ctx); cauldronNear(ctx); candleChill(ctx); } }
   const vy = (ctx.self.velocity?.y ?? 0) + (ctx.self.grounded ? 0 : ctx.place.gravity.y * dt);
   // a fresh visit opens on the title in the Veil; a realm cross lands on that realm's character list
   if (ctx.self.isLocal !== false && !ctx.session.vfDoor) {
