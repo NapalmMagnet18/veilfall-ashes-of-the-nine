@@ -269,7 +269,7 @@ const CHRONICLE = [
   ["V", "The Ossuary of Saint Ysolde", "Down the Bone Stair. Take her candle.", false, "/cdn/value.1a38646aae6877aa6c9b7845ba9905c1045dca51f41779fe0f0eede0f5b491d1.png"],
   ["VI", "Candlehold", "The last walled city. The Exchange keeps its ledgers.", true, "/cdn/value.492e4cea5c972b7a5b7b2eb399dbe1b59c4e31165dcabb65024f6575eb5bcf33.png"],
 ];
-const VERSION = "0.14.0 · WISPS & WINTER";
+const VERSION = "0.15.0 · WET STONE";
 // what changed, newest first: [version, title, date, [lines]]
 const NOTES = [
   ["0.13.1", "Sharper Stone", "Oct 9", [

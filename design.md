@@ -141,3 +141,4 @@ places/main/sim.js referee: spawns packs, quest stages, XP/levels, death and res
 - 2026-10-09: deaths by nature: wax melts, frost shatters (instant), ash crumbles, flesh/beasts lie as a corpse 5 s then sink (gone at 7 s).
 - 2026-10-09: RMB signature per ranged calling (30 Edge, Crosswound slot): Soulweaver Wound of Light (2.6 m, x1.5 at 0.3 s), Shadowmancer Borrowed Shadow (2.2 m pool, 3 ticks x0.55, 50% slow 1.2 s), Gloamstalker Glassbolt Volley (5 arrows ±0.34 rad, x0.7 each). Melee callings keep Crosswound.
 - 2026-10-09: Hellwarden Crosswound = Furnace Sweep (+3 burn ticks x0.15); Primalist = Stormhorn (lightning fx per foe struck).
+- 2026-10-09: v0.15.0. main realm look = scripts/look-veilfall.js: Raytraced Lighting's traced reflections (half-res, 40 steps, high/ultra desktop only) added over Awakening's film look. RMB slot shows each calling's own signature name and icon.
