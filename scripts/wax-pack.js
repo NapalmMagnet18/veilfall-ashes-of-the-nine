@@ -90,8 +90,13 @@ pop smoke burst=8 on=disc(.3) life=1.2..2 v=up(.6..1.2) size=.3..0.5 acc=buoy(.4
 pop out burst=1 life=.3 size=.5 col=hdr(3,1.6,.4) a=1>0 sz=$size*(1>.2) r=sprite(soft-disc,add)`;
 const SLAM = `fx
 pop dust burst=30 on=disc(%r|3) life=.6..1.2 v=up(1..2.5)+sdir()*.8 size=.3..0.6 acc=drag(1.5)+buoy(.3) col=<.55,.5,.45> a=0>.4:.4>0 sz=$size*(.6>1.8) r=sprite(smoke-puff,alpha)
+pop roll burst=14..18 on=disc(.4) life=.8..1.4 v=radial(3..5)+up(.2..0.5) size=.4..0.7 acc=drag(2.2)+buoy(.15) col=<.42,.38,.34> a=0>.08:.45>0 sz=$size*(.5>2.2) rot=spin(.25) r=sprite(smoke-puff,alpha)
 pop wax burst=24 on=disc(.5) life=.5..0.9 v=sdir()*(3..6)+up(2..3) size=.05..0.1 col=oklch(.85 .12 60) acc=grav() a=1>0 floor=stick r=sprite(chip,alpha,velocity,.02)
-pop fl burst=1 life=.25 size=%r|3 col=hdr(3,1.2,.3) a=.8>0 sz=$size*(.5>2) r=sprite(soft-disc,add)`;
+pop stone burst=10..14 on=disc(.6) life=.8..1.3 v=radial(2..4)+up(3..5) size=.07..0.14 spin=-10..10 acc=grav() floor=bounce(.3) col=<.3,.28,.27> a=1>.7:1>0 sz=$size rot=$age*$spin r=sprite(chip,alpha)
+pop ember burst=16..22 on=disc(.8) life=.5..1 v=up(1.5..3)+sdir()*(1..2) size=.02..0.04 acc=grav()*.5+drag(1) col=hdr(3.4,1.4,.35)>hdr(.9,.25,.05) a=1>0 r=sprite(ember,add,velocity,.03)
+pop ring burst=1 life=.35 size=%r|3 col=hdr(2.4,1.3,.5) a=.9>0 sz=$size*(.3>2.4) r=sprite(soft-disc,add)
+pop fl burst=1 life=.25 size=%r|3 col=hdr(3,1.2,.3) a=.8>0 sz=$size*(.5>2) r=sprite(soft-disc,add)
+pop heat burst=1 life=.45 at=point().c(.5) r=light(<1,.55,.25>,30*(1>0),9)`;
 // coins hop out of the corpse: glinting metal that bounces on the flagstones; count and height scale with the purse
 const SPILL = (n, lo, hi) => `fx
 pop coin burst=${n} on=disc(.3) life=.8..1.2 v=up(${lo}..${hi})+sdir()*(.6..1.5) size=.07..0.11 spin=-14..14 acc=grav() col=hdr(2.2,1.6,.6) a=1>.8:1>0 sz=$size rot=$age*$spin floor=bounce(.3) r=sprite(chip,add,velocity,.02)
