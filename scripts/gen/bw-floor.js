@@ -22,7 +22,7 @@ function emitter(ctx, track) {
   const uvs = track ? [] : null;
   const E = {
     uvs,
-    tri(a, b, c) { ctx.tri(a[0], a[1], a[2], b[0], b[1], b[2], c[0], c[1], c[2]); if (uvs) uvs.push(0, a[3] ?? 0, 0, b[3] ?? 0, 0, c[3] ?? 0); },
+    tri(a, b, c) { ctx.tri(a[0], a[1], a[2], b[0], b[1], b[2], c[0], c[1], c[2]); if (uvs) uvs.push(a[4] ?? 1, a[3] ?? 0, b[4] ?? 1, b[3] ?? 0, c[4] ?? 1, c[3] ?? 0); },
     quad(a, b, c, d) { E.tri(a, b, c); E.tri(a, c, d); },
   };
   return E;
@@ -101,35 +101,45 @@ function shapeLitter(E, ctx, lod) {
     ctx.color("oklch(0.5 0.06 60)"); blob(E, [c[0], c[1] + 0.004, c[2]], 0.028, 0.022, 0.028, 6, 2, 0.5, 0.8);
   }
 }
+// a blood fern: arched fronds, each a dark midrib carrying many small paired leaflets (pinnae) that sweep toward
+// the tip, folded along their own vein and drooping at the edges, swelling then tapering along the frond.
+// uv().y = place along the frond (sway weight + the material's base-to-tip ramp); uv().x = shade (vein side darker).
 function shapeFern(E, ctx, lod) {
   const R = () => ctx.random(), n = lod >= 3 ? 5 : lod === 2 ? 7 : 9, segs = lod >= 3 ? 4 : lod === 2 ? 6 : 8;
+  const pairs = lod >= 3 ? 5 : lod === 2 ? 9 : 14, fine = lod <= 1;
   ctx.flat(); ctx.roughness(0.65);
-  ctx.color("oklch(0.13 0.02 20)"); // the heart
-  for (let i = 0; i < 6; i++) { const a = i * 1.05, h = 0.06 + R() * 0.04; E.tri([0, 0, 0, 0], [Math.cos(a) * 0.06, h, Math.sin(a) * 0.06, 0.05], [Math.cos(a + 1.05) * 0.06, h * 0.8, Math.sin(a + 1.05) * 0.06, 0.05]); }
+  for (let i = 0; i < 6; i++) { const a = i * 1.05, h = 0.05 + R() * 0.03; E.tri([0, 0, 0, 0, 0.3], [Math.cos(a) * 0.05, h, Math.sin(a) * 0.05, 0.04, 0.3], [Math.cos(a + 1.05) * 0.05, h * 0.8, Math.sin(a + 1.05) * 0.05, 0.04, 0.3]); }
   for (let f = 0; f < n; f++) {
-    const yaw = (f / n) * TAU + R() * 0.5, cy = Math.cos(yaw), sy = Math.sin(yaw), px = -sy, pz = cy;
-    const len = 0.45 + R() * 0.4, lift = 1.0 + R() * 0.5, droop = 1.5 + R() * 0.7, dark = R() < 0.25;
+    const yaw = (f / n) * TAU + R() * 0.5, cy = Math.cos(yaw), sy = Math.sin(yaw), side = [-sy, 0, cy];
+    const len = 0.45 + R() * 0.35, lift = 0.9 + R() * 0.45, droop = 1.4 + R() * 0.7, twist = (R() - 0.5) * 0.5, shade = 0.7 + R() * 0.3;
     const pts = [];
-    for (let s = 0; s <= segs; s++) { const t = s / segs, d = t * len * 0.85, h = Math.sin(t * Math.PI * 0.6) * len * lift * 0.6 - t * t * t * len * droop * 0.35; pts.push([cy * d, 0.04 + Math.max(h, -0.02), sy * d, t]); }
-    const colAt = (t) => dark ? `oklch(${0.12 + t * 0.08} 0.05 20)` : `oklch(${0.15 + t * 0.26} ${0.04 + t * 0.13} ${20 + t * 7})`;
+    for (let s = 0; s <= segs; s++) { const t = s / segs, d = t * len * 0.85, h = Math.sin(t * Math.PI * 0.6) * len * lift * 0.6 - t * t * t * len * droop * 0.35; pts.push([cy * d - sy * twist * t * t * len * 0.3, 0.04 + Math.max(h, -0.02), sy * d + cy * twist * t * t * len * 0.3, t]); }
+    const at = (t) => { const u = Math.min(segs - 1e-4, t * segs), i = Math.floor(u), k = u - i, a = pts[i], b = pts[i + 1]; return { P: [a[0] + (b[0] - a[0]) * k, a[1] + (b[1] - a[1]) * k, a[2] + (b[2] - a[2]) * k], T: norm(sub(b, a)) }; };
+    // the midrib: a thin dark strip, edge-on to the camera from above as little as possible
     for (let s = 0; s < segs; s++) {
-      const a = pts[s], b = pts[s + 1], tm = (a[3] + b[3]) / 2, rw = 0.008 * (1 - tm) + 0.002;
-      ctx.color(colAt(tm));
-      E.quad([a[0] + px * rw, a[1], a[2] + pz * rw, a[3]], [b[0] + px * rw, b[1], b[2] + pz * rw, b[3]], [b[0] - px * rw, b[1] + 0.004, b[2] - pz * rw, b[3]], [a[0] - px * rw, a[1] + 0.004, a[2] - pz * rw, a[3]]);
-      if (s === 0) continue;
-      const pl = len * 0.24 * Math.pow(1 - tm, 0.6) * Math.min(1, tm * 3.5) + 0.012; // pinnae swell then taper
-      for (const side of [-1, 1]) {
-        const fx = (b[0] - a[0]), fy = (b[1] - a[1]), fz = (b[2] - a[2]);
-        const tip = [a[0] + px * side * pl + fx * 0.9, a[1] + fy * 0.6 - pl * 0.3, a[2] + pz * side * pl + fz * 0.9, Math.min(1, tm + 0.08)];
-        const vein = [a[0] + px * side * pl * 0.45 + fx * 0.45, a[1] + fy * 0.4 + 0.012, a[2] + pz * side * pl * 0.45 + fz * 0.45, tm];
-        const b1 = [a[0] + fx * 0.85, a[1] + fy * 0.85, a[2] + fz * 0.85, b[3]];
-        ctx.color(colAt(tm + 0.05));
-        E.tri(a, vein, tip); E.tri(vein, b1, tip); E.tri(a, b1, vein);
+      const a = pts[s], b = pts[s + 1], rw = 0.007 * (1 - a[3]) + 0.0025, rw2 = 0.007 * (1 - b[3]) + 0.0025;
+      E.quad([a[0] + side[0] * rw, a[1] + 0.003, a[2] + side[2] * rw, a[3], 0.25], [b[0] + side[0] * rw2, b[1] + 0.003, b[2] + side[2] * rw2, b[3], 0.25], [b[0] - side[0] * rw2, b[1] + 0.003, b[2] - side[2] * rw2, b[3], 0.25], [a[0] - side[0] * rw, a[1] + 0.003, a[2] - side[2] * rw, a[3], 0.25]);
+    }
+    // the pinnae, small and many: length swells to the frond's lower third, then tapers to the tip
+    const maxL = len * 0.2;
+    for (let k = 0; k < pairs; k++) {
+      const t = 0.12 + 0.86 * (k + 0.5) / pairs, { P, T } = at(t);
+      const env = Math.min(1, (t - 0.08) / 0.3) * Math.pow(1 - t, 0.55) + 0.06, pl = maxL * env * (0.9 + R() * 0.2), w = pl * 0.24;
+      const up = norm(cross(side, T));
+      for (const sg of [-1, 1]) {
+        const tt = t + sg * 0.004; // alternate a hair along the rib
+        const D = norm(addv(addv(mul(side, sg), mul(T, 0.62)), mul(up, -0.18 - t * 0.25))); // swept toward the tip, drooping more near it
+        const Bp = addv(P, mul(T, sg * 0.004)), tip = addv(Bp, mul(D, pl));
+        const mid = addv(addv(Bp, mul(D, pl * 0.42)), mul(up, pl * 0.07)); // the folded vein rides high
+        const fw = addv(addv(addv(Bp, mul(D, pl * 0.38)), mul(T, w)), mul(up, -pl * 0.03)), bw = addv(addv(addv(Bp, mul(D, pl * 0.45)), mul(T, -w * 0.8)), mul(up, -pl * 0.04));
+        const tw = Math.min(1, tt + pl * 0.6), sh = shade * (k % 2 ? 0.92 : 1);
+        const B4 = [...Bp, tt, sh * 0.6], M4 = [...mid, (tt + tw) / 2, sh], F4 = [...fw, (tt + tw) / 2, sh * 0.85], K4 = [...bw, (tt + tw) / 2, sh * 0.7], T4 = [...tip, tw, sh];
+        if (fine) { E.tri(B4, F4, M4); E.tri(M4, F4, T4); E.tri(B4, M4, K4); E.tri(M4, T4, K4); }
+        else { E.tri(B4, F4, T4); E.tri(B4, T4, K4); }
       }
     }
   }
-  if (lod <= 1) { // two fiddleheads coiled in the heart
-    ctx.color("oklch(0.22 0.09 22)");
+  if (fine) { // two fiddleheads coiled in the heart
     for (let i = 0; i < 2; i++) {
       const a0 = R() * TAU, pts = [];
       for (let k = 0; k <= 7; k++) { const t = k / 7, r = 0.05 * (1 - t * 0.7); pts.push([Math.cos(a0) * 0.02 + Math.cos(a0) * (t < 0.5 ? 0 : r * Math.sin((t - 0.5) * 9)), 0.03 + t * 0.14 + (t > 0.5 ? r * Math.cos((t - 0.5) * 9) - r : 0), Math.sin(a0) * 0.02, t * 0.5]); }
@@ -308,11 +318,12 @@ const SET = {
 };
 // enemy pack spots (places/main/sim.js PACKS near the Gallows Path / Orchard): tall cover drops to knee height within KNEE_R
 const PACK_SPOTS = [[36, 6], [36, 3], [38, 6], [40, 9], [42, 1], [48, -8], [76, -3], [78, -2], [79, 18], [50, 23], [66, 25], [82, 6]];
-const KNEE_R = 7, TALL = { fern: 1, thorn: 1, stump: 1 };
+const KNEE_R = 7, KNEE_H = 0.5, TALL = { fern: 0.9, thorn: 1.5, stump: 1.0 }; // TALL = the kind's tallest copy at scale 1 (m)
 function kneeScale(kind, wx, wz) {
-  if (!TALL[kind]) return 1;
+  const H = TALL[kind]; if (!H) return 1;
   let d = Infinity; for (const [px, pz] of PACK_SPOTS) d = Math.min(d, Math.hypot(wx - px, wz - pz));
-  return d >= KNEE_R ? 1 : 0.5 + 0.5 * clamp01((d - 3) / (KNEE_R - 3));
+  if (d >= KNEE_R) return 1;
+  return Math.min(1, (KNEE_H + (H - KNEE_H) * clamp01((d - 3) / (KNEE_R - 3))) / (H * 1.2)); // ×1.2: the largest scale roll stays under the cap
 }
 // how much a kind wants a spot e metres outside the walkable floor (negative = on it)
 function want(kind, e) {
