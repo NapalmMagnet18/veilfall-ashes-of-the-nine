@@ -21,6 +21,10 @@ const VOX = {
   marrowwolf: { aggro: "skinless-wolf-snarl-into-howl-wet-and-raw", death: "wolf-yelp-and-bones-collapse-wet-thud" },
   briarwitch: { aggro: "witch-hissing-incantation-and-thorns-creaking-tight", death: "witch-shriek-thorns-snap-petals-fall-whisper" },
   rootmother: { aggro: "huge-treant-groan-roots-tearing-out-of-earth-heartbeat-thumps", death: "giant-tree-creature-collapses-wood-splinters-heartbeat-stops" },
+  gargoyle: { aggro: "stone-gargoyle-grinding-awake-roar-and-chains-rattling", death: "stone-statue-cracks-and-crumbles-chains-fall" },
+  harpy: { aggro: "harpy-piercing-shriek-and-wings-beating", death: "harpy-dying-screech-feathers-and-body-thud" },
+  inquisitor: { aggro: "armored-zealot-booming-latin-verdict-and-flail-chain-swing", death: "heavy-plate-armor-collapses-flail-clangs-on-stone" },
+  butcher: { aggro: "huge-brute-bellow-and-cleaver-scraping-stone-floor", death: "giant-brute-collapses-cleaver-clangs-chains-rattle" },
   cantor: { aggro: "three-voiced-undead-choir-mistress-screams-a-dissonant-chord-bells-clang", death: "choir-mistress-shatters-bells-fall-and-three-voices-fade-into-hiss" },
   deacon: { aggro: "huge-wax-priest-bellows-a-low-sermon-word-and-scrapes-censer", death: "giant-wax-body-topples-heavy-thud-and-long-boiling-hiss" },
 };
@@ -38,6 +42,10 @@ const MUTTER = {
   marrowwolf: { clip: "wolf-low-growl-and-wet-panting", lines: [] },
   briarwitch: { clip: "witch-whispering-to-thorns-soft-creak", lines: ["...grow, little thorns, grow...", "...your blood would feed my roses...", "...the woods remember every name..."] },
   rootmother: { clip: "slow-heartbeat-inside-wood-and-roots-creaking", lines: ["...my children hang from every bough...", "...stay. take root. sleep...", "...the soil is warm with the fallen..."] },
+  gargoyle: { clip: "stone-grinding-and-chain-links-clinking-low", lines: [] },
+  harpy: { clip: "feathers-rustling-and-soft-hungry-clicking", lines: ["...pretty pilgrim... come up to the spire...", "...we sang once... now we only scream..."] },
+  inquisitor: { clip: "armor-creak-and-chained-censer-swinging", lines: ["...confess, and burn clean...", "...the Nine demand a reckoning...", "...heresy smells of ash..."] },
+  butcher: { clip: "heavy-breathing-and-meat-hooks-swinging-on-chains", lines: ["...the abbey must eat...", "...hold still, little lamb...", "...more for the stew..."] },
   cantor: { clip: "three-whispering-voices-humming-a-funeral-hymn-soft-bells", lines: ["...sing with us, little light...", "...three voices, one grave...", "...the hymn has no last verse...", "...your breath will make a fine note..."] },
   deacon: { clip: "huge-wax-priest-low-droning-sermon-murmur", lines: ["...AND THE NINE WERE GIVEN TO ASH...", "...kneel, little candle...", "...tithe your light...", "...the Veil keeps what it is owed..."] },
 };
@@ -48,7 +56,7 @@ function mutter(ctx, w, s, f, now, players) {
   if (now < next) return;
   mutterAt.set(w.id, now + 9000 + ctx.random() * 9000);
   if (!players.some((p) => flat(p.feetPosition, f) < EAR)) return;
-  const M = MUTTER[s.kind] ?? MUTTER.pilgrim, deep = s.kind === "deacon" || s.kind === "chandler" || s.kind === "cantor" || s.kind === "barnacle" || s.kind === "ferryman" || s.kind === "briarwitch" || s.kind === "rootmother";
+  const M = MUTTER[s.kind] ?? MUTTER.pilgrim, deep = s.kind === "deacon" || s.kind === "chandler" || s.kind === "cantor" || s.kind === "barnacle" || s.kind === "ferryman" || s.kind === "briarwitch" || s.kind === "rootmother" || s.kind === "inquisitor" || s.kind === "butcher";
   ctx.emit("playSound", { clip: sfx(M.clip), position: f, volume: deep ? 0.55 : 0.38, pitch: 0.85 + ctx.random() * 0.3, maxDistance: EAR });
   ctx.emit("damageNumber", { position: { x: f.x, y: f.y + (deep ? 2.6 : 2.1), z: f.z }, text: M.lines[Math.floor(ctx.random() * M.lines.length)], color: deep ? "#c9a46a" : "#b8ad98", size: deep ? 0.9 : 0.7, lifetime: 2.6 }, { audience: { nearby: f, radius: EAR } });
 }

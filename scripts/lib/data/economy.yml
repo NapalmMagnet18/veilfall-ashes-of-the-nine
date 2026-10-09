@@ -14,6 +14,10 @@ drops:
   marrowwolf: [12, 26]
   briarwitch: [60, 110]
   rootmother: [420, 620]
+  gargoyle: [26, 50]
+  harpy: [20, 40]
+  inquisitor: [80, 140]
+  butcher: [520, 760]
   bailiff: 12000        # 1g 20s, once per kill to each eligible player
   ringer: 18000         # 1g 80s, the Ringer of the Ninth Bell
   hangman: 30000        # 3g, the Hangman of Saint Corvin
