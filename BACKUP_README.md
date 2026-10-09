@@ -20,9 +20,9 @@ The GitHub `main` branch contains the world source and its original commit histo
 Clone this GitHub repository to browse the source. To restore the original snapshot independently from GitHub:
 
 ```sh
-git clone VEILFALL_Spawn_History_2026-10-09.bundle veilfall-restored
+git clone --branch main VEILFALL_Updated_Spawn_History_2026-10-09.bundle veilfall-restored
 cd veilfall-restored
-git fetch ../VEILFALL_Spawn_History_2026-10-09.bundle refs/notes/spawn:refs/notes/spawn
+git fetch ../VEILFALL_Updated_Spawn_History_2026-10-09.bundle refs/notes/spawn:refs/notes/spawn
 git checkout 6d86bb7ad04bd9862742d017c91ab96fad72198d
 ```
 
@@ -40,4 +40,9 @@ The backup includes assets referenced by this game, not the owner's unrelated D:
 
 ## Completion audit and supplemental files
 See BACKUP_COMPLETENESS.md for the continuation audit. The release now also preserves 64 additional unique assets (59 original input images and five retired models), the original 97-file design package, original art reference, and an independently tested restore utility for a locally prepared encrypted gameplay/world-persistence snapshot. The encrypted private snapshot is held locally pending specific public-upload approval. Total unique asset files: 681. The private decryption key is retained outside GitHub. The 213 audio files and two retired model outputs unavailable on Spawn are documented with export evidence. This supplements the immutable initial source/asset archives; do not discard either asset archive.
+
+
+## Refreshed history and restore verification
+
+The updated history bundle preserves main plus Spawn notes at 665e8ac800264fbe137f0ec5b9db35865acc62ae. Use an explicit --branch main when cloning a bundle. A real clone and checkout restored all 354 tracked source files at 6d86bb7ad04bd9862742d017c91ab96fad72198d; git fsck passed. See VEILFALL_Source_Restore_Verification.json.
 

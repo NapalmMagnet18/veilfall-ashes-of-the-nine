@@ -1,0 +1,8 @@
+{
+  "checkedAtUtc": "2026-10-09T12:30:18.0270452Z",
+  "sourceCommit": "6d86bb7ad04bd9862742d017c91ab96fad72198d",
+  "sourceFiles": 354,
+  "gitIntegrity": "passed",
+  "notesCommit": "665e8ac800264fbe137f0ec5b9db35865acc62ae",
+  "bundleCloneCommand": "git clone --branch main VEILFALL_Updated_Spawn_History_2026-10-09.bundle veilfall-restored"
+}
