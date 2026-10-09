@@ -25,6 +25,10 @@ const VOX = {
   harpy: { aggro: "harpy-piercing-shriek-and-wings-beating", death: "harpy-dying-screech-feathers-and-body-thud" },
   inquisitor: { aggro: "armored-zealot-booming-latin-verdict-and-flail-chain-swing", death: "heavy-plate-armor-collapses-flail-clangs-on-stone" },
   butcher: { aggro: "huge-brute-bellow-and-cleaver-scraping-stone-floor", death: "giant-brute-collapses-cleaver-clangs-chains-rattle" },
+  ashrevenant: { aggro: "burning-armored-skeleton-hollow-roar-and-sword-drawn-crackling", death: "charred-armor-collapses-into-ash-and-embers-hiss" },
+  cinderthrall: { aggro: "burned-ghoul-furnace-roar-and-censers-clanking", death: "burning-corpse-crumbles-to-cinders-with-a-hiss" },
+  pyrepriest: { aggro: "cultist-chanting-fire-invocation-flames-whoosh", death: "cultist-scream-fire-snuffed-out-bones-clatter" },
+  kilnwarden: { aggro: "giant-furnace-golem-roar-bricks-grinding-fire-roaring", death: "huge-brick-and-bone-golem-collapses-furnace-dies-down" },
   cantor: { aggro: "three-voiced-undead-choir-mistress-screams-a-dissonant-chord-bells-clang", death: "choir-mistress-shatters-bells-fall-and-three-voices-fade-into-hiss" },
   deacon: { aggro: "huge-wax-priest-bellows-a-low-sermon-word-and-scrapes-censer", death: "giant-wax-body-topples-heavy-thud-and-long-boiling-hiss" },
 };
@@ -46,6 +50,10 @@ const MUTTER = {
   harpy: { clip: "feathers-rustling-and-soft-hungry-clicking", lines: ["...pretty pilgrim... come up to the spire...", "...we sang once... now we only scream..."] },
   inquisitor: { clip: "armor-creak-and-chained-censer-swinging", lines: ["...confess, and burn clean...", "...the Nine demand a reckoning...", "...heresy smells of ash..."] },
   butcher: { clip: "heavy-breathing-and-meat-hooks-swinging-on-chains", lines: ["...the abbey must eat...", "...hold still, little lamb...", "...more for the stew..."] },
+  ashrevenant: { clip: "smouldering-embers-crackle-and-armor-creak", lines: ["...the pyre was not enough...", "...still burning... still sworn..."] },
+  cinderthrall: { clip: "fire-crackle-and-wheezing-burnt-breath", lines: [] },
+  pyrepriest: { clip: "low-cult-chant-and-reliquary-fire-crackling", lines: ["...ash to ash, Bearer...", "...the Nine burn, and so shall you...", "...feed the kiln..."] },
+  kilnwarden: { clip: "deep-furnace-roar-and-bricks-shifting", lines: ["...the bones must be fired...", "...nothing leaves the ossuary whole..."] },
   cantor: { clip: "three-whispering-voices-humming-a-funeral-hymn-soft-bells", lines: ["...sing with us, little light...", "...three voices, one grave...", "...the hymn has no last verse...", "...your breath will make a fine note..."] },
   deacon: { clip: "huge-wax-priest-low-droning-sermon-murmur", lines: ["...AND THE NINE WERE GIVEN TO ASH...", "...kneel, little candle...", "...tithe your light...", "...the Veil keeps what it is owed..."] },
 };
@@ -56,7 +64,7 @@ function mutter(ctx, w, s, f, now, players) {
   if (now < next) return;
   mutterAt.set(w.id, now + 9000 + ctx.random() * 9000);
   if (!players.some((p) => flat(p.feetPosition, f) < EAR)) return;
-  const M = MUTTER[s.kind] ?? MUTTER.pilgrim, deep = s.kind === "deacon" || s.kind === "chandler" || s.kind === "cantor" || s.kind === "barnacle" || s.kind === "ferryman" || s.kind === "briarwitch" || s.kind === "rootmother" || s.kind === "inquisitor" || s.kind === "butcher";
+  const M = MUTTER[s.kind] ?? MUTTER.pilgrim, deep = s.kind === "deacon" || s.kind === "chandler" || s.kind === "cantor" || s.kind === "barnacle" || s.kind === "ferryman" || s.kind === "briarwitch" || s.kind === "rootmother" || s.kind === "inquisitor" || s.kind === "butcher" || s.kind === "pyrepriest" || s.kind === "kilnwarden";
   ctx.emit("playSound", { clip: sfx(M.clip), position: f, volume: deep ? 0.55 : 0.38, pitch: 0.85 + ctx.random() * 0.3, maxDistance: EAR });
   ctx.emit("damageNumber", { position: { x: f.x, y: f.y + (deep ? 2.6 : 2.1), z: f.z }, text: M.lines[Math.floor(ctx.random() * M.lines.length)], color: deep ? "#c9a46a" : "#b8ad98", size: deep ? 0.9 : 0.7, lifetime: 2.6 }, { audience: { nearby: f, radius: EAR } });
 }

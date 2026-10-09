@@ -18,6 +18,10 @@ drops:
   harpy: [20, 40]
   inquisitor: [80, 140]
   butcher: [520, 760]
+  ashrevenant: [40, 70]
+  cinderthrall: [28, 52]
+  pyrepriest: [90, 160]
+  kilnwarden: [640, 900]
   bailiff: 12000        # 1g 20s, once per kill to each eligible player
   ringer: 18000         # 1g 80s, the Ringer of the Ninth Bell
   hangman: 30000        # 3g, the Hangman of Saint Corvin

@@ -26,6 +26,10 @@ drops:
   harpy:      { chance: 0.2, ilvl: 10 }
   inquisitor: { chance: 0.6, ilvl: 12, minTier: hallowed }
   butcher:    { chance: 1, ilvl: 14, minTier: hallowed }
+  ashrevenant:  { chance: 0.3, ilvl: 13 }
+  cinderthrall: { chance: 0.22, ilvl: 12 }
+  pyrepriest:   { chance: 0.6, ilvl: 14, minTier: hallowed }
+  kilnwarden:   { chance: 1, ilvl: 16, minTier: hallowed }
   bailiff:    { chance: 1, count: 2, ilvl: 8,  minTier: gilded, relic: 0.25 }
   ringer:     { chance: 1, count: 2, ilvl: 11, minTier: gilded, relic: 0.3 }
   warden:     { chance: 1, count: 3, ilvl: 13, minTier: gilded, relic: 0.35 }

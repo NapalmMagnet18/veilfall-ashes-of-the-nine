@@ -72,7 +72,7 @@ PACKS.push({ id: "mb1", kind: "chandler", x: 1, z: -79 }, { id: "mb2", kind: "ca
 PACKS.push({ id: "f1", kind: "drowned", x: -48, z: -2 }, { id: "f2", kind: "drowned", x: -52, z: -8 }, { id: "f3", kind: "harpooner", x: -55, z: 2 }, { id: "f4", kind: "drowned", x: -70, z: 2 }, { id: "f5", kind: "harpooner", x: -74, z: -6 }, { id: "f6", kind: "barnacle", x: -54, z: -20 }, { id: "f7", kind: "drowned", x: -76, z: -20 }, { id: "f8", kind: "harpooner", x: -58, z: -26 }, { id: "mb3", kind: "ferryman", x: -78, z: -12 }); // the Lanternmere's drowned
 PACKS.push({ id: "w1", kind: "reaper", x: 36, z: 6 }, { id: "w2", kind: "marrowwolf", x: 40, z: 9 }, { id: "w3", kind: "marrowwolf", x: 42, z: 1 }, { id: "w4", kind: "reaper", x: 48, z: -8 }, { id: "w5", kind: "briarwitch", x: 76, z: -3 }, { id: "w6", kind: "marrowwolf", x: 79, z: 18 }, { id: "w7", kind: "reaper", x: 50, z: 23 }, { id: "w8", kind: "marrowwolf", x: 66, z: 25 }, { id: "mb4", kind: "rootmother", x: 82, z: 6 }); // the Hanging Orchard's Blood Woods
 PACKS.push({ id: "s1", kind: "gargoyle", x: -5, z: -210 }, { id: "s2", kind: "gargoyle", x: 5, z: -213 }, { id: "s3", kind: "harpy", x: 0, z: -218 }, { id: "s4", kind: "inquisitor", x: -4, z: -224 }, { id: "s5", kind: "harpy", x: 4, z: -227 }, { id: "mb5", kind: "butcher", x: 0, z: -233 }); // the Hollow Spires: the nave's fallen order
-PACKS.push({ id: "o1", kind: "chorister", x: -36, z: -257 }, { id: "o2", kind: "chorister", x: -38, z: -275 }, { id: "o3", kind: "deacon", x: -33, z: -266 }, { id: "o4", kind: "flagellant", x: -24, z: -261 }); // the Ossuary's sisters
+PACKS.push({ id: "o1", kind: "pyrepriest", x: -36, z: -257 }, { id: "o2", kind: "cinderthrall", x: -38, z: -275 }, { id: "o3", kind: "ashrevenant", x: -33, z: -266 }, { id: "o4", kind: "cinderthrall", x: -24, z: -261 }, { id: "o5", kind: "ashrevenant", x: -17, z: -258 }, { id: "mb6", kind: "kilnwarden", x: -30, z: -270 }); // the Ossuary's ember-and-ash dead
 const PETITIONS = [[4, -40], [13, -42], [11, -52], [3, -50], [17, -53]];
 const MAELIN = { x: -5, z: -3 };
 const OSWIN = { x: -6.2, z: 5.6 }; // the peddler at his handcart (x -7.6, z 4.4), facing the fire
@@ -131,7 +131,7 @@ const NAVE_IN = (x, z) => z < -206 && z > -238 && Math.abs(x) < 7.5;
 // the Wax Deacon's censer: bronze thurible hung at his right hip, coals glowing, incense smoke rising
 const CENSER = { id: "censer", feetPosition: { x: 0.34, y: 0.62, z: -0.08 }, pivot: "top", behavior: "scripts/censer-swing.js", castShadow: true, primitive: { kind: "scripted", script: "scripts/gen/censer.js", params: { chain: 0.42 }, seed: 7 },
   fx: { script: `fx\npop smoke rate=?mobile:5|9 on=sphere(.05) life=1.6..2.6 v=up(.35..0.6)+sdir()*.08 size=.07..0.12 acc=buoy(.4)+curl(.4)*.4+drag(.9) sz=$size*(.6>3) col=<.42,.38,.34>><.2,.2,.22> a=0>.2:.35>.7:.2>0 rot=spin(.2) r=sprite(smoke-puff,alpha)\npop glow n=1 glo=fire()*.6 r=light(<1,.5,.2>,$glo*.8,2.5)`, params: {} } };
-const DROWNED = new Set(["drowned", "harpooner", "barnacle", "ferryman"]), BLOODED = new Set(["reaper", "marrowwolf", "briarwitch", "rootmother"]);
+const DROWNED = new Set(["drowned", "harpooner", "barnacle", "ferryman"]), BLOODED = new Set(["reaper", "marrowwolf", "briarwitch", "rootmother"]), ASHEN = new Set(["ashrevenant", "cinderthrall", "pyrepriest", "kilnwarden"]);
 // the mere's dead: a cold soul-light in the chest, seawater running off them, a wet haze at the hem
 const SOUL_GLOW = `fx
 pop mote rate=10 on=sphere(.18) life=.6..1.1 v=up(.2..0.5)+sdir()*.15 size=.03..0.06 acc=curl(.6)+drag(.8) col=hdr(.9,2.6,2.8)>hdr(.2,.6,.7) a=(0>.15:1>0)*flick(7,.3) r=sprite(ember,add)
@@ -143,13 +143,18 @@ pop mote rate=8 on=sphere(.2) life=.6..1.1 v=up(.2..0.4)+sdir()*.15 size=.03..0.
 pop sap rate=5 on=disc(.25) life=.5..0.8 v=up(-.2) size=.02..0.035 acc=grav() floor=die col=<.45,.03,.04> a=.85 r=sprite(soft-disc,alpha,velocity,.04)
 pop leaf rate=1.5 on=disc(.4) life=1.6..2.6 v=sdir()*.3 size=.05..0.08 spin=-4..4 acc=grav()*.15+curl(.8)+drag(1.5) floor=stick col=<.5,.06,.05> a=.9>.8:.9>0 rot=$age*$spin r=sprite(soft-disc,alpha)
 pop l n=1 glo=flick(1.1,.3) r=light(<1,.2,.15>,$glo*1.3,5)`;
+// the ember-and-ash dead: embers rising off them, smoke curling, a furnace glow at the chest
+const EMBER_GLOW = `fx
+pop ember rate=10 on=sphere(.25) life=.8..1.5 v=up(.8..1.4)+sdir()*.2 size=.02..0.045 acc=curl(.9)+drag(.6) col=hdr(4,1.6,.4)>hdr(1.2,.25,.05) a=(0>.1:1>.6:.8>0)*flick(9,.35) r=sprite(ember,add,velocity,.02)
+pop smoke rate=3 on=sphere(.2) life=1.4..2.2 v=up(.5..0.9) size=.18..0.3 acc=buoy(.6)+curl(.3)+drag(.9) sz=$size*(.6>2.4) col=<.16,.14,.13> a=0>.25:.3>.7:.15>0 rot=spin(.15) r=sprite(smoke-puff,alpha)
+pop l n=1 glo=flick(2.3,.35) r=light(<1,.5,.18>,$glo*1.6,6)`;
 const enemySpec = (pk) => ({
   id: "en-" + pk.id, tags: ["enemy", pk.kind], physics: "character",
   feetPosition: { x: pk.x, z: pk.z, y: { terrain: 0 } },
   scale: pk.kind === "deacon" ? 1.35 : 1,
-  ...(pk.kind === "chandler" || pk.kind === "cantor" || pk.kind === "ferryman" || pk.kind === "rootmother" || pk.kind === "butcher" ? { tags: ["enemy", pk.kind, "elite"] } : {}),
+  ...(pk.kind === "chandler" || pk.kind === "cantor" || pk.kind === "ferryman" || pk.kind === "rootmother" || pk.kind === "butcher" || pk.kind === "kilnwarden" ? { tags: ["enemy", pk.kind, "elite"] } : {}),
   ...body(pk.kind), behavior: ["scripts/humanoid-locomotion.js"],
-  children: [DROWNED.has(pk.kind) || BLOODED.has(pk.kind) ? { id: "head-flame", visibleRange: { min: 0, max: 72 }, feetPosition: { x: 0, y: HEIGHT[pk.kind] * (pk.kind === "marrowwolf" ? 0.6 : 0.82), z: 0 }, fx: { script: DROWNED.has(pk.kind) ? SOUL_GLOW : SAP_GLOW } } : { id: "head-flame", visibleRange: { min: 0, max: 72 }, feetPosition: { x: 0, y: pk.kind === "cantor" ? 3.0 : pk.kind === "chandler" ? 2.95 : pk.kind === "deacon" ? 1.72 : pk.kind === "chorister" ? 1.9 : pk.kind === "flagellant" ? 1.78 : 1.62, z: 0 }, fx: { script: `fx\npop f rate=flick(.5,.3)*18 on=point() life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)`, params: {} } }, ...(pk.kind === "deacon" ? [CENSER] : [])],
+  children: [DROWNED.has(pk.kind) || BLOODED.has(pk.kind) || ASHEN.has(pk.kind) ? { id: "head-flame", visibleRange: { min: 0, max: 72 }, feetPosition: { x: 0, y: HEIGHT[pk.kind] * (pk.kind === "marrowwolf" ? 0.6 : 0.82), z: 0 }, fx: { script: DROWNED.has(pk.kind) ? SOUL_GLOW : ASHEN.has(pk.kind) ? EMBER_GLOW : SAP_GLOW } } : { id: "head-flame", visibleRange: { min: 0, max: 72 }, feetPosition: { x: 0, y: pk.kind === "cantor" ? 3.0 : pk.kind === "chandler" ? 2.95 : pk.kind === "deacon" ? 1.72 : pk.kind === "chorister" ? 1.9 : pk.kind === "flagellant" ? 1.78 : 1.62, z: 0 }, fx: { script: `fx\npop f rate=flick(.5,.3)*18 on=point() life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)`, params: {} } }, ...(pk.kind === "deacon" ? [CENSER] : [])],
   state: { kind: pk.kind, hp: C[pk.kind].hp, maxHp: C[pk.kind].hp, home: { x: pk.x, y: 0, z: pk.z } },
 });
 const near = (ctx, x, z, r) => ctx.place.players.some((p) => Math.hypot(p.feetPosition.x - x, p.feetPosition.z - z) < r);
