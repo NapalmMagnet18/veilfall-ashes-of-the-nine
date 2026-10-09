@@ -1,5 +1,5 @@
 // A cluster of violet cave crystals grown out of a black rock base. params: n (spears), h (tallest, m), r (spread)
-import { xf, loft, rock, compose } from "./hub-kit.js";
+import { xf, loft, rock, box } from "./hub-kit.js";
 function spear(ctx, T, h, w) { // a six-sided crystal: shaft, then a pointed cap
   const ring = (y, s) => { const r = []; for (let i = 0; i < 6; i++) { const a = (i / 6) * 6.283; r.push([Math.cos(a) * w * s, y, Math.sin(a) * w * s]); } return r; };
   loft(ctx, T, [ring(-0.1, 0.9), ring(h * 0.72, 1), ring(h * 0.82, 0.7), ring(h, 0.02)], true, false);
@@ -19,4 +19,4 @@ export function geometry(ctx) {
   }
   ctx.emissive(0, 0, 0);
 }
-export function collider(ctx) { const p = ctx.params || {}, R = p.r ?? 0.6; ctx.box?.(0, (p.h ?? 1.6) * 0.4, 0, R * 1.6, (p.h ?? 1.6) * 0.8, R * 1.6); }
+export function collider(ctx) { const p = ctx.params || {}, R = p.r ?? 0.6; box(ctx, xf(), R * 1.6, (p.h ?? 1.6) * 0.8, R * 1.6); }
