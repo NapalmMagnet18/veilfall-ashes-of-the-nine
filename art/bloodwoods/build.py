@@ -58,8 +58,8 @@ def bark_dark(n, seed, warm=(0, 0, 0)):
     plate = np.clip(fiss / .2, 0, 1) ** .6
     det = fnoise(n, 1.0, seed + 2); blk = fnoise(n, 1.7, seed + 3, aniso=.4)
     h = plate * (.72 + .28 * det) - (np.abs(blk - .5) < .02) * .25 * plate
-    col = lerp3((7, 5, 6), np.array((38, 32, 33)) + warm, plate)
-    col = lerp3(col, np.array((82, 70, 66)) + warm, np.clip((det - .45) * 2, 0, 1) * plate * .8)
+    col = lerp3((6, 4, 5), np.array((24, 21, 23)) + warm, plate)
+    col = lerp3(col, np.array((56, 50, 52)) + warm, np.clip((det - .45) * 2, 0, 1) * plate * .8)
     seep = (1 - plate) * np.clip((fnoise(n, 1.8, seed + 4, aniso=3) - .5) * 4, 0, 1)
     col = lerp3(col, (96, 8, 12), seep)
     return col, h
@@ -120,7 +120,7 @@ def draw_strands(cw, Hh, seed, pal, ncol=4):
             d.line([(xf(y), y) for y in np.arange(ys, ye, 16)], fill=(36, 7, 9, 255), width=5)
             y = ys + 8; side = 1
             while y < ye:
-                f = (y - ys) / (ye - ys); L = rnd.uniform(110, 170) * (1 - .3 * f); W = L * .17
+                f = (y - ys) / (ye - ys); L = rnd.uniform(120, 180) * (1 - .3 * f); W = L * .24
                 ang = math.pi / 2 + side * rnd.uniform(.25, .65); base = rnd.choice(pal); br = rnd.uniform(.75, 1.15) * (.85 + .25 * f)
                 d.polygon(leaf_poly(xf(y), y, L, W, ang), fill=shade(base, br * .8))
                 d.polygon(leaf_poly(xf(y), y, L, W, ang, half=1), fill=shade(base, br * 1.1))
@@ -289,7 +289,7 @@ def trunk(mb, M, tp, radii, sides, ngroove, depth, tw, wT, streaks=0):
         for g, top, bot in st:
             if bot <= z <= top:
                 ga = (G[g] + tw * z) % TAU; j0 = int(round(ga / TAU * sides)) % sides
-                if j in ((j0 - 1) % sides, j0): return M["sap"]
+                if j in ((j0 - 1) % sides, j0, (j0 + 1) % sides): return M["sap"]
         return M["bark"]
     tube(mb, tp, radii, sides, M["bark"], wT, U=2, rfun=rf, mfun=mf if streaks else None)
 
@@ -306,7 +306,7 @@ def roots(mb, M, n, z0r, Lr, rw, flat, center=Vector((0, 0, 0)), sides=9, segs=1
 def build_oak(mb, M):
     cz = 3.5; tp = [Vector((.13 * math.sin(z * 1.1 + .5), -.10 * math.sin(z * .8 + 2.0), z)) for z in [cz * k / 24 for k in range(25)]]
     radii = [.40 - .06 * (p.z / cz) + .30 * math.exp(-p.z / .45) for p in tp]
-    trunk(mb, M, tp, radii, 28, 5, .30, .35, lambda t: blend(({"Trunk": 1}, 1 - ss(.35, .7, t)), ({"Trunk2": 1}, ss(.35, .7, t))), streaks=3)
+    trunk(mb, M, tp, radii, 28, 5, .30, .35, lambda t: blend(({"Trunk": 1}, 1 - ss(.35, .7, t)), ({"Trunk2": 1}, ss(.35, .7, t))), streaks=4)
     roots(mb, M, 7, (.9, 1.4), (2.3, 3.3), .30, (2.0, .8))
     B = [("Trunk", Vector((0, 0, 0)), tp[12], None), ("Trunk2", tp[12], tp[-1], "Trunk")]
     def LW(k, t): return blend(({"Trunk2": 1}, 1 - ss(0, .18, t)), ({f"Limb{k}": 1}, ss(0, .18, t) * (1 - ss(.42, .68, t))), ({f"Crown{k}": 1}, ss(.42, .68, t)))
@@ -371,8 +371,8 @@ def build_willow(mb, M):
         pts = bez([T, T + h * .6 + UP * 2.0, T + h * 2.0 + UP * 3.3, T + h * 3.4 + UP * 2.0], 15, .06)
         tube(mb, pts, taper(.25, .05, 15), 9, M["bark"], lambda t, k=k: LW(k, t), rfun=gnarl_r(.1, 2.3, k))
         B.append((f"Limb{k}", pts[0], pts[7], "Trunk2")); arches.append((k, pts, 0.0, 1.0)); azs.append(az)
-        for s in range(3):
-            i = R.randint(4, 8); S = pts[i]; h2 = hvec(az + rr(-.75, .75))
+        for s in range(4):
+            i = R.randint(4, 9); S = pts[i]; h2 = hvec(az + (-.95 + .63 * s) + rr(-.15, .15))
             sp = bez([S, S + h2 * .7 + UP * .9, S + h2 * 1.7 + UP * .8, S + h2 * 2.6 - UP * .4], 9, .04)
             w = LW(k, i / 14)
             tube(mb, sp, taper(.08, .02, 9), 5, M["bark"], lambda t, w=w: w)
@@ -405,8 +405,8 @@ def build_willow(mb, M):
         cross = sidx >= 320
         wsc = rr(.85, 1.15)
         ribbon(mb, pts, [(.55 - .25 * s / 9) * wsc for s in range(10)], (h if cross else tg), (tg if cross else h),
-               lambda t, w0=w0, wc=wc: blend((w0, 1 - ss(.05, .6, t)), (wc, ss(.05, .6, t))), (u0, 0, u0 + .117, 1), M["leaves"], (h + UP * .35).normalized())
-    for c in range(150):
+               lambda t, w0=w0, wc=wc: blend((w0, 1 - ss(.05, .6, t)), (wc, ss(.05, .6, t))), (u0, 0, u0 + .117, 1), M["leaves"], (h * .55 + UP).normalized())
+    for c in range(260):
         k, A, ta = anchor(); hv = A - Ch; hv.z = 0; h = hv.normalized() if hv.length > .2 else UP
         pos = A + UP * rr(.05, .3) + rvec() * .3
         card(mb, pos, rr(.9, 1.3), UP + h * .6 + rvec() * .4, LW(k, ta), (0, 0, .5, 1), M["leaves"], Cc)
@@ -443,8 +443,9 @@ def build_snag(mb, M, dark_uv, pale_uv):
             for sg in (-1, 1): prong(tn[6], td + sd * sg * .8 + UP * .3, rr(.3, .5), w)
         td = (pts[-1] - pts[-3]).normalized(); sd = td.cross(UP).normalized(); w = BW(b, 1)
         for sg in (-1, 1): prong(pts[13], td + sd * sg * .7, rr(.55, .85), w)
+    import itertools; cyc = itertools.count()
     def hang_point():
-        b = R.randrange(3); h, pts = beams[b]; i = R.randint(3, 12); return b, pts[i] - UP * .06, i / 14
+        b = next(cyc) % 3; h, pts = beams[b]; i = R.randint(3, 12); return b, pts[i] - UP * .06, i / 14
     for r in range(15):
         b, A, ta = hang_point(); L = rr(.8, 1.7); yaw = rr(0, TAU); n = 7; pts, sds = [], []
         drift = rvec() * .05
@@ -474,7 +475,7 @@ if NAME in ("bloodoak", "weepwillow"):
     col, h = bark_dark(1024, SEED, warm=(4, 0, 0) if NAME == "bloodoak" else (8, 2, 0))
     M["bark"] = addmat(material("bark", save_img(col, "bark.jpg"), save_img(normal_map(h, 10), "bark_n.jpg", "Non-Color"), rough=.82, nstr=1.2))
 if NAME == "bloodoak":
-    M["sap"] = addmat(material("sap", color=(.22, .008, .01), rough=.12, emit=((.5, .025, .02), .45)))
+    M["sap"] = addmat(material("sap", color=(.22, .008, .01), rough=.12, emit=((.5, .025, .02), .7)))
     crim = [(150, 18, 26), (118, 12, 22), (176, 30, 32), (196, 44, 40), (134, 16, 24)]
     maro = [(98, 10, 22), (76, 6, 18), (120, 16, 30), (140, 22, 34)]
     atl = Image.new("RGBA", (2048, 1024))
@@ -482,7 +483,7 @@ if NAME == "bloodoak":
     atl.paste(draw_clump(2048, SEED + 5, maro).resize((1024, 1024), Image.LANCZOS), (1024, 0))
     M["leaves"] = addmat(material("leaves", save_img(atl, "leaves.png"), rough=.6, alpha=True))
 if NAME == "weepwillow":
-    pal = [(140, 16, 26), (104, 10, 22), (168, 28, 32), (84, 8, 18), (186, 40, 38)]
+    pal = [(176, 22, 32), (138, 14, 26), (204, 38, 40), (112, 10, 22), (222, 56, 48)]
     atl = Image.new("RGBA", (2048, 1024))
     atl.paste(draw_clump(2048, SEED, pal, lobes=0, Lr=(.09, .14), Wr=(.16, .22), n=420).resize((1024, 1024), Image.LANCZOS), (0, 0))
     atl.paste(draw_strands(512, 2048, SEED + 3, pal).resize((1024, 1024), Image.LANCZOS), (1024, 0))
