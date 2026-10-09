@@ -3,6 +3,7 @@
 import { TEX, WAXC, xf, bevelBox, boxC, lathe, chain, catenary, tube, candleBed, drip } from "./shapes.js";
 export function geometry(ctx) {
   const L = ctx.lod, R = () => ctx.random(), H = ctx.params.h ?? 5.6, arm = ctx.params.arm ?? 2.4, kind = ctx.params.kind ?? "cage";
+  if (kind === "cagebody") return cageBody(ctx, [0, 0, 0], L, R); // the swinging part alone, hook at its origin
   ctx.flat(); ctx.albedo(TEX.wood); ctx.roughness(0.95); ctx.metalness(0); ctx.color("oklch(.78 .05 60)");
   bevelBox(ctx, xf([0, H / 2 - 0.4, 0], 3, 0, 2), 0.17, H / 2 + 0.4, 0.17, 0.03);
   bevelBox(ctx, xf([0, H - 0.15, -arm / 2 + 0.1], 0, 0, 0), 0.13, 0.13, arm / 2 + 0.15, 0.025);
@@ -12,8 +13,9 @@ export function geometry(ctx) {
   for (const y of [0.4, H * 0.45, H - 0.45]) bevelBox(ctx, xf([0, y, 0], 3), 0.19, 0.05, 0.19, 0);
   bevelBox(ctx, xf([0, H - 0.15, -arm + 0.2]), 0.15, 0.05, 0.15, 0);
   const hook = [0, H - 0.3, -arm + 0.2];
-  if (kind === "cage") {
-    const drop = ctx.params.drop ?? 1.1, top = hook[1] - drop, ch = 1.8;
+  if (kind === "cage" && ctx.params.split) { /* the cage hangs as its own swinging child */ }
+  else if (kind === "cage") cageBody(ctx, hook, L, R);
+  else { = ctx.params.drop ?? 1.1, top = hook[1] - drop, ch = 1.8;
     chain(ctx, [hook, [hook[0], top + 0.05, hook[2]]], L);
     const T = xf([hook[0], top - ch, hook[2]], R() * 40, 4, 7);
     ctx.albedo(TEX.iron); ctx.color("oklch(.72 .05 45)"); ctx.metalness(0.55); ctx.roughness(0.75); ctx.flat();
