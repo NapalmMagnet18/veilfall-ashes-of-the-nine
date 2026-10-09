@@ -310,8 +310,11 @@ pop flare burst=1 life=.25 size=.6 col=${core} a=.9>0 sz=$size*(.3>1.2) r=sprite
 pop lamp burst=1 life=.3 at=point() r=light(${lit},16*(1>0),5)`;
 const ARROW = `fx
 pop shaft burst=1 life=%t|.3 v=<%dir|0,0,-1>*%sp|30 size=.05 col=<.9,.82,.62> a=1 sz=$size r=sprite(ember,alpha,velocity,.9)
-pop streak on=@shaft.lives(80) life=.12..0.22 size=.03..0.05 col=hdr(1.6,1.5,1.2)>hdr(.5,.5,.45) a=.6>0 sz=$size r=sprite(soft-disc,add)
-pop air on=@shaft.lives(25) life=.3..0.5 v=sdir()*.15 size=.1..0.16 acc=drag(2) col=<.75,.75,.8> a=0>.1:.12>0 sz=$size*(.6>1.6) r=sprite(smoke-puff,alpha)`;
+pop tip burst=1 life=%t|.3 v=<%dir|0,0,-1>*%sp|30 size=.22 col=hdr(.9,1.3,1.8) a=.5 sz=$size*flick(16,.25) r=sprite(soft-disc,add)
+pop streak on=@shaft.lives(90) life=.14..0.26 size=.03..0.05 col=hdr(1.4,1.7,2.2)>hdr(.35,.45,.6) a=.7>0 sz=$size*(1>.3) r=sprite(soft-disc,add)
+pop mote on=@shaft.lives(20) life=.4..0.8 v=sdir()*.3 size=.015..0.03 acc=curl(.8)+drag(1.2) col=hdr(1.6,2,2.6) a=(1>0)*flick(10,.4) r=sprite(mote,add)
+pop air on=@shaft.lives(25) life=.3..0.5 v=sdir()*.15 size=.1..0.16 acc=drag(2) col=<.75,.75,.8> a=0>.1:.12>0 sz=$size*(.6>1.6) r=sprite(smoke-puff,alpha)
+pop glow burst=1 life=%t|.3 v=<%dir|0,0,-1>*%sp|30 r=light(<.6,.75,1>,6,4)`;
 const ATK = {
   soulweaver:   { reach: 11, cd: 0.8, mul: 1.25, sp: 18, fx: BOLT("hdr(2.2,3.4,4.2)", "hdr(.4,.9,1.6)", "<.5,.8,1>"), castFx: CAST("hdr(2.2,3.4,4.2)", "<.5,.8,1>"), cast: "cdn/clip-cast.glb", snd: "arcane-bolt-cast-shimmering-whoosh", hit: "arcane-bolt-impact-glass-chime-burst", hitFx: "<.5,.85,1>" },
   shadowmancer: { reach: 10, cd: 0.75, mul: 1.15, sp: 16, fx: BOLT("hdr(2.4,1.2,3.6)", "hdr(.6,.15,.9)", "<.7,.3,1>"), castFx: CAST("hdr(2.4,1.2,3.6)", "<.7,.3,1>"), cast: "cdn/clip-cast.glb", snd: "shadow-bolt-cast-hissing-whisper", hit: "shadow-bolt-impact-dark-thump-and-whispers", hitFx: "<.7,.3,1>" },
