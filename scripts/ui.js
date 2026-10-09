@@ -228,8 +228,13 @@ const CHRONICLE = [
   ["I", "The Broken Lantern Road", "The Wayside Fire, the Wax Veil and the Bailiff's toll."],
   ["II", "Ashen Abbey · the Bell Crypt", "Down the nave to the great cracked bell."],
   ["III", "Lanternmere", "The drowned fen and its Warden."],
-  ["IV", "Saint Corvin's Orchard", "Cut down the hanged. Face the Hangman.", true],
+  ["IV", "Saint Corvin's Orchard", "Cut down the hanged. Face the Hangman."],
+  ["V", "The Ossuary of Saint Ysolde", "Down the Bone Stair. Take her candle.", false, "/cdn/value.b6a6c4bee6be2736fec3fd5860ead524d72b84ff480b162a209ffc92c7f0c464.png"],
+  ["VI", "Candlehold", "The last walled city. The Exchange keeps its ledgers.", true, "/cdn/value.38ae26e1659a5e6f4ff2b2d4270a529681fc2e1b5af4fb3a7693086f78166e47.png"],
 ];
+const VERSION = "0.10 · CANDLEHOLD";
+// the painting behind the menu: where the chosen Bearer will wake
+const zoneArt = (z = "") => /ossuar|bone|crypt|nave|abbey/i.test(z) ? "/cdn/value.b6a6c4bee6be2736fec3fd5860ead524d72b84ff480b162a209ffc92c7f0c464.png" : /candle|pilgrim|fire|wayside/i.test(z) || !z ? "/cdn/value.38ae26e1659a5e6f4ff2b2d4270a529681fc2e1b5af4fb3a7693086f78166e47.png" : "/cdn/veilfall-ashes-of-the-nine-1-u4dycn4wa.webp";
 const head = (s) => `${MSTYLE}${MX}${FRAME_CSS}${VT}${VM2}<div id="vm"><div class="veil" style="background:radial-gradient(ellipse at 50% 50%,transparent 30%,rgba(6,7,12,.45) 65%,rgba(4,4,8,.85))"></div>`;
 const tail = (s, now) => `${s.busy ? `<div class="panel msg" style="color:#f2d38a">${s.busy}…</div>` : s.msg && now - s.msg.at < 5000 ? `<div class="panel msg">${s.msg.text}</div>` : ""}</div>`;
 const realmName = (room) => R.realms.find((r) => r.room === room)?.name ?? room;
@@ -240,7 +245,7 @@ function menu(ctx, player, s) {
   if (s.menu === "title") {
     const last = (s.roster?.chars ?? []).find((c) => c.id === s.sel);
     const lk = last && (CLASSES.find((c) => c.id === last.cls) ?? CLASSES[0]);
-    return `${head(s)}<div id="vt"><div class="shade"></div>${s.opt?.embers === false ? "" : EMBERS}
+    return `${head(s)}<style>#vt .zart{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.34;filter:saturate(.8) contrast(1.05);mask-image:radial-gradient(ellipse at 62% 45%,#000 25%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse at 62% 45%,#000 25%,transparent 75%);animation:zdrift 40s ease-in-out infinite alternate;pointer-events:none}@keyframes zdrift{from{transform:scale(1.04) translate(0,0)}to{transform:scale(1.1) translate(-1.5%,-1%)}}#vt .ch .art{width:64px;height:36px;border:1px solid #6b4a2a;background-size:cover;background-position:center;margin-left:auto;flex:none;box-shadow:0 0 8px #000}</style><div id="vt"><div class="zart" style="background-image:url(${zoneArt(last?.zone)})"></div><div class="shade"></div>${s.opt?.embers === false ? "" : EMBERS}
     <div class="logo"><img class="crest" src="${CREST}"><div class="word gold">VEILFALL</div><div class="subt"><i></i><b></b>ASHES OF THE NINE<b></b><i></i></div></div>
     <div class="menu"><div class="cap">THE LANTERN SHRINE</div>
       ${last ? `<button class="it main" onmouseenter="${HOV}" onclick="${act("enter")}">Continue<span class="sub">${last.name} · Level ${last.level} ${lk.name} · ${last.zone}</span></button><div class="rule"></div>` : ""}
@@ -248,9 +253,9 @@ function menu(ctx, player, s) {
       <button class="it" onmouseenter="${HOV}" onclick="${act("realms")}">Realms<span class="sub">${realmName(here)} · ${R.realms.length} roads</span></button>
       <button class="it" onmouseenter="${HOV}" onclick="${act("options")}">Options<span class="sub">interface, sound, the shrine</span></button>
     </div>
-    <div class="chron"><h4>THE CHRONICLE</h4>${CHRONICLE.map(([n, t, d, nw]) => `<div class="ch ${nw ? "new" : ""}"><div class="n">${n}</div><div><div class="tt">${t}</div><div class="dd">${d}</div></div></div>`).join("")}</div>
+    <div class="chron"><h4>THE CHRONICLE</h4>${CHRONICLE.map(([n, t, d, nw, art]) => `<div class="ch ${nw ? "new" : ""}" style="display:flex;gap:8px;align-items:center"><div class="n">${n}</div><div><div class="tt">${t}</div><div class="dd">${d}</div></div>${art ? `<div class="art" style="background-image:url(${art})"></div>` : ""}</div>`).join("")}</div>
     <div class="quote">"Every book in this place is a person who no longer knows what they lost."</div>
-    <div class="foot"><span class="dot"></span><b>${realmName(here).toUpperCase()}</b> · ONLINE · VEILFALL 0.9</div>
+    <div class="foot"><span class="dot"></span><b>${realmName(here).toUpperCase()}</b> · ONLINE · VEILFALL ${VERSION}</div>
   </div>${tail(s, now)}`;
   }
 
