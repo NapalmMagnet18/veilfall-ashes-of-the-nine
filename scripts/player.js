@@ -332,7 +332,8 @@ function candleChill(ctx) {
   if (carry) for (const r of ctx.query({ radius: CHILL_R, center: f })) {
     if (!/brazier/.test(r.id) || r.id.startsWith("oss-") || me.chilled[r.id]) continue;
     const fl = ctx.place.objects[`${r.id}/flame`]; if (!fl || !fl.fx) continue;
-    if (!fl.state?.warm) fl.state.warm = { fx: fl.fx, light: fl.light ?? null };
+    if (!fl.state) fl.state = {};
+    if (!fl.state.warm) fl.state.warm = { fx: fl.fx, light: fl.light ?? null };
     if (fl.state.cold) { me.chilled[r.id] = true; continue; }
     fl.state.cold = true; fl.fx = { script: COLD_FIRE };
     if (fl.light) fl.light = { ...fl.light, color: "#7fd8e6" };
