@@ -1,6 +1,6 @@
 // Broken Lantern Road: a fog-filled ravine. The floor (hub, road, courts) is level at y 0;
 // beyond it the ground climbs into crumbling banks and cliffs the body cannot climb.
-import { floorDist } from './lib/data/veilfall-map.js'
+import { floorDist, deepDist } from './lib/data/veilfall-map.js'
 const clamp01 = (v) => Math.min(1, Math.max(0, v))
 export function heightAt(ctx) {
   const { x, z, noise, seedOffset } = ctx
@@ -23,7 +23,8 @@ export function materialAt(ctx) {
     const d = floorDist(x, z)
     const camp = clamp01(1 - Math.hypot(x, z) / 14) // the Wayside Fire keeps its trodden earth
     // the pilgrim road: old flagstone, broken toward its edges, ash in the cracks
-    const paved = clamp01((-d - 1.2 + n * 2.2) / 1.6) * (1 - camp)
+    const cave = z < -277 && deepDist(x, z) < 1 ? 1 : 0 // the Deep is raw cavern floor, never paved
+    const paved = clamp01((-d - 1.2 + n * 2.2) / 1.6) * (1 - camp) * (1 - cave)
     const moss = clamp01(0.35 + n * 1.6) * (1 - paved) * (0.4 + camp * 0.6)
     const rest = Math.max(0, 1 - paved - moss)
     return { stone: paved * (1 - rock), grass: moss * (1 - rock), gravel: rest * (1 - rock), rock }

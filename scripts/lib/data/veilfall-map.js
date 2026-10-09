@@ -41,6 +41,13 @@ export const OSS_PATH = [[-11, -256], [-20, -260], [-30, -264]];
 export const OSS_HALF = 3.6;
 export const OSSUARY = { x: -42, z: -266, r: 14 };
 export const RELIQUARY = { x: -46, z: -267 }; // her dais, west end
+// the Hollow Deep: a cleft out of the Ossuary's south wall, down into a crystal cavern
+export const DEEP_PATH = [[-40, -278], [-42, -288], [-45, -296]];
+export const DEEP_HALF = 3.4;
+export const DEEP = { x: -47, z: -310, r: 15 };
+export function deepDist(x, z) {
+  return Math.min(segDist(x, z, DEEP_PATH, DEEP_HALF), Math.hypot(x - DEEP.x, z - DEEP.z) - DEEP.r);
+}
 // south of the Wayside Fire: the Pilgrims' Way runs down to Candlehold, the last walled city on the road,
 // where the Exchange (the realm's auction house) keeps its ledgers. Always floor: a capital never closes.
 export const CAP_PATH = [[0, 14], [2, 26], [-1, 36], [0, 44]];
@@ -84,7 +91,7 @@ export function floorDist(x, z, abbeyOpen = true, naveOpen = true, fenOpen = tru
   const n = naveOpen && abbeyOpen ? naveDist(x, z) : Infinity;
   const fd = fenOpen ? fenDist(x, z) : Infinity;
   const od = orchOpen ? orchDist(x, z) : Infinity;
-  const os = ossOpen && naveOpen && abbeyOpen ? ossDist(x, z) : Infinity;
+  const os = ossOpen && naveOpen && abbeyOpen ? Math.min(ossDist(x, z), deepDist(x, z)) : Infinity;
   return Math.min(d, a, n, fd, od, os, capDist(x, z)); // < 0 = on the floor
 }
 
@@ -101,6 +108,7 @@ export const AREAS = [
   { id: "crypt", name: "The Bell Crypt", sub: "the Ninth Bell has not stopped ringing" },
   { id: "bonestair", name: "The Bone Stair", sub: "every step a sister who would not leave" },
   { id: "ossuary", name: "The Ossuary of Saint Ysolde", sub: "ten thousand skulls, and all of them listening" },
+  { id: "deep", name: "The Hollow Deep", sub: "the miners dug for saints' bones and found something older" },
   { id: "fenpath", name: "The Fen Path", sub: "the lanterns went west, once" },
   { id: "fen", name: "The Lanternmere", sub: "the water keeps what it was given" },
   { id: "orchpath", name: "The Gallows Path", sub: "the debtors walked it barefoot" },
@@ -118,6 +126,7 @@ export function areaAt(x, z) {
   if (Math.hypot(x - ORCHARD.x, z - ORCHARD.z) < ORCHARD.r) return by("orchard");
   if (x > 14 && segDist(x, z, ORCH_PATH, ORCH_HALF) < 0.5) return by("orchpath");
   if (Math.hypot(x - COURTS[0].x, z - COURTS[0].z) < COURTS[0].r) return by("toll");
+  if (z < -277 && deepDist(x, z) < 0.5) return by("deep");
   if (Math.hypot(x - OSSUARY.x, z - OSSUARY.z) < OSSUARY.r) return by("ossuary");
   if (x < -12 && z < -250 && segDist(x, z, OSS_PATH, OSS_HALF) < 0.5) return by("bonestair");
   if (Math.hypot(x - CRYPT.x, z - CRYPT.z) < CRYPT.r) return by("crypt");
