@@ -174,6 +174,21 @@ export function payout(ctx, at, xp, copper, countsForQuest, spill = "small", kin
   if (paid && copper > 0) ctx.emit("fx", { position: { x: at.x, y: at.y + 0.5, z: at.z }, script: S.fx });
 }
 
+// how each kind dies: wax melts (the old way), frost shatters, ash crumbles, everything else falls and lies before the earth takes it
+const WAXEN = new Set(["pilgrim", "walker", "deacon", "chorister", "flagellant", "chandler", "cantor", "kilnwarden"]);
+const FROSTY = new Set(["frostdead", "rimewolf", "icewraith", "frostjarl"]);
+const ASHEN = new Set(["ashrevenant", "cinderthrall", "pyrepriest"]);
+const SHATTER = `fx
+pop shard burst=26..34 on=sphere(.35) life=.8..1.4 v=sdir()*(2..4.5)+up(2) size=.06..0.16 spin=-9..9 acc=grav() floor=bounce(.25) col=<.75,.9,1>*1.6><.4,.55,.7> a=1>.7:1>0 sz=$size rot=$age*$spin r=sprite(soft-disc,add)
+pop frost burst=10..14 on=sphere(.4) life=1.2..2 v=sdir()*.6+up(.4) size=.4..0.8 acc=drag(1.5)+buoy(.2) col=<.8,.92,1> a=0>.1:.35>0 sz=$size*(.6>1.8) rot=spin(.2) r=sprite(smoke-puff,alpha)
+pop chill burst=1 life=.6 at=point() r=light(<.55,.8,1>,14*(1>0),6)`;
+const CRUMBLE = `fx
+pop cinder burst=40..55 on=box(.35,.8,.35) life=1..1.8 v=up(.4..1.2)+sdir()*.5 size=.03..0.07 acc=curl(.6)+buoy(.4)+drag(.8) col=hdr(3,1.2,.3)>hdr(.8,.2,.05)><.1,.08,.07> a=1>.6:1>0 sz=$size r=sprite(ember,add,velocity,.03)
+pop ash burst=12..16 on=box(.3,.7,.3) life=1.4..2.4 v=sdir()*.4 size=.3..0.6 acc=grav()*.15+drag(1.2) col=<.22,.2,.19> a=0>.1:.5>0 sz=$size*(.6>1.6) rot=spin(.2) r=sprite(smoke-puff,alpha)
+pop glow burst=1 life=.8 at=point() r=light(<1,.45,.15>,10*(1>0),5)`;
+const GORE = `fx
+pop spray burst=18..26 on=sphere(.2) life=.4..0.8 v=sdir()*(1.5..3.2)+up(1.2) size=.04..0.08 acc=grav() floor=stick col=<.25,.03,.03> a=1 sz=$size r=sprite(soft-disc,alpha)
+pop dust burst=6..9 on=disc(.5) life=.8..1.3 v=up(.3..0.7)+sdir()*.4 size=.4..0.7 acc=drag(1.4)+buoy(.2) col=<.32,.28,.24> a=0>.1:.35>0 sz=$size*(.6>1.7) rot=spin(.2) r=sprite(smoke-puff,alpha)`;
 const UNRIG = new Set(["rimewolf", "harpy", "rootmother", "broodmother"]); // models.js bodies cooked without a rig
 export function update(ctx, dt) {
   const now = ctx.now(), ears = ctx.place.players.filter((p) => !p.state.menu), players = ears.filter((p) => !p.state.dead && !safe(p.feetPosition));
@@ -183,7 +198,7 @@ export function update(ctx, dt) {
     // bodies with no skeleton have no clips to play: they breathe as one mass and coil before a blow
     if (UNRIG.has(s.kind) && !s.dead && !s.breathing) { s.breathing = true; const sc = w.scale, b = typeof sc === "number" ? sc : (sc?.y ?? 1), bx = typeof sc === "number" ? sc : (sc?.x ?? 1), bz = typeof sc === "number" ? sc : (sc?.z ?? 1);
       animate(ctx, w, { "scale.y": [b, b * 1.04, b], "scale.x": [bx, bx * 0.985, bx], "scale.z": [bz, bz * 0.985, bz] }, { duration: 1.6 + ctx.random() * 0.6, loop: true, easing: "easeInOutSine" }); }
-    if (s.dead) { w.velocity = { x: 0, y: w.velocity.y, z: 0 }; mutterAt.delete(w.id); if (now - s.deadAt > 2300) ctx.destroy(w.id); continue; }
+    if (s.dead) { w.velocity = { x: 0, y: w.velocity.y, z: 0 }; mutterAt.delete(w.id); if (now - s.deadAt > (s.corpse ? 7000 : 2300)) ctx.destroy(w.id); continue; }
     if (s.animOff && now > s.animOff) { w.anim.attack = null; s.animOff = 0; }
     if (s.hitUntil && now > s.hitUntil) { w.anim.hit = null; s.hitUntil = 0; }
     if (s.hp <= 0) {
@@ -191,7 +206,13 @@ export function update(ctx, dt) {
       ctx.emit("fx", { position: { x: f.x, y: f.y + 0.4, z: f.z }, script: MELT });
       ctx.emit("playSound", { clip: sfx((VOX[s.kind] ?? VOX.pilgrim).death), position: f, volume: (s.kind === "deacon" || s.kind === "chandler" || s.kind === "cantor" || s.kind === "barnacle" || s.kind === "ferryman" || s.kind === "briarwitch" || s.kind === "rootmother") ? 1 : 0.8, pitch: 0.9 + ctx.random() * 0.2 });
       w.anim.attack = null; w.anim.death = { clip: "cdn/clip-die.glb", weight: 20, loop: "once" }; // it falls first, then the wax gives way
-      animate(ctx, w, { "scale.y": 0.08, "scale.x": 1.5, "scale.z": 1.5 }, { duration: 1.1, delay: 0.9 });
+      const sc = w.scale, b = typeof sc === "number" ? sc : (sc?.y ?? 1);
+      if (WAXEN.has(s.kind)) animate(ctx, w, { "scale.y": 0.08, "scale.x": 1.5, "scale.z": 1.5 }, { duration: 1.1, delay: 0.9 });
+      else if (FROSTY.has(s.kind)) { ctx.emit("fx", { position: { x: f.x, y: f.y + 0.9, z: f.z }, script: SHATTER, params: {} }); ctx.emit("playSound", { clip: sfx("ice-body-shatters-into-shards"), position: f, volume: 0.7 }); animate(ctx, w, { scale: b * 0.02 }, { duration: 0.35, delay: 0.45, easing: "easeInQuad" }); }
+      else if (ASHEN.has(s.kind)) { ctx.emit("fx", { position: { x: f.x, y: f.y + 0.2, z: f.z }, script: CRUMBLE }); animate(ctx, w, { "scale.y": b * 0.05 }, { duration: 1.4, delay: 0.7, easing: "easeInCubic" }); }
+      else { s.corpse = true; ctx.emit("fx", { position: { x: f.x, y: f.y + 0.9, z: f.z }, script: GORE });
+        if (UNRIG.has(s.kind)) animate(ctx, w, { "scale.y": b * 0.4 }, { duration: 0.5, easing: "easeOutBounce" }); // no skeleton: it slumps
+        animate(ctx, w, { "feetPosition.y": f.y - 1.6 }, { duration: 1.8, delay: 5, easing: "easeInQuad" }); } // lies a while, then the earth takes it
       payout(ctx, f, K.xp, roll(ctx, E.drops[s.kind] ?? E.drops.pilgrim), true, "small", s.kind);
       continue;
     }
