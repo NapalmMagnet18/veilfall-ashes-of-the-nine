@@ -14,7 +14,7 @@ atmosphere:
     height: { base: 0.5, falloff: 5 }
   look:
     script: scripts/look-veilfall.js
-    params: { bloomStrength: 0.4, mistBase: 1, mistDensity: 0.01, vignette: 0.24 }
+    params: { bloomStrength: 0.4, mistBase: 1, mistDensity: 0.01, vignette: 0.24, exposure: 1.3, shadowLift: 0.02 }
   moon:
     intensity: 7
     enabled: true
@@ -33,11 +33,11 @@ atmosphere:
     speed: 3
   hemisphere:
     groundColor: "#1c1712"
-    intensity: 2.2
+    intensity: 2.8
     skyColor: "#4a6290"
   wet: 0.55
   ambient:
-    light: { color: "#2a3550", intensity: 0.6 }
+    light: { color: "#2a3550", intensity: 0.8 }
 defaultSpawnPoint:
   x: 0
   y:
@@ -219,6 +219,75 @@ terrain:
       tint: oklch(0.90 0.01 250)
       textureScale: 2.5
   seed: 1
+  marks:
+    packclear-p1: { center: { x: -1, z: -21 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-p2: { center: { x: 3, z: -23 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-p3: { center: { x: 0, z: -29 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-p4: { center: { x: 3, z: -31 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-p5: { center: { x: -2, z: -33 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-p6: { center: { x: 5, z: -44 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-p7: { center: { x: 10, z: -49 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-d1: { center: { x: 8, z: -46 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-a1: { center: { x: 17, z: -131 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-a2: { center: { x: 15, z: -139 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-a3: { center: { x: 9, z: -149 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-a4: { center: { x: -4, z: -168 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-a5: { center: { x: 6, z: -171 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-a6: { center: { x: -8, z: -181 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-a7: { center: { x: 4, z: -184 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-a8: { center: { x: -6, z: -188 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-a9: { center: { x: 9, z: -186 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-p8: { center: { x: -3, z: -65 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-p9: { center: { x: 0, z: -69 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-p10: { center: { x: -5, z: -71 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-d2: { center: { x: -2, z: -68 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-mb1: { center: { x: 1, z: -79 }, kind: clear-scatter, shape: { kind: circle, radius: 4 } }
+    packclear-mb2: { center: { x: 0, z: -177 }, kind: clear-scatter, shape: { kind: circle, radius: 4 } }
+    packclear-f1: { center: { x: -48, z: -2 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-f2: { center: { x: -52, z: -8 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-f3: { center: { x: -55, z: 2 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-f4: { center: { x: -70, z: 2 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-f5: { center: { x: -74, z: -6 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-f6: { center: { x: -54, z: -20 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-f7: { center: { x: -76, z: -20 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-f8: { center: { x: -58, z: -26 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-mb3: { center: { x: -78, z: -12 }, kind: clear-scatter, shape: { kind: circle, radius: 4 } }
+    packclear-w1: { center: { x: 36, z: 6 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-w2: { center: { x: 40, z: 9 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-w3: { center: { x: 42, z: 1 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-w4: { center: { x: 48, z: -8 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-w5: { center: { x: 76, z: -3 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-w6: { center: { x: 79, z: 18 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-w7: { center: { x: 50, z: 23 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-w8: { center: { x: 66, z: 25 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-mb4: { center: { x: 82, z: 6 }, kind: clear-scatter, shape: { kind: circle, radius: 4 } }
+    packclear-s1: { center: { x: -5, z: -210 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-s2: { center: { x: 5, z: -213 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-s3: { center: { x: 0, z: -218 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-s4: { center: { x: -4, z: -224 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-s5: { center: { x: 4, z: -227 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-mb5: { center: { x: 0, z: -233 }, kind: clear-scatter, shape: { kind: circle, radius: 4 } }
+    packclear-o1: { center: { x: -36, z: -257 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-o2: { center: { x: -38, z: -275 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-o3: { center: { x: -33, z: -266 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-o4: { center: { x: -24, z: -261 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-o5: { center: { x: -17, z: -258 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-mb6: { center: { x: -30, z: -270 }, kind: clear-scatter, shape: { kind: circle, radius: 4 } }
+    packclear-r1: { center: { x: 86, z: 4 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-r2: { center: { x: 96, z: -1 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-r3: { center: { x: 98, z: 2 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-r4: { center: { x: 112, z: 6 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-r5: { center: { x: 116, z: -12 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-r6: { center: { x: 126, z: 8 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-r7: { center: { x: 132, z: -6 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-mb8: { center: { x: 134, z: -4 }, kind: clear-scatter, shape: { kind: circle, radius: 4 } }
+    packclear-dd1: { center: { x: -41, z: -284 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-dd2: { center: { x: -44, z: -293 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-dd3: { center: { x: -40, z: -304 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-dd4: { center: { x: -56, z: -302 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-dd5: { center: { x: -52, z: -316 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-dd6: { center: { x: -38, z: -314 }, kind: clear-scatter, shape: { kind: circle, radius: 2.6 } }
+    packclear-mb7: { center: { x: -48, z: -317 }, kind: clear-scatter, shape: { kind: circle, radius: 4 } }
 
 arrivalBudget: { bytes: 820000 }
 

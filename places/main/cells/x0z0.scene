@@ -1,4 +1,717 @@
 # spawn-scene v2 yaml x0z0
+bw-floor-0:
+  children: [{castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: litter, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 70, kind: litter, origin: [12, 1.6], zone: in}, script: scripts/gen/bw-floor.js, seed: 1}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: roots, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 3, kind: roots, origin: [12, 1.6], zone: in}, script: scripts/gen/bw-floor.js, seed: 8}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: fungus, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 3, kind: fungus, origin: [12, 1.6], zone: in}, script: scripts/gen/bw-floor.js, seed: 15}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: bones, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 1, kind: bones, origin: [12, 1.6], zone: in}, script: scripts/gen/bw-floor.js, seed: 22}, receiveShadow: true, tags: [bloodwoods, flora, floor]}]
+  feetPosition: {x: 12, y: {terrain: 0}, z: 1.6}
+  id: bw-floor-0
+  state: {patch: in}
+  tags: [bloodwoods, flora, floor]
+bw-floor-1:
+  children: [{castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: litter, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 90, kind: litter, origin: [12.1, -5.3], zone: any}, script: scripts/gen/bw-floor.js, seed: 32}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: fern, material: {kind: scripted, script: scripts/material-fern-sway.js}, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 22, kind: fern, origin: [12.1, -5.3], zone: out}, script: scripts/gen/bw-floor.js, seed: 39}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: thorn, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 4, kind: thorn, origin: [12.1, -5.3], zone: out}, script: scripts/gen/bw-floor.js, seed: 46}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: fungus, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 4, kind: fungus, origin: [12.1, -5.3], zone: any}, script: scripts/gen/bw-floor.js, seed: 53}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: roots, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 3, kind: roots, origin: [12.1, -5.3], zone: any}, script: scripts/gen/bw-floor.js, seed: 60}, receiveShadow: true, tags: [bloodwoods, flora, floor]}]
+  feetPosition: {x: 12.1, y: {terrain: 0}, z: -5.3}
+  id: bw-floor-1
+  state: {patch: near}
+  tags: [bloodwoods, flora, floor]
+bw-floor-10:
+  children: [{castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: litter, primitive: {kind: scripted, params: {bounds: 7, clear: [[6.4, 4.5, 3]], count: 70, kind: litter, origin: [29.6, 1.5], zone: in}, script: scripts/gen/bw-floor.js, seed: 311}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: roots, primitive: {kind: scripted, params: {bounds: 7, clear: [[6.4, 4.5, 3]], count: 3, kind: roots, origin: [29.6, 1.5], zone: in}, script: scripts/gen/bw-floor.js, seed: 318}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: fungus, primitive: {kind: scripted, params: {bounds: 7, clear: [[6.4, 4.5, 3]], count: 3, kind: fungus, origin: [29.6, 1.5], zone: in}, script: scripts/gen/bw-floor.js, seed: 325}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: bones, primitive: {kind: scripted, params: {bounds: 7, clear: [[6.4, 4.5, 3]], count: 1, kind: bones, origin: [29.6, 1.5], zone: in}, script: scripts/gen/bw-floor.js, seed: 332}, receiveShadow: true, tags: [bloodwoods, flora, floor]}]
+  feetPosition: {x: 29.6, y: {terrain: 0}, z: 1.5}
+  id: bw-floor-10
+  state: {patch: in}
+  tags: [bloodwoods, flora, floor]
+bw-floor-11:
+  children: [{castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: litter, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 90, kind: litter, origin: [32.8, -5.1], zone: any}, script: scripts/gen/bw-floor.js, seed: 342}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: fern, material: {kind: scripted, script: scripts/material-fern-sway.js}, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 22, kind: fern, origin: [32.8, -5.1], zone: out}, script: scripts/gen/bw-floor.js, seed: 349}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: thorn, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 4, kind: thorn, origin: [32.8, -5.1], zone: out}, script: scripts/gen/bw-floor.js, seed: 356}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: fungus, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 4, kind: fungus, origin: [32.8, -5.1], zone: any}, script: scripts/gen/bw-floor.js, seed: 363}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: roots, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 3, kind: roots, origin: [32.8, -5.1], zone: any}, script: scripts/gen/bw-floor.js, seed: 370}, receiveShadow: true, tags: [bloodwoods, flora, floor]}]
+  feetPosition: {x: 32.8, y: {terrain: 0}, z: -5.1}
+  id: bw-floor-11
+  state: {patch: near}
+  tags: [bloodwoods, flora, floor]
+bw-floor-12:
+  children: [{castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: litter, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 50, kind: litter, origin: [35.4, -12.7], zone: any}, script: scripts/gen/bw-floor.js, seed: 373}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: fern, material: {kind: scripted, script: scripts/material-fern-sway.js}, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 18, kind: fern, origin: [35.4, -12.7], zone: out}, script: scripts/gen/bw-floor.js, seed: 380}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: thorn, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 6, kind: thorn, origin: [35.4, -12.7], zone: out}, script: scripts/gen/bw-floor.js, seed: 387}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: stump, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 3, kind: stump, origin: [35.4, -12.7], zone: out}, script: scripts/gen/bw-floor.js, seed: 394}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: bones, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 1, kind: bones, origin: [35.4, -12.7], zone: out}, script: scripts/gen/bw-floor.js, seed: 401}, receiveShadow: true, tags: [bloodwoods, flora, floor]}]
+  feetPosition: {x: 35.4, y: {terrain: 0}, z: -12.7}
+  id: bw-floor-12
+  state: {patch: far}
+  tags: [bloodwoods, flora, floor]
+bw-floor-13:
+  children: [{castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: litter, primitive: {kind: scripted, params: {bounds: 7, clear: [[-4.2, 1.7, 3], [-0.2, 4.7, 3], [1.8, -3.3, 3]], count: 70, kind: litter, origin: [40.2, 4.3], zone: in}, script: scripts/gen/bw-floor.js, seed: 404}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: roots, primitive: {kind: scripted, params: {bounds: 7, clear: [[-4.2, 1.7, 3], [-0.2, 4.7, 3], [1.8, -3.3, 3]], count: 3, kind: roots, origin: [40.2, 4.3], zone: in}, script: scripts/gen/bw-floor.js, seed: 411}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: fungus, primitive: {kind: scripted, params: {bounds: 7, clear: [[-4.2, 1.7, 3], [-0.2, 4.7, 3], [1.8, -3.3, 3]], count: 3, kind: fungus, origin: [40.2, 4.3], zone: in}, script: scripts/gen/bw-floor.js, seed: 418}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: bones, primitive: {kind: scripted, params: {bounds: 7, clear: [[-4.2, 1.7, 3], [-0.2, 4.7, 3], [1.8, -3.3, 3]], count: 1, kind: bones, origin: [40.2, 4.3], zone: in}, script: scripts/gen/bw-floor.js, seed: 425}, receiveShadow: true, tags: [bloodwoods, flora, floor]}]
+  feetPosition: {x: 40.2, y: {terrain: 0}, z: 4.3}
+  id: bw-floor-13
+  state: {patch: in}
+  tags: [bloodwoods, flora, floor]
+bw-floor-14:
+  children: [{castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: litter, primitive: {kind: scripted, params: {bounds: 7, clear: [[-4.9, 8.5, 3], [1.1, 3.5, 3], [7.1, -5.5, 3]], count: 90, kind: litter, origin: [40.9, -2.5], zone: any}, script: scripts/gen/bw-floor.js, seed: 435}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: fern, material: {kind: scripted, script: scripts/material-fern-sway.js}, primitive: {kind: scripted, params: {bounds: 7, clear: [[-4.9, 8.5, 3], [1.1, 3.5, 3], [7.1, -5.5, 3]], count: 22, kind: fern, origin: [40.9, -2.5], zone: out}, script: scripts/gen/bw-floor.js, seed: 442}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: thorn, primitive: {kind: scripted, params: {bounds: 7, clear: [[-4.9, 8.5, 3], [1.1, 3.5, 3], [7.1, -5.5, 3]], count: 4, kind: thorn, origin: [40.9, -2.5], zone: out}, script: scripts/gen/bw-floor.js, seed: 449}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: fungus, primitive: {kind: scripted, params: {bounds: 7, clear: [[-4.9, 8.5, 3], [1.1, 3.5, 3], [7.1, -5.5, 3]], count: 4, kind: fungus, origin: [40.9, -2.5], zone: any}, script: scripts/gen/bw-floor.js, seed: 456}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: roots, primitive: {kind: scripted, params: {bounds: 7, clear: [[-4.9, 8.5, 3], [1.1, 3.5, 3], [7.1, -5.5, 3]], count: 3, kind: roots, origin: [40.9, -2.5], zone: any}, script: scripts/gen/bw-floor.js, seed: 463}, receiveShadow: true, tags: [bloodwoods, flora, floor]}]
+  feetPosition: {x: 40.9, y: {terrain: 0}, z: -2.5}
+  id: bw-floor-14
+  state: {patch: near}
+  tags: [bloodwoods, flora, floor]
+bw-floor-15:
+  children: [{castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: litter, primitive: {kind: scripted, params: {bounds: 7, clear: [[-1.5, -5.1, 3], [2.5, -2.1, 3]], count: 90, kind: litter, origin: [37.5, 11.1], zone: any}, script: scripts/gen/bw-floor.js, seed: 466}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: fern, material: {kind: scripted, script: scripts/material-fern-sway.js}, primitive: {kind: scripted, params: {bounds: 7, clear: [[-1.5, -5.1, 3], [2.5, -2.1, 3]], count: 22, kind: fern, origin: [37.5, 11.1], zone: out}, script: scripts/gen/bw-floor.js, seed: 473}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: thorn, primitive: {kind: scripted, params: {bounds: 7, clear: [[-1.5, -5.1, 3], [2.5, -2.1, 3]], count: 4, kind: thorn, origin: [37.5, 11.1], zone: out}, script: scripts/gen/bw-floor.js, seed: 480}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: fungus, primitive: {kind: scripted, params: {bounds: 7, clear: [[-1.5, -5.1, 3], [2.5, -2.1, 3]], count: 4, kind: fungus, origin: [37.5, 11.1], zone: any}, script: scripts/gen/bw-floor.js, seed: 487}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: roots, primitive: {kind: scripted, params: {bounds: 7, clear: [[-1.5, -5.1, 3], [2.5, -2.1, 3]], count: 3, kind: roots, origin: [37.5, 11.1], zone: any}, script: scripts/gen/bw-floor.js, seed: 494}, receiveShadow: true, tags: [bloodwoods, flora, floor]}]
+  feetPosition: {x: 37.5, y: {terrain: 0}, z: 11.1}
+  id: bw-floor-15
+  state: {patch: near}
+  tags: [bloodwoods, flora, floor]
+bw-floor-16:
+  children: [{castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: litter, primitive: {kind: scripted, params: {bounds: 7, clear: [[2.2, 2.3, 3]], count: 50, kind: litter, origin: [45.8, -10.3], zone: any}, script: scripts/gen/bw-floor.js, seed: 497}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: fern, material: {kind: scripted, script: scripts/material-fern-sway.js}, primitive: {kind: scripted, params: {bounds: 7, clear: [[2.2, 2.3, 3]], count: 18, kind: fern, origin: [45.8, -10.3], zone: out}, script: scripts/gen/bw-floor.js, seed: 504}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: thorn, primitive: {kind: scripted, params: {bounds: 7, clear: [[2.2, 2.3, 3]], count: 6, kind: thorn, origin: [45.8, -10.3], zone: out}, script: scripts/gen/bw-floor.js, seed: 511}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: stump, primitive: {kind: scripted, params: {bounds: 7, clear: [[2.2, 2.3, 3]], count: 3, kind: stump, origin: [45.8, -10.3], zone: out}, script: scripts/gen/bw-floor.js, seed: 518}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: bones, primitive: {kind: scripted, params: {bounds: 7, clear: [[2.2, 2.3, 3]], count: 1, kind: bones, origin: [45.8, -10.3], zone: out}, script: scripts/gen/bw-floor.js, seed: 525}, receiveShadow: true, tags: [bloodwoods, flora, floor]}]
+  feetPosition: {x: 45.8, y: {terrain: 0}, z: -10.3}
+  id: bw-floor-16
+  state: {patch: far}
+  tags: [bloodwoods, flora, floor]
+bw-floor-17:
+  children: [{castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: litter, primitive: {kind: scripted, params: {bounds: 7, clear: [[1.4, -9.8, 3]], count: 50, kind: litter, origin: [38.6, 18.8], zone: any}, script: scripts/gen/bw-floor.js, seed: 528}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: fern, material: {kind: scripted, script: scripts/material-fern-sway.js}, primitive: {kind: scripted, params: {bounds: 7, clear: [[1.4, -9.8, 3]], count: 18, kind: fern, origin: [38.6, 18.8], zone: out}, script: scripts/gen/bw-floor.js, seed: 535}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: thorn, primitive: {kind: scripted, params: {bounds: 7, clear: [[1.4, -9.8, 3]], count: 6, kind: thorn, origin: [38.6, 18.8], zone: out}, script: scripts/gen/bw-floor.js, seed: 542}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: stump, primitive: {kind: scripted, params: {bounds: 7, clear: [[1.4, -9.8, 3]], count: 3, kind: stump, origin: [38.6, 18.8], zone: out}, script: scripts/gen/bw-floor.js, seed: 549}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: bones, primitive: {kind: scripted, params: {bounds: 7, clear: [[1.4, -9.8, 3]], count: 1, kind: bones, origin: [38.6, 18.8], zone: out}, script: scripts/gen/bw-floor.js, seed: 556}, receiveShadow: true, tags: [bloodwoods, flora, floor]}]
+  feetPosition: {x: 38.6, y: {terrain: 0}, z: 18.8}
+  id: bw-floor-17
+  state: {patch: far}
+  tags: [bloodwoods, flora, floor]
+bw-floor-19:
+  children: [{castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: litter, primitive: {kind: scripted, params: {bounds: 7, clear: [[-0.3, -14.5, 9.5], [3.7, 5.5, 3]], count: 70, kind: litter, origin: [62.3, 19.5], zone: in}, script: scripts/gen/bw-floor.js, seed: 590}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: roots, primitive: {kind: scripted, params: {bounds: 7, clear: [[-0.3, -14.5, 9.5], [3.7, 5.5, 3]], count: 3, kind: roots, origin: [62.3, 19.5], zone: in}, script: scripts/gen/bw-floor.js, seed: 597}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: fungus, primitive: {kind: scripted, params: {bounds: 7, clear: [[-0.3, -14.5, 9.5], [3.7, 5.5, 3]], count: 3, kind: fungus, origin: [62.3, 19.5], zone: in}, script: scripts/gen/bw-floor.js, seed: 604}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: bones, primitive: {kind: scripted, params: {bounds: 7, clear: [[-0.3, -14.5, 9.5], [3.7, 5.5, 3]], count: 1, kind: bones, origin: [62.3, 19.5], zone: in}, script: scripts/gen/bw-floor.js, seed: 611}, receiveShadow: true, tags: [bloodwoods, flora, floor]}]
+  feetPosition: {x: 62.3, y: {terrain: 0}, z: 19.5}
+  id: bw-floor-19
+  state: {patch: in}
+  tags: [bloodwoods, flora, floor]
+bw-floor-2:
+  children: [{castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: litter, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 90, kind: litter, origin: [13.8, 8.6], zone: any}, script: scripts/gen/bw-floor.js, seed: 63}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: fern, material: {kind: scripted, script: scripts/material-fern-sway.js}, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 22, kind: fern, origin: [13.8, 8.6], zone: out}, script: scripts/gen/bw-floor.js, seed: 70}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: thorn, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 4, kind: thorn, origin: [13.8, 8.6], zone: out}, script: scripts/gen/bw-floor.js, seed: 77}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: fungus, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 4, kind: fungus, origin: [13.8, 8.6], zone: any}, script: scripts/gen/bw-floor.js, seed: 84}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: roots, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 3, kind: roots, origin: [13.8, 8.6], zone: any}, script: scripts/gen/bw-floor.js, seed: 91}, receiveShadow: true, tags: [bloodwoods, flora, floor]}]
+  feetPosition: {x: 13.8, y: {terrain: 0}, z: 8.6}
+  id: bw-floor-2
+  state: {patch: near}
+  tags: [bloodwoods, flora, floor]
+bw-floor-20:
+  children: [{castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: litter, primitive: {kind: scripted, params: {bounds: 7, clear: [[11.5, -8, 9.5], [1.5, 2, 3]], count: 70, kind: litter, origin: [50.5, 13], zone: in}, script: scripts/gen/bw-floor.js, seed: 621}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: roots, primitive: {kind: scripted, params: {bounds: 7, clear: [[11.5, -8, 9.5], [1.5, 2, 3]], count: 3, kind: roots, origin: [50.5, 13], zone: in}, script: scripts/gen/bw-floor.js, seed: 628}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: fungus, primitive: {kind: scripted, params: {bounds: 7, clear: [[11.5, -8, 9.5], [1.5, 2, 3]], count: 3, kind: fungus, origin: [50.5, 13], zone: in}, script: scripts/gen/bw-floor.js, seed: 635}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: bones, primitive: {kind: scripted, params: {bounds: 7, clear: [[11.5, -8, 9.5], [1.5, 2, 3]], count: 1, kind: bones, origin: [50.5, 13], zone: in}, script: scripts/gen/bw-floor.js, seed: 642}, receiveShadow: true, tags: [bloodwoods, flora, floor]}]
+  feetPosition: {x: 50.5, y: {terrain: 0}, z: 13}
+  id: bw-floor-20
+  state: {patch: in}
+  tags: [bloodwoods, flora, floor]
+bw-floor-21:
+  children: [{castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: litter, primitive: {kind: scripted, params: {bounds: 7, clear: [[11.8, 5.5, 9.5], [-8.2, 1.5, 3], [-2.2, -7.5, 3]], count: 70, kind: litter, origin: [50.2, -0.5], zone: in}, script: scripts/gen/bw-floor.js, seed: 652}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: roots, primitive: {kind: scripted, params: {bounds: 7, clear: [[11.8, 5.5, 9.5], [-8.2, 1.5, 3], [-2.2, -7.5, 3]], count: 3, kind: roots, origin: [50.2, -0.5], zone: in}, script: scripts/gen/bw-floor.js, seed: 659}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: fungus, primitive: {kind: scripted, params: {bounds: 7, clear: [[11.8, 5.5, 9.5], [-8.2, 1.5, 3], [-2.2, -7.5, 3]], count: 3, kind: fungus, origin: [50.2, -0.5], zone: in}, script: scripts/gen/bw-floor.js, seed: 666}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: bones, primitive: {kind: scripted, params: {bounds: 7, clear: [[11.8, 5.5, 9.5], [-8.2, 1.5, 3], [-2.2, -7.5, 3]], count: 1, kind: bones, origin: [50.2, -0.5], zone: in}, script: scripts/gen/bw-floor.js, seed: 673}, receiveShadow: true, tags: [bloodwoods, flora, floor]}]
+  feetPosition: {x: 50.2, y: {terrain: 0}, z: -0.5}
+  id: bw-floor-21
+  state: {patch: in}
+  tags: [bloodwoods, flora, floor]
+bw-floor-22:
+  children: [{castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: litter, primitive: {kind: scripted, params: {bounds: 7, clear: [[0.3, 12.5, 9.5], [4.3, 1.5, 3]], count: 70, kind: litter, origin: [61.7, -7.5], zone: in}, script: scripts/gen/bw-floor.js, seed: 683}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: roots, primitive: {kind: scripted, params: {bounds: 7, clear: [[0.3, 12.5, 9.5], [4.3, 1.5, 3]], count: 3, kind: roots, origin: [61.7, -7.5], zone: in}, script: scripts/gen/bw-floor.js, seed: 690}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: fungus, primitive: {kind: scripted, params: {bounds: 7, clear: [[0.3, 12.5, 9.5], [4.3, 1.5, 3]], count: 3, kind: fungus, origin: [61.7, -7.5], zone: in}, script: scripts/gen/bw-floor.js, seed: 697}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: bones, primitive: {kind: scripted, params: {bounds: 7, clear: [[0.3, 12.5, 9.5], [4.3, 1.5, 3]], count: 1, kind: bones, origin: [61.7, -7.5], zone: in}, script: scripts/gen/bw-floor.js, seed: 704}, receiveShadow: true, tags: [bloodwoods, flora, floor]}]
+  feetPosition: {x: 61.7, y: {terrain: 0}, z: -7.5}
+  id: bw-floor-22
+  state: {patch: in}
+  tags: [bloodwoods, flora, floor]
+bw-floor-26:
+  children: [{castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: litter, primitive: {kind: scripted, params: {bounds: 7, clear: [[3.7, -4, 3]], count: 90, kind: litter, origin: [62.3, 29], zone: any}, script: scripts/gen/bw-floor.js, seed: 807}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: fern, material: {kind: scripted, script: scripts/material-fern-sway.js}, primitive: {kind: scripted, params: {bounds: 7, clear: [[3.7, -4, 3]], count: 22, kind: fern, origin: [62.3, 29], zone: out}, script: scripts/gen/bw-floor.js, seed: 814}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: thorn, primitive: {kind: scripted, params: {bounds: 7, clear: [[3.7, -4, 3]], count: 4, kind: thorn, origin: [62.3, 29], zone: out}, script: scripts/gen/bw-floor.js, seed: 821}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: fungus, primitive: {kind: scripted, params: {bounds: 7, clear: [[3.7, -4, 3]], count: 4, kind: fungus, origin: [62.3, 29], zone: any}, script: scripts/gen/bw-floor.js, seed: 828}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: roots, primitive: {kind: scripted, params: {bounds: 7, clear: [[3.7, -4, 3]], count: 3, kind: roots, origin: [62.3, 29], zone: any}, script: scripts/gen/bw-floor.js, seed: 835}, receiveShadow: true, tags: [bloodwoods, flora, floor]}]
+  feetPosition: {x: 62.3, y: {terrain: 0}, z: 29}
+  id: bw-floor-26
+  state: {patch: near}
+  tags: [bloodwoods, flora, floor]
+bw-floor-27:
+  children: [{castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: litter, primitive: {kind: scripted, params: {bounds: 7, clear: [[1.3, -1.8, 3]], count: 90, kind: litter, origin: [48.7, 24.8], zone: any}, script: scripts/gen/bw-floor.js, seed: 838}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: fern, material: {kind: scripted, script: scripts/material-fern-sway.js}, primitive: {kind: scripted, params: {bounds: 7, clear: [[1.3, -1.8, 3]], count: 22, kind: fern, origin: [48.7, 24.8], zone: out}, script: scripts/gen/bw-floor.js, seed: 845}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: thorn, primitive: {kind: scripted, params: {bounds: 7, clear: [[1.3, -1.8, 3]], count: 4, kind: thorn, origin: [48.7, 24.8], zone: out}, script: scripts/gen/bw-floor.js, seed: 852}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: fungus, primitive: {kind: scripted, params: {bounds: 7, clear: [[1.3, -1.8, 3]], count: 4, kind: fungus, origin: [48.7, 24.8], zone: any}, script: scripts/gen/bw-floor.js, seed: 859}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: roots, primitive: {kind: scripted, params: {bounds: 7, clear: [[1.3, -1.8, 3]], count: 3, kind: roots, origin: [48.7, 24.8], zone: any}, script: scripts/gen/bw-floor.js, seed: 866}, receiveShadow: true, tags: [bloodwoods, flora, floor]}]
+  feetPosition: {x: 48.7, y: {terrain: 0}, z: 24.8}
+  id: bw-floor-27
+  state: {patch: near}
+  tags: [bloodwoods, flora, floor]
+bw-floor-28:
+  children: [{castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: litter, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 90, kind: litter, origin: [61.7, -17], zone: any}, script: scripts/gen/bw-floor.js, seed: 869}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: fern, material: {kind: scripted, script: scripts/material-fern-sway.js}, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 22, kind: fern, origin: [61.7, -17], zone: out}, script: scripts/gen/bw-floor.js, seed: 876}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: thorn, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 4, kind: thorn, origin: [61.7, -17], zone: out}, script: scripts/gen/bw-floor.js, seed: 883}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: fungus, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 4, kind: fungus, origin: [61.7, -17], zone: any}, script: scripts/gen/bw-floor.js, seed: 890}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: roots, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 3, kind: roots, origin: [61.7, -17], zone: any}, script: scripts/gen/bw-floor.js, seed: 897}, receiveShadow: true, tags: [bloodwoods, flora, floor]}]
+  feetPosition: {x: 61.7, y: {terrain: 0}, z: -17}
+  id: bw-floor-28
+  state: {patch: near}
+  tags: [bloodwoods, flora, floor]
+bw-floor-3:
+  children: [{castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: litter, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 50, kind: litter, origin: [11.1, -13.3], zone: any}, script: scripts/gen/bw-floor.js, seed: 94}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: fern, material: {kind: scripted, script: scripts/material-fern-sway.js}, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 18, kind: fern, origin: [11.1, -13.3], zone: out}, script: scripts/gen/bw-floor.js, seed: 101}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: thorn, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 6, kind: thorn, origin: [11.1, -13.3], zone: out}, script: scripts/gen/bw-floor.js, seed: 108}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: stump, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 3, kind: stump, origin: [11.1, -13.3], zone: out}, script: scripts/gen/bw-floor.js, seed: 115}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: bones, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 1, kind: bones, origin: [11.1, -13.3], zone: out}, script: scripts/gen/bw-floor.js, seed: 122}, receiveShadow: true, tags: [bloodwoods, flora, floor]}]
+  feetPosition: {x: 11.1, y: {terrain: 0}, z: -13.3}
+  id: bw-floor-3
+  state: {patch: far}
+  tags: [bloodwoods, flora, floor]
+bw-floor-33:
+  children: [{castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: litter, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 50, kind: litter, origin: [46.5, 32.8], zone: any}, script: scripts/gen/bw-floor.js, seed: 1024}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: fern, material: {kind: scripted, script: scripts/material-fern-sway.js}, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 18, kind: fern, origin: [46.5, 32.8], zone: out}, script: scripts/gen/bw-floor.js, seed: 1031}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: thorn, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 6, kind: thorn, origin: [46.5, 32.8], zone: out}, script: scripts/gen/bw-floor.js, seed: 1038}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: stump, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 3, kind: stump, origin: [46.5, 32.8], zone: out}, script: scripts/gen/bw-floor.js, seed: 1045}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: bones, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 1, kind: bones, origin: [46.5, 32.8], zone: out}, script: scripts/gen/bw-floor.js, seed: 1052}, receiveShadow: true, tags: [bloodwoods, flora, floor]}]
+  feetPosition: {x: 46.5, y: {terrain: 0}, z: 32.8}
+  id: bw-floor-33
+  state: {patch: far}
+  tags: [bloodwoods, flora, floor]
+bw-floor-34:
+  children: [{castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: litter, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 50, kind: litter, origin: [46.5, -20.8], zone: any}, script: scripts/gen/bw-floor.js, seed: 1055}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: fern, material: {kind: scripted, script: scripts/material-fern-sway.js}, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 18, kind: fern, origin: [46.5, -20.8], zone: out}, script: scripts/gen/bw-floor.js, seed: 1062}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: thorn, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 6, kind: thorn, origin: [46.5, -20.8], zone: out}, script: scripts/gen/bw-floor.js, seed: 1069}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: stump, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 3, kind: stump, origin: [46.5, -20.8], zone: out}, script: scripts/gen/bw-floor.js, seed: 1076}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: bones, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 1, kind: bones, origin: [46.5, -20.8], zone: out}, script: scripts/gen/bw-floor.js, seed: 1083}, receiveShadow: true, tags: [bloodwoods, flora, floor]}]
+  feetPosition: {x: 46.5, y: {terrain: 0}, z: -20.8}
+  id: bw-floor-34
+  state: {patch: far}
+  tags: [bloodwoods, flora, floor]
+bw-floor-4:
+  children: [{castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: litter, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 50, kind: litter, origin: [14.8, 16.5], zone: any}, script: scripts/gen/bw-floor.js, seed: 125}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: fern, material: {kind: scripted, script: scripts/material-fern-sway.js}, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 18, kind: fern, origin: [14.8, 16.5], zone: out}, script: scripts/gen/bw-floor.js, seed: 132}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: thorn, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 6, kind: thorn, origin: [14.8, 16.5], zone: out}, script: scripts/gen/bw-floor.js, seed: 139}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: stump, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 3, kind: stump, origin: [14.8, 16.5], zone: out}, script: scripts/gen/bw-floor.js, seed: 146}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: bones, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 1, kind: bones, origin: [14.8, 16.5], zone: out}, script: scripts/gen/bw-floor.js, seed: 153}, receiveShadow: true, tags: [bloodwoods, flora, floor]}]
+  feetPosition: {x: 14.8, y: {terrain: 0}, z: 16.5}
+  id: bw-floor-4
+  state: {patch: far}
+  tags: [bloodwoods, flora, floor]
+bw-floor-5:
+  children: [{castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: litter, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 70, kind: litter, origin: [22.9, 0.5], zone: in}, script: scripts/gen/bw-floor.js, seed: 156}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: roots, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 3, kind: roots, origin: [22.9, 0.5], zone: in}, script: scripts/gen/bw-floor.js, seed: 163}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: fungus, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 3, kind: fungus, origin: [22.9, 0.5], zone: in}, script: scripts/gen/bw-floor.js, seed: 170}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: bones, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 1, kind: bones, origin: [22.9, 0.5], zone: in}, script: scripts/gen/bw-floor.js, seed: 177}, receiveShadow: true, tags: [bloodwoods, flora, floor]}]
+  feetPosition: {x: 22.9, y: {terrain: 0}, z: 0.5}
+  id: bw-floor-5
+  state: {patch: in}
+  tags: [bloodwoods, flora, floor]
+bw-floor-6:
+  children: [{castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: litter, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 90, kind: litter, origin: [21, -6.4], zone: any}, script: scripts/gen/bw-floor.js, seed: 187}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: fern, material: {kind: scripted, script: scripts/material-fern-sway.js}, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 22, kind: fern, origin: [21, -6.4], zone: out}, script: scripts/gen/bw-floor.js, seed: 194}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: thorn, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 4, kind: thorn, origin: [21, -6.4], zone: out}, script: scripts/gen/bw-floor.js, seed: 201}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: fungus, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 4, kind: fungus, origin: [21, -6.4], zone: any}, script: scripts/gen/bw-floor.js, seed: 208}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: roots, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 3, kind: roots, origin: [21, -6.4], zone: any}, script: scripts/gen/bw-floor.js, seed: 215}, receiveShadow: true, tags: [bloodwoods, flora, floor]}]
+  feetPosition: {x: 21, y: {terrain: 0}, z: -6.4}
+  id: bw-floor-6
+  state: {patch: near}
+  tags: [bloodwoods, flora, floor]
+bw-floor-7:
+  children: [{castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: litter, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 90, kind: litter, origin: [22.8, 7.5], zone: any}, script: scripts/gen/bw-floor.js, seed: 218}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: fern, material: {kind: scripted, script: scripts/material-fern-sway.js}, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 22, kind: fern, origin: [22.8, 7.5], zone: out}, script: scripts/gen/bw-floor.js, seed: 225}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: thorn, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 4, kind: thorn, origin: [22.8, 7.5], zone: out}, script: scripts/gen/bw-floor.js, seed: 232}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: fungus, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 4, kind: fungus, origin: [22.8, 7.5], zone: any}, script: scripts/gen/bw-floor.js, seed: 239}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: roots, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 3, kind: roots, origin: [22.8, 7.5], zone: any}, script: scripts/gen/bw-floor.js, seed: 246}, receiveShadow: true, tags: [bloodwoods, flora, floor]}]
+  feetPosition: {x: 22.8, y: {terrain: 0}, z: 7.5}
+  id: bw-floor-7
+  state: {patch: near}
+  tags: [bloodwoods, flora, floor]
+bw-floor-8:
+  children: [{castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: litter, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 50, kind: litter, origin: [23, -14.4], zone: any}, script: scripts/gen/bw-floor.js, seed: 249}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: fern, material: {kind: scripted, script: scripts/material-fern-sway.js}, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 18, kind: fern, origin: [23, -14.4], zone: out}, script: scripts/gen/bw-floor.js, seed: 256}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: thorn, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 6, kind: thorn, origin: [23, -14.4], zone: out}, script: scripts/gen/bw-floor.js, seed: 263}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: stump, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 3, kind: stump, origin: [23, -14.4], zone: out}, script: scripts/gen/bw-floor.js, seed: 270}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: bones, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 1, kind: bones, origin: [23, -14.4], zone: out}, script: scripts/gen/bw-floor.js, seed: 277}, receiveShadow: true, tags: [bloodwoods, flora, floor]}]
+  feetPosition: {x: 23, y: {terrain: 0}, z: -14.4}
+  id: bw-floor-8
+  state: {patch: far}
+  tags: [bloodwoods, flora, floor]
+bw-floor-9:
+  children: [{castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: litter, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 50, kind: litter, origin: [26.8, 15.4], zone: any}, script: scripts/gen/bw-floor.js, seed: 280}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: fern, material: {kind: scripted, script: scripts/material-fern-sway.js}, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 18, kind: fern, origin: [26.8, 15.4], zone: out}, script: scripts/gen/bw-floor.js, seed: 287}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: thorn, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 6, kind: thorn, origin: [26.8, 15.4], zone: out}, script: scripts/gen/bw-floor.js, seed: 294}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: stump, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 3, kind: stump, origin: [26.8, 15.4], zone: out}, script: scripts/gen/bw-floor.js, seed: 301}, receiveShadow: true, tags: [bloodwoods, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: bones, primitive: {kind: scripted, params: {bounds: 7, clear: [], count: 1, kind: bones, origin: [26.8, 15.4], zone: out}, script: scripts/gen/bw-floor.js, seed: 308}, receiveShadow: true, tags: [bloodwoods, flora, floor]}]
+  feetPosition: {x: 26.8, y: {terrain: 0}, z: 15.4}
+  id: bw-floor-9
+  state: {patch: far}
+  tags: [bloodwoods, flora, floor]
+bw-glow-0:
+  feetPosition: {x: 18, y: {terrain: 0.6}, z: 12}
+  id: bw-glow-0
+  light: {color: oklch(0.68 0.19 38), distance: 8, intensity: 2.2, kind: point}
+  tags: [bloodwoods, bw-light]
+bw-glow-1:
+  feetPosition: {x: 32, y: {terrain: 0.6}, z: -12}
+  id: bw-glow-1
+  light: {color: oklch(0.68 0.19 38), distance: 8, intensity: 2.55, kind: point}
+  tags: [bloodwoods, bw-light]
+bw-glow-2:
+  feetPosition: {x: 24, y: {terrain: 0.6}, z: -5.2}
+  id: bw-glow-2
+  light: {color: oklch(0.68 0.19 38), distance: 8, intensity: 2.9, kind: point}
+  tags: [bloodwoods, bw-light]
+bw-glow-3:
+  feetPosition: {x: 40, y: {terrain: 0.6}, z: 10.5}
+  id: bw-glow-3
+  light: {color: oklch(0.68 0.19 38), distance: 8, intensity: 3.25, kind: point}
+  tags: [bloodwoods, bw-light]
+bw-glow-4:
+  feetPosition: {x: 47, y: {terrain: 0.6}, z: -3}
+  id: bw-glow-4
+  light: {color: oklch(0.68 0.19 38), distance: 8, intensity: 3.6, kind: point}
+  tags: [bloodwoods, bw-light]
+bw-tree-0:
+  castShadow: true
+  feetPosition: {x: 34, y: {terrain: -0.25}, z: -13.4}
+  id: bw-tree-0
+  mixer: {base: {clip: Sway, loop: loop, speed: 0.8, weight: 1}}
+  model: /cdn/value.2ad5479715b24bc81b0ee2646c8df5df01b07808cc73dfdf62864d332580fa98.glb
+  receiveShadow: true
+  rotation: 0
+  scale: 0.85
+  state: {kind: bloodoak}
+  tags: [bloodwoods, flora, tree]
+bw-tree-0/trunk:
+  feetPosition: {x: 0, y: 0, z: 0}
+  id: bw-tree-0/trunk
+  parent: bw-tree-0
+  physics: {body: static, collider: box}
+  primitive: {depth: 1.06, height: 3.53, kind: box, width: 1.06}
+  visible: false
+bw-tree-1:
+  castShadow: true
+  feetPosition: {x: 37.6, y: {terrain: -0.5}, z: 19.1}
+  id: bw-tree-1
+  mixer: {base: {clip: Sway, loop: loop, speed: 0.8, weight: 1}}
+  model: /cdn/value.aa2f0b395dadb3c6353cba8828aec488e2ed2d4541e04ae6e8132d0d73024f26.glb
+  receiveShadow: true
+  rotation: 3
+  scale: 0.85
+  state: {kind: weepwillow}
+  tags: [bloodwoods, flora, tree]
+bw-tree-1/trunk:
+  feetPosition: {x: 0, y: 0, z: 0}
+  id: bw-tree-1/trunk
+  parent: bw-tree-1
+  physics: {body: static, collider: box}
+  primitive: {depth: 0.82, height: 3.53, kind: box, width: 0.82}
+  visible: false
+bw-tree-11:
+  castShadow: true
+  feetPosition: {x: 14.8, y: {terrain: -0.25}, z: -25.9}
+  id: bw-tree-11
+  mixer: {base: {clip: Sway, loop: loop, speed: 1.05, weight: 1}}
+  model: /cdn/value.2ad5479715b24bc81b0ee2646c8df5df01b07808cc73dfdf62864d332580fa98.glb
+  receiveShadow: true
+  rotation: 228
+  scale: 1.1
+  state: {kind: bloodoak}
+  tags: [bloodwoods, flora, tree]
+bw-tree-11/trunk:
+  feetPosition: {x: 0, y: 0, z: 0}
+  id: bw-tree-11/trunk
+  parent: bw-tree-11
+  physics: {body: static, collider: box}
+  primitive: {depth: 0.82, height: 2.73, kind: box, width: 0.82}
+  visible: false
+bw-tree-12:
+  castShadow: true
+  feetPosition: {x: 63.77, y: {terrain: -0.94}, z: 33}
+  id: bw-tree-12
+  mixer: {base: {clip: Sway, loop: loop, speed: 0.98, weight: 1}}
+  model: /cdn/value.aa2f0b395dadb3c6353cba8828aec488e2ed2d4541e04ae6e8132d0d73024f26.glb
+  receiveShadow: true
+  rotation: 164
+  scale: 1.03
+  state: {kind: weepwillow}
+  tags: [bloodwoods, flora, tree]
+bw-tree-12/trunk:
+  feetPosition: {x: 0, y: 0, z: 0}
+  id: bw-tree-12/trunk
+  parent: bw-tree-12
+  physics: {body: static, collider: box}
+  primitive: {depth: 0.68, height: 2.91, kind: box, width: 0.68}
+  visible: false
+bw-tree-13:
+  castShadow: true
+  feetPosition: {x: 12.7, y: {terrain: -0.25}, z: 20.2}
+  id: bw-tree-13
+  mixer: {base: {clip: Sway, loop: loop, speed: 0.88, weight: 1}}
+  model: /cdn/value.2ad5479715b24bc81b0ee2646c8df5df01b07808cc73dfdf62864d332580fa98.glb
+  receiveShadow: true
+  rotation: 68
+  scale: 0.93
+  state: {kind: bloodoak}
+  tags: [bloodwoods, flora, tree]
+bw-tree-13/trunk:
+  feetPosition: {x: 0, y: 0, z: 0}
+  id: bw-tree-13/trunk
+  parent: bw-tree-13
+  physics: {body: static, collider: box}
+  primitive: {depth: 0.97, height: 3.23, kind: box, width: 0.97}
+  visible: false
+bw-tree-14:
+  castShadow: true
+  feetPosition: {x: 19.8, y: {terrain: -0.25}, z: 15.3}
+  id: bw-tree-14
+  mixer: {base: {clip: Sway, loop: loop, speed: 1.02, weight: 1}}
+  model: /cdn/value.128f62273fc70ffe70bff8d027973a2009b69bb4ea569ba1befb16dccb75457e.glb
+  receiveShadow: true
+  rotation: 195
+  scale: 1.07
+  state: {kind: antlersnag}
+  tags: [bloodwoods, flora, tree]
+bw-tree-14/trunk:
+  feetPosition: {x: 0, y: 0, z: 0}
+  id: bw-tree-14/trunk
+  parent: bw-tree-14
+  physics: {body: static, collider: box}
+  primitive: {depth: 0.47, height: 2.8, kind: box, width: 0.47}
+  visible: false
+bw-tree-15:
+  castShadow: true
+  feetPosition: {x: 33.26, y: {terrain: -0.25}, z: 16.56}
+  id: bw-tree-15
+  mixer: {base: {clip: Sway, loop: loop, speed: 0.86, weight: 1}}
+  model: /cdn/value.aa2f0b395dadb3c6353cba8828aec488e2ed2d4541e04ae6e8132d0d73024f26.glb
+  receiveShadow: true
+  rotation: 53
+  scale: 0.91
+  state: {kind: weepwillow}
+  tags: [bloodwoods, flora, tree]
+bw-tree-15/trunk:
+  feetPosition: {x: 0, y: 0, z: 0}
+  id: bw-tree-15/trunk
+  parent: bw-tree-15
+  physics: {body: static, collider: box}
+  primitive: {depth: 0.77, height: 3.3, kind: box, width: 0.77}
+  visible: false
+bw-tree-18:
+  castShadow: true
+  feetPosition: {x: 44.24, y: {terrain: -0.36}, z: 27.87}
+  id: bw-tree-18
+  mixer: {base: {clip: Sway, loop: loop, speed: 1.06, weight: 1}}
+  model: /cdn/value.128f62273fc70ffe70bff8d027973a2009b69bb4ea569ba1befb16dccb75457e.glb
+  receiveShadow: true
+  rotation: 235
+  scale: 1.11
+  state: {kind: antlersnag}
+  tags: [bloodwoods, flora, tree]
+bw-tree-18/trunk:
+  feetPosition: {x: 0, y: 0, z: 0}
+  id: bw-tree-18/trunk
+  parent: bw-tree-18
+  physics: {body: static, collider: box}
+  primitive: {depth: 0.45, height: 2.7, kind: box, width: 0.45}
+  visible: false
+bw-tree-21:
+  castShadow: true
+  feetPosition: {x: 56.07, y: {terrain: -0.25}, z: 30.4}
+  id: bw-tree-21
+  mixer: {base: {clip: Sway, loop: loop, speed: 0.92, weight: 1}}
+  model: /cdn/value.2ad5479715b24bc81b0ee2646c8df5df01b07808cc73dfdf62864d332580fa98.glb
+  receiveShadow: true
+  rotation: 104
+  scale: 0.97
+  state: {kind: bloodoak}
+  tags: [bloodwoods, flora, tree]
+bw-tree-21/trunk:
+  feetPosition: {x: 0, y: 0, z: 0}
+  id: bw-tree-21/trunk
+  parent: bw-tree-21
+  physics: {body: static, collider: box}
+  primitive: {depth: 0.93, height: 3.09, kind: box, width: 0.93}
+  visible: false
+bw-tree-22:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 39.01, y: {terrain: -0.25}, z: 22.81}
+  id: bw-tree-22
+  layout: {maxExtents: {y: 6.48}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 1.05, weight: 1}}
+  model: /cdn/value.128f62273fc70ffe70bff8d027973a2009b69bb4ea569ba1befb16dccb75457e.glb
+  receiveShadow: true
+  rotation: 210
+  state: {kind: antlersnag}
+  tags: [bloodwoods, flora, tree]
+bw-tree-23:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 17.27, y: {terrain: -0.37}, z: -20.15}
+  id: bw-tree-23
+  layout: {maxExtents: {y: 8.74}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 1.12, weight: 1}}
+  model: /cdn/value.2ad5479715b24bc81b0ee2646c8df5df01b07808cc73dfdf62864d332580fa98.glb
+  receiveShadow: true
+  rotation: 15
+  state: {kind: bloodoak}
+  tags: [bloodwoods, flora, tree]
+bw-tree-24:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 24.5, y: {terrain: -0.2}, z: 21.1}
+  id: bw-tree-24
+  layout: {maxExtents: {y: 8.27}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 1.15, weight: 1}}
+  model: /cdn/value.2ad5479715b24bc81b0ee2646c8df5df01b07808cc73dfdf62864d332580fa98.glb
+  receiveShadow: true
+  rotation: 177
+  state: {kind: bloodoak}
+  tags: [bloodwoods, flora, tree]
+bw-tree-25:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 34.9, y: {terrain: -1}, z: -4.7}
+  fx: {script: "fx\npop spore rate=?mobile:.6|1.2 on=sphere(2.5) life=4..7 v=up(.15..0.35)+sdir()*.2 size=.04..0.07 acc=curl(.4)*.6+drag(.6) col=hdr(2.6,.35,.18) a=(0>.15:1>.8:1>0)*flick(3,.4) sz=$size r=sprite(soft-disc,add)"}
+  id: bw-tree-25
+  layout: {maxExtents: {y: 7.24}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 1.02, weight: 1}}
+  model: /cdn/value.aa2f0b395dadb3c6353cba8828aec488e2ed2d4541e04ae6e8132d0d73024f26.glb
+  receiveShadow: true
+  rotation: 264
+  state: {kind: weepwillow}
+  tags: [bloodwoods, flora, tree]
+bw-tree-26:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 42.3, y: {terrain: -0.2}, z: 23.2}
+  id: bw-tree-26
+  layout: {maxExtents: {y: 9.13}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 1, weight: 1}}
+  model: /cdn/value.2ad5479715b24bc81b0ee2646c8df5df01b07808cc73dfdf62864d332580fa98.glb
+  receiveShadow: true
+  rotation: 170
+  state: {kind: bloodoak}
+  tags: [bloodwoods, flora, tree]
+bw-tree-27:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 12.53, y: {terrain: -0.25}, z: -14.36}
+  id: bw-tree-27
+  layout: {maxExtents: {y: 6.79}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 0.98, weight: 1}}
+  model: /cdn/value.aa2f0b395dadb3c6353cba8828aec488e2ed2d4541e04ae6e8132d0d73024f26.glb
+  receiveShadow: true
+  rotation: 76
+  state: {kind: weepwillow}
+  tags: [bloodwoods, flora, tree]
+bw-tree-28:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 24.8, y: {terrain: -0.38}, z: -16.45}
+  id: bw-tree-28
+  layout: {maxExtents: {y: 7.02}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 0.88, weight: 1}}
+  model: /cdn/value.aa2f0b395dadb3c6353cba8828aec488e2ed2d4541e04ae6e8132d0d73024f26.glb
+  receiveShadow: true
+  rotation: 105
+  state: {kind: weepwillow}
+  tags: [bloodwoods, flora, tree]
+bw-tree-29:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 28.7, y: {terrain: -0.2}, z: -21.6}
+  id: bw-tree-29
+  layout: {maxExtents: {y: 9.42}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 1.04, weight: 1}}
+  model: /cdn/value.2ad5479715b24bc81b0ee2646c8df5df01b07808cc73dfdf62864d332580fa98.glb
+  receiveShadow: true
+  rotation: 142
+  state: {kind: bloodoak}
+  tags: [bloodwoods, flora, tree]
+bw-tree-30:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 18.13, y: {terrain: -0.2}, z: -6.65}
+  fx: {script: "fx\npop spore rate=?mobile:.6|1.2 on=sphere(2.5) life=4..7 v=up(.15..0.35)+sdir()*.2 size=.04..0.07 acc=curl(.4)*.6+drag(.6) col=hdr(2.6,.35,.18) a=(0>.15:1>.8:1>0)*flick(3,.4) sz=$size r=sprite(soft-disc,add)"}
+  id: bw-tree-30
+  layout: {maxExtents: {y: 10.22}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 0.96, weight: 1}}
+  model: /cdn/value.2ad5479715b24bc81b0ee2646c8df5df01b07808cc73dfdf62864d332580fa98.glb
+  receiveShadow: true
+  rotation: 38
+  state: {kind: bloodoak}
+  tags: [bloodwoods, flora, tree]
+bw-tree-31:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 30.2, y: {terrain: -0.2}, z: -8.5}
+  fx: {script: "fx\npop spore rate=?mobile:.6|1.2 on=sphere(2.5) life=4..7 v=up(.15..0.35)+sdir()*.2 size=.04..0.07 acc=curl(.4)*.6+drag(.6) col=hdr(2.6,.35,.18) a=(0>.15:1>.8:1>0)*flick(3,.4) sz=$size r=sprite(soft-disc,add)"}
+  id: bw-tree-31
+  layout: {maxExtents: {y: 9.39}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 0.94, weight: 1}}
+  model: /cdn/value.2ad5479715b24bc81b0ee2646c8df5df01b07808cc73dfdf62864d332580fa98.glb
+  receiveShadow: true
+  rotation: 84
+  state: {kind: bloodoak}
+  tags: [bloodwoods, flora, tree]
+bw-tree-32:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 20.82, y: {terrain: -0.74}, z: 19.47}
+  fx: {script: "fx\npop spore rate=?mobile:.6|1.2 on=sphere(2.5) life=4..7 v=up(.15..0.35)+sdir()*.2 size=.04..0.07 acc=curl(.4)*.6+drag(.6) col=hdr(2.6,.35,.18) a=(0>.15:1>.8:1>0)*flick(3,.4) sz=$size r=sprite(soft-disc,add)"}
+  id: bw-tree-32
+  layout: {maxExtents: {y: 8.59}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 1.02, weight: 1}}
+  model: /cdn/value.2ad5479715b24bc81b0ee2646c8df5df01b07808cc73dfdf62864d332580fa98.glb
+  receiveShadow: true
+  rotation: 357
+  state: {kind: bloodoak}
+  tags: [bloodwoods, flora, tree]
+bw-tree-33:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 20.6, y: {terrain: -0.2}, z: -17.2}
+  id: bw-tree-33
+  layout: {maxExtents: {y: 9.18}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 0.95, weight: 1}}
+  model: /cdn/value.2ad5479715b24bc81b0ee2646c8df5df01b07808cc73dfdf62864d332580fa98.glb
+  receiveShadow: true
+  rotation: 69
+  state: {kind: bloodoak}
+  tags: [bloodwoods, flora, tree]
+bw-tree-34:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 33.8, y: {terrain: -0.2}, z: -19.2}
+  id: bw-tree-34
+  layout: {maxExtents: {y: 7.51}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 0.86, weight: 1}}
+  model: /cdn/value.aa2f0b395dadb3c6353cba8828aec488e2ed2d4541e04ae6e8132d0d73024f26.glb
+  receiveShadow: true
+  rotation: 117
+  state: {kind: weepwillow}
+  tags: [bloodwoods, flora, tree]
+bw-tree-35:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 26, y: {terrain: -0.1999999999999993}, z: 18.5}
+  id: bw-tree-35
+  layout: {maxExtents: {y: 8.95}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 1.05, weight: 1}}
+  model: /cdn/value.2ad5479715b24bc81b0ee2646c8df5df01b07808cc73dfdf62864d332580fa98.glb
+  receiveShadow: true
+  rotation: 74
+  state: {kind: bloodoak}
+  tags: [bloodwoods, flora, tree]
+bw-tree-36:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 40.94, y: {terrain: -0.32}, z: 17.69}
+  id: bw-tree-36
+  layout: {maxExtents: {y: 6.29}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 1.07, weight: 1}}
+  model: /cdn/value.aa2f0b395dadb3c6353cba8828aec488e2ed2d4541e04ae6e8132d0d73024f26.glb
+  receiveShadow: true
+  rotation: 72
+  state: {kind: weepwillow}
+  tags: [bloodwoods, flora, tree]
+bw-tree-37:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 26.8, y: {terrain: -0.9}, z: -8.6}
+  id: bw-tree-37
+  layout: {maxExtents: {y: 6.72}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 1.01, weight: 1}}
+  model: /cdn/value.aa2f0b395dadb3c6353cba8828aec488e2ed2d4541e04ae6e8132d0d73024f26.glb
+  receiveShadow: true
+  rotation: 67
+  state: {kind: weepwillow}
+  tags: [bloodwoods, flora, tree]
+bw-tree-38:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 17.8, y: {terrain: -0.36}, z: -13.9}
+  id: bw-tree-38
+  layout: {maxExtents: {y: 8.23}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 0.86, weight: 1}}
+  model: /cdn/value.2ad5479715b24bc81b0ee2646c8df5df01b07808cc73dfdf62864d332580fa98.glb
+  receiveShadow: true
+  rotation: 31
+  state: {kind: bloodoak}
+  tags: [bloodwoods, flora, tree]
+bw-tree-39:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 30, y: {terrain: -0.2}, z: 22.3}
+  id: bw-tree-39
+  layout: {maxExtents: {y: 8.63}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 1.07, weight: 1}}
+  model: /cdn/value.2ad5479715b24bc81b0ee2646c8df5df01b07808cc73dfdf62864d332580fa98.glb
+  receiveShadow: true
+  rotation: 307
+  state: {kind: bloodoak}
+  tags: [bloodwoods, flora, tree]
+bw-tree-4:
+  castShadow: true
+  feetPosition: {x: 40.63, y: {terrain: -0.39}, z: -6.4}
+  id: bw-tree-4
+  mixer: {base: {clip: Sway, loop: loop, speed: 1.07, weight: 1}}
+  model: /cdn/value.aa2f0b395dadb3c6353cba8828aec488e2ed2d4541e04ae6e8132d0d73024f26.glb
+  receiveShadow: true
+  rotation: 240
+  scale: 1.12
+  state: {kind: weepwillow}
+  tags: [bloodwoods, flora, tree]
+bw-tree-4/trunk:
+  feetPosition: {x: 0, y: 0, z: 0}
+  id: bw-tree-4/trunk
+  parent: bw-tree-4
+  physics: {body: static, collider: box}
+  primitive: {depth: 0.62, height: 2.68, kind: box, width: 0.62}
+  visible: false
+bw-tree-40:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 41.2, y: {terrain: -0.2}, z: -17.6}
+  id: bw-tree-40
+  layout: {maxExtents: {y: 9.83}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 0.94, weight: 1}}
+  model: /cdn/value.2ad5479715b24bc81b0ee2646c8df5df01b07808cc73dfdf62864d332580fa98.glb
+  receiveShadow: true
+  rotation: 354
+  state: {kind: bloodoak}
+  tags: [bloodwoods, flora, tree]
+bw-tree-41:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 15.16, y: {terrain: -0.38}, z: 11.53}
+  id: bw-tree-41
+  layout: {maxExtents: {y: 6.51}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 1.09, weight: 1}}
+  model: /cdn/value.aa2f0b395dadb3c6353cba8828aec488e2ed2d4541e04ae6e8132d0d73024f26.glb
+  receiveShadow: true
+  rotation: 87
+  state: {kind: weepwillow}
+  tags: [bloodwoods, flora, tree]
+bw-tree-42:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 9.8, y: {terrain: -0.2}, z: -18.8}
+  id: bw-tree-42
+  layout: {maxExtents: {y: 10.05}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 1, weight: 1}}
+  model: /cdn/value.2ad5479715b24bc81b0ee2646c8df5df01b07808cc73dfdf62864d332580fa98.glb
+  receiveShadow: true
+  rotation: 60
+  state: {kind: bloodoak}
+  tags: [bloodwoods, flora, tree]
+bw-tree-43:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 17.99, y: {terrain: -0.4}, z: 21.09}
+  id: bw-tree-43
+  layout: {maxExtents: {y: 9.9}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 0.91, weight: 1}}
+  model: /cdn/value.2ad5479715b24bc81b0ee2646c8df5df01b07808cc73dfdf62864d332580fa98.glb
+  receiveShadow: true
+  rotation: 90
+  state: {kind: bloodoak}
+  tags: [bloodwoods, flora, tree]
+bw-tree-44:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 14.58, y: {terrain: -0.36}, z: 14.77}
+  id: bw-tree-44
+  layout: {maxExtents: {y: 9.88}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 1.11, weight: 1}}
+  model: /cdn/value.2ad5479715b24bc81b0ee2646c8df5df01b07808cc73dfdf62864d332580fa98.glb
+  receiveShadow: true
+  rotation: 262
+  state: {kind: bloodoak}
+  tags: [bloodwoods, flora, tree]
+bw-tree-45:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 28.92, y: {terrain: -0.1999999999999993}, z: 16.08}
+  id: bw-tree-45
+  layout: {maxExtents: {y: 7.13}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 1.14, weight: 1}}
+  model: /cdn/value.aa2f0b395dadb3c6353cba8828aec488e2ed2d4541e04ae6e8132d0d73024f26.glb
+  receiveShadow: true
+  rotation: 112
+  state: {kind: weepwillow}
+  tags: [bloodwoods, flora, tree]
+bw-tree-5:
+  castShadow: true
+  feetPosition: {x: 20.95, y: {terrain: -0.37}, z: -9.4}
+  id: bw-tree-5
+  mixer: {base: {clip: Sway, loop: loop, speed: 1.14, weight: 1}}
+  model: /cdn/value.2ad5479715b24bc81b0ee2646c8df5df01b07808cc73dfdf62864d332580fa98.glb
+  receiveShadow: true
+  rotation: 308
+  scale: 1.19
+  state: {kind: bloodoak}
+  tags: [bloodwoods, flora, tree]
+bw-tree-5/trunk:
+  feetPosition: {x: 0, y: 0, z: 0}
+  id: bw-tree-5/trunk
+  parent: bw-tree-5
+  physics: {body: static, collider: box}
+  primitive: {depth: 0.76, height: 2.52, kind: box, width: 0.76}
+  visible: false
+bw-tree-7:
+  castShadow: true
+  feetPosition: {x: 45.03, y: {terrain: -0.38}, z: -14.9}
+  id: bw-tree-7
+  mixer: {base: {clip: Sway, loop: loop, speed: 0.91, weight: 1}}
+  model: /cdn/value.aa2f0b395dadb3c6353cba8828aec488e2ed2d4541e04ae6e8132d0d73024f26.glb
+  receiveShadow: true
+  rotation: 98
+  scale: 0.96
+  state: {kind: weepwillow}
+  tags: [bloodwoods, flora, tree]
+bw-tree-7/trunk:
+  feetPosition: {x: 0, y: 0, z: 0}
+  id: bw-tree-7/trunk
+  parent: bw-tree-7
+  physics: {body: static, collider: box}
+  primitive: {depth: 0.73, height: 3.13, kind: box, width: 0.73}
+  visible: false
+bw-tree-8:
+  castShadow: true
+  feetPosition: {x: 53.27, y: {terrain: -0.33}, z: -18.92}
+  id: bw-tree-8
+  mixer: {base: {clip: Sway, loop: loop, speed: 0.91, weight: 1}}
+  model: /cdn/value.2ad5479715b24bc81b0ee2646c8df5df01b07808cc73dfdf62864d332580fa98.glb
+  receiveShadow: true
+  rotation: 102
+  scale: 0.96
+  state: {kind: bloodoak}
+  tags: [bloodwoods, flora, tree]
+bw-tree-8/trunk:
+  feetPosition: {x: 0, y: 0, z: 0}
+  id: bw-tree-8/trunk
+  parent: bw-tree-8
+  physics: {body: static, collider: box}
+  primitive: {depth: 0.94, height: 3.13, kind: box, width: 0.94}
+  visible: false
 candle-road:
   feetPosition: {x: 0, y: 0, z: -40}
   id: candle-road
@@ -767,6 +1480,51 @@ fen-dress:
   id: fen-dress
   primitive: {kind: scripted, params: {avoid: [[10, 8, 2.7], [-8, 9, 2.7], [2, -14, 2.7], [-2, -2, 9.9]], carts: [[-14, -4, 70], [4, 10, -20], [-12, 4, 140]], mouth: 23, r: 19.5, seed: 5, segs: [{pts: [[13.4, 5.6], [11, 5.4], [8, 3.8]], w: 3}, {pts: [[8, 3.8], [4, 5.2], [0, 6.6], [-3.5, 7.8], [-5.6, 8.4]], w: 2}, {pts: [[8, 3.8], [5.4, 1.6]], w: 2.8000000000000003}, {pts: [[8, 3.8], [8.8, -0.5], [8.4, -5.5], [6.4, -10], [3.8, -12.6]], w: 2.8000000000000003}, {pts: [[-0.4, -11.2], [0.6, -12.4]], w: 1.9}], staves: 8}, script: scripts/gen/fen-dress.js}
   tags: [fen]
+fen-floor-10:
+  children: [{castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: reeds, primitive: {kind: scripted, params: {biome: fen, bounds: 9, clear: [], count: 12, kind: reeds, margin: 0.3, origin: [-30, -1], zone: out}, script: scripts/gen/zone-floor.js, seed: 4136}, receiveShadow: true, tags: [fen, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: lily, primitive: {kind: scripted, params: {biome: fen, bounds: 9, clear: [], count: 6, kind: lily, margin: 0.8, origin: [-30, -1], zone: any}, script: scripts/gen/zone-floor.js, seed: 4137}, receiveShadow: true, tags: [fen, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: mossmound, primitive: {kind: scripted, params: {biome: fen, bounds: 9, clear: [], count: 7, kind: mossmound, margin: 0.6, origin: [-30, -1], zone: out}, script: scripts/gen/zone-floor.js, seed: 4138}, receiveShadow: true, tags: [fen, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: driftwood, primitive: {kind: scripted, params: {biome: fen, bounds: 9, clear: [], count: 2, kind: driftwood, margin: 1.2, origin: [-30, -1], zone: out}, script: scripts/gen/zone-floor.js, seed: 4139}, receiveShadow: true, tags: [fen, flora, floor]}]
+  feetPosition: {x: -30, y: 0, z: -1}
+  id: fen-floor-10
+  tags: [fen, flora, floor]
+fen-floor-11:
+  children: [{castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: reeds, primitive: {kind: scripted, params: {biome: fen, bounds: 9, clear: [[-10, 8, 3]], count: 12, kind: reeds, margin: 0.3, origin: [-44, -10], zone: out}, script: scripts/gen/zone-floor.js, seed: 4140}, receiveShadow: true, tags: [fen, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: lily, primitive: {kind: scripted, params: {biome: fen, bounds: 9, clear: [[-10, 8, 3]], count: 6, kind: lily, margin: 0.8, origin: [-44, -10], zone: any}, script: scripts/gen/zone-floor.js, seed: 4141}, receiveShadow: true, tags: [fen, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: mossmound, primitive: {kind: scripted, params: {biome: fen, bounds: 9, clear: [[-10, 8, 3]], count: 7, kind: mossmound, margin: 0.6, origin: [-44, -10], zone: out}, script: scripts/gen/zone-floor.js, seed: 4142}, receiveShadow: true, tags: [fen, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: driftwood, primitive: {kind: scripted, params: {biome: fen, bounds: 9, clear: [[-10, 8, 3]], count: 2, kind: driftwood, margin: 1.2, origin: [-44, -10], zone: out}, script: scripts/gen/zone-floor.js, seed: 4143}, receiveShadow: true, tags: [fen, flora, floor]}]
+  feetPosition: {x: -44, y: 0, z: -10}
+  id: fen-floor-11
+  tags: [fen, flora, floor]
+fen-floor-6:
+  children: [{castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: reeds, primitive: {kind: scripted, params: {biome: fen, bounds: 9, clear: [], count: 12, kind: reeds, margin: 0.3, origin: [-49, -24], zone: out}, script: scripts/gen/zone-floor.js, seed: 4120}, receiveShadow: true, tags: [fen, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: lily, primitive: {kind: scripted, params: {biome: fen, bounds: 9, clear: [], count: 6, kind: lily, margin: 0.8, origin: [-49, -24], zone: any}, script: scripts/gen/zone-floor.js, seed: 4121}, receiveShadow: true, tags: [fen, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: mossmound, primitive: {kind: scripted, params: {biome: fen, bounds: 9, clear: [], count: 7, kind: mossmound, margin: 0.6, origin: [-49, -24], zone: out}, script: scripts/gen/zone-floor.js, seed: 4122}, receiveShadow: true, tags: [fen, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: driftwood, primitive: {kind: scripted, params: {biome: fen, bounds: 9, clear: [], count: 2, kind: driftwood, margin: 1.2, origin: [-49, -24], zone: out}, script: scripts/gen/zone-floor.js, seed: 4123}, receiveShadow: true, tags: [fen, flora, floor]}]
+  feetPosition: {x: -49, y: 0, z: -24}
+  id: fen-floor-6
+  tags: [fen, flora, floor]
+fen-floor-7:
+  children: [{castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: reeds, primitive: {kind: scripted, params: {biome: fen, bounds: 9, clear: [[-4, -10, 3]], count: 12, kind: reeds, margin: 0.3, origin: [-50, 8], zone: out}, script: scripts/gen/zone-floor.js, seed: 4124}, receiveShadow: true, tags: [fen, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: lily, primitive: {kind: scripted, params: {biome: fen, bounds: 9, clear: [[-4, -10, 3]], count: 6, kind: lily, margin: 0.8, origin: [-50, 8], zone: any}, script: scripts/gen/zone-floor.js, seed: 4125}, receiveShadow: true, tags: [fen, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: mossmound, primitive: {kind: scripted, params: {biome: fen, bounds: 9, clear: [[-4, -10, 3]], count: 7, kind: mossmound, margin: 0.6, origin: [-50, 8], zone: out}, script: scripts/gen/zone-floor.js, seed: 4126}, receiveShadow: true, tags: [fen, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: driftwood, primitive: {kind: scripted, params: {biome: fen, bounds: 9, clear: [[-4, -10, 3]], count: 2, kind: driftwood, margin: 1.2, origin: [-50, 8], zone: out}, script: scripts/gen/zone-floor.js, seed: 4127}, receiveShadow: true, tags: [fen, flora, floor]}]
+  feetPosition: {x: -50, y: 0, z: 8}
+  id: fen-floor-7
+  tags: [fen, flora, floor]
+fen-floor-8:
+  children: [{castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: reeds, primitive: {kind: scripted, params: {biome: fen, bounds: 9, clear: [], count: 12, kind: reeds, margin: 0.3, origin: [-36, 12], zone: out}, script: scripts/gen/zone-floor.js, seed: 4128}, receiveShadow: true, tags: [fen, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: lily, primitive: {kind: scripted, params: {biome: fen, bounds: 9, clear: [], count: 6, kind: lily, margin: 0.8, origin: [-36, 12], zone: any}, script: scripts/gen/zone-floor.js, seed: 4129}, receiveShadow: true, tags: [fen, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: mossmound, primitive: {kind: scripted, params: {biome: fen, bounds: 9, clear: [], count: 7, kind: mossmound, margin: 0.6, origin: [-36, 12], zone: out}, script: scripts/gen/zone-floor.js, seed: 4130}, receiveShadow: true, tags: [fen, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: driftwood, primitive: {kind: scripted, params: {biome: fen, bounds: 9, clear: [], count: 2, kind: driftwood, margin: 1.2, origin: [-36, 12], zone: out}, script: scripts/gen/zone-floor.js, seed: 4131}, receiveShadow: true, tags: [fen, flora, floor]}]
+  feetPosition: {x: -36, y: 0, z: 12}
+  id: fen-floor-8
+  tags: [fen, flora, floor]
+fen-floor-9:
+  children: [{castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: reeds, primitive: {kind: scripted, params: {biome: fen, bounds: 9, clear: [], count: 12, kind: reeds, margin: 0.3, origin: [-22, 11], zone: out}, script: scripts/gen/zone-floor.js, seed: 4132}, receiveShadow: true, tags: [fen, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: lily, primitive: {kind: scripted, params: {biome: fen, bounds: 9, clear: [], count: 6, kind: lily, margin: 0.8, origin: [-22, 11], zone: any}, script: scripts/gen/zone-floor.js, seed: 4133}, receiveShadow: true, tags: [fen, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: mossmound, primitive: {kind: scripted, params: {biome: fen, bounds: 9, clear: [], count: 7, kind: mossmound, margin: 0.6, origin: [-22, 11], zone: out}, script: scripts/gen/zone-floor.js, seed: 4134}, receiveShadow: true, tags: [fen, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: driftwood, primitive: {kind: scripted, params: {biome: fen, bounds: 9, clear: [], count: 2, kind: driftwood, margin: 1.2, origin: [-22, 11], zone: out}, script: scripts/gen/zone-floor.js, seed: 4135}, receiveShadow: true, tags: [fen, flora, floor]}]
+  feetPosition: {x: -22, y: 0, z: 11}
+  id: fen-floor-9
+  tags: [fen, flora, floor]
+fen-glow-1:
+  feetPosition: {x: -61.5, y: {terrain: 1.3}, z: 10.2}
+  id: fen-glow-1
+  light: {color: oklch(0.78 0.09 200), distance: 8, intensity: 1.6, kind: point}
+  tags: [fen, flora-light]
+fen-glow-2:
+  feetPosition: {x: -45.5, y: {terrain: 1.3}, z: -23.5}
+  id: fen-glow-2
+  light: {color: oklch(0.78 0.09 200), distance: 8, intensity: 1.6, kind: point}
+  tags: [fen, flora-light]
+fen-glow-5:
+  feetPosition: {x: -19.5, y: {terrain: 1.3}, z: 12.5}
+  id: fen-glow-5
+  light: {color: oklch(0.78 0.09 200), distance: 8, intensity: 1.6, kind: point}
+  tags: [fen, flora-light]
 fen-lamp-1:
   children: [{feetPosition: {x: 0, y: 2.3, z: -0.62}, id: light, light: {color: oklch(0.9 0.09 155), distance: 10, intensity: 3, kind: point}}]
   feetPosition: {x: -57.6, y: {terrain: 0}, z: -3.6}
@@ -845,6 +1603,30 @@ fen-post-4:
   primitive: {kind: scripted, params: {h: 3, kind: lamppost, lean: 26, seed: 33, snap: true}, script: scripts/gen/fen-props.js}
   rotation: 75.88674612211354
   tags: [fen]
+fen-snaglamp-1:
+  castShadow: false
+  feetPosition: {x: -34.7, y: {terrain: 2.1}, z: 11.9}
+  id: fen-snaglamp-1
+  light: {color: "#C49C63", distance: 10, intensity: 2.2, kind: point}
+  material: {color: "#C49C63", emissive: "#C49C63", emissiveIntensity: 1.6}
+  primitive: {height: 0.24, kind: cylinder, radiusBottom: 0.1, radiusTop: 0.07}
+  tags: [fen, flora, light]
+fen-snaglamp-2:
+  castShadow: false
+  feetPosition: {x: -42, y: {terrain: 2.1}, z: -6}
+  id: fen-snaglamp-2
+  light: {color: "#C49C63", distance: 10, intensity: 2.2, kind: point}
+  material: {color: "#C49C63", emissive: "#C49C63", emissiveIntensity: 1.6}
+  primitive: {height: 0.24, kind: cylinder, radiusBottom: 0.1, radiusTop: 0.07}
+  tags: [fen, flora, light]
+fen-snaglamp-4:
+  castShadow: false
+  feetPosition: {x: -19.8, y: {terrain: 2.1}, z: -0.4}
+  id: fen-snaglamp-4
+  light: {color: "#C49C63", distance: 10, intensity: 2.2, kind: point}
+  material: {color: "#C49C63", emissive: "#C49C63", emissiveIntensity: 1.6}
+  primitive: {height: 0.24, kind: cylinder, radiusBottom: 0.1, radiusTop: 0.07}
+  tags: [fen, flora, light]
 fen-stone-w1:
   children: [{feetPosition: {x: 0, y: 1.58, z: -0.2}, id: flame}]
   feetPosition: {x: -54, y: {terrain: 0}, z: -2}
@@ -883,53 +1665,231 @@ fen-stump-7:
   rotation: 282
   tags: [fen]
 fen-tree-1:
-  feetPosition: {x: -56.196993587154424, y: {terrain: -0.05}, z: 5.998534024125174}
+  feetPosition: {x: -56.38, y: {terrain: -0.05}, z: 10.64}
   id: fen-tree-1
   physics: static
   primitive: {kind: scripted, params: {girth: 1.1, h: 5.6, lean: 0.30000000000000004, seed: 103}, script: scripts/gen/fen-tree.js}
   rotation: 12.999999999999993
   tags: [fen]
 fen-tree-13:
-  feetPosition: {x: -59.8384054946385, y: {terrain: -0.05}, z: -28.025846198526853}
+  feetPosition: {x: -51.93, y: {terrain: -0.05}, z: -30.74}
   id: fen-tree-13
   physics: static
   primitive: {kind: scripted, params: {girth: 1.1, h: 6.2, lean: 0.30000000000000004, seed: 115}, script: scripts/gen/fen-tree.js}
   rotation: 182
   tags: [fen]
 fen-tree-14:
-  feetPosition: {x: -54.090509758839076, y: {terrain: -0.05}, z: -25.85849939812517}
+  feetPosition: {x: -47.35, y: {terrain: -0.05}, z: -24.38}
   id: fen-tree-14
   physics: static
   primitive: {kind: scripted, params: {girth: 1.2000000000000002, h: 5, lean: 0.2, seed: 116}, script: scripts/gen/fen-tree.js}
   rotation: 152.00000000000003
   tags: [fen]
 fen-tree-15:
-  feetPosition: {x: -50.633089462940106, y: {terrain: -0.05}, z: -20.82431072605721}
+  castShadow: true
+  feetPosition: {x: -45.03, y: {terrain: -0.4}, z: -21.13}
   id: fen-tree-15
-  physics: static
-  primitive: {kind: scripted, params: {girth: 1.3, h: 6.300000000000001, lean: 0.5, seed: 117}, script: scripts/gen/fen-tree.js}
-  rotation: 122.00000000000003
-  tags: [fen]
+  mixer: {base: {clip: Sway, loop: loop, speed: 0.84, weight: 1}}
+  model: /cdn/value.2cda20bb2481ef4a33bfd0beb60d2b7fc21612af870cf3a9f991b71e71b7595f.glb
+  receiveShadow: true
+  rotation: 159
+  scale: 0.94
+  state: {kind: c}
+  tags: [fen, flora, tree]
 fen-tree-16:
-  feetPosition: {x: -48.781617095774514, y: {terrain: -0.05}, z: -18.435687392286262}
+  feetPosition: {x: -42.41, y: {terrain: -0.05}, z: -19.28}
   id: fen-tree-16
   physics: static
   primitive: {kind: scripted, params: {girth: 0.8, h: 5.1000000000000005, lean: 0.4, seed: 118}, script: scripts/gen/fen-tree.js}
   rotation: 101
   tags: [fen]
 fen-tree-2:
-  feetPosition: {x: -61.80635181870735, y: {terrain: -0.05}, z: 7.865830729543795}
+  castShadow: true
+  feetPosition: {x: -61.32, y: {terrain: -0.25}, z: 11.84}
   id: fen-tree-2
-  physics: static
-  primitive: {kind: scripted, params: {girth: 1.2000000000000002, h: 4.4, lean: 0.2, seed: 104}, script: scripts/gen/fen-tree.js}
-  rotation: 22.999999999999993
-  tags: [fen]
+  mixer: {base: {clip: Sway, loop: loop, speed: 0.79, weight: 1}}
+  model: /cdn/value.260fb36e966375b99999731c105823a0534a8ae144e5af09ca0fdbe04e6b5f51.glb
+  receiveShadow: true
+  rotation: 60
+  scale: 1.08
+  state: {kind: w}
+  tags: [fen, flora, tree]
+fen-tree-25:
+  castShadow: true
+  feetPosition: {x: -48, y: {terrain: -0.25}, z: 8.7}
+  id: fen-tree-25
+  mixer: {base: {clip: Sway, loop: loop, speed: 0.83, weight: 1}}
+  model: /cdn/value.260fb36e966375b99999731c105823a0534a8ae144e5af09ca0fdbe04e6b5f51.glb
+  receiveShadow: true
+  rotation: -36.5
+  scale: 1.04
+  state: {kind: w}
+  tags: [fen, flora, tree]
+fen-tree-26:
+  castShadow: true
+  feetPosition: {x: -25.5, y: {terrain: -0.25}, z: -0.8}
+  id: fen-tree-26
+  mixer: {base: {clip: Sway, loop: loop, speed: 0.88, weight: 1}}
+  model: /cdn/value.260fb36e966375b99999731c105823a0534a8ae144e5af09ca0fdbe04e6b5f51.glb
+  receiveShadow: true
+  rotation: -162.5
+  scale: 1.12
+  state: {kind: w}
+  tags: [fen, flora, tree]
+fen-tree-27:
+  castShadow: true
+  feetPosition: {x: -35.2, y: {terrain: -0.25}, z: 12.8}
+  id: fen-tree-27
+  mixer: {base: {clip: Sway, loop: loop, speed: 0.87, weight: 1}}
+  model: /cdn/value.260fb36e966375b99999731c105823a0534a8ae144e5af09ca0fdbe04e6b5f51.glb
+  receiveShadow: true
+  rotation: -18.5
+  scale: 0.92
+  state: {kind: w}
+  tags: [fen, flora, tree]
+fen-tree-28:
+  castShadow: true
+  feetPosition: {x: -42.4, y: {terrain: -0.25}, z: -6.9}
+  id: fen-tree-28
+  mixer: {base: {clip: Sway, loop: loop, speed: 0.76, weight: 1}}
+  model: /cdn/value.260fb36e966375b99999731c105823a0534a8ae144e5af09ca0fdbe04e6b5f51.glb
+  receiveShadow: true
+  rotation: 131.6
+  scale: 0.85
+  state: {kind: w}
+  tags: [fen, flora, tree]
+fen-tree-29:
+  castShadow: true
+  feetPosition: {x: -21.4, y: {terrain: -0.25}, z: 14.3}
+  id: fen-tree-29
+  mixer: {base: {clip: Sway, loop: loop, speed: 0.89, weight: 1}}
+  model: /cdn/value.260fb36e966375b99999731c105823a0534a8ae144e5af09ca0fdbe04e6b5f51.glb
+  receiveShadow: true
+  rotation: 14.5
+  scale: 0.9
+  state: {kind: w}
+  tags: [fen, flora, tree]
+fen-tree-30:
+  castShadow: true
+  feetPosition: {x: -16.7, y: {terrain: -0.25}, z: 12.1}
+  id: fen-tree-30
+  mixer: {base: {clip: Sway, loop: loop, speed: 0.88, weight: 1}}
+  model: /cdn/value.260fb36e966375b99999731c105823a0534a8ae144e5af09ca0fdbe04e6b5f51.glb
+  receiveShadow: true
+  rotation: 17.1
+  scale: 1.06
+  state: {kind: w}
+  tags: [fen, flora, tree]
+fen-tree-31:
+  castShadow: true
+  feetPosition: {x: -53.3, y: {terrain: -0.4}, z: 9.8}
+  id: fen-tree-31
+  mixer: {base: {clip: Sway, loop: loop, speed: 0.81, weight: 1}}
+  model: /cdn/value.2cda20bb2481ef4a33bfd0beb60d2b7fc21612af870cf3a9f991b71e71b7595f.glb
+  receiveShadow: true
+  rotation: 21.1
+  scale: 0.9
+  state: {kind: c}
+  tags: [fen, flora, tree]
+fen-tree-32:
+  castShadow: true
+  feetPosition: {x: -50.8, y: {terrain: -0.4}, z: -27.3}
+  id: fen-tree-32
+  mixer: {base: {clip: Sway, loop: loop, speed: 0.74, weight: 1}}
+  model: /cdn/value.2cda20bb2481ef4a33bfd0beb60d2b7fc21612af870cf3a9f991b71e71b7595f.glb
+  receiveShadow: true
+  rotation: 183.2
+  scale: 0.95
+  state: {kind: c}
+  tags: [fen, flora, tree]
+fen-tree-33:
+  castShadow: true
+  feetPosition: {x: -62.6, y: {terrain: -0.4}, z: -32.1}
+  id: fen-tree-33
+  mixer: {base: {clip: Sway, loop: loop, speed: 0.77, weight: 1}}
+  model: /cdn/value.2cda20bb2481ef4a33bfd0beb60d2b7fc21612af870cf3a9f991b71e71b7595f.glb
+  receiveShadow: true
+  rotation: 327.2
+  scale: 0.82
+  state: {kind: c}
+  tags: [fen, flora, tree]
+fen-tree-34:
+  castShadow: true
+  feetPosition: {x: -20.5, y: {terrain: -0.25}, z: -1.1}
+  id: fen-tree-34
+  mixer: {base: {clip: Sway, loop: loop, speed: 0.88, weight: 1}}
+  model: /cdn/value.260fb36e966375b99999731c105823a0534a8ae144e5af09ca0fdbe04e6b5f51.glb
+  receiveShadow: true
+  rotation: -167.2
+  scale: 1.03
+  state: {kind: w}
+  tags: [fen, flora, tree]
+fen-tree-35:
+  castShadow: true
+  feetPosition: {x: -43.2, y: {terrain: -0.25}, z: -15.7}
+  id: fen-tree-35
+  mixer: {base: {clip: Sway, loop: loop, speed: 0.78, weight: 1}}
+  model: /cdn/value.260fb36e966375b99999731c105823a0534a8ae144e5af09ca0fdbe04e6b5f51.glb
+  receiveShadow: true
+  rotation: 150.1
+  scale: 0.86
+  state: {kind: w}
+  tags: [fen, flora, tree]
+fen-tree-36:
+  castShadow: true
+  feetPosition: {x: -28, y: {terrain: -0.3}, z: 1}
+  id: fen-tree-36
+  mixer: {base: {clip: Sway, loop: loop, speed: 0.77, weight: 1}}
+  model: /cdn/value.1af93ab3470956b9216c943ab4fb5d0ced0e760840565125bf10a97ea2baa9be.glb
+  receiveShadow: true
+  rotation: 0
+  scale: 0.96
+  state: {kind: l}
+  tags: [fen, flora, rotlog]
+fen-tree-37:
+  castShadow: true
+  feetPosition: {x: -26, y: {terrain: -0.3}, z: 15}
+  id: fen-tree-37
+  mixer: {base: {clip: Sway, loop: loop, speed: 0.77, weight: 1}}
+  model: /cdn/value.1af93ab3470956b9216c943ab4fb5d0ced0e760840565125bf10a97ea2baa9be.glb
+  receiveShadow: true
+  rotation: 165
+  scale: 0.98
+  state: {kind: l}
+  tags: [fen, flora, rotlog]
+fen-tree-38:
+  castShadow: true
+  feetPosition: {x: -15, y: {terrain: -0.3}, z: -12}
+  id: fen-tree-38
+  mixer: {base: {clip: Sway, loop: loop, speed: 0.82, weight: 1}}
+  model: /cdn/value.1af93ab3470956b9216c943ab4fb5d0ced0e760840565125bf10a97ea2baa9be.glb
+  receiveShadow: true
+  rotation: 45
+  scale: 1.01
+  state: {kind: l}
+  tags: [fen, flora, rotlog]
 fwisp-fen-3:
   behavior: scripts/forest-wisp.js
   children: [{feetPosition: {x: 0, y: 0.2, z: 0}, fx: {script: "fx\npop trail rate=?low:6|12 life=.8..1.4 v=sdir()*.08 size=.025..0.05 acc=curl(.6)+buoy(.15) col=hdr(1,2.4,2.6) a=(0>.1:.9>0)*flick(7,.4) r=sprite(ember,add)"}, id: glow, light: {color: "#7fe6e0", distance: 7, intensity: 1.1, kind: point}}]
   feetPosition: {x: -56, y: 1.5270483582860348, z: -4}
   id: fwisp-fen-3
   state: {home: {x: -56, y: 1.5270483582860348, z: -4}, r: 4, seed: 2}
+  tags: [ambience, forest-wisp]
+  wisp: {burnStyle: calm, color: "#7fe6e0", seed: 13, shape: classic, size: 0.35, state: idle}
+fwisp-fen-5:
+  behavior: [scripts/forest-wisp.js]
+  children: [{id: glow, light: {color: 8382176, distance: 7, intensity: 1.1, kind: point}}]
+  feetPosition: {x: -62, y: {terrain: 1.4}, z: -30}
+  id: fwisp-fen-5
+  state: {home: {x: -62, y: 1.345910258784201, z: -30}, r: 6, seed: 12}
+  tags: [ambience, forest-wisp]
+  wisp: {burnStyle: calm, color: "#7fe6e0", seed: 12, shape: classic, size: 0.35, state: idle}
+fwisp-fen-6:
+  behavior: [scripts/forest-wisp.js]
+  children: [{id: glow, light: {color: 8382176, distance: 7, intensity: 1.1, kind: point}}]
+  feetPosition: {x: -44, y: {terrain: 1.4}, z: 10}
+  id: fwisp-fen-6
+  state: {home: {x: -44, y: 5.286927793834479, z: 10}, r: 6, seed: 13}
   tags: [ambience, forest-wisp]
   wisp: {burnStyle: calm, color: "#7fe6e0", seed: 13, shape: classic, size: 0.35, state: idle}
 fwisp-orch-1:
@@ -982,6 +1942,164 @@ moths-orchard:
   id: moths-orchard
   tags: [fauna-moths]
   visibleRange: {max: 60, min: 0}
+orch-apple-1:
+  castShadow: true
+  feetPosition: {x: 49.8, y: {terrain: -0.15}, z: -17.1}
+  id: orch-apple-1
+  mixer: {sway: {clip: Sway, loop: loop, speed: 0.8, weight: 1}}
+  model: /cdn/value.1b709cd7096c375acbd05332f69334ba9499d099d79e110aaf7a999e5f7c4818.glb
+  receiveShadow: true
+  rotation: 43
+  scale: 0.94
+  tags: [orchard, flora, tree]
+orch-apple-1/trunk:
+  feetPosition: {x: 0, y: 0, z: 0}
+  id: orch-apple-1/trunk
+  parent: orch-apple-1
+  physics: {body: static, collider: box}
+  primitive: {depth: 0.64, height: 3.19, kind: box, width: 0.64}
+  visible: false
+orch-apple-11:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 60.65, y: {terrain: -0.09999999999999964}, z: 30.27}
+  id: orch-apple-11
+  layout: {maxExtents: {y: 6.4}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 1.05, weight: 1}}
+  model: /cdn/value.e8237dc6ce5814a52762136a3720ff0581da3ebd9fed643aec43bd65110ec5a0.glb
+  receiveShadow: true
+  rotation: 259
+  state: {kind: appleC}
+  tags: [bloodwoods, flora, tree]
+orch-apple-12:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 35.6, y: {terrain: -0.1}, z: 24}
+  id: orch-apple-12
+  layout: {maxExtents: {y: 5.1}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 1.1, weight: 1}}
+  model: /cdn/value.1b709cd7096c375acbd05332f69334ba9499d099d79e110aaf7a999e5f7c4818.glb
+  receiveShadow: true
+  rotation: 26
+  state: {kind: appleB}
+  tags: [bloodwoods, flora, tree]
+orch-apple-15:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 59.1, y: {terrain: -0.75}, z: -21.7}
+  id: orch-apple-15
+  layout: {maxExtents: {y: 5.78}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 1.05, weight: 1}}
+  model: /cdn/value.e8237dc6ce5814a52762136a3720ff0581da3ebd9fed643aec43bd65110ec5a0.glb
+  receiveShadow: true
+  rotation: 194
+  state: {kind: appleC}
+  tags: [bloodwoods, flora, tree]
+orch-apple-16:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 56.5, y: {terrain: -0.1}, z: -19.2}
+  id: orch-apple-16
+  layout: {maxExtents: {y: 4.99}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 1.06, weight: 1}}
+  model: /cdn/value.d6c1233f14db0eaa7e26010cae90c13ee56be4d378af5ffaf0e6dfb5b31c4571.glb
+  receiveShadow: true
+  rotation: 261
+  state: {kind: appleA}
+  tags: [bloodwoods, flora, tree]
+orch-apple-23:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 41.03, y: {terrain: -0.3}, z: -12.05}
+  id: orch-apple-23
+  layout: {maxExtents: {y: 6.33}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 1.13, weight: 1}}
+  model: /cdn/value.e8237dc6ce5814a52762136a3720ff0581da3ebd9fed643aec43bd65110ec5a0.glb
+  receiveShadow: true
+  rotation: 36
+  state: {kind: appleC}
+  tags: [bloodwoods, flora, tree]
+orch-apple-3:
+  castShadow: true
+  feetPosition: {x: 59.1, y: {terrain: -0.15}, z: -14.3}
+  id: orch-apple-3
+  mixer: {sway: {clip: Sway, loop: loop, speed: 0.82, weight: 1}}
+  model: /cdn/value.d6c1233f14db0eaa7e26010cae90c13ee56be4d378af5ffaf0e6dfb5b31c4571.glb
+  receiveShadow: true
+  rotation: 66
+  scale: 0.95
+  tags: [orchard, flora, tree]
+orch-apple-3/trunk:
+  feetPosition: {x: 0, y: 0, z: 0}
+  id: orch-apple-3/trunk
+  parent: orch-apple-3
+  physics: {body: static, collider: box}
+  primitive: {depth: 0.63, height: 3.16, kind: box, width: 0.63}
+  visible: false
+orch-apple-4:
+  castShadow: true
+  feetPosition: {x: 49.31, y: {terrain: -0.25}, z: 31.5}
+  id: orch-apple-4
+  mixer: {sway: {clip: Sway, loop: loop, speed: 0.85, weight: 1}}
+  model: /cdn/value.1b709cd7096c375acbd05332f69334ba9499d099d79e110aaf7a999e5f7c4818.glb
+  receiveShadow: true
+  rotation: 94
+  scale: 0.98
+  tags: [orchard, flora, tree]
+orch-apple-4/trunk:
+  feetPosition: {x: 0, y: 0, z: 0}
+  id: orch-apple-4/trunk
+  parent: orch-apple-4
+  physics: {body: static, collider: box}
+  primitive: {depth: 0.61, height: 3.06, kind: box, width: 0.61}
+  visible: false
+orch-apple-7:
+  castShadow: true
+  feetPosition: {x: 41.17, y: {terrain: -0.26}, z: 26.65}
+  id: orch-apple-7
+  mixer: {sway: {clip: Sway, loop: loop, speed: 0.78, weight: 1}}
+  model: /cdn/value.1b709cd7096c375acbd05332f69334ba9499d099d79e110aaf7a999e5f7c4818.glb
+  receiveShadow: true
+  rotation: 30
+  scale: 0.93
+  tags: [orchard, flora, tree]
+orch-apple-7/trunk:
+  feetPosition: {x: 0, y: 0, z: 0}
+  id: orch-apple-7/trunk
+  parent: orch-apple-7
+  physics: {body: static, collider: box}
+  primitive: {depth: 0.65, height: 3.23, kind: box, width: 0.65}
+  visible: false
+orch-apple-8:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 62.1, y: {terrain: -0.68}, z: 37}
+  id: orch-apple-8
+  layout: {maxExtents: {y: 6.44}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 0.98, weight: 1}}
+  model: /cdn/value.e8237dc6ce5814a52762136a3720ff0581da3ebd9fed643aec43bd65110ec5a0.glb
+  receiveShadow: true
+  rotation: 202
+  state: {kind: appleC}
+  tags: [bloodwoods, flora, tree]
+orch-apple-9:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 46.81, y: {terrain: -0.25}, z: -19.09}
+  id: orch-apple-9
+  layout: {maxExtents: {y: 6.15}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 0.92, weight: 1}}
+  model: /cdn/value.d6c1233f14db0eaa7e26010cae90c13ee56be4d378af5ffaf0e6dfb5b31c4571.glb
+  receiveShadow: true
+  rotation: 106
+  state: {kind: appleA}
+  tags: [bloodwoods, flora, tree]
+orch-apple-lamp-4:
+  children: [{material: {color: oklch(0.88 0.12 70), emissive: oklch(0.85 0.15 60), emissiveIntensity: 3}, physics: none, primitive: {kind: sphere, radius: 0.07}}]
+  feetPosition: {x: 52.52900310674073, y: {terrain: 2.2}, z: 31.39770644579848}
+  id: orch-apple-lamp-4
+  light: {color: oklch(0.8 0.14 60), distance: 9, intensity: 2.2, kind: point}
+  tags: [orchard, light]
 orch-brazier-1:
   castShadow: true
   children: [{audio: {clip: /cdn/moodboard-realistic-gritty/sfx-iron-brazier-fire-crackle-loop.mp3, gain: 0.12, loop: true, maxDistance: 12}, feetPosition: {x: 0, y: 1.42, z: 0}, fx: {params: {}, script: "fx\npop coals n=5 on=disc(.25) size=.05..0.1 tint=<2.4,.9,.25>..<1.1,.3,.08> sz=$size*flick(.5,.12) col=$tint*flick(.8,.3) a=.9 r=sprite(soft-disc,add)\npop flame rate=flick(.45,.2)*40 on=disc(.22) life=.4..0.75 v=up(1.4)+cone(20)*(.3..0.7) size=.18..0.34 acc=curl(.5)*1.2+buoy(2.2)+drag(1.5)\n  sz=$size*(.5>.25:1>.7:.7>.14) col=hdr(4.6,3.4,1.4)>.3:hdr(3.2,1.4,.3)>.65:hdr(1.8,.5,.1)>hdr(.6,.12,.03) a=0>.12:1>.75:.85>0 rot=spin(.2) r=sprite(flame-wisp,add)\npop embers rate=3 on=disc(.2) life=.8..1.6 v=up(2)+cone(30)*(.4..1.2) size=.02..0.04 acc=curl(.8)+grav()*.4+drag(.5) col=hdr(5,2.8,.8)>.6:hdr(2.4,.8,.15)>hdr(1,.22,.04) a=(0>.08:1>.65:.9>0)*flick(11,.35) r=sprite(ember,add,velocity,.02)\npop smoke on=@flame?.15 inh=p;v:$v*.4 life=1.6..2.6 size=.14..0.22 acc=buoy(.9)+curl(.35)*.5+drag(.8) sz=$size*(.7>3) col=<.22,.2,.2> a=0>.22:.3>.7:.15>0 rot=spin(.15) r=sprite(smoke-puff,alpha)", seed: 886647702}, id: flame, light: {color: "#ff9446", distance: 15, intensity: 16, kind: point, shadow: {enabled: true}}, visibleRange: {max: 72, min: 0}}]
@@ -1000,6 +2118,30 @@ orch-brazier-2:
   primitive: {kind: scripted, params: {h: 1.5, kind: brazier}, script: scripts/gen/vf-ruin.js, seed: 72}
   rotation: 230
   tags: [orchard, z01-dressing, brazier]
+orch-floor-2:
+  children: [{castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: litter, primitive: {kind: scripted, params: {bounds: 7, clear: [[7.2, -16.4, 9.5], [-2.8, -6.4, 3], [17.2, -7.4, 3], [11.2, -27.4, 3]], count: 4, kind: litter, origin: [54.8, 21.4], zone: in}, script: scripts/gen/bw-floor.js, seed: 1526}, receiveShadow: true, tags: [orchard, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: fern, material: {kind: scripted, script: scripts/material-fern-sway.js}, primitive: {kind: scripted, params: {bounds: 7, clear: [[7.2, -16.4, 9.5], [-2.8, -6.4, 3], [17.2, -7.4, 3], [11.2, -27.4, 3]], count: 9, kind: fern, origin: [54.8, 21.4], zone: out}, script: scripts/gen/bw-floor.js, seed: 1533}, receiveShadow: true, tags: [orchard, flora, floor]}, {castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: thorn, primitive: {kind: scripted, params: {bounds: 7, clear: [[7.2, -16.4, 9.5], [-2.8, -6.4, 3], [17.2, -7.4, 3], [11.2, -27.4, 3]], count: 2, kind: thorn, origin: [54.8, 21.4], zone: out}, script: scripts/gen/bw-floor.js, seed: 1540}, receiveShadow: true, tags: [orchard, flora, floor]}]
+  feetPosition: {x: 54.8, y: {terrain: 0}, z: 21.4}
+  id: orch-floor-2
+  state: {patch: orchard}
+  tags: [orchard, flora, floor]
+orch-floor-3:
+  children: [{castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: litter, primitive: {kind: scripted, params: {bounds: 7, clear: [[13.9, -10.8, 9.5], [3.9, -0.8, 3], [23.9, -1.8, 3], [17.9, -21.8, 3]], count: 4, kind: litter, origin: [48.1, 15.8], zone: in}, script: scripts/gen/bw-floor.js, seed: 1539}, receiveShadow: true, tags: [orchard, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: fern, material: {kind: scripted, script: scripts/material-fern-sway.js}, primitive: {kind: scripted, params: {bounds: 7, clear: [[13.9, -10.8, 9.5], [3.9, -0.8, 3], [23.9, -1.8, 3], [17.9, -21.8, 3]], count: 9, kind: fern, origin: [48.1, 15.8], zone: out}, script: scripts/gen/bw-floor.js, seed: 1546}, receiveShadow: true, tags: [orchard, flora, floor]}, {castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: thorn, primitive: {kind: scripted, params: {bounds: 7, clear: [[13.9, -10.8, 9.5], [3.9, -0.8, 3], [23.9, -1.8, 3], [17.9, -21.8, 3]], count: 2, kind: thorn, origin: [48.1, 15.8], zone: out}, script: scripts/gen/bw-floor.js, seed: 1553}, receiveShadow: true, tags: [orchard, flora, floor]}]
+  feetPosition: {x: 48.1, y: {terrain: 0}, z: 15.8}
+  id: orch-floor-3
+  state: {patch: orchard}
+  tags: [orchard, flora, floor]
+orch-floor-4:
+  children: [{castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: litter, primitive: {kind: scripted, params: {bounds: 7, clear: [[13.9, 8.8, 9.5], [3.9, 18.8, 3], [23.9, 17.8, 3], [17.9, -2.2, 3]], count: 4, kind: litter, origin: [48.1, -3.8], zone: in}, script: scripts/gen/bw-floor.js, seed: 1552}, receiveShadow: true, tags: [orchard, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: fern, material: {kind: scripted, script: scripts/material-fern-sway.js}, primitive: {kind: scripted, params: {bounds: 7, clear: [[13.9, 8.8, 9.5], [3.9, 18.8, 3], [23.9, 17.8, 3], [17.9, -2.2, 3]], count: 9, kind: fern, origin: [48.1, -3.8], zone: out}, script: scripts/gen/bw-floor.js, seed: 1559}, receiveShadow: true, tags: [orchard, flora, floor]}, {castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: thorn, primitive: {kind: scripted, params: {bounds: 7, clear: [[13.9, 8.8, 9.5], [3.9, 18.8, 3], [23.9, 17.8, 3], [17.9, -2.2, 3]], count: 2, kind: thorn, origin: [48.1, -3.8], zone: out}, script: scripts/gen/bw-floor.js, seed: 1566}, receiveShadow: true, tags: [orchard, flora, floor]}]
+  feetPosition: {x: 48.1, y: {terrain: 0}, z: -3.8}
+  id: orch-floor-4
+  state: {patch: orchard}
+  tags: [orchard, flora, floor]
+orch-floor-5:
+  children: [{castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: litter, primitive: {kind: scripted, params: {bounds: 7, clear: [[5.8, 15, 9.5], [-4.2, 25, 3], [15.8, 24, 3], [9.8, 4, 3]], count: 4, kind: litter, origin: [56.2, -10], zone: in}, script: scripts/gen/bw-floor.js, seed: 1565}, receiveShadow: true, tags: [orchard, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: fern, material: {kind: scripted, script: scripts/material-fern-sway.js}, primitive: {kind: scripted, params: {bounds: 7, clear: [[5.8, 15, 9.5], [-4.2, 25, 3], [15.8, 24, 3], [9.8, 4, 3]], count: 9, kind: fern, origin: [56.2, -10], zone: out}, script: scripts/gen/bw-floor.js, seed: 1572}, receiveShadow: true, tags: [orchard, flora, floor]}, {castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: thorn, primitive: {kind: scripted, params: {bounds: 7, clear: [[5.8, 15, 9.5], [-4.2, 25, 3], [15.8, 24, 3], [9.8, 4, 3]], count: 2, kind: thorn, origin: [56.2, -10], zone: out}, script: scripts/gen/bw-floor.js, seed: 1579}, receiveShadow: true, tags: [orchard, flora, floor]}]
+  feetPosition: {x: 56.2, y: {terrain: 0}, z: -10}
+  id: orch-floor-5
+  state: {patch: orchard}
+  tags: [orchard, flora, floor]
 orch-gallows:
   children: [{castShadow: true, children: [{behavior: [scripts/sway.js], castShadow: true, feetPosition: {x: -3.75, y: 4.13, z: 0}, id: fig-a, physics: none, pivot: top, primitive: {kind: scripted, params: {drop: 0.4}, script: scripts/gen/orch-hanged.js, seed: 21}, tags: [orchard, z01-dressing, hanged]}, {behavior: [scripts/sway.js], castShadow: true, feetPosition: {x: 1.25, y: 4.13, z: 0}, id: fig-b, physics: none, pivot: top, primitive: {kind: scripted, params: {drop: 0.55}, script: scripts/gen/orch-hanged.js, seed: 22}, tags: [orchard, z01-dressing, hanged]}, {feetPosition: {x: 0, y: 3.3, z: 0}, id: lamp, light: {color: oklch(0.86 0.06 230), distance: 16, intensity: 9, kind: point, shadow: {enabled: false}}}, {feetPosition: {x: -2.3, y: 4.47, z: 0.02}, id: crow-a, physics: none, primitive: {kind: scripted, params: {kind: crow}, script: scripts/gen/orch-props.js, seed: 7}, rotation: 30, tags: [orchard, z01-dressing]}, {feetPosition: {x: 3, y: 4.47, z: -0.03}, id: crow-b, physics: none, primitive: {kind: scripted, params: {kind: crow}, script: scripts/gen/orch-props.js, seed: 7}, rotation: -140, tags: [orchard, z01-dressing]}], feetPosition: {x: 0, y: 0, z: 9.5}, id: frame, physics: static, primitive: {kind: scripted, params: {kind: frame}, script: scripts/gen/orch-gallows.js, seed: 11}, tags: [orchard, z01-dressing]}]
   feetPosition: {x: 62, y: {terrain: 0}, z: 5}
@@ -1018,15 +2160,28 @@ orch-gibbet-g1:
   rotation: -45
   tags: [orchard, z01-dressing, gibbet]
 orch-grove:
-  children: [{castShadow: true, children: [{behavior: [scripts/sway.js], castShadow: true, feetPosition: {x: 0, y: 3.254, z: -2.1}, id: hanged, physics: none, pivot: top, primitive: {kind: scripted, params: {drop: 0.5}, script: scripts/gen/orch-hanged.js, seed: 100}, tags: [orchard, z01-dressing, hanged]}], feetPosition: {x: 15.5, y: 0, z: 0}, id: tree-0, physics: static, primitive: {kind: scripted, params: {h: 5.2, hang: 1, lumps: 0}, script: scripts/gen/orch-tree.js, seed: 200}, rotation: 65, tags: [orchard, z01-dressing, tree]}, {castShadow: true, children: [], feetPosition: {x: 15.216904260722456, y: 0, z: 4.944271909999158}, id: tree-1, physics: static, primitive: {kind: scripted, params: {h: 4.6, hang: 0, lumps: 3}, script: scripts/gen/orch-tree.js, seed: 201}, rotation: 97, tags: [orchard, z01-dressing, tree]}, {castShadow: true, children: [{feetPosition: {x: 0, y: 3.498, z: -1.2}, id: crow, physics: none, primitive: {kind: scripted, params: {kind: crow}, script: scripts/gen/orch-props.js, seed: 7}, rotation: 150, tags: [orchard, z01-dressing]}], feetPosition: {x: 7.500000000000002, y: 0, z: 12.990381056766578}, id: tree-2, physics: static, primitive: {kind: scripted, params: {h: 5.4, hang: 2, lumps: 0}, script: scripts/gen/orch-tree.js, seed: 202}, rotation: 5.000000000000011, tags: [orchard, z01-dressing, tree]}, {castShadow: true, children: [], feetPosition: {x: 2.8651949315043517, y: 0, z: 16.249327924701433}, id: tree-3, physics: static, primitive: {kind: scripted, params: {h: 4.8, hang: 0, lumps: 2}, script: scripts/gen/orch-tree.js, seed: 203}, rotation: 35, tags: [orchard, z01-dressing, tree]}, {castShadow: true, children: [{behavior: [scripts/sway.js], castShadow: true, feetPosition: {x: 0, y: 3.502, z: -2.1}, id: hanged, physics: none, pivot: top, primitive: {kind: scripted, params: {drop: 0.5}, script: scripts/gen/orch-hanged.js, seed: 104}, tags: [orchard, z01-dressing, hanged]}], feetPosition: {x: -2.778370842670885, y: 0, z: 15.756924048195328}, id: tree-4, physics: static, primitive: {kind: scripted, params: {h: 5.6, hang: 1, lumps: 0}, script: scripts/gen/orch-tree.js, seed: 204}, rotation: -35, tags: [orchard, z01-dressing, tree]}, {castShadow: true, children: [{feetPosition: {x: 0, y: 2.878, z: -1.2}, id: crow, physics: none, primitive: {kind: scripted, params: {kind: crow}, script: scripts/gen/orch-props.js, seed: 7}, rotation: 270, tags: [orchard, z01-dressing]}], feetPosition: {x: -7.042073441788358, y: 0, z: 13.244213892883906}, id: tree-5, physics: static, primitive: {kind: scripted, params: {h: 4.4, hang: 3, lumps: 2}, script: scripts/gen/orch-tree.js, seed: 205}, rotation: -2.999999999999986, tags: [orchard, z01-dressing, tree]}, {castShadow: true, children: [], feetPosition: {x: -14.371349745785203, y: 0, z: 5.80640219794664}, id: tree-6, physics: static, primitive: {kind: scripted, params: {h: 5, hang: 0, lumps: 3}, script: scripts/gen/orch-tree.js, seed: 206}, rotation: -93, tags: [orchard, z01-dressing, tree]}, {castShadow: true, children: [{feetPosition: {x: 0, y: 3.064, z: -1.2}, id: crow, physics: none, primitive: {kind: scripted, params: {kind: crow}, script: scripts/gen/orch-props.js, seed: 7}, rotation: 350, tags: [orchard, z01-dressing]}], feetPosition: {x: -14.371349745785205, y: 0, z: -5.806402197946636}, id: tree-7, physics: static, primitive: {kind: scripted, params: {h: 4.7, hang: 2, lumps: 0}, script: scripts/gen/orch-tree.js, seed: 207}, rotation: -87, tags: [orchard, z01-dressing, tree]}, {castShadow: true, children: [{behavior: [scripts/sway.js], castShadow: true, feetPosition: {x: 0, y: 3.316, z: -2.1}, id: hanged, physics: none, pivot: top, primitive: {kind: scripted, params: {drop: 0.5}, script: scripts/gen/orch-hanged.js, seed: 108}, tags: [orchard, z01-dressing, hanged]}], feetPosition: {x: -12.256711089903648, y: 0, z: -10.284601754984628}, id: tree-8, physics: static, primitive: {kind: scripted, params: {h: 5.3, hang: 1, lumps: 0}, script: scripts/gen/orch-tree.js, seed: 208}, rotation: -155, tags: [orchard, z01-dressing, tree]}, {castShadow: true, children: [], feetPosition: {x: -7.500000000000007, y: 0, z: -12.990381056766577}, id: tree-9, physics: static, primitive: {kind: scripted, params: {h: 4.5, hang: 0, lumps: 4}, script: scripts/gen/orch-tree.js, seed: 209}, rotation: -124.99999999999997, tags: [orchard, z01-dressing, tree]}, {castShadow: true, children: [{feetPosition: {x: 0, y: 3.3120000000000003, z: -1.2}, id: crow, physics: none, primitive: {kind: scripted, params: {kind: crow}, script: scripts/gen/orch-props.js, seed: 7}, rotation: 470, tags: [orchard, z01-dressing]}], feetPosition: {x: -2.226769615361039, y: 0, z: -15.844289099865126}, id: tree-10, physics: static, primitive: {kind: scripted, params: {h: 5.1, hang: 3, lumps: 0}, script: scripts/gen/orch-tree.js, seed: 210}, rotation: -197.00000000000003, tags: [orchard, z01-dressing, tree]}, {castShadow: true, children: [{behavior: [scripts/sway.js], castShadow: true, feetPosition: {x: 0, y: 3.44, z: -2.1}, id: hanged, physics: none, pivot: top, primitive: {kind: scripted, params: {drop: 0.5}, script: scripts/gen/orch-hanged.js, seed: 111}, tags: [orchard, z01-dressing, hanged]}], feetPosition: {x: 7.276809223181301, y: 0, z: -13.68568768931337}, id: tree-11, physics: static, primitive: {kind: scripted, params: {h: 5.5, hang: 1, lumps: 0}, script: scripts/gen/orch-tree.js, seed: 211}, rotation: 177.00000000000006, tags: [orchard, z01-dressing, tree]}, {castShadow: true, children: [], feetPosition: {x: 11.890317207638308, y: 0, z: -10.70608970174173}, id: tree-12, physics: static, primitive: {kind: scripted, params: {h: 4.6, hang: 0, lumps: 2}, script: scripts/gen/orch-tree.js, seed: 212}, rotation: 107, tags: [orchard, z01-dressing, tree]}, {castShadow: true, children: [{feetPosition: {x: 0, y: 3.25, z: -1.2}, id: crow, physics: none, primitive: {kind: scripted, params: {kind: crow}, script: scripts/gen/orch-props.js, seed: 7}, rotation: 590, tags: [orchard, z01-dressing]}], feetPosition: {x: 14.095389311788626, y: 0, z: -5.130302149885029}, id: tree-13, physics: static, primitive: {kind: scripted, params: {h: 5, hang: 2, lumps: 0}, script: scripts/gen/orch-tree.js, seed: 213}, rotation: 135, tags: [orchard, z01-dressing, tree]}, {feetPosition: {x: 0, y: 0.05, z: 0}, fx: {params: {}, script: "fx\npop mist n=?mobile:18|32 on=disc(17) life=8..13 v=sdir()*.12 size=4..7 acc=curl(.1)*.2+drag(.6) col=<.36,.42,.52> a=0>.25:.09>.75:.07>0 sz=$size*(.7>1.25) rot=spin(.02) r=sprite(smoke-puff,alpha)"}, id: mist, tags: [orchard, z01-dressing], visibleRange: {max: 72, min: 0}}]
+  children: [{castShadow: true, children: [{behavior: [scripts/sway.js], castShadow: true, feetPosition: {x: 0, y: 3.254, z: -2.1}, id: hanged, physics: none, pivot: top, primitive: {kind: scripted, params: {drop: 0.5}, script: scripts/gen/orch-hanged.js, seed: 100}, tags: [orchard, z01-dressing, hanged]}], feetPosition: {x: 15.5, y: 0, z: 0}, id: tree-0, physics: static, primitive: {kind: scripted, params: {h: 5.2, hang: 1, lumps: 0}, script: scripts/gen/orch-tree.js, seed: 200}, rotation: 65, tags: [orchard, z01-dressing, tree]}, {castShadow: true, children: [{feetPosition: {x: 0, y: 3.498, z: -1.2}, id: crow, physics: none, primitive: {kind: scripted, params: {kind: crow}, script: scripts/gen/orch-props.js, seed: 7}, rotation: 150, tags: [orchard, z01-dressing]}], feetPosition: {x: 7.500000000000002, y: 0, z: 12.990381056766578}, id: tree-2, physics: static, primitive: {kind: scripted, params: {h: 5.4, hang: 2, lumps: 0}, script: scripts/gen/orch-tree.js, seed: 202}, rotation: 5.000000000000011, tags: [orchard, z01-dressing, tree]}, {castShadow: true, children: [{behavior: [scripts/sway.js], castShadow: true, feetPosition: {x: 0, y: 3.502, z: -2.1}, id: hanged, physics: none, pivot: top, primitive: {kind: scripted, params: {drop: 0.5}, script: scripts/gen/orch-hanged.js, seed: 104}, tags: [orchard, z01-dressing, hanged]}], feetPosition: {x: -2.778370842670885, y: 0, z: 15.756924048195328}, id: tree-4, physics: static, primitive: {kind: scripted, params: {h: 5.6, hang: 1, lumps: 0}, script: scripts/gen/orch-tree.js, seed: 204}, rotation: -35, tags: [orchard, z01-dressing, tree]}, {castShadow: true, children: [{feetPosition: {x: 0, y: 2.878, z: -1.2}, id: crow, physics: none, primitive: {kind: scripted, params: {kind: crow}, script: scripts/gen/orch-props.js, seed: 7}, rotation: 270, tags: [orchard, z01-dressing]}], feetPosition: {x: -7.042073441788358, y: 0, z: 13.244213892883906}, id: tree-5, physics: static, primitive: {kind: scripted, params: {h: 4.4, hang: 3, lumps: 2}, script: scripts/gen/orch-tree.js, seed: 205}, rotation: -2.999999999999986, tags: [orchard, z01-dressing, tree]}, {castShadow: true, children: [{feetPosition: {x: 0, y: 3.064, z: -1.2}, id: crow, physics: none, primitive: {kind: scripted, params: {kind: crow}, script: scripts/gen/orch-props.js, seed: 7}, rotation: 350, tags: [orchard, z01-dressing]}], feetPosition: {x: -14.371349745785205, y: 0, z: -5.806402197946636}, id: tree-7, physics: static, primitive: {kind: scripted, params: {h: 4.7, hang: 2, lumps: 0}, script: scripts/gen/orch-tree.js, seed: 207}, rotation: -87, tags: [orchard, z01-dressing, tree]}, {castShadow: true, children: [{behavior: [scripts/sway.js], castShadow: true, feetPosition: {x: 0, y: 3.316, z: -2.1}, id: hanged, physics: none, pivot: top, primitive: {kind: scripted, params: {drop: 0.5}, script: scripts/gen/orch-hanged.js, seed: 108}, tags: [orchard, z01-dressing, hanged]}], feetPosition: {x: -12.256711089903648, y: 0, z: -10.284601754984628}, id: tree-8, physics: static, primitive: {kind: scripted, params: {h: 5.3, hang: 1, lumps: 0}, script: scripts/gen/orch-tree.js, seed: 208}, rotation: -155, tags: [orchard, z01-dressing, tree]}, {castShadow: true, children: [{feetPosition: {x: 0, y: 3.3120000000000003, z: -1.2}, id: crow, physics: none, primitive: {kind: scripted, params: {kind: crow}, script: scripts/gen/orch-props.js, seed: 7}, rotation: 470, tags: [orchard, z01-dressing]}], feetPosition: {x: -2.226769615361039, y: 0, z: -15.844289099865126}, id: tree-10, physics: static, primitive: {kind: scripted, params: {h: 5.1, hang: 3, lumps: 0}, script: scripts/gen/orch-tree.js, seed: 210}, rotation: -197.00000000000003, tags: [orchard, z01-dressing, tree]}, {castShadow: true, children: [{behavior: [scripts/sway.js], castShadow: true, feetPosition: {x: 0, y: 3.44, z: -2.1}, id: hanged, physics: none, pivot: top, primitive: {kind: scripted, params: {drop: 0.5}, script: scripts/gen/orch-hanged.js, seed: 111}, tags: [orchard, z01-dressing, hanged]}], feetPosition: {x: 7.276809223181301, y: 0, z: -13.68568768931337}, id: tree-11, physics: static, primitive: {kind: scripted, params: {h: 5.5, hang: 1, lumps: 0}, script: scripts/gen/orch-tree.js, seed: 211}, rotation: 177.00000000000006, tags: [orchard, z01-dressing, tree]}, {castShadow: true, children: [{feetPosition: {x: 0, y: 3.25, z: -1.2}, id: crow, physics: none, primitive: {kind: scripted, params: {kind: crow}, script: scripts/gen/orch-props.js, seed: 7}, rotation: 590, tags: [orchard, z01-dressing]}], feetPosition: {x: 14.095389311788626, y: 0, z: -5.130302149885029}, id: tree-13, physics: static, primitive: {kind: scripted, params: {h: 5, hang: 2, lumps: 0}, script: scripts/gen/orch-tree.js, seed: 213}, rotation: 135, tags: [orchard, z01-dressing, tree]}, {feetPosition: {x: 0, y: 0.05, z: 0}, fx: {params: {}, script: "fx\npop mist n=?mobile:18|32 on=disc(17) life=8..13 v=sdir()*.12 size=4..7 acc=curl(.1)*.2+drag(.6) col=<.36,.42,.52> a=0>.25:.09>.75:.07>0 sz=$size*(.7>1.25) rot=spin(.02) r=sprite(smoke-puff,alpha)"}, id: mist, tags: [orchard, z01-dressing], visibleRange: {max: 72, min: 0}}]
   feetPosition: {x: 62, y: {terrain: 0}, z: 6}
   id: orch-grove
   tags: [orchard, z01-dressing, grove]
 orch-path:
-  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: dirt, physics: none, primitive: {kind: scripted, params: {half: 4.5, kind: path, pts: [[-17, 0], [-4, -2], [8, 2], [16, 4], [21, 4]]}, script: scripts/gen/orch-props.js, seed: 9}, receiveShadow: true, tags: [orchard, z01-dressing]}, {castShadow: true, feetPosition: {x: -6, y: 0, z: -5}, id: boundary-stone, physics: static, primitive: {kind: scripted, params: {kind: stone}, script: scripts/gen/orch-props.js, seed: 4}, rotation: 200, tags: [orchard, z01-dressing]}, {castShadow: true, feetPosition: {x: 4, y: 0, z: -3.6}, id: handcart, physics: none, primitive: {kind: scripted, params: {}, script: scripts/gen/hub-cart.js, seed: 5}, rotation: 110, tags: [orchard, z01-dressing]}, {feetPosition: {x: 5.799999999999997, y: 0, z: -2.4}, id: coils, physics: none, primitive: {kind: scripted, params: {kind: coils, n: 5}, script: scripts/gen/orch-props.js, seed: 6}, rotation: 30, tags: [orchard, z01-dressing]}, {castShadow: true, feetPosition: {x: -2, y: 0, z: 3.3}, id: toppled-lantern, physics: none, pivot: feet, primitive: {kind: scripted, params: {}, script: scripts/gen/hub-lamppost.js, seed: 8}, rotation: {pitch: 0, roll: 84, yaw: 75}, tags: [orchard, z01-dressing]}, {castShadow: true, children: [{feetPosition: {x: 0.55, y: 2.13, z: 0}, fx: {params: {int: 3.2, rad: 10}, script: "fx\npop f rate=flick(.6,.25)*14 on=point() life=.25..0.4 v=up(.3) size=.05..0.075 acc=buoy(.6)+drag(2) sz=$size*(.6>1:.4>.35) col=hdr(4,2.6,1)>.5:hdr(3,1.2,.3)>hdr(1,.3,.05) a=0>.15:1>.7:.8>0 r=sprite(flame-wisp,add)\npop glow n=1 at=point() glo=fire()*.5+.5 r=light(<1,.6,.3>,$glo*%int|2.8,%rad|8)"}, id: flame, visibleRange: {max: 72, min: 0}}], feetPosition: {x: -11, y: 0, z: 2.5999999999999996}, id: lantern-a, physics: static, primitive: {kind: scripted, params: {}, script: scripts/gen/hub-lamppost.js, seed: 3}, rotation: 180, tags: [orchard, z01-dressing]}, {castShadow: true, children: [{feetPosition: {x: 0.55, y: 2.13, z: 0}, fx: {params: {int: 3.2, rad: 10}, script: "fx\npop f rate=flick(.6,.25)*14 on=point() life=.25..0.4 v=up(.3) size=.05..0.075 acc=buoy(.6)+drag(2) sz=$size*(.6>1:.4>.35) col=hdr(4,2.6,1)>.5:hdr(3,1.2,.3)>hdr(1,.3,.05) a=0>.15:1>.7:.8>0 r=sprite(flame-wisp,add)\npop glow n=1 at=point() glo=fire()*.5+.5 r=light(<1,.6,.3>,$glo*%int|2.8,%rad|8)"}, id: flame, visibleRange: {max: 72, min: 0}}], feetPosition: {x: 11, y: 0, z: -1.1}, id: lantern-b, physics: static, primitive: {kind: scripted, params: {}, script: scripts/gen/hub-lamppost.js, seed: 3}, rotation: 0, tags: [orchard, z01-dressing]}, {feetPosition: {x: -6, y: 1.62, z: -5}, id: crow-stone, physics: none, primitive: {kind: scripted, params: {kind: crow}, script: scripts/gen/orch-props.js, seed: 7}, rotation: 140, tags: [orchard, z01-dressing]}, {castShadow: true, children: [], feetPosition: {x: -10, y: 0, z: 6.6}, id: tree-0, physics: static, primitive: {kind: scripted, params: {h: 4.6, hang: 3, lumps: 0}, script: scripts/gen/orch-tree.js, seed: 400}, rotation: 160, tags: [orchard, z01-dressing, tree]}, {castShadow: true, children: [{behavior: [scripts/sway.js], castShadow: true, feetPosition: {x: 0, y: 3.13, z: -2.1}, id: hanged, physics: none, pivot: top, primitive: {kind: scripted, params: {drop: 0.45}, script: scripts/gen/orch-hanged.js, seed: 301}, tags: [orchard, z01-dressing, hanged]}], feetPosition: {x: 2, y: 0, z: -7.6}, id: tree-1, physics: static, primitive: {kind: scripted, params: {h: 5, hang: 1, lumps: 0}, script: scripts/gen/orch-tree.js, seed: 401}, rotation: 10, tags: [orchard, z01-dressing, tree]}, {castShadow: true, children: [], feetPosition: {x: 7, y: 0, z: 8.4}, id: tree-2, physics: static, primitive: {kind: scripted, params: {h: 4.4, hang: 0, lumps: 3}, script: scripts/gen/orch-tree.js, seed: 402}, rotation: 160, tags: [orchard, z01-dressing, tree]}, {castShadow: true, children: [], feetPosition: {x: 13, y: 0, z: -3.8}, id: tree-3, physics: static, primitive: {kind: scripted, params: {h: 4.8, hang: 2, lumps: 0}, script: scripts/gen/orch-tree.js, seed: 403}, rotation: 70, tags: [orchard, z01-dressing, tree]}]
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: dirt, physics: none, primitive: {kind: scripted, params: {half: 4.5, kind: path, pts: [[-17, 0], [-4, -2], [8, 2], [16, 4], [21, 4]]}, script: scripts/gen/orch-props.js, seed: 9}, receiveShadow: true, tags: [orchard, z01-dressing]}, {castShadow: true, feetPosition: {x: -6, y: 0, z: -5}, id: boundary-stone, physics: static, primitive: {kind: scripted, params: {kind: stone}, script: scripts/gen/orch-props.js, seed: 4}, rotation: 200, tags: [orchard, z01-dressing]}, {castShadow: true, feetPosition: {x: 4, y: 0, z: -3.6}, id: handcart, physics: none, primitive: {kind: scripted, params: {}, script: scripts/gen/hub-cart.js, seed: 5}, rotation: 110, tags: [orchard, z01-dressing]}, {feetPosition: {x: 5.799999999999997, y: 0, z: -2.4}, id: coils, physics: none, primitive: {kind: scripted, params: {kind: coils, n: 5}, script: scripts/gen/orch-props.js, seed: 6}, rotation: 30, tags: [orchard, z01-dressing]}, {castShadow: true, feetPosition: {x: -2, y: 0, z: 3.3}, id: toppled-lantern, physics: none, pivot: feet, primitive: {kind: scripted, params: {}, script: scripts/gen/hub-lamppost.js, seed: 8}, rotation: {pitch: 0, roll: 84, yaw: 75}, tags: [orchard, z01-dressing]}, {castShadow: true, children: [{feetPosition: {x: 0.55, y: 2.13, z: 0}, fx: {params: {int: 3.2, rad: 10}, script: "fx\npop f rate=flick(.6,.25)*14 on=point() life=.25..0.4 v=up(.3) size=.05..0.075 acc=buoy(.6)+drag(2) sz=$size*(.6>1:.4>.35) col=hdr(4,2.6,1)>.5:hdr(3,1.2,.3)>hdr(1,.3,.05) a=0>.15:1>.7:.8>0 r=sprite(flame-wisp,add)\npop glow n=1 at=point() glo=fire()*.5+.5 r=light(<1,.6,.3>,$glo*%int|2.8,%rad|8)"}, id: flame, visibleRange: {max: 72, min: 0}}], feetPosition: {x: -11, y: 0, z: 2.5999999999999996}, id: lantern-a, physics: static, primitive: {kind: scripted, params: {}, script: scripts/gen/hub-lamppost.js, seed: 3}, rotation: 180, tags: [orchard, z01-dressing]}, {castShadow: true, children: [{feetPosition: {x: 0.55, y: 2.13, z: 0}, fx: {params: {int: 3.2, rad: 10}, script: "fx\npop f rate=flick(.6,.25)*14 on=point() life=.25..0.4 v=up(.3) size=.05..0.075 acc=buoy(.6)+drag(2) sz=$size*(.6>1:.4>.35) col=hdr(4,2.6,1)>.5:hdr(3,1.2,.3)>hdr(1,.3,.05) a=0>.15:1>.7:.8>0 r=sprite(flame-wisp,add)\npop glow n=1 at=point() glo=fire()*.5+.5 r=light(<1,.6,.3>,$glo*%int|2.8,%rad|8)"}, id: flame, visibleRange: {max: 72, min: 0}}], feetPosition: {x: 11, y: 0, z: -1.1}, id: lantern-b, physics: static, primitive: {kind: scripted, params: {}, script: scripts/gen/hub-lamppost.js, seed: 3}, rotation: 0, tags: [orchard, z01-dressing]}, {feetPosition: {x: -6, y: 1.62, z: -5}, id: crow-stone, physics: none, primitive: {kind: scripted, params: {kind: crow}, script: scripts/gen/orch-props.js, seed: 7}, rotation: 140, tags: [orchard, z01-dressing]}, {castShadow: true, children: [], feetPosition: {x: -10, y: 0, z: 6.6}, id: tree-0, physics: static, primitive: {kind: scripted, params: {h: 4.6, hang: 3, lumps: 0}, script: scripts/gen/orch-tree.js, seed: 400}, rotation: 160, tags: [orchard, z01-dressing, tree]}, {castShadow: true, children: [{behavior: [scripts/sway.js], castShadow: true, feetPosition: {x: 0, y: 3.13, z: -2.1}, id: hanged, physics: none, pivot: top, primitive: {kind: scripted, params: {drop: 0.45}, script: scripts/gen/orch-hanged.js, seed: 301}, tags: [orchard, z01-dressing, hanged]}], feetPosition: {x: 2, y: 0, z: -7.6}, id: tree-1, physics: static, primitive: {kind: scripted, params: {h: 5, hang: 1, lumps: 0}, script: scripts/gen/orch-tree.js, seed: 401}, rotation: 10, tags: [orchard, z01-dressing, tree]}, {castShadow: true, children: [], feetPosition: {x: 13, y: 0, z: -3.8}, id: tree-3, physics: static, primitive: {kind: scripted, params: {h: 4.8, hang: 2, lumps: 0}, script: scripts/gen/orch-tree.js, seed: 403}, rotation: 70, tags: [orchard, z01-dressing, tree]}]
   feetPosition: {x: 30, y: {terrain: 0}, z: 2}
   id: orch-path
   tags: [orchard, z01-dressing, path]
+orch-path/tree-2:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
+  feetPosition: {x: 7, y: 2.079, z: 8.4}
+  id: orch-path/tree-2
+  layout: {maxExtents: {y: 4.87}}
+  mixer: {sway: {clip: Sway, loop: loop, speed: 1.09, weight: 1}}
+  model: /cdn/value.1b709cd7096c375acbd05332f69334ba9499d099d79e110aaf7a999e5f7c4818.glb
+  parent: orch-path
+  receiveShadow: true
+  rotation: 11
+  state: {kind: appleB}
+  tags: [bloodwoods, flora, tree]
 rd-boneheap-1:
   castShadow: true
   feetPosition: {x: -3.54, y: 0, z: -28.6}
@@ -1102,6 +2257,127 @@ rd-reliquary-3:
   receiveShadow: true
   rotation: {yaw: 70}
   tags: [road-dressing, reliquary]
+road-floor-0:
+  children: [{castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: cinders, primitive: {kind: scripted, params: {biome: ash, bounds: 10, clear: [], count: 16, kind: cinders, margin: 0.6, origin: [0, -14], zone: any}, script: scripts/gen/zone-floor.js, seed: 6200}, receiveShadow: true, tags: [road, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: deadgrass, primitive: {kind: scripted, params: {biome: ash, bounds: 10, clear: [], count: 18, kind: deadgrass, margin: 0.6, origin: [0, -14], zone: any}, script: scripts/gen/zone-floor.js, seed: 6201}, receiveShadow: true, tags: [road, flora, floor]}, {castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: rubble, primitive: {kind: scripted, params: {biome: ash, bounds: 10, clear: [], count: 7, kind: rubble, margin: 0.6, origin: [0, -14], zone: out}, script: scripts/gen/zone-floor.js, seed: 6202}, receiveShadow: true, tags: [road, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: bones, primitive: {kind: scripted, params: {biome: ash, bounds: 10, clear: [], count: 1, kind: bones, margin: 0.6, origin: [0, -14], zone: out}, script: scripts/gen/zone-floor.js, seed: 6203}, receiveShadow: true, tags: [road, flora, floor]}]
+  feetPosition: {x: 0, y: 0, z: -14}
+  id: road-floor-0
+  tags: [road, flora, floor]
+road-floor-1:
+  children: [{castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: cinders, primitive: {kind: scripted, params: {biome: ash, bounds: 10, clear: [], count: 16, kind: cinders, margin: 0.6, origin: [1.39, -27.93], zone: any}, script: scripts/gen/zone-floor.js, seed: 6204}, receiveShadow: true, tags: [road, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: deadgrass, primitive: {kind: scripted, params: {biome: ash, bounds: 10, clear: [], count: 18, kind: deadgrass, margin: 0.6, origin: [1.39, -27.93], zone: any}, script: scripts/gen/zone-floor.js, seed: 6205}, receiveShadow: true, tags: [road, flora, floor]}, {castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: rubble, primitive: {kind: scripted, params: {biome: ash, bounds: 10, clear: [], count: 7, kind: rubble, margin: 0.6, origin: [1.39, -27.93], zone: out}, script: scripts/gen/zone-floor.js, seed: 6206}, receiveShadow: true, tags: [road, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: bones, primitive: {kind: scripted, params: {biome: ash, bounds: 10, clear: [], count: 1, kind: bones, margin: 0.6, origin: [1.39, -27.93], zone: out}, script: scripts/gen/zone-floor.js, seed: 6207}, receiveShadow: true, tags: [road, flora, floor]}]
+  feetPosition: {x: 1.39, y: 0, z: -27.93}
+  id: road-floor-1
+  tags: [road, flora, floor]
+road-floor-11:
+  children: [{castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: cinders, primitive: {kind: scripted, params: {biome: ash, bounds: 12, clear: [], count: 18, kind: cinders, margin: 0.6, origin: [9, -46], zone: any}, script: scripts/gen/zone-floor.js, seed: 6244}, receiveShadow: true, tags: [road, flora, floor]}, {castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: rubble, primitive: {kind: scripted, params: {biome: ash, bounds: 12, clear: [], count: 10, kind: rubble, margin: 0.6, origin: [9, -46], zone: out}, script: scripts/gen/zone-floor.js, seed: 6245}, receiveShadow: true, tags: [road, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: candles, primitive: {kind: scripted, params: {biome: ash, bounds: 12, clear: [], count: 4, kind: candles, margin: 0.6, origin: [9, -46], zone: out}, script: scripts/gen/zone-floor.js, seed: 6246}, receiveShadow: true, tags: [road, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: deadgrass, primitive: {kind: scripted, params: {biome: ash, bounds: 12, clear: [], count: 12, kind: deadgrass, margin: 0.6, origin: [9, -46], zone: any}, script: scripts/gen/zone-floor.js, seed: 6247}, receiveShadow: true, tags: [road, flora, floor]}]
+  feetPosition: {x: 9, y: 0, z: -46}
+  id: road-floor-11
+  tags: [road, flora, floor]
+road-floor-2:
+  children: [{castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: cinders, primitive: {kind: scripted, params: {biome: ash, bounds: 10, clear: [], count: 16, kind: cinders, margin: 0.6, origin: [2, -34], zone: any}, script: scripts/gen/zone-floor.js, seed: 6208}, receiveShadow: true, tags: [road, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: deadgrass, primitive: {kind: scripted, params: {biome: ash, bounds: 10, clear: [], count: 18, kind: deadgrass, margin: 0.6, origin: [2, -34], zone: any}, script: scripts/gen/zone-floor.js, seed: 6209}, receiveShadow: true, tags: [road, flora, floor]}, {castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: rubble, primitive: {kind: scripted, params: {biome: ash, bounds: 10, clear: [], count: 7, kind: rubble, margin: 0.6, origin: [2, -34], zone: out}, script: scripts/gen/zone-floor.js, seed: 6210}, receiveShadow: true, tags: [road, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: bones, primitive: {kind: scripted, params: {biome: ash, bounds: 10, clear: [], count: 1, kind: bones, margin: 0.6, origin: [2, -34], zone: out}, script: scripts/gen/zone-floor.js, seed: 6211}, receiveShadow: true, tags: [road, flora, floor]}]
+  feetPosition: {x: 2, y: 0, z: -34}
+  id: road-floor-2
+  tags: [road, flora, floor]
+road-floor-3:
+  children: [{castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: cinders, primitive: {kind: scripted, params: {biome: ash, bounds: 10, clear: [], count: 16, kind: cinders, margin: 0.6, origin: [7.51, -46.87], zone: any}, script: scripts/gen/zone-floor.js, seed: 6212}, receiveShadow: true, tags: [road, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: deadgrass, primitive: {kind: scripted, params: {biome: ash, bounds: 10, clear: [], count: 18, kind: deadgrass, margin: 0.6, origin: [7.51, -46.87], zone: any}, script: scripts/gen/zone-floor.js, seed: 6213}, receiveShadow: true, tags: [road, flora, floor]}, {castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: rubble, primitive: {kind: scripted, params: {biome: ash, bounds: 10, clear: [], count: 7, kind: rubble, margin: 0.6, origin: [7.51, -46.87], zone: out}, script: scripts/gen/zone-floor.js, seed: 6214}, receiveShadow: true, tags: [road, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: bones, primitive: {kind: scripted, params: {biome: ash, bounds: 10, clear: [], count: 1, kind: bones, margin: 0.6, origin: [7.51, -46.87], zone: out}, script: scripts/gen/zone-floor.js, seed: 6215}, receiveShadow: true, tags: [road, flora, floor]}]
+  feetPosition: {x: 7.51, y: 0, z: -46.87}
+  id: road-floor-3
+  tags: [road, flora, floor]
+road-floor-5:
+  children: [{castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: cinders, primitive: {kind: scripted, params: {biome: ash, bounds: 10, clear: [], count: 16, kind: cinders, margin: 0.6, origin: [4.15, -61.46], zone: any}, script: scripts/gen/zone-floor.js, seed: 6220}, receiveShadow: true, tags: [road, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: deadgrass, primitive: {kind: scripted, params: {biome: ash, bounds: 10, clear: [], count: 18, kind: deadgrass, margin: 0.6, origin: [4.15, -61.46], zone: any}, script: scripts/gen/zone-floor.js, seed: 6221}, receiveShadow: true, tags: [road, flora, floor]}, {castShadow: true, feetPosition: {x: 0, y: 0, z: 0}, id: rubble, primitive: {kind: scripted, params: {biome: ash, bounds: 10, clear: [], count: 7, kind: rubble, margin: 0.6, origin: [4.15, -61.46], zone: out}, script: scripts/gen/zone-floor.js, seed: 6222}, receiveShadow: true, tags: [road, flora, floor]}, {castShadow: false, feetPosition: {x: 0, y: 0, z: 0}, id: bones, primitive: {kind: scripted, params: {biome: ash, bounds: 10, clear: [], count: 1, kind: bones, margin: 0.6, origin: [4.15, -61.46], zone: out}, script: scripts/gen/zone-floor.js, seed: 6223}, receiveShadow: true, tags: [road, flora, floor]}]
+  feetPosition: {x: 4.15, y: 0, z: -61.46}
+  id: road-floor-5
+  tags: [road, flora, floor]
+road-tree-0:
+  castShadow: true
+  children: [{feetPosition: {x: -0.57, y: 2.4, z: 2.17}, id: lamp, light: {color: "#C49C63", distance: 6, intensity: 2, kind: point}}]
+  feetPosition: {x: -7.21, y: {terrain: -0.25}, z: -26.66}
+  id: road-tree-0
+  mixer: {base: {clip: Sway, loop: loop, speed: 0.92, weight: 1}}
+  model: /cdn/value.3ab7a1d065bd27f995ca1af80b6a07cfaa28d4c54ce185efdfd0573ea59443ff.glb
+  receiveShadow: true
+  rotation: 99
+  scale: 0.96
+  state: {kind: lanternsnag}
+  tags: [road, flora, tree]
+road-tree-1:
+  castShadow: true
+  children: [{feetPosition: {x: -0.57, y: 2.4, z: 2.17}, id: lamp, light: {color: "#C49C63", distance: 6, intensity: 2, kind: point}}]
+  feetPosition: {x: 22.57, y: {terrain: -0.25}, z: -43.08}
+  id: road-tree-1
+  mixer: {base: {clip: Sway, loop: loop, speed: 0.86, weight: 1}}
+  model: /cdn/value.3ab7a1d065bd27f995ca1af80b6a07cfaa28d4c54ce185efdfd0573ea59443ff.glb
+  receiveShadow: true
+  rotation: 273
+  scale: 0.99
+  state: {kind: lanternsnag}
+  tags: [road, flora, tree]
+road-tree-10:
+  castShadow: true
+  feetPosition: {x: -9.95, y: {terrain: -0.25}, z: -45.31}
+  id: road-tree-10
+  mixer: {base: {clip: Sway, loop: loop, speed: 0.8, weight: 1}}
+  model: /cdn/value.f981a31d17c64316acbd3ee046b3a2905f300e5bad510275c741054aa4e1a695.glb
+  receiveShadow: true
+  rotation: 215
+  scale: 1.01
+  state: {kind: gravecypress}
+  tags: [road, flora, tree]
+road-tree-11:
+  castShadow: true
+  feetPosition: {x: -14.41, y: {terrain: -0.25}, z: -62.34}
+  id: road-tree-11
+  mixer: {base: {clip: Sway, loop: loop, speed: 0.76, weight: 1}}
+  model: /cdn/value.3ca339b7d13a459d224ee54f120542ef19b8f005ffeb735b239da56f9ac4a1fa.glb
+  receiveShadow: true
+  rotation: 72
+  scale: 0.88
+  state: {kind: ashoak}
+  tags: [road, flora, tree]
+road-tree-13:
+  castShadow: true
+  feetPosition: {x: 24.87, y: {terrain: -0.25}, z: -56.23}
+  id: road-tree-13
+  mixer: {base: {clip: Sway, loop: loop, speed: 0.72, weight: 1}}
+  model: /cdn/value.3ca339b7d13a459d224ee54f120542ef19b8f005ffeb735b239da56f9ac4a1fa.glb
+  receiveShadow: true
+  rotation: 324
+  scale: 1.04
+  state: {kind: ashoak}
+  tags: [road, flora, tree]
+road-tree-2:
+  castShadow: true
+  children: [{feetPosition: {x: -0.57, y: 2.4, z: 2.17}, id: lamp, light: {color: "#C49C63", distance: 6, intensity: 2, kind: point}}]
+  feetPosition: {x: 11.81, y: {terrain: -0.25}, z: -61.61}
+  id: road-tree-2
+  mixer: {base: {clip: Sway, loop: loop, speed: 0.62, weight: 1}}
+  model: /cdn/value.3ab7a1d065bd27f995ca1af80b6a07cfaa28d4c54ce185efdfd0573ea59443ff.glb
+  receiveShadow: true
+  rotation: 309
+  scale: 0.99
+  state: {kind: lanternsnag}
+  tags: [road, flora, tree]
+road-tree-7:
+  castShadow: true
+  feetPosition: {x: -12.21, y: {terrain: -0.25}, z: -19.52}
+  id: road-tree-7
+  mixer: {base: {clip: Sway, loop: loop, speed: 0.67, weight: 1}}
+  model: /cdn/value.3ca339b7d13a459d224ee54f120542ef19b8f005ffeb735b239da56f9ac4a1fa.glb
+  receiveShadow: true
+  rotation: 114
+  scale: 0.95
+  state: {kind: ashoak}
+  tags: [road, flora, tree]
+road-tree-8:
+  castShadow: true
+  feetPosition: {x: -9.37, y: {terrain: -0.25}, z: -52.92}
+  id: road-tree-8
+  mixer: {base: {clip: Sway, loop: loop, speed: 0.96, weight: 1}}
+  model: /cdn/value.3ca339b7d13a459d224ee54f120542ef19b8f005ffeb735b239da56f9ac4a1fa.glb
+  receiveShadow: true
+  rotation: 320
+  scale: 0.88
+  state: {kind: ashoak}
+  tags: [road, flora, tree]
 ruin-road:
   feetPosition: {x: 0, y: 0, z: 0}
   id: ruin-road

@@ -86,7 +86,7 @@ export function onSpawn(ctx) {
 export function update(ctx, dt) {
   const s = ctx.self.state, now = ctx.now(), f = ctx.self.feetPosition, self = ctx.self;
   const here = players(ctx);
-  if (s.dead) { self.velocity = { x: 0, y: self.velocity.y, z: 0 }; return; }
+  if (s.dead) { self.velocity = { x: 0, y: (self.grounded ? (self.velocity.y ?? 0) : Math.max(-28, (self.velocity.y ?? 0) - 0.66)), z: 0 }; return; }
   if (s.hp <= 0) {
     s.dead = true; s.deadAt = now; bossVoice(ctx, "bailiff", "die", f); s.engaged = false; s.cast = null; clearAdds(ctx);
     ctx.emit("slowMo", { scale: 0.35, duration: 1.2 }, { audience: { place: self.place } });
@@ -151,7 +151,7 @@ export function update(ctx, dt) {
     }
   }
   publish(ctx);
-  if (!s.engaged) { const d = flat(f, HOME); self.velocity = d > 1 ? { x: ((HOME.x - f.x) / d) * 3, y: self.velocity.y, z: ((HOME.z - f.z) / d) * 3 } : { x: 0, y: self.velocity.y, z: 0 }; return; }
+  if (!s.engaged) { const d = flat(f, HOME); self.velocity = d > 1 ? { x: ((HOME.x - f.x) / d) * 3, y: (self.grounded ? (self.velocity.y ?? 0) : Math.max(-28, (self.velocity.y ?? 0) - 0.66)), z: ((HOME.z - f.z) / d) * 3 } : { x: 0, y: (self.grounded ? (self.velocity.y ?? 0) : Math.max(-28, (self.velocity.y ?? 0) - 0.66)), z: 0 }; return; }
 
   let prey = null, best = 99;
   for (const p of here) { const d = flat(p.feetPosition, f); if (d < best) { best = d; prey = p; } }
@@ -214,5 +214,5 @@ export function update(ctx, dt) {
     } else if (d > 2.4) { vx = (dx / d) * 2.4; vz = (dz / d) * 2.4; }
     else if (now >= (s.nextSwing ?? 0) && now >= (s.next ?? 0) - 1000) { s.nextSwing = now + 2200; hurt(ctx, prey, B.swingDmg, now); ctx.emit("squash", { target: self.id, axis: "z", intensity: 0.2, duration: 0.25 }); }
   }
-  self.velocity = { x: vx, y: self.velocity.y, z: vz };
+  self.velocity = { x: vx, y: (self.grounded ? (self.velocity.y ?? 0) : Math.max(-28, (self.velocity.y ?? 0) - 0.66)), z: vz };
 }

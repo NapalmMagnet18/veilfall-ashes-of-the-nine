@@ -30,8 +30,13 @@ pop chips burst=10..16 life=.5..0.9 v=<%normal|0,1,0>*(2..4)+sdir()*(.8..1.6)+<0
 pop spark burst=6 life=.12..0.25 v=<%normal|0,1,0>*(4..7)+sdir()*2 size=.02..0.035 col=hdr(4,2.4,.8) a=1>0 r=sprite(ember,add,velocity,.03)
 pop flash burst=1 life=.12 size=.7 col=hdr(2.5,1.6,.8) a=.8>0 sz=$size*(.6>1.3) r=sprite(soft-disc,add)`;
 const SLASH = `fx
-pop arc burst=1 life=.22 size=3.2 col=hdr(2.2,2.4,3) a=.9>0 sz=$size*(.8>1.1) r=sprite(soft-disc,add)
-pop motes burst=18 on=arc() life=.3..0.6 v=sdir()*(1..2.5)+up(.8) size=.03..0.06 col=hdr(1.6,1.8,2.6) a=1>0 r=sprite(mote,add)`;
+pop arc burst=1 life=.22 size=3.2 col=hdr(2.2,2.4,3) a=.7>0 sz=$size*(.8>1.1) r=sprite(soft-disc,add)
+pop edge burst=36..44 on=arc() life=.12..0.22 v=sdir()*.6 size=.05..0.09 col=hdr(3.4,3.2,3)>hdr(1.2,1,.9) a=1>0 sz=$size*(1>.3) r=sprite(ember,add,velocity,.05)
+pop spark burst=10..14 on=arc() life=.2..0.4 v=sdir()*(3..5)+up(.6) size=.015..0.03 acc=grav()*.6+drag(1.5) col=hdr(4,2.6,1) a=1>0 r=sprite(ember,add,velocity,.04)
+pop motes burst=18 on=arc() life=.3..0.6 v=sdir()*(1..2.5)+up(.8) size=.03..0.06 col=hdr(1.6,1.8,2.6) a=1>0 r=sprite(mote,add)
+pop wind burst=5..7 on=arc() life=.35..0.55 v=sdir()*.8 size=.25..0.4 acc=drag(2.5) col=<.7,.72,.78> a=0>.1:.22>0 sz=$size*(.6>1.8) rot=spin(.4) r=sprite(smoke-puff,alpha)
+pop dust burst=4..6 on=disc(.6).c(-.95) life=.6..1 v=radial(.6..1.2)+up(.1..0.3) size=.25..0.4 acc=drag(2)+buoy(.1) col=<.32,.3,.28> a=0>.1:.3>0 sz=$size*(.6>2) r=sprite(smoke-puff,alpha)
+pop lit burst=1 life=.18 at=point() r=light(<.8,.85,1>,10*(1>0),3.5)`;
 const DASH = `fx
 pop ghost burst=14 on=disc(.4) life=.35..0.6 v=up(.6..1.4)+sdir()*.4 size=.25..0.5 col=<.55,.6,.8> a=.5>0 sz=$size*(1>.4) acc=drag(2) r=sprite(smoke-puff,alpha)
 pop shards burst=10 life=.25..0.45 v=sdir()*(2..4) size=.03..0.05 col=hdr(1.5,1.7,2.5) a=1>0 r=sprite(shard,add,velocity,.03)`;
@@ -305,11 +310,19 @@ pop flare burst=1 life=.25 size=.6 col=${core} a=.9>0 sz=$size*(.3>1.2) r=sprite
 pop lamp burst=1 life=.3 at=point() r=light(${lit},16*(1>0),5)`;
 const ARROW = `fx
 pop shaft burst=1 life=%t|.3 v=<%dir|0,0,-1>*%sp|30 size=.05 col=<.9,.82,.62> a=1 sz=$size r=sprite(ember,alpha,velocity,.9)
-pop streak on=@shaft.lives(80) life=.12..0.22 size=.03..0.05 col=hdr(1.6,1.5,1.2)>hdr(.5,.5,.45) a=.6>0 sz=$size r=sprite(soft-disc,add)
-pop air on=@shaft.lives(25) life=.3..0.5 v=sdir()*.15 size=.1..0.16 acc=drag(2) col=<.75,.75,.8> a=0>.1:.12>0 sz=$size*(.6>1.6) r=sprite(smoke-puff,alpha)`;
+pop tip burst=1 life=%t|.3 v=<%dir|0,0,-1>*%sp|30 size=.22 col=hdr(.9,1.3,1.8) a=.5 sz=$size*flick(16,.25) r=sprite(soft-disc,add)
+pop streak on=@shaft.lives(90) life=.14..0.26 size=.03..0.05 col=hdr(1.4,1.7,2.2)>hdr(.35,.45,.6) a=.7>0 sz=$size*(1>.3) r=sprite(soft-disc,add)
+pop mote on=@shaft.lives(20) life=.4..0.8 v=sdir()*.3 size=.015..0.03 acc=curl(.8)+drag(1.2) col=hdr(1.6,2,2.6) a=(1>0)*flick(10,.4) r=sprite(mote,add)
+pop air on=@shaft.lives(25) life=.3..0.5 v=sdir()*.15 size=.1..0.16 acc=drag(2) col=<.75,.75,.8> a=0>.1:.12>0 sz=$size*(.6>1.6) r=sprite(smoke-puff,alpha)
+pop glow burst=1 life=%t|.3 v=<%dir|0,0,-1>*%sp|30 r=light(<.6,.75,1>,6,4)`;
+// the caster's circle: a ring of light on the floor that spins out and fades, motes rising off its edge
+const SIGIL = `fx
+pop ring burst=1 at=point() life=.6 size=1.6 col=<%c|1,1,1>*2.2 a=.7>.4:.5>0 sz=$size*(.5>1.1) r=sprite(soft-disc,add,ground)
+pop edge burst=22..28 on=arc(.78,6.283,.05) life=.45..0.8 v=up(.6..1.4) size=.02..0.04 acc=drag(1.2)+curl(.6) col=<%c|1,1,1>*3><%c|1,1,1>*.5 a=1>0 r=sprite(mote,add)
+pop lamp burst=1 life=.5 at=point() r=light(<%c|1,1,1>,6*(1>0),3.5)`;
 const ATK = {
   soulweaver:   { reach: 11, cd: 0.8, mul: 1.25, sp: 18, fx: BOLT("hdr(2.2,3.4,4.2)", "hdr(.4,.9,1.6)", "<.5,.8,1>"), castFx: CAST("hdr(2.2,3.4,4.2)", "<.5,.8,1>"), cast: "cdn/clip-cast.glb", snd: "arcane-bolt-cast-shimmering-whoosh", hit: "arcane-bolt-impact-glass-chime-burst", hitFx: "<.5,.85,1>" },
-  shadowmancer: { reach: 10, cd: 0.75, mul: 1.15, sp: 16, fx: BOLT("hdr(2.4,1.2,3.6)", "hdr(.6,.15,.9)", "<.7,.3,1>"), castFx: CAST("hdr(2.4,1.2,3.6)", "<.7,.3,1>"), cast: "cdn/clip-cast.glb", snd: "shadow-bolt-cast-hissing-whisper", hit: "shadow-bolt-impact-dark-thump-and-whispers", hitFx: "<.7,.3,1>" },
+  shadowmancer: { reach: 10, cd: 0.75, mul: 1.15, sp: 16, fx: BOLT("hdr(2.4,1.2,3.6)", "hdr(.6,.15,.9)", "<.7,.3,1>"), castFx: CAST("hdr(2.4,1.2,3.6)", "<.7,.3,1>"), sigil: { x: .7, y: .3, z: 1 }, cast: "cdn/clip-cast.glb", snd: "shadow-bolt-cast-hissing-whisper", hit: "shadow-bolt-impact-dark-thump-and-whispers", hitFx: "<.7,.3,1>" },
   gloamstalker: { reach: 14, cd: 0.65, mul: 1.05, sp: 32, fx: ARROW, arrow: true, cast: "cdn/clip-throw.glb", snd: "longbow-draw-creak-and-arrow-release-twang", hit: "arrow-thunk-into-flesh", hitFx: "<1,.8,.5>" },
   hellwarden:   { reach: 2.5, cd: 0.7, mul: 1.15, melee: true, snd: "heavy-mace-swing-whoosh-low" },
   primalist:    { reach: 2.4, cd: 0.6, mul: 1.05, melee: true, snd: "beast-claw-swipe-whoosh" },
@@ -336,18 +349,14 @@ function fireAt(ctx, foe, A, dmg, crit) {
   const time = Math.max(0.08, (d - fwd) / A.sp);
   ctx.emit("fx", { position: st, script: A.fx, params: { dir: { x: dx / d, y: dy / d, z: dz / d }, sp: A.sp, t: time } });
   if (A.castFx) ctx.emit("fx", { position: st, script: A.castFx });
+  if (A.castFx) ctx.emit("fx", { position: { x: f.x, y: f.y + 0.05, z: f.z }, script: SIGIL, params: { c: A.sigil ?? { x: .5, y: .8, z: 1 } } });
   if (A.arrow) flyArrow(ctx, st, { x: t.x - dx / d * 0.25, y: t.y + 1.1, z: t.z - dz / d * 0.25 }, time);
   ctx.after(time, "boltLand", { id: foe.id, dmg, crit, hit: A.hit, c: A.hitFx });
 }
 // the arrow itself: dark ash shaft, leaf iron head, three black fletches; it flies the line and is gone on the hit
 function flyArrow(ctx, from, to, time) {
   const id = ctx.spawn({ feetPosition: from, rotation: { lookAt: to, include: ["yaw", "pitch"] }, lifetime: time + 0.03, castShadow: false, interpolation: null,
-    children: [
-      { feetPosition: { x: 0, y: -0.012, z: 0.4 }, primitive: { kind: "box", width: 0.024, height: 0.024, depth: 0.8 }, material: { color: "#4a3826", roughness: 0.8 } },
-      { feetPosition: { x: 0, y: -0.022, z: -0.03 }, primitive: { kind: "box", width: 0.05, height: 0.044, depth: 0.1 }, material: { color: "#9a9894", metalness: 0.9, roughness: 0.3 } },
-      { feetPosition: { x: 0, y: -0.04, z: 0.72 }, primitive: { kind: "box", width: 0.006, height: 0.08, depth: 0.14 }, material: { color: "#1a1712" } },
-      { feetPosition: { x: 0, y: -0.003, z: 0.72 }, primitive: { kind: "box", width: 0.08, height: 0.006, depth: 0.14 }, material: { color: "#1a1712" } },
-    ] });
+    children: [{ primitive: { kind: "scripted", script: "scripts/gen/arrow.js" } }] });
   animate(ctx, id, { "feetPosition.x": to.x, "feetPosition.y": to.y, "feetPosition.z": to.z }, { duration: time, easing: "linear" });
 }
 // each ancestry's mark on its Bearer: the lantern's colour and a low aura that rides at the feet
@@ -364,14 +373,22 @@ pop gust rate=?mobile:2|4 on=disc(.5) life=.8..1.3 v=vortex(1.4)+up(.3..0.6) siz
 // the ranged callings' signature (RMB, the Crosswound slot, same Edge cost): each its own shape of harm
 const LANCE = `fx
 pop beam burst=1 life=.55 size=1 col=hdr(2.6,3.6,4.4) a=1>.6:.9>0 sz=$size*(1>.3) r=mesh(cylinder,.18,9,.18)
+pop sheath burst=1 life=.7 size=1 col=hdr(.5,1.1,1.9) a=.55>.3:.4>0 sz=$size*(.6>1.4) r=mesh(cylinder,.55,9,.55)
 pop rune burst=1 life=.7 size=3.4 col=hdr(1.2,2.2,3.2) a=.9>0 sz=$size*(.4>1) r=sprite(soft-disc,add)
+pop fall burst=26..34 on=disc(.4).c(8) life=.25..0.4 v=up(-22..-16) size=.03..0.06 col=hdr(3,3.8,4.6) a=1>0 sz=$size r=sprite(ember,add,velocity,.08)
 pop shard burst=30..40 on=disc(1.4) life=.5..1 v=up(3..7)+sdir()*1.2 size=.04..0.08 acc=grav()*.4+drag(1.2) col=hdr(2.4,3.4,4.2)>hdr(.4,.8,1.4) a=1>0 sz=$size r=sprite(ember,add,velocity,.05)
-pop glow burst=1 life=.6 at=point().c(1) r=light(<.55,.8,1>,40*(1>0),10)`;
+pop mote burst=16..22 on=disc(1.8) life=1.2..2 v=up(.3..0.8) size=.02..0.04 acc=curl(.9)+drag(.6) col=hdr(1.8,2.8,3.6)>hdr(.3,.6,1) a=(0>.15:1>0)*flick(7,.4) r=sprite(mote,add)
+pop dust burst=8..12 on=disc(.8) life=.9..1.5 v=radial(1.2..2.4)+up(.2..0.5) size=.4..0.7 acc=drag(2)+buoy(.15) col=<.42,.46,.52> a=0>.1:.3>0 sz=$size*(.6>2.4) rot=spin(.2) r=sprite(smoke-puff,alpha)
+pop glow burst=1 life=.9 at=point().c(1) r=light(<.55,.8,1>,40*(1>.25:.3>0),10)`;
 const DARKPOOL = `fx
-pop pool n=1 life=3 size=4.4 col=<.18,.04,.28> a=0>.1:.85>.85:.85>0 sz=$size r=sprite(soft-disc,alpha)
-pop tendril rate=?mobile:14|28 on=disc(2) life=.7..1.2 v=up(.8..1.8)+sdir()*.2 size=.08..0.16 acc=curl(1)+drag(1) col=hdr(1.4,.4,2.2)>hdr(.2,.05,.35) a=0>.15:.9>0 sz=$size*(1>.3) r=sprite(smoke-puff,add)
-pop eye rate=3 on=disc(1.6) life=.6..1 size=.05 col=hdr(3,1,4) a=0>.3:1>0 sz=$size r=sprite(soft-disc,add)
-pop glow n=1 life=3 at=point().c(.6) r=light(<.6,.25,1>,12,7)`;
+pop pool burst=1 life=3 size=4.4 col=<.18,.04,.28> a=0>.1:.85>.85:.85>0 sz=$size r=sprite(soft-disc,alpha)
+pop rim burst=1 life=3 size=4.6 col=hdr(.9,.25,1.5) a=0>.1:.5>.8:.5>0 sz=$size*(1+flick(3,.04)) r=sprite(soft-disc,add)
+pop tendril win=0;2.3 rate=?mobile:14|28 on=disc(2) life=.7..1.2 v=up(.8..1.8)+sdir()*.2 size=.08..0.16 acc=curl(1)+drag(1) col=hdr(1.4,.4,2.2)>hdr(.2,.05,.35) a=0>.15:.9>0 sz=$size*(1>.3) r=sprite(smoke-puff,add)
+pop hand win=0;2.3 rate=?mobile:3|6 on=disc(1.7) life=.8..1.3 v=up(1.2..2.2) size=.05..0.09 acc=curl(2.2)*1.4+drag(1.5) col=hdr(2,.6,3)>hdr(.3,.05,.5) a=0>.1:1>0 sz=$size r=sprite(ember,add,velocity,.12)
+pop pull win=0;2.3 rate=?mobile:10|20 on=disc(2.4).c(.2) life=.5..0.8 v=attract(4) size=.02..0.04 col=hdr(2.4,1,3.2) a=0>.2:1>0 sz=$size r=sprite(ember,add,velocity,.04)
+pop murk win=0;2.3 rate=?mobile:3|6 on=disc(1.8) life=1.4..2.2 v=up(.15..0.35) size=.6..1 acc=buoy(.2)+curl(.3)*.3+drag(1) col=<.08,.02,.12> a=0>.2:.45>0 sz=$size*(.6>1.8) rot=spin(.15) r=sprite(smoke-puff,alpha)
+pop eye win=0;2.3 rate=3 on=disc(1.6) life=.6..1 size=.05 col=hdr(3,1,4) a=0>.3:1>0 sz=$size r=sprite(soft-disc,add)
+pop glow burst=1 life=3 at=point().c(.6) r=light(<.6,.25,1>,12*flick(4,.25),7)`;
 function sigLance(ctx, s, f, aim) {
   const at = { x: aim.x, y: ctx.place.terrain?.heightAt?.(aim.x, aim.z) ?? f.y, z: aim.z };
   swingAnim(ctx, "cdn/clip-cast.glb");
@@ -441,11 +458,24 @@ function keystone(ctx, foe, dmg, crit) {
   ctx.emit("fx", { position: src, script: A.fx, params: { dir: { x: dx / d, y: dy, z: dz / d }, sp: A.sp, t: time } });
   ctx.after(time, "boltLand", { id: best.id, dmg: Math.max(1, Math.round(dmg * (k === "chain" ? 0.6 : 0.7))), crit: false, hit: A.hit, c: A.hitFx, nk: true });
 }
+// what a melee blow leaves on the foe: the primalist rakes three claw scores across it, the hellwarden's mace bursts embers
+const RAKE = `fx
+pop score burst=3 on=line(<-.25,0,0>,<.25,0,0>) life=.22 v=<0,-1,0>*5 size=.06 col=hdr(2.6,3,1.4) a=1>0 r=sprite(ember,add,velocity,.06)
+pop tear burst=14..20 on=sphere(.25) life=.25..0.5 v=sdir()*(1.5..3)+up(.5) size=.02..0.04 acc=grav()*.5+drag(1.8) col=hdr(2,2.4,1.1)>hdr(.5,.6,.2) a=1>0 r=sprite(ember,add,velocity,.04)
+pop fur burst=8..12 on=sphere(.2) life=.6..1 v=sdir()*(1..2)+up(.8) size=.04..0.07 spin=-8..8 acc=grav()*.4+drag(1.6) col=<.3,.24,.18> a=1>.6:1>0 sz=$size rot=$age*$spin r=sprite(chip,alpha)
+pop lit burst=1 life=.15 at=point() r=light(<.75,.95,.45>,7*(1>0),3)`;
+const CRUSH = `fx
+pop ember burst=20..28 on=sphere(.2) life=.3..0.7 v=sdir()*(2..4)+up(1) size=.02..0.05 acc=grav()*.7+drag(1.4) col=hdr(4,1.8,.4)>hdr(1.2,.3,.05) a=1>0 r=sprite(ember,add,velocity,.05)
+pop flash burst=1 life=.14 size=1.1 col=hdr(3,1.4,.4) a=.9>0 sz=$size*(.4>1.2) r=sprite(soft-disc,add)
+pop ash burst=4..6 on=sphere(.25) life=.7..1.2 v=sdir()*.6+up(.4) size=.25..0.4 acc=buoy(.3)+drag(1.4) col=<.2,.18,.17> a=0>.1:.35>0 sz=$size*(.6>2) rot=spin(.2) r=sprite(smoke-puff,alpha)
+pop lit burst=1 life=.2 at=point() r=light(<1,.5,.2>,12*(1>0),4)`;
 export function meleeLand(ctx, p) {
   const foe = ctx.getObject(p.id); if (!isFoe(foe) || (ctx.self.state.hp ?? 1) <= 0) return;
   const f = ctx.self.feetPosition, t = foe.feetPosition, d = Math.hypot(t.x - f.x, t.z - f.z);
   if (d > p.reach + 1.2) { ctx.emit("damageNumber", { position: { x: t.x, y: t.y + 1.6, z: t.z }, text: "miss", color: "#9b968a", size: 0.6 }, { audience: { player: ctx.self.id } }); return; }
   strike(ctx, foe, p.dmg, p.crit);
+  const hitFx = ctx.self.state.cls === "primalist" ? RAKE : ctx.self.state.cls === "hellwarden" ? CRUSH : null;
+  if (hitFx) ctx.emit("fx", { position: { x: t.x, y: t.y + 1.1, z: t.z }, script: hitFx });
   if (p.fin) {
     const dx = (t.x - f.x) / (d || 1), dz = (t.z - f.z) / (d || 1);
     ctx.emit("slash", { position: { x: t.x, y: t.y + 1.1, z: t.z }, size: 2.8, shape: "crescent", noise: 0.5 });
@@ -814,7 +844,7 @@ function crosswound(ctx) {
 }
 const GATHER = `fx
 pop mote burst=22 on=sphere(1.1) life=.24 v=attract(6) size=.03..0.06 col=hdr(3.2,1.3,.35) a=0>.3:1>0 r=sprite(ember,add,velocity,.02)
-pop glow n=1 at=point() life=.26 r=light(<1,.5,.2>,(0>1)*18,6)`;
+pop glow burst=1 at=point() life=.26 r=light(<1,.5,.2>,(0>1)*18,6)`;
 export function crosswoundFall(ctx, p) {
   const s = ctx.self.state, cw = C.crosswound, f = ctx.self.feetPosition, dx = p.dx, dz = p.dz;
   if ((s.hp ?? 1) <= 0) return;
@@ -838,9 +868,9 @@ export function crosswoundFall(ctx, p) {
 }
 // Furnace Sweep's arc of burning ground and Stormhorn's bolt from the sky
 const FURNACE = `fx
-pop flame rate=?mobile:45|90 on=arc(1.8,140) life=.5..0.9 v=up(1.6..2.8)+sdir()*.3 size=.55..0.95 acc=curl(.5)+buoy(1.6)+drag(1.4) sz=$size*(.5>1:.3>.2) col=hdr(4.4,2.6,.9)>hdr(2,.6,.1)>hdr(.5,.1,.02) a=0>.1:1>.7:.8>0 rot=spin(.3) win=0;1.8 r=sprite(flame-wisp,add)
+pop flame win=0;1.6 rate=?mobile:45|90 on=arc(1.8,140) life=.5..0.9 v=up(1.6..2.8)+sdir()*.3 size=.55..0.95 acc=curl(.5)+buoy(1.6)+drag(1.4) sz=$size*(.5>1:.3>.2) col=hdr(4.4,2.6,.9)>hdr(2,.6,.1)>hdr(.5,.1,.02) a=0>.1:1>.7:.8>0 rot=spin(.3) win=0;1.8 r=sprite(flame-wisp,add)
 pop smoke on=@flame?.15 life=1.2..2 size=.3..0.5 acc=buoy(.8)+drag(.8) sz=$size*(.7>2.4) col=<.2,.17,.15> a=0>.2:.3>0 r=sprite(smoke-puff,alpha)
-pop glow n=1 life=2.2 at=point().c(.5) r=light(<1,.5,.15>,22*(1>.6:.8>0),8)`;
+pop glow burst=1 life=2.2 at=point().c(.5) r=light(<1,.5,.15>,22*(1>.6:.8>0),8)`;
 const BOLTDOWN = `fx
 pop bolt burst=1 life=.18 size=1 col=hdr(3,3.6,5) a=1>0 r=mesh(cylinder,.06,8,.06)
 pop spark burst=20..28 on=sphere(.3).c(1) life=.2..0.5 v=sdir()*(2..5) size=.02..0.04 acc=grav()*.3+drag(2) col=hdr(3,3.4,4.6)>hdr(.6,.8,1.4) a=1>0 r=sprite(ember,add,velocity,.05)

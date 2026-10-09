@@ -86,12 +86,21 @@ function mutter(ctx, w, s, f, now, players) {
 }
 const MELT = `fx
 pop wax burst=20..28 on=disc(.35) life=.6..1.1 v=up(1.5..3)+sdir()*(1..2) size=.06..0.12 spin=-6..6 tint=oklch(.93 .04 88)..oklch(.8 .06 75) acc=grav()+drag(.6) col=$tint a=1>.8:1>0 sz=$size rot=$age*$spin floor=stick r=sprite(chip,alpha,velocity,.02)
+pop drip burst=10..14 on=disc(.3).c(.6) life=.5..0.9 v=up(.2)+sdir()*.3 size=.03..0.05 acc=grav() floor=stick col=hdr(2.6,1.6,.5)>oklch(.85 .05 80) a=1 r=sprite(soft-disc,add,velocity,.03)
+pop wick burst=8..12 on=disc(.25) life=.8..1.4 v=up(.8..1.6)+sdir()*.3 size=.02..0.035 acc=curl(.6)+buoy(.5)+drag(.6) col=hdr(3.4,1.8,.5)>hdr(1,.3,.06) a=1>.6:1>0 r=sprite(ember,add,velocity,.02)
 pop smoke burst=8 on=disc(.3) life=1.2..2 v=up(.6..1.2) size=.3..0.5 acc=buoy(.4)+drag(1) col=<.3,.28,.27> a=0>.3:.4>0 sz=$size*(.6>2.2) r=sprite(smoke-puff,alpha)
-pop out burst=1 life=.3 size=.5 col=hdr(3,1.6,.4) a=1>0 sz=$size*(1>.2) r=sprite(soft-disc,add)`;
+pop curl burst=3 on=disc(.15).c(.4) life=1.8..2.6 v=up(.5..0.9) size=.12..0.2 acc=curl(.8)*.6+buoy(.3)+drag(.8) col=<.55,.52,.5> a=0>.15:.35>0 sz=$size*(.6>3) rot=spin(.3) r=sprite(smoke-puff,alpha)
+pop out burst=1 life=.3 size=.5 col=hdr(3,1.6,.4) a=1>0 sz=$size*(1>.2) r=sprite(soft-disc,add)
+pop glow burst=1 life=.7 at=point() r=light(<1,.62,.3>,12*(1>0),5)`;
 const SLAM = `fx
 pop dust burst=30 on=disc(%r|3) life=.6..1.2 v=up(1..2.5)+sdir()*.8 size=.3..0.6 acc=drag(1.5)+buoy(.3) col=<.55,.5,.45> a=0>.4:.4>0 sz=$size*(.6>1.8) r=sprite(smoke-puff,alpha)
+pop roll burst=14..18 on=disc(.4) life=.8..1.4 v=radial(3..5)+up(.2..0.5) size=.4..0.7 acc=drag(2.2)+buoy(.15) col=<.42,.38,.34> a=0>.08:.45>0 sz=$size*(.5>2.2) rot=spin(.25) r=sprite(smoke-puff,alpha)
 pop wax burst=24 on=disc(.5) life=.5..0.9 v=sdir()*(3..6)+up(2..3) size=.05..0.1 col=oklch(.85 .12 60) acc=grav() a=1>0 floor=stick r=sprite(chip,alpha,velocity,.02)
-pop fl burst=1 life=.25 size=%r|3 col=hdr(3,1.2,.3) a=.8>0 sz=$size*(.5>2) r=sprite(soft-disc,add)`;
+pop stone burst=10..14 on=disc(.6) life=.8..1.3 v=radial(2..4)+up(3..5) size=.07..0.14 spin=-10..10 acc=grav() floor=bounce(.3) col=<.3,.28,.27> a=1>.7:1>0 sz=$size rot=$age*$spin r=sprite(chip,alpha)
+pop ember burst=16..22 on=disc(.8) life=.5..1 v=up(1.5..3)+sdir()*(1..2) size=.02..0.04 acc=grav()*.5+drag(1) col=hdr(3.4,1.4,.35)>hdr(.9,.25,.05) a=1>0 r=sprite(ember,add,velocity,.03)
+pop ring burst=1 life=.35 size=%r|3 col=hdr(2.4,1.3,.5) a=.9>0 sz=$size*(.3>2.4) r=sprite(soft-disc,add)
+pop fl burst=1 life=.25 size=%r|3 col=hdr(3,1.2,.3) a=.8>0 sz=$size*(.5>2) r=sprite(soft-disc,add)
+pop heat burst=1 life=.45 at=point().c(.5) r=light(<1,.55,.25>,30*(1>0),9)`;
 // coins hop out of the corpse: glinting metal that bounces on the flagstones; count and height scale with the purse
 const SPILL = (n, lo, hi) => `fx
 pop coin burst=${n} on=disc(.3) life=.8..1.2 v=up(${lo}..${hi})+sdir()*(.6..1.5) size=.07..0.11 spin=-14..14 acc=grav() col=hdr(2.2,1.6,.6) a=1>.8:1>0 sz=$size rot=$age*$spin floor=bounce(.3) r=sprite(chip,add,velocity,.02)
@@ -184,11 +193,15 @@ pop frost burst=10..14 on=sphere(.4) life=1.2..2 v=sdir()*.6+up(.4) size=.4..0.8
 pop chill burst=1 life=.6 at=point() r=light(<.55,.8,1>,14*(1>0),6)`;
 const CRUMBLE = `fx
 pop cinder burst=40..55 on=box(.35,.8,.35) life=1..1.8 v=up(.4..1.2)+sdir()*.5 size=.03..0.07 acc=curl(.6)+buoy(.4)+drag(.8) col=hdr(3,1.2,.3)>hdr(.8,.2,.05)><.1,.08,.07> a=1>.6:1>0 sz=$size r=sprite(ember,add,velocity,.03)
+pop flake burst=14..20 on=box(.3,.8,.3) life=1.2..2 v=sdir()*.6+up(.3) size=.04..0.08 spin=-5..5 acc=grav()*.3+curl(.5)+drag(1) col=<.12,.1,.1> a=1>.7:1>0 sz=$size rot=$age*$spin floor=stick r=sprite(chip,alpha)
 pop ash burst=12..16 on=box(.3,.7,.3) life=1.4..2.4 v=sdir()*.4 size=.3..0.6 acc=grav()*.15+drag(1.2) col=<.22,.2,.19> a=0>.1:.5>0 sz=$size*(.6>1.6) rot=spin(.2) r=sprite(smoke-puff,alpha)
-pop glow burst=1 life=.8 at=point() r=light(<1,.45,.15>,10*(1>0),5)`;
+pop pyre burst=10..14 on=disc(.3) life=.4..0.8 v=up(1.2..2.2) size=.25..0.45 acc=curl(.4)+buoy(1.2) col=hdr(3,1.4,.3)>hdr(1.2,.35,.06) a=0>.15:.9>0 sz=$size*(.7>.2) rot=spin(.2) r=sprite(flame-wisp,add)
+pop glow burst=1 life=1.2 at=point() r=light(<1,.45,.15>,14*(1>.6:.7>0),6)`;
 const GORE = `fx
 pop spray burst=18..26 on=sphere(.2) life=.4..0.8 v=sdir()*(1.5..3.2)+up(1.2) size=.04..0.08 acc=grav() floor=stick col=<.25,.03,.03> a=1 sz=$size r=sprite(soft-disc,alpha)
-pop dust burst=6..9 on=disc(.5) life=.8..1.3 v=up(.3..0.7)+sdir()*.4 size=.4..0.7 acc=drag(1.4)+buoy(.2) col=<.32,.28,.24> a=0>.1:.35>0 sz=$size*(.6>1.7) rot=spin(.2) r=sprite(smoke-puff,alpha)`;
+pop mist burst=6..8 on=sphere(.25) life=.3..0.6 v=sdir()*(.6..1.2) size=.25..0.4 acc=drag(2.5) col=<.35,.04,.04> a=0>.1:.4>0 sz=$size*(.5>1.6) r=sprite(smoke-puff,alpha)
+pop chunk burst=4..7 on=sphere(.2) life=.6..1 v=sdir()*(1..2)+up(1.5..2.5) size=.06..0.1 spin=-9..9 acc=grav() floor=stick col=<.2,.04,.04> a=1 sz=$size rot=$age*$spin r=sprite(chip,alpha)
+pop dust burst=6..9 on=disc(.5).c(-.85) life=.8..1.3 v=up(.3..0.7)+sdir()*.4 size=.4..0.7 acc=drag(1.4)+buoy(.2) col=<.32,.28,.24> a=0>.1:.35>0 sz=$size*(.6>1.7) rot=spin(.2) r=sprite(smoke-puff,alpha)`;
 const UNRIG = new Set(["rimewolf", "harpy", "rootmother", "broodmother"]); // models.js bodies cooked without a rig
 export function update(ctx, dt) {
   const now = ctx.now(), ears = ctx.place.players.filter((p) => !p.state.menu), players = ears.filter((p) => !p.state.dead && !safe(p.feetPosition));
@@ -198,7 +211,7 @@ export function update(ctx, dt) {
     // bodies with no skeleton have no clips to play: they breathe as one mass and coil before a blow
     if (UNRIG.has(s.kind) && !s.dead && !s.breathing) { s.breathing = true; const sc = w.scale, b = typeof sc === "number" ? sc : (sc?.y ?? 1), bx = typeof sc === "number" ? sc : (sc?.x ?? 1), bz = typeof sc === "number" ? sc : (sc?.z ?? 1);
       animate(ctx, w, { "scale.y": [b, b * 1.04, b], "scale.x": [bx, bx * 0.985, bx], "scale.z": [bz, bz * 0.985, bz] }, { duration: 1.6 + ctx.random() * 0.6, loop: true, easing: "easeInOutSine" }); }
-    if (s.dead) { w.velocity = { x: 0, y: w.velocity.y, z: 0 }; mutterAt.delete(w.id); if (now - s.deadAt > (s.corpse ? 7000 : 2300)) ctx.destroy(w.id); continue; }
+    if (s.dead) { w.velocity = { x: 0, y: fall(w, dt), z: 0 }; mutterAt.delete(w.id); if (now - s.deadAt > (s.corpse ? 7000 : 2300)) ctx.destroy(w.id); continue; }
     if (s.animOff && now > s.animOff) { w.anim.attack = null; s.animOff = 0; }
     if (s.hitUntil && now > s.hitUntil) { w.anim.hit = null; s.hitUntil = 0; }
     if (s.hp <= 0) {
@@ -278,6 +291,8 @@ export function update(ctx, dt) {
       if (d > 0.6) { vx = ((s.roam.x - f.x) / d) * 0.7; vz = ((s.roam.z - f.z) / d) * 0.7; const yaw = (Math.atan2(-vx, -vz) * 180) / Math.PI; if (Math.abs(((yaw - (s.yawW ?? 0) + 540) % 360) - 180) > 8) { s.yawW = yaw; w.rotation = yaw; } }
     }
     if (flat(f, CAMP) < SAFE + 1 && (vx || vz)) { const ox = f.x - CAMP.x, oz = f.z - CAMP.z, ol = Math.hypot(ox, oz) || 1; if ((vx * ox + vz * oz) < 0) { vx = (ox / ol) * 1.5; vz = (oz / ol) * 1.5; } }
-    w.velocity = { x: vx, y: w.velocity.y, z: vz };
+    w.velocity = { x: vx, y: fall(w, dt), z: vz };
   }
 }
+// a body off the ground falls: nothing else pulls a scripted walker down, so a shove or a bad spawn left it hanging
+function fall(w, dt) { const vy = w.velocity?.y ?? 0; return w.grounded ? vy : Math.max(-28, vy - 20 * dt); }

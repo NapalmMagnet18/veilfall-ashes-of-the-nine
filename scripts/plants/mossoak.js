@@ -88,6 +88,17 @@ export function geometry(ctx) {
       ctx.tri(X + kx - cx * 0.7, m, Z + kz - cz * 0.7, X + kx + cx * 0.7, m, Z + kz + cz * 0.7, X - kx * 0.5, y - len, Z - kz * 0.5);
     }
   }
+  // fine twigs: every bough end splits into a fan of thin forked sprigs, the crown's silhouette against the sky
+  if (lod <= 2) { ctx.color("oklch(0.27 0.014 58)");
+    const twig = (a, b, w0, w1) => { const dx = b[0] - a[0], dz = b[2] - a[2], L = Math.hypot(dx, dz) || 1, ux = -dz / L, uz = dx / L;
+      ctx.quad(a[0] - ux * w0, a[1], a[2] - uz * w0, a[0] + ux * w0, a[1], a[2] + uz * w0, b[0] + ux * w1, b[1], b[2] + uz * w1, b[0] - ux * w1, b[1], b[2] - uz * w1);
+      ctx.quad(a[0], a[1] - w0, a[2], a[0], a[1] + w0, a[2], b[0], b[1] + w1, b[2], b[0], b[1] - w1, b[2]); };
+    for (const t of out.tips) for (let k = 0, n = lod <= 1 ? 4 : 2; k < n; k++) {
+      const a = r() * 6.283, l = 0.18 + r() * 0.3, m = [t[0] + Math.cos(a) * l * 0.55, t[1] + (r() - 0.2) * l * 0.5, t[2] + Math.sin(a) * l * 0.55];
+      const e = [m[0] + Math.cos(a + (r() - 0.5)) * l * 0.45, m[1] + (r() - 0.3) * l * 0.4, m[2] + Math.sin(a + (r() - 0.5)) * l * 0.45];
+      twig(t, m, 0.012, 0.006); twig(m, e, 0.006, 0.0015);
+      if (lod <= 1 && r() < 0.5) { const b2 = a + (r() < 0.5 ? 0.8 : -0.8); twig(m, [m[0] + Math.cos(b2) * l * 0.35, m[1] + l * 0.15, m[2] + Math.sin(b2) * l * 0.35], 0.005, 0.0012); }
+    } }
   // the last leaves: ember-red and old-gold clusters clinging at a third of the twig tips
   for (const [x, y, z] of out.tips) {
     if (r() > 0.35) continue;

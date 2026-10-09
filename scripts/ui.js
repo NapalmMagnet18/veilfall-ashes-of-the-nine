@@ -9,7 +9,9 @@ import { boardPanel } from "./lib/board-ui.js";
 import R from "./lib/data/realms.yml";
 import { FRAME_CSS } from "./lib/frames.js";
 import CB from "./lib/data/combat.yml";
-import cinemaPanel from "../mods/absolute-cinema/lib/ui-cinema.js";
+// the film-editor panel (117 KB) is fetched the first time a Bearer opens it, never before standing
+let cinemaPanel = null, cinemaAsked = false;
+const wantCinema = () => { if (cinemaAsked) return; cinemaAsked = true; import("../mods/absolute-cinema/lib/ui-cinema.js").then((m) => { cinemaPanel = m.default; }).catch(() => { cinemaAsked = false; }); };
 import { renderCinemaOverlays } from "../mods/absolute-cinema/lib/ui-cinema-overlays.js";
 const STAGES = [
   ["Pilgrims in White", "Speak with Maelin at the Wayside Fire"],
@@ -269,9 +271,17 @@ const CHRONICLE = [
   ["V", "The Ossuary of Saint Ysolde", "Down the Bone Stair. Take her candle.", false, "/cdn/value.1a38646aae6877aa6c9b7845ba9905c1045dca51f41779fe0f0eede0f5b491d1.png"],
   ["VI", "Candlehold", "The last walled city. The Exchange keeps its ledgers.", true, "/cdn/value.492e4cea5c972b7a5b7b2eb399dbe1b59c4e31165dcabb65024f6575eb5bcf33.png"],
 ];
-const VERSION = "0.15.0 · WET STONE";
+const VERSION = "0.17.1 · RIMEWOOD";
 // what changed, newest first: [version, title, date, [lines]]
 const NOTES = [
+  ["0.17.1", "Rimewood", "Oct 9", ["Woods planted across the realm: ash oaks and lantern snags on the road, drowned cypress in Lanternmere, snow pines, frost birches and ice snags ringing the Vale, cave cover in the Ossuary and the Deep", "Melee swings carve a steel crescent of sparks, wind and dust", "Enemy slams crack the ground: shock ring, flying stone, embers and a flash of heat", "Deaths by kind: wax gutters out in smoke, ash-dead burn to embers, flesh spatters", "Gloamstalker arrows trail a cold moonlit streak", "Casters flash a rune ring at their feet on every cast", "Primalist claws rake three scores, the Hellwarden mace bursts embers on every blow", "Wisps drift through Lanternmere and the Frostbitten Vale", "Vale and Deep re-walked: trees and crystals cleared from paths and fighting ground", "Shadow pool, gather and Furnace Sweep effects now end on a set timer"]],
+  ["0.17.0", "Witchlight", "Oct 9", ["Holy lance falls as a sheathed column of light with a shock ring, falling sparks and lingering motes", "Shadow pool grows a breathing rim, grasping hands, motes pulled into the dark and rolling murk", "Zone tree and floor kits for road, fen, vale and caves in the works"]],
+  ["0.16.0", "Crimson Boughs", "Oct 9", [
+    ["Blood Woods", "Twenty-two new trees root along the woods: blood oaks with sap-split bark, weeping willows trailing red, and bare antler snags. Every bough sways in the night wind."],
+    ["The Hanging Orchard", "Gnarled black-apple trees ring the Orchard, heavy with scarlet-sapped fruit, and pilgrims have left lanterns burning in their low boughs."],
+    ["Forest Floor", "Damp rust and maroon leaf drifts on dark mulch, red ferns, hooked thorns, roots, shelf fungus, stumps and old bones carpet both woods, kept low where the wolves hunt."],
+    ["Gothic Lampposts", "Every wayside and Candlehold lamp is reforged in wrought iron: a clawed plinth, a fluted post with riveted collars, a spiked crown, a curled scroll arm and a chained lantern above melted pilgrim wax."],
+    ["Stone & Smoother Woods", "Boulders are carved with moss, lichen and scattered stones, the woods' ground draws lighter for smoother frames, and the film editor loads only when you open it."]]],
   ["0.13.1", "Sharper Stone", "Oct 9", [
     ["HD Road & Walls", "The pilgrim road's flagstones, the soot-stained ashlar of every ruin and wall, the ash-dirt ground, rusted iron, rotten planks, candle wax, leather, bone, burial cloth, slate roofs, charred oak, granite, oak planks, moss and wrought iron are repainted at twice the resolution."],
     ["Dead Oaks", "The road's oaks grow buttress roots, furrowed bark, split crowns, last ember leaves and glowing shelf fungus."],
@@ -712,6 +722,6 @@ const SHEET_CSS = `<style>${UF_CSS}
 export default function (ctx, player) {
   const base = vfHud(ctx, player) + SHEET_CSS;
   let cine = "";
-  try { cine = renderCinemaOverlays(player) + (player?.state?.cinemaOpen ? cinemaPanel(player, ctx.world) : ""); } catch (e) { cine = ""; }
+  try { cine = renderCinemaOverlays(player) + (player?.state?.cinemaOpen ? (cinemaPanel ? cinemaPanel(player, ctx.world) : (wantCinema(), "")) : ""); } catch (e) { cine = ""; }
   return base + cine;
 }

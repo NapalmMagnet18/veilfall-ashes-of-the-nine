@@ -50,7 +50,7 @@ export function onSpawn(ctx) {
 export function update(ctx, dt) {
   const s = ctx.self.state, now = ctx.now(), self = ctx.self, f = self.feetPosition;
   const here = players(ctx);
-  if (s.dead) { self.velocity = { x: 0, y: self.velocity.y, z: 0 }; return; }
+  if (s.dead) { self.velocity = { x: 0, y: (self.grounded ? (self.velocity.y ?? 0) : Math.max(-28, (self.velocity.y ?? 0) - 0.66)), z: 0 }; return; }
   if (s.hp <= 0) {
     s.dead = true; s.deadAt = now; bossVoice(ctx, "abbess", "die", f); s.engaged = false; s.cast = null; clearAdds(ctx);
     ctx.emit("slowMo", { scale: 0.3, duration: 1.4 }, { audience: { place: self.place } });
@@ -104,7 +104,7 @@ export function update(ctx, dt) {
     ctx.emit("playSound", { clip: sfx("bones-sliding-out-of-stone-niches-and-wax-cracking"), position: f, volume: 0.9, maxDistance: 50 });
   }
   publish(ctx);
-  if (!s.engaged) { const d = flat(f, HOME); self.velocity = d > 1 ? { x: ((HOME.x - f.x) / d) * 2.4, y: self.velocity.y, z: ((HOME.z - f.z) / d) * 2.4 } : { x: 0, y: self.velocity.y, z: 0 }; return; }
+  if (!s.engaged) { const d = flat(f, HOME); self.velocity = d > 1 ? { x: ((HOME.x - f.x) / d) * 2.4, y: (self.grounded ? (self.velocity.y ?? 0) : Math.max(-28, (self.velocity.y ?? 0) - 0.66)), z: ((HOME.z - f.z) / d) * 2.4 } : { x: 0, y: (self.grounded ? (self.velocity.y ?? 0) : Math.max(-28, (self.velocity.y ?? 0) - 0.66)), z: 0 }; return; }
   let prey = null, best = 99;
   for (const p of here) { const d = flat(p.feetPosition, f); if (d < best) { best = d; prey = p; } }
   let vx = 0, vz = 0;
@@ -161,5 +161,5 @@ export function update(ctx, dt) {
       ctx.emit("playSound", { clip: sfx("heavy-bone-staff-swing-whoosh-and-rattle"), position: f, volume: 0.8, maxDistance: 40 });
     }
   }
-  self.velocity = { x: vx, y: self.velocity.y, z: vz };
+  self.velocity = { x: vx, y: (self.grounded ? (self.velocity.y ?? 0) : Math.max(-28, (self.velocity.y ?? 0) - 0.66)), z: vz };
 }

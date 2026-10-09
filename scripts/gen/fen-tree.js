@@ -4,7 +4,7 @@ import { kit, rng, V } from "./vf-kit.js";
 import { TX, strand } from "./fen-kit.js";
 export function geometry(ctx) {
   const p = ctx.params, L = ctx.lod, K = kit(ctx), r = rng(p.seed ?? 1), h = p.h ?? 5, g = p.girth ?? 1;
-  ctx.flat(); ctx.albedo(TX.bark); ctx.roughness(0.9); ctx.metalness(0); ctx.color("oklch(.62 .012 95)");
+  if (L <= 2) ctx.smooth(); else ctx.flat(); ctx.albedo(TX.bark); ctx.roughness(0.9); ctx.metalness(0); ctx.color("oklch(.62 .012 95)");
   const n = L <= 2 ? 6 : 4, sl = h / n, sides = L <= 2 ? 7 : 5;
   let dir = V.norm([(r() - 0.5) * 0.3, 1, -(p.lean ?? 0.25)]), pos = [0, -0.1, 0];
   const spine = [pos];
@@ -18,6 +18,7 @@ export function geometry(ctx) {
   const limb = (p0, d, len, rr, dep) => {
     let q = p0, dd = d;
     for (let s = 0; s < 2; s++) { dd = V.norm(V.add(dd, [(r() - 0.5) * 0.7, -0.08 + (r() - 0.5) * 0.3, (r() - 0.5) * 0.7])); const q2 = V.add(q, V.mul(dd, len / 2)); K.tube(q, q2, rr * (1 - s * 0.35), rr * (1 - (s + 1) * 0.35), Math.max(4, sides - 2)); q = q2; tips.push(q); }
+    if (dep === 0 && L <= 2) for (let k = 0, m = L <= 1 ? 3 : 2; k < m; k++) { const tl = 0.3 + r() * 0.45, d1 = V.norm(V.add(dd, [(r() - 0.5) * 1.5, (r() - 0.3) * 0.6, (r() - 0.5) * 1.5])), m1 = V.add(q, V.mul(d1, tl * 0.55)), e1 = V.add(m1, V.mul(V.norm(V.add(d1, [(r() - 0.5) * 0.9, -0.15, (r() - 0.5) * 0.9])), tl * 0.45)); K.tube(q, m1, 0.02, 0.01, 4); K.tube(m1, e1, 0.01, 0.003, 3, true); }
     if (dep > 0 && L <= 3) for (let k = 0; k < 2; k++) limb(q, V.norm(V.add(dd, [(r() - 0.5) * 1.3, 0.3, (r() - 0.5) * 1.3])), len * 0.6, rr * 0.5, dep - 1);
   };
   for (let i = 2; i <= n; i++) for (let k = 0, m = i === n ? 3 : 1 + (r() < 0.5 ? 1 : 0); k < m; k++) {
