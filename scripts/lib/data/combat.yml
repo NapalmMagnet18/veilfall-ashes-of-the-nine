@@ -6,7 +6,9 @@ pilgrim: { hp: 40, dmg: 4, every: 1.7, speed: 2.6, aggro: 13, reach: 1.6, xp: 12
 chorister: { hp: 75, dmg: 9, every: 1.4, speed: 3.1, aggro: 15, reach: 1.9, xp: 28 }
 flagellant: { hp: 95, dmg: 12, every: 1.2, speed: 3.4, aggro: 16, reach: 2.4, xp: 36 }
 # the Tallow Chandler: the road mini boss before the Dripping Gate. Cleaver swings up close, a candle-burst slam when you back off
-chandler: { hp: 520, dmg: 26, slamRadius: 4, windup: 1.0, every: 5, swings: true, swingDmg: 14, swingEvery: 1.6, speed: 2.4, aggro: 15, reach: 2.4, xp: 180, respawn: 180 }
+chandler: { hp: 520, dmg: 26, slamRadius: 4, windup: 1.0, every: 5, swings: true, swingDmg: 14, swingEvery: 1.6, speed: 2.4, aggro: 15, reach: 2.4, xp: 180, respawn: 180, summon: pilgrim }
+# the Hollow Cantor: mini boss among the choristers. Claw rakes up close, a scream-burst when you back off, calls her choir at half hp
+cantor: { hp: 680, dmg: 30, slamRadius: 4.5, windup: 1.1, every: 5.5, swings: true, swingDmg: 16, swingEvery: 1.5, speed: 2.6, aggro: 16, reach: 2.2, xp: 240, respawn: 180, summon: chorister, summonText: "SING WITH US", summonSfx: "three-voiced-choir-mistress-shrieks-a-chord-and-wax-choirboys-rise-from-stone" }
 deacon: { hp: 170, dmg: 20, slamRadius: 3, windup: 1.2, every: 4, speed: 1.8, aggro: 14, xp: 60 }
 bailiff: { hp: 900, perExtra: 0.55, arcDmg: 26, arcRadius: 5.5, arcAngle: 120, arcWindup: 0.8, debtDmg: 22, debtDelay: 3, debtWidth: 1.3, pauseA: 3.2, pauseB: 2.4, recoverC: 1.0, ledgerHp: 120, ledgerSpawnEvery: 9, fray: 0.1, frayEvery: 6, frayMax: 5, swingDmg: 10, xp: 400, resetAfter: 6 }
 ringer: { hp: 1300, perExtra: 0.55, knellDmg: 28, knellR: 4.5, knellWind: 1.1, pealDmg: 20, pealR: 2.2, pealWind: 1.3, pauseA: 2.6, pauseB: 2.0, recoverC: 1.2, addEvery: 14, swingDmg: 12, xp: 600, resetAfter: 6 }

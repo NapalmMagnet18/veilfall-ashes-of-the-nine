@@ -11,8 +11,9 @@ export const MODELS = {
   hangman: "/cdn/value.360bbb4a7f85870468a183260891a4bc4e0198b1f208703353a0039d9eacc5b8.png.glb",
   abbess: "/cdn/value.d5b390dd32a79026a2b3575537b4bc164d63062114d1e7cee294eaaf9a625c7f.png.glb",
   chandler: "/cdn/value.5b3ec5f76c2589621d55c384cbb60a0be3fd09c64b61ad47fc266244249a98cb.png.glb",
+  cantor: "/cdn/value.476a8d830efb551ad2df8777cdfdef35f58be2c8a9454638437d04f1b50f42ea.png.glb",
   bailiff: "/cdn/value.0fff9f3b6085fcd9ee851d61b5e8e32b7c7ea83f47e46f7e7a72d18d3e7e3438.png.glb",
 };
 // true height in metres before the row's own scale
-export const HEIGHT = { hero: 1.85, pilgrim: 1.7, walker: 1.7, deacon: 1.8, chorister: 1.95, flagellant: 1.8, bailiff: 2.0, chandler: 2.9, ringer: 2.2, warden: 2.4, hangman: 2.5, abbess: 2.6 };
+export const HEIGHT = { hero: 1.85, pilgrim: 1.7, walker: 1.7, deacon: 1.8, chorister: 1.95, flagellant: 1.8, bailiff: 2.0, chandler: 2.9, cantor: 3.0, ringer: 2.2, warden: 2.4, hangman: 2.5, abbess: 2.6 };
 export const body = (k) => ({ model: MODELS[k], layout: { maxExtents: { y: HEIGHT[k] } } });
