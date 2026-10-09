@@ -125,6 +125,7 @@ function menuInput(ctx, d) {
     case "title": s.menu = "title"; s.confirmDel = null; click(ctx, 0.85); break;
     case "realms": s.menu = "realms"; click(ctx); refresh(ctx); break;
     case "options": s.menu = "options"; click(ctx); break;
+    case "notes": s.menu = "notes"; click(ctx); break;
     case "opt": { const OPT = { scale: [0.85, 1, 1.15, 1.3], hoverSfx: [true, false], embers: [true, false], tracker: [true, false] }; const o = s.opt ?? {}; const list = OPT[d.v]; if (list) { const cur = o[d.v] ?? list[d.v === "scale" ? 1 : 0]; s.opt = { ...o, [d.v]: list[(list.indexOf(cur) + 1) % list.length] }; click(ctx, 1.1); } break; }
     case "chars": s.menu = "chars"; s.confirmDel = null; click(ctx); refresh(ctx); break;
     case "realm": {

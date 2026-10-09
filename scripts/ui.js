@@ -232,7 +232,22 @@ const CHRONICLE = [
   ["V", "The Ossuary of Saint Ysolde", "Down the Bone Stair. Take her candle.", false, "/cdn/value.b6a6c4bee6be2736fec3fd5860ead524d72b84ff480b162a209ffc92c7f0c464.png"],
   ["VI", "Candlehold", "The last walled city. The Exchange keeps its ledgers.", true, "/cdn/value.38ae26e1659a5e6f4ff2b2d4270a529681fc2e1b5af4fb3a7693086f78166e47.png"],
 ];
-const VERSION = "0.11 · BLOSSOM & BLADE";
+const VERSION = "0.12 · THE PILGRIM ROADS";
+// what changed, newest first: [version, title, date, [lines]]
+const NOTES = [
+  ["0.12", "The Pilgrim Roads", "Oct 9", [
+    ["Wayshrines", "Three travel stones wake at your touch: the Wayside Fire, Candlehold's gate and the Abbey yard. Blink between any you've lit for 10 copper."],
+    ["The Candlehold Vault", "Dame Maudry Quill keeps a stash for every Bearer. 18 slots, with more shelves to rent for 50s, 2g and 5g."],
+    ["Guild Chest", "One shared chest per guild per realm, under a teal banner beside the vault."],
+    ["Blossom Avenue", "Pilgrims' Way is lined with emberblossoms, lantern lilies and bell spires, and petals fall on the road to the capital."]]],
+  ["0.11", "Blossom & Blade", "Oct 9", [
+    ["Ser Hollin Vey", "The Bladewraith trainer stands in Candlehold square. Copper buys ranks of Crosswound, Griefstep and Afterimage Guard as you level."],
+    ["Emberblossoms", "Four blossom trees ring the fountain, and bellspires, starblooms and lantern lilies spread through the grass."],
+    ["The Abbess's Candle", "Carry her wax and the braziers you pass gutter cold blue."]]],
+  ["0.10", "Candlehold", "Oct 8", [
+    ["The Capital", "Candlehold rises south of the Wayside Fire along Pilgrims' Way, with a walled square, a fountain and the Exchange."],
+    ["The Exchange", "The realm's trade board, shared with the camp's Pilgrims' Board."]]],
+];
 // the painting behind the menu: where the chosen Bearer will wake
 const zoneArt = (z = "") => /ossuar|bone|crypt|nave|abbey/i.test(z) ? "/cdn/value.b6a6c4bee6be2736fec3fd5860ead524d72b84ff480b162a209ffc92c7f0c464.png" : /candle|pilgrim|fire|wayside/i.test(z) || !z ? "/cdn/value.38ae26e1659a5e6f4ff2b2d4270a529681fc2e1b5af4fb3a7693086f78166e47.png" : "/cdn/value.8b2fa0e0b93048049083a83e5dde8dd39352ef8c91625b3ef4b6f1989382dac6.png";
 const head = (s) => `${MSTYLE}${MX}${FRAME_CSS}${VT}${VM2}<div id="vm"><div class="veil" style="background:radial-gradient(ellipse at 50% 50%,transparent 30%,rgba(6,7,12,.45) 65%,rgba(4,4,8,.85))"></div>`;
@@ -252,11 +267,30 @@ function menu(ctx, player, s) {
       <button class="it ${last ? "" : "main"}" onmouseenter="${HOV}" onclick="${act("chars")}">${last ? "Bearers" : "Enter the Veil"}<span class="sub">${last ? "choose another, or write a new name" : "write your first Bearer"}</span></button>
       <button class="it" onmouseenter="${HOV}" onclick="${act("realms")}">Realms<span class="sub">${realmName(here)} · ${R.realms.length} roads</span></button>
       <button class="it" onmouseenter="${HOV}" onclick="${act("options")}">Options<span class="sub">interface, sound, the shrine</span></button>
+      <button class="it" onmouseenter="${HOV}" onclick="${act("notes")}">Patch Notes<span class="sub">${VERSION.toLowerCase()} · what's new on the road</span></button>
     </div>
     <div class="chron"><h4>THE CHRONICLE</h4>${CHRONICLE.map(([n, t, d, nw, art]) => `<div class="ch ${nw ? "new" : ""}" style="display:flex;gap:8px;align-items:center"><div class="n">${n}</div><div><div class="tt">${t}</div><div class="dd">${d}</div></div>${art ? `<div class="art" style="background-image:url(${art})"></div>` : ""}</div>`).join("")}</div>
     <div class="quote">"Every book in this place is a person who no longer knows what they lost."</div>
     <div class="foot"><span class="dot"></span><b>${realmName(here).toUpperCase()}</b> · ONLINE · VEILFALL ${VERSION}</div>
   </div>${tail(s, now)}`;
+  }
+
+  if (s.menu === "notes") {
+    return `${head(s)}<style>
+#vm .pn{position:absolute;left:50%;top:50%;transform:translate(-50%,-48%);width:min(640px,calc(100vw - 140px));max-height:calc(100vh - 60px);display:flex;flex-direction:column;animation:vmin .45s}
+#vm .pn .h1{font-size:40px;text-align:center}
+#vm .pnb{pointer-events:auto;overflow:auto;margin-top:14px;padding:6px 24px 18px;background:linear-gradient(180deg,rgba(24,19,16,.95),rgba(11,9,8,.93));box-shadow:inset 0 0 0 1px rgba(196,156,99,.3),inset 0 0 0 5px rgba(0,0,0,.5),inset 0 0 0 6px rgba(196,156,99,.16),0 10px 30px rgba(0,0,0,.6)}
+#vm .pv{display:flex;align-items:baseline;gap:12px;margin:18px 0 6px;padding-bottom:6px;border-bottom:1px solid rgba(196,156,99,.25)}
+#vm .pv b{font-family:'VCinzel',serif;font-size:13px;letter-spacing:.2em;color:#8f7d5c} #vm .pv span{font-family:'VCinzel',serif;font-weight:700;font-size:20px;color:#e7d9b8;letter-spacing:.05em;flex:1} #vm .pv i{font-size:12px;color:#6b5c44}
+#vm .pv.cur span{color:#f2d38a;text-shadow:0 0 12px rgba(255,150,60,.35)} #vm .pv.cur b{color:#d9a25a}
+#vm .pl{display:flex;gap:10px;padding:6px 0} #vm .pl:before{content:"✦";color:#ac4c42;font-size:10px;margin-top:4px}
+#vm .pl .t{font-family:'VCinzel',serif;font-size:14px;color:#e0c590;letter-spacing:.04em} #vm .pl .d{font-size:14px;color:#a8977a;line-height:1.4}
+@media (pointer:coarse),(max-width:760px),(max-height:520px){#vm .pn{top:8px;transform:translateX(-50%);width:calc(100vw - 90px);max-height:calc(100vh - 16px)} #vm .pn .h1,#vm .pn .lbl.t{display:none}}
+</style>
+    <div class="pn"><div class="lbl t" style="text-align:center">The Lantern Shrine</div><div class="h1 gold">PATCH NOTES</div><div class="dv df5"></div>
+      <div class="pnb">${NOTES.map(([v, t, d, lines], i) => `<div class="pv ${i ? "" : "cur"}"><b>${v}</b><span>${t}</span><i>${d}</i></div>${lines.map(([lt, ld]) => `<div class="pl"><div><div class="t">${lt}</div><div class="d">${ld}</div></div></div>`).join("")}`).join("")}</div>
+      <div style="text-align:center;margin-top:14px"><button class="btn" style="margin:0;min-width:0;display:inline-block;pointer-events:auto" onmouseenter="${HOV}" onclick="${act("title")}">Back</button></div>
+    </div>${tail(s, now)}`;
   }
 
   if (s.menu === "options") {
