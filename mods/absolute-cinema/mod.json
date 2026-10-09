@@ -1,0 +1,115 @@
+{
+  "name": "absolute-cinema",
+  "displayName": "Absolute Cinema",
+  "description": "A visual cinematic camera toolkit — place camera nodes, build timelines, and play back smooth blends and hard cuts. A filmmaking studio inside the game engine.",
+  "tags": [
+    "camera",
+    "cinematic",
+    "tool",
+    "cutscene",
+    "filmmaking"
+  ],
+  "visibility": "public",
+  "version": "1.16.0",
+  "inputs": {
+    "actions": {
+      "vfx:play": {},
+      "vfx:stop": {},
+      "vfx:scrub": {},
+      "cinemaSkip": {
+        "keys": [
+          "space"
+        ],
+        "activeOn": "hold"
+      },
+      "cinema:loop": {},
+      "cinema:play": {},
+      "cinema:stop": {},
+      "cinema:close": {},
+      "cinema:fxAdd": {},
+      "cinema:pause": {},
+      "cinema:scrub": {},
+      "cinema:stamp": {},
+      "cinema:uiSet": {},
+      "vfx:addEvent": {},
+      "vfx:clearAll": {},
+      "cinema:delete": {},
+      "cinema:rename": {},
+      "cinema:seqAdd": {},
+      "cinema:setYaw": {},
+      "cinema:toggle": {
+        "keys": [
+          "Digit9"
+        ],
+        "activeOn": "keydown"
+      },
+      "cinema:fxClear": {},
+      "cinema:libLoad": {},
+      "cinema:libOpen": {},
+      "cinema:libSave": {},
+      "cinema:possess": {},
+      "cinema:release": {},
+      "cinema:seqHold": {},
+      "cinema:seqMove": {},
+      "cinema:setStep": {},
+      "cinema:fxRemove": {},
+      "cinema:fxUpdate": {},
+      "cinema:nudgePos": {},
+      "cinema:nudgeYaw": {},
+      "cinema:setPitch": {},
+      "vfx:removeEvent": {},
+      "vfx:selectEvent": {},
+      "vfx:setDuration": {},
+      "vfx:updateEvent": {},
+      "cinema:libDelete": {},
+      "cinema:libImport": {},
+      "cinema:panelMove": {
+        "keys": [],
+        "activeOn": "keydown"
+      },
+      "cinema:seqEasing": {},
+      "cinema:seqEnding": {},
+      "cinema:seqRemove": {},
+      "cinema:nudgePitch": {},
+      "cinema:setPosAxis": {},
+      "cinema:setSkippable": {},
+      "cinema:seqTransition": {},
+      "cinema:setShowGizmos": {},
+      "vfx:setPreviewOrigin": {},
+      "cinema:toggleSettings": {},
+      "vfx:updatePreviewOrigin": {}
+    }
+  },
+  "attach": [
+    {
+      "target": {
+        "kind": "player"
+      },
+      "behavior": "cinema-director.js"
+    },
+    {
+      "target": {
+        "kind": "player"
+      },
+      "behavior": "vfx-playback.js"
+    },
+    {
+      "target": {
+        "kind": "player"
+      },
+      "behavior": "loading-transition.js"
+    },
+    {
+      "target": {
+        "kind": "player"
+      },
+      "behavior": "node-gizmos.js"
+    },
+    {
+      "target": {
+        "kind": "camera"
+      },
+      "behavior": "cinema-camera.js"
+    }
+  ]
+}
