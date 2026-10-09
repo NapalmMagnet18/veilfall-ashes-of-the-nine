@@ -1,0 +1,16 @@
+{
+  "name": "custom-animations",
+  "displayName": "Custom Character Animations",
+  "description": "Full custom animation system for player characters, NPCs, and enemies. Model-only architecture with semantic profiles, ability systems with animation chaining, interruptible casts, per-spell tuning, conditional idles, prejump anticipation, patrol NPCs, and more. Includes slash commands for character creation and animation management.",
+  "tags": [
+    "animation",
+    "character",
+    "npc",
+    "combat",
+    "abilities",
+    "meshy",
+    "custom-animations"
+  ],
+  "visibility": "public",
+  "version": "1.1.0"
+}
