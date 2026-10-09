@@ -59,11 +59,16 @@ terrain:
         - glowcap
         - bramble
         - mossoak
+        - bellspire
+        - starbloom
+        - lanternlily
       gravel:
         - gravegrass
         - bramble
         - glowcap
         - mossoak
+        - starbloom
+        - bellspire
     layers:
       clover:
         density: 0.6
@@ -119,13 +124,33 @@ terrain:
           - {kind: scripted, script: scripts/plants/glowcap.js, seed: 1, randomRotation: true, scale: [0.9, 1.8]}
           - {kind: scripted, script: scripts/plants/glowcap.js, seed: 5, randomRotation: true, scale: [0.8, 1.4]}
       mossoak:
-        density: 0.006
-        cluster: {clusters: 20, radius: 14, seed: 13, falloff: 0.5}
+        density: 0.01
+        cluster: {clusters: 32, radius: 14, seed: 13, falloff: 0.5}
         constraints: {slopeRange: [0, 0.25]}
         items:
           - {kind: scripted, script: scripts/plants/mossoak.js, seed: 1, randomRotation: true, scale: [0.9, 1.4], wind: {force: 0.004}}
           - {kind: scripted, script: scripts/plants/mossoak.js, seed: 2, randomRotation: true, scale: [0.8, 1.3], wind: {force: 0.004}}
           - {kind: scripted, script: scripts/plants/mossoak.js, seed: 3, randomRotation: true, scale: [1, 1.5], wind: {force: 0.004}}
+      bellspire:
+        density: 0.3
+        cluster: {clusters: 40, radius: 6, seed: 21, falloff: 0.55}
+        noise: {scale: 26, threshold: 0.3, seed: 23}
+        items:
+          - {kind: scripted, script: scripts/plants/veilbloom.js, seed: 1, randomRotation: true, scale: [0.8, 1.4], params: {kind: spire}, wind: {force: 0.06}, colorJitter: {hue: 14, value: 0.1}}
+          - {kind: scripted, script: scripts/plants/veilbloom.js, seed: 2, randomRotation: true, scale: [0.7, 1.2], params: {kind: spire}, wind: {force: 0.06}, colorJitter: {hue: 14, value: 0.1}}
+      starbloom:
+        density: 0.7
+        cluster: {clusters: 55, radius: 4.5, seed: 31, falloff: 0.6}
+        items:
+          - {kind: scripted, script: scripts/plants/veilbloom.js, seed: 3, randomRotation: true, scale: [0.9, 1.5], params: {kind: star}, wind: {force: 0.04}, colorJitter: {hue: 10, value: 0.12}}
+          - {kind: scripted, script: scripts/plants/veilbloom.js, seed: 4, randomRotation: true, scale: [0.8, 1.3], params: {kind: star}, wind: {force: 0.04}, colorJitter: {hue: 10, value: 0.12}}
+      lanternlily:
+        density: 0.04
+        cluster: {clusters: 24, radius: 5, seed: 41, falloff: 0.5}
+        constraints: {slopeRange: [0, 0.3]}
+        items:
+          - {kind: scripted, script: scripts/plants/veilbloom.js, seed: 5, randomRotation: true, scale: [0.9, 1.3], params: {kind: lily}, wind: {force: 0.03}}
+          - {kind: scripted, script: scripts/plants/veilbloom.js, seed: 6, randomRotation: true, scale: [0.8, 1.2], params: {kind: lily}, wind: {force: 0.03}}
       mushroom:
         density: 0.05
         items:

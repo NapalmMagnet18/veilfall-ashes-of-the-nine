@@ -5,7 +5,7 @@ const PAL = {
   spire: ["oklch(0.72 0.12 300)", "oklch(0.78 0.09 320)", "oklch(0.7 0.11 270)"],
   star: ["oklch(0.82 0.13 80)", "oklch(0.78 0.14 60)", "oklch(0.86 0.08 95)"],
 };
-const LEAF = "oklch(0.42 0.08 150)", STEM = "oklch(0.38 0.07 140)";
+const LEAF = "oklch(0.45 0.09 150)", STEM = "oklch(0.5 0.08 140)";
 
 function blade(ctx, x, z, a, len, w, lean) { // a leaf lying out from the base
   const c = Math.cos(a), s = Math.sin(a), tx = x + c * len, tz = z + s * len, mx = x + c * len * 0.5, mz = z + s * len * 0.5;
