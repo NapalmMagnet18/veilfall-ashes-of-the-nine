@@ -148,7 +148,8 @@ def spray_atlas(seed):
             d.line(pts, fill=(30, 22, 20, 255), width=w)
             tx, ty = pts[-1]
             for k in range(6):
-                d.ellipse([tx + rnd.uniform(-16, 16) - 3, ty + rnd.uniform(-16, 16) - 3, tx + rnd.uniform(-16, 16) + 3, ty + rnd.uniform(-16, 16) + 3], fill=(int(140 * f0), int(165 * f0), int(185 * f0), 255))
+                ex, ey = tx + rnd.uniform(-16, 16), ty + rnd.uniform(-16, 16)
+                d.ellipse([ex - 3, ey - 3, ex + 3, ey + 3], fill=(int(140 * f0), int(165 * f0), int(185 * f0), 255))
             return pts
         main = twig(S / 2, S * .97, -math.pi / 2, S * .86, 7)
         for i in (2, 3, 4, 5, 6):
