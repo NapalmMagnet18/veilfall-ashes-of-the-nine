@@ -31,9 +31,13 @@ export const MODELS = {
   lurker: "/cdn/value.230e154234ddce5261a9f18deb7a2a1ab405019c7cac64accbe4bf5e8dc3e7ad.png.glb",
   crystalbrute: "/cdn/value.77c2824676e15f5a32a53dac17c6a760e3d1e225048032eedeff1ec1af179348.png.glb",
   broodmother: "/cdn/value.084438da9ce5ae7b310433e6f7c6f48af5acb0d6e2028c6603e170b6f470bcaa.png.glb",
+  frostdead: "/cdn/value.56ddf8235448f7f750f79bf7125e157dd82b376beb5c52336ef178aef1397e48.png.glb",
+  rimewolf: "/cdn/value.bb40c031cc226c5cac86587110e09500030a395c128ecdb190546ae8224d724b.png.glb",
+  icewraith: "/cdn/value.f59a0373da0428b50bfeb2a522272d20e9cb74aa28ffa385fcb521ccfd423dbd.png.glb",
+  frostjarl: "/cdn/value.f697b2b71e3f6eb7fc370447b2cdd73b4d7703c823cf031bf081a58c1b97ffc3.png.glb",
   kilnwarden: "/cdn/value.058969f5528af183e60a44a96686146f464df6d1bb8159bde6a58cced53b6ab1.png.glb",
   bailiff: "/cdn/value.0fff9f3b6085fcd9ee851d61b5e8e32b7c7ea83f47e46f7e7a72d18d3e7e3438.png.glb",
 };
 // true height in metres before the row's own scale
-export const HEIGHT = { hero: 1.85, pilgrim: 1.7, walker: 1.7, deacon: 1.8, chorister: 1.95, flagellant: 1.8, bailiff: 2.0, chandler: 2.9, cantor: 3.0, ringer: 2.2, warden: 2.4, hangman: 2.5, abbess: 2.6, drowned: 1.8, harpooner: 1.9, barnacle: 2.3, ferryman: 3.1, reaper: 2.3, marrowwolf: 1.3, briarwitch: 2.0, rootmother: 3.4, gargoyle: 2.4, harpy: 2.1, inquisitor: 2.4, butcher: 3.3, ashrevenant: 2.3, cinderthrall: 2.0, pyrepriest: 2.2, kilnwarden: 3.5, deepghoul: 2.0, lurker: 2.6, crystalbrute: 2.9, broodmother: 2.6 };
+export const HEIGHT = { hero: 1.85, pilgrim: 1.7, walker: 1.7, deacon: 1.8, chorister: 1.95, flagellant: 1.8, bailiff: 2.0, chandler: 2.9, cantor: 3.0, ringer: 2.2, warden: 2.4, hangman: 2.5, abbess: 2.6, drowned: 1.8, harpooner: 1.9, barnacle: 2.3, ferryman: 3.1, reaper: 2.3, marrowwolf: 1.3, briarwitch: 2.0, rootmother: 3.4, gargoyle: 2.4, harpy: 2.1, inquisitor: 2.4, butcher: 3.3, ashrevenant: 2.3, cinderthrall: 2.0, pyrepriest: 2.2, kilnwarden: 3.5, deepghoul: 2.0, lurker: 2.6, crystalbrute: 2.9, broodmother: 2.6, frostdead: 1.9, rimewolf: 1.5, icewraith: 2.4, frostjarl: 3.6 };
 export const body = (k) => ({ model: MODELS[k], layout: { maxExtents: { y: HEIGHT[k] } } });

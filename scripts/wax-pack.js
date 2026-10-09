@@ -32,6 +32,10 @@ const VOX = {
   lurker: { aggro: "tall-thin-cave-creature-clicking-hiss-crystals-chiming", death: "brittle-creature-shatters-crystals-tinkle-to-the-floor" },
   crystalbrute: { aggro: "cave-troll-bellow-crystals-grinding-chain-rattle", death: "huge-stone-troll-falls-crystals-crack-and-ring" },
   broodmother: { aggro: "giant-spider-shriek-and-many-legs-skittering-on-stone", death: "giant-spider-death-screech-legs-curl-wet-crunch" },
+  frostdead: { aggro: "frozen-corpse-groans-ice-cracking-off-its-robes", death: "frozen-body-shatters-into-ice-shards-on-snow" },
+  rimewolf: { aggro: "wolf-snarl-and-howl-in-cold-wind-ice-crunching", death: "wolf-yelp-and-collapse-into-snow" },
+  icewraith: { aggro: "ghostly-icy-wail-and-wind-shriek-crystals-chiming", death: "spectre-wail-fades-as-ice-mask-shatters" },
+  frostjarl: { aggro: "giant-undead-king-bellows-armor-grinding-ice-cracking", death: "huge-armored-king-falls-ice-breaks-a-war-horn-dies-out" },
   kilnwarden: { aggro: "giant-furnace-golem-roar-bricks-grinding-fire-roaring", death: "huge-brick-and-bone-golem-collapses-furnace-dies-down" },
   cantor: { aggro: "three-voiced-undead-choir-mistress-screams-a-dissonant-chord-bells-clang", death: "choir-mistress-shatters-bells-fall-and-three-voices-fade-into-hiss" },
   deacon: { aggro: "huge-wax-priest-bellows-a-low-sermon-word-and-scrapes-censer", death: "giant-wax-body-topples-heavy-thud-and-long-boiling-hiss" },
@@ -61,6 +65,10 @@ const MUTTER = {
   lurker: { clip: "slow-clicking-and-faint-crystal-chime", lines: [] },
   crystalbrute: { clip: "heavy-breathing-and-crystals-creaking", lines: [] },
   broodmother: { clip: "chittering-and-eggs-pulsing-wetly", lines: ["...the deep is mine... the bones are mine...", "...hush, little ones... food walks in..."] },
+  frostdead: { clip: "teeth-chattering-and-ice-creaking", lines: ["...so cold... the prayer froze in me...", "...light a fire... please..."] },
+  rimewolf: { clip: "low-growl-and-steaming-breath-in-the-cold", lines: [] },
+  icewraith: { clip: "faint-icy-whisper-and-wind-chimes", lines: [] },
+  frostjarl: { clip: "heavy-frozen-breathing-and-armor-creaking", lines: ["...the north kneels to no lantern...", "...my hall is ice, and you are its guest forever..."] },
   kilnwarden: { clip: "deep-furnace-roar-and-bricks-shifting", lines: ["...the bones must be fired...", "...nothing leaves the ossuary whole..."] },
   cantor: { clip: "three-whispering-voices-humming-a-funeral-hymn-soft-bells", lines: ["...sing with us, little light...", "...three voices, one grave...", "...the hymn has no last verse...", "...your breath will make a fine note..."] },
   deacon: { clip: "huge-wax-priest-low-droning-sermon-murmur", lines: ["...AND THE NINE WERE GIVEN TO ASH...", "...kneel, little candle...", "...tithe your light...", "...the Veil keeps what it is owed..."] },
@@ -72,7 +80,7 @@ function mutter(ctx, w, s, f, now, players) {
   if (now < next) return;
   mutterAt.set(w.id, now + 9000 + ctx.random() * 9000);
   if (!players.some((p) => flat(p.feetPosition, f) < EAR)) return;
-  const M = MUTTER[s.kind] ?? MUTTER.pilgrim, deep = s.kind === "deacon" || s.kind === "chandler" || s.kind === "cantor" || s.kind === "barnacle" || s.kind === "ferryman" || s.kind === "briarwitch" || s.kind === "rootmother" || s.kind === "inquisitor" || s.kind === "butcher" || s.kind === "pyrepriest" || s.kind === "kilnwarden" || s.kind === "crystalbrute" || s.kind === "broodmother";
+  const M = MUTTER[s.kind] ?? MUTTER.pilgrim, deep = s.kind === "deacon" || s.kind === "chandler" || s.kind === "cantor" || s.kind === "barnacle" || s.kind === "ferryman" || s.kind === "briarwitch" || s.kind === "rootmother" || s.kind === "inquisitor" || s.kind === "butcher" || s.kind === "pyrepriest" || s.kind === "kilnwarden" || s.kind === "crystalbrute" || s.kind === "broodmother" || s.kind === "icewraith" || s.kind === "frostjarl";
   ctx.emit("playSound", { clip: sfx(M.clip), position: f, volume: deep ? 0.55 : 0.38, pitch: 0.85 + ctx.random() * 0.3, maxDistance: EAR });
   ctx.emit("damageNumber", { position: { x: f.x, y: f.y + (deep ? 2.6 : 2.1), z: f.z }, text: M.lines[Math.floor(ctx.random() * M.lines.length)], color: deep ? "#c9a46a" : "#b8ad98", size: deep ? 0.9 : 0.7, lifetime: 2.6 }, { audience: { nearby: f, radius: EAR } });
 }

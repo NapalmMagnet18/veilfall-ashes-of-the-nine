@@ -26,6 +26,10 @@ drops:
   lurker: [55, 90]
   crystalbrute: [90, 150]
   broodmother: [760, 1050]
+  frostdead: [40, 70]
+  rimewolf: [36, 64]
+  icewraith: [70, 120]
+  frostjarl: [880, 1200]
   bailiff: 12000        # 1g 20s, once per kill to each eligible player
   ringer: 18000         # 1g 80s, the Ringer of the Ninth Bell
   hangman: 30000        # 3g, the Hangman of Saint Corvin
