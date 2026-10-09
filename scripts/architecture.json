@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "basedOnSpecVersion": 1242,
-  "updatedAt": "2026-10-09T13:43:56.246Z",
-  "summary": "VEILFALL: Ashes of the Nine is an isometric multiplayer action RPG with a shared playable realm and a solo Veil title/menu place. Place and actor scripts run quests, combat, bosses, services and ambience; shared Bearer/data modules support persistence and progression, while seeded procedural generators and authored placements dress its regions, including the newly planted Blood Woods and black-apple Orchard trees.",
+  "basedOnSpecVersion": 1311,
+  "updatedAt": "2026-10-09T14:50:45.805Z",
+  "summary": "VEILFALL: Ashes of the Nine is an isometric multiplayer action RPG with a shared playable realm and a solo Veil title/menu place. Place and actor scripts run quests, combat, bosses, services and ambience; shared Bearer/data modules support persistence and progression, while authored scene cells and seeded procedural generators build its regions. Main-realm ground cover now includes Blood Woods-specific floor patches and a separate zone-floor generator currently used by a tagged fen test grouping.",
   "scriptPaths": [
     "mods/aaa-quality-kit/look-cinema.js",
     "mods/absolute-cinema/cinema-camera.js",
@@ -158,6 +158,7 @@
     "scripts/gen/wax-figure.js",
     "scripts/gen/wax-seal.js",
     "scripts/gen/wayshrine.js",
+    "scripts/gen/zone-floor.js",
     "scripts/grass-look.js",
     "scripts/grass.js",
     "scripts/greeter.js",
@@ -210,13 +211,13 @@
     "scripts/wax-pack.js"
   ],
   "places": [
-    "places/main/ - shared playable realm spanning Wayside Fire/Broken Lantern Road, Candlehold, Lanternmere, Hanging Orchard, Ashen Abbey, Ossuary, Hollow Deep and Frostbitten Vale; cells hold terrain, landmarks, actors, biome dressing, Blood Woods trees and the expanded Orchard grove.",
+    "places/main/ - shared playable realm spanning Wayside Fire/Broken Lantern Road, Candlehold, Lanternmere, Hanging Orchard, Ashen Abbey, Ossuary, Hollow Deep and Frostbitten Vale; cells hold terrain, landmarks, actors, biome dressing and authored Blood Woods/Orchard tree placements.",
     "places/veil/ - solo ephemeral title/menu stage and ravine backdrop, configured as default place; active Bearers are parked here while menus are open."
   ],
   "roots": [
     "world.config.yaml - world entry: defaultPlace veil; attaches player/camera templates, lighting, arrival/nametag behaviors, controls and audio mix.",
     "templates/player.js - player body with humanoid-locomotion.js and scripts/player.js, plus carried-light child; templates/camera.js runs scripts/camera.js.",
-    "places/main/config.yaml and places/main/cells/ - main-realm atmosphere, terrain and authored biome cells; config attaches scripts/look-veilfall.js as its look.",
+    "places/main/config.yaml and places/main/cells/ - main-realm atmosphere, terrain and authored biome cells; config attaches scripts/look-veilfall.js and defines grass clear-scatter marks around enemy packs and mini-bosses.",
     "places/main/sim.js - main-place referee: NPC/services, quest stages, enemy packs, progression, boss lifecycle/reset and place music/ambience.",
     "places/veil/config.yaml, places/veil/cells/ and places/veil/sim.js - solo title/menu scene, ambience and menu soundtrack.",
     "scripts/terrain.js - main realm height/material field; scripts/lib/data/veilfall-map.js defines connected regions and floor gates.",
@@ -225,12 +226,12 @@
   "shared": [
     "scripts/lib/character.js - Bearer schema, fresh state, roster/create/load/save/delete and packed position; player.js and arrival.js reuse it, crier/board-notes use realmOf.",
     "scripts/db.js and scripts/lib/data/realms.yml - realm/character and trade schemas, realm routing/name registry, and guild-vault SQL table/index setup.",
-    "scripts/lib/data/combat.yml, economy.yml and loot.yml - shared enemy/boss profiles, drops/rewards and gear rules consumed by main sim, wax-pack and loot/combat/UI services.",
+    "scripts/lib/data/combat.yml, economy.yml and loot.yml - shared enemy/boss profiles, drops/rewards and gear rules consumed by main sim, wax-pack and combat/UI services.",
     "scripts/lib/data/models.js - MODELS, HEIGHT, body and BEARER map enemy kinds and six player callings to uploaded GLBs; main sim/wax-pack reuse enemy bodies and player.js selects calling body.",
-    "scripts/lib/data/veilfall-map.js - chapter paths, region geometry, floor distances and zone naming used by terrain, player movement/gates, main sim and Blood Woods floor-cover placement.",
+    "scripts/lib/data/veilfall-map.js - chapter paths, region geometry, floor distances and zone naming used by terrain, player movement/gates, main sim and floor-cover placements.",
     "scripts/lib/data/fauna.js and scripts/fauna.js - FAUNA species/model/gait rows and shared shepherd that moves scene-tagged fauna; main cells attach the shepherd and fauna rows.",
-    "scripts/lib/data/flora.js - FLORA tree GLB metadata (URL, layout-1 height in metres, tris and sway clip) and shared TREE_TAGS for Blood Woods/orchard tree placements.",
-    "scripts/lib/character.js, pack-ui.js, shop.js, trade.js, guildvault.js and board-ui.js - shared Bearer/service logic; guildvault owns vault mutations and board-ui shares trade reads; scripts/gen/hub-kit.js supports Wayside Fire props."
+    "scripts/lib/data/flora.js - FLORA tree GLB metadata (URL, layout-1 height in metres, tris and sway clip) and shared TREE_TAGS for Blood Woods/orchard tree placements; bloodoak and weepwillow now point to crimson-crowned models.",
+    "scripts/gen/hub-kit.js and scripts/lib/character.js, pack-ui.js, shop.js, trade.js, guildvault.js and board-ui.js - Wayside Fire prop helpers and shared Bearer/service logic; guildvault owns vault mutations and board-ui shares trade reads."
   ],
   "notableExports": [
     "places/main/sim.js - cadence, tick; places/veil/sim.js - cadence, tick.",
@@ -240,7 +241,7 @@
     "scripts/ui.js - default state-driven HUD/menu/sheets, talent tree, unit frames and enemy portrait/name lookup; scripts/ui/nametag.js renders nametags.",
     "scripts/abbess.js, bailiff.js, ringer.js, warden.js, hangman.js - boss handlers; scripts/crier.js - onSpawn, quiet, update.",
     "scripts/lib/character.js - CHAR_KEYS, fresh, START, realmOf, pack, zoneOf, roster, create/load/save/remove; scripts/lib/data/talents.js - talent tree/query helpers.",
-    "scripts/gen/bw-floor.js - geometry, collider (null); scripts/lib/data/flora.js - FLORA, TREE_TAGS; scripts/gen/hub-lamppost.js - FLAME_AT, geometry, collider; scripts/gen/hub-kit.js - modelling/vector helpers."
+    "scripts/gen/bw-floor.js and scripts/gen/zone-floor.js - geometry, collider; scripts/lib/data/flora.js - FLORA, TREE_TAGS; scripts/material-fern-sway.js - material."
   ],
   "ownership": [
     "scripts/lib/character.js CHAR_KEYS - persistent Bearer combat/progression, quest/reward claims, inventory/gear, arts, attuned shrines, personal vault/vaultRows and talents; packed position and zone feed re-entry/menu context.",
@@ -250,7 +251,7 @@
     "scripts/bailiff.js, ringer.js, warden.js, hangman.js and abbess.js - respective boss hp/phases/casts/adds/defeat and participant/place boss rows; handlers write lastFall and first world trophy records.",
     "scripts/fauna.js, forest-wisp.js and greeter.js - per-actor wildlife movement, wisp motion/startled presentation, and townsfolk bubble line/cooldown state; fauna data owns species configuration, not live state.",
     "scripts/lib/guildvault.js and guild_vault SQL rows - shared items keyed by realm and Spawn guild; taken rows are guarded, and character inventory owns the member's copy.",
-    "places/main/cells/x0z0.scene and x1z0.scene - authored Blood Woods tree and cover placements plus the expanded Hanging Orchard black-apple tree/light placements, transforms, seeds and per-placement parameters; generators provide geometry only."
+    "places/main/config.yaml and places/main/cells/x0z0.scene, x1z0.scene - authored terrain/grass clear marks and tree, floor-cover and light placements, transforms, seeds and parameters; child trunk colliders are scene-authored static boxes."
   ],
   "flows": [
     "world.config.yaml attaches player through templates/player.js and maps actions; UI menu actions → scripts/player.js routes title/realm/character/create/enter/logout/options/notes.",
@@ -264,7 +265,7 @@
     "Scene fauna rows tagged fauna + fauna.js species values → scripts/fauna.js shepherd update moves wildlife; forest-wisp.js reads home/r/seed and nearby Bearers to drift/flee and change burnStyle; scene rows set wisp color/shape/light.",
     "Candlehold town-* scene rows provide name/title/lines and bubble child → greeter.js shows rotating dialogue; flavor only, not service/quest routing.",
     "Bearer cls → player.js selects models.js BEARER body and implements calling attacks; Gloamstalker ranged attacks and sigVolley → flyArrow spawns scripts/gen/arrow.js geometry and animate sends the arrow to its hit point.",
-    "Blood Woods floor rows → bw-floor.js uses seeded params, ground height and veilfall-map.js floor/Orchard distances to scatter non-colliding cover; separate tree scene rows place swaying Blood Woods and black-apple Orchard GLBs, with flora.js recording tree model metadata."
+    "Blood Woods floor rows → bw-floor.js uses seeded params, ground height, walkable-floor distance and clear circles to scatter non-colliding cover; material-fern-sway.js bends fern fronds from their UV ramp. Scene tree rows use flora.js GLBs and separate static trunk colliders; config clear-scatter marks keep grass clear around 68 enemy/mini-boss sites."
   ],
   "behaviorFamilies": [
     "scripts/gen/hub-*.js - reusable Wayside Fire props varied by instance params, seed and scene transform; share hub-kit.js; hub-lamppost.js builds detailed gothic ironwork with LOD-dependent plinth, fluted post, scroll, chain and crown.",
@@ -274,7 +275,7 @@
     "scripts/gen/veil-land.js and veil-shrine.js - Veil ledge/cliff/ridge structures vary by kind/dimensions; shrine exports structure/hook constants.",
     "scripts/gen/arena-floor.js, arena-pillar.js, gibbet.js and toll-throne.js - Bailiff arena dressing shares scripts/gen/shapes.js and wax palette; split gibbet cages render separately at a top pivot.",
     "scripts/gen/orch-*.js - seeded Hanging Orchard gallows, gibbets and props share orch-kit.js; orchard scene cells also place varied swaying apple GLBs in an expanded grove around the older procedural trees.",
-    "Blood Woods: scripts/gen/bw-floor.js cover patches vary by kind, zone, bounds, clearings, seed and LOD; litter uses fewer leaves over dark mulch; art/bloodwoods/build.py builds varied bloodoak/weepwillow/antlersnag GLBs for authored scene placements."
+    "Forest cover: scripts/gen/bw-floor.js builds seeded Blood Woods litter, pinnate knee-high ferns, roots and other clumps with slope-aware placement/clearings; fern UVs drive scripts/material-fern-sway.js. scripts/gen/zone-floor.js is a parallel biome/kind generator (ash, fen, frost, deep) currently placed in the tagged zf-test-fen group. art/bloodwoods/build.py authors bloodoak/weepwillow/antlersnag; art/ashroad/build.py authors ashoak/lanternsnag/gravecypress source models."
   ],
   "probableOrphans": [
     "scripts/flat-starter-terrain.js",
@@ -285,7 +286,7 @@
     "Talent IDs are branch-tier strings b-t across six tiers; each earlier tier requires 3 points per tier in that branch, and t=5 is a single-rank capstone worth five times its stat; class keystones drive calling-specific behavior.",
     "Wayshrine IDs/coordinates in combat.yml must stay aligned with scene IDs/locations; travel costs 10 copper and refuses while an enemy is within 10 m; Abbey destination obeys player gate.",
     "Personal vault is 18 slots plus up to three purchased rows of nine; guild vault is 27 shared slots per Spawn guild per realm in SQL, separate from character inventory.",
-    "Enemy kinds must stay aligned across main sim PACKS, combat.yml, models.js MODELS/HEIGHT, loot.yml/economy.yml, wax-pack.js and ui.js labels/portraits; HEIGHT is metres. Scripted walkers and all five bosses apply downward velocity when ung…",
-    "Blood Woods floor rows use generator world origin plus local bounds/clear circles; zone=in/out filters against walkable floor distance and generated cover has no collider. Scene tree placements are separate authored swaying GLBs, with flora.js metadata heights in metres at layout 1."
+    "Enemy kinds must stay aligned across main sim PACKS, combat.yml, models.js MODELS/HEIGHT, loot.yml/economy.yml, wax-pack.js and ui.js labels/portraits; HEIGHT is metres. Scripted walkers and all five bosses apply downward velocity when ungrounded.",
+    "Floor scene rows supply generator world origin plus local bounds/clear circles and zone filters; bw-floor cover has no collider. Fern sway depends on geometry uv().y (heart-to-tip) and uv().x (leaflet shade); authored hero-tree trunk colliders are separate child boxes and should remain sized to the trunk."
   ]
 }
