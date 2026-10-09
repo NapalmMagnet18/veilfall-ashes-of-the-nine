@@ -30,8 +30,13 @@ pop chips burst=10..16 life=.5..0.9 v=<%normal|0,1,0>*(2..4)+sdir()*(.8..1.6)+<0
 pop spark burst=6 life=.12..0.25 v=<%normal|0,1,0>*(4..7)+sdir()*2 size=.02..0.035 col=hdr(4,2.4,.8) a=1>0 r=sprite(ember,add,velocity,.03)
 pop flash burst=1 life=.12 size=.7 col=hdr(2.5,1.6,.8) a=.8>0 sz=$size*(.6>1.3) r=sprite(soft-disc,add)`;
 const SLASH = `fx
-pop arc burst=1 life=.22 size=3.2 col=hdr(2.2,2.4,3) a=.9>0 sz=$size*(.8>1.1) r=sprite(soft-disc,add)
-pop motes burst=18 on=arc() life=.3..0.6 v=sdir()*(1..2.5)+up(.8) size=.03..0.06 col=hdr(1.6,1.8,2.6) a=1>0 r=sprite(mote,add)`;
+pop arc burst=1 life=.22 size=3.2 col=hdr(2.2,2.4,3) a=.7>0 sz=$size*(.8>1.1) r=sprite(soft-disc,add)
+pop edge burst=36..44 on=arc() life=.12..0.22 v=sdir()*.6 size=.05..0.09 col=hdr(3.4,3.2,3)>hdr(1.2,1,.9) a=1>0 sz=$size*(1>.3) r=sprite(ember,add,velocity,.05)
+pop spark burst=10..14 on=arc() life=.2..0.4 v=sdir()*(3..5)+up(.6) size=.015..0.03 acc=grav()*.6+drag(1.5) col=hdr(4,2.6,1) a=1>0 r=sprite(ember,add,velocity,.04)
+pop motes burst=18 on=arc() life=.3..0.6 v=sdir()*(1..2.5)+up(.8) size=.03..0.06 col=hdr(1.6,1.8,2.6) a=1>0 r=sprite(mote,add)
+pop wind burst=5..7 on=arc() life=.35..0.55 v=sdir()*.8 size=.25..0.4 acc=drag(2.5) col=<.7,.72,.78> a=0>.1:.22>0 sz=$size*(.6>1.8) rot=spin(.4) r=sprite(smoke-puff,alpha)
+pop dust burst=4..6 on=disc(.6).c(-.95) life=.6..1 v=radial(.6..1.2)+up(.1..0.3) size=.25..0.4 acc=drag(2)+buoy(.1) col=<.32,.3,.28> a=0>.1:.3>0 sz=$size*(.6>2) r=sprite(smoke-puff,alpha)
+pop lit burst=1 life=.18 at=point() r=light(<.8,.85,1>,10*(1>0),3.5)`;
 const DASH = `fx
 pop ghost burst=14 on=disc(.4) life=.35..0.6 v=up(.6..1.4)+sdir()*.4 size=.25..0.5 col=<.55,.6,.8> a=.5>0 sz=$size*(1>.4) acc=drag(2) r=sprite(smoke-puff,alpha)
 pop shards burst=10 life=.25..0.45 v=sdir()*(2..4) size=.03..0.05 col=hdr(1.5,1.7,2.5) a=1>0 r=sprite(shard,add,velocity,.03)`;
