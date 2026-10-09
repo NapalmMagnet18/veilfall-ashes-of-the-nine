@@ -447,7 +447,7 @@ function travelInput(ctx, a) {
   const to = W.list.find((w) => w.id === a.to); if (!to || to.id === s.atShrine || !(s.shrines ?? []).includes(to.id)) return;
   if (to.gate === "abbey" && !GATE.abbey) { msg(ctx, "The Abbey road is sealed. The shrine's light gutters and refuses."); return; }
   if ((s.copper ?? 0) < W.cost) { msg(ctx, `The shrine asks ${W.cost} copper for the road. You carry ${s.copper ?? 0}.`); ctx.emit("playSound", { clip: sfx("dull-click-denied"), position: ctx.self.feetPosition, volume: 0.3 }, { audience: { player: ctx.self.id } }); return; }
-  if (s.fighting || (ctx.now() - (s.hurtAt ?? 0)) < 4000) { msg(ctx, "Not with blood still up. Breathe first."); return; }
+  if (ctx.query({ tags: ["enemy"], radius: 10, center: ctx.self.feetPosition }).some((r) => isFoe(ctx.getObject(r.id)))) { msg(ctx, "Not with blood still up. Breathe first."); return; }
   s.copper -= W.cost;
   const f = ctx.self.feetPosition;
   ctx.emit("fx", { position: f, script: BLINK });
