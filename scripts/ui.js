@@ -94,6 +94,8 @@ const CLASSES = [
   { id: "primalist", name: "Primalist", role: "Shapeshift · nature", res: "Pulse", img: CDN("b536c08e6c94cf5b5e0d26ab9080c9ffdd8bea0de2c28e3b4c5a7f26ba8da409"), fantasy: "A guardian whose body borrows endurance from living ecosystems.", skills: [["Rootlash", ""], ["Stormhorn", ""], ["Briar Leap", ""], ["Thornskin", ""]] },
   { id: "gloamstalker", name: "Gloamstalker", role: "Ranged precision · ambush", res: "Focus", img: CDN("bf53d127661ebfc83f336ce66ae7078c9cd4250378648a8c9b5d33fbbc1a8885"), fantasy: "A boundary scout tracking beasts created by lost memories.", skills: [["Bonearrow", ""], ["Glassbolt Volley", ""], ["Silent Traverse", ""], ["Smoke Veil", ""]] },
 ];
+// each calling standing full-body (cut-out of its model sheet), shown on the create screen
+const FIG = {bladewraith: CDN("7c2b494c6665889a4f5b8c3336fab44612721a3c3bbd87820a0963165ad4d41f"), soulweaver: CDN("d8d5fac14ebdede7be5d55127282e9ba110fdee44f5cb563bf00cdcd0ccf5078"), hellwarden: CDN("b1bd2270be0fb1bbce2e4e3c74c45f66aa86f86da86bd25411c162028690e9f7"), shadowmancer: CDN("805eb1cf05de44786bec782cf205cb63d9a4e02b8bfdc5127aeed97dc09008ce"), primalist: CDN("0edd79eac9ede04d84fe96950b0a47b2c7ceddee3eaddec92c2c9738720c0c7d"), gloamstalker: CDN("7cc9007341f26fd5137a398e78b0aa6affcf335505ed251b25ce31089e162b8b")};
 const ANC = [
   { id: "cinderkin", name: "Cinderkin", home: "Ashwake Moor", color: "#aa4e3c", img: CDN("9c69f92c34a4b961e1acfac921f118e1871b170c627327df1c7094082d2216ea"), ethos: "Families inscribe the names of their lost into coal-fired clay.", trait: "Ember Ward: once a minute, the first blow you take is softened by up to 12." },
   { id: "fenborn", name: "Fenborn", home: "Gloamfen Reach", color: "#368783", img: CDN("657d460456caf2572c15e722fe7460d7b3ebc7e26991e41e7159cff6542564e4"), ethos: "Fenspeople keep reed tablets that hold a memory until the rain.", trait: "Mist Stride: move 30% faster for 1.5 s after every Griefstep." },
@@ -122,7 +124,7 @@ const MSTYLE = `<style>
 #vm .grid .card{height:162px}
 #vm .wrap{position:absolute;left:24px;right:calc(var(--spawn-chrome-reservation-right-inset,50px) + 24px);top:24px;bottom:24px;display:flex;justify-content:space-between;align-items:flex-start;gap:20px}
 #vm .det{width:380px;display:flex;flex-direction:column;max-height:100%;overflow:auto}
-#vm .det .big{height:min(300px,30vh);margin:-14px -16px 10px;overflow:hidden;position:relative} #vm .det .big img{width:100%;height:100%;object-fit:cover;object-position:50% 20%}
+#vm .det .big{height:min(300px,30vh);margin:-14px -16px 10px;overflow:hidden;position:relative} #vm .det .big img{width:100%;height:100%;object-fit:cover;object-position:50% 20%} #vm .det .big img.fig{position:absolute;left:0;top:4%;height:100%;object-fit:contain;object-position:50% 100%;filter:drop-shadow(0 0 14px rgba(0,0,0,.9)) drop-shadow(0 0 3px rgba(231,217,184,.25));animation:vfig 4.5s ease-in-out infinite;transform-origin:50% 100%} @keyframes vfig{0%,100%{transform:scale(1)}50%{transform:scale(1.012,1.018)}}
 @keyframes vmin{from{opacity:0;transform:translateY(10px)}} @keyframes vmglow{50%{text-shadow:2px 2px 0 #0d0b0a,0 0 26px rgba(240,140,60,.55)}}
 @media (pointer:coarse),(max-width:760px),(max-height:520px){
  #vm .wrap{left:8px;right:8px;top:8px;bottom:8px;flex-direction:column;gap:8px;overflow:auto}
@@ -404,7 +406,7 @@ function menu(ctx, player, s) {
       <div class="grid">${CLASSES.map((c) => `<div class="card ${c.id === C.id ? "on" : ""} ${c.open ? "" : "sealed"}" onmouseenter="${HOV}" onclick="${act("cls", c.id)}"><img src="${c.img}"><div class="nm">${c.name}</div>${c.open ? "" : `<div class="seal">SEALED</div>`}</div>`).join("")}</div>
     </div>
     <div class="panel det" style="animation:vmin .55s">
-      <div class="big"><img src="${C.img}" style="${C.open ? "" : "filter:grayscale(.8) brightness(.5)"}"><div style="position:absolute;left:0;right:0;bottom:0;height:80px;background:linear-gradient(transparent,#1a1715)"></div></div>
+      <div class="big"><img src="${C.img}" style="${C.open ? "filter:brightness(.42) blur(1.5px)" : "filter:grayscale(.8) brightness(.3)"}"><div style="position:absolute;left:0;right:0;bottom:0;height:80px;background:linear-gradient(transparent,#1a1715)"></div>${FIG[C.id] ? `<img class="fig" src="${FIG[C.id]}" style="${C.open ? "" : "filter:grayscale(1) brightness(.45)"}">` : ""}</div>
       <div class="lbl">Name</div>
       <div class="namebox"><span>${pk.name}</span><button class="mini" onmouseenter="${HOV}" onclick="${act("reroll")}">ANOTHER NAME</button></div>
       <div class="bname gold" style="margin-top:10px">${C.name}</div>
