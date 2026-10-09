@@ -60,7 +60,7 @@ const THEME = `<style>
 #vf .vfban{animation:vfban 4.2s ease forwards;padding:14px 10px 18px;background:radial-gradient(ellipse at center,rgba(10,9,14,.72) 0%,rgba(10,9,14,.45) 45%,transparent 72%)} @keyframes vfban{0%{opacity:0;filter:blur(3px)}12%{opacity:1;filter:none}78%{opacity:1}100%{opacity:0}}
 #vf .vfdock{left:50%;bottom:0;transform:translateX(-50%);width:min(1240px,calc(100vw - 140px));aspect-ratio:1240/250;container-type:inline-size;pointer-events:none}
 #vf .vfplate{position:absolute;left:18.2cqw;width:63.6cqw;top:3.4cqw;filter:drop-shadow(0 .4cqw .6cqw #000)}
-#vf .vfsk{position:absolute;left:50%;top:10.9cqw;transform:translateX(-50%);display:flex;gap:.8cqw}
+#vf .vfsk{position:absolute;left:50%;top:11.4cqw;transform:translateX(-50%);display:flex;gap:.8cqw}
 #vf .vfsk .slot{width:4.9cqw;height:4.9cqw;background:radial-gradient(#221d19,#0c0a09);box-shadow:0 0 0 .16cqw #0d0b0a,0 0 0 .32cqw #6b5638,0 0 0 .45cqw #0d0b0a,inset 0 0 .8cqw #000}
 #vf .vfsk .slot .k{font-size:max(9px,.85cqw)} #vf .vfsk .slot .n{font-size:max(10px,1cqw)}
 #vf .vforb{position:absolute;bottom:0;width:19.4cqw;aspect-ratio:1}
@@ -76,7 +76,7 @@ const THEME = `<style>
 #vf .vfgl{position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 34% 26%,rgba(255,255,255,.42),rgba(255,255,255,.06) 22%,transparent 34%),radial-gradient(circle at 60% 85%,rgba(255,255,255,.08),transparent 40%);box-shadow:inset 0 -1.2cqw 2cqw rgba(0,0,0,.6),inset 0 0 .4cqw rgba(0,0,0,.9)}
 #vf .vfv{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:max(14px,1.9cqw);line-height:1;text-shadow:0 .15cqw 0 #000,0 0 .6cqw #000}
 #vf .vfv small{font-size:max(8px,.75cqw);letter-spacing:.2em;color:#d8c69c;margin-top:.3cqw}
-#vf .vfxp{position:absolute;left:27cqw;right:27cqw;top:2.1cqw;height:.75cqw;background:#0b0908;box-shadow:0 0 0 .14cqw #0d0b0a,0 0 0 .28cqw #6b5638}
+#vf .vfxp{position:absolute;left:27cqw;right:27cqw;top:6.4cqw;height:.75cqw;background:#0b0908;box-shadow:0 0 0 .14cqw #0d0b0a,0 0 0 .28cqw #6b5638}
 #vf .vfxpf{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(#e6cf8a,#a07a2c 60%,#5c4214);box-shadow:0 0 .6cqw rgba(242,211,138,.5);transition:width .4s}
 #vf .vfxpt{position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 calc(10% - 2px),#0d0b0a calc(10% - 2px) 10%)}
 #vf .vfxpl{position:absolute;left:0;right:0;bottom:1.1cqw;font-size:max(10px,.9cqw);letter-spacing:.12em;color:#c9b88f;text-transform:uppercase}
