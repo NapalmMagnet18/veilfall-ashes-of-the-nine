@@ -400,7 +400,7 @@ bw-tree-31:
 bw-tree-32:
   castShadow: true
   children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
-  feetPosition: {x: 20.1, y: {terrain: -0.2}, z: 10.2}
+  feetPosition: {x: 23.5, y: {terrain: -0.2}, z: 13}
   fx: {script: "fx\npop spore rate=?mobile:.6|1.2 on=sphere(2.5) life=4..7 v=up(.15..0.35)+sdir()*.2 size=.04..0.07 acc=curl(.4)*.6+drag(.6) col=hdr(2.6,.35,.18) a=(0>.15:1>.8:1>0)*flick(3,.4) sz=$size r=sprite(soft-disc,add)"}
   id: bw-tree-32
   layout: {maxExtents: {y: 8.59}}
