@@ -437,7 +437,7 @@ bw-tree-34:
 bw-tree-35:
   castShadow: true
   children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
-  feetPosition: {x: 31.5, y: {terrain: -0.2}, z: 10.5}
+  feetPosition: {x: 26, y: {terrain: -0.2}, z: 16.5}
   id: bw-tree-35
   layout: {maxExtents: {y: 8.95}}
   mixer: {sway: {clip: Sway, loop: loop, speed: 1.05, weight: 1}}
