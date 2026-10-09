@@ -48,6 +48,9 @@ bag: 24
 bases:
   blade:  { slot: weapon, names: ["Pilgrim's Shortblade", "Ash-Kissed Saber", "Penitent's Edge", "Wick-Cutter"], implicit: { dmg: [4, 0.9] } }
   great:  { slot: weapon, names: ["Bellbreaker", "Toll-Iron Greatsword", "Gallows Cleaver", "Vigil Brand"], implicit: { dmg: [7, 1.4] }, slow: true }
+  axe:    { slot: weapon, names: ["Rune-Notched Cleaver", "Gravecutter Axe", "Bloodwood Hatchet", "Headsman's Crescent"], implicit: { dmg: [6, 1.2] }, slow: true }
+  staff:  { slot: weapon, names: ["Caged Rime Staff", "Ossuary Crook", "Veilglass Rod", "Hollow Deep Stave"], implicit: { dmg: [5, 1.1] } }
+  bow:    { slot: weapon, names: ["Bloodstring Bow", "Grave Ranger's Recurve", "Bonetip Longbow", "Ninefold Bow"], implicit: { dmg: [5, 1.0] } }
   helm:   { slot: helm,   names: ["Wax-Crowned Helm", "Hooded Sallet", "Choir Visor", "Tallow Cap"], implicit: { armor: [4, 1.1] } }
   chest:  { slot: chest,  names: ["Penitent Cuirass", "Scale Vestment", "Tollhouse Coat", "Ashen Hauberk"], implicit: { armor: [8, 1.8] } }
   gloves: { slot: gloves, names: ["Riveted Gauntlets", "Ringer's Grips", "Candle-Burn Mitts", "Censer Gloves"], implicit: { armor: [3, 0.8] } }

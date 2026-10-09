@@ -38,7 +38,7 @@ export function packPanel(ctx, player, { rail, touch }) {
     if (!it) return `<div class="gs" style="cursor:default"></div>`;
     return `<div class="gs ${sel?.u === it.u ? "sel" : ""}" style="${frame(it)}" onclick="${act("sel", `,u:'${it.u}'`)}" ondblclick="${act("equip", `,u:'${it.u}'`)}"><img src="${icon(it.b)}">${touch ? "" : `<div class="tip">${cardHTML(it, gear)}</div>`}</div>`;
   }).join("");
-  const worn = sel ? gear[(Object.entries(SLOT_ICON).find(([, b]) => b === sel.b) ?? [])[0] ?? (sel.b === "great" ? "weapon" : "")] : null;
+  const worn = sel ? gear[(Object.entries(SLOT_ICON).find(([, b]) => b === sel.b) ?? [])[0] ?? (["great", "axe", "staff", "bow"].includes(sel.b) ? "weapon" : "")] : null;
   return `<div class="absolute plate pk vfpk" style="right:${rail};top:50%;transform:translateY(-50%);width:600px;max-width:calc(100vw - 2*${rail});max-height:calc(100vh - 16px);overflow:auto;pointer-events:auto;animation:vfin .25s;padding:14px 16px">
     <div class="lbl" style="display:flex;justify-content:space-between;align-items:center">${s.charName ?? "Bearer"} · Pack <span style="font-size:11px;color:#9a907e">${inv.length}/${BAG}</span><span style="cursor:pointer;color:#f2d38a;font-size:12px" onclick="sendAction('bag')">${touch ? "CLOSE" : "I · CLOSE"}</span></div><div class="dv d5"></div>
     <div style="display:flex;gap:16px;margin-top:10px">
@@ -102,7 +102,7 @@ export function packPanel(ctx, player, { rail, touch }) {
             <div style="flex:1;height:5px;background:#1a1612;border:1px solid #e0a86644"><div style="width:${pct}%;height:100%;background:linear-gradient(90deg,#7a3a1c,#e0a866)"></div></div>
             <span style="color:#9a907e">${rk.next ? `${s.smithXp ?? 0}/${rk.next}` : "MASTER"}</span></div>
           <div style="font-size:10px;color:#9a907e;margin:4px 0 6px;letter-spacing:.06em">forge a pattern · <img src="${icon("dust")}" style="width:12px;height:12px;vertical-align:-2px">${cc.dust} + ◆${cc.shards} · item level ${(s.level ?? 1) + rk.R.ilvl} · select an item to temper, reforge or ascend</div>
-          <div style="display:grid;grid-template-columns:repeat(8,1fr);gap:4px">${["blade", "great", "helm", "chest", "gloves", "boots", "ring", "amulet"].map((b) => `<button class="vb" ${poor ? "disabled" : ""} title="forge a ${b}" style="padding:3px;${poor ? "opacity:.4" : "border-color:#e0a866aa"}" onclick="${act("craft", `,b:'${b}'`)}"><img src="${icon(b)}" style="width:100%;aspect-ratio:1;display:block;image-rendering:auto"></button>`).join("")}</div>
+          <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:4px">${["blade", "great", "axe", "staff", "bow", "helm", "chest", "gloves", "boots", "ring", "amulet"].map((b) => `<button class="vb" ${poor ? "disabled" : ""} title="forge a ${b}" style="padding:3px;${poor ? "opacity:.4" : "border-color:#e0a866aa"}" onclick="${act("craft", `,b:'${b}'`)}"><img src="${icon(b)}" style="width:100%;aspect-ratio:1;display:block;image-rendering:auto"></button>`).join("")}</div>
         </div>`; })()) : ""}
       </div>
     </div>
