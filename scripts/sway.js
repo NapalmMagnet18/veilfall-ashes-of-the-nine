@@ -15,7 +15,11 @@ export function update(ctx, dt) {
   let fr = Math.sin(t * 0.55 + s.ph * 1.3) * 2.5;
   for (const p of ctx.place.players) {
     const dx = p.feetPosition.x - me.x, dz = p.feetPosition.z - me.z, d = Math.hypot(dx, dz);
-    if (d < NEAR && d > 0.01) { const k = (1 - d / NEAR) * PUSH; fp -= (dz / d) * k; fr += (dx / d) * k; }
+    if (d < NEAR && d > 0.01) {
+      const k = (1 - d / NEAR) * PUSH; fp -= (dz / d) * k; fr += (dx / d) * k;
+      // a ringing thing (state.ring = a clip) speaks when brushed, once in a while
+      if (s.ring && ctx.now() >= (s.rungAt ?? 0)) { s.rungAt = ctx.now() + 4000; ctx.emit("playSound", { clip: s.ring, position: me, volume: 0.45, pitch: 0.95 + ctx.random() * 0.1 }); }
+    }
   }
   // damped spring back to hanging straight
   s.vp = (s.vp ?? 0) + (fp - K * (s.p ?? 0)) * dt; s.vr = (s.vr ?? 0) + (fr - K * (s.r ?? 0)) * dt;

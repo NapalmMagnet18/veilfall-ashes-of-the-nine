@@ -143,16 +143,21 @@ function fallenLantern(ctx, K, r, p) {
   K.loft([K.circ(0.22, 0, 0.05, 0.12, 0.08, 8), K.circ(0.22, 0.012, 0.05, 0.07, 0.05, 8)], false, true); // spilled wax
 }
 function bell(ctx, K, r, p) {
+  const oy = p.body ? -2.25 : 0, oz = p.body ? 0.8 : 0; // body: the bell alone, its hook at the origin
+  if (!p.body) {
   ctx.albedo(WOOD); ctx.color("oklch(0.6 0.04 60)"); ctx.roughness(0.9);
   K.cbox(0, 0, 0, 0.6, 0.25, 0.6, 0.05);
   K.cbox(0, 0.2, 0, 0.22, 2.55, 0.22, 0.03);
   K.bb(-0.09, 2.35, -0.95, 0.09, 2.53, 0.12); // the arm, out over the court (−Z)
   K.tube([0, 1.7, -0.02], [0, 2.38, -0.6], 0.04, 0.04, 5, true); // brace
+  }
+  if (p.split) return; // the bell hangs as its own swinging child
   ctx.albedo(IRON); ctx.color("oklch(0.85 0.01 250)"); ctx.metalness(0.7); ctx.roughness(0.45); ctx.smooth();
-  K.bb(-0.03, 2.25, -0.85, 0.03, 2.35, -0.75);
-  const z = -0.8, y = 1.72, rr = [[0.27, 0], [0.25, 0.04], [0.19, 0.12], [0.16, 0.3], [0.15, 0.42], [0.11, 0.5], [0.03, 0.53]];
+  K.bb(-0.03, 2.25 + oy, -0.85 + oz, 0.03, 2.35 + oy, -0.75 + oz);
+  const z = -0.8 + oz, y = 1.72 + oy, rr = [[0.27, 0], [0.25, 0.04], [0.19, 0.12], [0.16, 0.3], [0.15, 0.42], [0.11, 0.5], [0.03, 0.53]];
   K.loft(rr.map(([ra, h]) => K.circ(0, y + h, z, ra, ra, 14)), false, true);
   K.tube([0, y + 0.45, z], [0.02, y - 0.02, z], 0.012, 0.012, 4); K.loft([K.circ(0.02, y - 0.08, z, 0.03, 0.03, 6), K.circ(0.02, y - 0.02, z, 0.035, 0.035, 6)]);
+  if (p.body) return;
   ctx.metalness(0); ctx.flat(); ctx.albedo(null);
   ctx.color("oklch(0.62 0.05 75)"); ctx.roughness(1);
   K.tube([0.02, y - 0.08, z], [0.08, 0.9, -0.55], 0.012, 0.012, 4); // the pull rope
