@@ -17,7 +17,9 @@ assets:
     "/cdn/value.2349f5b2a205dcdb7fa4d7bfb654295f63819e09024f4d115676bb8f57ea0537.glb": {bytes: 1884040, kind: model, name: road-boneheap, uploadedAt: "2026-10-08T17:23:00.180Z"}
     "/cdn/value.2ad5479715b24bc81b0ee2646c8df5df01b07808cc73dfdf62864d332580fa98.glb": {bytes: 2187968, kind: model, name: bloodoak, uploadedAt: "2026-10-09T13:51:05.150Z"}
     "/cdn/value.301d8763c5f404df5407853f56d03bb5b262ca7bbba0a43e9822415a46367a07.glb": {bytes: 893904, kind: model, name: grave-waxcap, uploadedAt: "2026-10-08T18:13:29.229Z"}
+    "/cdn/value.3ab7a1d065bd27f995ca1af80b6a07cfaa28d4c54ce185efdfd0573ea59443ff.glb": {bytes: 628156, kind: model, name: ash-lanternsnag, uploadedAt: "2026-10-09T14:51:41.358Z"}
     "/cdn/value.3c60cb6d850afbc2c860e26a7eb36a99277bd2ba780f319efaa32e5aaa99622d.glb": {bytes: 606460, kind: model, name: wax-sealed-petition, uploadedAt: "2026-10-08T18:00:39.063Z"}
+    "/cdn/value.3ca339b7d13a459d224ee54f120542ef19b8f005ffeb735b239da56f9ac4a1fa.glb": {bytes: 1691048, kind: model, name: ash-ashoak, uploadedAt: "2026-10-09T14:51:37.339Z"}
     "/cdn/value.3cb51fb3edc8baa35cda1a3e29fe6f3e2294dbb59c778d668295d99e1e16092a.glb": {bytes: 1416228, kind: model, name: road-reliquary, uploadedAt: "2026-10-08T17:22:56.992Z"}
     "/cdn/value.3fd974bdd97c1ea22b5ba235accb1fe25780ad93f7003d0addeb07a1840090a8.png": {bytes: 464, kind: image, name: vf-rowon, uploadedAt: "2026-10-08T15:56:19.719Z"}
     "/cdn/value.4062479b79e447124098a851bed7d09b25ed14919ad29f8e63c82dd26f869e8e.glb": {bytes: 3889876, kind: model, name: crier-slim, uploadedAt: "2026-10-08T21:59:05.980Z"}
@@ -65,5 +67,6 @@ assets:
     "/cdn/value.f4d83d34d1f6c741193e4acf4b3dff9531e5a67b6aa65228d00a7db72a4e0f34.ttf": {bytes: 125468, kind: font, name: cinzel, uploadedAt: "2026-10-08T20:09:56.047Z"}
     "/cdn/value.f4e985f51d72e39ecd4691f462076ba4a14206d864edb85895ea8ef710ceccfc.png": {bytes: 455077, kind: image, name: icon-tonic, uploadedAt: "2026-10-09T10:25:17.752Z"}
     "/cdn/value.f783f422d9a4f9d95b085cec04840cff18609af18ff793d4e0d0d2ff4dfe8f22.glb": {bytes: 3247824, kind: model, name: waystone-of-the-nine, uploadedAt: "2026-10-08T17:24:40.455Z"}
+    "/cdn/value.f981a31d17c64316acbd3ee046b3a2905f300e5bad510275c741054aa4e1a695.glb": {bytes: 1990184, kind: model, name: ash-gravecypress, uploadedAt: "2026-10-09T14:51:44.844Z"}
     "/cdn/value.fc4c148debba7a63ae7aece00b8d6da267174c9429d997dddfc43477d97a8a17.glb": {bytes: 9424436, kind: model, name: abbey-belltower, uploadedAt: "2026-10-08T18:20:44.246Z"}
     "/cdn/value.fe868b233c1ac6e6cc4bf419d87cbd276ffeffb08bc2f44f23fc3b48057f42f6.glb": {bytes: 2271304, kind: model, name: crier-slim2, uploadedAt: "2026-10-08T21:59:33.069Z"}
