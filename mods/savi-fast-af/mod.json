@@ -1,0 +1,14 @@
+{
+  "name": "savi-fast-af",
+  "displayName": "SAVI FAST AF",
+  "description": "60 field-tested process rules that make your Savi respond faster and burn fewer calls — install, run /fastaf, done. Batched tool calls, no double-checking, straight answers, one defensible move instead of menus. Every rule cited from real session tape. /fastaf audit makes her grade herself.",
+  "tags": [
+    "savi",
+    "workflow",
+    "speed",
+    "protocol",
+    "meta"
+  ],
+  "visibility": "public",
+  "version": "1.0.0"
+}
