@@ -120,3 +120,5 @@ places/main/sim.js referee: spawns packs, quest stages, XP/levels, death and res
 - 2026-10-09: guild chest at Candlehold (-11, 63.5): one shared 27-slot chest per Spawn guild per realm, SQL table guild_vault, take is a guarded UPDATE. Needs player.guild (Spawn guilds); no guild = a line saying how to get one.
 - 2026-10-09: Pilgrims' Way blossom avenue: 9 emberblossoms (way-blossom-*) 7.5 m off the road from z 17 to 42, each with 4 veilblooms and a pink root glow; trunk-only colliders, outside the walk floor.
 - 2026-10-09: menu version 0.12 · THE PILGRIM ROADS; title gains Patch Notes (scripts/ui.js NOTES, newest first; bump VERSION and prepend a NOTES row each update).
+
+- 2026-10-09: arrival: defaultPlace main -> veil. Every load lands directly on the main menu, never loading the road first (whispers: "make sure everyone every time when loading into this game loads directly into the main menu").

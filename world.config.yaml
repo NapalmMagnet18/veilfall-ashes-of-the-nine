@@ -3,7 +3,7 @@ name: "VEILFALL: Ashes of the Nine"
 description: "Walk the candle road at dusk, silence the wax pilgrims, break the Bailiff of the Dripping Gate."
 camera: templates/camera.js#camera
 lighting: scripts/lighting.js
-defaultPlace: main
+defaultPlace: veil  # every load lands on the title screen (the Veil); Enter crosses the Bearer to main
 engine:
   behaviors:
     - scripts/arrival.js
