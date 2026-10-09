@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "basedOnSpecVersion": 1071,
-  "updatedAt": "2026-10-09T10:17:39.281Z",
-  "summary": "VEILFALL: Ashes of the Nine is an isometric multiplayer action RPG in a shared main realm and a solo Veil title/menu place. Place and actor scripts run quests, combat, bosses, wildlife and ambience; player/character modules handle Bearer input and persistence, while shared data and procedural scene scripts provide profiles, region geometry, services and world dressing.",
+  "basedOnSpecVersion": 1100,
+  "updatedAt": "2026-10-09T10:32:22.813Z",
+  "summary": "VEILFALL: Ashes of the Nine is an isometric multiplayer action RPG in a shared main realm and a solo Veil title/menu place. Place and actor scripts run quests, combat, bosses, wildlife, town flavor and ambience; player/character modules handle Bearer input and persistence, while shared data and procedural scene scripts provide profiles, services, region geometry and world dressing.",
   "scriptPaths": [
     "mods/aaa-quality-kit/look-cinema.js",
     "mods/absolute-cinema/cinema-camera.js",
@@ -91,6 +91,7 @@
     "scripts/effects/candles.fx.js",
     "scripts/fauna.js",
     "scripts/flat-starter-terrain.js",
+    "scripts/forest-wisp.js",
     "scripts/gen/abbey-court.js",
     "scripts/gen/abbey-litter.js",
     "scripts/gen/arena-floor.js",
@@ -157,6 +158,7 @@
     "scripts/gen/wayshrine.js",
     "scripts/grass-look.js",
     "scripts/grass.js",
+    "scripts/greeter.js",
     "scripts/hangman.js",
     "scripts/humanoid-locomotion.js",
     "scripts/lib/board-ui.js",
@@ -203,7 +205,7 @@
     "scripts/wax-pack.js"
   ],
   "places": [
-    "places/main/ - shared playable realm: Wayside Fire and Broken Lantern Road, Lanternmere, Hanging Orchard, Ashen Abbey, Ossuary, Hollow Deep and the Rimefast Pass/Frostbitten Vale; scene cells carry authored landmarks, enemy packs, cave crystals and neutral fauna.",
+    "places/main/ - shared playable realm spanning Wayside Fire/Broken Lantern Road, Candlehold, Lanternmere, Hanging Orchard, Ashen Abbey, Ossuary, Hollow Deep and Frostbitten Vale; authored cells place enemies, wildlife, wisps, townsfolk and landmarks.",
     "places/veil/ - solo ephemeral title/menu stage and ravine backdrop, configured as default place; the active Bearer is parked here while menus are open."
   ],
   "roots": [
@@ -218,7 +220,7 @@
   "shared": [
     "scripts/lib/character.js - Bearer schema, fresh state, roster/create/load/save/delete and packed position; player.js and arrival.js reuse it, crier/board-notes use realmOf.",
     "scripts/db.js and scripts/lib/data/realms.yml - realm/character and trade schemas, realm routing/name registry, and guild-vault SQL table/index setup.",
-    "scripts/lib/data/combat.yml, economy.yml and loot.yml - shared enemy/boss profiles, drops/rewards and gear rules consumed by main sim, wax-pack and loot/combat/UI services.",
+    "scripts/lib/data/combat.yml, economy.yml and loot.yml - shared enemy/boss profiles, drops/rewards and gear rules consumed by main sim, wax-pack and loot/combat/UI services; loot.yml includes axe/staff/bow weapon bases.",
     "scripts/lib/data/models.js - MODELS, HEIGHT and body map reusable character/enemy kinds to uploaded GLBs and metre heights; main sim and wax-pack reuse it.",
     "scripts/lib/data/veilfall-map.js - chapter paths, region geometry, floor distances and zone naming used by terrain, player movement/gates and main sim.",
     "scripts/lib/data/fauna.js and scripts/fauna.js - FAUNA species/model/gait rows and shared shepherd that moves scene-tagged fauna; main cells attach the shepherd and fauna rows.",
@@ -232,7 +234,7 @@
     "scripts/ui.js - state-driven HUD/menu/sheets, talent tree, unit frames and enemy portrait/name lookup; scripts/ui/nametag.js - nametag renderer.",
     "scripts/abbess.js, bailiff.js, ringer.js, warden.js, hangman.js - boss handlers; scripts/crier.js - onSpawn, quiet, update.",
     "scripts/lib/character.js - CHAR_KEYS, fresh, START, realmOf, pack, zoneOf, roster, create/load/save/remove; scripts/lib/data/talents.js - talent definitions/stat helpers.",
-    "scripts/fauna.js - update; scripts/gen/deep-crystal.js - geometry, collider for seeded crystal clusters."
+    "scripts/fauna.js, scripts/forest-wisp.js and scripts/greeter.js - update; scripts/gen/deep-crystal.js - geometry, collider for seeded crystal clusters."
   ],
   "ownership": [
     "scripts/lib/character.js CHAR_KEYS - persistent Bearer combat/progression, quest/reward claims, inventory/gear, arts, attuned shrines, personal vault/vaultRows and talents; packed position and zone feed re-entry/menu context.",
@@ -240,23 +242,23 @@
     "places/main/sim.js - quest/dialog/cut progress and claims; hub NPC/service spawning, packs and boss lifecycle/reset, respawn rows, place mood/track index and ambient audio.",
     "scripts/wax-pack.js - ordinary and mini-boss enemy AI/hp/casts/death, profile-driven summons and eligible Bearers' XP, copper, kills, shards and gear-drop inboxes.",
     "scripts/bailiff.js, ringer.js, warden.js, hangman.js and abbess.js - respective boss hp/phases/casts/adds/defeat and participant/place boss rows; handlers write lastFall and first world trophy records.",
-    "scripts/fauna.js - per-creature roaming target/timing/moving/yaw state and velocity/heading for fauna-tagged scene actors; scripts/lib/data/fauna.js owns species configuration, not live movement state.",
+    "scripts/fauna.js, forest-wisp.js and greeter.js - per-actor wildlife movement, wisp motion/startled presentation, and townsfolk bubble line/cooldown state; fauna data owns species configuration, not live state.",
     "scripts/lib/guildvault.js and guild_vault SQL rows - shared items keyed by realm and Spawn guild; taken rows are guarded, and character inventory owns the member's copy.",
     "places/main/cells/x0z-2.scene and x0z-3.scene - authored Hollow Deep crystal placements reference scripts/gen/deep-crystal.js; scenes own placement, params and seeds, not generator geometry."
   ],
   "flows": [
     "world.config.yaml attaches player through templates/player.js and maps actions; UI menu actions → scripts/player.js routes title/realm/character/create/enter/logout/options/notes.",
-    "defaultPlace veil → player menu; player.js menuInput → character.js roster/create/load/remove; realms.yml routes selection and Bearer fields hydrate player.state.",
-    "While player.state.menu is set, player.js hides the body and moves it to solo place veil; places/veil/sim.js plays/rotates the menu playlist unless a Bearer is on main.",
+    "defaultPlace veil → player menu; player.js menuInput → character.js roster/create/load/remove; realms.yml routes selection and Bearer fields hydrate player.state; menu-open Bearers move to veil and places/veil/sim.js rotates the menu playlist.",
     "world controls and controls.js select world/menu touch surfaces; ui.js actions → player.js and its service handlers.",
     "player.js periodically/on rest saves changed CHAR_KEYS plus packed position → character.js writes characters; arrival.js saves an active Bearer leaving main.",
     "player.js derives chapter floor gates from quest stage/abbeyOpenAll → veilfall-map.js floorDist governs goals and movement; Ossuary access gates Hollow Deep via deepDist, and Orchard access includes Rimefast/Vale via rimeDist.",
     "places/main/sim.js quest state advances from player talk/kills/boss flags; chapter stages, boss defeat and service interactions drive shared realm progression.",
-    "places/main/sim.js PACKS + combat.yml profiles + models.js body/HEIGHT → enemySpec spawns wax-pack actors; wax-pack runs combat, respawn and eligible payouts/drops using combat/economy/loot data.",
+    "places/main/sim.js PACKS + combat.yml profiles + models.js body/HEIGHT → enemySpec spawns wax-pack actors; wax-pack runs combat, respawn and eligible payouts/drops using combat/economy/loot data, with kind-specific UI portraits and FX.",
     "Main sim PACKS → Ossuary ash-dead/Kiln Warden, Hollow Deep deepghoul/lurker/crystalbrute/Broodmother and Frostbitten Vale frostdead/rimewolf/icewraith/Frost Jarl; profile summon rows drive mini-boss adds.",
-    "Scene fauna rows tagged fauna + scripts/lib/data/fauna.js species values → scripts/fauna.js shepherd update moves wildlife around home or flees Bearers; moth FX remain scene dressing.",
-    "Enemy kinds in wax-pack state → ui.js foe labels, portraits and elite/mini-boss frames; main sim selects soul, sap, ember, violet-crystal or frost FX by kind family.",
-    "Main sim TRACKS/rest-zone mood + fight/elite/boss state → room music playlist; duration (or 150s fallback) advances track index, and place sim spawns ambience beds/distant sounds; boss defeat → participant/place rows → crier, trophies and service panels/mutations."
+    "Scene fauna rows tagged fauna + fauna.js species values → scripts/fauna.js shepherd update moves wildlife; forest-wisp.js reads home/r/seed and nearby Bearers to drift/flee and change burnStyle; scene rows set wisp color/shape/light.",
+    "Candlehold town-* scene rows provide name/title/lines and bubble child → greeter.js shows rotating dialogue within 4.5 m, holds it 6 s and waits 20 s before speaking again; flavor only, not service/quest routing.",
+    "loot.yml weapon bases + loot-icons.yml and brews.yml flask images → loot/pack-ui.js item cards, forge choices and brew display; player.js service actions carry craft/equip/brew operations.",
+    "Main sim zone mood/fight state → music and distant-sound playlists; player.js zone step map selects footsteps, and player combat impacts emit colored ground FX; scene props and boss/enemy handlers emit their own ambience/combat audio and FX."
   ],
   "behaviorFamilies": [
     "scripts/gen/hub-*.js - reusable Wayside Fire props varied by instance params, seed and scene transform; share hub-kit.js; hub-board.js also serves Candlehold's exchange board.",
@@ -264,9 +266,9 @@
     "scripts/gen/fen-*.js - Lanternmere terrain dressing, path, waystones, stump/tree/props and heart structures are parametric seeded scene generators; share fen-kit.js where applicable.",
     "scripts/gen/cap-kit.js with cap-gate.js, cap-house.js and cap-wall.js - Candlehold stone, timber and slate share local-frame helpers; dimensions, lighting and seed vary by instance.",
     "scripts/gen/veil-land.js and veil-shrine.js - Veil ledge/cliff/ridge structures vary by kind/dimensions; shrine exports structure/hook constants.",
-    "scripts/gen/arena-floor.js, arena-pillar.js, gibbet.js and toll-throne.js - Bailiff arena dressing shares scripts/gen/shapes.js and wax palette; split gibbet cages render separately at a top pivot.",
-    "scripts/gen/deep-crystal.js - seeded, parametric cave-crystal clusters vary by spear count, height and spread; x0z-2.scene and x0z-3.scene place them as static deep-dress.",
-    "scripts/wax-pack.js + combat.yml + models.js - shared enemy movement, attack, death and payout vary by kind; Wax, drowned, Blood Woods, Spires, Ossuary, Deep and Rime kinds use kind-specific bodies, FX, VO, profiles and loot."
+    "scripts/gen/arena-floor.js, arena-pillar.js, gibbet.js and toll-throne.js - Bailiff arena dressing shares scripts/gen/shapes.js and wax palette; split gibbet cages render separately at a top pivot; scripts/gen/deep-crystal.js makes seeded cave clusters varied by spear count, height and spread for static scene placement.",
+    "scripts/wax-pack.js + combat.yml + models.js - shared enemy movement, attack, death and payout vary by kind; Wax, drowned, Blood Woods, Spires, Ossuary, Deep and Rime kinds use kind-specific bodies, FX, VO, profiles and loot.",
+    "scripts/forest-wisp.js and scripts/greeter.js - scene-attached behaviors reused across Fen/Orchard wisps and Candlehold townsfolk; each instance varies by home/seed/palette or dialogue lines and title."
   ],
   "probableOrphans": [
     "scripts/flat-starter-terrain.js",
@@ -277,7 +279,7 @@
     "Talent IDs are branch-tier strings b-t; each earlier tier requires 3 points spent in that branch, capstones have one rank with fourfold stat value, and talent changes must invalidate derived gear stats.",
     "Wayshrine IDs/coordinates in combat.yml must stay aligned with scene IDs/locations; travel costs 10 copper and refuses while an enemy is within 10 m; Abbey destination obeys player gate.",
     "Personal vault is 18 slots plus up to three purchased rows of nine; guild vault is 27 shared slots per Spawn guild per realm in SQL, separate from character inventory.",
-    "Enemy kind must stay aligned across main sim PACKS, combat.yml, models.js MODELS/HEIGHT, loot.yml/economy.yml, wax-pack.js and ui.js labels/portraits; HEIGHT is metres and positions attached FX.",
-    "Boss-like wax-pack kinds use elite tagging and the shared wax enemy handler; half-health adds are profile-driven, while only designated main bosses use their separate boss handlers."
+    "Enemy kinds must stay aligned across main sim PACKS, combat.yml, models.js MODELS/HEIGHT, loot.yml/economy.yml, wax-pack.js and ui.js labels/portraits; HEIGHT is metres and positions attached FX. Boss-like wax-pack kinds use the shared handler; designated main bosses keep separate handlers.",
+    "Weapon base IDs (blade/great/axe/staff/bow), implicit stats/slow flags in loot.yml and matching loot-icons.yml entries feed the shared loot, forge and pack UI; keep added weapon bases in the weapon-slot equip path."
   ]
 }
