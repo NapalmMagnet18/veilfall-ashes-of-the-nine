@@ -4,7 +4,7 @@ import { xf, compose, cbox, tube, quad, rnd, WOOD } from "./hub-kit.js";
 export function geometry(ctx) {
   const p = ctx.params || {}, fine = (ctx.lod ?? 1) <= 2, T = xf();
   ctx.flat(); ctx.roughness(0.95);
-  ctx.albedo("cdn/texture-worn-cracked-brown-leather.png"); ctx.color("oklch(0.8 0.03 60)");
+  ctx.albedo("/cdn/value.fc57b26e9d525c1cf1c8cc6ecfe6fff0ac7d9b1efa8635d83904eda34a281237.png"); ctx.color("oklch(0.8 0.03 60)");
   cbox(ctx, xf([0, 0, 0.05]), 0.88, 0.035, 2.0, 0.012);
   // the blanket, a rumpled sheet
   ctx.albedo("cdn/texture-coarse-wool-blanket-weave.png"); ctx.color(p.tint || "oklch(0.86 0.04 40)");
@@ -16,7 +16,7 @@ export function geometry(ctx) {
   tube(ctx, T, [[-0.38, 0.13, 0.82], [0, 0.14, 0.83], [0.38, 0.13, 0.82]], [0.1, 0.11, 0.1], fine ? 8 : 5);
   // the pack
   const PK = xf([0.05, 0.02, 1.2], [rnd(ctx, -15, 15), -12, 5]);
-  ctx.albedo("cdn/texture-worn-cracked-brown-leather.png"); ctx.color(p.pack || "oklch(0.75 0.04 55)");
+  ctx.albedo("/cdn/value.fc57b26e9d525c1cf1c8cc6ecfe6fff0ac7d9b1efa8635d83904eda34a281237.png"); ctx.color(p.pack || "oklch(0.75 0.04 55)");
   cbox(ctx, PK, 0.5, 0.55, 0.32, 0.05);
   cbox(ctx, compose(PK, xf([0, 0.42, -0.03], [0, 8, 0])), 0.52, 0.06, 0.36, 0.02);
   cbox(ctx, compose(PK, xf([0, 0.08, -0.2])), 0.34, 0.2, 0.08, 0.02);

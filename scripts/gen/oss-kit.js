@@ -8,7 +8,7 @@
 //                              a crozier rack, a hundred candles guttering cold
 import { TEX, xf, bevelBox, lathe, candleBed, drip, puddle, WAXC, quad as fq } from "./shapes.js";
 import { tube, I, rock } from "./hub-kit.js";
-const BONE = "cdn/texture-old-yellowed-bone-surface-cracked.png";
+const BONE = "/cdn/value.a9aaf6f7c229716860e6dcd36453041bed765badee802d825e54280c00b28641.png";
 const boneMat = (ctx, k = 0) => { ctx.albedo(BONE); ctx.color(["oklch(.86 .03 85)", "oklch(.8 .035 80)", "oklch(.74 .04 75)", "oklch(.9 .02 90)"][k % 4]); ctx.roughness(0.8); ctx.metalness(0); };
 // one skull, chin at origin, facing local −Z, about 0.22 m tall at s=1
 export function skull(ctx, T, s = 1, lod = 1) {

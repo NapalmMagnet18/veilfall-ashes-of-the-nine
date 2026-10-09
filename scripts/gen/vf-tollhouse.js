@@ -5,7 +5,7 @@
 import { kit, rng } from "./vf-kit.js";
 const STONE = "cdn/texture-weathered-grey-fieldstone-masonry.png";
 const WOOD = "/cdn/value.fd7f44461fb4757d95a177f1a9112b573154f57737f844a4558b4b32e21521ae.png";
-const SLATE = "cdn/texture-mossy-dark-slate-roof-shingles.png";
+const SLATE = "/cdn/value.dfc09fd0a7a4793928067ae9d29e434953509eadf99221207e9418df3781acdc.png";
 const X = 3.4, Z = 3.9, T = 0.4, H = 3.2, RIDGE = 5.0;
 const DOOR = { a0: -0.6, a1: 0.6, y0: 0, y1: 2.3 };
 const SOUTH = [[-X, H], [-2.2, 3.5], [-1.3, 2.5], [-0.3, 2.9], [0.8, 1.6], [2.0, 1.9], [X, 1.1]];

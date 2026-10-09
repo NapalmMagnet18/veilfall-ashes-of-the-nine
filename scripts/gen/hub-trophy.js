@@ -77,7 +77,7 @@ function hangman(ctx, T) {
 function abbess(ctx, T) {
   chain(ctx, T, 0.42);
   const B = compose(T, xf([0, -0.44, 0]));
-  const BONE = "cdn/texture-old-yellowed-bone-surface-cracked.png";
+  const BONE = "/cdn/value.a9aaf6f7c229716860e6dcd36453041bed765badee802d825e54280c00b28641.png";
   ctx.albedo(BONE); ctx.color("oklch(0.84 0.035 85)"); ctx.metalness(0); ctx.roughness(0.75);
   loft(ctx, B, [ringH(0, -0.03, 0, 0.05, 0.05, 8), ringH(0, 0, 0, 0.075, 0.075, 8), ringH(0, 0.012, 0, 0.02, 0.02, 8)]); // the cap, a knuckle of vertebra
   const n = 7;
