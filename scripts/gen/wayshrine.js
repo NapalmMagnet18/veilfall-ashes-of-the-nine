@@ -11,7 +11,7 @@ function prism(ctx, y0, y1, r0, r1, sides, rot = 0, top = true) {
 export function geometry(ctx) {
   const r = () => ctx.random(), lod = ctx.lod ?? 1, far = lod >= 3;
   ctx.roughness(0.8);
-  ctx.albedo("cdn/texture-weathered-dark-ashlar-stone-blocks-soot-stained.png");
+  ctx.albedo("/cdn/value.6b3fb3d3a7a92182bd467ade93e50cb3b85db20740d25d108932ae16b3f1c5bf.png");
   // three chipped steps
   ctx.color("oklch(0.42 0.012 260)");
   prism(ctx, 0, 0.22, 1.5, 1.45, 8, 0.39);
@@ -60,7 +60,7 @@ export function geometry(ctx) {
   ctx.emissive(null);
   // fallen chips round the base
   if (!far) {
-    ctx.albedo("cdn/texture-weathered-dark-ashlar-stone-blocks-soot-stained.png"); ctx.color("oklch(0.4 0.01 260)"); ctx.roughness(0.9);
+    ctx.albedo("/cdn/value.6b3fb3d3a7a92182bd467ade93e50cb3b85db20740d25d108932ae16b3f1c5bf.png"); ctx.color("oklch(0.4 0.01 260)"); ctx.roughness(0.9);
     for (let i = 0; i < 5; i++) { const a = r() * 6.28, d = 1.6 + r() * 0.5, s = 0.08 + r() * 0.1;
       ctx.box?.(Math.cos(a) * d, s / 2, Math.sin(a) * d, s * 1.6, s, s * 1.2); }
   }

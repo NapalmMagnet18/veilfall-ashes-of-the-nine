@@ -9,7 +9,7 @@ function box(ctx, cx, cy, cz, hx, hy, hz, yaw = 0, skipBottom = true) {
 }
 function wall(ctx) {
   const { len = 6, h = 2.6, t = 0.8 } = ctx.params, R = () => ctx.random();
-  ctx.flat(); ctx.albedo("cdn/texture-weathered-dark-ashlar-stone-blocks-soot-stained.png"); ctx.color("oklch(0.93 0.01 250)"); ctx.roughness(0.92);
+  ctx.flat(); ctx.albedo("/cdn/value.6b3fb3d3a7a92182bd467ade93e50cb3b85db20740d25d108932ae16b3f1c5bf.png"); ctx.color("oklch(0.93 0.01 250)"); ctx.roughness(0.92);
   const top = (u) => h * (0.5 + 0.5 * Math.abs(Math.sin(u * 0.9 + (ctx.params.s ?? 0) * 1.7) * 0.6 + Math.sin(u * 2.3) * 0.4));
   // rubble core so courses never show sky between blocks
   let y = 0, row = 0;
@@ -41,7 +41,7 @@ function wall(ctx) {
 function brazier(ctx) {
   const { h = 1.5 } = ctx.params, R = () => ctx.random();
   ctx.flat();
-  ctx.albedo("cdn/texture-weathered-dark-ashlar-stone-blocks-soot-stained.png"); ctx.color("oklch(0.9 0.01 250)"); ctx.roughness(0.9);
+  ctx.albedo("/cdn/value.6b3fb3d3a7a92182bd467ade93e50cb3b85db20740d25d108932ae16b3f1c5bf.png"); ctx.color("oklch(0.9 0.01 250)"); ctx.roughness(0.9);
   box(ctx, 0, 0.18, 0, 0.5, 0.18, 0.5);            // footing
   box(ctx, 0, 0.42, 0, 0.42, 0.06, 0.42, 0, false); // chamfer step
   box(ctx, 0, 0.5 + (h - 1.05) / 2, 0, 0.22, (h - 1.05) / 2, 0.22); // shaft

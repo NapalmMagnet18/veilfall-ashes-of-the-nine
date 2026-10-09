@@ -1,5 +1,5 @@
 // Candlehold's shared kit: boxes with a chamfered top edge, rings, gables. Local frame, −Z is the front.
-export const ASHLAR = "cdn/texture-weathered-dark-ashlar-stone-blocks-soot-stained.png";
+export const ASHLAR = "/cdn/value.6b3fb3d3a7a92182bd467ade93e50cb3b85db20740d25d108932ae16b3f1c5bf.png";
 export const PLASTER = "cdn/texture-old-cracked-limewash-plaster-soot-streaked.png";
 export const TIMBER = "cdn/texture-dark-weathered-oak-timber-beam.png";
 export const SLATE = "cdn/texture-dark-wet-slate-roof-tiles-mossy.png";

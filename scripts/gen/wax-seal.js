@@ -26,7 +26,7 @@ function strand(ctx, x, z, y0, y1, r0, seg) {
 export function geometry(ctx) {
   const { w = 13, h = 5.2 } = ctx.params, R = () => ctx.random(), hw = w / 2;
   // posts and lintel: wet ashlar
-  ctx.flat(); ctx.albedo("cdn/texture-weathered-dark-ashlar-stone-blocks-soot-stained.png"); ctx.color("oklch(0.93 0.01 250)"); ctx.roughness(0.8);
+  ctx.flat(); ctx.albedo("/cdn/value.6b3fb3d3a7a92182bd467ade93e50cb3b85db20740d25d108932ae16b3f1c5bf.png"); ctx.color("oklch(0.93 0.01 250)"); ctx.roughness(0.8);
   for (const sx of [-1, 1]) {
     let y = 0, i = 0;
     while (y < h) { const ch = 0.42 + R() * 0.14, j = (R() - 0.5) * 0.08; box(ctx, sx * (hw + 0.55) + j, y + ch / 2, j, 0.62 - (i % 2) * 0.05, ch / 2 - 0.01, 0.62 - (i % 2) * 0.05, (R() - 0.5) * 0.05); y += ch; i++; }

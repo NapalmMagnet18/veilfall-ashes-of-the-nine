@@ -3,7 +3,7 @@
 // Ledge: origin = the world origin, top of the flags at y = 0, the tip runs out to z ≈ -19.6 over the ravine.
 import { TEX, xf, face, quad, bevelBox, rough, puddle } from "./shapes.js";
 const FLAG = "cdn/texture-wet-dark-slate-flagstone-worn-smooth.png";
-const ASH = "cdn/texture-terrain-ash-dirt-cinders-and-rubble-dark.png";
+const ASH = "/cdn/value.6b01da2dff153af922b52c3fdf18989f82c6f89ca5dc8d8687cfbcfc6d2b26ba.png";
 const ROCK = "cdn/texture-weathered-wet-dark-granite.png";
 const C0 = [0, -4];
 const BASE = [[-13, 13], [-13, 10], [-12.5, 4], [-11, -1], [-9.5, -5.5], [-8.2, -9], [-7.3, -12], [-6.3, -14.8], [-5, -17], [-3, -18.6], [-0.8, -19.6], [1.6, -19.2], [3.6, -18], [5.3, -16.2], [6.5, -13.6], [7.5, -10.5], [8.7, -6.5], [10.3, -2], [12, 3], [13, 10], [13, 13]];

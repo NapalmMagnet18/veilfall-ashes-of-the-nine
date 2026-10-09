@@ -179,7 +179,7 @@ terrain:
       roughnessIntensity: 0.85
       macro: { scale: 40, hue: 0.04, value: 0.18 }
       tint: oklch(0.86 0.03 110)
-    - albedo: cdn/texture-terrain-ash-dirt-cinders-and-rubble-dark.png
+    - albedo: /cdn/value.6b01da2dff153af922b52c3fdf18989f82c6f89ca5dc8d8687cfbcfc6d2b26ba.png
       id: gravel
       pbr: true
       antiTiling: stochastic

@@ -259,9 +259,13 @@ const CHRONICLE = [
   ["V", "The Ossuary of Saint Ysolde", "Down the Bone Stair. Take her candle.", false, "/cdn/value.1a38646aae6877aa6c9b7845ba9905c1045dca51f41779fe0f0eede0f5b491d1.png"],
   ["VI", "Candlehold", "The last walled city. The Exchange keeps its ledgers.", true, "/cdn/value.492e4cea5c972b7a5b7b2eb399dbe1b59c4e31165dcabb65024f6575eb5bcf33.png"],
 ];
-const VERSION = "0.13 · FACES OF THE VEIL";
+const VERSION = "0.13.1 · FACES OF THE VEIL";
 // what changed, newest first: [version, title, date, [lines]]
 const NOTES = [
+  ["0.13.1", "Sharper Stone", "Oct 9", [
+    ["HD Road & Walls", "The pilgrim road's flagstones, the soot-stained ashlar of every ruin and wall, and the ash-dirt ground are repainted at twice the resolution."],
+    ["Dead Oaks", "The road's oaks grow buttress roots, furrowed bark, split crowns, last ember leaves and glowing shelf fungus."],
+    ["Ferns & Brambles", "Ferns unfurl serrated fronds and fiddleheads; brambles carry hooked thorns, bronze leaves and black berries."]]],
   ["0.13", "Faces of the Veil", "Oct 9", [
     ["Unit Frames", "Your Bearer's portrait now sits top left, breathing in ember light with your level, life, resource and experience, and it flares red when you're struck."],
     ["Target Frame", "Strike a foe and its painted face and life bar appear beside yours. Elites wear a gold ring, and the melted fade to grey."],
