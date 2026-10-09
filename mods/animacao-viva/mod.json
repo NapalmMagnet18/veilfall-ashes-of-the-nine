@@ -1,0 +1,17 @@
+{
+  "name": "animacao-viva",
+  "displayName": "Unreal Engine 5 advanced animations and more",
+  "description": "Unreal Engine 5's animation toolkit, translated for bodies with NO skeleton — characters built from primitives, geometry creatures, ships, turrets. State machine with cross-fade, 1D/2D blend spaces, per-region layered animation (run and attack at once), additive poses, notifies with marks and windows, and phase sync that stops feet sliding. Not a rig, not a retargeter: the same ideas, done in math, for anyone who poses their characters by hand. Manual written in Portuguese (PT-PT).",
+  "tags": [
+    "animation",
+    "unreal-engine",
+    "procedural",
+    "state-machine",
+    "blend-space",
+    "layered-animation",
+    "notifies",
+    "no-rig"
+  ],
+  "visibility": "public",
+  "version": "1.0.0"
+}
