@@ -129,3 +129,4 @@ places/main/sim.js referee: spawns packs, quest stages, XP/levels, death and res
 - 2026-10-09: Talent tree on N (scripts/lib/data/talents.js): 3 branches x 4 tiers per calling, 1 point per level past 1, tier t opens at 3t points in its branch, capstone 1 rank at 4x. Nodes feed gear stat keys via deriveGear; saved per Bearer as talents. Reset is free for now. (whispers)
 
 - 2026-10-09: the Hollow Deep added, a crystal cavern down a cleft off the Ossuary south wall (centre -47,-310). Roster from the creator's cave sheet: deep ghoul, hollow lurker, crystal brute, the Broodmother mini-boss (summons deep ghouls at half hp). Frost sheet still unplaced.
+- 2026-10-09: the Rimefast Pass and Frostbitten Vale added east of Saint Corvin's Orchard (vale centre 122,-4). Roster from the frost sheet: frostbitten pilgrim, rime wolf, ice wraith, the Frost Jarl mini-boss (summons rime wolves at half hp). Both enemy sheets from #21057 are now placed.
