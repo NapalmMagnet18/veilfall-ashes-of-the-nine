@@ -7,6 +7,8 @@ import { boardPanel } from "./lib/board-ui.js";
 import R from "./lib/data/realms.yml";
 import { FRAME_CSS } from "./lib/frames.js";
 import CB from "./lib/data/combat.yml";
+import cinemaPanel from "../mods/absolute-cinema/lib/ui-cinema.js";
+import { renderCinemaOverlays } from "../mods/absolute-cinema/lib/ui-cinema-overlays.js";
 const STAGES = [
   ["Pilgrims in White", "Speak with Maelin at the Wayside Fire"],
   ["Pilgrims in White", "Silence the wax pilgrims on the road"],
@@ -415,7 +417,7 @@ function menu(ctx, player, s) {
 }
 let firstSeen = null;
 const PORTRAITS = { Maelin: "/cdn/value.9b2ca380585d594996aa46048b8512b39fa6833033ee030624573e83f72ea96b.png", Oswin: "/cdn/value.90e281c6498bfb21ffee4d1f51afea300d3d58b948c66aaff56355f765ca2e17.png" };
-export default function (ctx, player) {
+function vfHud(ctx, player) {
   const s = player.state ?? {}, now = ctx.now();
   if (s.hp === undefined) return "";
   if (s.menu) return menu(ctx, player, s);
@@ -544,4 +546,12 @@ function shrinePanel(s, touch, rail) {
   return `<div class="absolute plate tf" style="${touch ? `left:${rail};right:${rail};top:60px` : "left:24px;top:50%;transform:translateY(-50%);width:300px"};padding:12px 16px;animation:vfin .2s;pointer-events:auto">
     <div style="font-size:11px;letter-spacing:.2em;color:#6db8c0">WAYSHRINE</div>
     <div style="font-size:18px;color:#e7d9b8;margin:2px 0 6px">${here?.name ?? ""}</div>${rows}</div>`;
+}
+
+// Absolute Cinema rides over everything: its fades/letterbox always, the director panel when open (9)
+export default function (ctx, player) {
+  const base = vfHud(ctx, player);
+  let cine = "";
+  try { cine = renderCinemaOverlays(player) + (player?.state?.cinemaOpen ? cinemaPanel(player, ctx.world) : ""); } catch (e) { cine = ""; }
+  return base + cine;
 }
