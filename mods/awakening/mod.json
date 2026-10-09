@@ -1,0 +1,23 @@
+{
+  "name": "awakening",
+  "displayName": "Awakening",
+  "description": "High-fidelity rendering for 3D worlds: production PBR lighting, a film-grade post stack (sharpen, AO, sun-lit mist, filmic grade), volumetric clouds, realistic wind-blown grass, 2K PBR ground textures, river-eroded mountains, a procedural forest planner with trails, forest-floor cover, a layered rock material, and Awakening Water: shared swell, ripples and wakes, shore foam and wet sand, optional squalls and thunderstorms with rain and lightning.",
+  "tags": [
+    "graphics",
+    "lighting",
+    "post-processing",
+    "realism",
+    "terrain",
+    "vegetation",
+    "water",
+    "weather"
+  ],
+  "visibility": "public",
+  "version": "1.7.0",
+  "tab": {
+    "id": "guide",
+    "label": "Awakening",
+    "icon": "🌅",
+    "render": "panel.js"
+  }
+}
