@@ -236,9 +236,11 @@ export function onInput(ctx, input) {
   if (input.pressed.crosswound) crosswound(ctx);
   if (input.pressed.griefstep) griefstep(ctx);
   if (input.pressed.tonic) tonic(ctx);
-  if (input.pressed.bag) s.bagOpen = !s.bagOpen;
-  if (input.pressed.sheet) { s.sheetOpen = !s.sheetOpen; if (s.sheetOpen) s.treeOpen = false; }
-  if (input.pressed.tree) { s.treeOpen = !s.treeOpen; if (s.treeOpen) s.sheetOpen = false; }
+  // every panel answers on this machine alone: leather and buckles for the bag, parchment for the sheet, a rune for the tree
+  const panel = (open, on, off) => ctx.emit("playSound", { clip: sfx(open ? on : off), volume: 0.55, bus: "UI", mode: "restart" });
+  if (input.pressed.bag) { s.bagOpen = !s.bagOpen; panel(s.bagOpen, "leather-satchel-flap-opened-buckle-jingle-and-items-shifting", "leather-satchel-flap-closed-soft-thump-and-buckle-click"); }
+  if (input.pressed.sheet) { s.sheetOpen = !s.sheetOpen; if (s.sheetOpen) s.treeOpen = false; panel(s.sheetOpen, "heavy-leather-bound-tome-opened-parchment-pages-rustle", "heavy-leather-bound-tome-closed-soft-dusty-thud"); }
+  if (input.pressed.tree) { s.treeOpen = !s.treeOpen; if (s.treeOpen) s.sheetOpen = false; panel(s.treeOpen, "ancient-stone-rune-tablet-glows-awake-low-hum-and-glass-shimmer", "stone-rune-glow-fading-soft-low-whoosh"); }
   if (input.pressed.learn) {
     const id = input.actionData?.learn?.id;
     if (id === "reset") { s.talents = {}; ctx.emit("playSound", { clip: sfx("pages-turn-and-ash-blown-away"), position: ctx.self.feetPosition, volume: 0.5 }, { audience: { player: ctx.self.id } }); }

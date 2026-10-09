@@ -53,6 +53,9 @@ const BEDS = [
   { id: "bed-orchard", x: 62, z: 6, clip: "ambience-dead-orchard-at-night-creaking-ropes-crows-and-dry-leaves-loop", gain: 0.16, max: 30 },
   { id: "bed-ossuary", x: -42, z: -266, clip: "ambience-vast-bone-ossuary-skulls-settling-dripping-wax-and-distant-whispered-prayer-loop", gain: 0.18, max: 24 },
   { id: "bed-bonestair", x: -20, z: -260, clip: "ambience-narrow-stone-stair-cold-draft-and-bones-clicking-loop", gain: 0.14, max: 12 },
+  { id: "bed-city", x: 0, z: 68, clip: "ambience-walled-medieval-city-at-night-distant-chatter-footsteps-on-cobbles-and-dogs-loop", gain: 0.16, max: 34 },
+  { id: "bed-city-bells", x: 0, z: 84, clip: "ambience-cathedral-bells-ringing-slowly-over-a-quiet-city-with-pigeons-loop", gain: 0.12, max: 40 },
+  { id: "bed-capway", x: 0, z: 30, clip: "ambience-night-road-crickets-wind-in-dry-grass-and-far-city-bells-loop", gain: 0.13, max: 18 },
   { id: "bed-court", x: 0, z: -105, clip: "ambience-low-ominous-choir-drone-cathedral-loop", gain: 0.14, max: 26 },
 ];
 const PACKS = [
