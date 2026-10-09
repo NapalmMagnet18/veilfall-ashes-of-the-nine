@@ -69,6 +69,7 @@ const PACKS = [
   { id: "p8", kind: "pilgrim", x: -3, z: -65 }, { id: "p9", kind: "pilgrim", x: 0, z: -69 }, { id: "p10", kind: "pilgrim", x: -5, z: -71 }, { id: "d2", kind: "deacon", x: -2, z: -68 },
 ];
 PACKS.push({ id: "mb1", kind: "chandler", x: 1, z: -79 }, { id: "mb2", kind: "cantor", x: 0, z: -177 }); // the Tallow Chandler, mini boss before the Dripping Gate
+PACKS.push({ id: "f1", kind: "drowned", x: -48, z: -2 }, { id: "f2", kind: "drowned", x: -52, z: -8 }, { id: "f3", kind: "harpooner", x: -55, z: 2 }, { id: "f4", kind: "drowned", x: -70, z: 2 }, { id: "f5", kind: "harpooner", x: -74, z: -6 }, { id: "f6", kind: "barnacle", x: -60, z: -18 }, { id: "f7", kind: "drowned", x: -76, z: -20 }, { id: "f8", kind: "harpooner", x: -58, z: -26 }, { id: "mb3", kind: "ferryman", x: -78, z: -12 }); // the Lanternmere's drowned
 PACKS.push({ id: "o1", kind: "chorister", x: -36, z: -257 }, { id: "o2", kind: "chorister", x: -38, z: -275 }, { id: "o3", kind: "deacon", x: -33, z: -266 }, { id: "o4", kind: "flagellant", x: -24, z: -261 }); // the Ossuary's sisters
 const PETITIONS = [[4, -40], [13, -42], [11, -52], [3, -50], [17, -53]];
 const MAELIN = { x: -5, z: -3 };
@@ -132,7 +133,8 @@ const enemySpec = (pk) => ({
   id: "en-" + pk.id, tags: ["enemy", pk.kind], physics: "character",
   feetPosition: { x: pk.x, z: pk.z, y: { terrain: 0 } },
   scale: pk.kind === "deacon" ? 1.35 : 1,
-  ...(pk.kind === "chandler" || pk.kind === "cantor" ? { tags: ["enemy", pk.kind, "elite"] } : {}),
+  ...(["drowned", "harpooner", "barnacle", "ferryman"].includes(pk.kind) ? { tint: 1 } : {}),
+  ...(pk.kind === "chandler" || pk.kind === "cantor" || pk.kind === "ferryman" ? { tags: ["enemy", pk.kind, "elite"] } : {}),
   ...body(pk.kind), behavior: ["scripts/humanoid-locomotion.js"],
   children: [{ id: "head-flame", visibleRange: { min: 0, max: 72 }, feetPosition: { x: 0, y: pk.kind === "cantor" ? 3.0 : pk.kind === "chandler" ? 2.95 : pk.kind === "deacon" ? 1.72 : pk.kind === "chorister" ? 1.9 : pk.kind === "flagellant" ? 1.78 : 1.62, z: 0 }, fx: { script: `fx\npop f rate=flick(.5,.3)*18 on=point() life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)`, params: {} } }, ...(pk.kind === "deacon" ? [CENSER] : [])],
   state: { kind: pk.kind, hp: C[pk.kind].hp, maxHp: C[pk.kind].hp, home: { x: pk.x, y: 0, z: pk.z } },

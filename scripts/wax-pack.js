@@ -13,6 +13,10 @@ const VOX = {
   chorister: { aggro: "wax-choirboy-sings-one-broken-high-note-then-shrieks", death: "melting-wax-singer-gargled-hymn-fading-into-hiss" },
   flagellant: { aggro: "penitent-cracks-a-chain-scourge-and-screams-in-ecstasy", death: "chains-clatter-onto-stone-as-wax-body-slumps" },
   chandler: { aggro: "towering-wax-executioner-drags-cleaver-on-stone-and-roars-through-burning-candles", death: "huge-wax-and-bone-body-crashes-down-chains-and-candles-scatter-long-hiss" },
+  drowned: { aggro: "drowned-sailor-gurgling-roar-water-spilling-from-lungs", death: "waterlogged-body-collapses-into-shallow-water-splash-and-gurgle" },
+  harpooner: { aggro: "ghoul-hiss-and-rope-whip-crack-wet", death: "ghoul-shriek-fading-and-harpoon-clatters-on-wet-stone" },
+  barnacle: { aggro: "drowned-knight-groan-inside-corroded-helm-armor-grinding-water-pouring", death: "heavy-corroded-armor-collapses-into-water-big-splash-and-chains" },
+  ferryman: { aggro: "towering-ferryman-deep-hollow-voice-and-ship-bell-tolls-underwater", death: "ferryman-collapses-soul-lantern-shatters-many-whispers-escape-into-water" },
   cantor: { aggro: "three-voiced-undead-choir-mistress-screams-a-dissonant-chord-bells-clang", death: "choir-mistress-shatters-bells-fall-and-three-voices-fade-into-hiss" },
   deacon: { aggro: "huge-wax-priest-bellows-a-low-sermon-word-and-scrapes-censer", death: "giant-wax-body-topples-heavy-thud-and-long-boiling-hiss" },
 };
@@ -22,6 +26,10 @@ const MUTTER = {
   chorister: { clip: "wax-choirboy-humming-broken-hymn-under-breath", lines: ["...la... la... lament...", "...sing it melted...", "...the high note hurts...", "...one more verse, one more..."] },
   flagellant: { clip: "penitent-murmured-litany-and-soft-chain-clink", lines: ["...one stroke for the first flame...", "...I was the one who let it go out...", "...again. again.", "...the wax remembers my sin..."] },
   chandler: { clip: "wax-executioner-slow-breathing-and-dripping-candles-chain-clink", lines: ["...every wick must be trimmed...", "...I make the candles. from you...", "...hold still, little light...", "...the tallow is never wasted..."] },
+  drowned: { clip: "drowned-sailor-wet-breathing-water-dripping-creak", lines: ["...the bell rang and no one came...", "...cold... so cold under...", "...all hands, all hands...", "...the lanterns drowned too..."] },
+  harpooner: { clip: "ghoul-clicking-teeth-and-wet-rope-creak", lines: ["...something warm on the shore...", "...reel it in... reel it in...", "...fresh catch..."] },
+  barnacle: { clip: "corroded-armor-creak-and-water-sloshing-in-helm", lines: ["...I held the causeway...", "...the oath sank with me...", "...none pass the water..."] },
+  ferryman: { clip: "deep-slow-oar-strokes-and-distant-drowned-whispers", lines: ["...every crossing has its fare...", "...your coin, or your breath...", "...the mere keeps all it takes...", "...row, and do not look down..."] },
   cantor: { clip: "three-whispering-voices-humming-a-funeral-hymn-soft-bells", lines: ["...sing with us, little light...", "...three voices, one grave...", "...the hymn has no last verse...", "...your breath will make a fine note..."] },
   deacon: { clip: "huge-wax-priest-low-droning-sermon-murmur", lines: ["...AND THE NINE WERE GIVEN TO ASH...", "...kneel, little candle...", "...tithe your light...", "...the Veil keeps what it is owed..."] },
 };
@@ -32,7 +40,7 @@ function mutter(ctx, w, s, f, now, players) {
   if (now < next) return;
   mutterAt.set(w.id, now + 9000 + ctx.random() * 9000);
   if (!players.some((p) => flat(p.feetPosition, f) < EAR)) return;
-  const M = MUTTER[s.kind] ?? MUTTER.pilgrim, deep = s.kind === "deacon" || s.kind === "chandler" || s.kind === "cantor";
+  const M = MUTTER[s.kind] ?? MUTTER.pilgrim, deep = s.kind === "deacon" || s.kind === "chandler" || s.kind === "cantor" || s.kind === "barnacle" || s.kind === "ferryman";
   ctx.emit("playSound", { clip: sfx(M.clip), position: f, volume: deep ? 0.55 : 0.38, pitch: 0.85 + ctx.random() * 0.3, maxDistance: EAR });
   ctx.emit("damageNumber", { position: { x: f.x, y: f.y + (deep ? 2.6 : 2.1), z: f.z }, text: M.lines[Math.floor(ctx.random() * M.lines.length)], color: deep ? "#c9a46a" : "#b8ad98", size: deep ? 0.9 : 0.7, lifetime: 2.6 }, { audience: { nearby: f, radius: EAR } });
 }
@@ -137,7 +145,7 @@ export function update(ctx, dt) {
     if (s.hp <= 0) {
       s.dead = true; s.deadAt = now; w.physics = "none";
       ctx.emit("fx", { position: { x: f.x, y: f.y + 0.4, z: f.z }, script: MELT });
-      ctx.emit("playSound", { clip: sfx((VOX[s.kind] ?? VOX.pilgrim).death), position: f, volume: (s.kind === "deacon" || s.kind === "chandler" || s.kind === "cantor") ? 1 : 0.8, pitch: 0.9 + ctx.random() * 0.2 });
+      ctx.emit("playSound", { clip: sfx((VOX[s.kind] ?? VOX.pilgrim).death), position: f, volume: (s.kind === "deacon" || s.kind === "chandler" || s.kind === "cantor" || s.kind === "barnacle" || s.kind === "ferryman") ? 1 : 0.8, pitch: 0.9 + ctx.random() * 0.2 });
       w.anim.attack = null; w.anim.death = { clip: "cdn/clip-die.glb", weight: 20, loop: "once" }; // it falls first, then the wax gives way
       animate(ctx, w, { "scale.y": 0.08, "scale.x": 1.5, "scale.z": 1.5 }, { duration: 1.1, delay: 0.9 });
       payout(ctx, f, K.xp, roll(ctx, E.drops[s.kind] ?? E.drops.pilgrim), true, "small", s.kind);
