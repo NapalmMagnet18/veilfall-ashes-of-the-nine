@@ -477,7 +477,7 @@ function vfHud(ctx, player) {
   const cwLeft = Math.max(0, (s.cwReadyAt ?? 0) - now), cwPct = Math.min(100, (cwLeft / (CB.crosswound.cd * 1000)) * 100);
   const guardLeft = Math.max(0, (s.guardReadyAt ?? 0) - now), guardPct = Math.min(100, guardLeft / 80), guardOn = (s.guardUntil ?? 0) > now;
   const foe = s.foe, foeOn = foe && !s.dead && (foe.gone ? now - foe.at < 1500 : s.target === foe.id || now - foe.at < 4000);
-  const FOES = { walker: "Wax Walker", pilgrim: "Wax Pilgrim", deacon: "Wax Deacon", chorister: "Hollow Chorister", flagellant: "Tallow Flagellant" };
+  const FOES = { walker: "Wax Walker", pilgrim: "Wax Pilgrim", deacon: "Wax Deacon", chandler: "The Tallow Chandler", chorister: "Hollow Chorister", flagellant: "Tallow Flagellant" };
   const chips = [];
   if (guardOn) chips.push(`<div class="plate chip" style="color:#6DB8C0">◇ GUARDING</div>`);
   if ((s.hasteUntil ?? 0) > now) chips.push(`<div class="plate chip" style="color:#9fe0c8">» MIST STRIDE ${Math.ceil(((s.hasteUntil ?? 0) - now) / 1000)}s</div>`);
@@ -531,7 +531,7 @@ function vfHud(ctx, player) {
   ${touch && chips.length ? `<div class="absolute" style="left:10px;top:236px;display:flex;flex-direction:column;gap:6px">${chips.join("")}</div>` : ""}
   ${!touch ? unitFrames(s, { hp, max, hpPct, edge, lv, xpPct, foe, foeOn, now, FOES }) : ""}
   ${foeOn && touch ? `<div class="absolute plate tf" style="left:50%;top:${boss && boss.engaged && !boss.dead ? 168 : 24}px;transform:translateX(-50%);width:min(300px,calc(100vw - 2*${rail}));text-align:center;padding:10px 16px;animation:vfin .2s;${foe.gone ? "opacity:.6" : ""}">
-    <div style="display:flex;align-items:baseline;justify-content:center;gap:8px"><span style="font-size:16px;color:${foe.kind === "deacon" ? "#f2b04a" : "var(--wax)"};letter-spacing:.06em">${FOES[foe.kind] ?? "Wax Thing"}</span>${foe.kind === "deacon" ? `<span class="lbl" style="color:#f2b04a">ELITE</span>` : ""}</div>
+    <div style="display:flex;align-items:baseline;justify-content:center;gap:8px"><span style="font-size:16px;color:${(foe.kind === "deacon" || foe.kind === "chandler") ? "#f2b04a" : "var(--wax)"};letter-spacing:.06em">${FOES[foe.kind] ?? "Wax Thing"}</span>${foe.kind === "deacon" ? `<span class="lbl" style="color:#f2b04a">ELITE</span>` : ""}</div>
     <div class="bar2"><div style="position:absolute;inset:0;width:${(foe.hp / foe.max) * 100}%;background:linear-gradient(#c9402f,#7a1610);transition:width .15s"></div><div style="position:absolute;inset:0;font-size:10px;line-height:12px;color:#e9dfc8;text-shadow:0 1px 0 #000">${foe.gone ? "MELTED" : `${foe.hp} / ${foe.max}`}</div></div></div>` : ""}
   <div class="absolute ph plate" style="left:10px;top:150px;width:170px;padding:2px 6px">
     <div class="lbl" style="font-size:10px">Bladewraith · Lv ${lv} · ${fmt(s.copper ?? 0)}</div>
@@ -629,9 +629,9 @@ function unitFrames(s, { hp, max, hpPct, edge, lv, xpPct, foe, foeOn, now, FOES 
       <div class="vfbar rs"><div style="width:${Math.min(100, edge)}%"></div><b>${edge} ${cls.res ?? "Edge"}</b></div>
       <div class="vfbar xp"><div style="width:${xpPct}%"></div></div></div></div>`;
   if (!foeOn) return me;
-  const fp = Math.max(0, Math.min(100, (foe.hp / foe.max) * 100)), elite = foe.kind === "deacon";
+  const fp = Math.max(0, Math.min(100, (foe.hp / foe.max) * 100)), elite = foe.kind === "deacon" || foe.kind === "chandler";
   const tg = `<div class="vfuf tg ${foe.gone ? "gone" : ""}" style="left:330px;animation:vfin .18s">
-    <div class="vfuf-b"><div class="vfuf-n" style="color:${elite ? "#f2b04a" : "#e7d9b8"}">${FOES[foe.kind] ?? "Wax Thing"}<span>${elite ? "ELITE" : "wax-touched"}</span></div>
+    <div class="vfuf-b"><div class="vfuf-n" style="color:${elite ? "#f2b04a" : "#e7d9b8"}">${FOES[foe.kind] ?? "Wax Thing"}<span>${foe.kind === "chandler" ? "MINI BOSS" : elite ? "ELITE" : "wax-touched"}</span></div>
       <div class="vfbar hp"><div style="width:${fp}%"></div><b>${foe.gone ? "MELTED" : `${foe.hp} / ${foe.max}`}</b></div>
       <div class="vfbar rs tg2"><div style="width:${foe.gone ? 0 : 100}%"></div></div></div>
     <div class="vfpt ${elite ? "elite" : ""}"><div class="vfpt-i" style="background-image:url(${FOE_FACE[foe.kind] ?? FOE_FACE.pilgrim});animation-delay:-1.7s"></div><div class="vfpt-e" style="animation-delay:-.9s"></div></div></div>`;

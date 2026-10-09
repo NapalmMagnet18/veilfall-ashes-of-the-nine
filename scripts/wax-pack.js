@@ -11,6 +11,7 @@ const VOX = {
   pilgrim: { aggro: "hollow-wax-moan-short", death: "wax-figure-collapsing-hiss-and-sigh" },
   chorister: { aggro: "wax-choirboy-sings-one-broken-high-note-then-shrieks", death: "melting-wax-singer-gargled-hymn-fading-into-hiss" },
   flagellant: { aggro: "penitent-cracks-a-chain-scourge-and-screams-in-ecstasy", death: "chains-clatter-onto-stone-as-wax-body-slumps" },
+  chandler: { aggro: "towering-wax-executioner-drags-cleaver-on-stone-and-roars-through-burning-candles", death: "huge-wax-and-bone-body-crashes-down-chains-and-candles-scatter-long-hiss" },
   deacon: { aggro: "huge-wax-priest-bellows-a-low-sermon-word-and-scrapes-censer", death: "giant-wax-body-topples-heavy-thud-and-long-boiling-hiss" },
 };
 // idle throats: what each kind murmurs while it waits, heard within EAR metres, one fragment drifting up
@@ -18,6 +19,7 @@ const MUTTER = {
   pilgrim: { clip: "wax-pilgrim-whispered-prayer-mumble-wet-and-hollow", lines: ["...light the ninth, light the ninth...", "...forgive the wick...", "...the road remembers...", "...burn slow, burn kind...", "...where did the lanterns go..."] },
   chorister: { clip: "wax-choirboy-humming-broken-hymn-under-breath", lines: ["...la... la... lament...", "...sing it melted...", "...the high note hurts...", "...one more verse, one more..."] },
   flagellant: { clip: "penitent-murmured-litany-and-soft-chain-clink", lines: ["...one stroke for the first flame...", "...I was the one who let it go out...", "...again. again.", "...the wax remembers my sin..."] },
+  chandler: { clip: "wax-executioner-slow-breathing-and-dripping-candles-chain-clink", lines: ["...every wick must be trimmed...", "...I make the candles. from you...", "...hold still, little light...", "...the tallow is never wasted..."] },
   deacon: { clip: "huge-wax-priest-low-droning-sermon-murmur", lines: ["...AND THE NINE WERE GIVEN TO ASH...", "...kneel, little candle...", "...tithe your light...", "...the Veil keeps what it is owed..."] },
 };
 const EAR = 24, mutterAt = new Map();
@@ -27,7 +29,7 @@ function mutter(ctx, w, s, f, now, players) {
   if (now < next) return;
   mutterAt.set(w.id, now + 9000 + ctx.random() * 9000);
   if (!players.some((p) => flat(p.feetPosition, f) < EAR)) return;
-  const M = MUTTER[s.kind] ?? MUTTER.pilgrim, deep = s.kind === "deacon";
+  const M = MUTTER[s.kind] ?? MUTTER.pilgrim, deep = s.kind === "deacon" || s.kind === "chandler";
   ctx.emit("playSound", { clip: sfx(M.clip), position: f, volume: deep ? 0.55 : 0.38, pitch: 0.85 + ctx.random() * 0.3, maxDistance: EAR });
   ctx.emit("damageNumber", { position: { x: f.x, y: f.y + (deep ? 2.6 : 2.1), z: f.z }, text: M.lines[Math.floor(ctx.random() * M.lines.length)], color: deep ? "#c9a46a" : "#b8ad98", size: deep ? 0.9 : 0.7, lifetime: 2.6 }, { audience: { nearby: f, radius: EAR } });
 }
@@ -132,7 +134,7 @@ export function update(ctx, dt) {
     if (s.hp <= 0) {
       s.dead = true; s.deadAt = now; w.physics = "none";
       ctx.emit("fx", { position: { x: f.x, y: f.y + 0.4, z: f.z }, script: MELT });
-      ctx.emit("playSound", { clip: sfx((VOX[s.kind] ?? VOX.pilgrim).death), position: f, volume: s.kind === "deacon" ? 1 : 0.8, pitch: 0.9 + ctx.random() * 0.2 });
+      ctx.emit("playSound", { clip: sfx((VOX[s.kind] ?? VOX.pilgrim).death), position: f, volume: (s.kind === "deacon" || s.kind === "chandler") ? 1 : 0.8, pitch: 0.9 + ctx.random() * 0.2 });
       w.anim.attack = null; w.anim.death = { clip: "cdn/clip-die.glb", weight: 20, loop: "once" }; // it falls first, then the wax gives way
       animate(ctx, w, { "scale.y": 0.08, "scale.x": 1.5, "scale.z": 1.5 }, { duration: 1.1, delay: 0.9 });
       payout(ctx, f, K.xp, roll(ctx, E.drops[s.kind] ?? E.drops.pilgrim), true, "small", s.kind);
@@ -151,7 +153,7 @@ export function update(ctx, dt) {
       // the blow lands at the end of the swing; a Bearer who stepped out of reach is missed
       if (now >= s.swing.at) {
         const tgt = players.find((q) => q.id === s.swing.who);
-        if (tgt && flat(tgt.feetPosition, f) < (K.reach ?? 1.6) + 0.7) hurtPlayers(ctx, tgt.feetPosition, 0.9, K.dmg, now);
+        if (tgt && flat(tgt.feetPosition, f) < (K.reach ?? 1.6) + 0.7) hurtPlayers(ctx, tgt.feetPosition, 0.9, K.swingDmg ?? K.dmg, now);
         else ctx.emit("playSound", { clip: sfx("blade-whiffs-past-cloak-close-swish"), position: f, volume: 0.4, pitch: 0.8 });
         s.swing = null;
       }
@@ -166,14 +168,14 @@ export function update(ctx, dt) {
       const dx = prey.feetPosition.x - f.x, dz = prey.feetPosition.z - f.z, d = Math.hypot(dx, dz) || 1;
       const yaw = (Math.atan2(-dx, -dz) * 180) / Math.PI;
       if (Math.abs(((yaw - (s.yawW ?? 0) + 540) % 360) - 180) > 8) { s.yawW = yaw; w.rotation = yaw; }
-      if (s.kind === "deacon" && d < 6 && now >= (s.nextAtk ?? 0)) {
+      if (K.slamRadius && d < 6 && d > (K.swings ? (K.reach ?? 1.6) + 0.4 : -1) && now >= (s.nextAtk ?? 0)) {
         s.slam = { x: prey.feetPosition.x, y: prey.feetPosition.y, z: prey.feetPosition.z, at: now + K.windup * 1000 };
         telegraph(ctx, s.slam.x, s.slam.y, s.slam.z, K.slamRadius, K.windup);
         w.anim.attack = { clip: "cdn/clip-cast.glb", weight: 10, loop: "once", speed: 1.4 / Math.max(0.6, K.windup) }; s.animOff = now + K.windup * 1000 + 500;
         ctx.emit("playSound", { clip: sfx("chain-rattle-windup-hiss"), position: f, volume: 0.8 });
       } else if (d > (K.reach ?? 1.6)) { vx = (dx / d) * K.speed; vz = (dz / d) * K.speed; }
-      else if (s.kind !== "deacon" && now >= (s.nextAtk ?? 0)) {
-        s.nextAtk = now + K.every * 1000;
+      else if (K.swings ? now >= (s.nextSwing ?? 0) : (!K.slamRadius && now >= (s.nextAtk ?? 0))) {
+        if (K.swings) s.nextSwing = now + K.swingEvery * 1000; else s.nextAtk = now + K.every * 1000;
         // a readable wind-up: the arm draws back, then the blow falls
         s.swing = { at: now + 420, who: prey.id };
         w.anim.attack = { clip: "cdn/clip-attack.glb", weight: 10, loop: "once", speed: 1.1 }; s.animOff = now + 1000;

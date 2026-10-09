@@ -4,6 +4,7 @@ drops:
   chorister: [12, 26]
   flagellant: [15, 32]
   deacon: [45, 80]
+  chandler: [260, 420]
   bailiff: 12000        # 1g 20s, once per kill to each eligible player
   ringer: 18000         # 1g 80s, the Ringer of the Ninth Bell
   hangman: 30000        # 3g, the Hangman of Saint Corvin

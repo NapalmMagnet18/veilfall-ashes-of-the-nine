@@ -59,6 +59,7 @@ const PACKS = [
   { id: "a7", kind: "deacon", x: 4, z: -184 }, { id: "a8", kind: "deacon", x: -6, z: -188 }, { id: "a9", kind: "chorister", x: 9, z: -186 },
   { id: "p8", kind: "pilgrim", x: -3, z: -65 }, { id: "p9", kind: "pilgrim", x: 0, z: -69 }, { id: "p10", kind: "pilgrim", x: -5, z: -71 }, { id: "d2", kind: "deacon", x: -2, z: -68 },
 ];
+PACKS.push({ id: "mb1", kind: "chandler", x: 1, z: -79 }); // the Tallow Chandler, mini boss before the Dripping Gate
 PACKS.push({ id: "o1", kind: "chorister", x: -36, z: -257 }, { id: "o2", kind: "chorister", x: -38, z: -275 }, { id: "o3", kind: "deacon", x: -33, z: -266 }, { id: "o4", kind: "flagellant", x: -24, z: -261 }); // the Ossuary's sisters
 const PETITIONS = [[4, -40], [13, -42], [11, -52], [3, -50], [17, -53]];
 const MAELIN = { x: -5, z: -3 };
@@ -122,8 +123,9 @@ const enemySpec = (pk) => ({
   id: "en-" + pk.id, tags: ["enemy", pk.kind], physics: "character",
   feetPosition: { x: pk.x, z: pk.z, y: { terrain: 0 } },
   scale: pk.kind === "deacon" ? 1.35 : 1,
+  ...(pk.kind === "chandler" ? { tags: ["enemy", "chandler", "elite"] } : {}),
   ...body(pk.kind), behavior: ["scripts/humanoid-locomotion.js"],
-  children: [{ id: "head-flame", visibleRange: { min: 0, max: 72 }, feetPosition: { x: 0, y: pk.kind === "deacon" ? 1.72 : pk.kind === "chorister" ? 1.9 : pk.kind === "flagellant" ? 1.05 : 1.62, z: 0 }, fx: { script: `fx\npop f rate=flick(.5,.3)*18 on=point() life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)`, params: {} } }, ...(pk.kind === "deacon" ? [CENSER] : [])],
+  children: [{ id: "head-flame", visibleRange: { min: 0, max: 72 }, feetPosition: { x: 0, y: pk.kind === "chandler" ? 2.95 : pk.kind === "deacon" ? 1.72 : pk.kind === "chorister" ? 1.9 : pk.kind === "flagellant" ? 1.05 : 1.62, z: 0 }, fx: { script: `fx\npop f rate=flick(.5,.3)*18 on=point() life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)`, params: {} } }, ...(pk.kind === "deacon" ? [CENSER] : [])],
   state: { kind: pk.kind, hp: C[pk.kind].hp, maxHp: C[pk.kind].hp, home: { x: pk.x, y: 0, z: pk.z } },
 });
 const near = (ctx, x, z, r) => ctx.place.players.some((p) => Math.hypot(p.feetPosition.x - x, p.feetPosition.z - z) < r);
@@ -169,7 +171,7 @@ export function tick(ctx) {
   for (const pk of PACKS) {
     const id = "en-" + pk.id;
     if (id in objs) continue;
-    if (!st.respawn[pk.id]) { st.respawn = { ...st.respawn, [pk.id]: now + 45000 }; continue; }
+    if (!st.respawn[pk.id]) { st.respawn = { ...st.respawn, [pk.id]: now + (C[pk.kind]?.respawn ?? 45) * 1000 }; continue; }
     if (now > st.respawn[pk.id] && !near(ctx, pk.x, pk.z, 22)) { ctx.spawn(enemySpec(pk)); const r = { ...st.respawn }; delete r[pk.id]; st.respawn = r; }
   }
   // the Bailiff: stands in his arena; 90 s after he falls, a new one is poured

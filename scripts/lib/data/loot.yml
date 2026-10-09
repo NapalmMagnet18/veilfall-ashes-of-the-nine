@@ -12,6 +12,7 @@ drops:
   chorister:  { chance: 0.16, ilvl: 4 }
   flagellant: { chance: 0.20, ilvl: 5 }
   deacon:     { chance: 0.55, ilvl: 6, minTier: hallowed }
+  chandler:   { chance: 1, ilvl: 7, minTier: hallowed }
   bailiff:    { chance: 1, count: 2, ilvl: 8,  minTier: gilded, relic: 0.25 }
   ringer:     { chance: 1, count: 2, ilvl: 11, minTier: gilded, relic: 0.3 }
   warden:     { chance: 1, count: 3, ilvl: 13, minTier: gilded, relic: 0.35 }
