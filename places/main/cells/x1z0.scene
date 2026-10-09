@@ -35,3 +35,8 @@ orch-gibbet-g3:
   primitive: {kind: scripted, params: {}, script: scripts/gen/orch-gibbet.js, seed: 66}
   rotation: 160.01689347810003
   tags: [orchard, z01-dressing, gibbet]
+wisps-orch-2:
+  feetPosition: {x: 68, y: {terrain: 1.1}, z: 12}
+  fx: {script: "fx\npop mote n=?low:10|22 on=box(<9,2.2,9>) size=.04..0.08 drift=0..6.28 col=hdr(1.8,1.2,2.8)*flick(.6,.5) a=.9 v=curl(.25)*.6 sz=$size*flick(1.3,.4) wrap=4.5;1.6;4.5 r=sprite(ember,add)\npop orb n=3 on=box(<7,1.4,7>) size=.14..0.22 col=hdr(1.8,1.2,2.8)*1.4 a=.75*flick(.4,.35) v=curl(.15)*.5 sz=$size*flick(.8,.3) wrap=3.5;1;3.5 r=sprite(soft-disc,add)\npop haze n=2 on=box(<6,.4,6>) size=2.2..3 col=hdr(1.8,1.2,2.8)*.25 a=.18*flick(.2,.3) sz=$size rot=spin(.05) r=sprite(smoke-puff,add)\npop lamp n=1 at=point() r=light(<.7,.55,1>,2.4*flick(.5,.25),11)"}
+  id: wisps-orch-2
+  tags: [ambience, wisps]
