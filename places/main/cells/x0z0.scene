@@ -255,45 +255,165 @@ candle-road/wagon-lantern-glow:
   parent: candle-road
   tags: [z01-dressing, road]
 cap-gate:
-  feetPosition: {x: 0, y: {terrain: 0}, z: 43}
+  castShadow: true
+  children: [{feetPosition: {x: -3.2, y: 3.4, z: -3.4}, fx: {script: "fx\npop flame rate=40 on=disc(.1) life=.35..0.6 v=up(1.3)+cone(18)*(.2..0.5) size=.12..0.22 acc=curl(.5)+buoy(1.6)+drag(1.5) sz=$size*(.5>1:.5>.2) col=hdr(4,2.6,1)>hdr(2.4,.9,.2)>hdr(.6,.12,.03) a=0>.1:1>.7:.8>0 r=sprite(flame-wisp,add)\npop embers rate=3 on=disc(.1) life=.6..1.2 v=up(1.8)+cone(30)*(.4..1) size=.02..0.04 acc=curl(.8)+grav()*.3 col=hdr(5,2.6,.6) a=1>.6:.9>0 r=sprite(ember,add,velocity,.02)"}, id: torch-l, light: {color: oklch(0.78 0.15 55), distance: 11, intensity: 3, kind: point}}, {feetPosition: {x: 3.2, y: 3.4, z: -3.4}, fx: {script: "fx\npop flame rate=40 on=disc(.1) life=.35..0.6 v=up(1.3)+cone(18)*(.2..0.5) size=.12..0.22 acc=curl(.5)+buoy(1.6)+drag(1.5) sz=$size*(.5>1:.5>.2) col=hdr(4,2.6,1)>hdr(2.4,.9,.2)>hdr(.6,.12,.03) a=0>.1:1>.7:.8>0 r=sprite(flame-wisp,add)"}, id: torch-r, light: {color: oklch(0.78 0.15 55), distance: 11, intensity: 3, kind: point}}, {audio: {clip: /cdn/moodboard-gothic-horror/sfx-distant-city-night-murmur-bells-dogs-loop.mp3, gain: 0.15, loop: true, maxDistance: 45, spatial: true}, feetPosition: {x: 0, y: 6, z: 0}, id: bell}]
+  feetPosition: {x: 0, y: {terrain: -0.05}, z: 43}
   id: cap-gate
-  material: {kind: scripted, script: engine/blueprint}
-  physics: none
-  primitive: {depth: 7, height: 10, kind: box, width: 16}
+  physics: static
+  primitive: {kind: scripted, script: scripts/gen/cap-gate.js, seed: 1}
+  receiveShadow: true
   rotation: {yaw: 0}
-  tags: [candlehold, blueprint]
+  tags: [candlehold, z01-dressing]
 cap-house-0:
+  castShadow: true
   feetPosition: {x: -14, y: {terrain: 0}, z: 58}
   id: cap-house-0
-  material: {kind: scripted, script: engine/blueprint}
-  physics: none
-  primitive: {depth: 6, height: 7, kind: box, width: 7}
-  rotation: {yaw: -125.53767779197439}
-  tags: [candlehold, blueprint]
+  physics: static
+  primitive: {kind: scripted, params: {d: 5.5, lit: 0.65, w: 6.5}, script: scripts/gen/cap-house.js, seed: 40}
+  receiveShadow: true
+  rotation: {lookAt: {x: 0, y: 0, z: 68}}
+  tags: [candlehold, z01-dressing]
 cap-house-4:
+  castShadow: true
   feetPosition: {x: 14, y: {terrain: 0}, z: 58}
   id: cap-house-4
-  material: {kind: scripted, script: engine/blueprint}
-  physics: none
-  primitive: {depth: 6, height: 7, kind: box, width: 7}
-  rotation: {yaw: 125.53767779197439}
-  tags: [candlehold, blueprint]
+  physics: static
+  primitive: {kind: scripted, params: {d: 5.5, lit: 0.65, w: 6}, script: scripts/gen/cap-house.js, seed: 44}
+  receiveShadow: true
+  rotation: {lookAt: {x: 0, y: 0, z: 68}}
+  tags: [candlehold, z01-dressing]
 cap-house-8:
-  feetPosition: {x: -9, y: {terrain: 0}, z: 50}
+  castShadow: true
+  feetPosition: {x: -9.5, y: {terrain: 0}, z: 49}
   id: cap-house-8
-  material: {kind: scripted, script: engine/blueprint}
-  physics: none
-  primitive: {depth: 6, height: 7, kind: box, width: 7}
-  rotation: {yaw: -153.43494882292202}
-  tags: [candlehold, blueprint]
+  physics: static
+  primitive: {kind: scripted, params: {d: 5, lit: 0.65, w: 6}, script: scripts/gen/cap-house.js, seed: 48}
+  receiveShadow: true
+  rotation: {lookAt: {x: 0, y: 0, z: 68}}
+  tags: [candlehold, z01-dressing]
 cap-house-9:
-  feetPosition: {x: 9, y: {terrain: 0}, z: 50}
+  castShadow: true
+  feetPosition: {x: 9.5, y: {terrain: 0}, z: 49}
   id: cap-house-9
-  material: {kind: scripted, script: engine/blueprint}
+  physics: static
+  primitive: {kind: scripted, params: {d: 5, lit: 0.65, w: 6}, script: scripts/gen/cap-house.js, seed: 49}
+  receiveShadow: true
+  rotation: {lookAt: {x: 0, y: 0, z: 68}}
+  tags: [candlehold, z01-dressing]
+cap-lamp-2:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 3.1, z: 0}, id: glow, light: {color: oklch(0.8 0.13 65), distance: 11, intensity: 2.2, kind: point}}]
+  feetPosition: {x: 5.723256255345099, y: {terrain: 0}, z: 58.606154257405905}
+  id: cap-lamp-2
+  physics: static
+  primitive: {kind: scripted, script: scripts/gen/hub-lamppost.js, seed: 1}
+  rotation: {lookAt: {x: 0, y: 0, z: 68}}
+  tags: [candlehold, z01-dressing]
+cap-lamp-3:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 3.1, z: 0}, id: glow, light: {color: oklch(0.8 0.13 65), distance: 11, intensity: 2.2, kind: point}}]
+  feetPosition: {x: -5.273680924646232, y: {terrain: 0}, z: 58.3465918192059}
+  id: cap-lamp-3
+  physics: static
+  primitive: {kind: scripted, script: scripts/gen/hub-lamppost.js, seed: 1}
+  rotation: {lookAt: {x: 0, y: 0, z: 68}}
+  tags: [candlehold, z01-dressing]
+cap-milestone:
+  castShadow: true
+  feetPosition: {x: 4.5, y: {terrain: 0}, z: 18}
+  id: cap-milestone
+  physics: static
+  primitive: {kind: scripted, script: scripts/gen/vf-milestone.js, seed: 9}
+  rotation: {yaw: -100}
+  tags: [candlehold, z01-dressing]
+cap-wall-13:
+  castShadow: true
+  feetPosition: {x: -15.137942888756731, y: {terrain: -0.2}, z: 44.44490108072692}
+  id: cap-wall-13
+  physics: static
+  primitive: {kind: scripted, params: {h: 7.4, len: 8.6}, script: scripts/gen/cap-wall.js, seed: 13}
+  receiveShadow: true
+  rotation: {lookAt: {x: 0, y: 0, z: 68}}
+  tags: [candlehold, z01-dressing]
+cap-wall-14:
+  castShadow: true
+  feetPosition: {x: -21.16098808191923, y: {terrain: -0.2}, z: 49.66389944953201}
+  id: cap-wall-14
+  physics: static
+  primitive: {kind: scripted, params: {h: 7.8, len: 8.6}, script: scripts/gen/cap-wall.js, seed: 14}
+  receiveShadow: true
+  rotation: {lookAt: {x: 0, y: 0, z: 68}}
+  tags: [candlehold, z01-dressing]
+cap-wall-15:
+  castShadow: true
+  feetPosition: {x: -25.469695869926504, y: {terrain: -0.2}, z: 56.36837963594716}
+  id: cap-wall-15
+  physics: static
+  primitive: {kind: scripted, params: {h: 7, len: 8.6}, script: scripts/gen/cap-wall.js, seed: 15}
+  receiveShadow: true
+  rotation: {lookAt: {x: 0, y: 0, z: 68}}
+  tags: [candlehold, z01-dressing]
+cap-wall-7:
+  castShadow: true
+  feetPosition: {x: 25.469695869926518, y: {terrain: -0.2}, z: 56.36837963594718}
+  id: cap-wall-7
+  physics: static
+  primitive: {kind: scripted, params: {h: 7.4, len: 8.6}, script: scripts/gen/cap-wall.js, seed: 7}
+  receiveShadow: true
+  rotation: {lookAt: {x: 0, y: 0, z: 68}}
+  tags: [candlehold, z01-dressing]
+cap-wall-8:
+  castShadow: true
+  feetPosition: {x: 21.160988081919232, y: {terrain: -0.2}, z: 49.663899449532025}
+  id: cap-wall-8
+  physics: static
+  primitive: {kind: scripted, params: {h: 7.8, len: 8.6}, script: scripts/gen/cap-wall.js, seed: 8}
+  receiveShadow: true
+  rotation: {lookAt: {x: 0, y: 0, z: 68}}
+  tags: [candlehold, z01-dressing]
+cap-wall-9:
+  castShadow: true
+  feetPosition: {x: 15.13794288875673, y: {terrain: -0.2}, z: 44.44490108072692}
+  id: cap-wall-9
+  physics: static
+  primitive: {kind: scripted, params: {h: 7, len: 8.6}, script: scripts/gen/cap-wall.js, seed: 9}
+  receiveShadow: true
+  rotation: {lookAt: {x: 0, y: 0, z: 68}}
+  tags: [candlehold, z01-dressing]
+cap-way:
+  feetPosition: {x: 0, y: {terrain: 0}, z: 0}
+  id: cap-way
   physics: none
-  primitive: {depth: 6, height: 7, kind: box, width: 7}
-  rotation: {yaw: 153.43494882292202}
-  tags: [candlehold, blueprint]
+  primitive: {kind: scripted, params: {half: 4, kind: path, pts: [[0, 15], [2, 26], [-1, 36], [0, 44], [0, 58]]}, script: scripts/gen/orch-props.js, seed: 12}
+  receiveShadow: true
+  tags: [candlehold, z01-dressing]
+cap-way-lamp-0:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 3.1, z: 0}, id: glow, light: {color: oklch(0.78 0.13 60), distance: 10, intensity: 1.8, kind: point}}]
+  feetPosition: {x: -4.5, y: {terrain: 0}, z: 22}
+  id: cap-way-lamp-0
+  physics: static
+  primitive: {kind: scripted, script: scripts/gen/hub-lamppost.js, seed: 2}
+  rotation: {lookAt: {x: 0, y: 0, z: 22}}
+  tags: [candlehold, z01-dressing]
+cap-way-lamp-1:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 3.1, z: 0}, id: glow, light: {color: oklch(0.78 0.13 60), distance: 10, intensity: 1.8, kind: point}}]
+  feetPosition: {x: 5.5, y: {terrain: 0}, z: 31}
+  id: cap-way-lamp-1
+  physics: static
+  primitive: {kind: scripted, script: scripts/gen/hub-lamppost.js, seed: 3}
+  rotation: {lookAt: {x: 0, y: 0, z: 31}}
+  tags: [candlehold, z01-dressing]
+cap-way-lamp-2:
+  castShadow: true
+  children: [{feetPosition: {x: 0, y: 3.1, z: 0}, id: glow, light: {color: oklch(0.78 0.13 60), distance: 10, intensity: 1.8, kind: point}}]
+  feetPosition: {x: -4.5, y: {terrain: 0}, z: 38}
+  id: cap-way-lamp-2
+  physics: static
+  primitive: {kind: scripted, script: scripts/gen/hub-lamppost.js, seed: 4}
+  rotation: {lookAt: {x: 0, y: 0, z: 38}}
+  tags: [candlehold, z01-dressing]
 en-d1:
   animated3DCharacter: {modelId: cdn/model-tall-wax-deacon-priest-melting-candle-flesh-iron-censer-chain-tattered-vestments-dark-fantasy.glb}
   behavior: [scripts/humanoid-locomotion.js]
