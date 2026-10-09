@@ -1,0 +1,36 @@
+# spawn-scene v2 yaml x0z-3
+deep-crystal-10:
+  feetPosition: {x: -47.67311282564203, y: {terrain: -0.05}, z: -324.17845453847923}
+  id: deep-crystal-10
+  physics: static
+  primitive: {kind: scripted, params: {h: 1.5301185004413127, n: 10, r: 0.5985175039386377}, script: scripts/gen/deep-crystal.js, seed: 310}
+  rotation: 106.34942717850208
+  tags: [deep-dress]
+deep-crystal-11:
+  feetPosition: {x: -42.50600229176119, y: {terrain: -0.05}, z: -321.89314195881053}
+  id: deep-crystal-11
+  physics: static
+  primitive: {kind: scripted, params: {h: 2.358964480087161, n: 10, r: 0.6360385870793834}, script: scripts/gen/deep-crystal.js, seed: 311}
+  rotation: 223.7559725996107
+  tags: [deep-dress]
+deep-crystal-17:
+  feetPosition: {x: -53, y: {terrain: -0.05}, z: -321}
+  id: deep-crystal-17
+  physics: static
+  primitive: {kind: scripted, params: {h: 3.2, n: 11, r: 0.9}, script: scripts/gen/deep-crystal.js, seed: 317}
+  rotation: 16.896588681265712
+  tags: [deep-dress]
+deep-crystal-18:
+  feetPosition: {x: -42, y: {terrain: -0.05}, z: -322}
+  id: deep-crystal-18
+  physics: static
+  primitive: {kind: scripted, params: {h: 2.6, n: 9, r: 0.8}, script: scripts/gen/deep-crystal.js, seed: 318}
+  rotation: 325.63825216144323
+  tags: [deep-dress]
+deep-crystal-9:
+  feetPosition: {x: -52.22553909937933, y: {terrain: -0.05}, z: -322.8296920456433}
+  id: deep-crystal-9
+  physics: static
+  primitive: {kind: scripted, params: {h: 2.495364326238632, n: 10, r: 0.703881943016313}, script: scripts/gen/deep-crystal.js, seed: 309}
+  rotation: 268.782586986199
+  tags: [deep-dress]

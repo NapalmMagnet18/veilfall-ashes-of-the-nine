@@ -278,6 +278,152 @@ crypt-slabs-5:
   primitive: {kind: scripted, params: {d: 1.8, glow: 0.3, kind: slabs, w: 2.2}, script: scripts/gen/nave-floor.js, seed: 245}
   rotation: {yaw: 330}
   tags: [abbey, nave, z01-dressing]
+deep-bed:
+  audio: {clip: /cdn/moodboard-gothic-horror/sfx-deep-cave-ambience-water-drips-distant-crystal-hum.mp3, gain: 0.18, loop: true, maxDistance: 26, spatial: true}
+  feetPosition: {x: -47, y: {terrain: 1}, z: -310}
+  id: deep-bed
+  tags: [deep-dress]
+deep-crystal-0:
+  feetPosition: {x: -34.030186470553026, y: {terrain: -0.05}, z: -309.625539273425}
+  id: deep-crystal-0
+  physics: static
+  primitive: {kind: scripted, params: {h: 1.4690418496727944, n: 7, r: 0.7143018265487626}, script: scripts/gen/deep-crystal.js, seed: 300}
+  rotation: 1.667702766135335
+  tags: [deep-dress]
+deep-crystal-1:
+  feetPosition: {x: -36.51693294005324, y: {terrain: -0.05}, z: -302.77284992378713}
+  id: deep-crystal-1
+  physics: static
+  primitive: {kind: scripted, params: {h: 1.555443311482668, n: 6, r: 0.719836762174964}, script: scripts/gen/deep-crystal.js, seed: 301}
+  rotation: 154.20943371020257
+  tags: [deep-dress]
+deep-crystal-12:
+  feetPosition: {x: -37.32559511485039, y: {terrain: -0.05}, z: -318.62015079233805}
+  id: deep-crystal-12
+  physics: static
+  primitive: {kind: scripted, params: {h: 2.770066340640187, n: 6, r: 0.6280335120391101}, script: scripts/gen/deep-crystal.js, seed: 312}
+  rotation: 341.4741708431393
+  tags: [deep-dress]
+deep-crystal-13:
+  feetPosition: {x: -33.58103885111122, y: {terrain: -0.05}, z: -314.1610728730476}
+  id: deep-crystal-13
+  physics: static
+  primitive: {kind: scripted, params: {h: 2.267198310419917, n: 6, r: 0.5588802436832339}, script: scripts/gen/deep-crystal.js, seed: 313}
+  rotation: 249.6451113279909
+  tags: [deep-dress]
+deep-crystal-14:
+  feetPosition: {x: -44.5, y: {terrain: -0.05}, z: -283}
+  id: deep-crystal-14
+  physics: static
+  primitive: {kind: scripted, params: {h: 1, n: 5, r: 0.4}, script: scripts/gen/deep-crystal.js, seed: 314}
+  rotation: 158.8240689598024
+  tags: [deep-dress]
+deep-crystal-15:
+  feetPosition: {x: -38.2, y: {terrain: -0.05}, z: -290}
+  id: deep-crystal-15
+  physics: static
+  primitive: {kind: scripted, params: {h: 1.3, n: 6, r: 0.45}, script: scripts/gen/deep-crystal.js, seed: 315}
+  rotation: 333.33714161999524
+  tags: [deep-dress]
+deep-crystal-16:
+  feetPosition: {x: -48.6, y: {terrain: -0.05}, z: -292}
+  id: deep-crystal-16
+  physics: static
+  primitive: {kind: scripted, params: {h: 0.9, n: 5, r: 0.4}, script: scripts/gen/deep-crystal.js, seed: 316}
+  rotation: 51.17926457896829
+  tags: [deep-dress]
+deep-crystal-19:
+  feetPosition: {x: -35.5, y: {terrain: -0.05}, z: -306}
+  id: deep-crystal-19
+  physics: static
+  primitive: {kind: scripted, params: {h: 1.6, n: 7, r: 0.6}, script: scripts/gen/deep-crystal.js, seed: 319}
+  rotation: 25.94702297821641
+  tags: [deep-dress]
+deep-crystal-2:
+  feetPosition: {x: -41.98596607788397, y: {terrain: -0.05}, z: -297.9172326756537}
+  id: deep-crystal-2
+  physics: static
+  primitive: {kind: scripted, params: {h: 1.2159659087657928, n: 7, r: 0.714501274516806}, script: scripts/gen/deep-crystal.js, seed: 302}
+  rotation: 164.25386373884976
+  tags: [deep-dress]
+deep-crystal-3:
+  feetPosition: {x: -47.30371201767902, y: {terrain: -0.05}, z: -296.5781098256294}
+  id: deep-crystal-3
+  physics: static
+  primitive: {kind: scripted, params: {h: 1.5912115935236215, n: 10, r: 0.6893973784754053}, script: scripts/gen/deep-crystal.js, seed: 303}
+  rotation: 192.17485056258738
+  tags: [deep-dress]
+deep-crystal-4:
+  feetPosition: {x: -53.74063068171527, y: {terrain: -0.05}, z: -297.4183917385308}
+  id: deep-crystal-4
+  physics: static
+  primitive: {kind: scripted, params: {h: 2.7980186194181442, n: 10, r: 0.737346496200189}, script: scripts/gen/deep-crystal.js, seed: 304}
+  rotation: 185.7169865258038
+  tags: [deep-dress]
+deep-crystal-5:
+  feetPosition: {x: -57.47001843292578, y: {terrain: -0.05}, z: -301.874954666578}
+  id: deep-crystal-5
+  physics: static
+  primitive: {kind: scripted, params: {h: 1.4800243515521287, n: 6, r: 0.5640895798569545}, script: scripts/gen/deep-crystal.js, seed: 305}
+  rotation: 267.3719635605812
+  tags: [deep-dress]
+deep-crystal-6:
+  feetPosition: {x: -60.1339268860911, y: {terrain: -0.05}, z: -306.6313093665691}
+  id: deep-crystal-6
+  physics: static
+  primitive: {kind: scripted, params: {h: 2.086152998358011, n: 9, r: 0.689096781425178}, script: scripts/gen/deep-crystal.js, seed: 306}
+  rotation: 252.33587088994682
+  tags: [deep-dress]
+deep-crystal-7:
+  feetPosition: {x: -60.304891175542714, y: {terrain: -0.05}, z: -310.4273611364497}
+  id: deep-crystal-7
+  physics: static
+  primitive: {kind: scripted, params: {h: 1.7094737980514765, n: 6, r: 0.5234339650487527}, script: scripts/gen/deep-crystal.js, seed: 307}
+  rotation: 292.07343438640237
+  tags: [deep-dress]
+deep-crystal-8:
+  feetPosition: {x: -59.611040061899544, y: {terrain: -0.05}, z: -316.26431583151395}
+  id: deep-crystal-8
+  physics: static
+  primitive: {kind: scripted, params: {h: 2.5454734433442354, n: 6, r: 0.5750183650525287}, script: scripts/gen/deep-crystal.js, seed: 308}
+  rotation: 26.58033418469131
+  tags: [deep-dress]
+deep-light-0:
+  feetPosition: {x: -47, y: {terrain: 6}, z: -310}
+  id: deep-light-0
+  light: {color: "#9a6bff", distance: 18, intensity: 3, kind: point}
+  tags: [deep-dress]
+deep-light-1:
+  feetPosition: {x: -53, y: {terrain: 1.6}, z: -320}
+  id: deep-light-1
+  light: {color: "#b07cff", distance: 10, intensity: 4, kind: point}
+  tags: [deep-dress]
+deep-light-2:
+  feetPosition: {x: -40, y: {terrain: 1.6}, z: -300}
+  id: deep-light-2
+  light: {color: "#6fd3ff", distance: 9, intensity: 2, kind: point}
+  tags: [deep-dress]
+deep-light-3:
+  feetPosition: {x: -57, y: {terrain: 1.6}, z: -303}
+  id: deep-light-3
+  light: {color: "#8f6bff", distance: 9, intensity: 2, kind: point}
+  tags: [deep-dress]
+deep-light-4:
+  feetPosition: {x: -42, y: {terrain: 1.6}, z: -287}
+  id: deep-light-4
+  light: {color: "#7a5cff", distance: 8, intensity: 1.8, kind: point}
+  tags: [deep-dress]
+deep-light-5:
+  feetPosition: {x: -40.5, y: {terrain: 1.6}, z: -279}
+  id: deep-light-5
+  light: {color: "#ffb066", distance: 7, intensity: 2.2, kind: point}
+  tags: [deep-dress]
+deep-mist:
+  feetPosition: {x: -47, y: {terrain: 0.1}, z: -310}
+  fx: {script: "fx\npop mist n=?mobile:8|16 on=disc(12) life=6..10 v=sdir()*.1 size=2.5..4 acc=curl(.15)+drag(.5) col=<.35,.28,.55> a=0>.12:.12>.8:.1>0 rot=spin(.05) r=sprite(smoke-puff,alpha)\npop mote n=?mobile:20|40 on=disc(13).c(2.5) life=3..6 v=up(.05..0.15) size=.02..0.04 acc=curl(.3) col=hdr(1.6,.8,2.8) a=(0>.2:1>.8:1>0)*flick(3,.5) r=sprite(ember,add)"}
+  id: deep-mist
+  tags: [deep-dress]
+  visibleRange: {max: 60, min: 0}
 nave-blueprint:
   audio: {clip: /cdn/moodboard-gothic-horror/ambience-burned-cathedral-nave-wind-through-broken-windows-and-distant-bell-hum-loop.mp3, gain: 0.16, loop: true, maxDistance: 30}
   feetPosition: {x: 0, y: 0, z: -220}
