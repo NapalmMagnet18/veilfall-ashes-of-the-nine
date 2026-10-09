@@ -1,0 +1,65 @@
+# spawn-scene v2 yaml x0z1
+cap-exchange:
+  feetPosition: {x: 0, y: {terrain: 0}, z: 85}
+  id: cap-exchange
+  material: {kind: scripted, script: engine/blueprint}
+  physics: none
+  primitive: {depth: 11, height: 8, kind: box, width: 18}
+  rotation: {yaw: 0}
+  tags: [candlehold, blueprint]
+cap-fountain:
+  feetPosition: {x: 0, y: {terrain: 0}, z: 66}
+  id: cap-fountain
+  material: {kind: scripted, script: engine/blueprint}
+  physics: none
+  primitive: {depth: 6, height: 4, kind: box, width: 6}
+  rotation: {yaw: 0}
+  tags: [candlehold, blueprint]
+cap-house-1:
+  feetPosition: {x: -18, y: {terrain: 0}, z: 68}
+  id: cap-house-1
+  material: {kind: scripted, script: engine/blueprint}
+  physics: none
+  primitive: {depth: 6, height: 7, kind: box, width: 7}
+  rotation: {yaw: -90}
+  tags: [candlehold, blueprint]
+cap-house-2:
+  feetPosition: {x: -15, y: {terrain: 0}, z: 78}
+  id: cap-house-2
+  material: {kind: scripted, script: engine/blueprint}
+  physics: none
+  primitive: {depth: 6, height: 7, kind: box, width: 7}
+  rotation: {yaw: -56.309932474020215}
+  tags: [candlehold, blueprint]
+cap-house-3:
+  feetPosition: {x: -8, y: {terrain: 0}, z: 88}
+  id: cap-house-3
+  material: {kind: scripted, script: engine/blueprint}
+  physics: none
+  primitive: {depth: 6, height: 7, kind: box, width: 7}
+  rotation: {yaw: -21.80140948635181}
+  tags: [candlehold, blueprint]
+cap-house-5:
+  feetPosition: {x: 18, y: {terrain: 0}, z: 68}
+  id: cap-house-5
+  material: {kind: scripted, script: engine/blueprint}
+  physics: none
+  primitive: {depth: 6, height: 7, kind: box, width: 7}
+  rotation: {yaw: 90}
+  tags: [candlehold, blueprint]
+cap-house-6:
+  feetPosition: {x: 15, y: {terrain: 0}, z: 78}
+  id: cap-house-6
+  material: {kind: scripted, script: engine/blueprint}
+  physics: none
+  primitive: {depth: 6, height: 7, kind: box, width: 7}
+  rotation: {yaw: 56.309932474020215}
+  tags: [candlehold, blueprint]
+cap-house-7:
+  feetPosition: {x: 8, y: {terrain: 0}, z: 88}
+  id: cap-house-7
+  material: {kind: scripted, script: engine/blueprint}
+  physics: none
+  primitive: {depth: 6, height: 7, kind: box, width: 7}
+  rotation: {yaw: 21.80140948635181}
+  tags: [candlehold, blueprint]
