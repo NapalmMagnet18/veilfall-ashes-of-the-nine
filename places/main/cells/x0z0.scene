@@ -470,7 +470,7 @@ en-d1:
   layout: {maxExtents: {y: 1.8}}
   material: {key: Std/PBR-VPBR}
   mixer: {_default: {clip: "", loop: loop, speed: 1, weight: 1}}
-  model: cdn/model-tall-wax-deacon-priest-melting-candle-flesh-iron-censer-chain-tattered-vestments-dark-fantasy.glb
+  model: /cdn/value.b596bf364ccb2be48c3db553727af88e454c09792d40d6a5031ac646c9361831.png.glb
   physics: {body: character, capsule: {height: 1.9, radius: 0.35}, collider: capsule}
   receiveShadow: true
   render: true
@@ -497,7 +497,7 @@ en-p1:
   layout: {maxExtents: {y: 1.7}}
   material: {key: Std/PBR-VPBR}
   mixer: {_default: {clip: "", loop: loop, speed: 1, weight: 1}}
-  model: cdn/model-hunched-pilgrim-made-of-melted-candle-wax-hooded-robe-dripping-wax-candle-burning-on-head-dark-fantasy.glb
+  model: /cdn/value.c0a2d4eb8ff7a5107fdf362f5d353167795e59e88326e20439351d5e823cbd10.png.glb
   physics: {body: character, capsule: {height: 1.9, radius: 0.35}, collider: capsule}
   receiveShadow: true
   render: true
@@ -524,7 +524,7 @@ en-p2:
   layout: {maxExtents: {y: 1.7}}
   material: {key: Std/PBR-VPBR}
   mixer: {_default: {clip: "", loop: loop, speed: 1, weight: 1}}
-  model: cdn/model-hunched-pilgrim-made-of-melted-candle-wax-hooded-robe-dripping-wax-candle-burning-on-head-dark-fantasy.glb
+  model: /cdn/value.c0a2d4eb8ff7a5107fdf362f5d353167795e59e88326e20439351d5e823cbd10.png.glb
   physics: {body: character, capsule: {height: 1.9, radius: 0.35}, collider: capsule}
   receiveShadow: true
   render: true
@@ -551,7 +551,7 @@ en-p3:
   layout: {maxExtents: {y: 1.7}}
   material: {key: Std/PBR-VPBR}
   mixer: {_default: {clip: "", loop: loop, speed: 1, weight: 1}}
-  model: cdn/model-hunched-pilgrim-made-of-melted-candle-wax-hooded-robe-dripping-wax-candle-burning-on-head-dark-fantasy.glb
+  model: /cdn/value.c0a2d4eb8ff7a5107fdf362f5d353167795e59e88326e20439351d5e823cbd10.png.glb
   physics: {body: character, capsule: {height: 1.9, radius: 0.35}, collider: capsule}
   receiveShadow: true
   render: true
@@ -578,7 +578,7 @@ en-p4:
   layout: {maxExtents: {y: 1.7}}
   material: {key: Std/PBR-VPBR}
   mixer: {_default: {clip: "", loop: loop, speed: 1, weight: 1}}
-  model: cdn/model-hunched-pilgrim-made-of-melted-candle-wax-hooded-robe-dripping-wax-candle-burning-on-head-dark-fantasy.glb
+  model: /cdn/value.c0a2d4eb8ff7a5107fdf362f5d353167795e59e88326e20439351d5e823cbd10.png.glb
   physics: {body: character, capsule: {height: 1.9, radius: 0.35}, collider: capsule}
   receiveShadow: true
   render: true
@@ -605,7 +605,7 @@ en-p5:
   layout: {maxExtents: {y: 1.7}}
   material: {key: Std/PBR-VPBR}
   mixer: {_default: {clip: "", loop: loop, speed: 1, weight: 1}}
-  model: cdn/model-hunched-pilgrim-made-of-melted-candle-wax-hooded-robe-dripping-wax-candle-burning-on-head-dark-fantasy.glb
+  model: /cdn/value.c0a2d4eb8ff7a5107fdf362f5d353167795e59e88326e20439351d5e823cbd10.png.glb
   physics: {body: character, capsule: {height: 1.9, radius: 0.35}, collider: capsule}
   receiveShadow: true
   render: true
@@ -632,7 +632,7 @@ en-p6:
   layout: {maxExtents: {y: 1.7}}
   material: {key: Std/PBR-VPBR}
   mixer: {_default: {clip: "", loop: loop, speed: 1, weight: 1}}
-  model: cdn/model-hunched-pilgrim-made-of-melted-candle-wax-hooded-robe-dripping-wax-candle-burning-on-head-dark-fantasy.glb
+  model: /cdn/value.c0a2d4eb8ff7a5107fdf362f5d353167795e59e88326e20439351d5e823cbd10.png.glb
   physics: {body: character, capsule: {height: 1.9, radius: 0.35}, collider: capsule}
   receiveShadow: true
   render: true
@@ -659,7 +659,7 @@ en-p7:
   layout: {maxExtents: {y: 1.7}}
   material: {key: Std/PBR-VPBR}
   mixer: {_default: {clip: "", loop: loop, speed: 1, weight: 1}}
-  model: cdn/model-hunched-pilgrim-made-of-melted-candle-wax-hooded-robe-dripping-wax-candle-burning-on-head-dark-fantasy.glb
+  model: /cdn/value.c0a2d4eb8ff7a5107fdf362f5d353167795e59e88326e20439351d5e823cbd10.png.glb
   physics: {body: character, capsule: {height: 1.9, radius: 0.35}, collider: capsule}
   receiveShadow: true
   render: true
