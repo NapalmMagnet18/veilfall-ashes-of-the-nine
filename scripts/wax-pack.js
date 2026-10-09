@@ -198,7 +198,7 @@ export function update(ctx, dt) {
     // bodies with no skeleton have no clips to play: they breathe as one mass and coil before a blow
     if (UNRIG.has(s.kind) && !s.dead && !s.breathing) { s.breathing = true; const sc = w.scale, b = typeof sc === "number" ? sc : (sc?.y ?? 1), bx = typeof sc === "number" ? sc : (sc?.x ?? 1), bz = typeof sc === "number" ? sc : (sc?.z ?? 1);
       animate(ctx, w, { "scale.y": [b, b * 1.04, b], "scale.x": [bx, bx * 0.985, bx], "scale.z": [bz, bz * 0.985, bz] }, { duration: 1.6 + ctx.random() * 0.6, loop: true, easing: "easeInOutSine" }); }
-    if (s.dead) { w.velocity = { x: 0, y: w.velocity.y, z: 0 }; mutterAt.delete(w.id); if (now - s.deadAt > (s.corpse ? 7000 : 2300)) ctx.destroy(w.id); continue; }
+    if (s.dead) { w.velocity = { x: 0, y: fall(w, dt), z: 0 }; mutterAt.delete(w.id); if (now - s.deadAt > (s.corpse ? 7000 : 2300)) ctx.destroy(w.id); continue; }
     if (s.animOff && now > s.animOff) { w.anim.attack = null; s.animOff = 0; }
     if (s.hitUntil && now > s.hitUntil) { w.anim.hit = null; s.hitUntil = 0; }
     if (s.hp <= 0) {
@@ -278,6 +278,8 @@ export function update(ctx, dt) {
       if (d > 0.6) { vx = ((s.roam.x - f.x) / d) * 0.7; vz = ((s.roam.z - f.z) / d) * 0.7; const yaw = (Math.atan2(-vx, -vz) * 180) / Math.PI; if (Math.abs(((yaw - (s.yawW ?? 0) + 540) % 360) - 180) > 8) { s.yawW = yaw; w.rotation = yaw; } }
     }
     if (flat(f, CAMP) < SAFE + 1 && (vx || vz)) { const ox = f.x - CAMP.x, oz = f.z - CAMP.z, ol = Math.hypot(ox, oz) || 1; if ((vx * ox + vz * oz) < 0) { vx = (ox / ol) * 1.5; vz = (oz / ol) * 1.5; } }
-    w.velocity = { x: vx, y: w.velocity.y, z: vz };
+    w.velocity = { x: vx, y: fall(w, dt), z: vz };
   }
 }
+// a body off the ground falls: nothing else pulls a scripted walker down, so a shove or a bad spawn left it hanging
+function fall(w, dt) { const vy = w.velocity?.y ?? 0; return w.grounded ? vy : Math.max(-28, vy - 20 * dt); }
