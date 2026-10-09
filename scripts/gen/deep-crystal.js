@@ -12,9 +12,9 @@ export function geometry(ctx) {
   for (let i = 0; i < (lod > 3 ? Math.ceil(n / 2) : n); i++) {
     const a = ctx.random() * 6.283, d = i === 0 ? 0 : R * (0.3 + ctx.random() * 0.7), h = i === 0 ? H : H * (0.35 + ctx.random() * 0.55);
     const tilt = i === 0 ? ctx.random() * 8 : 14 + ctx.random() * 30;
-    const hue = 290 + ctx.random() * 30 - (ctx.random() < 0.25 ? 70 : 0); // mostly amethyst, a few cold cyan
+    const hue = p.cold ? 205 + ctx.random() * 25 : 290 + ctx.random() * 30 - (ctx.random() < 0.25 ? 70 : 0); // amethyst with a few cold cyan; cold: all glacier blue
     ctx.color(`oklch(${0.55 + ctx.random() * 0.15} 0.16 ${hue})`);
-    ctx.emissive(hue < 260 ? 0.25 : 0.7, hue < 260 ? 0.9 : 0.3, 1.4);
+    ctx.emissive(hue < 260 ? 0.25 : 0.7, hue < 260 ? 0.9 : 0.3, 1.4); if (p.cold) ctx.color(`oklch(${0.78 + ctx.random() * 0.12} 0.07 ${hue})`);
     spear(ctx, xf([Math.cos(a) * d, 0.1, Math.sin(a) * d], [a * 57.3, 0, tilt]), h, 0.06 + h * 0.07);
   }
   ctx.emissive(0, 0, 0);
