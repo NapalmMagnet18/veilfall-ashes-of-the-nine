@@ -136,6 +136,22 @@ fen-tree-9:
   primitive: {kind: scripted, params: {girth: 1.3, h: 6, lean: 0.30000000000000004, seed: 111}, script: scripts/gen/fen-tree.js}
   rotation: -98.00000000000001
   tags: [fen]
+fwisp-fen-1:
+  behavior: scripts/forest-wisp.js
+  children: [{feetPosition: {x: 0, y: 0.2, z: 0}, fx: {script: "fx\npop trail rate=?low:6|12 life=.8..1.4 v=sdir()*.08 size=.025..0.05 acc=curl(.6)+buoy(.15) col=hdr(1,2.4,2.6) a=(0>.1:.9>0)*flick(7,.4) r=sprite(ember,add)"}, id: glow, light: {color: "#7fe6e0", distance: 7, intensity: 1.1, kind: point}}]
+  feetPosition: {x: -66, y: 1.6076564822576054, z: -10}
+  id: fwisp-fen-1
+  state: {home: {x: -66, y: 1.6076564822576054, z: -10}, r: 6, seed: 0}
+  tags: [ambience, forest-wisp]
+  wisp: {burnStyle: calm, color: "#7fe6e0", seed: 11, shape: classic, size: 0.35, state: idle}
+fwisp-fen-2:
+  behavior: scripts/forest-wisp.js
+  children: [{feetPosition: {x: 0, y: 0.2, z: 0}, fx: {script: "fx\npop trail rate=?low:6|12 life=.8..1.4 v=sdir()*.08 size=.025..0.05 acc=curl(.6)+buoy(.15) col=hdr(1,2.4,2.6) a=(0>.1:.9>0)*flick(7,.4) r=sprite(ember,add)"}, id: glow, light: {color: "#9fd8ff", distance: 7, intensity: 1.1, kind: point}}]
+  feetPosition: {x: -74, y: 1.5864615800945812, z: -20}
+  id: fwisp-fen-2
+  state: {home: {x: -74, y: 1.5864615800945812, z: -20}, r: 5, seed: 1}
+  tags: [ambience, forest-wisp]
+  wisp: {burnStyle: calm, color: "#9fd8ff", seed: 12, shape: slender, size: 0.35, state: idle}
 wisps-fen-2:
   feetPosition: {x: -70, y: {terrain: 1.1}, z: -16}
   fx: {script: "fx\npop mote n=?low:10|22 on=box(<9,2.2,9>) size=.04..0.08 col=hdr(1.1,2.6,2.8)*flick(.6,.5) a=.9 v=curl(.25)*.6 sz=$size*flick(1.3,.4) wrap=4.5;1.6;4.5 r=sprite(ember,add)\npop orb n=3 on=box(<7,1.4,7>) size=.14..0.22 col=hdr(1.1,2.6,2.8)*1.4 a=.75*flick(.4,.35) v=curl(.15)*.5 sz=$size*flick(.8,.3) wrap=3.5;1;3.5 r=sprite(soft-disc,add)\npop haze n=2 on=box(<6,.4,6>) size=2.2..3 col=hdr(1.1,2.6,2.8)*.25 a=.18*flick(.2,.3) sz=$size rot=spin(.05) r=sprite(smoke-puff,add)\npop lamp n=1 at=point() r=light(<.43,.82,.86>,2.4*flick(.5,.25),11)"}

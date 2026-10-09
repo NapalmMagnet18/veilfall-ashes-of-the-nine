@@ -924,6 +924,30 @@ fen-tree-2:
   primitive: {kind: scripted, params: {girth: 1.2000000000000002, h: 4.4, lean: 0.2, seed: 104}, script: scripts/gen/fen-tree.js}
   rotation: 22.999999999999993
   tags: [fen]
+fwisp-fen-3:
+  behavior: scripts/forest-wisp.js
+  children: [{feetPosition: {x: 0, y: 0.2, z: 0}, fx: {script: "fx\npop trail rate=?low:6|12 life=.8..1.4 v=sdir()*.08 size=.025..0.05 acc=curl(.6)+buoy(.15) col=hdr(1,2.4,2.6) a=(0>.1:.9>0)*flick(7,.4) r=sprite(ember,add)"}, id: glow, light: {color: "#7fe6e0", distance: 7, intensity: 1.1, kind: point}}]
+  feetPosition: {x: -56, y: 1.5270483582860348, z: -4}
+  id: fwisp-fen-3
+  state: {home: {x: -56, y: 1.5270483582860348, z: -4}, r: 4, seed: 2}
+  tags: [ambience, forest-wisp]
+  wisp: {burnStyle: calm, color: "#7fe6e0", seed: 13, shape: classic, size: 0.35, state: idle}
+fwisp-orch-1:
+  behavior: scripts/forest-wisp.js
+  children: [{feetPosition: {x: 0, y: 0.2, z: 0}, fx: {script: "fx\npop trail rate=?low:6|12 life=.8..1.4 v=sdir()*.08 size=.025..0.05 acc=curl(.6)+buoy(.15) col=hdr(2.6,1.9,.8) a=(0>.1:.9>0)*flick(7,.4) r=sprite(ember,add)"}, id: glow, light: {color: "#ffd27a", distance: 7, intensity: 1.1, kind: point}}]
+  feetPosition: {x: 62, y: 1.6668025785197087, z: 6}
+  id: fwisp-orch-1
+  state: {home: {x: 62, y: 1.6668025785197087, z: 6}, r: 6, seed: 3}
+  tags: [ambience, forest-wisp]
+  wisp: {burnStyle: calm, color: "#ffd27a", seed: 14, shape: classic, size: 0.35, state: idle}
+fwisp-orch-2:
+  behavior: scripts/forest-wisp.js
+  children: [{feetPosition: {x: 0, y: 0.2, z: 0}, fx: {script: "fx\npop trail rate=?low:6|12 life=.8..1.4 v=sdir()*.08 size=.025..0.05 acc=curl(.6)+buoy(.15) col=hdr(2.6,1.4,1.8) a=(0>.1:.9>0)*flick(7,.4) r=sprite(ember,add)"}, id: glow, light: {color: "#ffb0c8", distance: 7, intensity: 1.1, kind: point}}]
+  feetPosition: {x: 54, y: 1.5835531060475145, z: 12}
+  id: fwisp-orch-2
+  state: {home: {x: 54, y: 1.5835531060475145, z: 12}, r: 5, seed: 4}
+  tags: [ambience, forest-wisp]
+  wisp: {burnStyle: calm, color: "#ffb0c8", seed: 15, shape: slender, size: 0.35, state: idle}
 guild-chest:
   castShadow: true
   children: [{castShadow: true, feetPosition: {x: 0, y: 0, z: 0.75}, id: banner, material: {texture: cdn/texture-faded-deep-teal-guild-banner-cloth-silver-thread.png}, primitive: {depth: 0.05, height: 2.6, kind: box, width: 0.9}}, {feetPosition: {x: 0, y: 1.2, z: -0.4}, id: glow, light: {color: "#7fd8e6", distance: 5, intensity: 1.2, kind: point}}]
