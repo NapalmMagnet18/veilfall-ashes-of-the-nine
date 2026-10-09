@@ -13,7 +13,7 @@ const GATE = { abbey: false, nave: false, fen: false, orch: false, oss: false };
 const gate = (ctx) => { const st = ctx.self.state.quest?.stage ?? 0, all = !!ctx.place.state?.abbeyOpenAll; GATE.abbey = st >= 4 || all; GATE.nave = st >= 10 || all; GATE.fen = st >= 13 || all; GATE.orch = st >= 18 || all; GATE.oss = st >= 23 || all; };
 const floorDist = (x, z) => mapFloor(x, z, GATE.abbey, GATE.nave, GATE.fen, GATE.orch, GATE.oss);
 import C from "./lib/data/combat.yml";
-import { talentStats, canLearn, keystoneOf } from "./lib/data/talents.js";
+import { talentStats, canLearn, keystoneOf, hasKey } from "./lib/data/talents.js";
 import { shopInput } from "./lib/shop.js";
 import { tradeInput, readBoard, TRADE } from "./lib/trade.js";
 import { guildVaultInput, readGuildVault } from "./lib/guildvault.js";
@@ -260,6 +260,8 @@ function swingAnim(ctx, clip) {
 function strike(ctx, foe, dmg, crit, nk) {
   foe.state.hp -= dmg;
   if (!nk) keystone(ctx, foe, dmg, crit);
+  if (foe.state.hp <= 0 && hasKey(ctx.self.state.cls, ctx.self.state.talents, "bloodrush")) { me.hasteUntil = ctx.now() + 3000; me.rushUntil = me.hasteUntil;
+    ctx.emit("fx", { position: ctx.self.feetPosition, script: DASH }); ctx.emit("playSound", { clip: sfx("heartbeat-surge-and-sharp-inhale"), position: ctx.self.feetPosition, volume: 0.5 }, { audience: { player: ctx.self.id } }); }
   { const me_ = ctx.self.state, lc = me_.gs?.leech ?? 0; if (lc > 0 && me_.hp > 0 && me_.hp < me_.maxHp) me_.hp = Math.min(me_.maxHp, me_.hp + Math.max(1, Math.round(dmg * lc / 100))); }
   foe.state.lastHit = ctx.self.id;
   const p = { x: foe.feetPosition.x, y: foe.feetPosition.y + 1.1, z: foe.feetPosition.z };
@@ -797,7 +799,9 @@ function traitTick(ctx, now) {
   const s = ctx.self.state, T = C.traits;
   let drop = (me.lastHp ?? s.hp) - s.hp;
   if (drop > 0 && (s.gs?.armor ?? 0) > 0) { const back = Math.round(drop * mitigation(s.gs.armor)); if (back > 0) { s.hp += back; drop -= back; } }
-  if ((s.gs?.regen ?? 0) > 0 && s.hp > 0 && s.hp < s.maxHp && now - (me.regenAt ?? 0) > 5000) { me.regenAt = now; s.hp = Math.min(s.maxHp, s.hp + s.gs.regen); }
+  { const sw = s.hp < s.maxHp * 0.35 && hasKey(s.cls, s.talents, "secondwind");
+    if ((s.gs?.regen ?? 0) > 0 && s.hp > 0 && s.hp < s.maxHp && now - (me.regenAt ?? 0) > (sw ? 1500 : 5000)) { me.regenAt = now; s.hp = Math.min(s.maxHp, s.hp + Math.max(1, Math.round(s.gs.regen * (sw ? 2 : 1))));
+      if (sw) ctx.emit("damageNumber", { position: { ...ctx.self.feetPosition, y: ctx.self.feetPosition.y + 2 }, text: "SECOND WIND", color: "#8fd18a", size: 0.7 }, { audience: { player: ctx.self.id } }); } }
   if (drop > 0 && s.hp > 0) {
     const f = ctx.self.feetPosition, at = { x: f.x, y: f.y + 2.2, z: f.z };
     if (s.ancestry === "cinderkin" && now >= (s.wardReadyAt ?? 0)) {
@@ -996,7 +1000,7 @@ export function update(ctx, dt) {
 
   let v = null;
   if (me.keys) {
-    const sp = HERO_SPEED(s) * (now < (me.hasteUntil ?? 0) ? C.traits.fenborn.haste : 1);
+    const sp = HERO_SPEED(s) * (now < (me.rushUntil ?? 0) ? 1.35 : now < (me.hasteUntil ?? 0) ? C.traits.fenborn.haste : 1);
     v = { x: me.keys.x * sp, z: me.keys.z * sp };
     const l = Math.hypot(v.x, v.z); if (l > HERO_SPEED(s)) { v.x *= HERO_SPEED(s) / l; v.z *= HERO_SPEED(s) / l; }
   } else if (s.target) {

@@ -37,13 +37,18 @@ export const KEYSTONE = {
   chain: "Your bolts leap to a second foe within 7 m for 60% damage.",
   pierce: "Your arrows punch through and strike the next foe behind for 70% damage.",
   cleave: "Your blows cleave every other foe within 2.5 m of the target for 45% damage.",
+  secondwind: "Below 35% life, your life regeneration pulses every 1.5 s at double strength.",
+  bloodrush: "A killing blow sends you surging: +35% move speed for 3 s.",
 };
+const KEY_B = { bladewraith: [null, "bloodrush", "secondwind"], soulweaver: [null, "secondwind", "bloodrush"], hellwarden: [null, "secondwind", "bloodrush"],
+  shadowmancer: [null, "bloodrush", "secondwind"], primalist: [null, "secondwind", "bloodrush"], gloamstalker: [null, "bloodrush", "secondwind"] };
+export const hasKey = (cls, tal, key) => keystoneOf(cls, tal) === key || [1, 2].some((b) => (tal?.[`${b}-5`] ?? 0) > 0 && KEY_B[cls]?.[b] === key);
 const KEY_OF = { soulweaver: "chain", shadowmancer: "chain", gloamstalker: "pierce", bladewraith: "cleave", hellwarden: "cleave", primalist: "cleave" };
 export const keystoneOf = (cls, tal) => (tal?.["0-5"] ?? 0) > 0 ? KEY_OF[cls] ?? null : null;
 // the whole tree as flat nodes: id "b-t" → { branch, tier, name, stat, max, per }
 export function treeOf(cls) {
   const T = TREES[cls] ?? TREES.bladewraith;
-  return T.map(([name, color, nodes], b) => ({ name, color, nodes: nodes.map(([n, stat], t) => ({ id: `${b}-${t}`, b, t, name: n, stat, key: b === 0 && t === 5 ? KEY_OF[cls] ?? null : null, max: t === 5 ? 1 : 3, per: PER[stat] * (t === 5 ? 5 : 1) })) }));
+  return T.map(([name, color, nodes], b) => ({ name, color, nodes: nodes.map(([n, stat], t) => ({ id: `${b}-${t}`, b, t, name: n, stat, key: t === 5 ? (b === 0 ? KEY_OF[cls] : KEY_B[cls]?.[b]) ?? null : null, max: t === 5 ? 1 : 3, per: PER[stat] * (t === 5 ? 5 : 1) })) }));
 }
 export const pointsOf = (level) => Math.max(0, (level ?? 1) - 1);
 export const spentIn = (tal, b) => Object.entries(tal ?? {}).reduce((a, [k, v]) => a + (k.startsWith(b + "-") ? v : 0), 0);
