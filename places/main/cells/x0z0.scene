@@ -293,6 +293,13 @@ bw-tree-8:
   scale: 0.96
   state: {kind: bloodoak}
   tags: [bloodwoods, flora, tree]
+bw-woods-plan:
+  feetPosition: {x: 28, y: 0, z: 2}
+  id: bw-woods-plan
+  material: {kind: scripted, script: engine/blueprint}
+  physics: none
+  primitive: {depth: 44, height: 9, kind: box, width: 40}
+  tags: [blueprint]
 candle-road:
   feetPosition: {x: 0, y: 0, z: -40}
   id: candle-road
@@ -1321,6 +1328,13 @@ orch-path:
   feetPosition: {x: 30, y: {terrain: 0}, z: 2}
   id: orch-path
   tags: [orchard, z01-dressing, path]
+orch-ring-plan:
+  feetPosition: {x: 62, y: 0, z: 6}
+  id: orch-ring-plan
+  material: {kind: scripted, script: engine/blueprint}
+  physics: none
+  primitive: {depth: 64, height: 6, kind: box, width: 64}
+  tags: [blueprint]
 rd-boneheap-1:
   castShadow: true
   feetPosition: {x: -3.54, y: 0, z: -28.6}
