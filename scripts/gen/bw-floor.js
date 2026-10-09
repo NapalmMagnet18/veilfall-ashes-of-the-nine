@@ -306,6 +306,14 @@ const SET = {
   roots: { s: [0.7, 1.15], sink: 0.03, minN: 0.7, tint: 0.1 },
   stump: { s: [0.4, 1.1], sink: 0.04, minN: 0.6, tint: 0.1 },
 };
+// enemy pack spots (places/main/sim.js PACKS near the Gallows Path / Orchard): tall cover drops to knee height within KNEE_R
+const PACK_SPOTS = [[36, 6], [36, 3], [38, 6], [40, 9], [42, 1], [48, -8], [76, -3], [78, -2], [79, 18], [50, 23], [66, 25], [82, 6]];
+const KNEE_R = 7, TALL = { fern: 1, thorn: 1, stump: 1 };
+function kneeScale(kind, wx, wz) {
+  if (!TALL[kind]) return 1;
+  let d = Infinity; for (const [px, pz] of PACK_SPOTS) d = Math.min(d, Math.hypot(wx - px, wz - pz));
+  return d >= KNEE_R ? 1 : 0.5 + 0.5 * clamp01((d - 3) / (KNEE_R - 3));
+}
 // how much a kind wants a spot e metres outside the walkable floor (negative = on it)
 function want(kind, e) {
   if (kind === "litter") return e < -2.5 ? 0.35 : e < 0 ? 1 : e < 4 ? 1 : e < 10 ? 0.75 : 0.45; // drifts bank up at the floor's edges
@@ -343,7 +351,7 @@ export function geometry(ctx) {
     if (roll > want(kind, e) * drift) continue;
     const nrm = ctx.groundNormal(x, z);
     if (nrm.y < cfg.minN) continue;
-    const s = cfg.s[0] + ctx.random() * (cfg.s[1] - cfg.s[0]), tv = (ctx.random() - 0.5) * cfg.tint, warm = (ctx.random() - 0.5) * cfg.tint * 0.6;
+    const s = (cfg.s[0] + ctx.random() * (cfg.s[1] - cfg.s[0])) * kneeScale(kind, wx, wz), tv = (ctx.random() - 0.5) * cfg.tint, warm = (ctx.random() - 0.5) * cfg.tint * 0.6;
     const y = ctx.groundY(x, z) - cfg.sink * s - (1 - nrm.y) * 0.25 * s; // sink deeper on a slope so the downhill edge never floats
     ctx.instance([x, y, z], ctx.random() * 360, s, [1 + tv + warm, 1 + tv, 1 + tv - warm]);
     placed++;
