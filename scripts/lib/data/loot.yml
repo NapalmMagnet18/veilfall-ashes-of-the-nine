@@ -18,6 +18,10 @@ drops:
   harpooner:  { chance: 0.2, ilvl: 5 }
   barnacle:   { chance: 0.55, ilvl: 7, minTier: hallowed }
   ferryman:   { chance: 1, ilvl: 10, minTier: hallowed }
+  reaper:     { chance: 0.22, ilvl: 7 }
+  marrowwolf: { chance: 0.14, ilvl: 6 }
+  briarwitch: { chance: 0.55, ilvl: 8, minTier: hallowed }
+  rootmother: { chance: 1, ilvl: 11, minTier: hallowed }
   bailiff:    { chance: 1, count: 2, ilvl: 8,  minTier: gilded, relic: 0.25 }
   ringer:     { chance: 1, count: 2, ilvl: 11, minTier: gilded, relic: 0.3 }
   warden:     { chance: 1, count: 3, ilvl: 13, minTier: gilded, relic: 0.35 }

@@ -17,6 +17,10 @@ const VOX = {
   harpooner: { aggro: "ghoul-hiss-and-rope-whip-crack-wet", death: "ghoul-shriek-fading-and-harpoon-clatters-on-wet-stone" },
   barnacle: { aggro: "drowned-knight-groan-inside-corroded-helm-armor-grinding-water-pouring", death: "heavy-corroded-armor-collapses-into-water-big-splash-and-chains" },
   ferryman: { aggro: "towering-ferryman-deep-hollow-voice-and-ship-bell-tolls-underwater", death: "ferryman-collapses-soul-lantern-shatters-many-whispers-escape-into-water" },
+  reaper: { aggro: "antlered-creature-bellowing-stag-roar-and-bone-sickle-scrape", death: "wooden-bone-creature-cracks-apart-antlers-clatter-wet-sap" },
+  marrowwolf: { aggro: "skinless-wolf-snarl-into-howl-wet-and-raw", death: "wolf-yelp-and-bones-collapse-wet-thud" },
+  briarwitch: { aggro: "witch-hissing-incantation-and-thorns-creaking-tight", death: "witch-shriek-thorns-snap-petals-fall-whisper" },
+  rootmother: { aggro: "huge-treant-groan-roots-tearing-out-of-earth-heartbeat-thumps", death: "giant-tree-creature-collapses-wood-splinters-heartbeat-stops" },
   cantor: { aggro: "three-voiced-undead-choir-mistress-screams-a-dissonant-chord-bells-clang", death: "choir-mistress-shatters-bells-fall-and-three-voices-fade-into-hiss" },
   deacon: { aggro: "huge-wax-priest-bellows-a-low-sermon-word-and-scrapes-censer", death: "giant-wax-body-topples-heavy-thud-and-long-boiling-hiss" },
 };
@@ -30,6 +34,10 @@ const MUTTER = {
   harpooner: { clip: "ghoul-clicking-teeth-and-wet-rope-creak", lines: ["...something warm on the shore...", "...reel it in... reel it in...", "...fresh catch..."] },
   barnacle: { clip: "corroded-armor-creak-and-water-sloshing-in-helm", lines: ["...I held the causeway...", "...the oath sank with me...", "...none pass the water..."] },
   ferryman: { clip: "deep-slow-oar-strokes-and-distant-drowned-whispers", lines: ["...every crossing has its fare...", "...your coin, or your breath...", "...the mere keeps all it takes...", "...row, and do not look down..."] },
+  reaper: { clip: "creaking-wood-and-dripping-sap-slow-breath", lines: ["...the harvest is red this year...", "...cut... gather... cut...", "...the orchard feeds on the hanged..."] },
+  marrowwolf: { clip: "wolf-low-growl-and-wet-panting", lines: [] },
+  briarwitch: { clip: "witch-whispering-to-thorns-soft-creak", lines: ["...grow, little thorns, grow...", "...your blood would feed my roses...", "...the woods remember every name..."] },
+  rootmother: { clip: "slow-heartbeat-inside-wood-and-roots-creaking", lines: ["...my children hang from every bough...", "...stay. take root. sleep...", "...the soil is warm with the fallen..."] },
   cantor: { clip: "three-whispering-voices-humming-a-funeral-hymn-soft-bells", lines: ["...sing with us, little light...", "...three voices, one grave...", "...the hymn has no last verse...", "...your breath will make a fine note..."] },
   deacon: { clip: "huge-wax-priest-low-droning-sermon-murmur", lines: ["...AND THE NINE WERE GIVEN TO ASH...", "...kneel, little candle...", "...tithe your light...", "...the Veil keeps what it is owed..."] },
 };
@@ -40,7 +48,7 @@ function mutter(ctx, w, s, f, now, players) {
   if (now < next) return;
   mutterAt.set(w.id, now + 9000 + ctx.random() * 9000);
   if (!players.some((p) => flat(p.feetPosition, f) < EAR)) return;
-  const M = MUTTER[s.kind] ?? MUTTER.pilgrim, deep = s.kind === "deacon" || s.kind === "chandler" || s.kind === "cantor" || s.kind === "barnacle" || s.kind === "ferryman";
+  const M = MUTTER[s.kind] ?? MUTTER.pilgrim, deep = s.kind === "deacon" || s.kind === "chandler" || s.kind === "cantor" || s.kind === "barnacle" || s.kind === "ferryman" || s.kind === "briarwitch" || s.kind === "rootmother";
   ctx.emit("playSound", { clip: sfx(M.clip), position: f, volume: deep ? 0.55 : 0.38, pitch: 0.85 + ctx.random() * 0.3, maxDistance: EAR });
   ctx.emit("damageNumber", { position: { x: f.x, y: f.y + (deep ? 2.6 : 2.1), z: f.z }, text: M.lines[Math.floor(ctx.random() * M.lines.length)], color: deep ? "#c9a46a" : "#b8ad98", size: deep ? 0.9 : 0.7, lifetime: 2.6 }, { audience: { nearby: f, radius: EAR } });
 }
@@ -145,7 +153,7 @@ export function update(ctx, dt) {
     if (s.hp <= 0) {
       s.dead = true; s.deadAt = now; w.physics = "none";
       ctx.emit("fx", { position: { x: f.x, y: f.y + 0.4, z: f.z }, script: MELT });
-      ctx.emit("playSound", { clip: sfx((VOX[s.kind] ?? VOX.pilgrim).death), position: f, volume: (s.kind === "deacon" || s.kind === "chandler" || s.kind === "cantor" || s.kind === "barnacle" || s.kind === "ferryman") ? 1 : 0.8, pitch: 0.9 + ctx.random() * 0.2 });
+      ctx.emit("playSound", { clip: sfx((VOX[s.kind] ?? VOX.pilgrim).death), position: f, volume: (s.kind === "deacon" || s.kind === "chandler" || s.kind === "cantor" || s.kind === "barnacle" || s.kind === "ferryman" || s.kind === "briarwitch" || s.kind === "rootmother") ? 1 : 0.8, pitch: 0.9 + ctx.random() * 0.2 });
       w.anim.attack = null; w.anim.death = { clip: "cdn/clip-die.glb", weight: 20, loop: "once" }; // it falls first, then the wax gives way
       animate(ctx, w, { "scale.y": 0.08, "scale.x": 1.5, "scale.z": 1.5 }, { duration: 1.1, delay: 0.9 });
       payout(ctx, f, K.xp, roll(ctx, E.drops[s.kind] ?? E.drops.pilgrim), true, "small", s.kind);

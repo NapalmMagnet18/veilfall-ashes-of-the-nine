@@ -70,6 +70,7 @@ const PACKS = [
 ];
 PACKS.push({ id: "mb1", kind: "chandler", x: 1, z: -79 }, { id: "mb2", kind: "cantor", x: 0, z: -177 }); // the Tallow Chandler, mini boss before the Dripping Gate
 PACKS.push({ id: "f1", kind: "drowned", x: -48, z: -2 }, { id: "f2", kind: "drowned", x: -52, z: -8 }, { id: "f3", kind: "harpooner", x: -55, z: 2 }, { id: "f4", kind: "drowned", x: -70, z: 2 }, { id: "f5", kind: "harpooner", x: -74, z: -6 }, { id: "f6", kind: "barnacle", x: -54, z: -20 }, { id: "f7", kind: "drowned", x: -76, z: -20 }, { id: "f8", kind: "harpooner", x: -58, z: -26 }, { id: "mb3", kind: "ferryman", x: -78, z: -12 }); // the Lanternmere's drowned
+PACKS.push({ id: "w1", kind: "reaper", x: 36, z: 6 }, { id: "w2", kind: "marrowwolf", x: 40, z: 9 }, { id: "w3", kind: "marrowwolf", x: 42, z: 1 }, { id: "w4", kind: "reaper", x: 48, z: -8 }, { id: "w5", kind: "briarwitch", x: 76, z: -3 }, { id: "w6", kind: "marrowwolf", x: 79, z: 18 }, { id: "w7", kind: "reaper", x: 50, z: 23 }, { id: "w8", kind: "marrowwolf", x: 66, z: 25 }, { id: "mb4", kind: "rootmother", x: 82, z: 6 }); // the Hanging Orchard's Blood Woods
 PACKS.push({ id: "o1", kind: "chorister", x: -36, z: -257 }, { id: "o2", kind: "chorister", x: -38, z: -275 }, { id: "o3", kind: "deacon", x: -33, z: -266 }, { id: "o4", kind: "flagellant", x: -24, z: -261 }); // the Ossuary's sisters
 const PETITIONS = [[4, -40], [13, -42], [11, -52], [3, -50], [17, -53]];
 const MAELIN = { x: -5, z: -3 };
@@ -129,19 +130,25 @@ const NAVE_IN = (x, z) => z < -206 && z > -238 && Math.abs(x) < 7.5;
 // the Wax Deacon's censer: bronze thurible hung at his right hip, coals glowing, incense smoke rising
 const CENSER = { id: "censer", feetPosition: { x: 0.34, y: 0.62, z: -0.08 }, pivot: "top", behavior: "scripts/censer-swing.js", castShadow: true, primitive: { kind: "scripted", script: "scripts/gen/censer.js", params: { chain: 0.42 }, seed: 7 },
   fx: { script: `fx\npop smoke rate=?mobile:5|9 on=sphere(.05) life=1.6..2.6 v=up(.35..0.6)+sdir()*.08 size=.07..0.12 acc=buoy(.4)+curl(.4)*.4+drag(.9) sz=$size*(.6>3) col=<.42,.38,.34>><.2,.2,.22> a=0>.2:.35>.7:.2>0 rot=spin(.2) r=sprite(smoke-puff,alpha)\npop glow n=1 glo=fire()*.6 r=light(<1,.5,.2>,$glo*.8,2.5)`, params: {} } };
-const DROWNED = new Set(["drowned", "harpooner", "barnacle", "ferryman"]);
+const DROWNED = new Set(["drowned", "harpooner", "barnacle", "ferryman"]), BLOODED = new Set(["reaper", "marrowwolf", "briarwitch", "rootmother"]);
 // the mere's dead: a cold soul-light in the chest, seawater running off them, a wet haze at the hem
 const SOUL_GLOW = `fx
 pop mote rate=10 on=sphere(.18) life=.6..1.1 v=up(.2..0.5)+sdir()*.15 size=.03..0.06 acc=curl(.6)+drag(.8) col=hdr(.9,2.6,2.8)>hdr(.2,.6,.7) a=(0>.15:1>0)*flick(7,.3) r=sprite(ember,add)
 pop drip rate=6 on=disc(.25) life=.5..0.8 v=up(-.2) size=.02..0.03 acc=grav() floor=die col=<.55,.7,.75> a=.7 r=sprite(soft-disc,alpha,velocity,.04)
 pop l n=1 glo=flick(.6,.35) r=light(<.45,.85,.95>,$glo*1.4,5)`;
+// the Blood Woods' dead: a crimson heart-light, sap dripping, a few red petals shed as they move
+const SAP_GLOW = `fx
+pop mote rate=8 on=sphere(.2) life=.6..1.1 v=up(.2..0.4)+sdir()*.15 size=.03..0.06 acc=curl(.6)+drag(.8) col=hdr(3,.35,.25)>hdr(.7,.05,.05) a=(0>.15:1>0)*flick(5,.3) r=sprite(ember,add)
+pop sap rate=5 on=disc(.25) life=.5..0.8 v=up(-.2) size=.02..0.035 acc=grav() floor=die col=<.45,.03,.04> a=.85 r=sprite(soft-disc,alpha,velocity,.04)
+pop leaf rate=1.5 on=disc(.4) life=1.6..2.6 v=sdir()*.3 size=.05..0.08 spin=-4..4 acc=grav()*.15+curl(.8)+drag(1.5) floor=stick col=<.5,.06,.05> a=.9>.8:.9>0 rot=$age*$spin r=sprite(soft-disc,alpha)
+pop l n=1 glo=flick(1.1,.3) r=light(<1,.2,.15>,$glo*1.3,5)`;
 const enemySpec = (pk) => ({
   id: "en-" + pk.id, tags: ["enemy", pk.kind], physics: "character",
   feetPosition: { x: pk.x, z: pk.z, y: { terrain: 0 } },
   scale: pk.kind === "deacon" ? 1.35 : 1,
-  ...(pk.kind === "chandler" || pk.kind === "cantor" || pk.kind === "ferryman" ? { tags: ["enemy", pk.kind, "elite"] } : {}),
+  ...(pk.kind === "chandler" || pk.kind === "cantor" || pk.kind === "ferryman" || pk.kind === "rootmother" ? { tags: ["enemy", pk.kind, "elite"] } : {}),
   ...body(pk.kind), behavior: ["scripts/humanoid-locomotion.js"],
-  children: [DROWNED.has(pk.kind) ? { id: "head-flame", visibleRange: { min: 0, max: 72 }, feetPosition: { x: 0, y: HEIGHT[pk.kind] * 0.82, z: 0 }, fx: { script: SOUL_GLOW } } : { id: "head-flame", visibleRange: { min: 0, max: 72 }, feetPosition: { x: 0, y: pk.kind === "cantor" ? 3.0 : pk.kind === "chandler" ? 2.95 : pk.kind === "deacon" ? 1.72 : pk.kind === "chorister" ? 1.9 : pk.kind === "flagellant" ? 1.78 : 1.62, z: 0 }, fx: { script: `fx\npop f rate=flick(.5,.3)*18 on=point() life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)`, params: {} } }, ...(pk.kind === "deacon" ? [CENSER] : [])],
+  children: [DROWNED.has(pk.kind) || BLOODED.has(pk.kind) ? { id: "head-flame", visibleRange: { min: 0, max: 72 }, feetPosition: { x: 0, y: HEIGHT[pk.kind] * (pk.kind === "marrowwolf" ? 0.6 : 0.82), z: 0 }, fx: { script: DROWNED.has(pk.kind) ? SOUL_GLOW : SAP_GLOW } } : { id: "head-flame", visibleRange: { min: 0, max: 72 }, feetPosition: { x: 0, y: pk.kind === "cantor" ? 3.0 : pk.kind === "chandler" ? 2.95 : pk.kind === "deacon" ? 1.72 : pk.kind === "chorister" ? 1.9 : pk.kind === "flagellant" ? 1.78 : 1.62, z: 0 }, fx: { script: `fx\npop f rate=flick(.5,.3)*18 on=point() life=.25..0.45 v=up(.5..0.9) size=.05..0.09 col=hdr(4,2.4,.7)>hdr(1.5,.4,.08) a=0>.2:1>0 r=sprite(flame-wisp,add)\npop l n=1 glo=fire()*.8 r=light(<1,.6,.3>,$glo*1.5,5)`, params: {} } }, ...(pk.kind === "deacon" ? [CENSER] : [])],
   state: { kind: pk.kind, hp: C[pk.kind].hp, maxHp: C[pk.kind].hp, home: { x: pk.x, y: 0, z: pk.z } },
 });
 const near = (ctx, x, z, r) => ctx.place.players.some((p) => Math.hypot(p.feetPosition.x - x, p.feetPosition.z - z) < r);

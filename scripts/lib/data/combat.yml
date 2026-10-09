@@ -13,6 +13,10 @@ drowned: { hp: 85, dmg: 10, every: 1.4, speed: 3.0, aggro: 15, reach: 2.0, xp: 3
 harpooner: { hp: 100, dmg: 13, every: 1.3, speed: 3.3, aggro: 17, reach: 2.8, xp: 40 }
 barnacle: { hp: 220, dmg: 24, slamRadius: 3.2, windup: 1.2, every: 4, speed: 1.9, aggro: 14, xp: 75 }
 ferryman: { hp: 760, dmg: 32, slamRadius: 4.5, windup: 1.1, every: 5.5, swings: true, swingDmg: 17, swingEvery: 1.5, speed: 2.5, aggro: 16, reach: 2.6, xp: 280, respawn: 180, summon: drowned, summonText: "THE TIDE GIVES BACK" }
+reaper: { hp: 120, dmg: 15, every: 1.3, speed: 3.2, aggro: 16, reach: 2.6, xp: 46 }
+marrowwolf: { hp: 80, dmg: 11, every: 0.9, speed: 4.6, aggro: 20, reach: 1.8, xp: 34 }
+briarwitch: { hp: 240, dmg: 26, slamRadius: 3.6, windup: 1.3, every: 4, speed: 2.0, aggro: 15, xp: 85 }
+rootmother: { hp: 860, dmg: 34, slamRadius: 5, windup: 1.2, every: 5.5, swings: true, swingDmg: 18, swingEvery: 1.6, speed: 2.3, aggro: 16, reach: 3.0, xp: 320, respawn: 180, summon: marrowwolf, summonText: "THE ROOTS HUNGER" }
 deacon: { hp: 170, dmg: 20, slamRadius: 3, windup: 1.2, every: 4, speed: 1.8, aggro: 14, xp: 60 }
 bailiff: { hp: 900, perExtra: 0.55, arcDmg: 26, arcRadius: 5.5, arcAngle: 120, arcWindup: 0.8, debtDmg: 22, debtDelay: 3, debtWidth: 1.3, pauseA: 3.2, pauseB: 2.4, recoverC: 1.0, ledgerHp: 120, ledgerSpawnEvery: 9, fray: 0.1, frayEvery: 6, frayMax: 5, swingDmg: 10, xp: 400, resetAfter: 6 }
 ringer: { hp: 1300, perExtra: 0.55, knellDmg: 28, knellR: 4.5, knellWind: 1.1, pealDmg: 20, pealR: 2.2, pealWind: 1.3, pauseA: 2.6, pauseB: 2.0, recoverC: 1.2, addEvery: 14, swingDmg: 12, xp: 600, resetAfter: 6 }

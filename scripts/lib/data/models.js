@@ -16,8 +16,12 @@ export const MODELS = {
   harpooner: "/cdn/value.492ee7bec8abaae3fca6505ff211435c1f0e4a3b56337d52f49a6329ec339c7d.png.glb",
   barnacle: "/cdn/value.f447e8ba146077eadf34088016a3752e2978f4447aceea1c0b3780fdbd181744.png.glb",
   ferryman: "/cdn/value.92ab59b110964872e1d5891ffc6b4120e2552142b4510e32a55ae52d7aa6d904.png.glb",
+  reaper: "/cdn/value.7b26a4b184c51b24aac2a13f297374c7ec1542079cc62be428ceffdceebffd4c.png.glb",
+  marrowwolf: "/cdn/value.9ea8fbf86964b4f74c1839241fde03aadbdb94dd7e982348ce228effd1bacadd.png.glb",
+  briarwitch: "/cdn/value.f238ac26576277be10583e2304c4683700beabbd7955cd6fa959a06c4eb6a6a1.png.glb",
+  rootmother: "/cdn/value.feaf846a8422415b8de033377678de133d68aa8b98528e926dc2dbb930a8a72c.png.glb",
   bailiff: "/cdn/value.0fff9f3b6085fcd9ee851d61b5e8e32b7c7ea83f47e46f7e7a72d18d3e7e3438.png.glb",
 };
 // true height in metres before the row's own scale
-export const HEIGHT = { hero: 1.85, pilgrim: 1.7, walker: 1.7, deacon: 1.8, chorister: 1.95, flagellant: 1.8, bailiff: 2.0, chandler: 2.9, cantor: 3.0, ringer: 2.2, warden: 2.4, hangman: 2.5, abbess: 2.6, drowned: 1.8, harpooner: 1.9, barnacle: 2.3, ferryman: 3.1 };
+export const HEIGHT = { hero: 1.85, pilgrim: 1.7, walker: 1.7, deacon: 1.8, chorister: 1.95, flagellant: 1.8, bailiff: 2.0, chandler: 2.9, cantor: 3.0, ringer: 2.2, warden: 2.4, hangman: 2.5, abbess: 2.6, drowned: 1.8, harpooner: 1.9, barnacle: 2.3, ferryman: 3.1, reaper: 2.3, marrowwolf: 1.3, briarwitch: 2.0, rootmother: 3.4 };
 export const body = (k) => ({ model: MODELS[k], layout: { maxExtents: { y: HEIGHT[k] } } });
