@@ -19,7 +19,7 @@ orch-brazier-3:
   tags: [orchard, z01-dressing, brazier]
 orch-gibbet-g2:
   castShadow: true
-  children: [{castShadow: true, feetPosition: {x: 0, y: 3.7, z: -1.7}, id: hanged, physics: none, primitive: {kind: scripted, params: {drop: 0.45}, script: scripts/gen/orch-hanged.js, seed: 102}, tags: [orchard, z01-dressing, hanged]}, {feetPosition: {x: 0, y: 4.11, z: 0}, id: crow, physics: none, primitive: {kind: scripted, params: {kind: crow}, script: scripts/gen/orch-props.js, seed: 7}, rotation: 60, tags: [orchard, z01-dressing]}]
+  children: [{behavior: [scripts/sway.js], castShadow: true, feetPosition: {x: 0, y: 3.7, z: -1.7}, id: hanged, physics: none, pivot: top, primitive: {kind: scripted, params: {drop: 0.45}, script: scripts/gen/orch-hanged.js, seed: 102}, tags: [orchard, z01-dressing, hanged]}, {feetPosition: {x: 0, y: 4.11, z: 0}, id: crow, physics: none, primitive: {kind: scripted, params: {kind: crow}, script: scripts/gen/orch-props.js, seed: 7}, rotation: 60, tags: [orchard, z01-dressing]}]
   feetPosition: {x: 72, y: {terrain: 0}, z: 14}
   id: orch-gibbet-g2
   physics: static
@@ -28,7 +28,7 @@ orch-gibbet-g2:
   tags: [orchard, z01-dressing, gibbet]
 orch-gibbet-g3:
   castShadow: true
-  children: [{castShadow: true, feetPosition: {x: 0, y: 3.7, z: -1.7}, id: hanged, physics: none, primitive: {kind: scripted, params: {drop: 0.45}, script: scripts/gen/orch-hanged.js, seed: 96}, tags: [orchard, z01-dressing, hanged]}, {feetPosition: {x: 0, y: 3.97, z: -0.9}, id: crow, physics: none, primitive: {kind: scripted, params: {kind: crow}, script: scripts/gen/orch-props.js, seed: 7}, rotation: 90, tags: [orchard, z01-dressing]}]
+  children: [{behavior: [scripts/sway.js], castShadow: true, feetPosition: {x: 0, y: 3.7, z: -1.7}, id: hanged, physics: none, pivot: top, primitive: {kind: scripted, params: {drop: 0.45}, script: scripts/gen/orch-hanged.js, seed: 96}, tags: [orchard, z01-dressing, hanged]}, {feetPosition: {x: 0, y: 3.97, z: -0.9}, id: crow, physics: none, primitive: {kind: scripted, params: {kind: crow}, script: scripts/gen/orch-props.js, seed: 7}, rotation: 90, tags: [orchard, z01-dressing]}]
   feetPosition: {x: 66, y: {terrain: 0}, z: -6}
   id: orch-gibbet-g3
   physics: static

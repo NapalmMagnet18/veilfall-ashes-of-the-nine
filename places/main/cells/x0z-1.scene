@@ -341,9 +341,19 @@ bailiff-arena/gibbet-0:
   id: bailiff-arena/gibbet-0
   parent: bailiff-arena
   physics: static
-  primitive: {kind: scripted, params: {arm: 2.6, drop: 0.8, h: 5.4, kind: cage}, script: scripts/gen/gibbet.js, seed: 40}
+  primitive: {kind: scripted, params: {arm: 2.6, drop: 0.8, h: 5.4, kind: cage, split: true}, script: scripts/gen/gibbet.js, seed: 40}
   rotation: {yaw: -64.00000000000001}
   tags: [z01-dressing, gate]
+bailiff-arena/gibbet-0/cage:
+  behavior: scripts/sway.js
+  castShadow: true
+  feetPosition: {x: 0, y: 5.1000000000000005, z: -2.4}
+  id: bailiff-arena/gibbet-0/cage
+  parent: bailiff-arena/gibbet-0
+  physics: none
+  pivot: top
+  primitive: {kind: scripted, params: {drop: 0.8, kind: cagebody}, script: scripts/gen/gibbet.js, seed: 40}
+  tags: [z01-dressing, swing]
 bailiff-arena/gibbet-1:
   feetPosition: {x: -18.12328320500538, y: 0.6588412212840282, z: -4.184089610795889}
   id: bailiff-arena/gibbet-1
@@ -357,9 +367,19 @@ bailiff-arena/gibbet-2:
   id: bailiff-arena/gibbet-2
   parent: bailiff-arena
   physics: static
-  primitive: {kind: scripted, params: {arm: 2.6, drop: 1.1, h: 5.4, kind: cage}, script: scripts/gen/gibbet.js, seed: 42}
+  primitive: {kind: scripted, params: {arm: 2.6, drop: 1.1, h: 5.4, kind: cage, split: true}, script: scripts/gen/gibbet.js, seed: 42}
   rotation: {yaw: -141.00000000000003}
   tags: [z01-dressing, gate]
+bailiff-arena/gibbet-2/cage:
+  behavior: scripts/sway.js
+  castShadow: true
+  feetPosition: {x: 0, y: 5.1000000000000005, z: -2.4}
+  id: bailiff-arena/gibbet-2/cage
+  parent: bailiff-arena/gibbet-2
+  physics: none
+  pivot: top
+  primitive: {kind: scripted, params: {drop: 1.1, kind: cagebody}, script: scripts/gen/gibbet.js, seed: 42}
+  tags: [z01-dressing, swing]
 bailiff-arena/gibbet-3:
   feetPosition: {x: 11.705359273526978, y: 0.5491893603746054, z: -14.454914883099658}
   id: bailiff-arena/gibbet-3
@@ -373,9 +393,19 @@ bailiff-arena/gibbet-4:
   id: bailiff-arena/gibbet-4
   parent: bailiff-arena
   physics: static
-  primitive: {kind: scripted, params: {arm: 2.6, drop: 1.4, h: 5.4, kind: cage}, script: scripts/gen/gibbet.js, seed: 44}
+  primitive: {kind: scripted, params: {arm: 2.6, drop: 1.4, h: 5.4, kind: cage, split: true}, script: scripts/gen/gibbet.js, seed: 44}
   rotation: {yaw: 103.00000000000003}
   tags: [z01-dressing, gate]
+bailiff-arena/gibbet-4/cage:
+  behavior: scripts/sway.js
+  castShadow: true
+  feetPosition: {x: 0, y: 5.1000000000000005, z: -2.4}
+  id: bailiff-arena/gibbet-4/cage
+  parent: bailiff-arena/gibbet-4
+  physics: none
+  pivot: top
+  primitive: {kind: scripted, params: {drop: 1.4, kind: cagebody}, script: scripts/gen/gibbet.js, seed: 44}
+  tags: [z01-dressing, swing]
 bailiff-arena/gibbet-5:
   feetPosition: {x: 16.71756926116451, y: 2.369420325232062, z: 8.15370333027684}
   id: bailiff-arena/gibbet-5
