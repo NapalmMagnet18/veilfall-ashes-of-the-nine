@@ -372,14 +372,14 @@ pop mote burst=16..22 on=disc(1.8) life=1.2..2 v=up(.3..0.8) size=.02..0.04 acc=
 pop dust burst=8..12 on=disc(.8) life=.9..1.5 v=radial(1.2..2.4)+up(.2..0.5) size=.4..0.7 acc=drag(2)+buoy(.15) col=<.42,.46,.52> a=0>.1:.3>0 sz=$size*(.6>2.4) rot=spin(.2) r=sprite(smoke-puff,alpha)
 pop glow burst=1 life=.9 at=point().c(1) r=light(<.55,.8,1>,40*(1>.25:.3>0),10)`;
 const DARKPOOL = `fx
-pop pool n=1 life=3 size=4.4 col=<.18,.04,.28> a=0>.1:.85>.85:.85>0 sz=$size r=sprite(soft-disc,alpha)
-pop rim n=1 life=3 size=4.6 col=hdr(.9,.25,1.5) a=0>.1:.5>.8:.5>0 sz=$size*(1+flick(3,.04)) r=sprite(soft-disc,add)
-pop tendril rate=?mobile:14|28 on=disc(2) life=.7..1.2 v=up(.8..1.8)+sdir()*.2 size=.08..0.16 acc=curl(1)+drag(1) col=hdr(1.4,.4,2.2)>hdr(.2,.05,.35) a=0>.15:.9>0 sz=$size*(1>.3) r=sprite(smoke-puff,add)
-pop hand rate=?mobile:3|6 on=disc(1.7) life=.8..1.3 v=up(1.2..2.2) size=.05..0.09 acc=curl(2.2)*1.4+drag(1.5) col=hdr(2,.6,3)>hdr(.3,.05,.5) a=0>.1:1>0 sz=$size r=sprite(ember,add,velocity,.12)
-pop pull rate=?mobile:10|20 on=disc(2.4).c(.2) life=.5..0.8 v=attract(4) size=.02..0.04 col=hdr(2.4,1,3.2) a=0>.2:1>0 sz=$size r=sprite(ember,add,velocity,.04)
-pop murk rate=?mobile:3|6 on=disc(1.8) life=1.4..2.2 v=up(.15..0.35) size=.6..1 acc=buoy(.2)+curl(.3)*.3+drag(1) col=<.08,.02,.12> a=0>.2:.45>0 sz=$size*(.6>1.8) rot=spin(.15) r=sprite(smoke-puff,alpha)
-pop eye rate=3 on=disc(1.6) life=.6..1 size=.05 col=hdr(3,1,4) a=0>.3:1>0 sz=$size r=sprite(soft-disc,add)
-pop glow n=1 life=3 at=point().c(.6) r=light(<.6,.25,1>,12*flick(4,.25),7)`;
+pop pool burst=1 life=3 size=4.4 col=<.18,.04,.28> a=0>.1:.85>.85:.85>0 sz=$size r=sprite(soft-disc,alpha)
+pop rim burst=1 life=3 size=4.6 col=hdr(.9,.25,1.5) a=0>.1:.5>.8:.5>0 sz=$size*(1+flick(3,.04)) r=sprite(soft-disc,add)
+pop tendril win=0;2.3 rate=?mobile:14|28 on=disc(2) life=.7..1.2 v=up(.8..1.8)+sdir()*.2 size=.08..0.16 acc=curl(1)+drag(1) col=hdr(1.4,.4,2.2)>hdr(.2,.05,.35) a=0>.15:.9>0 sz=$size*(1>.3) r=sprite(smoke-puff,add)
+pop hand win=0;2.3 rate=?mobile:3|6 on=disc(1.7) life=.8..1.3 v=up(1.2..2.2) size=.05..0.09 acc=curl(2.2)*1.4+drag(1.5) col=hdr(2,.6,3)>hdr(.3,.05,.5) a=0>.1:1>0 sz=$size r=sprite(ember,add,velocity,.12)
+pop pull win=0;2.3 rate=?mobile:10|20 on=disc(2.4).c(.2) life=.5..0.8 v=attract(4) size=.02..0.04 col=hdr(2.4,1,3.2) a=0>.2:1>0 sz=$size r=sprite(ember,add,velocity,.04)
+pop murk win=0;2.3 rate=?mobile:3|6 on=disc(1.8) life=1.4..2.2 v=up(.15..0.35) size=.6..1 acc=buoy(.2)+curl(.3)*.3+drag(1) col=<.08,.02,.12> a=0>.2:.45>0 sz=$size*(.6>1.8) rot=spin(.15) r=sprite(smoke-puff,alpha)
+pop eye win=0;2.3 rate=3 on=disc(1.6) life=.6..1 size=.05 col=hdr(3,1,4) a=0>.3:1>0 sz=$size r=sprite(soft-disc,add)
+pop glow burst=1 life=3 at=point().c(.6) r=light(<.6,.25,1>,12*flick(4,.25),7)`;
 function sigLance(ctx, s, f, aim) {
   const at = { x: aim.x, y: ctx.place.terrain?.heightAt?.(aim.x, aim.z) ?? f.y, z: aim.z };
   swingAnim(ctx, "cdn/clip-cast.glb");
