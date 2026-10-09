@@ -1,0 +1,13 @@
+{
+  "name": "sound-design-guide",
+  "displayName": "Sound Design Guide",
+  "description": "Volume mixing, spatial audio, pitch variation, music transitions, genre-specific sound palettes, and voice line patterns. Make any game sound professional.",
+  "tags": [
+    "skill",
+    "audio",
+    "sound",
+    "guide"
+  ],
+  "visibility": "public",
+  "version": "1.0.0"
+}
