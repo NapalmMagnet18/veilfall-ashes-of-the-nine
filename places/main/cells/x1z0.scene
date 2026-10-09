@@ -312,7 +312,7 @@ fwisp-vale-4:
   wisp: {burnStyle: calm, color: "#bfe6ff", seed: 33, shape: classic, size: 0.48999999999999994, state: idle}
 orch-apple-0:
   castShadow: true
-  feetPosition: {x: 79.2, y: {terrain: -0.15}, z: -5.1}
+  feetPosition: {x: 74.7, y: {terrain: -0.26}, z: -10.46}
   id: orch-apple-0
   mixer: {sway: {clip: Sway, loop: loop, speed: 0.75, weight: 1}}
   model: /cdn/value.d6c1233f14db0eaa7e26010cae90c13ee56be4d378af5ffaf0e6dfb5b31c4571.glb
@@ -354,7 +354,7 @@ orch-apple-13:
 orch-apple-14:
   castShadow: true
   children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
-  feetPosition: {x: 71.3, y: {terrain: -0.1}, z: -17.7}
+  feetPosition: {x: 71.3, y: {terrain: -0.89}, z: -17.7}
   id: orch-apple-14
   layout: {maxExtents: {y: 5.45}}
   mixer: {sway: {clip: Sway, loop: loop, speed: 0.93, weight: 1}}
@@ -366,7 +366,7 @@ orch-apple-14:
 orch-apple-17:
   castShadow: true
   children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
-  feetPosition: {x: 85.6, y: {terrain: -0.1}, z: -1.8}
+  feetPosition: {x: 89.13, y: {terrain: -0.28}, z: -6.02}
   id: orch-apple-17
   layout: {maxExtents: {y: 4.69}}
   mixer: {sway: {clip: Sway, loop: loop, speed: 1.05, weight: 1}}
@@ -390,7 +390,7 @@ orch-apple-18:
 orch-apple-19:
   castShadow: true
   children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
-  feetPosition: {x: 72.56, y: {terrain: -0.09999999999999964}, z: 36.09}
+  feetPosition: {x: 72.56, y: {terrain: -0.98}, z: 36.09}
   id: orch-apple-19
   layout: {maxExtents: {y: 4.98}}
   mixer: {sway: {clip: Sway, loop: loop, speed: 0.9, weight: 1}}
@@ -419,7 +419,7 @@ orch-apple-2/trunk:
 orch-apple-20:
   castShadow: true
   children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
-  feetPosition: {x: 90.9, y: {terrain: -0.1}, z: 6.9}
+  feetPosition: {x: 90.9, y: {terrain: -0.36}, z: 9.9}
   id: orch-apple-20
   layout: {maxExtents: {y: 6.28}}
   mixer: {sway: {clip: Sway, loop: loop, speed: 0.94, weight: 1}}
@@ -467,7 +467,7 @@ orch-apple-24:
 orch-apple-25:
   castShadow: true
   children: [{feetPosition: {x: 0, y: 0, z: 0}, id: trunk, physics: {body: static, collider: box}, primitive: {depth: 0.6, height: 3, kind: box, width: 0.6}, visible: false}]
-  feetPosition: {x: 85.5, y: {terrain: -0.1}, z: 3.8}
+  feetPosition: {x: 85.5, y: {terrain: -0.38}, z: 13.3}
   id: orch-apple-25
   layout: {maxExtents: {y: 4.64}}
   mixer: {sway: {clip: Sway, loop: loop, speed: 0.87, weight: 1}}
@@ -478,7 +478,7 @@ orch-apple-25:
   tags: [bloodwoods, flora, tree]
 orch-apple-5:
   castShadow: true
-  feetPosition: {x: 84.2, y: {terrain: -0.15}, z: 16.9}
+  feetPosition: {x: 86.88, y: {terrain: -0.4}, z: 19.15}
   id: orch-apple-5
   mixer: {sway: {clip: Sway, loop: loop, speed: 0.87, weight: 1}}
   model: /cdn/value.e8237dc6ce5814a52762136a3720ff0581da3ebd9fed643aec43bd65110ec5a0.glb
@@ -495,7 +495,7 @@ orch-apple-5/trunk:
   visible: false
 orch-apple-6:
   castShadow: true
-  feetPosition: {x: 88.51, y: {terrain: -0.15000000000000036}, z: 28.14}
+  feetPosition: {x: 89.38, y: {terrain: -0.39}, z: 27.64}
   id: orch-apple-6
   mixer: {sway: {clip: Sway, loop: loop, speed: 1, weight: 1}}
   model: /cdn/value.d6c1233f14db0eaa7e26010cae90c13ee56be4d378af5ffaf0e6dfb5b31c4571.glb

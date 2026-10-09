@@ -1059,11 +1059,11 @@ road-tree-16:
   feetPosition: {x: -17.36, y: {terrain: -0.25}, z: -116.48}
   id: road-tree-16
   mixer: {base: {clip: Sway, loop: loop, speed: 0.66, weight: 1}}
-  model: /cdn/value.3ca339b7d13a459d224ee54f120542ef19b8f005ffeb735b239da56f9ac4a1fa.glb
+  model: /cdn/value.f981a31d17c64316acbd3ee046b3a2905f300e5bad510275c741054aa4e1a695.glb
   receiveShadow: true
   rotation: 147
   scale: 0.87
-  state: {kind: ashoak}
+  state: {kind: gravecypress}
   tags: [road, flora, tree]
 road-tree-17:
   castShadow: true
@@ -1092,11 +1092,11 @@ road-tree-19:
   feetPosition: {x: -9.01, y: {terrain: -0.25}, z: -129.69}
   id: road-tree-19
   mixer: {base: {clip: Sway, loop: loop, speed: 0.74, weight: 1}}
-  model: /cdn/value.f981a31d17c64316acbd3ee046b3a2905f300e5bad510275c741054aa4e1a695.glb
+  model: /cdn/value.3ca339b7d13a459d224ee54f120542ef19b8f005ffeb735b239da56f9ac4a1fa.glb
   receiveShadow: true
   rotation: 207
   scale: 1.1
-  state: {kind: gravecypress}
+  state: {kind: ashoak}
   tags: [abbey, flora, tree]
 road-tree-20:
   castShadow: true
@@ -1106,7 +1106,7 @@ road-tree-20:
   model: /cdn/value.f981a31d17c64316acbd3ee046b3a2905f300e5bad510275c741054aa4e1a695.glb
   receiveShadow: true
   rotation: 44
-  scale: 0.82
+  scale: 0.88
   state: {kind: gravecypress}
   tags: [abbey, flora, tree]
 road-tree-21:
@@ -1122,7 +1122,7 @@ road-tree-21:
   tags: [abbey, flora, tree]
 road-tree-22:
   castShadow: true
-  feetPosition: {x: -14.15, y: {terrain: -0.25}, z: -155.89}
+  feetPosition: {x: -14.4, y: {terrain: -0.33}, z: -155.46}
   id: road-tree-22
   mixer: {base: {clip: Sway, loop: loop, speed: 0.82, weight: 1}}
   model: /cdn/value.f981a31d17c64316acbd3ee046b3a2905f300e5bad510275c741054aa4e1a695.glb
@@ -1172,7 +1172,7 @@ road-tree-26:
   model: /cdn/value.f981a31d17c64316acbd3ee046b3a2905f300e5bad510275c741054aa4e1a695.glb
   receiveShadow: true
   rotation: 45
-  scale: 0.83
+  scale: 0.88
   state: {kind: gravecypress}
   tags: [abbey, flora, tree]
 road-tree-27:
@@ -1183,7 +1183,7 @@ road-tree-27:
   model: /cdn/value.f981a31d17c64316acbd3ee046b3a2905f300e5bad510275c741054aa4e1a695.glb
   receiveShadow: true
   rotation: 223
-  scale: 0.81
+  scale: 0.88
   state: {kind: gravecypress}
   tags: [abbey, flora, tree]
 road-tree-28:
@@ -1202,15 +1202,15 @@ road-tree-29:
   feetPosition: {x: -25.25, y: {terrain: -0.25}, z: -175.99}
   id: road-tree-29
   mixer: {base: {clip: Sway, loop: loop, speed: 0.75, weight: 1}}
-  model: /cdn/value.f981a31d17c64316acbd3ee046b3a2905f300e5bad510275c741054aa4e1a695.glb
+  model: /cdn/value.3ca339b7d13a459d224ee54f120542ef19b8f005ffeb735b239da56f9ac4a1fa.glb
   receiveShadow: true
   rotation: 230
   scale: 0.88
-  state: {kind: gravecypress}
+  state: {kind: ashoak}
   tags: [abbey, flora, tree]
 road-tree-3:
   castShadow: true
-  children: [{feetPosition: {x: -0.57, y: 2.4, z: 2.17}, id: lamp, light: {color: "#C49C63", distance: 10, intensity: 2.2, kind: point}}]
+  children: [{feetPosition: {x: -0.57, y: 2.4, z: 2.17}, id: lamp, light: {color: "#C49C63", distance: 6, intensity: 2, kind: point}}]
   feetPosition: {x: -12.47, y: {terrain: -0.25}, z: -68.53}
   id: road-tree-3
   mixer: {base: {clip: Sway, loop: loop, speed: 0.72, weight: 1}}
@@ -1225,16 +1225,16 @@ road-tree-30:
   feetPosition: {x: -16.82, y: {terrain: -0.25}, z: -161.14}
   id: road-tree-30
   mixer: {base: {clip: Sway, loop: loop, speed: 0.69, weight: 1}}
-  model: /cdn/value.f981a31d17c64316acbd3ee046b3a2905f300e5bad510275c741054aa4e1a695.glb
+  model: /cdn/value.3ca339b7d13a459d224ee54f120542ef19b8f005ffeb735b239da56f9ac4a1fa.glb
   receiveShadow: true
   rotation: 340
-  scale: 0.82
-  state: {kind: gravecypress}
+  scale: 0.88
+  state: {kind: ashoak}
   tags: [abbey, flora, tree]
 road-tree-4:
   castShadow: true
-  children: [{feetPosition: {x: -0.57, y: 2.4, z: 2.17}, id: lamp, light: {color: "#C49C63", distance: 10, intensity: 2.2, kind: point}}]
-  feetPosition: {x: 25.07, y: {terrain: -0.25}, z: -124.7}
+  children: [{feetPosition: {x: -0.57, y: 2.4, z: 2.17}, id: lamp, light: {color: "#C49C63", distance: 6, intensity: 2, kind: point}}]
+  feetPosition: {x: 25.07, y: {terrain: -0.85}, z: -124.7}
   id: road-tree-4
   mixer: {base: {clip: Sway, loop: loop, speed: 0.64, weight: 1}}
   model: /cdn/value.3ab7a1d065bd27f995ca1af80b6a07cfaa28d4c54ce185efdfd0573ea59443ff.glb
@@ -1245,7 +1245,7 @@ road-tree-4:
   tags: [abbey, flora, tree]
 road-tree-5:
   castShadow: true
-  children: [{feetPosition: {x: -0.57, y: 2.4, z: 2.17}, id: lamp, light: {color: "#C49C63", distance: 10, intensity: 2.2, kind: point}}]
+  children: [{feetPosition: {x: -0.57, y: 2.4, z: 2.17}, id: lamp, light: {color: "#C49C63", distance: 6, intensity: 2, kind: point}}]
   feetPosition: {x: -8.12, y: {terrain: -0.25}, z: -155.43}
   id: road-tree-5
   mixer: {base: {clip: Sway, loop: loop, speed: 0.66, weight: 1}}
