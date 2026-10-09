@@ -37,3 +37,7 @@ This is a source/history and available-asset snapshot, not a standalone offline 
 Gameplay database records are backed up separately on the owner's local machine and are excluded from this public repository. The development snapshot contains two characters; empty gameplay tables are captured too. Database reads are a read-only logical capture, not a guaranteed transactionally consistent server image. Platform-internal identity/session tables and credentials are excluded. The source's existing save schema remains intact.
 
 The backup includes assets referenced by this game, not the owner's unrelated D: asset library. It preserves existing content and provenance references; it does not grant new rights to redistribute third-party assets. Future creator changes require a new snapshot.
+
+## Completion audit and supplemental files
+See BACKUP_COMPLETENESS.md for the continuation audit. The release now also preserves 64 additional unique assets (59 original input images and five retired models), the original 97-file design package, original art reference, and an independently tested restore utility for a locally prepared encrypted gameplay/world-persistence snapshot. The encrypted private snapshot is held locally pending specific public-upload approval. Total unique asset files: 681. The private decryption key is retained outside GitHub. The 213 audio files and two retired model outputs unavailable on Spawn are documented with export evidence. This supplements the immutable initial source/asset archives; do not discard either asset archive.
+

@@ -1,0 +1,57 @@
+[
+  {
+    "file": "VEILFALL_Additional_Source_Assets_2026-10-09.zip",
+    "bytes": 115083498,
+    "sha256": "aef82ebe7242efe661c31c219bee95a3b429fffe3e7404dffa79cfa4f8eeaffc"
+  },
+  {
+    "file": "VEILFALL_Original_Design_Package_2026-10-09.zip",
+    "bytes": 10887484,
+    "sha256": "81f005bb1b44b9e819639fe493e08b417996ac96ff48c0a3c21dd06c7301ae8e"
+  },
+  {
+    "file": "VEILFALL_Original_Art_Reference_2026-10-09.zip",
+    "bytes": 3229516,
+    "sha256": "e5655e93676226df999982bcb582f8984eb3abd2b1f26abcd97a01eca5cf71cf"
+  },
+  {
+    "file": "Restore-VEILFALL-Gameplay.cjs",
+    "bytes": 1096,
+    "sha256": "0dab6702575d86e6e8ba192d80624f5601eb215b54f80a6a50dc778cbb1587b0"
+  },
+  {
+    "file": "VEILFALL_Supplement_Asset_Manifest.json",
+    "bytes": 23469,
+    "sha256": "c196c4dff402fd8a8a5a6ec60a09c5ee4051f1fd2511adf96e7133586dbe2e97"
+  },
+  {
+    "file": "VEILFALL_Design_Package_Manifest.json",
+    "bytes": 16743,
+    "sha256": "066bb14dd1884a0e50d18d3bc5301acb0fd45f6e1b193ba71f334253489844d3"
+  },
+  {
+    "file": "VEILFALL_Audio_Export_Audit.json",
+    "bytes": 81659,
+    "sha256": "0cae2d346c71dafcbeedaf25e897b7a8404b2b679b50444ea2917ecd6dffe530"
+  },
+  {
+    "file": "VEILFALL_Historical_Unavailable_Assets.json",
+    "bytes": 587,
+    "sha256": "c0c99d8533f47398d6d211984ecc119d53c5610ef325c7a997fd433266d81420"
+  },
+  {
+    "file": "VEILFALL_Backup_Completeness_Report.md",
+    "bytes": 5973,
+    "sha256": "743bb86ae3deea3effb6d5b1a522e754eee5742ed31f47a214fd06367887b4a9"
+  },
+  {
+    "file": "VEILFALL_Supplement_Verification.json",
+    "bytes": 160,
+    "sha256": "adf578dcb8e71743af4d5b3ebf3369d046840dda0ca4887e9f6ec1cd38f40d2e"
+  },
+  {
+    "file": "VEILFALL_Live_Asset_Catalog.json",
+    "bytes": 13432,
+    "sha256": "92fd765185b7ee14c2ba2dfb36575aa7e35c107e6d99c5fc4e9636baee56816a"
+  }
+]
