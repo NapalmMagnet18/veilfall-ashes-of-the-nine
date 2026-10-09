@@ -82,14 +82,26 @@ const ICO = (() => {
   return { v, f };
 })();
 // a lumpy stone sitting on y=0; opts: sub, sx, sy, sz, rough, sink, face(ctx, normal, centre)
+// a rock: an icosphere, subdivided (twice for a big one up close), pushed out by smooth lumpy noise so the
+// bulges flow across faces, then cleaved by two to four fracture planes so it reads as broken stone, not a ball
 export function rock(ctx, T, r, o = {}) {
   let v = ICO.v.slice(), f = ICO.f.slice();
-  if (o.sub) {
+  const levels = o.sub ? (r >= 0.6 ? 2 : 1) : 0;
+  for (let L = 0; L < levels; L++) {
     const cache = {}, mid = (a, b) => { const k = a < b ? a + "_" + b : b + "_" + a; if (cache[k] == null) { cache[k] = v.length; v.push(norm(mul(add(v[a], v[b]), 0.5))); } return cache[k]; };
     const nf = []; for (const [a, b, c] of f) { const ab = mid(a, b), bc = mid(b, c), ca = mid(c, a); nf.push([a, ab, ca], [b, bc, ab], [c, ca, bc], [ab, bc, ca]); } f = nf;
   }
   const sx = o.sx ?? 1, sy = o.sy ?? 0.7, sz = o.sz ?? 1, rough = o.rough ?? 0.35, sink = o.sink ?? 0.25;
-  const P = v.map((p) => { const k = 1 + (ctx.random() - 0.5) * rough; return [p[0] * r * k * sx, Math.max(p[1] * r * k * sy, -r * sy * (1 - sink)) + r * sy * (1 - sink) * 0.92, p[2] * r * k * sz]; });
+  // smooth lumps: a few random waves summed, so neighbouring vertices move together
+  const W = []; for (let k = 0; k < 5; k++) { const d = norm([ctx.random() - 0.5, ctx.random() - 0.5, ctx.random() - 0.5]); W.push([d, 1.4 + ctx.random() * 2.6 * (1 + k * 0.4), ctx.random() * 6.283, 1 / (1 + k * 0.7)]); }
+  const lump = (p) => { let s = 0, t = 0; for (const [d, fq, ph, a] of W) { s += Math.sin(dot(d, p) * fq + ph) * a; t += a; } return s / t; };
+  const cuts = []; const nc = 2 + Math.floor(ctx.random() * 3);
+  for (let k = 0; k < nc; k++) { const d = norm([ctx.random() - 0.5, (ctx.random() - 0.2) * 0.9, ctx.random() - 0.5]); cuts.push([d, 0.62 + ctx.random() * 0.22]); }
+  const P = v.map((p) => {
+    let q = mul(p, 1 + lump(p) * rough * 0.9 + (ctx.random() - 0.5) * rough * 0.12);
+    for (const [d, off] of cuts) { const h = dot(q, d); if (h > off) q = sub(q, mul(d, (h - off) * 0.92)); } // the cleave: flatten what stands past the plane
+    return [q[0] * r * sx, Math.max(q[1] * r * sy, -r * sy * (1 - sink)) + r * sy * (1 - sink) * 0.92, q[2] * r * sz];
+  });
   const C = [0, r * sy * 0.6, 0];
   for (const [a, b, c] of f) {
     let A = P[a], B = P[b], Cc = P[c];
