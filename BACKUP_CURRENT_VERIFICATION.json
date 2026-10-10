@@ -1,12 +1,17 @@
 {
-  "sourceCommit": "6ae52da6707192954739657786b4760fc19e7baa",
-  "notesCommit": "b48eb91131f09ffcf7eb90a7be65771eeed123ca",
+  "sourceCommit": "03c820be122f0c49ffcefc5f0a52cd14cbd341f9",
+  "notesCommit": "6fd18826fb54cfe6b04987365cae35fa5be79a7e",
   "sourceFiles": 369,
-  "verifiedNewAssetEntries": 121,
   "totalPreservedAssetFiles": 802,
+  "originalDesignFiles": 97,
   "sourceArchiveGitBlobVerification": "passed",
-  "assetArchiveSHA256Verification": "passed",
-  "liveCatalog": "no_live_room",
+  "backupTreeGitBlobVerification": "passed",
+  "historyBundleRestore": "passed",
+  "restoredGitFsck": "passed",
+  "credentialScan": "passed",
+  "newAssetReferences": 0,
+  "newRecoveredAssets": 0,
+  "unavailableRechecked": 231,
   "privateSnapshotUploaded": false,
-  "checkedAtUtc": "2026-10-09T16:56:32.3609541Z"
+  "checkedAtUtc": "2026-10-10T23:32:49.9112989Z"
 }
