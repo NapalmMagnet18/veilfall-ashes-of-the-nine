@@ -13,15 +13,15 @@ Read a skill WHOLE before building in its territory: `.spawn/engine/skills/<id>.
 - heightmap-terrain — hills, islands, rivers, coasts, grass, swimming, dug ground
 - interactive-objects — pickups, levers, doors
 - jev — give a boss, npc, crowd or puzzle a mind: jev:decide
-- mobile-controls — Touch controls: auto + authored.
+- mobile-controls — Touch controls: auto + authored
 - physics — limbs on joints
 - platform-systems — saves, SQL boards, timers, LLM jobs, DMs, notify players, check names
 - player-settings — creator policy: enable protections, lock controls
-- pointer-raycasting — Camera-to-cursor rays: click placement, pointer aim, touch tap/hold/press.
-- portals — a door to another place or world; mirror, monitor, minimap
+- pointer-raycasting — Cursor rays: click placement, pointer aim, touch tap/hold/press
+- portals — door to another place or world; mirror, monitor, minimap
 - projectiles — gun, arrows, fireballs, cannons
-- rooms-and-matchmaking — lobbies, room codes, invites, parties, matches, a player cap; a server game port
+- rooms-and-matchmaking — lobbies, room codes, invites, parties, matches, player cap, server game port
 - spawn-engine — Read a world's engine API, edit its game files, and test the result.
-- uploaded-models — A dropped or built .glb, a picture into a model: place, dress, socket, parts.
+- uploaded-models — a dropped or built .glb, picture to model: place, dress, socket, parts
 - vehicles — cars/trucks/karts/tanks
 - voxel-terrain — block worlds: dig-and-place, caves
