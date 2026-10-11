@@ -1,11 +1,11 @@
 # Current backup coverage and verification
 
-Current source `f70c176c018e99d1e6fae9c8e0fd679002ab7899`, notes `3fa88cba82cbf6c1140af4d6b58d21311fcb4c32`, source captured October 11, 2026, 14:46 UTC; notes refreshed at 18:45 UTC.
+Current source `f70c176c018e99d1e6fae9c8e0fd679002ab7899`, notes `42def820620cd751bec81e1f4acd7f61bb26c320`, source captured October 11, 2026, 14:46 UTC; notes refreshed at 19:46 UTC.
 
 | Component | Preserved | Verification |
 | --- | --- | --- |
 | Authored game source | 369 files | Every archive entry and backup-tree source path matches the exact Spawn Git blob; per-file SHA-256 recorded |
-| Main and notes history | Complete at the captured refs | Source bundle and standalone notes bundle restored; exact refs and git fsck passed |
+| Main and notes history | Complete at the captured refs | Source bundle and notes baseline/increment restored; exact refs and git fsck passed |
 | Retrieved CDN assets | 802 unique paths | Per-file size/SHA-256 manifests and verified retained archives; no new URLs this refresh |
 | Original design package | 97 files | Original package archive retained and verified |
 | Original art reference | Preserved archive | Existing release digest verified |

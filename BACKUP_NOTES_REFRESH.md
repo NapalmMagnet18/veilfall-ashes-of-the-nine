@@ -1,18 +1,16 @@
-# Spawn notes refresh — October 11, 2026, 18:45 UTC
+# Spawn notes refresh — October 11, 2026, 19:46 UTC
 
-Game source remains `f70c176c018e99d1e6fae9c8e0fd679002ab7899`. Existing archives preserve all 369 source files, 802 retrieved asset paths and 97 original design files.
+Game source remains `f70c176c018e99d1e6fae9c8e0fd679002ab7899`. All 369 source files, 802 preserved asset paths and 97 original design files remain covered by the existing archives. No unchanged source or large asset archive was uploaded again.
 
-Notes advanced from `ca3245cdd160c47983cca2c7d91888635e41f6d0` to `3fa88cba82cbf6c1140af4d6b58d21311fcb4c32` (one changed note path). New content passed credential-pattern checks. `VEILFALL_Spawn_Notes_3fa88cba_full.bundle` preserves the complete notes history without prerequisites. Its standalone restoration into a fresh bare repository, exact notes ref and `git fsck --full` passed.
+Spawn notes advanced from `3fa88cba82cbf6c1140af4d6b58d21311fcb4c32` to `42def820620cd751bec81e1f4acd7f61bb26c320` (1 changed note paths). `VEILFALL_Spawn_Notes_42def820_increment.bundle` preserves the increment and requires the previous notes commit. New note content passed credential-pattern checks, bundle verification passed, and a fresh bare repository restored the specified base bundle followed by this increment to the exact notes ref with `git fsck --full` passing.
 
-Restore the game source from `VEILFALL_Spawn_History_f70c176c.bundle`, then fetch the current notes directly:
+Restore game source from the full source/history bundle listed in BACKUP_CURRENT.md. Import base notes from `VEILFALL_Spawn_Notes_3fa88cba_full.bundle`, then apply the latest notes increment:
 
 ```sh
 git fetch /path/to/VEILFALL_Spawn_Notes_3fa88cba_full.bundle refs/notes/spawn:refs/notes/spawn
-git fsck --full
+git fetch /path/to/VEILFALL_Spawn_Notes_42def820_increment.bundle refs/notes/spawn:refs/notes/spawn
 ```
 
-Older notes increments are retained as historical evidence but are not required for this restore. `VEILFALL_Notes_Refresh_Checksums_3fa88cba.json` lists new files and hashes. No unchanged source or large asset archive was uploaded again.
+`VEILFALL_Notes_Refresh_Checksums_42def820.json` lists the new files and hashes. Previous snapshots remain retained. Latest complete unavailable-asset audit is October 11, 2026, 18:45 UTC: all 231 candidates remained absent, zero recovered. No source/reference change requires immediate retry.
 
-A fresh approximately four-hour asset retry at 18:45 UTC found all 231 candidates still absent, zero recovered; explicit no-generated/no-generating-file responses are in `VEILFALL_Missing_Asset_Recheck_202610111845.json`. There are no new source references.
-
-The encrypted private character/world-state snapshot remains local pending the specific public-upload approval already requested. Credentials, keys and private save payloads are excluded. Spawn hosted runtime/export limits remain unchanged. No live gameplay or saves were changed.
+The encrypted private character/world-state snapshot remains local pending specific public-upload approval previously requested. Credentials, keys and private save payloads are excluded. Hosted runtime/export limits remain unchanged; no live gameplay or saves were changed.
