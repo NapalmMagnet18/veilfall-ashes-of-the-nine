@@ -1,6 +1,6 @@
 {
-  "sourceCommit": "187fa10b9fb326b8c632e8d44c0235407423404a",
-  "notesCommit": "096c1b0725c082eb79137b1f6d04360035f21165",
+  "sourceCommit": "3fced9332748572551f29a7330620d389c49e0a4",
+  "notesCommit": "e77128f5595e88fc5a5d0805eefaba46965ae1ea",
   "sourceFiles": 369,
   "totalPreservedAssetFiles": 802,
   "originalDesignFiles": 97,
@@ -13,5 +13,5 @@
   "newRecoveredAssets": 0,
   "unavailableRechecked": 231,
   "privateSnapshotUploaded": false,
-  "checkedAtUtc": "2026-10-11T02:29:37.3663534Z"
+  "checkedAtUtc": "2026-10-11T03:35:22.7556593Z"
 }
