@@ -22,6 +22,6 @@ Read a skill WHOLE before building in its territory: `.spawn/engine/skills/<id>.
 - projectiles — gun, arrows, fireballs, cannons
 - rooms-and-matchmaking — lobbies, room codes, invites, parties, matches, player cap, server game port
 - spawn-engine — Read a world's engine API, edit its game files, and test the result.
-- uploaded-models — a dropped or built .glb, picture to model: place, dress, socket, parts
+- uploaded-models — a dropped or built .glb, picture to model: place, dress, socket, ?parts
 - vehicles — cars/trucks/karts/tanks
 - voxel-terrain — block worlds: dig-and-place, caves
