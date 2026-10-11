@@ -8,7 +8,7 @@ Read a skill WHOLE before building in its territory: `.spawn/engine/skills/<id>.
 - buyables — shops, spoins
 - cameras — third/first person
 - fx — Particles + lights: impacts, beams/god rays, explosions, weather, auras
-- game-ui — HUD, menu, signs, mic
+- game-ui — HUD, menu, signs, mic, X posts
 - geometry — buildings, creatures, characters, vehicles: anything 3D she builds
 - heightmap-terrain — hills, islands, rivers, coasts, grass, swimming, dug ground
 - interactive-objects — pickups, levers, doors
