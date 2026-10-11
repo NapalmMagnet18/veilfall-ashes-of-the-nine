@@ -1,6 +1,6 @@
 # Current VEILFALL source and asset backup
 
-The latest source and complete notes history are captured below. Earlier dated snapshots remain available in the same release.
+Latest Spawn notes are preserved in the [notes refresh](BACKUP_NOTES_REFRESH.md). The source and full history snapshot below retains its stated revision; the newer notes increment is separate.
 
 Snapshot: October 11, 2026, 10:34 UTC. Spawn source commit `c45bfadf0c8ec067f09004df2e4e89000a72b894`; Spawn notes `18989d3e4504006c6da7980a7621485a16b5c71d`. The GitHub tree preserves the original game history and the subsequent backup documentation commits. The backup does not change the live Spawn world.
 
