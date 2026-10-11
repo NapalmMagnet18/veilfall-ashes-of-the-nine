@@ -176,7 +176,7 @@ export function update(ctx, dt) {
       if (!c.go && tgt && now < c.at && now - c.lastDrop > 500) {
         const pt = { x: tgt.feetPosition.x, y: tgt.feetPosition.y, z: tgt.feetPosition.z };
         s.cast = { ...c, trail: [...c.trail, pt], lastDrop: now };
-        decal(ctx, { kind: "cylinder", radiusTop: B.debtWidth, radiusBottom: B.debtWidth, height: 0.03 }, pt, (c.at - now) / 1000 + 0.6 + c.trail.length * 0.25, 0, "oklch(0.72 0.17 60)");
+        decal(ctx, { kind: "cylinder", radiusTop: B.debtWidth, radiusBottom: B.debtWidth, height: 0.03 }, pt, (c.at - now) / 1000 + 0.6 + s.cast.trail.length * 0.25, 0, "oklch(0.72 0.17 60)");
       } else if (!c.go && now >= c.at) {
         s.cast = { ...c, go: true, i: 0, stepAt: now };
         ctx.emit("playSound", { clip: sfx("molten-wax-rushing-hiss"), position: f, volume: 1, maxDistance: 60 });

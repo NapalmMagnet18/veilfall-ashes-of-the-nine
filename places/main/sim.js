@@ -387,7 +387,7 @@ export function tick(ctx) {
       const heard = q.saints ?? [];
       for (const st of SAINTS) if (!heard.includes(st.id) && Math.hypot(px - st.x, pz - st.z) < 2.6) {
         const h = [...heard, st.id];
-        s.quest = { ...q, saints: h }; s.dialog = { text: st.line, at: now };
+        s.quest = { ...s.quest, saints: h }; s.dialog = { text: st.line, at: now };
         ctx.emit("playSound", { clip: "/cdn/moodboard-gothic-horror/sfx-wax-saint-whisper-murmur-chime.mp3", position: { x: st.x, y: p.feetPosition.y + 1.5, z: st.z }, volume: 0.9 }, { audience: { player: p.id } });
         ctx.emit("fx", { position: { x: st.x, y: p.feetPosition.y + 1.6, z: st.z }, script: `fx\npop m burst=40 on=sphere(.5) life=1..1.8 v=up(.4..0.9)+sdir()*.3 size=.03..0.06 col=hdr(.8,2,2.2) a=1>0 r=sprite(mote,add)` }, { audience: { player: p.id } });
         if (h.length >= SAINTS.length) next = { stage: 8, saints: h, silentAt: now };
@@ -408,7 +408,7 @@ export function tick(ctx) {
       const lit = q.stones ?? [];
       for (const w of WAYSTONES) if (!lit.includes(w.id) && Math.hypot(px - w.x, pz - w.z) < 2.6) {
         const l = [...lit, w.id];
-        s.quest = { ...q, stones: l };
+        s.quest = { ...s.quest, stones: l };
         s.dialog = { text: `The ninth flame leans toward the stone, and the stone takes it. (${l.length}/3)`, at: now };
         ctx.emit("playSound", { clip: "/cdn/moodboard-gothic-horror/sfx-cold-lantern-flame-catches-with-soft-whoosh-and-chime.mp3", position: { x: w.x, y: 1.6, z: w.z }, volume: 0.9 }, { audience: { player: p.id } });
         ctx.emit("fx", { position: { x: w.x, y: 1.6, z: w.z }, script: `fx\npop m burst=50 on=sphere(.4) life=.8..1.6 v=up(.6..1.4)+sdir()*.5 size=.03..0.06 col=hdr(.8,2.4,2.2) a=1>0 r=sprite(mote,add)` });
@@ -422,14 +422,14 @@ export function tick(ctx) {
     if (!next && q.stage === 18 && Math.hypot(px - ORCHARD.x, pz - ORCHARD.z) < ORCHARD.r) next = { stage: 19, cut: [] };
     if (!next && q.stage === 19) {
       const done = q.cut ?? [], g = GIBBETS.find((g) => !done.includes(g.id) && Math.hypot(px - g.x, pz - g.z) < 2.6);
-      if (!g) { if (q.sawing) s.quest = { ...q, sawing: null }; }
+      if (!g) { if (q.sawing) s.quest = { ...s.quest, sawing: null }; }
       else if (q.sawing?.id !== g.id) {
-        s.quest = { ...q, sawing: { id: g.id, at: now } };
+        s.quest = { ...s.quest, sawing: { id: g.id, at: now } };
         s.dialog = { text: "You reach up and saw at the rope. Hold still...", at: now };
         ctx.emit("playSound", { clip: "/cdn/moodboard-gothic-horror/sfx-blade-sawing-through-thick-old-rope.mp3", position: { x: g.x, y: 2, z: g.z }, volume: 0.9 }, { audience: { player: p.id } });
       } else if (now - q.sawing.at > 1500) {
         const c = [...done, g.id];
-        s.quest = { ...q, cut: c, sawing: null };
+        s.quest = { ...s.quest, cut: c, sawing: null };
         s.dialog = { text: `The rope parts. The body drops into the leaves and lies still at last. (${c.length}/3)`, at: now };
         ctx.emit("playSound", { clip: "/cdn/moodboard-gothic-horror/sfx-rope-snaps-and-body-drops-onto-dry-leaves.mp3", position: { x: g.x, y: 1, z: g.z }, volume: 1 });
         ctx.emit("fx", { position: { x: g.x, y: 0.3, z: g.z - 1.5 }, script: `fx\npop leaves burst=40 on=disc(.8) life=1..2 v=up(1..2.5)+sdir()*1.2 size=.05..0.1 acc=grav()*.3+drag(1.5)+curl(.6) spin=-6..6 rot=$age*$spin col=<.32,.22,.14> a=1>0 floor=stick r=sprite(stalk,alpha)\npop m burst=24 on=sphere(.4).c(1.8) life=1..1.8 v=up(.5..1.2) size=.03..0.06 col=hdr(3,2.2,.8) a=1>0 r=sprite(mote,add)` });
@@ -443,7 +443,7 @@ export function tick(ctx) {
     if (q.stage < 24 && s.abbessKilled) s.abbessKilled = false;
     if (q.stage < 20 && s.hangmanKilled) s.hangmanKilled = false;
     if (next) {
-      s.quest = { ...q, ...next, heardAt: talked ? s.talk.at : q.heardAt };
+      s.quest = { ...s.quest, ...next, heardAt: talked ? s.talk.at : s.quest.heardAt };
       if (!talked && next.stage !== 8) s.dialog = { text: AUTO[next.stage], at: now };
       if (next.stage === 8) s.dialog = { text: s.dialog.text + " (The saints fall quiet. The Abbey door waits at the top of the yard.)", at: now };
       if (next.stage !== 1) ctx.emit("playSound", { clip: "/cdn/moodboard-gothic-horror/sfx-objective-complete-soft-bell.mp3", position: p.feetPosition, volume: 0.8 }, { audience: { player: p.id } });
