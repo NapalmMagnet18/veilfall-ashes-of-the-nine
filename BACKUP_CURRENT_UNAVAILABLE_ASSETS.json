@@ -1,0 +1,1619 @@
+[
+  {
+    "reference": "/cdn/moodboard-gothic-horror/ambience-cathedral-bells-ringing-slowly-over-a-quiet-city-with-pigeons-loop.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/ambience-night-road-crickets-wind-in-dry-grass-and-far-city-bells-loop.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/ambience-walled-medieval-city-at-night-distant-chatter-footsteps-on-cobbles-and-dogs-loop.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-a-trapdoor-banging-open-on-a-distant-gallows.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-ambience-campfire-night-crickets-and-distant-owl-loop.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-ambience-cathedral-bells-ringing-slowly-over-a-quiet-city-with-pigeons-loop.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-ambience-cold-night-wind-through-ruins-loop.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-ambience-creaking-wooden-shutters-and-chains-in-wind-loop.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-ambience-dead-orchard-at-night-creaking-ropes-crows-and-dry-leaves-loop.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-ambience-distant-church-bell-tolling-slow-with-crows-loop.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-ambience-dripping-hot-wax-hiss-and-low-murmuring-voices-loop.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-ambience-low-ominous-choir-drone-cathedral-loop.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-ambience-mouthless-choir-humming-and-cracked-bell-in-ruined-abbey-loop.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-ambience-narrow-stone-stair-cold-draft-and-bones-clicking-loop.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-ambience-night-marsh-frogs-dripping-water-and-faint-ghostly-chimes-loop.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-ambience-night-road-crickets-wind-in-dry-grass-and-far-city-bells-loop.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-ambience-slow-cracked-bell-tolling-underground-crypt-with-dripping-wax-loop.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-ambience-vast-bone-ossuary-skulls-settling-dripping-wax-and-distant-whispered-prayer-loop.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-ambience-walled-medieval-city-at-night-distant-chatter-footsteps-on-cobbles-and-dogs-loop.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-ancient-stone-rune-tablet-glows-awake-low-hum-and-glass-shimmer.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-antlered-creature-bellowing-stag-roar-and-bone-sickle-scrape.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-anvil-rank-up-triple-ring-and-low-choir.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-arcane-bolt-cast-shimmering-whoosh.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-armor-creak-and-chained-censer-swinging.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-armored-zealot-booming-latin-verdict-and-flail-chain-swing.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-bearer-select-soft-bell-and-cloak-rustle.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-blade-draw-back-ember-hiss-rising.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-blade-whiffs-past-cloak-close-swish.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-bodies-climbing-out-of-shallow-water-splashing.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-bone-crozier-scrapes-stone-and-strikes-floor.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-bone-spikes-erupt-through-stone-floor-crack.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-bones-shifting-and-settling-in-a-dark-crypt-niche.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-bones-sliding-out-of-stone-niches-and-wax-cracking.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-brittle-creature-shatters-crystals-tinkle-to-the-floor.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-bronze-bell-strike-sharp-ring.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-burned-ghoul-furnace-roar-and-censers-clanking.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-burning-armored-skeleton-hollow-roar-and-sword-drawn-crackling.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-burning-corpse-crumbles-to-cinders-with-a-hiss.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-cart-wheels-rattling-over-cobblestones-and-a-horse-snorting.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-cathedral-bells-ringing-the-hour-far-across-rooftops.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-cave-troll-bellow-crystals-grinding-chain-rattle.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-chains-clatter-onto-stone-as-wax-body-slumps.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-charred-armor-collapses-into-ash-and-embers-hiss.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-chittering-and-eggs-pulsing-wetly.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-choir-mistress-shatters-bells-fall-and-three-voices-fade-into-hiss.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-choir-of-dead-nuns-inhales-and-begins-a-low-requiem-in-a-stone-ossuary.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-city-watchman-calling-the-hour-echoing-down-a-stone-street.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-coins-poured-onto-oak-counter-ledger-quill-scratch.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-cold-lantern-flare-hiss-and-splash.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-corroded-armor-creak-and-water-sloshing-in-helm.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-creaking-wood-and-dripping-sap-slow-breath.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-critical-hit-bright-steel-snap.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-crows-squabbling-over-something-in-dead-branches.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-crystal-cracking-with-a-high-glassy-ring-in-a-cavern.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-cultist-chanting-fire-invocation-flames-whoosh.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-cultist-scream-fire-snuffed-out-bones-clatter.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-deep-furnace-roar-and-bricks-shifting.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-deep-slow-oar-strokes-and-distant-drowned-whispers.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-distant-rockfall-rumbling-deep-in-a-cave.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-distant-woman-sobbing-carried-on-wind.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-drowned-giant-rises-from-water-roar-and-chains.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-drowned-giant-sinks-with-long-watery-groan-and-lantern-chime.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-drowned-knight-groan-inside-corroded-helm-armor-grinding-water-pouring.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-drowned-man-gurgling-moan-under-water.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-drowned-sailor-gurgling-roar-water-spilling-from-lungs.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-drowned-sailor-wet-breathing-water-dripping-creak.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-dry-leaves-skittering-across-wooden-boards.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-ember-flare-whoosh-and-coal-crackle-sting.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-executioner-laughs-low-under-hood-and-drags-iron-hook-on-wood.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-eyeless-cave-ghoul-wet-shriek-and-claws-scraping-rock.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-faint-icy-whisper-and-wind-chimes.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-far-city-bells-carried-on-still-night-air.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-feathers-rustling-and-soft-hungry-clicking.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-ferryman-collapses-soul-lantern-shatters-many-whispers-escape-into-water.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-fire-crackle-and-wheezing-burnt-breath.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-footstep-boot-crunching-dry-dead-leaves-and-twigs.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-footstep-boot-crunching-in-deep-fresh-snow.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-footstep-boot-on-cracked-cathedral-stone-echoing.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-footstep-boot-on-gritty-cave-rock-with-small-echo.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-footstep-boot-on-old-hollow-gallows-planks-thud.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-footstep-boot-squelching-in-shallow-marsh-water-and-mud.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-frog-croaks-stop-all-at-once-then-a-splash.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-frozen-body-shatters-into-ice-shards-on-snow.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-frozen-corpse-groans-ice-cracking-off-its-robes.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-frozen-tree-branch-snapping-under-snow-weight.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-furnace-door-roar-fire-sweep.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-gallows-trapdoors-bang-open-heavy-wood.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-ghostly-dash-whoosh-glass-chime.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-ghostly-icy-wail-and-wind-shriek-crystals-chiming.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-ghostly-lanterns-igniting-one-by-one-cold-chimes.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-ghoul-clicking-teeth-and-wet-rope-creak.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-ghoul-gurgles-and-collapses-on-wet-stone.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-ghoul-hiss-and-rope-whip-crack-wet.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-ghoul-shriek-fading-and-harpoon-clatters-on-wet-stone.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-giant-brute-collapses-cleaver-clangs-chains-rattle.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-giant-furnace-golem-roar-bricks-grinding-fire-roaring.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-giant-iron-hook-swing-heavy-whoosh.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-giant-spider-death-screech-legs-curl-wet-crunch.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-giant-spider-shriek-and-many-legs-skittering-on-stone.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-giant-spider-shrieks-eggs-burst-wet-skittering.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-giant-tree-creature-collapses-wood-splinters-heartbeat-stops.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-giant-undead-king-bellows-armor-grinding-ice-cracking.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-giant-warlord-war-horn-blast-wolves-howl-in-a-blizzard.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-giant-wax-body-topples-heavy-thud-and-long-boiling-hiss.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-glass-wind-chime-tinkling-far-over-water.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-great-bronze-bell-cracking-final-toll.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-great-bronze-bell-final-toll-fading-into-silence.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-gust-of-wind-whipping-snow-off-a-ridge.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-harpy-dying-screech-feathers-and-body-thud.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-harpy-piercing-shriek-and-wings-beating.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-heartbeat-surge-and-sharp-inhale.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-heavy-blade-finisher-crunch-and-ring.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-heavy-blow-glances-off-spectral-guard-metal-clang-and-glass-ring.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-heavy-bone-staff-swing-whoosh-and-rattle.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-heavy-breathing-and-crystals-creaking.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-heavy-breathing-and-meat-hooks-swinging-on-chains.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-heavy-corroded-armor-collapses-into-water-big-splash-and-chains.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-heavy-frozen-breathing-and-armor-creaking.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-heavy-iron-strongbox-lid-thud-and-latch.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-heavy-leather-bound-tome-closed-soft-dusty-thud.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-heavy-leather-bound-tome-opened-parchment-pages-rustle.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-heavy-plate-armor-collapses-flail-clangs-on-stone.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-heavy-rope-creaking-under-a-swinging-weight.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-heavy-water-slam-deep-splash.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-holy-light-lance-crashes-down-choir-burst.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-huge-armored-king-falls-ice-breaks-a-war-horn-dies-out.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-huge-brick-and-bone-golem-collapses-furnace-dies-down.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-huge-bronze-bell-toll-impact-deep.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-huge-brute-bellow-and-cleaver-scraping-stone-floor.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-huge-executioner-falls-rope-snaps-and-lantern-rolls-on-wood.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-huge-stone-troll-falls-crystals-crack-and-ring.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-huge-treant-groan-roots-tearing-out-of-earth-heartbeat-thumps.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-huge-wax-and-bone-body-crashes-down-chains-and-candles-scatter-long-hiss.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-ice-body-shatters-into-shards.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-ice-sheet-cracking-with-a-deep-boom-across-a-frozen-lake.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-iron-hammer-raised-chain-rattle-and-bell-hum.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-iron-strongbox-creak-open-coins-shift.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-ladle-dips-into-hot-wax-pour-into-clay-flask-and-gulp.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-leather-satchel-flap-closed-soft-thump-and-buckle-click.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-leather-satchel-flap-opened-buckle-jingle-and-items-shifting.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-lone-wolf-howl-answered-by-the-pack-over-snow.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-long-iron-hook-pole-sweep-heavy-whoosh.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-longbow-draw-creak-and-arrow-release-twang.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-low-cult-chant-and-reliquary-fire-crackling.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-low-growl-and-steaming-breath-in-the-cold.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-low-requiem-chant-swells-and-bones-grind-underfoot.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-low-wet-growl-echoing-from-a-far-tunnel.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-many-faint-voices-whispering-in-unison-in-a-catacomb.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-melting-wax-singer-gargled-hymn-fading-into-hiss.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-noose-rope-snaps-taut-with-creak.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-pages-turn-and-ash-blown-away.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-parchment-nailed-to-wooden-board-hammer-tap.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-parchment-torn-from-nail.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-penitent-cracks-a-chain-scourge-and-screams-in-ecstasy.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-penitent-murmured-litany-and-soft-chain-clink.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-pilgrims-singing-a-hymn-far-down-the-road.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-ringer-awakens-cracked-bell-boom-and-hollow-choir.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-ringing-bell-rising-warning-chime.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-rope-whipping-down-from-above-creak.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-ropes-snapping-and-bodies-dropping-onto-dead-leaves.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-rusted-bolts-sliding-under-gallows-floor.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-several-arrows-loosed-at-once-volley-twang.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-shadow-bolt-cast-hissing-whisper.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-shadow-pool-opens-whispering-hands-grasp.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-single-cracked-bell-struck-far-below-ground.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-skeletal-nun-collapses-into-pile-of-bones-and-a-candle-gutters-out-choir-stops.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-skinless-wolf-snarl-into-howl-wet-and-raw.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-skull-rolling-across-stone-floor-and-stopping.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-slow-clicking-and-faint-crystal-chime.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-slow-dripping-water-echoing-in-a-bone-chamber.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-slow-heartbeat-inside-wood-and-roots-creaking.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-small-strongbox-lid-creak-and-coins-spill.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-smouldering-embers-crackle-and-armor-creak.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-something-large-slipping-into-black-water.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-something-skittering-on-many-legs-across-cave-rock.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-spectre-wail-fades-as-ice-mask-shatters.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-stone-crumbling-and-falling-in-a-vast-empty-hall.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-stone-gargoyle-grinding-awake-roar-and-chains-rattling.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-stone-grinding-and-chain-links-clinking-low.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-stone-rune-glow-fading-soft-low-whoosh.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-stone-statue-cracks-and-crumbles-chains-fall.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-talent-learned-deep-rune-ignite-and-chime.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-tall-thin-cave-creature-clicking-hiss-crystals-chiming.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-tavern-door-opens-burst-of-laughter-and-lute-then-closes.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-teeth-chattering-and-ice-creaking.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-ten-thousand-skulls-rattle-in-their-niches-at-once.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-three-voiced-choir-mistress-shrieks-a-chord-and-wax-choirboys-rise-from-stone.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-three-voiced-undead-choir-mistress-screams-a-dissonant-chord-bells-clang.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-three-whispering-voices-humming-a-funeral-hymn-soft-bells.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-towering-ferryman-deep-hollow-voice-and-ship-bell-tolls-underwater.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-towering-wax-executioner-drags-cleaver-on-stone-and-roars-through-burning-candles.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-towering-wax-executioner-roars-and-the-ground-cracks-as-wax-bodies-rise.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-war-horn-blast-and-thunder-crack.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-water-drawing-back-before-a-wave-low-rumble.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-waterlogged-body-collapses-into-shallow-water-splash-and-gurgle.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-wax-choirboy-humming-broken-hymn-under-breath.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-wax-choirboy-sings-one-broken-high-note-then-shrieks.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-wax-dripping-onto-hot-stone-hiss.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-wax-executioner-slow-breathing-and-dripping-candles-chain-clink.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-wax-limb-drawn-back-creak-and-hiss.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-wet-breathing-and-dripping-cave-water.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-whispered-latin-prayer-echoing-in-a-crypt.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-witch-hissing-incantation-and-thorns-creaking-tight.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-witch-shriek-thorns-snap-petals-fall-whisper.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-witch-whispering-to-thorns-soft-creak.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-wolf-low-growl-and-wet-panting.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-wolf-snarl-and-howl-in-cold-wind-ice-crunching.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-wolf-yelp-and-bones-collapse-wet-thud.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-wolf-yelp-and-collapse-into-snow.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-gothic-horror/sfx-wooden-bone-creature-cracks-apart-antlers-clatter-wet-sap.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/moodboard-pixel/sprite-fox.png",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/value.77c2824676e15f5a32a53dac17c6a760e3d1e225048032eedeff1ec1af179348.png.glb",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": null,
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/value.9a5f75a73119738cedc6569b560833f0e7a62da13d6cd9c058bd1dbc1c46fc38.png.glb",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": null,
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/voice-brother-ledd-hoarse-old-town-crier-saying-a-bearer-sells-come-look-before-the-road-takes-it.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/voice-brother-ledd-hoarse-old-town-crier-saying-bearer-your-notice-sold-your-coin-waits-at-the-board.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/voice-brother-ledd-hoarse-old-town-crier-saying-five-marks-on-one-bearer-there-were-nine-lanterns-once-nine-saints-who-kept-them-five-have-gone-dark-under-your-hand-four-still-burn-somewhere-down-the-road.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/voice-brother-ledd-hoarse-old-town-crier-saying-hear-ye-a-buyer-took-your-wares-collect-your-due.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/voice-brother-ledd-hoarse-old-town-crier-saying-hear-ye-a-great-evil-has-fallen.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/voice-brother-ledd-hoarse-old-town-crier-saying-hear-ye-fresh-notice-on-the-pilgrims-board.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/voice-brother-ledd-hoarse-old-town-crier-saying-hear-ye-the-bailiff-of-the-dripping-gate-is-fallen-the-toll-road-is-free.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/voice-brother-ledd-hoarse-old-town-crier-saying-hear-ye-the-hangman-swings-no-more-cut-the-ropes.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/voice-brother-ledd-hoarse-old-town-crier-saying-hear-ye-the-lantern-warden-is-snuffed-the-fen-sees-again.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/voice-brother-ledd-hoarse-old-town-crier-saying-hear-ye-the-ninth-bell-is-silenced-the-abbey-sleeps.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/voice-brother-ledd-hoarse-old-town-crier-saying-hear-ye-the-ossuary-abbess-is-laid-to-rest-saint-ysolde-sleeps-at-last.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/voice-brother-ledd-hoarse-old-town-crier-saying-new-on-the-board-coin-for-steel.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/voice-brother-ledd-hoarse-old-town-crier-saying-thats-the-bailiffs-toll-on-you-may-it-never-be-paid-in-blood-again.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/voice-brother-ledd-hoarse-old-town-crier-saying-the-abbesss-requiem-hums-in-your-gear-the-dead-sing-for-you-now.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/voice-brother-ledd-hoarse-old-town-crier-saying-the-hangmans-knot-on-you-mind-it-does-not-tighten.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/voice-brother-ledd-hoarse-old-town-crier-saying-the-ninth-bells-peal-rides-your-blade-i-hear-it-ringing-still.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/voice-brother-ledd-hoarse-old-town-crier-saying-wares-pinned-by-the-fire-come-and-read.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  },
+  {
+    "reference": "/cdn/voice-brother-ledd-hoarse-old-town-crier-saying-you-carry-the-wardens-lantern-cold-light-but-it-is-yours-now.mp3",
+    "status": "unavailable",
+    "httpStatus": 401,
+    "code": "token_absent",
+    "detail": "Not signed in, so this path can only serve already-generated assets — and nothing is generated or generating at this URL yet."
+  }
+]

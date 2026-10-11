@@ -1,0 +1,2216 @@
+[
+  {
+    "file": ".gitignore",
+    "bytes": 165,
+    "gitBlob": "8fa55ef770a7dd7b0f4dd72253413565a39684ac",
+    "sha256": "c21b4606a5df2990555553142e433a5dc5f85da7f3050c322605c98646c877aa"
+  },
+  {
+    "file": ".spawn/build-tasks.json",
+    "bytes": 2978,
+    "gitBlob": "a7691c808baeca268d7961a5917b7037cea1025d",
+    "sha256": "38e3f3673dd085b513117d6ffbba6dcf150d7cd82ea124e69cfde60f0c6f9e46"
+  },
+  {
+    "file": ".spawn/builder-workflow.md",
+    "bytes": 5136,
+    "gitBlob": "13d63750618a275111cdad3b2017461a050f32cb",
+    "sha256": "b294d3b66dab36d842aa59d01f17d6fdd2d1de13bde9ee1c03fd7b98f40bd4c0"
+  },
+  {
+    "file": ".spawn/engine.yaml",
+    "bytes": 68,
+    "gitBlob": "fc590e12d844f796b2245bf61e1eb12b1d36b9f7",
+    "sha256": "8a4181635537d9128d69bccab0ddd9757453b0a3b1c0fe3a2d4103ebc3ea0ecf"
+  },
+  {
+    "file": ".spawn/skills.md",
+    "bytes": 1643,
+    "gitBlob": "c2bf117558deef0dd16f2f6db6bd25abb1564113",
+    "sha256": "54f3f64b4703f12aa029051698a4fe56a556a6c1370b52e04eca9d61addbdb0c"
+  },
+  {
+    "file": "AGENTS.md",
+    "bytes": 15247,
+    "gitBlob": "16f2851116f033050885ef05b97fb6645bafcb19",
+    "sha256": "9bac8f2ab545bd381745dc048e50730105892b22ccf805841958a135c928443d"
+  },
+  {
+    "file": "CLAUDE.md",
+    "bytes": 11,
+    "gitBlob": "43c994c2d3617f947bcb5adf1933e21dabe46bb5",
+    "sha256": "336cc4fbf19beaada7ccf9986414fa91851a8d7a07dfb3ccbe800a69eed0ab49"
+  },
+  {
+    "file": "M0-M1-REPORT.md",
+    "bytes": 6060,
+    "gitBlob": "ecb81177bc32b0fd928e98abe34b04bee3b733cc",
+    "sha256": "e165e9a6a48919c4011a74a481932437877f1d46f4d689925b3c4e273d82b5db"
+  },
+  {
+    "file": "art/abbey/bell.py",
+    "bytes": 16496,
+    "gitBlob": "416eb09f6b0a8355c4c2ba599413cbfc1021a948",
+    "sha256": "8ed6f3864d8d9b9c0b1bcaa537d02f70486ae7f513460be997afd99fb14b12d7"
+  },
+  {
+    "file": "art/abbey/belltower.py",
+    "bytes": 13255,
+    "gitBlob": "2b829172a288af93ebb322dbacc89d536ae5c15a",
+    "sha256": "c801f7b3956305fb39d121e126525209fdec935e405f4e61dac4882d5f9ffdc4"
+  },
+  {
+    "file": "art/abbey/facade.py",
+    "bytes": 21835,
+    "gitBlob": "a572189920218491e7991bda748009a8d1457f2f",
+    "sha256": "fbd05ade133bcb7904bee8b779b497048e90f87d1cfdaf2383070db2187eae63"
+  },
+  {
+    "file": "art/abbey/grave_slab.py",
+    "bytes": 5711,
+    "gitBlob": "ec965669d840bc9130835698f03cd2c03b57ed1c",
+    "sha256": "f792a9f21e31381ed2c71d3e2329acdc8475a14c4c13f75eec2cb05b615caab8"
+  },
+  {
+    "file": "art/abbey/kit.py",
+    "bytes": 15942,
+    "gitBlob": "9beef2ef08b051cc39a587c63b2f35edda7102ad",
+    "sha256": "9203fa6ec22a2bae45277323b6357e24138e1de8e77f38a9e9730ad771c3ab99"
+  },
+  {
+    "file": "art/abbey/saintkit.py",
+    "bytes": 2814,
+    "gitBlob": "de1e60b682cf7766fdb63e9d507f7d7f87df2fb8",
+    "sha256": "274d4314d6acf6524a8c8d1f760e365889530e0926ea647c377c4293c003dbef"
+  },
+  {
+    "file": "art/abbey/wax_saint.py",
+    "bytes": 7890,
+    "gitBlob": "cb590d78176b149bed96378d7f8231e8d84f4d37",
+    "sha256": "6b245ae68b4e632b0ad61960f015e4d679b032e51796506bdd744f92a4ca4149"
+  },
+  {
+    "file": "art/ashroad/build.py",
+    "bytes": 31815,
+    "gitBlob": "f624eba76bc62f3cb42bb122134f28d58c088376",
+    "sha256": "3d1e9feefe812508471c52fc82469ebbcede0dc475c7c53140f29d96f584655f"
+  },
+  {
+    "file": "art/bloodwoods/build.py",
+    "bytes": 43835,
+    "gitBlob": "1a700b5cf22badac6544a41fc6009773cc45a249",
+    "sha256": "84d1775a7612d0f95e312b7086121f81cabb4cc20e20a3d0fd775b3ea20831b5"
+  },
+  {
+    "file": "art/fen/build.py",
+    "bytes": 43874,
+    "gitBlob": "1567ab2cf9ce73af384302e820cfc8a92e1cc547",
+    "sha256": "d9bf589a0f4885682abd6184fb4e9238a6aa69ff2c114bfe98b6b0d6ad53cc82"
+  },
+  {
+    "file": "art/frost/build.py",
+    "bytes": 40763,
+    "gitBlob": "90c46cd4422ba2fff55ed52f3bd7bfb6364638e8",
+    "sha256": "b447845731cb973b5721a7e6bb950dfce1427a6bc99a4775a9f630ce91143d70"
+  },
+  {
+    "file": "art/orchard-apple/build.py",
+    "bytes": 28428,
+    "gitBlob": "2251f5baf92d3c2bfcb0ce835d8d5bdab6c8f9aa",
+    "sha256": "25bd4990d83721f52526699ade1c3b225e69b95117ba51e0d287ae84e0aee554"
+  },
+  {
+    "file": "art/orchard-apple/textures.py",
+    "bytes": 7506,
+    "gitBlob": "8d902bababdf9b121dda0fcee305d6eb9ba23d57",
+    "sha256": "19c248e6b28f29fbaa8a2b76af0522b85acffc1421c6cfe451f055a5459e90ab"
+  },
+  {
+    "file": "art/roadkit/boneheap.py",
+    "bytes": 6276,
+    "gitBlob": "7f52754e6b511c650147552194e8c371dc838548",
+    "sha256": "accc5c2495289e957021b05086cd52fa26d74fd25adc08b9089f28d16483c2f6"
+  },
+  {
+    "file": "art/roadkit/common.py",
+    "bytes": 12034,
+    "gitBlob": "f1b6eb6d9fc2c044ce6e89493210bb00f553eb0f",
+    "sha256": "71b75749f50b932340a1836c564aaeb61e1aead054ee0776f3b2a1b678c5cc43"
+  },
+  {
+    "file": "art/roadkit/gibbet.py",
+    "bytes": 5657,
+    "gitBlob": "62ec6c15174a25feee942972868eb26c8f5d5446",
+    "sha256": "b8bc031078931286c0bcc0275e5ba2ed9f77d7e48e82695732baf2c39330ddc4"
+  },
+  {
+    "file": "art/roadkit/handcart.py",
+    "bytes": 22463,
+    "gitBlob": "a4c6fa0a697ccdbe1ffc8dee9e8b8295fe1a062a",
+    "sha256": "0e7ece81a7cd142cb626c881949cc07d77c5afe7f7aaf9117c8235ef46d28cc7"
+  },
+  {
+    "file": "art/roadkit/maptable.py",
+    "bytes": 13577,
+    "gitBlob": "63f21682506e97d8e1ce6fd3bca13b669e052ec2",
+    "sha256": "a8ab4c2e1e4f91ec02089bbf2b099706db57fbb889479aee8005198119ebb6e8"
+  },
+  {
+    "file": "art/roadkit/petition.py",
+    "bytes": 7591,
+    "gitBlob": "3d3a73b6580990c8fb3158ed4cb89c40393670a8",
+    "sha256": "dc8eb3ecd5653c6e3c0e4fa8fb346a1182b01fad73024f12efd677b9732dddcd"
+  },
+  {
+    "file": "art/roadkit/reliquary.py",
+    "bytes": 6074,
+    "gitBlob": "3d86639846ac5c61b6f7ffa2bc85e8b2ef51f84b",
+    "sha256": "bf563751d31a327ea12a17b8a605c2d20a3f9101ff0e1da585d2469e87e4c172"
+  },
+  {
+    "file": "art/roadkit/tollhouse.py",
+    "bytes": 30005,
+    "gitBlob": "56f1265276e7511f8a922a33f3bf6035cc0f058f",
+    "sha256": "14142151d9ca87eb7d6bf1bfffe0323df5881fb420d617b74d8b33180fdb24d0"
+  },
+  {
+    "file": "art/waystone/build.py",
+    "bytes": 28330,
+    "gitBlob": "ec57fbc04b16f02bbe1a5c9a4cb38889011b3f62",
+    "sha256": "7d3662a290e5d38ff048759dfdd705e1bacd8f7c10eb252aa8385b68d5bac50e"
+  },
+  {
+    "file": "clips/humanoid-locomotion-js-sit-7d6a6bbe.json",
+    "bytes": 1914,
+    "gitBlob": "1c376f79ed283da0b6f6b3a781ac4437ef1d292a",
+    "sha256": "9fa2c6cf032e3caf93241d58e761845a47f9bcaff43986e51c4a71e21f33022c"
+  },
+  {
+    "file": "design.md",
+    "bytes": 31947,
+    "gitBlob": "15e619e8e5d3f8bde726d42fb5111f693ca839f0",
+    "sha256": "7c171c84b7a72ec319ac80f6c1530d2672026be8d79bd6510291f93efbf93f20"
+  },
+  {
+    "file": "mods/aaa-quality-kit/look-cinema.js",
+    "bytes": 4026,
+    "gitBlob": "3267ddfedb66d4311000063a1df744bb46caa0f8",
+    "sha256": "574d20a06836290219ab0e9eace64d3e6da8593fdf578be7ccc91728806ff539"
+  },
+  {
+    "file": "mods/aaa-quality-kit/mod.json",
+    "bytes": 1747,
+    "gitBlob": "fc75464abb5fbac87ef3c3818d9c1ece9113bab1",
+    "sha256": "5c4f566772e85e5221d08d7e4df198cad64b343b4e5ee1cd5fa83e7b23d8d28b"
+  },
+  {
+    "file": "mods/aaa-quality-kit/skills/aaa-anim-3d.md",
+    "bytes": 3062,
+    "gitBlob": "49560466f117b1e032d830d70b938dfcfbe96108",
+    "sha256": "38319aea50cfcc0f6618cbb6be58f0834f230afdf85631e8623010c609b2c52c"
+  },
+  {
+    "file": "mods/aaa-quality-kit/skills/aaa-impact.md",
+    "bytes": 2741,
+    "gitBlob": "c45716a30fa526d211c158fee9fe5124c5abd209",
+    "sha256": "5cd288fb559674c534f4c1922fd7646d50fbfd88ac0bfd982888f7343a7f0c8f"
+  },
+  {
+    "file": "mods/aaa-quality-kit/skills/aaa-look.md",
+    "bytes": 2832,
+    "gitBlob": "0482b8761066eb71bbc6aa89710a12d01d39a5ed",
+    "sha256": "d726cbcc2af68e45cd5c07a3fae365c8270ce9f1d719d3c6f6fc879e8a310bad"
+  },
+  {
+    "file": "mods/aaa-quality-kit/skills/aaa-models-3d.md",
+    "bytes": 2568,
+    "gitBlob": "9a1ac65b897e8b4c93c9398b79d6a44c0b1e9e41",
+    "sha256": "6d62e384a234e6cde771479f928fba5113d79b07899eeb8622d2aa2edf44d558"
+  },
+  {
+    "file": "mods/aaa-quality-kit/skills/aaa-sound.md",
+    "bytes": 2471,
+    "gitBlob": "17f55f5d3415a039f24e753cfcdd1a984d0781c3",
+    "sha256": "afecb36673815dafbbbbe195f5b21188c6c7bbc644a75cf3dd7917c2dd07618c"
+  },
+  {
+    "file": "mods/aaa-quality-kit/skills/aaa-sprites-2d.md",
+    "bytes": 2408,
+    "gitBlob": "25c5a0f51fbd32a140b6cb4a9a403b562e8319f1",
+    "sha256": "c524f6e6c50c5bd6e1555c9ccc9d22ad2ef57827802f46811649be19a4ffb489"
+  },
+  {
+    "file": "mods/aaa-quality-kit/skills/aaa-training.md",
+    "bytes": 5237,
+    "gitBlob": "5f18036ffe8ca27157bdfd0c2ddccf411dc97ee2",
+    "sha256": "46ec4c8924976d0ee9a3a6af3b052f6d2bff764e624936d7f2502bebad832eef"
+  },
+  {
+    "file": "mods/aaa-quality-kit/skills/aaa-ui.md",
+    "bytes": 2652,
+    "gitBlob": "66a7af8e1bbbadb795fee18bc5d94e57e3488fb2",
+    "sha256": "f6831cd4a7a2473185960f1ebd3a68cb39f025ca5c628cebd12c04b05189811b"
+  },
+  {
+    "file": "mods/aaa-quality-kit/skills/aaa-wisp-fleet.md",
+    "bytes": 8989,
+    "gitBlob": "1f2c88edb41aa933e7002ca47bf7de7b3cd2ce95",
+    "sha256": "70655b22ab0ec473cf24b46d3cd8c4eb65c37545001977d0ac9925e8d2011b27"
+  },
+  {
+    "file": "mods/aaa-quality-kit/skills/modo-animadora-pro.md",
+    "bytes": 10440,
+    "gitBlob": "c7874a915dacb02047e50b18b1cbc8742d34950f",
+    "sha256": "ccd767bd1e862e44fcb9b3a1bb9adb2ba58a21f81ea9c6c64c8d6ef8c37f0178"
+  },
+  {
+    "file": "mods/aaa-quality-kit/skills/modo-claude-fable.md",
+    "bytes": 8607,
+    "gitBlob": "e427ab741d4067bfceb59ffe04148a34d9cb49fc",
+    "sha256": "58d6e8ca63289e9d3fe62e12992d99548d34fd9d947c9ccd9de9ad50cce61f74"
+  },
+  {
+    "file": "mods/aaa-quality-kit/skills/modo-mods-famosos.md",
+    "bytes": 11238,
+    "gitBlob": "eb24be95018c1a1abcecdc77c6f1112b72065b55",
+    "sha256": "ffe383723cd4c632c22b3f9e01ac896c0e38bc7bcf235541ce7220fb92978e92"
+  },
+  {
+    "file": "mods/aaa-quality-kit/skills/modo-playtest.md",
+    "bytes": 9792,
+    "gitBlob": "cdec6aa02e30d2e4b4fea419b02729b6736276ac",
+    "sha256": "ad1a21d858384bd385ed87f9c9e1cd355cecb925df7d86e64874431397197257"
+  },
+  {
+    "file": "mods/aaa-quality-kit/skills/modo-shaders.md",
+    "bytes": 11892,
+    "gitBlob": "407a750540ca9e7f14d0ddb62b861ebfcb3a5134",
+    "sha256": "5299a83e4fddbee3e8d0c4411a4779262b750a70d81e4afc61208ae3edcc8ca8"
+  },
+  {
+    "file": "mods/aaa-quality-kit/skills/modo-ultra-stronger.md",
+    "bytes": 9865,
+    "gitBlob": "87c6d2abf021670812cf7fc8015f58d5e49828fb",
+    "sha256": "0c0dcdfd6ef3136e93e5bd9e6381e0c00a83504bc5b617798ae23492417970bc"
+  },
+  {
+    "file": "mods/absolute-cinema/cinema-camera.js",
+    "bytes": 9368,
+    "gitBlob": "a34c823ff02a9dc677128b4d279f5bcf86b90d5e",
+    "sha256": "5b676c39e4a67111ff1b46363b11e59a0320f5d36cdc9de39f0cc5cb5e946ca0"
+  },
+  {
+    "file": "mods/absolute-cinema/cinema-director.js",
+    "bytes": 48574,
+    "gitBlob": "d3931d6d2d7498d5824ade4951bfd618b10f2b25",
+    "sha256": "ab65be9820240d04e83fdc3a7a8913ae685c18a13f13ed7c0e0d2e9995e47199"
+  },
+  {
+    "file": "mods/absolute-cinema/commands/cinema.md",
+    "bytes": 2501,
+    "gitBlob": "4c3ec2ace24293029e7d9761f1cef85341b9c7fa",
+    "sha256": "ee385e3c146590e4f88fe7cde35e99c5b974b435695a7bab92d6915f11afbdd2"
+  },
+  {
+    "file": "mods/absolute-cinema/gizmo-camera.js",
+    "bytes": 3957,
+    "gitBlob": "3c95f1b876ed5f012673591aeccf0d1d9f8eb63b",
+    "sha256": "5205b010cd49b38e57758fbc75c3c565db587932c3f4795627acd77453c0a802"
+  },
+  {
+    "file": "mods/absolute-cinema/lib/ui-cinema-overlays.js",
+    "bytes": 5235,
+    "gitBlob": "a33afcb1e096eab560541d5ab50ea6685b020f39",
+    "sha256": "34fd8e650f8f4d69531a64cc8e1a77e9e0f5a6f874c8aeece23e3ec1ac2f25a2"
+  },
+  {
+    "file": "mods/absolute-cinema/lib/ui-cinema.js",
+    "bytes": 119435,
+    "gitBlob": "2ee5460aa38696aaee5ed1a65d85be3d73b08ab6",
+    "sha256": "83f8388e6db3548fcbcddda96cd03aa192085ee9e688ee86cc67cab7f4fcbc0f"
+  },
+  {
+    "file": "mods/absolute-cinema/loading-transition.js",
+    "bytes": 9279,
+    "gitBlob": "3b5100c7f27f2c77630788b58d6d4f1badce1964",
+    "sha256": "9c48cf9f38fc3ba8bc3ad793f553830ca569d408a07fffd8635df72adc2311f6"
+  },
+  {
+    "file": "mods/absolute-cinema/mod.json",
+    "bytes": 2659,
+    "gitBlob": "cc7506bc42baa976f4e24d5a2d830e8a1e92fb3d",
+    "sha256": "c19ad315465dd6d667a5584710f23a1fc1538a817685132b3d64946dea1a897a"
+  },
+  {
+    "file": "mods/absolute-cinema/node-gizmos.js",
+    "bytes": 3338,
+    "gitBlob": "b57734ea661b6ba5e817a06bae9e5228907cc6fb",
+    "sha256": "a5c5f046643d1e5bbc52aec184f9802acc0b9ca83469f036a06f436896cb274f"
+  },
+  {
+    "file": "mods/absolute-cinema/skills/cinema-camera-yield.md",
+    "bytes": 4710,
+    "gitBlob": "cce9e671d9800a3aa5774243e7c7c46753e763b3",
+    "sha256": "fa9c2957150c42cc8b79b59d091249993001dcbf1c32022b84509af3ec7e3505"
+  },
+  {
+    "file": "mods/absolute-cinema/vfx-playback.js",
+    "bytes": 10705,
+    "gitBlob": "26906dfd8216f20cc2c89dad70159de8ceec9f0a",
+    "sha256": "59b2f3b3855e81a867aadff1f5c0d9af52dd1831c350a37510dc8514e693fcf1"
+  },
+  {
+    "file": "mods/animacao-viva/lib/avisos.js",
+    "bytes": 13082,
+    "gitBlob": "bc4d3b8a01ed1c0bdbf1569284aea263df67a399",
+    "sha256": "8eaf3d942250c6977d1a2fa196b9475d61d71e660e93d07db325e537a121c4a8"
+  },
+  {
+    "file": "mods/animacao-viva/lib/camadas.js",
+    "bytes": 7404,
+    "gitBlob": "d3642f201b17ac22bd7eaac53ff2a473008a32ba",
+    "sha256": "868bb74cf8bc76aa0f7ef1c262a03d47b92d86a314d60f717d776d0401f43026"
+  },
+  {
+    "file": "mods/animacao-viva/lib/maquina.js",
+    "bytes": 16493,
+    "gitBlob": "df3ec5faf0149bf3a0514b7199dc69d7d90c874b",
+    "sha256": "2570db678d7a928e3436a36dabaf9969e888cfaa4b12c3e3ae06eca061f4e3fa"
+  },
+  {
+    "file": "mods/animacao-viva/lib/mistura.js",
+    "bytes": 20955,
+    "gitBlob": "599065275e8e8a8f04990bc5bdb86d416bd5f465",
+    "sha256": "1194821f2597f24792b0762eca738b89a017971bcf11061e3961fd064284a0e2"
+  },
+  {
+    "file": "mods/animacao-viva/mod.json",
+    "bytes": 819,
+    "gitBlob": "13216d6386922eb7e5b2b6bbbffca2b7f7996bb5",
+    "sha256": "f2372ebaa822bc1bfccfdec26c4e6713a899f45b1aa03afc96add04309d08e81"
+  },
+  {
+    "file": "mods/animacao-viva/skills/animacao-viva.md",
+    "bytes": 27329,
+    "gitBlob": "32933f5adbc6c1fed0af25df7ea30391df143d3a",
+    "sha256": "c09be176617a2894dff6696fa274ea19c28fdd371c4e04cfea83f573a1b4d690"
+  },
+  {
+    "file": "mods/awakening/README.md",
+    "bytes": 8374,
+    "gitBlob": "5d91045ca81944d045f98e9b44a66a695c48bb68",
+    "sha256": "d94f8d1bee43a6537c50df447b94bc9e8ca2ac75798f83ee0a7c891fd2bf012e"
+  },
+  {
+    "file": "mods/awakening/commands/awakening.md",
+    "bytes": 1645,
+    "gitBlob": "0f37b8b77429419606618cf121f42b9dd580bd90",
+    "sha256": "756e5b83a4a23d559c00d3122208aa2d811fd01694f1b2307487d5d9904aa7c0"
+  },
+  {
+    "file": "mods/awakening/erosion.js",
+    "bytes": 5899,
+    "gitBlob": "ef3cbe63cc979eff7c9a5c66e18465fe6dc94107",
+    "sha256": "0ec0c87c902c85741c9cfafb2aaf02bf706efe8a70046a967d4b3fb83e22fcdc"
+  },
+  {
+    "file": "mods/awakening/floor-cover.js",
+    "bytes": 4667,
+    "gitBlob": "51de5b2daf56f2f9eae08bac64362fa04782a81c",
+    "sha256": "a069a017a854eeb684ea2defbbb65e8f9858416482009a85871fd4ba343b81c4"
+  },
+  {
+    "file": "mods/awakening/forest.js",
+    "bytes": 14914,
+    "gitBlob": "bc1824bca45ada8fee2ed1e0970651e53e260b62",
+    "sha256": "d1cbe1d3b8e2686b25bba0ea20bf8834a0063ec1388c109ed3fb1261726ae122"
+  },
+  {
+    "file": "mods/awakening/grass-blades.js",
+    "bytes": 4709,
+    "gitBlob": "bdd5aa3c1f7a4d4558fe2bf32bd6abfda14cf2bb",
+    "sha256": "9d3a72366a9e7e41b5bd2ec7e8815585c691dabb60d09210f2efa230c5d1f255"
+  },
+  {
+    "file": "mods/awakening/grass-look.js",
+    "bytes": 1577,
+    "gitBlob": "a0966b0965add7b4343454c75adb24693bc46390",
+    "sha256": "63a0909bb200e82356afc382f6b349d65ae348e6713ab9cb1441da861d7b1264"
+  },
+  {
+    "file": "mods/awakening/lib/creek.js",
+    "bytes": 10792,
+    "gitBlob": "1e64bfce3bfcdfd1380865f4deef5344a6785943",
+    "sha256": "cfb479d47f77c56363a9aded31c8f988593217d7ddb743b86d776fbdab5ce9e7"
+  },
+  {
+    "file": "mods/awakening/lib/fall-ground.js",
+    "bytes": 5221,
+    "gitBlob": "46d6eca8ab68065f571c7a25520dcb460956a611",
+    "sha256": "213369667bacd031fd09c45b75bef68f907a51fbe6343a057518e8147f13a24c"
+  },
+  {
+    "file": "mods/awakening/lib/fall-material.js",
+    "bytes": 10138,
+    "gitBlob": "de32b79e0644a2899c5706c8e6364ae91f03b78d",
+    "sha256": "f135611354c0739468f3ff6c7ba8c56f2a04b2d3efb72c320b012b7bb866f001"
+  },
+  {
+    "file": "mods/awakening/lib/junction.js",
+    "bytes": 7963,
+    "gitBlob": "1e247c855d5d3843080701e34a1c0c24d85ca57a",
+    "sha256": "2d707c0c80d6be8b32305aa0ddbf073be5221e0240b835e219c3a2531c57ec06"
+  },
+  {
+    "file": "mods/awakening/lib/lake-build.js",
+    "bytes": 3163,
+    "gitBlob": "3343ad157e2658aa1d3f5d1dc2877d15756353f4",
+    "sha256": "e2ee1789ccc5881b37123569c4eb1e6f0e7ac3934ff84ba26fd47d8faa15fdcf"
+  },
+  {
+    "file": "mods/awakening/lib/plunge.js",
+    "bytes": 3628,
+    "gitBlob": "6a77aad476a15bb87100dfab382a074124562fca",
+    "sha256": "03adc1aa6e068d665e598b55c06dc4f8acb1d4bd27c7ab744fc21bab5b6de9a7"
+  },
+  {
+    "file": "mods/awakening/lib/river-slots.js",
+    "bytes": 387,
+    "gitBlob": "d5bbbd83b1abc3e495ddb8e5c1e3f8c07734625f",
+    "sha256": "327c4e48d8896f635808d41e0295ef2397433fc1dd0a9d845776b698a1aa9e9f"
+  },
+  {
+    "file": "mods/awakening/lib/sky-clouds.js",
+    "bytes": 10989,
+    "gitBlob": "5c3878d342fef48e2fac97353c2f5682c7930919",
+    "sha256": "10e13fc049f5e59c0723eb644e6d4ca237ba426009e453b37ab14c7d00963e74"
+  },
+  {
+    "file": "mods/awakening/lib/swell.js",
+    "bytes": 2777,
+    "gitBlob": "5b98d65ae60095adcc6af39cd41297e69a3925bd",
+    "sha256": "f8fa4acc0327e4cc622c797467c5d6021aa54ac144d3e8e349aa763dab562229"
+  },
+  {
+    "file": "mods/awakening/lib/trail.js",
+    "bytes": 4675,
+    "gitBlob": "c5d97afd3f9876408a7814861606ed127240b358",
+    "sha256": "619126f641e7aeeb93bdabec378508ae093602d31537b617f2bc484e08fe4e36"
+  },
+  {
+    "file": "mods/awakening/lib/upsample.js",
+    "bytes": 1039,
+    "gitBlob": "d7d7e92fe1786b8b46b249c473990873080a48a8",
+    "sha256": "747f969e34f96ae6f01baf1ac2432c4f7b162d72b7cccfe2cc9258ec07120bc2"
+  },
+  {
+    "file": "mods/awakening/lib/wade.js",
+    "bytes": 6173,
+    "gitBlob": "497398aeda0dd3f9ac1526a3c31d0affd1cdadaf",
+    "sha256": "40f4d204639c0f25d192800e4c52ed70390cf501529f78c49179cd01b416a071"
+  },
+  {
+    "file": "mods/awakening/lib/wake-shape.js",
+    "bytes": 4458,
+    "gitBlob": "7e3a8ebf52fef0f9659090d7e1b642e77c8c98a9",
+    "sha256": "d591658b18082a45c8300b9004cac35868de17e88af0ceba9566ed6a847a77d8"
+  },
+  {
+    "file": "mods/awakening/lib/wake.js",
+    "bytes": 3624,
+    "gitBlob": "19aeeb68becfeb23449ed13c3d03034874ca3665",
+    "sha256": "098f116b9b47e10af7579ab1a020079e11a96002044e1ef71b93e399d642fcff"
+  },
+  {
+    "file": "mods/awakening/lib/water-material.js",
+    "bytes": 15560,
+    "gitBlob": "0dc5096d91a19e3bce456cb5a6196a6ec9ed50de",
+    "sha256": "0b10efae9082b1968ab1eb6fadb1ca5141f86a54f4d2b21b65114005bd94377f"
+  },
+  {
+    "file": "mods/awakening/lighting.js",
+    "bytes": 2435,
+    "gitBlob": "5b0d1c5462960d72c86ffed3a685a660b35c8e49",
+    "sha256": "eb4ed83c8a07cd23a60feb09d190f3a95efd384e5924a2e8f1861854e0b187f4"
+  },
+  {
+    "file": "mods/awakening/look.js",
+    "bytes": 7171,
+    "gitBlob": "fced1ca0e89fc09cac797f1f80d91d199485d3ce",
+    "sha256": "5970b2709d54f1e829c7cd39fdc6b44e65b100f5ff8f1af9ce6af860154ad400"
+  },
+  {
+    "file": "mods/awakening/mod.json",
+    "bytes": 828,
+    "gitBlob": "7c3d8f70877f42636de577b3ab51b21a3185447c",
+    "sha256": "1c3c9098b016c4272829d0a40de5ce199460bc3d801eff7438b33106a5c98729"
+  },
+  {
+    "file": "mods/awakening/panel.js",
+    "bytes": 8057,
+    "gitBlob": "5d27757db870b5fba8bf01d2b77d99553d073699",
+    "sha256": "b16130a0073db5e8a81f42d1fddf1838b272bc395e622c1bb6880c80a8c8d2b4"
+  },
+  {
+    "file": "mods/awakening/river-sheet.js",
+    "bytes": 13430,
+    "gitBlob": "02c8f7d75c76b3e0886de7bc91fcb2842c222223",
+    "sha256": "1fc6530c3219b3183bf0a9d245d6f63b8d4293500785742ee578bbdb26d0a06a"
+  },
+  {
+    "file": "mods/awakening/river-surface.js",
+    "bytes": 6773,
+    "gitBlob": "4993248164d45a2bb4d1067db37fe9f6d608bc66",
+    "sha256": "c6d47704dad5729ec9201d0d265a07064fc6c7c691235320f7696099efc1f2f7"
+  },
+  {
+    "file": "mods/awakening/river.js",
+    "bytes": 19809,
+    "gitBlob": "a91eeab48a8d5c92c49f3a1a10515894602a8af1",
+    "sha256": "8b008de2ec354d7c8575f5c676c87150b5304f101a9970735eeabdf775242586"
+  },
+  {
+    "file": "mods/awakening/rock-look.js",
+    "bytes": 3544,
+    "gitBlob": "aa7a1f667762d5d8c9d7509639ce589cbc68c81d",
+    "sha256": "7a703e808979ee165f2ba20ee32bc49714901c9820e9fc45e27b97a83ab19fdf"
+  },
+  {
+    "file": "mods/awakening/shore-band.js",
+    "bytes": 1324,
+    "gitBlob": "f94057f5e4a02ee7d2bfb7bf11d9746ec12d4df2",
+    "sha256": "a2c424109835e91a8825c4b4da2c371ad881a8644c851639f8c21f574f387380"
+  },
+  {
+    "file": "mods/awakening/skills/awakening.md",
+    "bytes": 27308,
+    "gitBlob": "eec172201f206d5092a467cb69baf99cc3b92eba",
+    "sha256": "2a2071f711372ffc99385d680047420371d39485deb61a6a8a8ec345dbd2e8d0"
+  },
+  {
+    "file": "mods/awakening/sky-clouds.js",
+    "bytes": 37,
+    "gitBlob": "d87f18bdff68419a95f9c005b6efb9b8788c4e4e",
+    "sha256": "324046da034821b65f58fcb75fce4ef36f7a33d685c90479c7205aee43ba4cb4"
+  },
+  {
+    "file": "mods/awakening/storm.js",
+    "bytes": 4546,
+    "gitBlob": "cfbaf92e92679af2c558d660cda639cafdb3e38c",
+    "sha256": "5b493d1429118d670a5ac8affcd12c38100119746b5f0732022637a69bbea495"
+  },
+  {
+    "file": "mods/awakening/swell.js",
+    "bytes": 32,
+    "gitBlob": "1523563f2c36bdfe404c49fe3c59ed1aa794f1d4",
+    "sha256": "a6650ebf70834a7b2ff7caa8ca2403cd295cde5eab309f7c7c778b080f54e42b"
+  },
+  {
+    "file": "mods/awakening/textures.yml",
+    "bytes": 2118,
+    "gitBlob": "7365e3b465e5d3c4331371afb2b89aa92db5d280",
+    "sha256": "0054c230eaa31955dff1f09d4b1f93bc6e2d10ef100d62397bfec8eb1f495b1f"
+  },
+  {
+    "file": "mods/awakening/tools/erode.py",
+    "bytes": 7354,
+    "gitBlob": "b19f8b4a5b046a43d5b84b2af402c8adf6736a59",
+    "sha256": "36c45918fa4492a434e2a3660949a9014c93da09c35dd4bc927ae13e49a225f5"
+  },
+  {
+    "file": "mods/awakening/tools/hires.py",
+    "bytes": 2091,
+    "gitBlob": "b99c8f0d3dfb5b3ff14c7605c07e4ba0b524725d",
+    "sha256": "8040ee92abf73f26fcc07cd5830b85a69097b56c561a176c290e685890ae98d8"
+  },
+  {
+    "file": "mods/awakening/touch.js",
+    "bytes": 327,
+    "gitBlob": "d3af8942d9d85f4711493e146cd2e36e0f884a16",
+    "sha256": "81321c064f39532bd7b3a3968986b940006bdf73524d34daedba27dddf8a1213"
+  },
+  {
+    "file": "mods/awakening/upsample.js",
+    "bytes": 35,
+    "gitBlob": "6e427235c16fd68e96e07408923eef2d3f155d8e",
+    "sha256": "e7c22059168251f9022f5d002ccb6aabc83054f49dd4bd44c1970eb9c188634e"
+  },
+  {
+    "file": "mods/awakening/water-hidden.js",
+    "bytes": 496,
+    "gitBlob": "e4a705affb26685f70c64d945daae2017c3b90c6",
+    "sha256": "8dd631a12e0241b29b9e4d2ce15cfaa62919409176e90b5bf1b52ae160b78893"
+  },
+  {
+    "file": "mods/awakening/water-mask.js",
+    "bytes": 614,
+    "gitBlob": "a817e65457446a4271271565976801e2c336260c",
+    "sha256": "03507310e5523576a6c7a09cc9108bfccf4b335c98b91e0f0d5ebd718d7a8b56"
+  },
+  {
+    "file": "mods/awakening/water-sheet.js",
+    "bytes": 1183,
+    "gitBlob": "97c22fd7286ce28f3750072a709d24511d54689b",
+    "sha256": "c36b82695c62ad1d68f838ece25e0e72efae8d842c40d6f22b75bb92f4f027e7"
+  },
+  {
+    "file": "mods/awakening/water-surface.js",
+    "bytes": 4139,
+    "gitBlob": "eb09f188fdf4a6140e8045009f1f240c12caa124",
+    "sha256": "aee004fbc2474c75967ada29206135e4a0647e50de901332204dc7f60d213924"
+  },
+  {
+    "file": "mods/awakening/water.js",
+    "bytes": 211,
+    "gitBlob": "1a4aa15723c8ba2dbb4aaa9ce30dd5a4c986dfa2",
+    "sha256": "ad235d8acb227cb46b4202a0921e6fc3f70dfba653eeb6e3d066a04be2f68e88"
+  },
+  {
+    "file": "mods/awakening/waterfall-boil.js",
+    "bytes": 343,
+    "gitBlob": "03a7c5720d6199663a38a090249c42b3de14eba4",
+    "sha256": "9740b7820f48fd4a8e87487f1dcf33ef0c425b0982e61f6e54672a42eb477919"
+  },
+  {
+    "file": "mods/awakening/waterfall.js",
+    "bytes": 13768,
+    "gitBlob": "e6bbf5f83f60a2705998c2d536fe002b9ec4667c",
+    "sha256": "4db4a3ba6f2b53b56af49d1056ae4d790ede325e098d2cb72abf5baab11df029"
+  },
+  {
+    "file": "mods/awakening/wet-sand.js",
+    "bytes": 1753,
+    "gitBlob": "906b6d3c0a3af21eccee57e6470f0baf650ab63c",
+    "sha256": "2754cc2db48a6e1c2a91124d72513e46c117ed750bbffb0783bfebe07b426ad5"
+  },
+  {
+    "file": "mods/codex/commands/codex.md",
+    "bytes": 1806,
+    "gitBlob": "65c0802a6b933a92cf4fe29e12164c2b84d6c0aa",
+    "sha256": "0bcbf5e835815f77963ae503bef31e8d0501f3d668a6641235be79e26fad0926"
+  },
+  {
+    "file": "mods/codex/lib/codex-doc.js",
+    "bytes": 1404,
+    "gitBlob": "580a6bc2dc3e20f9fa641b26a63c6a02e9a8caaf",
+    "sha256": "6ab519a97cfe023f75caaa751060e5317e9418cb3797dce92b443bdf74e096a4"
+  },
+  {
+    "file": "mods/codex/lib/codex-ops.js",
+    "bytes": 14913,
+    "gitBlob": "a3dab2faaf2893dd634d2ccd95852052576499d6",
+    "sha256": "78f5433a1383dcfa75291cd6e4e83ebe0ab894f8022dedd353c6e60f1268b946"
+  },
+  {
+    "file": "mods/codex/lib/doc-buildorder.js",
+    "bytes": 170,
+    "gitBlob": "661fbf79589c0996a76c9ccaf68e1fff52eb6921",
+    "sha256": "cd9a62a84f5a5f0a0db8bc2976a332cc218bb8a20f90b06ad388267ffc8c4d39"
+  },
+  {
+    "file": "mods/codex/lib/doc-characters.js",
+    "bytes": 173,
+    "gitBlob": "1d1f7bfcc7e7ca3a3ebc8b895da4aeaff896b5b9",
+    "sha256": "c848d13eb0f9ef2f552a76c49442b4dcefe6a80703cb79516f8b752942afe256"
+  },
+  {
+    "file": "mods/codex/lib/doc-features.js",
+    "bytes": 178,
+    "gitBlob": "029c2d73731777064a0b19ef5148996cfff71012",
+    "sha256": "8b14db23d2df331a4397d5b46080162ae0a0b409ed0126ea0d803c1e7b9978a6"
+  },
+  {
+    "file": "mods/codex/lib/doc-invariants.js",
+    "bytes": 177,
+    "gitBlob": "a78831e271623dd6532157528d3510673296151b",
+    "sha256": "1fba7c4ac5a028162c3752d9d62f6c5b0ee3bd21d4bf733a365094e794c8eaad"
+  },
+  {
+    "file": "mods/codex/lib/doc-levels.js",
+    "bytes": 169,
+    "gitBlob": "2c5de6fd2d375b6272e850ad8bdb60ae02b64e26",
+    "sha256": "d4fdb0317d2bbcadb56bb3b10deb0d3c988a15affd8b49ce25818328282d1b4b"
+  },
+  {
+    "file": "mods/codex/lib/doc-lore.js",
+    "bytes": 168,
+    "gitBlob": "dd4e047cf69f933fc3d7a77666d6f212606bf80e",
+    "sha256": "c3f3d807779fb76d3783d110f82498ca2bc8f68a7ef953c4142febd5356539b5"
+  },
+  {
+    "file": "mods/codex/lib/doc-notes.js",
+    "bytes": 191,
+    "gitBlob": "6d7c455078da19c7780cb258be5aabac3d793815",
+    "sha256": "201a0b382906b4f554a95e94d0715f26e80ab344c0ac575734988538f41adf38"
+  },
+  {
+    "file": "mods/codex/lib/doc-npcs.js",
+    "bytes": 163,
+    "gitBlob": "76a7f32f696ac79ae7e130e75d51bca15b4d42d1",
+    "sha256": "d02a8251134ade037f12fcb2429e5bdb5d586df90642ccf59ebd6ea43e6ecc5b"
+  },
+  {
+    "file": "mods/codex/lib/doc-overview.js",
+    "bytes": 167,
+    "gitBlob": "616b2516f941d552ad8ba2649434212f517a264b",
+    "sha256": "d449de165c5685ad2c336764a06026230e27fac4c82d9303015b3ff434d76422"
+  },
+  {
+    "file": "mods/codex/lib/doc-phases.js",
+    "bytes": 251,
+    "gitBlob": "d25bec4dbecaaa518724e7476ab76e9f4e74029f",
+    "sha256": "17e1ffd5ee7010bd4615b5de327e9bcdc8725e9139e0843824d523ba37abd6e0"
+  },
+  {
+    "file": "mods/codex/lib/doc-questions.js",
+    "bytes": 190,
+    "gitBlob": "d15af28ee512f2953b009961af1508ab2e34ab27",
+    "sha256": "37407358fc6e7458c01d876ad39beb499b254d30da1d21206938dad26ce5c4be"
+  },
+  {
+    "file": "mods/codex/lib/doc-sfx.js",
+    "bytes": 173,
+    "gitBlob": "94555a6d944e69a05cd3ccce34b98da5f448698f",
+    "sha256": "4087c72724442903557301b5de4bfc9e9098878c38cfba47156f339a58ac2362"
+  },
+  {
+    "file": "mods/codex/lib/doc-ui.js",
+    "bytes": 167,
+    "gitBlob": "4a615d83a572251975f3b33abb3ca31ec9f1eae7",
+    "sha256": "bf72024cf8d0a9a1d4ab8d28420639498439bff4071412624f6bc35a3dbc0499"
+  },
+  {
+    "file": "mods/codex/lib/doc-vfx.js",
+    "bytes": 166,
+    "gitBlob": "e14aa41777d757bedbd90177bf67dc4f2c183acb",
+    "sha256": "fc8e3bfd7144e568a22c2040d20064b109666b20e6b3f54f043a402a1ef22ab8"
+  },
+  {
+    "file": "mods/codex/mod.json",
+    "bytes": 1518,
+    "gitBlob": "63244d29bbda4f9654c3b7dffbfe4fe90f4613d7",
+    "sha256": "a2d9061f3a3a4bb27b4edf2e3339f851a3955ec4bce8f90e3796b10719a0c76e"
+  },
+  {
+    "file": "mods/codex/panel.js",
+    "bytes": 24204,
+    "gitBlob": "47e68301e6ac030a9ef991559d4677d09e5acf1d",
+    "sha256": "896a7d2e695823079a3f8fed0fb435416cde86a9dc23f6695686b1d772af4803"
+  },
+  {
+    "file": "mods/codex/skills/codex.md",
+    "bytes": 6498,
+    "gitBlob": "4ce4359fb0dbff4d09152fe17ec47772a76c6985",
+    "sha256": "e96ad2a69ccfe54c0b5acc0b508e9140320e06780314780fc7aaee220031aac1"
+  },
+  {
+    "file": "mods/combat-cookbook/mod.json",
+    "bytes": 367,
+    "gitBlob": "f7d5447f9b5e305c6abe4520fbd8be95e4a0a7c5",
+    "sha256": "828ba128a2747d1e6f3ed90791e93f340dd777f99a8f5f68c84553f07d7fa575"
+  },
+  {
+    "file": "mods/combat-cookbook/skills/combat-cookbook.md",
+    "bytes": 19501,
+    "gitBlob": "2fdfd47382363137106518943cd7606a99496ed7",
+    "sha256": "0c1553a0b942e25bbc2e64973813c755f609e9bcb57d8bc99453818d55f5b7f3"
+  },
+  {
+    "file": "mods/custom-animations/commands/add-animation.md",
+    "bytes": 2533,
+    "gitBlob": "9491c1a16ee556048b4e4aa2d623dece4085d6d2",
+    "sha256": "7f86eac11688a46e6025eecf271447c52ca3cf88bc570544e6cbac8275f56369"
+  },
+  {
+    "file": "mods/custom-animations/commands/animation-guide.md",
+    "bytes": 1893,
+    "gitBlob": "0fed6b559d8baeca0e1cac78aa4d2340497ae2a1",
+    "sha256": "8031295aee3898ba52bc4728860112e83350ba3a16e847c96399794c5e75bf19"
+  },
+  {
+    "file": "mods/custom-animations/commands/create-character.md",
+    "bytes": 3281,
+    "gitBlob": "308d77ae8bc5f46d61246cee2c75404f5cbe5a01",
+    "sha256": "d3f3a0b0a936cfd5c6d4d335d90f98848b47ce05ea4d828ba31998dc670cb76e"
+  },
+  {
+    "file": "mods/custom-animations/mod.json",
+    "bytes": 616,
+    "gitBlob": "c6a13b901889d8c11095bd0fb296104108149e47",
+    "sha256": "4cb9c48e9fafd525025743d2f8b2d9112da9e2647ad6131199ec67a5d5e82de8"
+  },
+  {
+    "file": "mods/custom-animations/skills/custom-animations.md",
+    "bytes": 22017,
+    "gitBlob": "b08cf46366ffddb259d86f81f349c3c3a7d9edc4",
+    "sha256": "e68683516abd9e59a964e65aa2c30c2604037a79db0685b19059f3c97e7749fb"
+  },
+  {
+    "file": "mods/custom-glb-animations/mod.json",
+    "bytes": 517,
+    "gitBlob": "445ec223ea0a6850f268a4618f7b7cfc98bf0b8b",
+    "sha256": "2a567a19ffd50aae27ac9db83187bfdb5585d3d109bbb9a2e3a05e185301e23d"
+  },
+  {
+    "file": "mods/custom-glb-animations/skills/custom-glb-animations.md",
+    "bytes": 9835,
+    "gitBlob": "f83d7d1a7996694027495bb7c0fab1c17f1be3fe",
+    "sha256": "d89cb942bb3b94a167ae751474e0e20785393d95755abe3a3cd5b7e54cdafcec"
+  },
+  {
+    "file": "mods/gavi/commands/gavi-check.md",
+    "bytes": 1608,
+    "gitBlob": "bd8a20dfccb451809bd25e6a11c2d3ba5bad241f",
+    "sha256": "85d6f87e9055e786264eb937cf1900a8858239a74d8f979b802a52790c557e46"
+  },
+  {
+    "file": "mods/gavi/commands/gavi-game.md",
+    "bytes": 2736,
+    "gitBlob": "a1b117f0ab7c484877bcb694b60c84fd149c974c",
+    "sha256": "23662805bbed1a463c77a04e33309e55fb2e6c242cd5998c6f0ffe17182b7d69"
+  },
+  {
+    "file": "mods/gavi/commands/gavi-hunt.md",
+    "bytes": 2530,
+    "gitBlob": "e12f255aa598862d53091941cbf458f6367542d9",
+    "sha256": "cb3bbeff93bd2fbeb50ea96604a0ef91f8ea2a99b757811eb98dc56c705a0c7a"
+  },
+  {
+    "file": "mods/gavi/commands/gavi-make.md",
+    "bytes": 2168,
+    "gitBlob": "72e6d18adf935bd130b26eb41ce52993885eb2e1",
+    "sha256": "b9d82a0ad13c36e54fdf803725efa0006bd4edbf629fe80101d08e8e057156eb"
+  },
+  {
+    "file": "mods/gavi/commands/gavi-max.md",
+    "bytes": 4869,
+    "gitBlob": "cacb9c7e0484def30bb9338835c24e187e932227",
+    "sha256": "25286ae30d40abaaf02a274761ea32ab061d7bc8702f2c4afc3b65831fdddc07"
+  },
+  {
+    "file": "mods/gavi/commands/gavi-swarm.md",
+    "bytes": 3540,
+    "gitBlob": "37ffe478727626d9347c319d6d42917a5b581e40",
+    "sha256": "573089be79e0079a266241b42041c20a5321e321545b9894741cb63ace0d2d9b"
+  },
+  {
+    "file": "mods/gavi/commands/gavi-ultra.md",
+    "bytes": 3351,
+    "gitBlob": "3935bf7ab7ae04022560c1d7c306085c122589fd",
+    "sha256": "b7b7e655ae4ce5a7e244e8d9ecd9c1126d037dcf325d7d97498feebd1f836240"
+  },
+  {
+    "file": "mods/gavi/commands/gavi.md",
+    "bytes": 8528,
+    "gitBlob": "bc8459fc57da00f611bd231829f00fb5b4bacb3a",
+    "sha256": "f4703af085ab9c7a6496ba88f6dbfad0e0e97019b9dc611d6e126b3eedf0530d"
+  },
+  {
+    "file": "mods/gavi/commands/lock-in.md",
+    "bytes": 5706,
+    "gitBlob": "4c0b3cfd4f6ecc2f435ab57c7d187e88628bac88",
+    "sha256": "e78a53dfa3e43c1fcb53110343913b9a61391f5a9522095f052d1680e70a1f84"
+  },
+  {
+    "file": "mods/gavi/commands/virar-gavi.md",
+    "bytes": 1869,
+    "gitBlob": "fa7575616cda70b711ebe44a6b1ea1dd957fe8ac",
+    "sha256": "6499af6f238b9e2e663338fc7454b114edbe22918af6badcff8eaf928b0f761d"
+  },
+  {
+    "file": "mods/gavi/equipe.js",
+    "bytes": 7207,
+    "gitBlob": "c1266f8600e26e54becfc7ffbf648c2c1c795540",
+    "sha256": "43e9ea2b96a9674fdfa5a84edab0a51ae6eb691891262529a9e66911b9fc6bb1"
+  },
+  {
+    "file": "mods/gavi/mod.json",
+    "bytes": 12732,
+    "gitBlob": "75e25780dd9ae875bdbf638b85774ae294377663",
+    "sha256": "14a56d84d84b9c6a7e3128d2cf4987bbe264275faf6b674b0bb1be8c4891140c"
+  },
+  {
+    "file": "mods/gavi/painel-equipe.js",
+    "bytes": 4218,
+    "gitBlob": "b14412c1b55d50520f0f0fd045e8d3bd2146b838",
+    "sha256": "e48411002b4b5bf85486c2f477a0acffc11a7a806cbce06cf5ac83ba72f94e3e"
+  },
+  {
+    "file": "mods/gavi/skills/animais-de-verdade.md",
+    "bytes": 60356,
+    "gitBlob": "c462e7a18e2358be1cfbac022c90ee8f84203688",
+    "sha256": "8c48046e49b9e9c7c4b3d763749f7a5e95800a3bf69cb31c347fccb9b8c9960f"
+  },
+  {
+    "file": "mods/gavi/skills/animar-2d.md",
+    "bytes": 18869,
+    "gitBlob": "9d3b285efaf5633a7091b89ff96b9ee8bbf68732",
+    "sha256": "676d03177d78929cc551ed6d7c28626bc5d4812cf86b6aebc0ce7551f6644c45"
+  },
+  {
+    "file": "mods/gavi/skills/animar-doutrina.md",
+    "bytes": 19651,
+    "gitBlob": "e7bbe9d0375d733b42806ba249b97d5043a1fb9f",
+    "sha256": "f085f4f72464fa57f590085a4fe970ff4e1385096130fe4749c95718d25ca160"
+  },
+  {
+    "file": "mods/gavi/skills/animar-esqueleto-codigo.md",
+    "bytes": 19108,
+    "gitBlob": "94979e31f93e2c24c5a44cccb39fcb1198324d6f",
+    "sha256": "da3bd1744d942b65e728ebd1c45582f4af1285973577b3113846a148ef1a0d41"
+  },
+  {
+    "file": "mods/gavi/skills/animar-glb.md",
+    "bytes": 21359,
+    "gitBlob": "044edc65b69bc6f73f8571b20ef472635efcb4a0",
+    "sha256": "44b96db167f26ffac0d619122880849a2acc44154016235df1d8efc68471f123"
+  },
+  {
+    "file": "mods/gavi/skills/animar-qualquer-estilo.md",
+    "bytes": 17060,
+    "gitBlob": "c7a10b975ae5cd55dc1648a981ec0c23a1a11c8c",
+    "sha256": "bdf190f058994b9e4a3b4eced26546d7a0713c70f1f654b593ba06090eef1300"
+  },
+  {
+    "file": "mods/gavi/skills/animar-verificar.md",
+    "bytes": 15684,
+    "gitBlob": "1dd76cc78b3d895a2727e3fbaa219cc2896dfa2d",
+    "sha256": "fd1751c17c31d9514b96a0e3497255e910541017248bb48e868011d76149ca0c"
+  },
+  {
+    "file": "mods/gavi/skills/aprender-com-a-plataforma.md",
+    "bytes": 11856,
+    "gitBlob": "9828e5cb73af0d4c0d24c56af7fc4e500d3ea38f",
+    "sha256": "bb3f7d04b8083da7815ecb854b5c1bc0b6563ba9daf61e58e35abcc9518d3d93"
+  },
+  {
+    "file": "mods/gavi/skills/aprender-de-referencia.md",
+    "bytes": 23133,
+    "gitBlob": "f3c3d06ec8e3ecc2259e6874b5d4158ab3334dde",
+    "sha256": "6a43eb665dd94decf16836329132300aa5837161dc95682564304c44b2b43323"
+  },
+  {
+    "file": "mods/gavi/skills/arquitetura-avancada.md",
+    "bytes": 51230,
+    "gitBlob": "96aebfbe5e4847bc5ac64a8d70ef4ccff42ffacb",
+    "sha256": "3551368b62dac825f36bbcaa0dfcaaeba8b64003da3f94c3ca315c107bf17b0f"
+  },
+  {
+    "file": "mods/gavi/skills/cacar-bugs-jogando.md",
+    "bytes": 37661,
+    "gitBlob": "4336719698130395782e4729a8160f1bb9c8aa1d",
+    "sha256": "e992197dc5987a10db84c6f38afb4b8b77c749707bc7f220e7132088c1981937"
+  },
+  {
+    "file": "mods/gavi/skills/codigo-de-fora.md",
+    "bytes": 24822,
+    "gitBlob": "f09fe0d4bf80181ec96e11cddacaf63fd17c83e3",
+    "sha256": "4d6990bbe99cd02a50c854e1097d5bde514df999e0aaf4c4a81bf85bb60d64d9"
+  },
+  {
+    "file": "mods/gavi/skills/construir-ao-vivo.md",
+    "bytes": 11538,
+    "gitBlob": "5d6abe4812da113c8adca83700165b6bf56b719a",
+    "sha256": "1a307a9aaff2bbeded1586b92255f5f334a060e5ab8ad46603823cb56511f688"
+  },
+  {
+    "file": "mods/gavi/skills/criar-modelo-3d.md",
+    "bytes": 27430,
+    "gitBlob": "422fe017f6fadc0925258854ec9623b8a4eeeee9",
+    "sha256": "bc08e56b06add74b8d388b1bfd8adcbb0321a4c03c02bddf3136bef1339bb487"
+  },
+  {
+    "file": "mods/gavi/skills/criar-pixel-art.md",
+    "bytes": 27688,
+    "gitBlob": "bf094ab5478fbe07b5270287ec5fb744eb153066",
+    "sha256": "639cc52b8188a4d62b60bca04ff676e82096c4aa24a627abf34fd2e47cd514a3"
+  },
+  {
+    "file": "mods/gavi/skills/desenhar-o-jogo.md",
+    "bytes": 14326,
+    "gitBlob": "86bd93c7161c2d33433c7be8dcf62c6240311dd4",
+    "sha256": "a8d3b5ca168a2c2f02de4ba2f7585a610274b74d99373ae5918de4796c178d2b"
+  },
+  {
+    "file": "mods/gavi/skills/fazer-cenario.md",
+    "bytes": 20508,
+    "gitBlob": "75d0245eee12a03bbb3eca92bc0665d8c077cdb2",
+    "sha256": "21445228d94408efb34439e6ba01644fab46c8dcb7c3164309ad44a397d70daa"
+  },
+  {
+    "file": "mods/gavi/skills/fazer-mobile-e-pc.md",
+    "bytes": 17539,
+    "gitBlob": "81599fe11fe8ef151b1d7a7f01a23ecc630c3b55",
+    "sha256": "8ccae53e54719d6908e1fb08668d9b14add8ac57b84f02538ee3b28127876062"
+  },
+  {
+    "file": "mods/gavi/skills/fazer-multiplayer.md",
+    "bytes": 18109,
+    "gitBlob": "98dc2f22a057e881577380261262da7c962cdacc",
+    "sha256": "21d8573dcf5e93c7dc67a868bdf08fd5a309fe58a403c94fcaa00309174090ba"
+  },
+  {
+    "file": "mods/gavi/skills/genero-infantil-musica.md",
+    "bytes": 18500,
+    "gitBlob": "00fe67b3dfd853e54db2bf4ea04980a3e6b04b2d",
+    "sha256": "bafde7764d5f2d24cac2420977a2f5fcbb8ef86ba2a477fecc9ff4781752cb6c"
+  },
+  {
+    "file": "mods/gavi/skills/genero-luta-acao.md",
+    "bytes": 18747,
+    "gitBlob": "5fcc4d2dfc490e5c0da4fc1f5add973be5ae5ef4",
+    "sha256": "6a2a2202bb37eec3728280ceb8a2f4e0a4d53a109ccb4a524c4e1ce5ca03450e"
+  },
+  {
+    "file": "mods/gavi/skills/genero-plataforma.md",
+    "bytes": 17577,
+    "gitBlob": "cecb3f580a969db61747a74d0282a9e7feab0170",
+    "sha256": "13f6a8669aa66a47ebd489d1648212ecf29fbbd22ddb31f465499eeb67088748"
+  },
+  {
+    "file": "mods/gavi/skills/genero-quebra-cabeca.md",
+    "bytes": 15839,
+    "gitBlob": "e07b3be4730b4b0af3383ebc023d50d66460c48f",
+    "sha256": "71810c52e0355433638e765aab5a437b0f2628e99f9a3e64da94878091f84255"
+  },
+  {
+    "file": "mods/gavi/skills/genero-rpg-aventura.md",
+    "bytes": 19512,
+    "gitBlob": "c377ede0cb36f37d2514490ce15b34aa2727ab95",
+    "sha256": "7a6b120fa28ab26a7152b1d69c76c9cc617c49bff29481d8bbe9244c1925b446"
+  },
+  {
+    "file": "mods/gavi/skills/genero-sandbox.md",
+    "bytes": 23890,
+    "gitBlob": "355aa0e14e8ac0345cd25261a5c37a79aa2e348e",
+    "sha256": "b87d8bcb0d4b13f5f3b605ff37a0496e253aabb6f11fbaa10db1f8faebab3a17"
+  },
+  {
+    "file": "mods/gavi/skills/genero-terror.md",
+    "bytes": 17217,
+    "gitBlob": "78a9017f0fc1d795238f0b3d3a5df595e45c2b5d",
+    "sha256": "3228fb954703b56e3b42b2705e49e3fa64c1a12f7051acbd359895eb39fc4efd"
+  },
+  {
+    "file": "mods/gavi/skills/intro-cinematica.md",
+    "bytes": 31068,
+    "gitBlob": "81c54eb6dfd64d750a960aafe6b4809a608771ee",
+    "sha256": "95ec3e75a93ae0856d61c4162cc56691383e0de43eecfa197ebd4fe521016018"
+  },
+  {
+    "file": "mods/gavi/skills/jogabilidade-e-mecanica.md",
+    "bytes": 18035,
+    "gitBlob": "52a0f1272e876406224568ff4f979e6030dcfc22",
+    "sha256": "2575f569d807bff8b7a1d84899bc365ab02bdf4e82c793e83ea3a5698ae70757"
+  },
+  {
+    "file": "mods/gavi/skills/jogo-3d-nativo.md",
+    "bytes": 34285,
+    "gitBlob": "6005ae275c01ed884d7fe1465df82336517367d7",
+    "sha256": "b4d63e8a63d96f2b26add3d8072c7a52b7e3612bb152e1aced1df1be58b8cce2"
+  },
+  {
+    "file": "mods/gavi/skills/jogos-famosos.md",
+    "bytes": 16190,
+    "gitBlob": "746d59a4b5faddcddfdd9f50dad5d2d3cad0c043",
+    "sha256": "e56aaeffd678ab1a0807fd9bafcb73de182b3541941c804a21388a3b76669142"
+  },
+  {
+    "file": "mods/gavi/skills/mandar-enxame.md",
+    "bytes": 22072,
+    "gitBlob": "1c242e7de3628909c8e5a30609998c350b88a505",
+    "sha256": "a4fef83619f4b598408b3bc11be4604a270a3a059a2b45467f9255057fe6c752"
+  },
+  {
+    "file": "mods/gavi/skills/memoria-infinita.md",
+    "bytes": 11569,
+    "gitBlob": "1ca9d82f3e0462e190ffaaf3bbb54a0ee077b5c4",
+    "sha256": "096fe3811547682a5c1133e993668e7d25848e6f9b1ef9966fceb3163517bdc8"
+  },
+  {
+    "file": "mods/gavi/skills/menu-principal-3d-2d.md",
+    "bytes": 37931,
+    "gitBlob": "d80aaf92c399997dc8d387d3e18a453d0f341289",
+    "sha256": "fdc2a0cbd28e849f6f438d14f00ac819316ef333d1fd7aafc2b8626793dd3293"
+  },
+  {
+    "file": "mods/gavi/skills/modelo-qualquer-estilo.md",
+    "bytes": 19794,
+    "gitBlob": "2a91b5b6c86da08fb16c3e0861868c3ca9b05d70",
+    "sha256": "26e791a17f77dc3723bf64b9131f3d4b513f810437b9311b25c01529ec130355"
+  },
+  {
+    "file": "mods/gavi/skills/mundo-por-prompt.md",
+    "bytes": 40613,
+    "gitBlob": "12240dcab944ae45b1d6a90d6e57b1aaecdd95a9",
+    "sha256": "26566433aa90b4593f824787de90f3e8fbba147a31c7cbbde7581eb7d3171710"
+  },
+  {
+    "file": "mods/gavi/skills/programar-de-verdade.md",
+    "bytes": 41526,
+    "gitBlob": "a6e1ae130efaa491274dd91555dc700b3b8859ef",
+    "sha256": "b591ef8b11eb384ebc8964b50048e9283c5c5aa991b9e239931c35c952d2388b"
+  },
+  {
+    "file": "mods/gavi/skills/qualidade-sem-falha.md",
+    "bytes": 40068,
+    "gitBlob": "834f3fae80bd7724d82d0a917b534a36690d0c7b",
+    "sha256": "90262e406430157fbb508c4fb88e9bc6e209896a42af54d872a6b0a12f5e80db"
+  },
+  {
+    "file": "mods/gavi/skills/raciocinio-maximo.md",
+    "bytes": 40954,
+    "gitBlob": "de704371678ea60a8bd8b7fbc719ca6100c9f7b6",
+    "sha256": "0e81829362776a957c7af5810055fee102ce762dfa79cc99b8f580dd1001edea"
+  },
+  {
+    "file": "mods/gavi/skills/ser-a-gavi.md",
+    "bytes": 22653,
+    "gitBlob": "3cef0dc15fc42944d1dc19fcabc978d982bd8c8a",
+    "sha256": "7ae419b52dd5dbbc19342e426ddad2d3f67a347d2318f42d99decf3248983784"
+  },
+  {
+    "file": "mods/gavi/skills/testar-tudo.md",
+    "bytes": 11529,
+    "gitBlob": "a6385c3e34f0991e1b88108aea0f36e484e642d8",
+    "sha256": "291d1b9a0531b13467cadf86486da1303f6776e2df902eb55d4a2d9f0a7ef088"
+  },
+  {
+    "file": "mods/gavi/skills/three-js.md",
+    "bytes": 19840,
+    "gitBlob": "47820cee5cdf649419af7bdea41b5dd0957442e8",
+    "sha256": "6996321b45dd16b1c27ea32c8bb66a366b628ba76684bcb818de88881806b6d8"
+  },
+  {
+    "file": "mods/gavi/skills/uma-so.md",
+    "bytes": 13260,
+    "gitBlob": "5545b3dc3eb46d6e3cf0db27d744fe3dd631a5b5",
+    "sha256": "8ffcd2109bd113f2c42a36ba91d625cb1c81410de1636eb66ee55a7d4e60969b"
+  },
+  {
+    "file": "mods/raytraced-lighting/look-raytrace.js",
+    "bytes": 10372,
+    "gitBlob": "59a77cdb16e9be3ad74279427c938d63d645d544",
+    "sha256": "2ba50807f56c348d16f435faebe057023a588464f1cad4a2d4dac55054e36b5c"
+  },
+  {
+    "file": "mods/raytraced-lighting/mod.json",
+    "bytes": 522,
+    "gitBlob": "7f2c16d1189799a8832d6ac6959c9d488e8865cb",
+    "sha256": "c61ae7366b0f1ccd5fc0b90d296b2365d12f779082113157296a7b042f7a4266"
+  },
+  {
+    "file": "mods/raytraced-lighting/skills/raytraced-lighting.md",
+    "bytes": 3074,
+    "gitBlob": "d2c0bd99acc964c04c98311f76b7e1fae479f767",
+    "sha256": "ee5d2d4971c4508c10d8510942d2c218ccc4415514b5c7544743446fc16be81f"
+  },
+  {
+    "file": "mods/savi-fast-af/commands/fastaf.md",
+    "bytes": 2767,
+    "gitBlob": "cfa29418d1fc211264a0e7e52950b7fb0613df8f",
+    "sha256": "bfbeead88ce87f64d2e7031d7ef2d15fc7be300596a840906455d49d83dcbe24"
+  },
+  {
+    "file": "mods/savi-fast-af/mod.json",
+    "bytes": 509,
+    "gitBlob": "593944a75b77ffc991a76397bffa571df09b00c0",
+    "sha256": "f807c0ade2194de73223ed63173cc128132f5da8b191f240fe97473aecbd8167"
+  },
+  {
+    "file": "mods/savi-fast-af/skills/fast-af-protocol.md",
+    "bytes": 6440,
+    "gitBlob": "2738c471f72bfa81d300bb7a212b6dd8e42abf29",
+    "sha256": "585cef933d60aa09e6675e10284308310efb4fd4d1770e400bb40740a3be6973"
+  },
+  {
+    "file": "mods/sound-design-guide/mod.json",
+    "bytes": 366,
+    "gitBlob": "18a11674c5cd8c19cc950913931dc3fbca5d90d8",
+    "sha256": "b146c36ad55c53b9a00d0c19a4a3045ca84e5c41cac960fbb73a8c7b3149f85b"
+  },
+  {
+    "file": "mods/sound-design-guide/skills/sound-design-guide.md",
+    "bytes": 15093,
+    "gitBlob": "bbc898a255e64ab38618122abc2308146a7414c8",
+    "sha256": "681f7b3ec034c07734cfd1b667faaa8693588dfaad24404c64abed9a36d00107"
+  },
+  {
+    "file": "places/main/cells/x-1z0.scene",
+    "bytes": 18583,
+    "gitBlob": "b5ab8701cac088d72cbd9754a32389cbbc4ed35d",
+    "sha256": "de6e2de4e9cd040d26b3df76685c89acf4f01bdf2b3861be7baed22dbe396b17"
+  },
+  {
+    "file": "places/main/cells/x0z-1.scene",
+    "bytes": 96520,
+    "gitBlob": "256c070452c686d8f9139383832d8d3af8767a62",
+    "sha256": "4efe38e5c0d59deb8be09c2673a1df3b938234ec5b648c44a0deb0d6cb37b4a1"
+  },
+  {
+    "file": "places/main/cells/x0z-2.scene",
+    "bytes": 84416,
+    "gitBlob": "5d961293f5b6258e90f8d43d64b6ff2c2f2b4d2e",
+    "sha256": "17e9ac201c950a045d60363162f9d72b129a5e71693e123a64f2078ddb1cd940"
+  },
+  {
+    "file": "places/main/cells/x0z-3.scene",
+    "bytes": 2989,
+    "gitBlob": "08a92fdce875e876bb2641f22f3eae1be70410d4",
+    "sha256": "50458daa8d576aec1f236d22101678c066e1105b8375ea92de6a20633a1cc2ea"
+  },
+  {
+    "file": "places/main/cells/x0z0.scene",
+    "bytes": 244875,
+    "gitBlob": "c6b9c35403b31b2219914d77d0df32a72f0d246c",
+    "sha256": "094e1f17f62506e328c1447ecb7c86157d3499827eed2924ee9d3d8feb882f80"
+  },
+  {
+    "file": "places/main/cells/x0z1.scene",
+    "bytes": 18966,
+    "gitBlob": "201f0bcaea19253dff763d3dce321d201bc05d47",
+    "sha256": "2b983d64e815f6a96fa3777a7b0d8f5b14b1578fa0b4b7dc9335c93adb544a09"
+  },
+  {
+    "file": "places/main/cells/x1z0.scene",
+    "bytes": 74327,
+    "gitBlob": "00f77f1be9d525920d1a3e67fd5971d0fb3b55b1",
+    "sha256": "41d25b03c3ecb4b5d7a74613062857c06571d5d781f2c5672869e3cfe8b68672"
+  },
+  {
+    "file": "places/main/config.yaml",
+    "bytes": 15390,
+    "gitBlob": "9b8897a7d1b9390a1a1dd3d28ed780d4ce8243b4",
+    "sha256": "b931d34a31f6487b0524e9eeee2397827a7c3794b3ce8df9c7fe47b0e347b066"
+  },
+  {
+    "file": "places/main/sim.js",
+    "bytes": 58260,
+    "gitBlob": "ddcb71afbabb40b793f54a0af77e8280481be1a4",
+    "sha256": "b0d3d5be2ad89e1c555287a123d008eb9aef439ea8ed40847ed867b48b717b96"
+  },
+  {
+    "file": "places/veil/cells/x0z-1.scene",
+    "bytes": 542,
+    "gitBlob": "876b608542c2d1b4255d05232a696ba8e11932a1",
+    "sha256": "bcbb8a7615b085c7ccabb8d9d88f572da1f82ba2b41e866c76ea0ee29d4e7c20"
+  },
+  {
+    "file": "places/veil/cells/x0z-2.scene",
+    "bytes": 258,
+    "gitBlob": "2bd94d53ef312a5ac89e08b51a5ef338657519e8",
+    "sha256": "e51e143053e9df485f7b1e818975abda2270735364fa2e052d39bce687b15b60"
+  },
+  {
+    "file": "places/veil/cells/x0z0.scene",
+    "bytes": 8484,
+    "gitBlob": "a7178349060c81b616663ae4c4a864872be9e63c",
+    "sha256": "0e476bfe8436d810f10567685d3a9de6540b8b2269b2062530731ec928b5e8e3"
+  },
+  {
+    "file": "places/veil/config.yaml",
+    "bytes": 1182,
+    "gitBlob": "d2ae6d0a0e27ecb5bea0b1fb5880959543c7bdf7",
+    "sha256": "04f6b03c2c3fbbbd36a762b8fca6bba83bfe914377114dbd28466a834be45dcb"
+  },
+  {
+    "file": "places/veil/sim.js",
+    "bytes": 2578,
+    "gitBlob": "a7afa3114dd1a516f9479d137e347ce538446e16",
+    "sha256": "e0bac73a79141a5145809a6c79c1402f30d4999d36d5dbce67bf3d20e24cb8f3"
+  },
+  {
+    "file": "scripts/abbess.js",
+    "bytes": 11908,
+    "gitBlob": "2c4de52eb5791b0e72765780e384fd8545411d09",
+    "sha256": "571cedb4fecefec54ceb2d0b5620a19a8ce3d106e7071199b821629eb8481b3b"
+  },
+  {
+    "file": "scripts/architecture.json",
+    "bytes": 15749,
+    "gitBlob": "37dc3be08bf6fd0797b1a9826833e841beb11640",
+    "sha256": "a723902cc8587c140dca89dbf961cc07554ebcfd2f4c94e910c8de841b332ac7"
+  },
+  {
+    "file": "scripts/arrival.js",
+    "bytes": 564,
+    "gitBlob": "c30af4236176f434e59ec6c30ed2edc8f2b4a3f9",
+    "sha256": "fe4ff47a9c3512da52e4b58f19c3fe8e64f5670905e3ceef8f2709608ad336e4"
+  },
+  {
+    "file": "scripts/bailiff.js",
+    "bytes": 16588,
+    "gitBlob": "d9fa769c86d7a9ab46f11094feadcc9ad0c57e8d",
+    "sha256": "b8aaddcf5a0b578e5d0a57feaa7a414ddd3d6651446bbfd50412b6492d312922"
+  },
+  {
+    "file": "scripts/board-notes.js",
+    "bytes": 2722,
+    "gitBlob": "f116ad54bf098f46d5140b43230856544122abce",
+    "sha256": "338953959c70e2438fec75603a79f492ae8ba4fdbca7055b6908539469651d22"
+  },
+  {
+    "file": "scripts/camera.js",
+    "bytes": 2412,
+    "gitBlob": "ac5298e6bfacd615897ef5ae49deddee73ed5480",
+    "sha256": "36ef7c5f996720294712388fa394ad9651e1d1c4c77456bc652ed466b7d67dfc"
+  },
+  {
+    "file": "scripts/censer-swing.js",
+    "bytes": 396,
+    "gitBlob": "8a7beb02a106507f4bd9f2543538291ca4a503d6",
+    "sha256": "936675c78198a928fbe18d68c3348e0a8f85ae7f5b57267a0dd2212c814c0b52"
+  },
+  {
+    "file": "scripts/clover.js",
+    "bytes": 1200,
+    "gitBlob": "26a6b67e9e536e1be30bc75dd1bd9d41ed929af0",
+    "sha256": "7eac797a0a2d9c8b3aa355d91f63b7e15cc6d8b12d6f74467c43d0623e4e015e"
+  },
+  {
+    "file": "scripts/controls.js",
+    "bytes": 463,
+    "gitBlob": "5b1606d4a0a56cdac28de8c11c1e7843cdf15390",
+    "sha256": "5b98a5e3aa0a5c9b21f0322ef9632e53d6ccc59b7dff083270fcdf2cb7f72813"
+  },
+  {
+    "file": "scripts/crier.js",
+    "bytes": 9962,
+    "gitBlob": "439742f16965216820a39a47e007d7e49a1a4baf",
+    "sha256": "12b69f1fd7f2fefa07d2817fee638bba7c9ada26d72382ab05b82f9843b0a5c4"
+  },
+  {
+    "file": "scripts/db.js",
+    "bytes": 2166,
+    "gitBlob": "664171e15def6895859d24c966f329ef96b57eaf",
+    "sha256": "763193c30ceccca1cbd1bfe2dc0c61cf57887a5986158417b04a77e65b925eb7"
+  },
+  {
+    "file": "scripts/effects/candles.fx.js",
+    "bytes": 2758,
+    "gitBlob": "dafd717366a31ba6b6cacd46e3489610e5502bfc",
+    "sha256": "ce5417e79428be5c5371cad9a3968f27de538c17754ffab1d19ffa1fd1311822"
+  },
+  {
+    "file": "scripts/fauna.js",
+    "bytes": 2564,
+    "gitBlob": "d216941a953be24fc00ae2f79fbae6d978278e6f",
+    "sha256": "8eb043e126e152e450c9dda45036e4f7cf67b59037d986968b85939410cb1664"
+  },
+  {
+    "file": "scripts/flat-starter-terrain.js",
+    "bytes": 288,
+    "gitBlob": "96bd543d35d954ccaa4f3282723ca9384ba914d8",
+    "sha256": "5a3361dbb54954d80066f94468fa336ea08dad7da989649efdef386dde87244c"
+  },
+  {
+    "file": "scripts/forest-wisp.js",
+    "bytes": 1339,
+    "gitBlob": "ef58ec17675ced74d57b238b1b18e44b513868dd",
+    "sha256": "a4a569e9047223f9267f71b41c24bcc233578c3d9ac3889dac40472a6e1c6c9a"
+  },
+  {
+    "file": "scripts/gen/abbey-court.js",
+    "bytes": 3595,
+    "gitBlob": "96018b400aaf3313729c21104dacd5ba52a2f8be",
+    "sha256": "3653814ae8584f1c8acb9e5990c59b045df8d6cd775174157ff1e8b77c3da01e"
+  },
+  {
+    "file": "scripts/gen/abbey-litter.js",
+    "bytes": 5624,
+    "gitBlob": "2e1bc05522dd72a08c6c710fa368d5042a875665",
+    "sha256": "5135e39311e26c0da28431564e22ea75b15042975084df9e58bdc7956547415c"
+  },
+  {
+    "file": "scripts/gen/arena-floor.js",
+    "bytes": 2580,
+    "gitBlob": "44a7520d545b76ed51edf9ff9ea8e3eedc74c46d",
+    "sha256": "980e56d8faef82a631df2ce1d3476c7118ac4798f07016b70e90d2cccbdd428a"
+  },
+  {
+    "file": "scripts/gen/arena-pillar.js",
+    "bytes": 3793,
+    "gitBlob": "13ac85f706d90b160ddd11b8334fd69e9e7d6b2e",
+    "sha256": "715044befa55db8a0f50419d55546347dcd817b9f70e6c8362209aa85f55686a"
+  },
+  {
+    "file": "scripts/gen/arrow.js",
+    "bytes": 2708,
+    "gitBlob": "9810b8f63efb24a90f9ebf9650fbfad060ce724d",
+    "sha256": "e8c9e8e6d9df4170159558c052667074f8b9a52ed845a3f8bf47e2f44277a2c3"
+  },
+  {
+    "file": "scripts/gen/bw-floor.js",
+    "bytes": 29234,
+    "gitBlob": "9e963f37d68ac031517d64e8fed27d3cb7dfb501",
+    "sha256": "52e8f03b1fb7ee342828ee7f6d15307125ceb867ea5dd0957240ec4030ffd6b9"
+  },
+  {
+    "file": "scripts/gen/cap-gate.js",
+    "bytes": 4722,
+    "gitBlob": "799bf192fb3a67cf76b1f800fec217b36a892d79",
+    "sha256": "26a9a33331fc1c5d005f9cd4b29a73f6295932598a67cd14d17ff07294820375"
+  },
+  {
+    "file": "scripts/gen/cap-house.js",
+    "bytes": 5632,
+    "gitBlob": "8535538b4b909ff4900df4574eb68773b46e02bb",
+    "sha256": "d06bc298397170e22a63d74cdb066e708927f785774e9edbac3cf2dcd07b4129"
+  },
+  {
+    "file": "scripts/gen/cap-kit.js",
+    "bytes": 4791,
+    "gitBlob": "a703e942e2ccd70b9987e90fe95dfbb631a34c2d",
+    "sha256": "b53e945fea4571da08667f9d51d9d4928ab3ad75af3a4bc6bbeeb272a5c0cd9f"
+  },
+  {
+    "file": "scripts/gen/cap-wall.js",
+    "bytes": 1837,
+    "gitBlob": "25e74a3de637899023cf99b9ab57dbbfa2c91b36",
+    "sha256": "2de68c0ddef8e758a8c9dfdfdd76d9d5239c8d3df185e3478d509824e39b2d2a"
+  },
+  {
+    "file": "scripts/gen/censer.js",
+    "bytes": 2059,
+    "gitBlob": "6190792aadcae15c4683e58cec613fc996656f06",
+    "sha256": "a3141bd05f95d446d4d3079fecbed6bdd798e8884539dcc291dcf8bda429d933"
+  },
+  {
+    "file": "scripts/gen/deep-crystal.js",
+    "bytes": 1772,
+    "gitBlob": "7527b2994a4c8662a348accc7ac50361a66d808d",
+    "sha256": "cef20d638096ca3bcecec48d4b8d1431c258c7ea9d1170c52b350fd7a279cbc9"
+  },
+  {
+    "file": "scripts/gen/dripping-gate.js",
+    "bytes": 10877,
+    "gitBlob": "d7b485adfa2c8d53077572168833f92f3eb0fd70",
+    "sha256": "acf16c55ab36920eb20a1f0a0c4a77cf4034c830d5c6d2bfb5f6a2e95db6a4f0"
+  },
+  {
+    "file": "scripts/gen/fen-causeway.js",
+    "bytes": 632,
+    "gitBlob": "80c19beb4c787f150752e9bafbe27d31cc9624dc",
+    "sha256": "be3ca81ef57d034ce1e193db1aeaaa40ecf9bba1aacc08d8f622252253760618"
+  },
+  {
+    "file": "scripts/gen/fen-dress.js",
+    "bytes": 5236,
+    "gitBlob": "0037ad1824c898192349889ba0ee9d5cefba4139",
+    "sha256": "308bca9ac55dd7adaf131f432b2b4e83a3d1e64b76a4c4d06e3c9329172dde10"
+  },
+  {
+    "file": "scripts/gen/fen-heart.js",
+    "bytes": 5237,
+    "gitBlob": "d56dc78f20a985e92b5a0c27c0a6a701557da34c",
+    "sha256": "7befa42a95ebf770c6ee7738f1ff9ba96f5cf8d1064d08ec72bc1029185c1678"
+  },
+  {
+    "file": "scripts/gen/fen-kit.js",
+    "bytes": 7670,
+    "gitBlob": "a1981d2299ce012f9ece9b464b5eced478b8d342",
+    "sha256": "eb458b072ef79a1d7924762cff1a724e59885722c072a62597f7f34a7505edfa"
+  },
+  {
+    "file": "scripts/gen/fen-path.js",
+    "bytes": 3679,
+    "gitBlob": "b05b49e43ae08be1de10be41ffd96dede8440ccf",
+    "sha256": "eed35e71c6436ca6db4da260d2c6ff26b510448b28f88964cd5b66dd0c61d754"
+  },
+  {
+    "file": "scripts/gen/fen-props.js",
+    "bytes": 7970,
+    "gitBlob": "befab19208274c576cf20784cb245e392e0dc873",
+    "sha256": "7d09fa84a8dae32d47dbb3b0b590d10deec14e921f3a4941397babbf77e274ac"
+  },
+  {
+    "file": "scripts/gen/fen-stump.js",
+    "bytes": 1941,
+    "gitBlob": "36fb89aa235ea248821e11e802be98366237e2ec",
+    "sha256": "e9a8bb6997c9634ba3c3cc53a069aab182aa5477a0a8b96bf40d3a9d9a7f4b3a"
+  },
+  {
+    "file": "scripts/gen/fen-tree.js",
+    "bytes": 3415,
+    "gitBlob": "2f6936026b5778203fc2ee11b1791dbb8b1b9a6b",
+    "sha256": "352d615dc24b16913ec031e10ac29b06187364f45a0cda839d200a0219b151e1"
+  },
+  {
+    "file": "scripts/gen/fen-waystone.js",
+    "bytes": 4280,
+    "gitBlob": "c8e29deda7e8d9a3c463aa4ebeb70f5c4d0c21f4",
+    "sha256": "702f22533fdd1e7a20aa6dffeb85a9c56844f3ec091609005c49a3c713dc1865"
+  },
+  {
+    "file": "scripts/gen/gibbet.js",
+    "bytes": 4098,
+    "gitBlob": "bb2dcd402fca03fa5bfb3d12e5ed32e57664cb23",
+    "sha256": "379e1460714b0fe190959b625f30e237b1bb297cdf5573507655b2608d31b4ed"
+  },
+  {
+    "file": "scripts/gen/hub-bedroll.js",
+    "bytes": 2428,
+    "gitBlob": "02b606e828d3b4185cc783a969d0d726c66d93b4",
+    "sha256": "079141452be6bbf4627bce82e7e16432fb796327b5588cb0905e4a127e3af16e"
+  },
+  {
+    "file": "scripts/gen/hub-board.js",
+    "bytes": 4388,
+    "gitBlob": "b2fb5514a53e1e829804a70c2b820b6d180ed80a",
+    "sha256": "cc4484eaf3a92b35d652cd3d0b93c14f19e9f7e6951777cb380d99fecbc19e26"
+  },
+  {
+    "file": "scripts/gen/hub-boulder.js",
+    "bytes": 1896,
+    "gitBlob": "6a1cdee4a8be91ff0a8d14c44ec85f22c928636e",
+    "sha256": "58b9b2e15fd46106149e9e033db2941a11e91cde8a5859c2a569af7e7382bb73"
+  },
+  {
+    "file": "scripts/gen/hub-cart.js",
+    "bytes": 4348,
+    "gitBlob": "ff84a578dfe9fb800fa06e88b719867978b299e3",
+    "sha256": "22862a6a77d59e6a0982b8ef61a3e43c5689e582c382959fd7f2be9f553d0c1a"
+  },
+  {
+    "file": "scripts/gen/hub-cauldron.js",
+    "bytes": 4927,
+    "gitBlob": "b065b7c3ad5ee71c4ebc70f991dc0f44ef38cbeb",
+    "sha256": "889ae64b2268e136ca3531b75fbd3c7e1f1eb54f437a75da498e2ba780d413d8"
+  },
+  {
+    "file": "scripts/gen/hub-crates.js",
+    "bytes": 2543,
+    "gitBlob": "e8aa0712923af2215ed26db64dfbabc2bfb5ffc2",
+    "sha256": "62f697044b026a039692f9b54c9085a7b8bea68db06bb42bfcd0a50be912f786"
+  },
+  {
+    "file": "scripts/gen/hub-deadtree.js",
+    "bytes": 3822,
+    "gitBlob": "7b02902bbef400258e233c1432d96d368b7961cd",
+    "sha256": "8a90b9daf753b671c0903ecd076167f25611f4331a01ea9bd4283aba50330f9a"
+  },
+  {
+    "file": "scripts/gen/hub-firepit.js",
+    "bytes": 3448,
+    "gitBlob": "3e49b5f896ffb21b8a01044dfed5824e36f06675",
+    "sha256": "77c29ce26e0c061d582f28431304f726a91005b31b4816d8758b709e8c6744e5"
+  },
+  {
+    "file": "scripts/gen/hub-forge.js",
+    "bytes": 4422,
+    "gitBlob": "d6c556b0a3b80d3f9ce33eb8ccb68c3485956c89",
+    "sha256": "5916b723146095438f7e1a884b371d27e56b8045f39a7f000b12b7099e6d770b"
+  },
+  {
+    "file": "scripts/gen/hub-kit.js",
+    "bytes": 9611,
+    "gitBlob": "a806218b5f70c460f86260f1cc652b19e0217593",
+    "sha256": "24716e8b6c6012e0ca1d612f87b580b17593cd7f38b8a4b0039f99a0f003ed2b"
+  },
+  {
+    "file": "scripts/gen/hub-lamppost.js",
+    "bytes": 4760,
+    "gitBlob": "4c28ede1905927eb19813a3348eee59b52e97a29",
+    "sha256": "a438153d00507e255751810f63f0bdd971e04b1f898e1ab3fa5696f50a22edd5"
+  },
+  {
+    "file": "scripts/gen/hub-lantern-rail.js",
+    "bytes": 3314,
+    "gitBlob": "e263a9f5feff8b7aa0bdc319cfcf3dfe0dd0ec1a",
+    "sha256": "f1b2458f9aa596a727387848038d62122b091079f37ad9a66e3f4c5a0d177117"
+  },
+  {
+    "file": "scripts/gen/hub-lantern.js",
+    "bytes": 2623,
+    "gitBlob": "a5e56a7972992766ea1a9f1999138136b1d0dce8",
+    "sha256": "4c6aac2c70ebb941107344be06a8dea059c20cf3995be1b9db7ec2ec48da3764"
+  },
+  {
+    "file": "scripts/gen/hub-rack.js",
+    "bytes": 2336,
+    "gitBlob": "bda3cddeccb643e60c74e6f23762ce8923b262a8",
+    "sha256": "a16f99ca8aca02eaa9858c62fc7830b9224ada231fbec269dbd43a3d0bfae84e"
+  },
+  {
+    "file": "scripts/gen/hub-shrine.js",
+    "bytes": 3428,
+    "gitBlob": "6cd54a32ce4eee45766b5155adaa9cf952694496",
+    "sha256": "b816e096a12734fa98741595c6addd6b1e02e87f33e5352fe14c6ca5c94dd1cf"
+  },
+  {
+    "file": "scripts/gen/hub-trophy.js",
+    "bytes": 8831,
+    "gitBlob": "097642807dc1ab76b299e1bc619fb8273928c387",
+    "sha256": "3b73e9f0ed3a87c8490ac3730d2aae627b71b9b74480c2ddc33dfff2b252bd8a"
+  },
+  {
+    "file": "scripts/gen/nave-candles.js",
+    "bytes": 2932,
+    "gitBlob": "2061d660e756dd3ca606559d41c7b2b1881d7b7a",
+    "sha256": "1b76a7a09d1b4617fdbc79bc469f4ab795c2a7c250f3739ebaae9430c0725d64"
+  },
+  {
+    "file": "scripts/gen/nave-drums.js",
+    "bytes": 2964,
+    "gitBlob": "7874bf80c345752eea1943867cb1bf4bb24b9674",
+    "sha256": "efb701cf720beef956526c398bb1dc701d20c1496635f841f7213833524d4e0f"
+  },
+  {
+    "file": "scripts/gen/nave-floor.js",
+    "bytes": 4348,
+    "gitBlob": "c44ed08dc8d48d682808106729836c0b65d9569a",
+    "sha256": "558ad07882840e550c74361f9978ab6dfa6cfbdf296a045dfcb0e716d6770084"
+  },
+  {
+    "file": "scripts/gen/nave-pew.js",
+    "bytes": 4419,
+    "gitBlob": "02da90f979f9253b8b14c99cd2096d2e26dae76c",
+    "sha256": "e5983865eefac63adf15924ad2d95b461cdc5dc430797a633077808426d1de5a"
+  },
+  {
+    "file": "scripts/gen/nave-pier.js",
+    "bytes": 3896,
+    "gitBlob": "19c16d76f3fb8a39fbd04ca9f4731a77ef750760",
+    "sha256": "9906e24ca2cde0c51b1a59287eefb922bc238017d4d299fcb743f9de78f807d2"
+  },
+  {
+    "file": "scripts/gen/nave-rafter.js",
+    "bytes": 2608,
+    "gitBlob": "1c5030a6f31cb2a943ca3d03f628480616dc7567",
+    "sha256": "9580987b87b6716b5ee53b1081b8221ffd47691596cb4b3008e3dea877e334c6"
+  },
+  {
+    "file": "scripts/gen/orch-gallows.js",
+    "bytes": 8574,
+    "gitBlob": "ef7c231a9df3cfe657e50e7a0f385046ff24d354",
+    "sha256": "2946d8b82ca0742e6f91015b84948524d53abb8d9fa70d5a35bb88c335fb3531"
+  },
+  {
+    "file": "scripts/gen/orch-gibbet.js",
+    "bytes": 3245,
+    "gitBlob": "91d3566e8cb8d1b4198618e5f1f58a42f922bdd4",
+    "sha256": "42d2af7de555a550ab5346815e8de9f938b4a7db47efa967f4b1c952e98f5979"
+  },
+  {
+    "file": "scripts/gen/orch-hanged.js",
+    "bytes": 3972,
+    "gitBlob": "c53f22438f07d50f497534ad0c144d07d7b611a3",
+    "sha256": "d3411e73f8f7fdf1fc9324d861a281fe06ac1dd9723819f6df21b25e3ef4dc1b"
+  },
+  {
+    "file": "scripts/gen/orch-kit.js",
+    "bytes": 4018,
+    "gitBlob": "f22a04056085dba71cef79ef17197756ab37f6d6",
+    "sha256": "61347e3166ec8bb66e580984698d29cd2f5aa39a2c6ebecaa71df88dcbe8098d"
+  },
+  {
+    "file": "scripts/gen/orch-props.js",
+    "bytes": 5656,
+    "gitBlob": "539c1a7acafdfeca115d5e7c15201741bdce1dd2",
+    "sha256": "a8a3c6cc7a8a640312a0e55624723e96179c83510edaf9f33c321868d814f06f"
+  },
+  {
+    "file": "scripts/gen/orch-tree.js",
+    "bytes": 5950,
+    "gitBlob": "1d3d51c7cba15d351716d9238f569091bec0b64a",
+    "sha256": "01f0c86b8909fe3b371d9b5b08d012ccf630506765c633a6dd99463a1d633240"
+  },
+  {
+    "file": "scripts/gen/oss-kit.js",
+    "bytes": 10078,
+    "gitBlob": "57a6f46fe6c283e9f011ac80ef40b1ae02d3e6b3",
+    "sha256": "c96ab9fd4eab4085b359e7606a1d99e93cdcbcd36b424d002d136761ae3d4227"
+  },
+  {
+    "file": "scripts/gen/ossuary-cart.js",
+    "bytes": 5437,
+    "gitBlob": "c45910202dbb4a2d1051ab62fc6e50bdbce5dd1f",
+    "sha256": "5accfcd2c0b6c6d1363ccd0acf366200fa275e88590833789de79aa7ce58a20b"
+  },
+  {
+    "file": "scripts/gen/penitent-wheel.js",
+    "bytes": 3237,
+    "gitBlob": "81004b09148da40c930e20062bf3a9e0a63267b9",
+    "sha256": "580447d1d85be4b36e7447263a042dd721a230e28d28e7c368899eb8304abfd1"
+  },
+  {
+    "file": "scripts/gen/shapes.js",
+    "bytes": 13436,
+    "gitBlob": "6b9cc8b4ee52570c85d63d5975b6feb307563ac5",
+    "sha256": "e1318bf76a6c150eb3ad2eebb5957022dd817871bbb16c7966e0eec11c763274"
+  },
+  {
+    "file": "scripts/gen/toll-throne.js",
+    "bytes": 4456,
+    "gitBlob": "cd22feefebab05ab8a2817512954b7a8eea0aaca",
+    "sha256": "c78712d1b27a04abebffce0f73bbe6d2e76c46a9153576803d9104806dcb84f8"
+  },
+  {
+    "file": "scripts/gen/veil-land.js",
+    "bytes": 8872,
+    "gitBlob": "a19ba7d2d038acdaf8954fc7c11274b273545404",
+    "sha256": "4a487d1416b14428ed3821e40517d36925bda96757cb26293cfe6fc9047525da"
+  },
+  {
+    "file": "scripts/gen/veil-shrine.js",
+    "bytes": 11787,
+    "gitBlob": "0aa9aa53b634ec469d2f68f18816467a51ac924a",
+    "sha256": "88545866ac09948704c4dbdb66dcc88c8129362edb217d5f28b8228cdcb9853c"
+  },
+  {
+    "file": "scripts/gen/vf-kit.js",
+    "bytes": 7858,
+    "gitBlob": "7153c3862291af6a766b4e7f882cdd19ac75a548",
+    "sha256": "9cb395dd5d596b0b0aae1a44140f41167ce1e25199f35a1227be928d5680063e"
+  },
+  {
+    "file": "scripts/gen/vf-milestone.js",
+    "bytes": 7615,
+    "gitBlob": "77849588f179f4c889f8778ee150046c1acfa2d9",
+    "sha256": "448828b292cff8c5758e51cfdb5d65dfba0f117f6ef4f2aa87c32d6170a3dfd3"
+  },
+  {
+    "file": "scripts/gen/vf-props.js",
+    "bytes": 10594,
+    "gitBlob": "91e121ea702921880a36b2ff0330ea0f05790141",
+    "sha256": "eb97d14b50713a8c417e36c4a6850150e7a0721759873f47750525d08be6debb"
+  },
+  {
+    "file": "scripts/gen/vf-ruin.js",
+    "bytes": 4739,
+    "gitBlob": "8d7377236cd32dff12da6d06068c74c9bd93a0b0",
+    "sha256": "7232b0bab97cb1d45ae918b1f07f80ea375a82550671f9d1955e2dd1c03ca34c"
+  },
+  {
+    "file": "scripts/gen/vf-tollhouse.js",
+    "bytes": 9754,
+    "gitBlob": "4f25cbed34036379645fc307945e1cba935de358",
+    "sha256": "7dd9e5a7f1cc4b9ef2e5aa9e723c329f6ce958f1929517d3089dc6dfd0570488"
+  },
+  {
+    "file": "scripts/gen/wax-figure.js",
+    "bytes": 5787,
+    "gitBlob": "fac492027917a4c3abf55f54f8096388b5b0ae71",
+    "sha256": "cae0d813a0c8ff29bd041083a771b5299e8db858a1257690438df93f29cd56df"
+  },
+  {
+    "file": "scripts/gen/wax-seal.js",
+    "bytes": 4708,
+    "gitBlob": "aaa431b785b6f6cf77d0aab9c132b72436930730",
+    "sha256": "da0acc3116bd53eeb6ca3c161bbf3800c079a543f9188ba5902097706c823f73"
+  },
+  {
+    "file": "scripts/gen/wayshrine.js",
+    "bytes": 3816,
+    "gitBlob": "4f7d850f73afa7f6231e6221cc96087a8d5ef0fc",
+    "sha256": "d68571de7a6f9f30ba03481285b849ed6b24699ae284c9e30f998c900390e8b4"
+  },
+  {
+    "file": "scripts/gen/zone-floor.js",
+    "bytes": 41026,
+    "gitBlob": "bd6b964845c05d95b7cef6fb1ac9df8cbe66d2a7",
+    "sha256": "0d89b774f851aaf04dd4b49ecb8baa07000134c5b5454813d060851117539e7f"
+  },
+  {
+    "file": "scripts/grass-look.js",
+    "bytes": 2280,
+    "gitBlob": "2c8fa7d51630dacde12dfe3d22148374dafd5f12",
+    "sha256": "0a0efd76e29405dad2ba681098de4f360f23c9f72de8d06ca83ac0c63f34c024"
+  },
+  {
+    "file": "scripts/grass.js",
+    "bytes": 2055,
+    "gitBlob": "8dc5abd7637882128f16c9fa58613e35039f04ca",
+    "sha256": "0e659225c9f8b38b7aeb67350c898ddde8481d40b9b15ba082206ed8e9124c0c"
+  },
+  {
+    "file": "scripts/greeter.js",
+    "bytes": 933,
+    "gitBlob": "ccb344f53b481920af50761fa5d551bba0dc949c",
+    "sha256": "3adbca5e5d276e38cdc7080c2cf43cd343630b97c2467408a25c3568aa8d8eff"
+  },
+  {
+    "file": "scripts/hangman.js",
+    "bytes": 10802,
+    "gitBlob": "fbcae69c08a33e0c73854d5cb888e3dd1cd67cf1",
+    "sha256": "a6958205da89ba6dce1d864a6c3ce38331f8c138aed66f0d961ea3ea46bcb0b5"
+  },
+  {
+    "file": "scripts/humanoid-locomotion.js",
+    "bytes": 18693,
+    "gitBlob": "398d494448790bd6665156398b3bedc6dcba551f",
+    "sha256": "d184ff4c788f953174f7f2323c29a67a960345ad778c90c00ffd4b645f8203eb"
+  },
+  {
+    "file": "scripts/lib/board-ui.js",
+    "bytes": 4812,
+    "gitBlob": "34dc289c0425193b2b206fc28411d190d4a1badb",
+    "sha256": "2a24732d9e980270571989d10d054215c84d2c456db08a78b722c0a8c2a1d95a"
+  },
+  {
+    "file": "scripts/lib/boss-voice.js",
+    "bytes": 1622,
+    "gitBlob": "59f7bf0e0580b0f8e1d92894f95f34d169d0ab6a",
+    "sha256": "87c6bd6b400e2bad442460b4de4a0d97bc536875c124161d9a529aa3bb04b5fa"
+  },
+  {
+    "file": "scripts/lib/brews.js",
+    "bytes": 831,
+    "gitBlob": "b55511c11573867bdc8f75c8c4255605e1630fd7",
+    "sha256": "f2f1ac6c988cd6345b2492e98e0687f5e999788fdf1fe9563b25a0b013aa7652"
+  },
+  {
+    "file": "scripts/lib/character.js",
+    "bytes": 5031,
+    "gitBlob": "f10c664901e7822935a1ea19cc4f7b72c4027e2c",
+    "sha256": "a2c0c3529b2e29991c1ffcfe627df81225d1edb782a7c2c0c0d58c174341bf03"
+  },
+  {
+    "file": "scripts/lib/coins.js",
+    "bytes": 1353,
+    "gitBlob": "379387785f4996cd64805ad09a5fd29ff5b6d953",
+    "sha256": "d54289f684a1da558753e074e9c0544b32b23601e603e84b9fb14cfc678f1d6c"
+  },
+  {
+    "file": "scripts/lib/data/aesthetic.yml",
+    "bytes": 817,
+    "gitBlob": "712dc23b96a1adb5f673c9d9d37ac48f44150972",
+    "sha256": "a732cf06db92b72953481a9b6dd0bcdc0896e731da24134defe88f58eeb58854"
+  },
+  {
+    "file": "scripts/lib/data/brews.yml",
+    "bytes": 2105,
+    "gitBlob": "be263e3b19c93565fcff6be53ab9ced84321db1c",
+    "sha256": "daa529306cb5cbade959b675b9d32c604ac07902dbcb8527634d90b705fa0bc8"
+  },
+  {
+    "file": "scripts/lib/data/bw-floor-patches.json",
+    "bytes": 59829,
+    "gitBlob": "1bb896af8306fb197d258d2a02eb60ca5c662212",
+    "sha256": "4a793fe4f9ec8d387e04467039a9d70815d96cbba33926137ba1a7e6d40f1bae"
+  },
+  {
+    "file": "scripts/lib/data/camera.yml",
+    "bytes": 15,
+    "gitBlob": "2cde356142ce4d819295273c15831614a920f7ea",
+    "sha256": "7179117cc79051ad040f23f42311e79e81d51948c7d1c85098f6bf9bf94a8c24"
+  },
+  {
+    "file": "scripts/lib/data/combat.yml",
+    "bytes": 7777,
+    "gitBlob": "28299f0150df6f524025fa2b7c5af7092cb1e7e3",
+    "sha256": "33659b1d193c50e64ccd5eab6e4e1164d0421b5bca65937b5f02d25a884eaa23"
+  },
+  {
+    "file": "scripts/lib/data/economy.yml",
+    "bytes": 1978,
+    "gitBlob": "cb5cfbd17b9bae6ee75f3d844df550368ac7f402",
+    "sha256": "1e19a912ba7ae0227f5834436bec6128f54906e66216c0a7b424802bb34fffc9"
+  },
+  {
+    "file": "scripts/lib/data/fauna.js",
+    "bytes": 1897,
+    "gitBlob": "1cc1dda960e300c3184bcdfeb89e5e84692ecbd7",
+    "sha256": "59654bfd91637ec98e4b8344760834d5bbd4b5634fe622bc41052f9db9e2e5ec"
+  },
+  {
+    "file": "scripts/lib/data/flora-ash.js",
+    "bytes": 857,
+    "gitBlob": "c9e5b587f814d22415d6328d5f554f2888cc3036",
+    "sha256": "6c607133e27375740ff792b851f29896945f2ac913d02673b022e82c11b00dd8"
+  },
+  {
+    "file": "scripts/lib/data/flora-fen.js",
+    "bytes": 816,
+    "gitBlob": "ad93d7385b09faec0c8b431ab3eb49a548378e98",
+    "sha256": "80746db501ac2bac2d2bdc28bf751c37ccf0acd0bc57a8525f7ca8cbc8353c01"
+  },
+  {
+    "file": "scripts/lib/data/flora-frost.js",
+    "bytes": 891,
+    "gitBlob": "f30f2c0eefbf9348261b30c53acbf23eb5e93251",
+    "sha256": "6b0d2051289011dcc4020bd540dc0687a89649e9806d15a8da376471f77ba57e"
+  },
+  {
+    "file": "scripts/lib/data/flora.js",
+    "bytes": 1139,
+    "gitBlob": "c15dca27773989422dc7be5a61806a337a7b45b0",
+    "sha256": "0c643a10faca4d74b369de4f3aca0f468efc3a287fd161a150bb04684ef5096d"
+  },
+  {
+    "file": "scripts/lib/data/loot-icons.yml",
+    "bytes": 1039,
+    "gitBlob": "8b088918f9635be7cc60bce95c93b194a18471fe",
+    "sha256": "57f357e412a7c28607aad32314bb0e55362f72afe50de80784e836688372a3b3"
+  },
+  {
+    "file": "scripts/lib/data/loot.yml",
+    "bytes": 8999,
+    "gitBlob": "713b4e4d0c60b823067557736d3173492f129eed",
+    "sha256": "23a3994daea57a007af805deb49b906e4b3fa0e8d21131ec3be94d3a1ded2f01"
+  },
+  {
+    "file": "scripts/lib/data/menu-shot.yml",
+    "bytes": 408,
+    "gitBlob": "2bb1e30abb97964863d22501ee981bf3be25ff8c",
+    "sha256": "7abff029f5af21f355e2116465ee9e7862e82151f470426df3075957fad47ca0"
+  },
+  {
+    "file": "scripts/lib/data/models.js",
+    "bytes": 5413,
+    "gitBlob": "ca60b019d72c50519ce55733d54e954f5083a88d",
+    "sha256": "803d8e4520f17939e2686b9ed6cad9f83747abdca21c181d4d01b0d842b2077c"
+  },
+  {
+    "file": "scripts/lib/data/player.yml",
+    "bytes": 666,
+    "gitBlob": "3cd566a856e40f09de9ca59f75013775cf7da323",
+    "sha256": "f979a23600a9ca03a6da405cd7318efa24e3a9b363d3142912acbb667a957775"
+  },
+  {
+    "file": "scripts/lib/data/realms.yml",
+    "bytes": 726,
+    "gitBlob": "3737148ad8bc61a9c471b959c99246a0ea07222e",
+    "sha256": "1da52abc0094a255fdf85f8a6e5e87c30b52152a4d35e5293afa1da4f3c9be8a"
+  },
+  {
+    "file": "scripts/lib/data/talents.js",
+    "bytes": 7405,
+    "gitBlob": "481a1b0d38a1a743c622efcf4e908ed32cf6bb9d",
+    "sha256": "c059eb7790b8f42f20d9d0f705971f47fd8f1634ca0318c1ad634e63f4a4c0e1"
+  },
+  {
+    "file": "scripts/lib/data/trade.yml",
+    "bytes": 600,
+    "gitBlob": "4f112785864195fec476425a076b7364431302c4",
+    "sha256": "e142ec6ee5f97604647bd662cbbeb9cbad26e25d4ef316be3de09b6924015ab8"
+  },
+  {
+    "file": "scripts/lib/data/ui-kit.js",
+    "bytes": 6096,
+    "gitBlob": "bffe10fb120fbf22ebd52496c52f55dbefb48953",
+    "sha256": "c9093f5831ed08bee44112ac9995a1d890d0bb7a2398400ac359aed4636f1343"
+  },
+  {
+    "file": "scripts/lib/data/veilfall-map.js",
+    "bytes": 9762,
+    "gitBlob": "6f3393883875cc0a4a2b1172c2b706569d5c0c79",
+    "sha256": "6c70c7915c6da3c518dccdd714a427c9f68abb3cdce5bcba1fde9ac8167d6124"
+  },
+  {
+    "file": "scripts/lib/data/world.yml",
+    "bytes": 25,
+    "gitBlob": "e1185a589c4717ab7eb226a40d8fc077a0a53830",
+    "sha256": "b5cacea2ee3ce3181516e9fb0da49eb6eb748ad49e8178615afe9e4295ce84eb"
+  },
+  {
+    "file": "scripts/lib/frames.js",
+    "bytes": 6299,
+    "gitBlob": "0d8b84503ffa38fc444e075d9c77df805d38b21d",
+    "sha256": "7d1e84fec2f7cb7ea8d5c15680b285053b579b9b4fc5a2326c177a6835c40b88"
+  },
+  {
+    "file": "scripts/lib/guildvault.js",
+    "bytes": 3415,
+    "gitBlob": "1a49dd61ae038aaa2a41ed5fdb26f39ab228e077",
+    "sha256": "936db860b76011d590ea799fabd54cdc8b935744040c1421c440fc37c0873400"
+  },
+  {
+    "file": "scripts/lib/loot.js",
+    "bytes": 11870,
+    "gitBlob": "6d07e1704ba7e117774953fcc27fbedbc026f591",
+    "sha256": "70bc28896c713068c2ebdffda323604590951528e52e2a4d5d3cdc8cfff96cc3"
+  },
+  {
+    "file": "scripts/lib/pack-ui.js",
+    "bytes": 16165,
+    "gitBlob": "24b3db0342d4e07df39af9084c51eec0f7b55910",
+    "sha256": "118f669889c0afeb1ec1f597961437b1dd10737bab818f010e806fa29b6707b4"
+  },
+  {
+    "file": "scripts/lib/shop-ui.js",
+    "bytes": 5732,
+    "gitBlob": "eba30292d8c17eca2cd9122f8c6c4eb5474dba6f",
+    "sha256": "1fe3f710be6496155642e0e2f39b1cf7c2241bafebc9db110f8f768fd3846fbe"
+  },
+  {
+    "file": "scripts/lib/shop.js",
+    "bytes": 2320,
+    "gitBlob": "f296c3623e4fc9d1faebd5d72c77750b2d497234",
+    "sha256": "b3d66880024005048cf214f9297275b9ec85adcb603f6790c26d85fda3b0ec63"
+  },
+  {
+    "file": "scripts/lib/trade.js",
+    "bytes": 7664,
+    "gitBlob": "f988cabe70b89180c80120ceaaf7cadcecdfd650",
+    "sha256": "b0177cc59316d0c8fe90d19ac1810d7583a57ba802510c2de609bbf3cb2d1ef7"
+  },
+  {
+    "file": "scripts/lighting.js",
+    "bytes": 2503,
+    "gitBlob": "b4d91de60efb544d67c7aba8e89b706ff92b2425",
+    "sha256": "1eaed556227061c91eca0080663ef762f5d296d64171d866e8959896cf93f447"
+  },
+  {
+    "file": "scripts/look-default.js",
+    "bytes": 2333,
+    "gitBlob": "f4a3071fa381c6dfda852e03795d359e04976494",
+    "sha256": "9fa8532798d44f3e74dc08c016636379d6689a3c7b4d3f0bb22e7afff8b48274"
+  },
+  {
+    "file": "scripts/look-veilfall.js",
+    "bytes": 6399,
+    "gitBlob": "40a48a90d0e5651ffdbd54e12b9270bac88234fc",
+    "sha256": "83568ca7808a2fbc12d044e239fe64f07258287996462a0ab1fa9f619f274ad3"
+  },
+  {
+    "file": "scripts/material-fern-sway.js",
+    "bytes": 1395,
+    "gitBlob": "fcc8dee522902bab1691b47d008062290006d8bd",
+    "sha256": "715e2428902413ebc44471aba891f769e7e5333701770c04eec7dbaa4224965e"
+  },
+  {
+    "file": "scripts/mushroom.js",
+    "bytes": 1384,
+    "gitBlob": "b5a91b5fbb8eb6d04de5fb43bdb21f09989ad8cf",
+    "sha256": "3cf601ee1d53bb59a6f697e2b31043361cd320bff8d743446b07337dbad51d24"
+  },
+  {
+    "file": "scripts/petition.js",
+    "bytes": 972,
+    "gitBlob": "8b1471e14cb494c4ba22a82be5d73bdbe23b588e",
+    "sha256": "d4c24e482d9039a8c1bfcc61578b49fe66c33758dc7104692c0d413ef61f590c"
+  },
+  {
+    "file": "scripts/plants/ashfern.js",
+    "bytes": 4203,
+    "gitBlob": "d09a52969666c6fac8403bec3347139a37e264ad",
+    "sha256": "190a97a05618f86ae36b604b3dbccc66c157fbcc3a30b1235e0fe4d825b95a99"
+  },
+  {
+    "file": "scripts/plants/bramble.js",
+    "bytes": 4951,
+    "gitBlob": "b907188f52dc2d03722d77858066a29fe3eeebad",
+    "sha256": "06f2d9bf72a9d415cbc20d908d3b3c0e53ea984c88e61c8ab652f627f3b8a842"
+  },
+  {
+    "file": "scripts/plants/emberblossom.js",
+    "bytes": 4467,
+    "gitBlob": "7ce1ed943a4111c9f70ba483189a941fc30fdfd8",
+    "sha256": "67ff3b9b1d630387683be9598334ee7b16d6f2447f242fa29b8af1b72d95c13b"
+  },
+  {
+    "file": "scripts/plants/glowcap.js",
+    "bytes": 4307,
+    "gitBlob": "508184a26abfce88ca26c5a0367164e2c2b7cc03",
+    "sha256": "4acc4d57814cb53108b88cb591011d09b337ddfc3e11b075949f1c99528e2786"
+  },
+  {
+    "file": "scripts/plants/gravegrass.js",
+    "bytes": 2849,
+    "gitBlob": "74d82182e53f1b0e22249f7a9ebc484b3cc89501",
+    "sha256": "f1acac5f581c75c8a6fb768f40061d2bf9f8d1eeffc7d4e578cbc2c1a3a3b6b2"
+  },
+  {
+    "file": "scripts/plants/mossoak.js",
+    "bytes": 8892,
+    "gitBlob": "3ecaea100cf91c0650ed9529d591bc539bb32d30",
+    "sha256": "6fa0aff33c61755ef3208d9f6ecfe331550acbc890529857e60ac526689a83bf"
+  },
+  {
+    "file": "scripts/plants/veilbloom.js",
+    "bytes": 8443,
+    "gitBlob": "2d32ad97df88183f92df47ef4ab404ef132231c1",
+    "sha256": "96a08748b15e49d6eba91dd08c9e5133c7d605eb16ddca6dec37e8311ae99828"
+  },
+  {
+    "file": "scripts/player.js",
+    "bytes": 95061,
+    "gitBlob": "be4d5ade73856d0e212020389f7402b3c51b60ff",
+    "sha256": "c6c95c078959cba3092d619d23b2c0be71654683895c90a777b83f849bb0e12d"
+  },
+  {
+    "file": "scripts/ringer.js",
+    "bytes": 9936,
+    "gitBlob": "7f95d91867ab42d069c8244dd7ca07b26f2955ae",
+    "sha256": "5146fc061e43ed8f679e92c0eae3ab2d661baa9e75c90245448eb5e5e9583d25"
+  },
+  {
+    "file": "scripts/sway.js",
+    "bytes": 1762,
+    "gitBlob": "d564343062354a78c270e88b096aef9b44c376ac",
+    "sha256": "ed0dea152478d895e98e3224d82342f65acabafab7fa9e6d3c585efdeb1ecc8d"
+  },
+  {
+    "file": "scripts/terrain.js",
+    "bytes": 2724,
+    "gitBlob": "c0e18de2dbd1df43c00dc6400a31841fd8c52fae",
+    "sha256": "939777607a3257044877c7639c7c52d4353ac68bbe9ced724185def74c82c743"
+  },
+  {
+    "file": "scripts/trophies.js",
+    "bytes": 2398,
+    "gitBlob": "f737d8d78037284980d927cb3ee8d9753d6bb554",
+    "sha256": "1df7b1b5331576d9fd21295f2f25242e76a8306af23be0abdbefa10a73d36ade"
+  },
+  {
+    "file": "scripts/ui.js",
+    "bytes": 98419,
+    "gitBlob": "43d20005dce711f8e2ff7f83313cf977703711b5",
+    "sha256": "97ad11d7194c8a146fff189eddd4e2be94ba32133524d5be58f8ef9b222d8887"
+  },
+  {
+    "file": "scripts/warden.js",
+    "bytes": 10236,
+    "gitBlob": "3a12fb1481088cbdad0368fdaea6159d3c8a9507",
+    "sha256": "251035ffc66bd2a2819179534cebcc6c77255fca34435121cc9a619e250d589e"
+  },
+  {
+    "file": "scripts/wax-pack.js",
+    "bytes": 32417,
+    "gitBlob": "f9ac09757c551d3702405d76422f97e4a532d2ac",
+    "sha256": "0d4c86710fae24210c721f7dc920657ec9daea9ad2050453c65ca2d213110db4"
+  },
+  {
+    "file": "sim.js",
+    "bytes": 718,
+    "gitBlob": "c82ac1d8db260655e763a01f57353f014e1b6350",
+    "sha256": "a900fa769b4f39ecd18478b6e03ee682532071b2cb63162959e30800d632a15a"
+  },
+  {
+    "file": "spawn6/flat-anchor.yaml",
+    "bytes": 264,
+    "gitBlob": "2a1060367f4942dca20f8346c7ac399488c2dc58",
+    "sha256": "71a19639c8885e5e5837b9d5297296fdbbfde3256f3446a492211130dedfd886"
+  },
+  {
+    "file": "templates/camera.js",
+    "bytes": 270,
+    "gitBlob": "963efbb3457e06bed0926dce93266275b3dc9ca8",
+    "sha256": "2027d14de133fde2390ee50b664ffdcf5a503c029a2b436968015467bf2e241d"
+  },
+  {
+    "file": "templates/player.js",
+    "bytes": 697,
+    "gitBlob": "374d21fb46bdad4c57c1236bb176d0cdb62bf282",
+    "sha256": "7799ce82c528b0f1a9e862580ba8451fae51a77d4a80f2eb6afe40d96340f3ac"
+  },
+  {
+    "file": "ui/nametag.js",
+    "bytes": 6809,
+    "gitBlob": "a8a99860a818c3a31883dfadab4da0d4ab649864",
+    "sha256": "7fe04908e8f157b2edcedc62fb5b769ee943865c9ae0ad342eb248c2be4b53b6"
+  },
+  {
+    "file": "world.assets.yaml",
+    "bytes": 13527,
+    "gitBlob": "b558fbaa5ac038dc45a4f304f79b3d019693128f",
+    "sha256": "19c8f73b0cefc589d75247207d0586f24d854971255859f76f686ac824880044"
+  },
+  {
+    "file": "world.config.yaml",
+    "bytes": 3125,
+    "gitBlob": "4874c4f30ace5e1b503fc7eb46ceb1c84430e5c3",
+    "sha256": "e58b66d682d1461c89ea05f6e16adf850b70c8a9cdbe76e831fd182c55f2a9af"
+  }
+]
