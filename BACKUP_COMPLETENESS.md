@@ -1,6 +1,6 @@
 # Current backup coverage and verification
 
-Current source `f70c176c018e99d1e6fae9c8e0fd679002ab7899`, notes `42def820620cd751bec81e1f4acd7f61bb26c320`, source captured October 11, 2026, 14:46 UTC; notes refreshed at 19:46 UTC.
+Current source `f70c176c018e99d1e6fae9c8e0fd679002ab7899`, notes `868c3dba957750335faa929656b0cc3e04c1d239`, source captured October 11, 2026, 14:46 UTC; notes refreshed October 12, 03:03 UTC.
 
 | Component | Preserved | Verification |
 | --- | --- | --- |
