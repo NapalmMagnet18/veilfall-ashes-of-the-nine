@@ -1,6 +1,6 @@
 # VEILFALL: Ashes of the Nine — current game backup
 
-This repository's main branch contains the current authored Spawn game source and its original history. Current captured source: `7792b0d553b6f06c6112a3edacfb190da5bc91fb`; notes: `aea1ab94247b91a5799bf4dccad400fce1dbd71c`. Source and complete notes captured October 12, 2026, at 12:06 AM America/Denver (06:06 UTC).
+This repository's main branch contains the current authored Spawn game source and its original history. Current captured source: `7792b0d553b6f06c6112a3edacfb190da5bc91fb`; notes: `a305d5e0d04d4f83ac72b09ae1c9c42bb4b355f1`. Source captured October 12, 2026, at 12:06 AM America/Denver (06:06 UTC); notes refreshed at 2:11 AM (08:11 UTC).
 
 - **369 current source files**: scenes, scripts, configuration, design, art build scripts, animation data, mods and builder documents. Older source versions in main were updated to the captured Spawn revision. [Source manifest](BACKUP_CURRENT_SOURCE_MANIFEST.json) records each file's Git blob, SHA-256 and size.
 - **802 preserved CDN asset paths**: models, textures, icons, audio, fonts and other retrieved assets, including historical/documentation references. The [combined asset manifest](BACKUP_CURRENT_ASSET_MANIFEST.json) maps each file to its archive and SHA-256.
