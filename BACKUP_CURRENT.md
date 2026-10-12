@@ -1,26 +1,26 @@
 # Current VEILFALL source and asset backup
 
-Latest Spawn notes are preserved in the [notes refresh](BACKUP_NOTES_REFRESH.md). The source and full history snapshot below retains its stated revision; the newer notes baseline and increment are separate.
+The latest source and complete notes history are captured below. Earlier dated snapshots remain available in the same release.
 
-Snapshot: October 11, 2026, 14:46 UTC. Spawn source commit `f70c176c018e99d1e6fae9c8e0fd679002ab7899`; Spawn notes `b9d45834a286b6b2ba4493e70d4fe97ab0f5016a`. The GitHub tree preserves the original game history and the subsequent backup documentation commits. The backup does not change the live Spawn world.
+Snapshot: October 12, 2026, 06:06 UTC. Spawn source commit `7792b0d553b6f06c6112a3edacfb190da5bc91fb`; Spawn notes `aea1ab94247b91a5799bf4dccad400fce1dbd71c`. The GitHub tree preserves the original game history and the subsequent backup documentation commits. The backup does not change the live Spawn world.
 
 [Download the backup release](https://github.com/NapalmMagnet18/veilfall-ashes-of-the-nine/releases/tag/backup-2026-10-09).
 
 ## Current source
 
-`VEILFALL_Spawn_Source_f70c176c.zip` contains all **369 tracked files** at this revision. Each file was independently compared against its exact Git blob object, with Windows line-ending conversion disabled for the archive. `VEILFALL_Source_File_Manifest_f70c176c.json` contains per-file SHA-256 and Git blob hashes.
+`VEILFALL_Spawn_Source_7792b0d5.zip` contains all **369 tracked files** at this revision. Each file was independently compared against its exact Git blob object, with Windows line-ending conversion disabled for the archive. `VEILFALL_Source_File_Manifest_7792b0d5.json` contains per-file SHA-256 and Git blob hashes.
 
-`VEILFALL_Spawn_History_f70c176c.bundle` contains complete main history and Spawn notes. `git bundle verify` and restoration into a fresh checkout with `git fsck --full` passed. Restore it with an explicit branch:
+`VEILFALL_Spawn_History_7792b0d5.bundle` contains complete main history and Spawn notes. `git bundle verify` and restoration into a fresh checkout with `git fsck --full` passed. Restore it with an explicit branch:
 
 ```sh
-git clone --branch main VEILFALL_Spawn_History_f70c176c.bundle veilfall-restored
+git clone --branch main VEILFALL_Spawn_History_7792b0d5.bundle veilfall-restored
 cd veilfall-restored
-git fetch ../VEILFALL_Spawn_History_f70c176c.bundle refs/notes/spawn:refs/notes/spawn
-git checkout f70c176c018e99d1e6fae9c8e0fd679002ab7899
+git fetch ../VEILFALL_Spawn_History_7792b0d5.bundle refs/notes/spawn:refs/notes/spawn
+git checkout 7792b0d553b6f06c6112a3edacfb190da5bc91fb
 git fsck --full
 ```
 
-Four newer main-history commits preserve map-area measurements and refreshed external-agent guidance in .spawn/skills.md. All 369 source paths match the exact Spawn Git blobs in the archive and GitHub backup tree. This backup makes no live-world edits.
+Five new main-history commits preserve engine preparation, measured map areas and the current view-space normal transform correction in the rock look. All 369 source paths match the exact Spawn Git blobs in the archive and GitHub backup tree. This backup makes no live-world edits.
 
 ## Preserved asset files
 
@@ -42,7 +42,7 @@ The original 97-file design package and original art-reference archive remain in
 
 The latest broad scan requested 352 uncovered candidate URLs. It recovered 121 files; **231 candidates** still returned unavailable responses: 228 MP3 names, two retired GLB outputs, and one documentation-example PNG. All original 213 missing audio references remain unavailable. The broader scan also covers obsolete and example names; the audit preserves exact per-URL responses rather than treating every candidate as a current gameplay dependency.
 
-`VEILFALL_Refresh_Asset_Audit.json` records the original requests. `VEILFALL_Missing_Asset_Recheck_202610111446.json` records a fresh retry at this snapshot: all 231 candidates remain unavailable with explicit no-generated/no-generating-file responses. The new source/history scan found no additional asset URLs. The unchanged large asset archives were retained without re-uploading. The prior room inspection reported no active room; no fresh live runtime catalog was inspected during this source refresh. Current authored asset metadata and all main history were scanned; the previous live catalog was already covered in the earlier audit.
+`VEILFALL_Refresh_Asset_Audit.json` records the original requests. `VEILFALL_Missing_Asset_Recheck_202610120606.json` records a fresh retry at this snapshot: all 231 candidates remain unavailable with explicit no-generated/no-generating-file responses. The new source/history scan found no additional asset URLs. The unchanged large asset archives were retained without re-uploading. The prior room inspection reported no active room; no fresh live runtime catalog was inspected during this source refresh. Current authored asset metadata and all main history were scanned; the previous live catalog was already covered in the earlier audit.
 
 Spawn's documented export interfaces do not expose its hosted engine/server implementation or creator-compute filesystem. These archives preserve authored source and available assets, not a standalone copy of Spawn hosting.
 

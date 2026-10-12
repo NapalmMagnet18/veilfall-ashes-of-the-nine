@@ -571,9 +571,9 @@
   },
   {
     "file": "mods/awakening/rock-look.js",
-    "bytes": 3544,
-    "gitBlob": "aa7a1f667762d5d8c9d7509639ce589cbc68c81d",
-    "sha256": "7a703e808979ee165f2ba20ee32bc49714901c9820e9fc45e27b97a83ab19fdf"
+    "bytes": 3598,
+    "gitBlob": "4bfe77ff5732eef7965e5d54bb57fc550b0af403",
+    "sha256": "1c158666e9b5583f82752cf9c095fafb1e5c7f2b49b28ee3a0a6782a96ea9b2e"
   },
   {
     "file": "mods/awakening/shore-band.js",

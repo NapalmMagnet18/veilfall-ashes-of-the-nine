@@ -1,12 +1,37 @@
 [
   {
-    "file": "VEILFALL_Spawn_Notes_868c3dba_increment.bundle",
-    "bytes": 617,
-    "sha256": "83c22162ddfde84479cacfe8a1cf65eb0e586fb65604085a59ebea015e6d01ad"
+    "file": "VEILFALL_Spawn_Source_7792b0d5.zip",
+    "bytes": 1433133,
+    "sha256": "106eb6e0592381c40ca5f211d493173c71ae13a9d0c387bb00f8c61ea662d624"
   },
   {
-    "file": "VEILFALL_Notes_Refresh_868c3dba.md",
-    "bytes": 1877,
-    "sha256": "8c37eac70e163cac56eb5ed8c28ef8510fdd1eeb5e8d45012855bc843773383a"
+    "file": "VEILFALL_Spawn_History_7792b0d5.bundle",
+    "bytes": 11658958,
+    "sha256": "f1eab15c5f6de2ab9c3ffeab757baa03f3d5028f2e126fbf0f964151b898cdad"
+  },
+  {
+    "file": "VEILFALL_Source_File_Manifest_7792b0d5.json",
+    "bytes": 80542,
+    "sha256": "61cce45341c6319b3dbf81c30f93977f6ecaefd5ed64582ccbb0006166be947a"
+  },
+  {
+    "file": "VEILFALL_Update_Scan_7792b0d5.json",
+    "bytes": 39782,
+    "sha256": "7b0a75307556fc0aaa02f40dba3904f5655dee2759e9669e950ada33fcd22fd8"
+  },
+  {
+    "file": "VEILFALL_Missing_Asset_Recheck_202610120606.json",
+    "bytes": 80414,
+    "sha256": "f88d883394412c836d9b06461a086087907b766b284fb49cbc4533599ea1467a"
+  },
+  {
+    "file": "VEILFALL_Update_Verification_7792b0d5.json",
+    "bytes": 590,
+    "sha256": "f7e524c4e34d10c2d94e4aa816191420da2dc50b05fb8328add13fc073ab8448"
+  },
+  {
+    "file": "VEILFALL_Backup_Update_7792b0d5.md",
+    "bytes": 1910,
+    "sha256": "a9618118f8bff231b4f88005c3662e998a32ccd2db27c1d67ff7b68d40ef21f3"
   }
 ]

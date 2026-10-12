@@ -26,7 +26,7 @@ fn kept_normal_frame(posW: vec3<f32>, nrmW: vec3<f32>, uvv: vec2<f32>, mapN: vec
 const keptNormalMap = (node, scale) => {
   const decoded = (node.type === "vec4f" ? node.xyz : node).mul(2).sub(1);
   const mapN = scale === undefined ? decoded : keptTsl.vec3(decoded.xy.mul(scale), decoded.z);
-  return keptNormalFrame(keptTsl.positionWorld, keptTsl.normalWorld, keptTsl.uv(), mapN);
+  return keptTsl.transformDirection(keptNormalFrame(keptTsl.positionWorld, keptTsl.normalWorld, keptTsl.uv(), mapN), keptTsl.cameraViewMatrix);
 };
 
 const GRANITE = {
